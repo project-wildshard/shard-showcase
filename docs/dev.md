@@ -54,3 +54,14 @@ goes in `tmp/<task>/` and is deleted when done.
 
 Bypasses are for the case they name, never for a red gate: fix the code,
 not the gate.
+
+## Global-store trial
+
+The root default stays off until the ordered GVS rollout.
+Use `pnpm install --frozen-lockfile --config.ci=false
+--config.enableGlobalVirtualStore=true` for the isolated trial.
+The engine0.1.0 extension declares its installed author-tool edges using
+this repository's existing versions; all source pins stay unchanged.
+Hosted CI installs the real store and configures its cache with CI=true.
+This scaffold currently has no authored shard directory or product.
+An installed CLI or zero-product build is not a gameplay boot proof.
