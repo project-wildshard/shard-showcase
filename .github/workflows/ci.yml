@@ -54,6 +54,11 @@ jobs:
           git config --global url."$base".insteadOf "https://github.com/"
           git config --global --add url."$base".insteadOf "git@github.com:"
           git config --global --add url."$base".insteadOf "ssh://git@github.com/"
+      - name: Read public Git pins without an SSH key
+        if: env.APP_CLIENT_ID == ''
+        run: |
+          git config --global url."https://github.com/".insteadOf "git@github.com:"
+          git config --global --add url."https://github.com/".insteadOf "ssh://git@github.com/"
       - run: pnpm install --frozen-lockfile --config.ci=false --config.enableGlobalVirtualStore=true
       - name: Prove the installed global store
         run: node scripts/assert-store-layout.mjs
