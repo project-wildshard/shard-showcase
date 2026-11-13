@@ -1,5 +1,7 @@
 # E1d: Scrip from kills and chests (payout rows; Driftwood's cap becomes a mode)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E1d-scrip-payouts.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **LE2** (kill payouts: coin rows
 by kind and variant, night ×, the gap factor, `cap: per-enemy | none`), the payout half of **M1.1** (Driftwood's bounty
 onto the rows, exact parity) and the Scrip content of chests (**LW5** for band 1). The west's Developer "Give 1,000

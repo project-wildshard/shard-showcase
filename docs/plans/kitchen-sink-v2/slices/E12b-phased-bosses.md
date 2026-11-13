@@ -1,5 +1,7 @@
 # E12b: one boss path II: Pine's Antler King and Nalati's Golden King off `plugin/bossPhase`
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E12b-phased-bosses.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **M5.2** (Pine's King: `king.as`,
 `custom/kingKit`, ~800 lines of `gen/king*`, `game/server/plugin/bossPhase.ts`) and the Golden King half of **M5.3**, plus the
 `bossPhase.ts` slice of SHARD-PLATFORM-NEXT **N2/N5**. A migration slice.

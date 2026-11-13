@@ -1,5 +1,7 @@
 # W4a: the interactables section, plates that feel any body, physics crates and balls
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W4a-interactables-plates-crates.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the old **W2** (interactables
 platform section), the barrels half of **W3** (promote `barrels.as` to commons), the dynamic-prop part of **W14**, and
 **M6.1** (the templates' `door.as` / `items.as` / `idle.as` → commons where they duplicate).

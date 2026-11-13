@@ -1,5 +1,7 @@
 # W12: the west finish (memory, grid-ready, the look, Jake's phone pass)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W12-west-finish.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the west half of the old
 **K10** (grid-ready: memory ≤ 1.2 GB Explorer, one-frame looks, baked tiles, entries, edge profile) and **K12** (Jake
 plays it on the phone) for the west, plus **W21**'s docs for every west feature (a SHARDS.md section and a template

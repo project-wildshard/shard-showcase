@@ -1,5 +1,7 @@
 # Slice decisions (Jake, 2026-11-03 grill)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/DECISIONS.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Jake's answers to the slice questions. Where a slice file's "Questions for Jake" recommends something else, this file
 wins; the slice files are updated when their slice is next touched. How slices run (when Jake plays, whole host
 families, the parity bar, parallel toy slices) is in [README.md](README.md).

@@ -1,5 +1,7 @@
 # W3c: the lever rifle out of the plugin, the rifle lane
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W3c-lever-rifle.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the firearm part of the old
 **W6** (`heldFirearm` out of the plugin), the `heldFirearm.ts` slice of SHARD-PLATFORM-NEXT **N2/N5** (owned there,
 run here) and **M3.1**'s rifle half.

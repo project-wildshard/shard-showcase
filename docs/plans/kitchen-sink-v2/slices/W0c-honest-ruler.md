@@ -1,5 +1,7 @@
 # W0c: the honest ruler (HOST-AUDIT HA0 + HA1)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W0c-honest-ruler.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the old **W1** (ruler half) and
 **M0.2**'s measuring half. The rows stay owned by [HOST-AUDIT](https://github.com/Raynos/project-wildshard-singleplayer/blob/ce1cf050b36fa236155ac26d43e721b9012c49df/docs/plans/HOST-AUDIT.md) (HA0, HA1; Jake 11-02: cleanup rides
 along, never duplicated): this slice runs them and marks them done there.

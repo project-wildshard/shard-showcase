@@ -1,5 +1,7 @@
 # E8a: the elite host normalised (typed drops, named stings, attribute phases, interruptible wind-ups)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E8a-elite-host.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the elite part of the old
 **W11** ("elites G"), **EBW3** (an interruptible wind-up: damage in a window cancels an elite action), **EBW7** (an
 elite spawned by a director stage, used by E11c/E11d), **LV5**'s "boss phases as attribute effects" for elites, the

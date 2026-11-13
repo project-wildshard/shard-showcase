@@ -1,5 +1,7 @@
 # W6c: the swaying rope bridge as a shared row
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W6c-rope-bridges.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the rope-bridge half of the
 old **W18** ("generalise the rope-deck site", H026), the bridge half of **W3** (promote `bridgeSway.as`), and decides
 **M6.2/M6.3** (§3: Sky's bridges are not rope bridges).

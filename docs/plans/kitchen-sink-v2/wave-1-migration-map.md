@@ -1,5 +1,7 @@
 # Mini plan: Wave 1 migration map, every shard onto the shared hosts
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/wave-1-migration-map.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md) §4. Jake, 2026-11-02 (E523): normalise every host the showcase touches and
 refactor Driftwood, Pine Hollow, Nalati and the rest onto it in the same row. Source: a read-only audit of the source
 and the built products (`out/*/sections/`, 11-02). Effort figures are estimates.

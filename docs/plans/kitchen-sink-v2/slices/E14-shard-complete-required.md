@@ -1,5 +1,7 @@
 # E14: every shard gets a shard-complete card (backfill first, then the validator rule)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E14-shard-complete-required.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the old **W17** ("backfill
 `ui/completion` in every product, then a validator rule that requires it", Jake 11-02 decision 21), **M9.2** (one feats
 row for Driftwood / Pine / Nalati, the parts the card's stats read) and **M9.3** (Pine's compendium icon picklist,

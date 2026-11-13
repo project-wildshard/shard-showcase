@@ -1,5 +1,7 @@
 # W2a: currency, the pack catalogue and generic ownership (Scrip, 20 slots, owned rows)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W2a-currency-pack-owned.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs **LE1** (currency row),
 **LE4** (pack catalogue), the `Owned` half of the old **W5**, **M1.6** (save shim, first), **M1.1/M1.2** (the parts of
 Driftwood's and Pine's economies these rows touch), **M1.4** (Sky/Signal empty coin rows), **M1.5** (templates).

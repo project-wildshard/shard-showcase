@@ -1,5 +1,7 @@
 # Attributes
 
+> Moved from singleplayer `docs/reviews/attributes.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 **Status:** `unread`
 **Link:** https://claude.ai/artifact/1vKjyhEmkmRQCV4vFNuXEq
 **Source:** `art/showcase-template/round-9-attributes/index.html`

@@ -1,5 +1,7 @@
 # Plan: KITCHEN-SINK v2: the Showcase Template, a levelled MMO-style test shard
 
+> Moved from singleplayer `docs/plans/KITCHEN-SINK.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 **State:** draft, being planned with Jake (2026-11-02, ask E523); moved here from singleplayer `ce1cf050b3` on
 2026-11-12 (meta SINGLEPLAYER-DOCS SD8, J287). Nothing is built until Jake says "build it". Status
 lives in [kitchen-sink-v2/STATE.md](kitchen-sink-v2/STATE.md); the mini plans live in [kitchen-sink-v2/](kitchen-sink-v2/).

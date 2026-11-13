@@ -1,5 +1,7 @@
 # E17: the east finish (memory, frame floor, grid-ready, Jake plays the east)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E17-east-finish.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the east half of parent
 **K10** (grid-ready: memory ≤ 1.2 GB Explorer, one-frame looks, baked tiles, entries, edge profile) and **K12** (Jake
 plays it on the phone), the grid swap W12 deferred (W12 Q1 b: "only after the east is done too"), and **W21**'s docs for

@@ -1,5 +1,7 @@
 # W7a: the grapple course (five hooks, the tower, the grapple time)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W7a-grapple-course.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the grapple half of the old
 **W10** ("approvals, showcase as second user") and the Grapple Reel upgrade effect (**LE6**'s grapple row).
 

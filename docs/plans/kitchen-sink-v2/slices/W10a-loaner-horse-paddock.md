@@ -1,5 +1,7 @@
 # W10a: the paddock and the loaner horse (a given mount, no taming)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W10a-loaner-horse-paddock.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the old **W7** ("a given-mount
 roster row with no taming session"; riding 1U, Nalati).
 

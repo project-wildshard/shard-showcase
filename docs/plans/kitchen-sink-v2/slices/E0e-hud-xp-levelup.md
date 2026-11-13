@@ -1,5 +1,7 @@
 # E0e: HUD I: the XP bar, the LV chip, the level-up moment, the death line
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E0e-hud-xp-levelup.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **HC1** (XP bar + LV chip),
 **HC2** (level-up: in-combat chip + ring + sting; the Fire Emblem tick-up card only out of combat), **HC7** (the death
 card's XP line), **LVH1** and **LVH5**. Shared HUD (E332): a herdr notice to the HUD owners before, the SHA after; a

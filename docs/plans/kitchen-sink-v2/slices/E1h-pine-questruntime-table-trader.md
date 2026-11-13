@@ -1,5 +1,7 @@
 # E1h: Pine's custom questRuntime I: its interactables table, trader and readings onto platform rows
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E1h-pine-questruntime-table-trader.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the first half of **M2.1** (Pine
 `questRuntime` → rows + AS, CS5's open exit, HOST-AUDIT HA4a **H021**). W1b Q5 sent this to the east assuming the
 runtime was "mostly the lodge contract board"; research shows the board is 9 % of it (E1f), so the runtime is retired

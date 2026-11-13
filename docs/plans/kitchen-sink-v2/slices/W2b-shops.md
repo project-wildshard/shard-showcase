@@ -1,5 +1,7 @@
 # W2b: shops (Tinker Rook's UPGRADES and BENCH, the weapons shop)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W2b-shops.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs **LE5** (exchange: level gate,
 coin + part costs, repeatable goods with a cap, two tabs), the vendor half of the old **W5**, the shop part of **M1.1**
 (Driftwood's Maren) and **M1.2** (Pine's Mott, `bolts` → a grant). Upgrade *effects* (LE6) land with the things they

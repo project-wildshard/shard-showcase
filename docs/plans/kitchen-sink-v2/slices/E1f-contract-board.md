@@ -1,5 +1,7 @@
 # E1f: the kill-contract board (a fixed, level-locked mode; Pine's lodge board migrated)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E1f-contract-board.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **QC5** (generic contract board
 rows), **LE8** (fixed mode: a level-locked list, accept and claim, no draws; Pine keeps its draws), the contract part of
 **LE7** (fixed rewards `{ first, repeat }`; `bolts` → grants), **M2.2** (Pine's board onto it) and **LW4** for band 1.

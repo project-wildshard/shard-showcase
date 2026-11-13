@@ -1,5 +1,7 @@
 # E1b: the Crate Mite (the first robot model)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E1b-crate-mite-model.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the Mite part of **EB1**
 (reference sheet, detail list) and **EB3** (model, clips, LODs, versus board, spin clip). Opus only (G848).
 

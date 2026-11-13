@@ -1,5 +1,7 @@
 # E7a: rare variants (one shared rarity row; a variant look on one GLB)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E7a-rare-variants.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **EBW6** (the shared rarity row:
 species `variants` plus level, Scrip, trophy, look, on any creature), **EBW4**'s rarity half (a variant look on one GLB:
 palette, emissive eyes, a part toggled), **EB5**'s rarity rows, **M4.1** (Pine's coat rarity onto the shared row) and

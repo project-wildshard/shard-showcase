@@ -1,5 +1,7 @@
 # E8b: Big Pallet, the L6 elite (and the Big Pallet quest)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E8b-big-pallet.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the Big Pallet part of **EB6**,
 **LS3** for Big Pallet, the Big Pallet rows of **LW7 / LW4** (first kill: 60 Scrip, the Hydraulic Heart core, the
 trophy *Big Pallet's Tines*, 5 Tines; the contract *Forklift Certified*) and the tier-1 quest **Big Pallet** (L6). Opus

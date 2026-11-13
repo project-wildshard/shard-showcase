@@ -1,5 +1,7 @@
 # E6: band 6: Arc Sentries (the duellist that parries; shock bolts)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E6-band6-arc-sentries.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs band 6 of **EB1 / EB3 / EB4**,
 **LS2 / LS4** for L16–18, **LS7** (the Arc Sentry's parry; its "by PRE" is retired: §15's DRESS gives a parrying
 defender 25 % of fails), **LV9** (AS queries for grade and attributes, the parts the Sentry's brain needs) and the band-6

@@ -1,5 +1,7 @@
 # W5a: the hover park's ground (kickers, halfpipe, quarter pipes, funbox, bowl) and the board look in game
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W5a-hover-park-ramps.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the board half of the old
 **W14** ("move the board to game", HOST-AUDIT **HA4d**, owned there, run here) with a correction (§2).
 

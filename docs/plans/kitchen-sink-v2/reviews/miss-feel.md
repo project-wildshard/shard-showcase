@@ -1,5 +1,7 @@
 # How a Miss Feels
 
+> Moved from singleplayer `docs/reviews/miss-feel.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 **Status:** `unread`
 **Link:** https://claude.ai/artifact/R7BU7ErLT9Vi5wkYd3EsZR
 **Source:** `art/showcase-template/round-7-miss-feel/index.html`

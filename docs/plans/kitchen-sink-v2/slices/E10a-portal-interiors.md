@@ -1,5 +1,7 @@
 # E10a: portal interiors (a walk-in portal into an interior region inside the cube)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E10a-portal-interiors.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the portal half of the old
 **W15** ("a generic `world/interior`"; the cave half was W9a), **M6.4**'s Nalati arena room and Nine portal parts,
 **H110**'s room lifecycle (the fight half is E12c) and what round 5 asks of the platform ("the walk-in portal ride into

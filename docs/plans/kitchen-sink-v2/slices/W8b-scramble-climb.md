@@ -1,5 +1,7 @@
 # W8b: scramble climbing (the scramble wall, the Rock's south route)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W8b-scramble-climb.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the scramble part of the old
 **W18** ("build the `climb` mode for scramble surfaces"; scramble was M).
 

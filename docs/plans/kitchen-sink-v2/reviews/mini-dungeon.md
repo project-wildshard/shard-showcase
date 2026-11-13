@@ -1,5 +1,7 @@
 # Mini Dungeon / Shrine Room
 
+> Moved from singleplayer `docs/reviews/mini-dungeon.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 **Status:** `unread`
 **Link:** https://claude.ai/artifact/QT7U953tYyBPBKHA7RrVDQ
 **Source:** `art/showcase-template/round-2-mini-dungeon/` (index.html + the 10 frames and board)

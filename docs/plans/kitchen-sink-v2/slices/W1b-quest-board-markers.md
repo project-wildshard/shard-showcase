@@ -1,5 +1,7 @@
 # W1b: the quest board, giver markers and a parallel quest log
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W1b-quest-board-markers.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs **QC1** (marker states, the
 level half moves to E0), **QC2** (parallel freeform quests), **QC4** (discover-N step), **QC6** (checkpoint card), the
 quest part of the old **W5**, **HC6** (giver "!" markers), and **M2.3/M2.4/M2.5/M2.6**'s parity duty for every shard

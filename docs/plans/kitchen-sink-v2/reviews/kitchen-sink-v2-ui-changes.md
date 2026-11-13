@@ -1,5 +1,7 @@
 # Kitchen Sink v2 UI Changes
 
+> Moved from singleplayer `docs/reviews/kitchen-sink-v2-ui-changes.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 **Status:** `unread`
 **Link:** https://claude.ai/artifact/MLXuWHJW9msEDh4Zg8YzsC
 **Source:** `art/showcase-template/round-12-ui/` (index.html, 38 before/after pairs, README.md, the injection scripts)

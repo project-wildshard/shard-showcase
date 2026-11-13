@@ -1,5 +1,7 @@
 # E10d: the Vault Warden (L12), the vault chest and SHRINE COMPLETE
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E10d-vault-warden.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the Warden part of **EB6** and
 **K5**, **LS3** for the Warden, its **LW7 / LW4** rows (the vault chest: 150 Scrip, the Plate Core, the Warden sword
 finish, the trophy *Warden's Plate*; the contract *Plate Expectations*) and the tier-2 quest **The Training Vault**

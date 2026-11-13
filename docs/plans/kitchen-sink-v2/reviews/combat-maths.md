@@ -1,5 +1,7 @@
 # Combat Maths
 
+> Moved from singleplayer `docs/reviews/combat-maths.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 **Status:** `unread`
 **Link:** https://claude.ai/artifact/YAVYVe7uPQ3GNxTiFL7B6y
 **Source:** `art/showcase-template/round-10-combat-maths/index.html`

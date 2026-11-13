@@ -1,5 +1,7 @@
 # Kitchen Sink v2: the west slices, in order
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/INDEX-west.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 The west half (non-combat: town, practice, traversal toys; nothing pays) as **33 small vertical slices**, each run by
 the slice rule in [README.md](README.md): the platform work it needs first, every other shard that uses what it
 touched migrated and proved unchanged in the same slice, then the showcase piece as data + AssemblyScript, playable and

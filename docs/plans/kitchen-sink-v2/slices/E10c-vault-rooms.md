@@ -1,5 +1,7 @@
 # E10c: the Training Vault's rooms 1–3 (puzzle, fight, climb)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E10c-vault-rooms.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the room half of **K5** (the
 Training Vault built on DG1–DG4) and the mini-dungeon plan's run steps 2–4. Opus for the look (G848); the Vault
 interior is an original design (Jake 11-03: the Vault shots are original mockups, no blockout of it).

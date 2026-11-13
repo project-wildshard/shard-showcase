@@ -1,5 +1,7 @@
 # E5a: band 5: Riveters (a frontal plate block, the slam ring, the rivet gun)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E5a-band5-riveters.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **EBW1** (frontal-arc block on
 a creature: plate ×0.2, knocked aside by a heavy or a parry for 2 s), band 5 of **EB1 / EB3 / EB4**, **LS2 / LS4** for
 L13–15 and the band-5 economy rows (Scrip 12, the Rivet plate, the contract, chests). The stealth yard (band 5's

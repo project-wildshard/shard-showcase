@@ -1,5 +1,7 @@
 # W6b: conveyor belts and jump pads
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W6b-conveyor-jump-pad.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the old **W9** ("a
 surface-velocity box row and a launch trigger row in the character motor").
 

@@ -1,5 +1,7 @@
 # W8a: ladders and the climb yard's decks and bridges
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W8a-ladders-climb-decks.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the ladder line of the old
 **W18** ("ladders G") with a correction: no shipped shard uses ladder rows.
 

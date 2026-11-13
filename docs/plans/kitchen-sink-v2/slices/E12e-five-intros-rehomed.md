@@ -1,5 +1,7 @@
 # E12e: the five shipped boss intros re-homed on the timeline
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E12e-five-intros-rehomed.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs IN-GAME-CUTSCENES **IC2**
 ("port today's moments onto the timeline: `BossBrain` intro and `QuestRewardBeat`"), its **IC0** inventory (a portrait
 clip of each moment before) and **M5.6** (five intros → timeline, Opus). A migration slice.

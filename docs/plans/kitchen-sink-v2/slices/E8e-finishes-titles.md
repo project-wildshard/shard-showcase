@@ -1,5 +1,7 @@
 # E8e: finishes and titles as grants (Nalati's finishes and legendaries; cosmeticFinishes retired)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E8e-finishes-titles.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **M1.3** (Nalati's finishes
 and legendaries; retire `cosmeticFinishes`, HOST-AUDIT **H059**), the elite-drop finish grant of the old **W16**,
 **LW9** (the seven loot feats and joke titles: *Scrap Metal Enthusiast*, *Retail Therapist*, *Independent Contractor*,

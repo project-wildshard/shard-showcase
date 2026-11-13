@@ -1,5 +1,7 @@
 # E0i: weapon tiers, Forge I–IV and the combat upgrade effects
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E0i-weapon-tiers-forge-upgrades.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **LV7** (weapon `tier`,
 `requirement`, `damageType` on the W3 weapon and ammo rows; its "×0.6, no crit under requirement" is retired by §11/§15),
 the combat half of **LE6** (upgrade effect rows: weapon base tier, max HP %, dodge recharge, parry window, energy

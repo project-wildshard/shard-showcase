@@ -1,5 +1,7 @@
 # Mini plan: loot and economy for the Kitchen Sink (and the host it implies)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/loot-economy-mini-plan.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md). Page for Jake: `art/showcase-template/round-5-loot/index.html`.
 Numbers lean on the levels page (`art/showcase-template/round-3-levels/`): its kills per level, bands, gap table and
 roster. **State:** `draft`, waiting for Jake's answers below.

@@ -1,5 +1,7 @@
 # W0a: the cell skeleton (terrain, seam wall, roads, entries, ground)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W0a-cell-skeleton.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule and order: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the old **K1**
 (skeleton part) and **ML2** (`layout.js` → shard rows). Layout: `art/showcase-template/round-4-blockout/` (west) inside
 round 5's cell (`art/showcase-template/round-5-blockout/layout.js`, every number).

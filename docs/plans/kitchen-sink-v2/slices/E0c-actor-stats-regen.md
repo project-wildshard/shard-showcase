@@ -1,5 +1,7 @@
 # E0c: attributes on actors, HP = VIT, regen and the leash reset
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E0c-actor-stats-regen.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **LV5** (actor stats: player max
 HP via `setMaxHealth`, grade and the seven on each `AttributeSet`, strike `damage` → multiplier when levelled; boss
 phases as attribute effects are E8a / E12a), the regen rule of §15 ("5 s after the last hit, full in 12 s") and the

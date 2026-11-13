@@ -1,5 +1,7 @@
 # Kitchen Sink v2: every old row in exactly one slice
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/COVERAGE.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Every row id from the two-wave plan (KITCHEN-SINK.md §4–§5 and the kitchen-sink-v2 mini plans), mapped to the one
 slice that carries it ([README.md](README.md)'s slice rule). Where a row is split, **Slice** is the slice that owns it
 and **Also** names the slices that do a part. West ids are from [INDEX-west.md](INDEX-west.md) and the W slice files.

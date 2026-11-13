@@ -1,5 +1,7 @@
 # W0d: one host register (HOST-AUDIT HA5)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W0d-host-register.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the old **W1** (register half).
 The row stays owned by [HOST-AUDIT](https://github.com/Raynos/project-wildshard-singleplayer/blob/ce1cf050b36fa236155ac26d43e721b9012c49df/docs/plans/HOST-AUDIT.md) HA5; this slice runs it.
 

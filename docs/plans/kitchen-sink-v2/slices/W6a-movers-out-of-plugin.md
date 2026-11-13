@@ -1,5 +1,7 @@
 # W6a: movers out of the plugin (sliders, the spinner, the lift)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W6a-movers-out-of-plugin.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the mover half of the old
 **W4** (the director half is east: E-slices), the `mover.ts` slice of SHARD-PLATFORM-NEXT **N2/N5** (owned there, run
 here), HOST-AUDIT **HA4e** for the mover route, and **M6.5** (Pine / Nine / Sky / Signal movers).

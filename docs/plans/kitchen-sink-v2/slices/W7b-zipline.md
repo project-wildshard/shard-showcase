@@ -1,5 +1,7 @@
 # W7b: the 99 m zipline over the town wall
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W7b-zipline.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the zipline line of the old
 audit ("Zipline is shared (Driftwood and Pine, `engine/sim/cableTraversal`)") with its Driftwood generator moved to the
 SDK.

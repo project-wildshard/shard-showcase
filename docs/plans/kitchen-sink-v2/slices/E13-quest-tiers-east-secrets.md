@@ -1,5 +1,7 @@
 # E13: the quest tiers complete, NPC lines by level, the east's secrets
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E13-quest-tiers-east-secrets.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the rest of **QK1** (author the
 12 quests, the board, the NPC lines), the decision "lines change as you level" (19e), **LW5** (12 chests, 2 per band,
 and the vault chest), **LW8**'s east half (10 east Gold 1×1s, the Calibration Chips that need them) and the east vistas

@@ -1,5 +1,7 @@
 # E0d: XP from kills, level-up growth and the death cost
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E0d-xp-levelup-death.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **LV6** (experience host: XP on
 `actor.died`, level-up with automatic growth, death XP loss, killer heal and reset, save keyed by shard, the road flat,
 achievements), the levels half of **LV8** (`pays: false` zones; quest `minLevel` is E1g) and the "a level-up refills HP"

@@ -1,5 +1,7 @@
 # W9a: the Rock and its squeeze cave (the cave host out of the forest page)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W9a-rock-squeeze-cave.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the cave half of the old
 **W15** ("a generic `world/interior` (cave is one kind) split from the forest page", HOST-AUDIT **H073** for the cave
 part) and the cave part of **M6.4** (Pine's crag cave). Portal interiors (the Training Vault, the Titan arena) are east

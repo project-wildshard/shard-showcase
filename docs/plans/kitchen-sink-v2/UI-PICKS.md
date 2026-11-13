@@ -1,5 +1,7 @@
 # KITCHEN-SINK v2: UI picks, one by one
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/UI-PICKS.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Jake, 2026-11-03: *"We're going to have to go and approve every single one, one by one. So keep track of what I'm
 approving and what's still pending review."* Every HUD / UI / menu change in the plan, from the
 [UI Changes page](https://claude.ai/artifact/MLXuWHJW9msEDh4Zg8YzsC) (`art/showcase-template/round-12-ui/`). Nothing

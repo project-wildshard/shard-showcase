@@ -1,5 +1,7 @@
 # E5b: the stealth yard and the Keycard (stealth beyond tall grass: lamp cones and cover)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E5b-stealth-yard-keycard.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the stealth part of **W10**
 (grapple, stealth approvals: "showcase as second user"), the lamp cones of the enemies plan (Riveter patrols), and the
 tier-2 set-piece quest **Keycard** (L10: steal the keycard unseen; opens the Training Vault).

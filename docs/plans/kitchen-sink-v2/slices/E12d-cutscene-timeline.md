@@ -1,5 +1,7 @@
 # E12d: the cutscene timeline core (camera shots, letterbox, skip, cue track, rows)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E12d-cutscene-timeline.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the old **W12** ("IN-GAME-
 CUTSCENES IC1–IC4": IC1 the engine timeline core, IC3 the SDK data and a boss row's `intro` naming a cutscene, IC4 the
 caption and cue tracks). IC2 (porting today's intros) is E12e. The IN-GAME-CUTSCENES plan owns the rows and is a

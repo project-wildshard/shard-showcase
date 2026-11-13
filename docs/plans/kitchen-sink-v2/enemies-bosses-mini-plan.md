@@ -1,5 +1,7 @@
 # Mini plan: KITCHEN-SINK v2 enemies, elites and the Crate Titan (EB)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/enemies-bosses-mini-plan.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md) §2 (19d–19g). Numbers (HP, hit, attributes, XP) are the
 [levels-combat plan](levels-combat-mini-plan.md)'s §3; rewards the [loot plan](loot-economy-mini-plan.md)'s. Looks:
 E1–E14 of `art/showcase-template/round-4-v2-layout/`; tiers: `round-6-enemy-tiers/`. Nothing is built until "build it".

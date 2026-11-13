@@ -1,5 +1,7 @@
 # W9b: vistas, caches, the Gold 1×1s, FINDS and the west feats
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W9b-vistas-caches-gold-finds.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the west part of the old
 **W16** ("finds `every: N` → perk rows"; benches, secrets, perks, feats), **LE9**'s collectible half (the trophy wall's
 frames wait for the east's elites), and **M9.1** (Driftwood's collections), **M9.2** (feat rows, the west's), **M9.4**

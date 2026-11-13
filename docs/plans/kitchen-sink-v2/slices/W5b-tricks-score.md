@@ -1,5 +1,7 @@
 # W5b: board tricks and the trick score
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W5b-tricks-score.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the trick part of the old
 **W14** ("trick events → score rows + commons AS"; tricks were M) and the Hover Grip / Hover Boost upgrade effects
 (**LE6**'s board rows).

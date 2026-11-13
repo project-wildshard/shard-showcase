@@ -1,5 +1,7 @@
 # E11b: wave rows (group counters, sealed courts, an elite spawned by a stage)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E11b-wave-rows.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the wave-director stage script
 of the old **W3** ("add a wave-director stage script beside `course.as`"), **EBW7**'s director half (an elite spawned by
 a stage, not only from its lair) and the gauntlet's use of **DG1 / DG2** (E10b's sealed rooms as "courts").

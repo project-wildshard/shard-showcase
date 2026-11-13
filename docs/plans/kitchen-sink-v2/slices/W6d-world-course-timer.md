@@ -1,5 +1,7 @@
 # W6d: a timed course in the world (the movers time), shared by every west course
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W6d-world-course-timer.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the "course timer" of the old
 README rows W7/W10 and the old **W8** (riding course docs and a template example), done once here for the first timed
 course (the movers run) and reused by W7a (grapple) and W10b (riding).

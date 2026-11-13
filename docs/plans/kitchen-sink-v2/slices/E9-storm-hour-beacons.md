@@ -1,5 +1,7 @@
 # E9: storm hour and the four beacons (the Lights Out quest)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E9-storm-hour-beacons.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the storm-hour trigger of the old
 **W13** ("a quest step that forces a weather state until a flag"), decision 8 (one quest turns the whole cell to an
 evening storm until four beacons are lit) and the tier-2 quest **Lights Out** (L9). W11a's Developer "storm now" row is

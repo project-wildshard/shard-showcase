@@ -1,5 +1,7 @@
 # Mini plan: KITCHEN-SINK v2 audio (AU)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/audio-mini-plan.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md) §2.13. Jake, 2026-11-02: *"It's a kitchen sink, so it needs a music plan,
 a sound effect plan, mini-boss music, boss music, all the good stuff."* The score is **orchestral**, made with MiniMax
 Music 3; every SFX is made with MOSS-SoundEffect v2 and Stable Audio 3 Medium and the better take ships

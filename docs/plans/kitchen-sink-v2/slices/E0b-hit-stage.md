@@ -1,5 +1,7 @@
 # E0b: the hit stage (fail roll, DEFLECT / DODGE / PARRY, glance, crit, damage)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E0b-hit-stage.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **LV3** (the engine half:
 `DamageRequest` outcome and damage type, `damage.missed`, the `combat` rng stream), **LV4** (the stat stage; its
 "streak guard" is dropped, 19n), the miss-feel rows **LVF1** (slip), **LVF2** (deflect clang and recoil), **LVF5**

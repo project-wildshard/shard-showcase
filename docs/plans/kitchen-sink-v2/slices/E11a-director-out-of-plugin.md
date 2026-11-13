@@ -1,5 +1,7 @@
 # E11a: the wave director out of the plugin (a game host; every director user migrated)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E11a-director-out-of-plugin.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the director half of the old
 **W4** (W6a took the mover half), the `director.ts` slice of SHARD-PLATFORM-NEXT **N2/N5** (owned there, run here),
 HOST-AUDIT **HA4e** for the director route and the **M4.2 / M6.5** director parts. A migration slice; its showcase piece

@@ -1,5 +1,7 @@
 # W11b: west audio (hub and west music, ambience zones, traversal sounds)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W11b-west-audio.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the west half of the audio mini
 plan: **W19a** (named stings) and **W19d** (one-genre set) of the old **W19**; **AU1–AU5** for the west cues. W19b, c, e
 and f (band layers, boss/elite scene fields, metal impacts, combat cue rows) are east. M8.1/M8.2 (Nalati's scene,

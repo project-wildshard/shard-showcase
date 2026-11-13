@@ -1,5 +1,7 @@
 # W11a: day and night, weather and rare storms (forest kinds renamed)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W11a-day-night-weather.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the old **W13** (rename the
 `weather.forest` / `world.forest-page` kinds; unify Pine's and Nalati's weather envelopes, CS7's left-out weather
 union; the storm-hour trigger is east: E-slices), HOST-AUDIT **HA4b** for the forest family (H073, weather part) and

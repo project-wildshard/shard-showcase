@@ -1,5 +1,7 @@
 # Kitchen Sink v2
 
+> Moved from singleplayer `docs/reviews/kitchen-sink-v2.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 **Status:** `unread` (live tracker, updated as Jake picks)
 **Link:** https://claude.ai/artifact/2PKQcTSLDjcv2tBcxAr4QZ (republished from shard-showcase 2026-11-12; was https://claude.ai/artifact/KAK7qkdYt3a3K5JGkpPzUD)
 **Source:** `docs/plans/kitchen-sink-v2/tracker/index.html` (publish with `blockout-plan.jpg` beside it, a copy of

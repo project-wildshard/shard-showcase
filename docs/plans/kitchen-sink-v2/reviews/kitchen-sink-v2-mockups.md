@@ -1,5 +1,7 @@
 # Kitchen Sink v2 Mockups
 
+> Moved from singleplayer `docs/reviews/kitchen-sink-v2-mockups.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 **Status:** `unread`
 **Link:** https://claude.ai/artifact/9sKa3P19CfNdDi6ZrS3HUj
 **Source:** `art/showcase-template/round-11-remaster/` (index.html, 40 frames remastered from the round-4 grey blockout,

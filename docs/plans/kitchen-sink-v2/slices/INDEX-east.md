@@ -1,5 +1,7 @@
 # Kitchen Sink v2: the east slices, in order
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/INDEX-east.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 The east half (combat only: six level bands, rare and night variants, six elites, the stealth yard, storm hour, the
 Training Vault, the three-court gauntlet, the Crate Titan behind its portal) as **54 small vertical slices**, each run
 by the slice rule in [README.md](README.md): the platform work it needs first, every other shard that uses what it

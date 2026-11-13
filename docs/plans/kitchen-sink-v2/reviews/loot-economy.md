@@ -1,5 +1,7 @@
 # Loot and Economy
 
+> Moved from singleplayer `docs/reviews/loot-economy.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 **Status:** `unread`
 **Link:** https://claude.ai/artifact/BEQrDR1Ti1WUyY7pVRphYR
 **Source:** `art/showcase-template/round-5-loot/index.html`

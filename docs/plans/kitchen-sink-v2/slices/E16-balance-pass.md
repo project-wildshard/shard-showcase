@@ -1,5 +1,7 @@
 # E16: the balance pass (XP curve, fight lengths, the miss curve, soft gates, the economy)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E16-balance-pass.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs parent **K11** (the golden-ratio
 XP curve ~60 h to L20, fight lengths, the miss curve, soft-gate brutality), **EB10** (contacts per kill, telegraphs at
 30 fps, soft-gate feel), **LE10** (the economy golden test: Scrip per hour per band and the level each upgrade is

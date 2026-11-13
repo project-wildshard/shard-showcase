@@ -1,5 +1,7 @@
 # E12a: one boss path I: the boss row set and host (Driftwood, Sky, Signal, the template)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E12a-one-boss-path.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the core of the old **W11**
 ("one boss row set: phases, telegraphs, `arenaFire` hazards, `arenaRoom`; fold H110; CS8"), HOST-AUDIT **H043**,
 custom-sections **CS8** (combat, boss), and **M5.1** (Driftwood's Captain), **M5.4** (Sky's Roc, Signal's Matriarch) and

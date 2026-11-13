@@ -1,5 +1,7 @@
 # Kitchen Sink v2: what it means to touch the engine, the game and the hosts
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/IMPACT.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 For every lane that runs a slice ([README.md](README.md): platform work just in time, every other shard that uses it
 migrated in the same slice, then the showcase piece). Researched from the code and docs at HEAD `749d7e7f44`
 (2026-11-03); built products read from `out/*/sections/` (a working-tree build of 11:48 that day). Every claim below was

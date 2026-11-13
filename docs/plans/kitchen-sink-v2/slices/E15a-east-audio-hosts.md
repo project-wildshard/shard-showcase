@@ -1,5 +1,7 @@
 # E15a: east audio hosts (layers by band, boss and elite scene fields, metal impacts, combat cues)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E15a-east-audio-hosts.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the east half of the old
 **W19**: **W19b** (layers by a scene field, `band` 1–6), **W19c** (the boss path writes `scene.boss`, the elite host
 `scene.elite`, so each picks its slot by row), **W19e** (`metal` impacts and clangs), **W19f** (cue rows on

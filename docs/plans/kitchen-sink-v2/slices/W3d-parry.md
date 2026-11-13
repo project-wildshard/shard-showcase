@@ -1,5 +1,7 @@
 # W3d: parry and riposte (opt-in per weapon row), the parry dummy
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W3d-parry.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the parry part of the old
 **W6** ("parry window + stagger on the melee profile"; the audit: "Parry is only an animation clip; no mechanic") and
 the parry clauses of levels-combat §15 (0.15 s window, Parry Gyro 0.22 s, a riposte). Stagger and crits are E0.

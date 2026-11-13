@@ -1,5 +1,7 @@
 # E0a: progression rows, the level maths and the flat-parity guard (opt-in levels)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E0a-progression-rows.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **LV1** (progression rows),
 **LV2** (pure formula module, golden tests), **LV11** (the system behind Developer), **LV12** (flat-profile admission
 and the parity test, rewritten for ruling 19z: other shards have no levels at all, not a hidden level 1) and the maths of

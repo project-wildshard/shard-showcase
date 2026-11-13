@@ -1,5 +1,7 @@
 # W10b: the riding course (the oval, eight rings, four jumps, the lap timer)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W10b-riding-course.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the old **W8** (riding course:
 "docs and a template example"), done on W6d's world course host.
 

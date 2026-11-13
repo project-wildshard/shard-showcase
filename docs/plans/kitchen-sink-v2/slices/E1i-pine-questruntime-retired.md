@@ -1,5 +1,7 @@
 # E1i: Pine's custom questRuntime II: chapters, the lead and the quest spawns; the section deleted
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E1i-pine-questruntime-retired.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the rest of **M2.1** (Pine
 `questRuntime` + `forest-story` → rows + AS), the Pine half of **W20** (the breadcrumb guide: Pine's `lead` is a guide
 that walks a path) and closes **CS5**'s last Pine exit. A migration slice: no showcase piece.

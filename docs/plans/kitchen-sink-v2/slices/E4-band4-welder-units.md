@@ -1,5 +1,7 @@
 # E4: band 4: Welder Units (energy damage, the flame cone, slag hazards, a weak spot)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E4-band4-welder-units.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs band 4 of **EB1 / EB3 / EB4**,
 **LS2 / LS4** for L10–12, the band-4 economy rows (Scrip 9, the Nozzle, the contract, chests) and the world-hazard half
 of **W11**'s `arenaFire` hazards (slag puddles outside a boss arena). The Training Vault's portal sits in this band

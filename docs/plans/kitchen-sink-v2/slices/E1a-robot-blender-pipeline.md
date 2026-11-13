@@ -1,5 +1,7 @@
 # E1a: the robot Blender pipeline (rigid parts, baked clips, an exported skin the client admits)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E1a-robot-blender-pipeline.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **EB2** (`devmap_robot.py`:
 parts, AO, joints, clips, LOD and phone export; "stencils" dropped by ruling 19ab) and the pipeline half of **EB1**
 (reference-sheet and detail-list format). Every robot, elite and the Titan is a Blender script (19k; no TRELLIS.2 /

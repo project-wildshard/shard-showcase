@@ -6,3 +6,5 @@ its 14 review pages under `kitchen-sink-v2/reviews/`, and the tracker source und
 pages and the blockout image). Relative links are fixed; links that left the set point at singleplayer at that SHA.
 The tracker is republished from here as https://claude.ai/artifact/2PKQcTSLDjcv2tBcxAr4QZ. Code paths in the slices
 still name singleplayer's tree: that is MR1's re-baseline, not this move.
+
+Follow-up: each moved file now names its singleplayer path under its title (meta SINGLEPLAYER-DOCS's move rule).

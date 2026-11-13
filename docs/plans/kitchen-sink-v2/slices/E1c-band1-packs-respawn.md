@@ -1,5 +1,7 @@
 # E1c: band 1 playable: Mite packs, leash, per-pack respawn, levels on spawns
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E1c-band1-packs-respawn.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the respawn half of **LV10**
 (the 90 s band respawn; night variants are E7b), **EBW5** (no respawn in view), the band-1 part of **EB4** (species,
 brains, strikes, packs, anchors) and **LS2 / LS4** for band 1 (Mk I / II / III levels, the band strip).

@@ -1,5 +1,7 @@
 # E1g: kill and collect counters, the level gate on quests, tier-1 quests
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E1g-quest-counters-tier1.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **QC3** (counter steps: kill N
 of a type, hold N of an item), the level half of **QC1** and **LV8**'s quest `minLevel` (W1b shipped the flag-driven
 grey / yellow "!"; this adds the `level ≥ n` atom), and the first tier-1 quests of **QK1** / **LS5**.

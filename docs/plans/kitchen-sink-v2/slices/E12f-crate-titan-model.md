@@ -1,5 +1,7 @@
 # E12f: the Crate Titan model (15 m, rigid crates, the assemble clip)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E12f-crate-titan-model.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the model part of **EB8**
 (~12k tris LOD0, ~7k phone; each crate a rigid part; an **assemble** clip for the intro) and **EB1**'s Titan sheet.
 Ruling 19ab: "a cover-worthy Crate Titan" (Jake: *"push it a bit harder. Especially the crate titan"*). Opus (G848).

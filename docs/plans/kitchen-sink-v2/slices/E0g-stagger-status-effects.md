@@ -1,5 +1,7 @@
 # E0g: the stagger bar and the status effects (burn, shock, blast)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E0g-stagger-status-effects.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the stagger and status lines of
 levels-combat §15 ("every body has a bar … full = 1.5 s stun taking ×1.25"; "burn = damage over 3 s · shock = 0.4 s
 stagger · blast = knockback; no stacking, a nameplate tint only") and finishes W3b's pitch bolt on actors (W3b set

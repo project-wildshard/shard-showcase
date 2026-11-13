@@ -1,5 +1,7 @@
 # E3: band 3: Plumb Drones (flyers; creature projectiles that roll the dice)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E3-band3-plumb-drones.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **EBW2** (creature projectile
 strikes: nails, rivets, arc bolts, on the projectile rows, rolling the dice), band 3 of **EB1 / EB3 / EB4**, **LS2 / LS4**
 for L7–9, the band-3 economy rows and the tier-2 quest **Drone Season** (L7, down 8 Plumb Drones).

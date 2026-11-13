@@ -1,5 +1,7 @@
 # W5c: grind rails
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W5c-grind-rails.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). New work (no old row named grinding;
 the round-4 census added 3 grind rails).
 

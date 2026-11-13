@@ -1,5 +1,7 @@
 # E12g: the Titan gate, the hidden arena and the three-phase fight
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E12g-titan-arena-fight.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the arena and fight part of
 **EB8** and parent **K6**, **LS3** for the Titan (×22 a common, ~18,700 HP, ~3.6 min at equal level), ruling 19ac (the
 boss portal) and round 5's Titan gate and arena. Opus (G848).

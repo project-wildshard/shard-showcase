@@ -1,5 +1,7 @@
 # E0h: the enemy cap (at most 12 awake, at most 16 animated in view)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E0h-enemy-cap.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **EC1** (Jake 11-02, 19n: "full
 AI within 60 m, at most 16 animated on screen; it helps every shard") and the enemies plan's phone cap ("≤ 12 robots
 awake, in combat or within 40 m; the rest hold a frozen pose or are culled past 150 m").

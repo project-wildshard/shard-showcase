@@ -1,5 +1,7 @@
 # W3a: the weapon range's melee yard, the range loan, targets and personal-best records
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W3a-range-melee-records.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the sword and spear part of the
 old **W6** (spear 1U → second user), **M3.3**'s view of Driftwood's arms (no change needed, see §3), and a new
 **personal-best records** host every west course uses (19l: "west toys save personal bests and have feats").

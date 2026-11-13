@@ -1,5 +1,7 @@
 # E1e: salvage parts (one part per kill, walk-over pickup; harvest rows out of the game layer)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E1e-salvage-parts.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **LE3** (salvage rows out of
 `game/server/Inventory.ts`, E405: match → drops, mode `auto` walk-in or `harvest` Pine's kneel), the harvest half of **M1.1**
 and **M1.2** (Driftwood's crab / coconut / fur and Pine's venison / hides / tusk / pelt off the closed `HARVEST` table)

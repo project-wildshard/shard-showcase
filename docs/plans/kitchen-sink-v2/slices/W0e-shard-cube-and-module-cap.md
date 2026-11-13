@@ -1,5 +1,7 @@
 # W0e: the shard cube rule (19ad) and the decision-module cap
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W0e-shard-cube-and-module-cap.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the cube part of the old
 **W15** (Jake 11-03, ruling 19ad) and settles BURN-DAMAGE-LIST **D59** (the decision-module cap) for the showcase.
 

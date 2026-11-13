@@ -1,5 +1,7 @@
 # E11c: the gauntlet's courts C1 and C2, waves 1–4, the Shift Supervisor
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E11c-gauntlet-courts-supervisor.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the gauntlet half of parent
 **K4** (the elite gauntlet), round 5's courts (`art/showcase-template/round-5-blockout/README.md`, `GAUNTLET` in
 `layout.js`) and the wave-3 elite Jake named on 11-03 (**Shift Supervisor, L17**). Opus for the courts and the elite

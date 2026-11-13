@@ -1,5 +1,7 @@
 # W4b: see-saws, the rolling-ball run and the skittles
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W4b-seesaws-ball-run.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the see-saw part of the old
 **W14** ("a hinged-body row"; see-saw was M).
 

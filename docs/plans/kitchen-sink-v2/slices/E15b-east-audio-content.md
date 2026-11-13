@@ -1,5 +1,7 @@
 # E15b: east audio content (the east score, elite and boss music, stings, ~65 SFX, ambience)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E15b-east-audio-content.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the east half of **AU1–AU6**
 (briefs, music, stings and the Titan intro cue, SFX, rows, the mix pass), audio plan §2–§5. West cues (`hub`, `west`,
 `night`, `storm`) landed in W11b. Music is MiniMax Music 3; every SFX goes through MOSS-SoundEffect v2 and Stable Audio

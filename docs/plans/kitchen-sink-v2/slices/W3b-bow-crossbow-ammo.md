@@ -1,5 +1,7 @@
 # W3b: bow and crossbow lanes, three crossbow ammo types
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W3b-bow-crossbow-ammo.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the bow / crossbow / ammo part
 of the old **W6**, **M3.1**'s crossbow half (Pine's `held/equipment` crossbow rows onto a weapon-family row without
 `{owner, path}` inputs) and **M3.2**'s bow half (Nalati's recurve on the same family).

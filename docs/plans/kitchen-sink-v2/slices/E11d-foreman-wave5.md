@@ -1,5 +1,7 @@
 # E11d: Foreman Unit 7 (L18), wave 5, the run board, the Titan road
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E11d-foreman-wave5.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the Foreman part of **EB6**,
 **LS3** for the Foreman, its **LW7 / LW4** rows (200 Scrip, the Foreman's Capacitor, the hard hat worn, the trophy
 *Foreman's Whistle*; the contract *Middle Management*), the tier-3 quest **The Gauntlet** (L18) and Jake's 11-03

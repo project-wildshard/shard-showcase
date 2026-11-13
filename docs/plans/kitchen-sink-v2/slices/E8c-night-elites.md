@@ -1,5 +1,7 @@
 # E8c: the night elites (Sir Nibbles, Hot Mess, Riveting Rita) and the Night Shift quest
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E8c-night-elites.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **EB7** (night elites), **LW6**
 (their finishes and trophies), their contract rows and the tier-3 quest **Night Shift** (L15: hunt a night elite).
 Names are Jake's (19k). Opus (G848).

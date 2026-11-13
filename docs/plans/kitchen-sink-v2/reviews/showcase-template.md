@@ -1,5 +1,7 @@
 # Showcase Template
 
+> Moved from singleplayer `docs/reviews/showcase-template.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 **Status:** `read` (Jake answered its picks 2026-10-20: G524–G528)
 **Link:** https://claude.ai/artifact/B4Pgormf3vDHBvf1QKoH49
 **Plan:** KITCHEN-SINK (parked; G524–G528)

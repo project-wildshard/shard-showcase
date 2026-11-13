@@ -1,5 +1,7 @@
 # Kitchen Sink v2: the build as vertical slices
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/README.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 **Jake, 2026-11-03** (replaces the two waves): *"I think what's far more important is to not have the plan go so
 waterfall, but to have the plan go in vertical play slices. Start on the west half, the non-combat half … break it down
 into as many small chunks as possible … For each one of the things that requires new engine work … that new engine

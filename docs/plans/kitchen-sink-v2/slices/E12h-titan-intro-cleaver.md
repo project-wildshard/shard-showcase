@@ -1,5 +1,7 @@
 # E12h: the Titan's intro cutscene, the Titan Cleaver and the victory
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E12h-titan-intro-cleaver.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **EB9** (the Titan intro as
 cutscene data; a portrait clip for Jake), the Titan rows of **LW7 / LW4** (300 Scrip, the **Titan Cleaver**, the Titan
 gold finish, the trophy *Titan's Core*, Foreman Gold on sale; the contract *Thinks Outside the Box*) and the tier-3 quest

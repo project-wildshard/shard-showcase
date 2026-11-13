@@ -1,5 +1,7 @@
 # KITCHEN-SINK v2: state
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/STATE.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 **Home:** shard-showcase `docs/plans/` since 2026-11-12 (meta SD8, J287). **Tracker:** [Kitchen Sink v2](https://claude.ai/artifact/2PKQcTSLDjcv2tBcxAr4QZ),
 source `tracker/index.html`.
 

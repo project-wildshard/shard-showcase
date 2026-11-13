@@ -1,5 +1,7 @@
 # E12c: one boss path III: Nalati's Storm Titan arena fight onto the boss host (H110)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E12c-storm-titan-arena.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the Storm Titan half of **M5.3**,
 HOST-AUDIT **H110** (the arena room as a one-boss host) and the hazard half of **W11** (`arenaFire` hazards). E10a
 already moved the room's enter / leave lifecycle to the interior host; this moves the fight. A migration slice.

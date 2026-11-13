@@ -1,5 +1,7 @@
 # E0f: HUD II: nameplates in con colours, floating numbers, the Character tab
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E0f-hud-nameplates-numbers-character.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **HC3** (floating numbers),
 **HC4** (nameplates with con colours, 25 m, rarity tint, stagger bar, status tint), **HC5** (the read-only Character
 tab), **LVH2**, **LVH3**, **LVH4** and **LVF3** (words and colours). Shared HUD (E332 notice before, SHA after; Jake's

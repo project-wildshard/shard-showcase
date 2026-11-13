@@ -1,5 +1,7 @@
 # E8d: the trophy wall (one row; Driftwood's plaques and Pine's trophy mounts onto it)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E8d-trophy-wall.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **LE9** (one trophy wall row:
 frames, model, perk line, silhouettes; Driftwood's plaques and Pine's wall become rows), **LW8**'s wall half, **M9.1**
 (Driftwood's `custom/collections`, its plaque displays) and the Pine `custom/trophyMounts` exit of HA7's custom-section

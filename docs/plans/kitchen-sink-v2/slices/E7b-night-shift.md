@@ -1,5 +1,7 @@
 # E7b: the night shift (each band swaps to a +1 variant at night; storm counts as night)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E7b-night-shift.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs the night half of **LV10**
 (night-shift variant rows: L+1, XP ×1.25), **EBW4**'s night half (amber lamp eyes, hi-vis chevrons, an unlit additive
 headlamp cone), **EB5**'s night rows, **M4.2** (Pine's night director → rows) and the night part of **M4.4** (Nalati's

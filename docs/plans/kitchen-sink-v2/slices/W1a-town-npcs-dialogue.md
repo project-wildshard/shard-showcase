@@ -1,5 +1,7 @@
 # W1a: six dev-bot NPCs and their dialogue
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W1a-town-npcs-dialogue.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the NPC part of the old **W5**
 and **M2.5** (Sky / Signal / Nine NPC rows, nothing to move), parent §2 19e/19y.
 

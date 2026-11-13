@@ -1,5 +1,7 @@
 # W0b: the town shell (walls, six gates, plaza, Main Street, houses, obelisk, stable)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/W0b-town-shell.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · west index: [INDEX-west.md](INDEX-west.md). Absorbs the town part of the old
 **K1**. Layout: `art/showcase-template/round-4-blockout/README.md` §"The town: 120 × 120 m", `layout.js`.
 

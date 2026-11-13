@@ -1,5 +1,7 @@
 # E2: band 2: Pallet Jacks (charges, stun into cover, tine toss)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E2-band2-pallet-jacks.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs band 2 of **EB1 / EB3 / EB4**
 (model, clips, rows), **LS2 / LS4** for L4–6, the band-2 rows of **LW1 / LW2 / LW4 / LW5** (Scrip 5, the Tine, the
 contract, two chests) and the tier-1 quest **Survey the Yard** (L4, W1b's discover step).

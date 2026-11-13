@@ -1,5 +1,7 @@
 # E10b: the shrine host (sealed rooms, room checkpoints and resets, the shrine card and best time)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/E10b-shrine-host.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Slice rule: [README.md](README.md) · east index: [INDEX-east.md](INDEX-east.md). Absorbs **DG1** (sealed room: doors lock
 on entry, a wave counter, unlock on the last kill), **DG2** (room checkpoints: a room volume becomes the respawn point;
 a death resets that room's fight, keeps puzzle flags), **DG3** (the shrine completion card + best time, reusing the

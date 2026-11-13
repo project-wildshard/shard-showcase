@@ -1,5 +1,7 @@
 # Mini plan: KITCHEN-SINK v2 Wave 1, the host work first
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/wave-1-hosts-mini-plan.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md) §4. Jake, 2026-11-02 (E523): *"All the host and engine work has to be
 front loaded before we start building the kitchen sink … if we have to make existing hosts more generic and more
 friendly, if we have to get rid of some custom JSON in the shard files, then yeah, sure, that's approved."* Then:

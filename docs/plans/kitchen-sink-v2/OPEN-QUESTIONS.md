@@ -1,5 +1,7 @@
 # KITCHEN-SINK v2: the open questions (walk-through)
 
+> Moved from singleplayer `docs/plans/kitchen-sink-v2/OPEN-QUESTIONS.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
+
 Jake 2026-11-03 ("walk me through them"): every slice and mini-plan question that slice decisions D1–D61 and the
 11-03 panel did not answer, 67 in all, each with its options and one recommendation. Answers go in the last column
 (Jake's words); "rec" means the recommendation stands. The 54 already answered are in [slices/DECISIONS.md](slices/DECISIONS.md).
