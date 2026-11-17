@@ -5,7 +5,8 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  '@wildshard/format': npm:@wildshard/shard-format@0.23.0
+  '@wildshard/engine@0.1.18>@wildshard/format': npm:@wildshard/shard-format@0.4.9
+  '@wildshard/sdk@0.2.12>@wildshard/format': npm:@wildshard/shard-format@0.4.9
 
 importers:
 
@@ -513,6 +514,11 @@ packages:
 
   '@wildshard/shard-format@0.23.0':
     resolution: {integrity: sha512-MdGuISObn7WFBhEQCicKqg/VJdy58AfYFFZ52xArwFwq6RSVCAssjeI+8VKnCS2AKvU0Bp/s0yuMMVFZqNf14Q==}
+    engines: {node: '>=24.18.0'}
+    hasBin: true
+
+  '@wildshard/shard-format@0.4.9':
+    resolution: {integrity: sha512-HbNtrUnsBQHq+q0y95b298kf4w3sQQ1YefzlUbeEOGcXQIB7ww9O6YwQAz4xkRXwaoP5eYDOWBw3J3fSLh2euQ==}
     engines: {node: '>=24.18.0'}
     hasBin: true
 
@@ -1511,7 +1517,7 @@ snapshots:
       '@sentry/core': 11.0.0
       '@typescript/typescript6': 6.0.2
       '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@6.0.3))
-      '@wildshard/format': '@wildshard/shard-format@0.23.0(typescript@6.0.3)'
+      '@wildshard/format': '@wildshard/shard-format@0.4.9(typescript@6.0.3)'
       '@wildshard/wire': 0.1.0(typescript@6.0.3)
       ajv: 6.15.0
       fflate: 0.8.3
@@ -1548,7 +1554,7 @@ snapshots:
       '@typescript/typescript6': 6.0.2
       '@valibot/to-json-schema': 1.8.0(valibot@1.5.0(typescript@6.0.3))
       '@wildshard/engine': 0.1.18(@types/three@0.186.0)(@typescript/typescript6@6.0.2)(sharp@0.35.5(@types/node@24.3.1))(typescript@6.0.3)(vite@8.3.0(@types/node@24.3.1))
-      '@wildshard/format': '@wildshard/shard-format@0.23.0(typescript@6.0.3)'
+      '@wildshard/format': '@wildshard/shard-format@0.4.9(typescript@6.0.3)'
       ajv: 6.15.0
       assemblyscript: 0.28.20
       binaryen: 132.0.0
@@ -1596,6 +1602,13 @@ snapshots:
       - yaml
 
   '@wildshard/shard-format@0.23.0(typescript@6.0.3)':
+    dependencies:
+      meshoptimizer: 1.2.0
+      valibot: 1.5.0(typescript@6.0.3)
+    transitivePeerDependencies:
+      - typescript
+
+  '@wildshard/shard-format@0.4.9(typescript@6.0.3)':
     dependencies:
       meshoptimizer: 1.2.0
       valibot: 1.5.0(typescript@6.0.3)

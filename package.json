@@ -51,7 +51,8 @@
   },
   "pnpm": {
     "overrides": {
-      "@wildshard/format": "npm:@wildshard/shard-format@0.23.0"
+      "@wildshard/engine@0.1.18>@wildshard/format": "npm:@wildshard/shard-format@0.4.9",
+      "@wildshard/sdk@0.2.12>@wildshard/format": "npm:@wildshard/shard-format@0.4.9"
     },
     "ignoredOptionalDependencies": [
       "@esbuild/aix-ppc64",
