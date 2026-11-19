@@ -25,3 +25,7 @@ has still water; there are no active jets, colliders or placements.
 Added the art-only Tinker Rook frontage WIP: 663,252 raw bytes and
 7,460 triangles. The shop front is a shallow shell; the awning in
 the preview is separate. No shop interior, placement or behavior.
+
+Added one East Gate flank tower as art WIP. The 1,976,996-byte
+export contains 15,398 triangles and two embedded textures.
+The two-tower mockup is review only, not gate fit or traversal.
