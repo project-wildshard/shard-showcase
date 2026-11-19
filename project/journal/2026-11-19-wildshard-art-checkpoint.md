@@ -38,3 +38,6 @@ seam gate change.
 ### Hover Park kicker — visual candidate
 One authored small kicker for WSC-MODULE-007: 2.400 m high to match the current D7 plan; the footprint, braced frame and ride-surface curve are visual design proposals. Historical W07 is a material and palette cue, not the geometry spec. The asset is not a halfpipe or launch wall, and contains no game behavior, collision or placement.
 The reproducibly rebuilt standalone GLB is 686,048 raw bytes, 10,732 triangles, 8 material batches and one embedded image. This is export size, not measured transfer. Keep render staging and authoring source outside runtime Git.
+
+### Ten-model art batch
+Four East yard props (robot dock, caged gooseneck, low barrier, tall industrial lamp), four West town props (spool, barrel, wrench sign, lookout bench), and two taller Hover Park kicker classes. These are standalone visual candidates with normalized GLBs, visual inspection of Blender reimports, and byte-identical rebuilds. No gameplay placement, collision or rideability claims. The 3.6 m and 4.8 m kicker variants preserve the preview run-up when toe-aligned; the new chassis each have a distinct silhouette. Keep authoring files and review renders out of the runtime checkout.
