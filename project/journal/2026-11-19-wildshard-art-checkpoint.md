@@ -29,3 +29,8 @@ the preview is separate. No shop interior, placement or behavior.
 Added one East Gate flank tower as art WIP. The 1,976,996-byte
 export contains 15,398 triangles and two embedded textures.
 The two-tower mockup is review only, not gate fit or traversal.
+
+Added the 2,149,740-byte East Gate passage art WIP. Its Blender
+context reuses both flanks from one mesh. Geometry clearance rays
+are not a traversal test. No roof vista placement, terrain or
+seam gate change.
