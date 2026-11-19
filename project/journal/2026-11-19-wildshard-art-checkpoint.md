@@ -59,3 +59,6 @@ Ten standalone visual candidates: conveyor, inert jump pad casing, Mover platfor
 
 ### Course, East vault and West terrain modules
 Ten standalone art candidates, screened from actual GLB re-imports. 3,076,692 raw export bytes and 48,720 indexed triangles. Raw GLB size is not a measured full-zone transfer size. No placement, collision, gameplay, HUD or schema changes.
+
+### West trim, route details and paving kits
+Ten standalone art candidates, screened from actual GLB re-imports. 2,759,244 raw export bytes and 76,058 indexed triangles. Raw GLB size is not a measured full-zone transfer size. No placement, collision, gameplay, HUD or schema changes.
