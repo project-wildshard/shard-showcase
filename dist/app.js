@@ -3,11 +3,17 @@ function node(tag,str,parent){const n=document.createElement(tag);if(str)n.textC
 function options(id,vals){new Set(vals).forEach(v=>{const o=node('option',v,el(id));o.value=v})}
 for(const a of DATA.assets.filter(a=>a.concept)){
  const c=node('article','',el('boards'));c.className='concept';
- const l=node('a','',c);l.href=a.concept;const i=node('img','',l);i.src=a.concept;i.alt=a.name+' concept board';i.loading='lazy';
- const t=node('div','',c);node('h3',a.name,t);node('p',a.id,t);if(a.concept_caption)node('p',a.concept_caption,t);
+ if(ConceptAngles.available(a)){
+  ConceptAngles.render(c,a);
+ }else{
+  const l=node('a','',c);l.href=a.concept;const i=node('img','',l);i.src=a.concept;i.alt=a.name+' concept board';i.loading='lazy';
+ }
+ const t=node('div','',c);t.className='angle-meta';node('h3',a.name,t);node('p',a.id,t);if(a.concept_caption)node('p',a.concept_caption,t);
+ if(ConceptAngles.available(a))ConceptAngles.boardLink(t,a);
 }
+ConceptAngles.mountRails();
 options('types',DATA.assets.map(x=>x.class));
-function rows(reveal){const q=el('query').value.trim().toLowerCase(), t=el('types').value; const list=DATA.assets.filter(a=>a.id===reveal||((!t||a.class===t)&&[a.id,a.name,a.evidence,a.reuse_or_open_edge].join(' ').toLowerCase().includes(q)));el('hits').textContent=list.length+' matching entries';const f=document.createDocumentFragment();for(const a of list){const d=node('details','',f);d.className='row';d.id='asset-'+a.id;const s=node('summary','',d);node('span',a.id,s);node('strong',a.name,s);node('p',[a.class,a.priority,a.status.replaceAll('-',' ')].join(' · '),d);node('p','Evidence: '+a.evidence,d);node('p',a.reuse_or_open_edge,d);if(a.concept){const l=node('a','View concept board',d);l.href=a.concept}if(a.plan_studies){const line=node('p','',d);const l=node('a','View the three illustrated plan studies',line);l.href=a.plan_studies}if(a.reference_preview){const line=node('p','',d);const l=node('a','View original reference and observations',line);l.href=a.reference_preview}if(a.model_preview){const line=node('p','',d);const l=node('a','View Blender art candidate',line);l.href=a.model_preview}}el('rows').replaceChildren(f)}
+function rows(reveal){const q=el('query').value.trim().toLowerCase(), t=el('types').value; const list=DATA.assets.filter(a=>a.id===reveal||((!t||a.class===t)&&[a.id,a.name,a.evidence,a.reuse_or_open_edge].join(' ').toLowerCase().includes(q)));el('hits').textContent=list.length+' matching entries';const f=document.createDocumentFragment();for(const a of list){const d=node('details','',f);d.className='row';d.id='asset-'+a.id;const s=node('summary','',d);node('span',a.id,s);node('strong',a.name,s);node('p',[a.class,a.priority,a.status.replaceAll('-',' ')].join(' · '),d);node('p','Evidence: '+a.evidence,d);node('p',a.reuse_or_open_edge,d);if(ConceptAngles.available(a))ConceptAngles.rowButton(d,a);if(a.concept){const l=node('a','View concept board',d);l.href=a.concept}if(a.plan_studies){const line=node('p','',d);const l=node('a','View the three illustrated plan studies',line);l.href=a.plan_studies}if(a.reference_preview){const line=node('p','',d);const l=node('a','View original reference and observations',line);l.href=a.reference_preview}if(a.model_preview){const line=node('p','',d);const l=node('a','View Blender art candidate',line);l.href=a.model_preview}}el('rows').replaceChildren(f)}
 el('query').addEventListener('input',rows);el('types').addEventListener('change',rows);rows();
 options('groups',DATA.refs.map(r=>r.cat));let shown=0;
 function refs(reset){if(reset){shown=0;el('thumbs').replaceChildren()}const pick=el('groups').value;const list=DATA.refs.filter(r=>!pick||r.cat===pick);for(const r of list.slice(shown,shown+30)){const a=node('button','',el('thumbs'));a.type='button';a.addEventListener('click',()=>detail(r));const i=node('img','',a);i.src=r.img;i.loading='lazy';i.alt=r.name;node('small',r.name+' · '+r.cat,a)}shown+=30;el('more').hidden=shown>=list.length}
@@ -37,6 +43,7 @@ const aliases={'stall-revision':'awning'};
 const refKeys=new Map(DATA.refs.map(r=>['reference-'+r.img.split('/').at(-1).replace(/\.webp$/,''),r]));
 el('detail').addEventListener('close',()=>{if(refKeys.has(location.hash.slice(1)))history.replaceState(null,'','#originals');});
 function route(key,focus=false){
+ ConceptAngles.close();
  key=aliases[key]||key;
  if(key.startsWith('asset-'))rows(key.slice(6));
  const ref=refKeys.get(key),target=el(key),panel=ref?'originals':target?.closest('[role=tabpanel]')?.id||'assets';

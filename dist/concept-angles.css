@@ -1,0 +1,49 @@
+.angle-grid {
+ display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+ gap:.4rem; padding:0; margin:0; list-style:none;
+}
+.angle-grid li {min-width:0}
+.angle-grid .angle-tile {
+ display:block; width:100%; min-width:0; text-align:left; padding:0;
+ color:inherit; background:#1b2223; border:1px solid var(--line); border-radius:8px;
+ overflow:hidden; cursor:zoom-in;
+}
+.angle-tile:hover, .angle-tile:focus-visible {border-color:var(--accent)}
+.angle-tile:focus-visible, .angle-dialog button:focus-visible, .angle-entry-button:focus-visible {
+ outline:2px solid var(--accent); outline-offset:2px;
+}
+.angle-crop {
+ display:block; overflow:hidden; position:relative; aspect-ratio:var(--crop-ratio); background:#25292a;
+}
+.angle-crop img {
+ display:block; position:absolute; max-width:none; max-height:none;
+ object-fit:fill; margin:0; padding:0; border:0; border-radius:0;
+}
+.angle-caption {display:block; min-height:1.7rem; padding:.2rem .45rem; font-size:.76rem; font-weight:650}
+.angle-board-link {display:inline-block; margin-top:.45rem; font-size:.83rem}
+.concept .angle-grid {padding:.45rem .45rem 0}
+.concept .angle-meta {padding:.65rem}
+.angle-meta h3 {margin:0 0 .2rem}
+.angle-meta p {margin:.15rem 0}
+.angle-entry-button {margin-right:.9rem}
+.angle-dialog {
+ max-width:min(68rem,calc(100% - 1rem)); width:100%; max-height:calc(100% - 1rem);
+ border:1px solid var(--line); border-radius:10px; color:inherit; background:#171b1d;
+ padding:clamp(.7rem,2vw,1.2rem);
+}
+.angle-dialog::backdrop {background:#000c}
+.angle-dialog-top {
+ display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:.5rem;
+}
+.angle-dialog-top h2 {font-size:clamp(1rem,2.5vw,1.4rem); margin:0; flex:1; overflow-wrap:anywhere}
+.angle-picker {display:flex; flex-wrap:wrap; gap:.35rem; margin:.65rem 0}
+.angle-dialog button, .angle-entry-button {
+ font:inherit; font-size:.9rem; min-height:44px; cursor:pointer; border:1px solid var(--line);
+ border-radius:.4rem; padding:.25rem .65rem; background:#252c2d; color:inherit;
+}
+.angle-dialog .angle-select[aria-pressed="true"] {
+ color:#171b1d; background:var(--accent); border-color:var(--accent); font-weight:700;
+}
+.angle-stage .angle-crop {
+ width:min(100%,calc(64vh * var(--crop-ratio))); margin:auto;
+}
