@@ -44,3 +44,6 @@ Four East yard props (robot dock, caged gooseneck, low barrier, tall industrial 
 
 ### Seam, practice range, and course art
 Ten standalone visual models in 3,146,816 raw GLB bytes. Seam: reusable X-braced leaf, striped steel post, straight striped wall bay; comparative fit is illustrative. Range: separate plank, unlit bound straw bale and padded soft dummy. Course: notched flag, post-mounted cyan hoop, station marker #2 and one timber rail bay. Blender reimports and visual proofs checked; no geometry placement, collisions, motion or gameplay. Known raw export bytes are not the deployed zone download.
+
+### Lookout, East utility and town/yard batch
+Ten distinct visual candidates: riding fence, deck floor bay, decorative sandstone steps, orange corrugated wall, eight-lens floodlight, Training Vault sign, East yard fence, timber doorway, terracotta roof, and shop wall tool rack (audit 062-10, no new catalog ID). Clean Blender GLB reimports and rendered validation. 5,194,852 raw export bytes and 63,785 triangles total. The large East utility exports buy readable silhouette and surface detail; atlas/instancing may trim them on integration. Raw GLB size is not full-zone transfer. No gameplay, collision or placement.
