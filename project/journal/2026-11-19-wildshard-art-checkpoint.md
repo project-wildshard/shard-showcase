@@ -47,3 +47,6 @@ Ten standalone visual models in 3,146,816 raw GLB bytes. Seam: reusable X-braced
 
 ### Lookout, East utility and town/yard batch
 Ten distinct visual candidates: riding fence, deck floor bay, decorative sandstone steps, orange corrugated wall, eight-lens floodlight, Training Vault sign, East yard fence, timber doorway, terracotta roof, and shop wall tool rack (audit 062-10, no new catalog ID). Clean Blender GLB reimports and rendered validation. 5,194,852 raw export bytes and 63,785 triangles total. The large East utility exports buy readable silhouette and surface detail; atlas/instancing may trim them on integration. Raw GLB size is not full-zone transfer. No gameplay, collision or placement.
+
+### Mover, West scenery and East yard batch
+Ten standalone visual candidates: access ladder, industrial tank, riding timer, boulder, conifer, wildflowers, yard shed, container, decorative floor plates and orange cover barrier. Blender reimport proof and deterministic GLB rebuilds. 4,909,360 raw export bytes and 101,243 triangles. Raw GLB size is not measured full-zone download. No placement, collision, game interaction, HUD or schema changes.
