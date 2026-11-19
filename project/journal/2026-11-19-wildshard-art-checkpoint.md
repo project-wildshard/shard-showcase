@@ -65,3 +65,6 @@ Ten standalone art candidates, screened from actual GLB re-imports. 2,759,244 ra
 
 ### Rebuilt venue and town models
 Eight static art candidates rebuilt against the saved visual proofs: West grapple tower/hover strip, East Titan gate/Gauntlet bay/arena arc, West facade/shop fittings/doorway awning. Exact reimport evidence recorded for the rebuilt bytes. These are new binary exports, not byte-identical recoveries. 2,214,728 raw model bytes; not a download measurement. No map, collision or gameplay changes.
+
+### W01 flower tub
+One freestanding visual candidate rebuilt from W01, with exact GLB re-import proof. 254,012 raw bytes, 5,688 triangles. No collision, placement, quests or gameplay changes. The accompanying W08 composition uses four existing exports and is not a new model.
