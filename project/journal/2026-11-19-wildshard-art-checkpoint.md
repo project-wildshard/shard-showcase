@@ -53,3 +53,6 @@ Ten standalone visual candidates: access ladder, industrial tank, riding timer, 
 
 ### West course, cache and East Vault batch
 Ten standalone visual candidates: sandbags, decorative range backstop, postless riding ring, plant pot, keyhole banner, closed bulkhead, segmented metal barrier, cache chest, trophy frame and Big Pallet tine trophy. Clean separate Blender reimports and actual export proof renders. 3,589,236 raw export bytes and 97,153 triangles. Raw GLB size is not measured full-zone download. No placement, collision, game interaction, HUD or schema changes.
+
+### Reusable Mover, ropewalk and East architecture batch
+Ten standalone visual candidates: conveyor, inert jump pad casing, Mover platform and guardrail, rope walkway, rock handrail rope, lookout platform, foundry furnace, keycard shed and road gate gantry. Clean separate Blender reimports and actual export proof renders. 4,909,744 raw export bytes and 173,836 triangles. Raw GLB size is not measured full-zone download. No placement, collision, game interaction, HUD or schema changes.
