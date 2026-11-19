@@ -16,3 +16,8 @@ entrance and cross-gabled terracotta roof replace the graybox in the
 art preview only. Matched plaza review improved from 2.65 to 3.75/5.
 The export is 1,627,752 bytes, 21,124 triangles and 14 primitives.
 No game integration or new gameplay placements.
+
+Added the 22 m obelisk, clock and basin as three separate preview
+meshes (3,052,256 raw bytes together). W01 supports the visual pairing
+but the clock and basin are not W0b gameplay requirements. The basin
+has still water; there are no active jets, colliders or placements.
