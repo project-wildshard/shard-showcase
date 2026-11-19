@@ -21,3 +21,7 @@ Added the 22 m obelisk, clock and basin as three separate preview
 meshes (3,052,256 raw bytes together). W01 supports the visual pairing
 but the clock and basin are not W0b gameplay requirements. The basin
 has still water; there are no active jets, colliders or placements.
+
+Added the art-only Tinker Rook frontage WIP: 663,252 raw bytes and
+7,460 triangles. The shop front is a shallow shell; the awning in
+the preview is separate. No shop interior, placement or behavior.
