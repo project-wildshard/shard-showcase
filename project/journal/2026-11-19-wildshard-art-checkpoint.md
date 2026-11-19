@@ -41,3 +41,6 @@ The reproducibly rebuilt standalone GLB is 686,048 raw bytes, 10,732 triangles, 
 
 ### Ten-model art batch
 Four East yard props (robot dock, caged gooseneck, low barrier, tall industrial lamp), four West town props (spool, barrel, wrench sign, lookout bench), and two taller Hover Park kicker classes. These are standalone visual candidates with normalized GLBs, visual inspection of Blender reimports, and byte-identical rebuilds. No gameplay placement, collision or rideability claims. The 3.6 m and 4.8 m kicker variants preserve the preview run-up when toe-aligned; the new chassis each have a distinct silhouette. Keep authoring files and review renders out of the runtime checkout.
+
+### Seam, practice range, and course art
+Ten standalone visual models in 3,146,816 raw GLB bytes. Seam: reusable X-braced leaf, striped steel post, straight striped wall bay; comparative fit is illustrative. Range: separate plank, unlit bound straw bale and padded soft dummy. Course: notched flag, post-mounted cyan hoop, station marker #2 and one timber rail bay. Blender reimports and visual proofs checked; no geometry placement, collisions, motion or gameplay. Known raw export bytes are not the deployed zone download.
