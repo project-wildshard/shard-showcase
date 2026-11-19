@@ -34,3 +34,7 @@ Added the 2,149,740-byte East Gate passage art WIP. Its Blender
 context reuses both flanks from one mesh. Geometry clearance rays
 are not a traversal test. No roof vista placement, terrain or
 seam gate change.
+
+### Hover Park kicker — visual candidate
+One authored small kicker for WSC-MODULE-007: 2.400 m high to match the current D7 plan; the footprint, braced frame and ride-surface curve are visual design proposals. Historical W07 is a material and palette cue, not the geometry spec. The asset is not a halfpipe or launch wall, and contains no game behavior, collision or placement.
+The reproducibly rebuilt standalone GLB is 686,048 raw bytes, 10,732 triangles, 8 material batches and one embedded image. This is export size, not measured transfer. Keep render staging and authoring source outside runtime Git.
