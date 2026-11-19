@@ -62,3 +62,6 @@ Ten standalone art candidates, screened from actual GLB re-imports. 3,076,692 ra
 
 ### West trim, route details and paving kits
 Ten standalone art candidates, screened from actual GLB re-imports. 2,759,244 raw export bytes and 76,058 indexed triangles. Raw GLB size is not a measured full-zone transfer size. No placement, collision, gameplay, HUD or schema changes.
+
+### Rebuilt venue and town models
+Eight static art candidates rebuilt against the saved visual proofs: West grapple tower/hover strip, East Titan gate/Gauntlet bay/arena arc, West facade/shop fittings/doorway awning. Exact reimport evidence recorded for the rebuilt bytes. These are new binary exports, not byte-identical recoveries. 2,214,728 raw model bytes; not a download measurement. No map, collision or gameplay changes.
