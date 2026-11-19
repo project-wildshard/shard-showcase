@@ -50,3 +50,6 @@ Ten distinct visual candidates: riding fence, deck floor bay, decorative sandsto
 
 ### Mover, West scenery and East yard batch
 Ten standalone visual candidates: access ladder, industrial tank, riding timer, boulder, conifer, wildflowers, yard shed, container, decorative floor plates and orange cover barrier. Blender reimport proof and deterministic GLB rebuilds. 4,909,360 raw export bytes and 101,243 triangles. Raw GLB size is not measured full-zone download. No placement, collision, game interaction, HUD or schema changes.
+
+### West course, cache and East Vault batch
+Ten standalone visual candidates: sandbags, decorative range backstop, postless riding ring, plant pot, keyhole banner, closed bulkhead, segmented metal barrier, cache chest, trophy frame and Big Pallet tine trophy. Clean separate Blender reimports and actual export proof renders. 3,589,236 raw export bytes and 97,153 triangles. Raw GLB size is not measured full-zone download. No placement, collision, game interaction, HUD or schema changes.
