@@ -56,3 +56,6 @@ Ten standalone visual candidates: sandbags, decorative range backstop, postless 
 
 ### Reusable Mover, ropewalk and East architecture batch
 Ten standalone visual candidates: conveyor, inert jump pad casing, Mover platform and guardrail, rope walkway, rock handrail rope, lookout platform, foundry furnace, keycard shed and road gate gantry. Clean separate Blender reimports and actual export proof renders. 4,909,744 raw export bytes and 173,836 triangles. Raw GLB size is not measured full-zone download. No placement, collision, game interaction, HUD or schema changes.
+
+### Course, East vault and West terrain modules
+Ten standalone art candidates, screened from actual GLB re-imports. 3,076,692 raw export bytes and 48,720 indexed triangles. Raw GLB size is not a measured full-zone transfer size. No placement, collision, gameplay, HUD or schema changes.
