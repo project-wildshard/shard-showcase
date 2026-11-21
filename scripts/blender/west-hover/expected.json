@@ -1,0 +1,68 @@
+{
+  "reviewed_glb_sha256": "5b6f8d40f118a162412b2438b9ee6dc3add8660a7f6c7e56a614fb4718a80c56",
+  "semantic_signature": [
+    "72ecf242cdc65d8e356d96c6084875b58f24cfe68b4dd8b55a86c7304b7a1eb4",
+    2880
+  ],
+  "normalized_semantic_signature": [
+    "d36af392fb7ca79b057357fbcfc08e307bee465ef4431f33e39daa3f248e1267",
+    2880
+  ],
+  "placement": {
+    "source_zone_map_xz": [
+      -234,
+      -100,
+      112,
+      234
+    ],
+    "lanes": [
+      {
+        "height_m": 2.4,
+        "map_lane_z": 132,
+        "toe_x": -157,
+        "kicker_center_x": -159.5899999141693,
+        "strip_span_x": [
+          -157,
+          -112
+        ],
+        "strip_width_m": 3.9
+      },
+      {
+        "height_m": 3.6,
+        "map_lane_z": 143,
+        "toe_x": -157,
+        "kicker_center_x": -160.90000009536743,
+        "strip_span_x": [
+          -157,
+          -112
+        ],
+        "strip_width_m": 3.9
+      },
+      {
+        "height_m": 4.8,
+        "map_lane_z": 154,
+        "toe_x": -157,
+        "kicker_center_x": -162.19999980926514,
+        "strip_span_x": [
+          -157,
+          -112
+        ],
+        "strip_width_m": 3.9
+      }
+    ],
+    "launch_wall_length_m": 45,
+    "crest_height_m": 4.5,
+    "historical_eye_map": [
+      [
+        -114,
+        1.7,
+        147
+      ],
+      [
+        -200,
+        3,
+        140
+      ]
+    ]
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "reviewed_glb_sha256": "709cc527f2898ca8426d903c794cc0520b7194a32056dd356f19613f0a6ac590",
+  "semantic_signature": [
+    "6c20bba6d3ea8fd2122d1e1adcf3696333b74210c5a7136de705d69d3f463fe3",
+    2797
+  ],
+  "normalized_semantic_signature": [
+    "f372ebaa43777a1dae8f7f77e167045179425c5e5b176633ccfa8829cb133374",
+    2797
+  ],
+  "bridges": [
+    {
+      "name": "AB",
+      "anchors_blender": [
+        [
+          -163,
+          -30,
+          6
+        ],
+        [
+          -149,
+          -42,
+          10
+        ]
+      ],
+      "straight_m": 18.867962264113206,
+      "width_m": 1.4,
+      "illustrative_sag_m": 1.4,
+      "end_fit": null
+    },
+    {
+      "name": "BC",
+      "anchors_blender": [
+        [
+          -149,
+          -46,
+          10
+        ],
+        [
+          -167,
+          -59,
+          14
+        ]
+      ],
+      "straight_m": 22.561028345356956,
+      "width_m": 1.4,
+      "illustrative_sag_m": 1.4,
+      "end_fit": null
+    },
+    {
+      "name": "C Rock",
+      "anchors_blender": [
+        [
+          -173,
+          -59,
+          14
+        ],
+        [
+          -198,
+          -50,
+          16
+        ]
+      ],
+      "straight_m": 26.645825188948457,
+      "width_m": 1.8,
+      "illustrative_sag_m": 1.8,
+      "end_fit": "raised shaped transition into rock crown, source endpoint retained"
+    }
+  ],
+  "mouth_centres_map_xz": [
+    [
+      -200,
+      14
+    ],
+    [
+      -200,
+      74
+    ]
+  ]
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "path": "public/assets/wildshard-art/wsc-module-009-mover-station-platform.glb",
+    "sha256": "030bb3e18ae4df83ec3d8dedf2594ac4fa99060b67de9bd8c0859e3ac0832b1c"
+  },
+  {
+    "path": "public/assets/wildshard-art/wsc-prop-037-conveyor-module.glb",
+    "sha256": "1d0d5e0ac6fb0fd201daef538ed3e277824a2a0f6b9677968fe2f8dbb18debdb"
+  },
+  {
+    "path": "public/assets/wildshard-art/wsc-plan-007-mover-jump-pad-casing.glb",
+    "sha256": "4ae1b0e5df65cc5d56471b0bf2abd3b72b6a04d759f0418594a85482189d02d5"
+  },
+  {
+    "path": "public/assets/wildshard-art/wsc-prop-039-mover-guardrail.glb",
+    "sha256": "57fffdc466112172745ee70c5af4d45ac0266c7f31c49ce7abf4bdc7fb4b339a"
+  },
+  {
+    "path": "public/assets/wildshard-art/wsc-prop-040-mover-access-ladder.glb",
+    "sha256": "b7f3235d92c1caa15629e19129fce8e4ebe3fe5e4d2a8135858f80a7561c6245"
+  }
+]

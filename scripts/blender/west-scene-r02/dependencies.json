@@ -1,0 +1,55 @@
+{
+  "parent": "d22027d1b0baa5172c6fc056ecfa5435d6958582",
+  "dependencies": [
+    {
+      "path": "public/assets/wildshard-art/wsc-module-011-riding-fence.glb",
+      "sha256": "4b080d634287a167eba8cc4690b7fbedd0323244154a7bb96402262b71c4afe0",
+      "bytes": 98832
+    },
+    {
+      "path": "public/assets/wildshard-art/wsc-prop-012-deciduous-tree.glb",
+      "sha256": "83685e45bd4ef2af08941de87909aaf0f7078dbecfe784bc06a9fc8fc4d8a355",
+      "bytes": 357584
+    },
+    {
+      "path": "public/assets/wildshard-art/wsc-prop-046-conifer-tree.glb",
+      "sha256": "a5b52da910f80f33a40fad2ba15d5e7904c0d2f3b1b438d4b6401971ace8c18d",
+      "bytes": 645780
+    },
+    {
+      "path": "public/assets/wildshard-art/town-gate-merchant-house.glb",
+      "sha256": "266fc52858b80847add0627c536c1421d1305e3092c846625937d1d6d80017fe",
+      "bytes": 1627752
+    },
+    {
+      "path": "public/assets/wildshard-art/wsc-prop-043-riding-ring.glb",
+      "sha256": "55b6d449492bcdff75631b7c55e8b6a8211986552dd050e37c4a147758668813",
+      "bytes": 169972
+    },
+    {
+      "path": "public/assets/wildshard-art/wsc-module-010-riding-start-gantry.glb",
+      "sha256": "784738b070cdf0d5b400355249d0b3f12697369064274433857b9793b5786774",
+      "bytes": 330024
+    },
+    {
+      "path": "public/assets/wildshard-art/wsc-prop-042-riding-timer-display.glb",
+      "sha256": "d2cb7dd20b0ece91c20c08bf2ac735a0400ac7fffc985a479181e3f65accd5f9",
+      "bytes": 213716
+    },
+    {
+      "path": "public/assets/wildshard-art/w10a-paddock-trough-wip.glb",
+      "sha256": "ff0e65ffce361608b0872bd9368bdcced1b19f00d635c460dc6c3dcb6430d56d",
+      "bytes": 315976
+    },
+    {
+      "path": "public/assets/wildshard-art/w10b-reusable-riding-jump-wip.glb",
+      "sha256": "0881ec693a68897ff8eadc60cd648237ec8bd969c4d05c7fd6faef09445c3680",
+      "bytes": 158028
+    },
+    {
+      "path": "public/assets/wildshard-art/wsc-plan-008-horse-mounting-block-wip.glb",
+      "sha256": "efc0615bfb51f527545bee0d5b36fff8856559928ddaf87a963955333867bf7a",
+      "bytes": 263288
+    }
+  ]
+}

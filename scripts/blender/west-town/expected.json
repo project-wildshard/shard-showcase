@@ -1,0 +1,12 @@
+{
+  "town_lots_sha256": "4d6a89bea6ee246169407d48bb14dfc44ecda6e5ccdcf23f5cc2ef494437d61d",
+  "reviewed_glb_sha256": "79fccdfa78cd9f5353c44166713746549a0c54b2dd2252f39a7c2e6a0d31b7c6",
+  "semantic_signature": [
+    "23dc7bda4480b9c1af9479820477a7c39ed0c1792f523f75157762eeda87df03",
+    2692
+  ],
+  "normalized_semantic_signature": [
+    "e6bbb20e18adbc863c18fd637211e6c8a35ae4a01deed667d071f4850dce7b4f",
+    2692
+  ]
+}

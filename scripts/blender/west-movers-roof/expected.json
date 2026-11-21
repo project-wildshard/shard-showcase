@@ -1,0 +1,16 @@
+{
+  "movers": {
+    "source_sha256": "29bb69e95da277e5379a879e44933631012a0e1ee6719c2e5d893415c6b7b3c6",
+    "semantic_signature": [
+      "3b367c34cd2849ba2b7140a05c1abafa86cd2928e53a0035ccd65682656229e9",
+      1535
+    ]
+  },
+  "junction": {
+    "source_sha256": "df7838b5b093d8791761e184ad1932b6e813c2352369a977a4d7e30523a5de5c",
+    "semantic_signature": [
+      "b53582a842c73175ae6e1e7fd9a22eebb46766faa51a0af60fb96ed17dc58830",
+      2383
+    ]
+  }
+}

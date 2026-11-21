@@ -1,0 +1,32 @@
+{
+  "id": "WSC-PLAN-008",
+  "status": "art-only-WIP",
+  "reimport_meshes": 36,
+  "triangles": 5264,
+  "bytes": 263288,
+  "sha256": "efc0615bfb51f527545bee0d5b36fff8856559928ddaf87a963955333867bf7a",
+  "blender_z_up_bounds": {
+    "min": [
+      -0.4300000071525574,
+      -0.5799999833106995,
+      0.0
+    ],
+    "max": [
+      0.4300000071525574,
+      0.5799999833106995,
+      0.5410000085830688
+    ],
+    "size": [
+      0.8600000143051147,
+      1.159999966621399,
+      0.5410000085830688
+    ]
+  },
+  "tread_rises_m": [
+    0.18,
+    0.36,
+    0.54
+  ],
+  "top_platform_depth_m": 0.48,
+  "no_runtime_or_collision_validation": true
+}

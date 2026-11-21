@@ -1,0 +1,18 @@
+[
+  {
+    "path": "public/assets/wildshard-art/wsc-module-001-west-grapple-tower.glb",
+    "sha256": "03847b8bd925d8cb7cf840e132b9b88e22f188d893c8621c1c7434afa81f54e4"
+  },
+  {
+    "path": "public/assets/wildshard-art/wsc-module-008-zip-house-roof-deck.glb",
+    "sha256": "766f9f428212e42969213e4ee8efb72419e518f99e29f80373089e3f2bca1b12"
+  },
+  {
+    "path": "public/assets/wildshard-art/wsc-prop-033-zipline-cable.glb",
+    "sha256": "09d4b833a98e24bded9537b3bad5c195e125f3980fc33fecd8e37674324e369c"
+  },
+  {
+    "path": "public/assets/wildshard-art/wsc-prop-035-zipline-landing-pad.glb",
+    "sha256": "b7892176e15e0dec180dc24335e1cb7d5a35f7e7bcf527ea75f13b27757ee6ef"
+  }
+]

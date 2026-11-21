@@ -1,0 +1,10 @@
+{
+  "valid_glb2": true,
+  "finite_positions": true,
+  "embedded_only": true,
+  "no_external_textures": true,
+  "no_animations": true,
+  "triangle_count_matches_reimport": 5264,
+  "bytes": 263288,
+  "sha256": "efc0615bfb51f527545bee0d5b36fff8856559928ddaf87a963955333867bf7a"
+}

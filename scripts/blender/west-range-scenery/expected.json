@@ -1,0 +1,42 @@
+{
+  "reviewed_glb_sha256": "70059ac99e46a0294e7aa5d890f0b173085c23eec4f0c5e0183eb1880831e71c",
+  "semantic_signature": [
+    "44ba26566a63c3ec8ddcad303dd131c87ea36f50b8720ec79b2fe523a8099697",
+    3025
+  ],
+  "normalized_semantic_signature": [
+    "b492323858d35c975e9cf6c283401bda2028a085bf84b4729d387a7d8864122f",
+    3025
+  ],
+  "placement": {
+    "baseline": "verified Physics Yard editable static scene",
+    "source": "Round 5 layout and Round 4 lab camera/terrain height, commit ce1cf050b3",
+    "district_map_xz": [
+      -92,
+      -14,
+      68,
+      170
+    ],
+    "landscape_berm_map_xz": [
+      -92,
+      -14,
+      156,
+      168
+    ],
+    "berm_visual_crown_m": 10,
+    "preserve_east_walk_center_x": -11,
+    "pinned_eye_map_xyz": [
+      -37,
+      1.7,
+      72
+    ],
+    "pinned_target_map_xyz": [
+      -80,
+      1.2,
+      125
+    ],
+    "vfov": 80,
+    "scope": "fictional pedestrian scenery only; no equipment, range functional design or gameplay",
+    "donors": "none; all geometry procedural static additions"
+  }
+}

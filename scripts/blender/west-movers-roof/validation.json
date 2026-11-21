@@ -1,0 +1,18 @@
+{
+  "movers": {
+    "matched_signature": [
+      "3b367c34cd2849ba2b7140a05c1abafa86cd2928e53a0035ccd65682656229e9",
+      1535
+    ],
+    "bytes": 9390948,
+    "rebuilt_sha256": "ac405edf284cfc55af35fc896ffccd00b1d0fbf11a11b284497b1a04fc3db330"
+  },
+  "junction": {
+    "matched_signature": [
+      "b53582a842c73175ae6e1e7fd9a22eebb46766faa51a0af60fb96ed17dc58830",
+      2383
+    ],
+    "bytes": 10740024,
+    "rebuilt_sha256": "2e9084b9d37297b618678a89e3d065aa679ac5a94169fb67130ef9af1661ed49"
+  }
+}

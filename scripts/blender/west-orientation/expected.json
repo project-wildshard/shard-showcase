@@ -1,0 +1,52 @@
+{
+  "reviewed_glb_sha256": "e706e9f76846fb0b2896770560ea51761815c4f1d4262dab80b0d012a3e7e9ba",
+  "semantic_signature": [
+    "540fab74e19260ff1bf7c99fe5eb070b6460893ba0b45f65e8479cb7d856258c",
+    3044
+  ],
+  "normalized_semantic_signature": [
+    "d855b004986ba2f63740a9889a2edcbd99e3f31b2a1c58ed1dfd4afd6def29c9",
+    3044
+  ],
+  "placement": {
+    "baseline": "exact Range Gate pedestrian landscape",
+    "source": "Round5 layout.js + lab.js buildGround() at ce1cf050b3; W0a west entry and W9b west corner vistas",
+    "west_avenue_map_xz": [
+      -250,
+      -128,
+      -6,
+      6
+    ],
+    "throat_x_m": -248.5,
+    "clear_throat_width_m": 8,
+    "west_perimeter_asphalt_x": [
+      -247,
+      -237
+    ],
+    "west_vista_map_xz": [
+      [
+        -229,
+        -229
+      ],
+      [
+        -229,
+        229
+      ]
+    ],
+    "baseline_apron_overlap_policy": "new road surface only below retained portion x[-150,-128]; preserved apron masks it",
+    "partial_perimeter": "north and south western spans only; no east seam additions",
+    "viable_footprint_labels": [
+      "Town",
+      "Range landscape only",
+      "Physics Yard",
+      "Riding Course",
+      "Paddock",
+      "Movers",
+      "Grapple",
+      "Climb",
+      "Rock",
+      "Hover"
+    ],
+    "static_only": true
+  }
+}

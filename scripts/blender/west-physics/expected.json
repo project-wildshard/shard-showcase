@@ -1,0 +1,50 @@
+{
+  "reviewed_glb_sha256": "35d6ccc0637f2fa7e46aae954e28086967c9144d1545beb00573690f540ec949",
+  "semantic_signature": [
+    "9daf49209c51e0d04afead025efda2137f88ee6e655a7afbe876fdbb7b71e917",
+    2996
+  ],
+  "normalized_semantic_signature": [
+    "49ae937b8fa860d6ae7ae56fe13131eea24f287ba2ee3e0d70f9d4798591e5e7",
+    2996
+  ],
+  "placement": {
+    "yard_map_xz": [
+      -92,
+      -14,
+      180,
+      234
+    ],
+    "alley_map_xz": [
+      -100,
+      -92,
+      180,
+      234
+    ],
+    "alley_anchor": [
+      -96,
+      232
+    ],
+    "seesaws_map_xz": [
+      [
+        -80,
+        224
+      ],
+      [
+        -62,
+        224
+      ]
+    ],
+    "ramp_xz": [
+      -42,
+      -18,
+      196
+    ],
+    "ramp_width_height_m": [
+      4,
+      6
+    ],
+    "ball_count": 4,
+    "pin_count": 10
+  }
+}

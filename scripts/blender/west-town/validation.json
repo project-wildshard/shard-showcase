@@ -1,0 +1,13 @@
+{
+  "matched_signature": [
+    "e6bbb20e18adbc863c18fd637211e6c8a35ae4a01deed667d071f4850dce7b4f",
+    2692
+  ],
+  "raw_signature": [
+    "e6bbb20e18adbc863c18fd637211e6c8a35ae4a01deed667d071f4850dce7b4f",
+    2692
+  ],
+  "inherited_arm_uv_writes": 0,
+  "rebuilt_sha256": "8aaedb7cf08216755e06c6894b1cb9ec4fe26ad4c3e4b23532feabb4b2c4b799",
+  "bytes": 14595124
+}
