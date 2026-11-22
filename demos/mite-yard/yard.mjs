@@ -3,11 +3,13 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
 import {canvasRenderer} from './canvas_fallback.mjs'
 import {ARENA,DODGE,VIEW_PITCH,MITE_TIMING,SWORD_SWING,clamp,createGame,step} from './combat.mjs'
 import {CRATES,DOCK,GANTRY,GANTRY_FALLBACK_OMIT,STACK} from './yard-layout.mjs'
+import {createTouchLook} from './touch-look.mjs'
 import {createApron} from './yard-apron.mjs'
 import {createViewmodel,poseViewmodel} from './viewmodel.mjs'
 const el=q=>document.querySelector(q)
 let view=el('#view')
 const status=el('#status'), enter=el('#enter'), reticle=el('#reticle')
+const touchLook=createTouchLook()
 const touch=matchMedia('(pointer:coarse)').matches
 let renderer
 try{renderer=new THREE.WebGLRenderer({canvas:view,antialias:true})}
@@ -132,7 +134,7 @@ for(let i=0;i<8;i++){
  const chip=box(sparks,sparkMat,.016,.016,.13,0,0,0)
  chip.castShadow=false
 }
-let game=createGame(),yaw=0,pitch=VIEW_PITCH,active=false,model,mix,action,eyeMat,oldPhase='',hurt=0,hit=0,keys=new Set(),swing=false,dodge=false,last=performance.now(),touchDrag,stickId,stickX=0,stickY=0,carry=0,closeTilt=0
+let game=createGame(),yaw=0,pitch=VIEW_PITCH,active=false,model,mix,action,eyeMat,oldPhase='',hurt=0,hit=0,keys=new Set(),swing=false,dodge=false,last=performance.now(),stickId,stickX=0,stickY=0,carry=0,closeTilt=0
 const dodgeButton=el('#dodge')
 const stick=el('#stick'),thumb=el('#stick-thumb')
 function stopStick(){stickId=undefined;stickX=stickY=0;thumb.style.transform=''}
@@ -172,21 +174,22 @@ document.addEventListener('keydown',e=>{
  if(k==='r'&&!e.repeat)reset();if(k===' ')swing=true;if(k==='q'&&!e.repeat)dodge=true
 })
 document.addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()))
-window.addEventListener('blur',()=>{keys.clear();stopStick()})
+window.addEventListener('blur',()=>{keys.clear();stopStick();touchLook.clear()})
 document.addEventListener('mousemove',e=>{
  if(document.pointerLockElement===view){yaw+=e.movementX*.0026;pitch=clamp(pitch-e.movementY*.0023,-1.10,1.10)}
 })
 view.addEventListener('pointerdown',e=>{
  if(!active)return
- if(e.pointerType==='touch'){touchDrag=[e.clientX,e.clientY];view.setPointerCapture(e.pointerId)}
+ if(e.pointerType==='touch'){if(touchLook.begin(e))view.setPointerCapture(e.pointerId)}
  else if(document.pointerLockElement!==view)view.requestPointerLock?.()?.catch?.(()=>{})
  else swing=true
 })
 view.addEventListener('pointermove',e=>{
- if(e.pointerType!=='touch'||!touchDrag)return
- yaw+=(e.clientX-touchDrag[0])*.006;pitch=clamp(pitch-(e.clientY-touchDrag[1])*.005,-1.1,1.1);touchDrag=[e.clientX,e.clientY]
+ const delta=touchLook.move(e)
+ if(!delta)return
+ yaw+=delta[0]*.006;pitch=clamp(pitch-delta[1]*.005,-1.1,1.1)
 })
-for(const x of ['pointerup','pointercancel'])view.addEventListener(x,()=>touchDrag=null)
+for(const x of ['pointerup','pointercancel','lostpointercapture'])view.addEventListener(x,e=>touchLook.end(e))
 function aimStick(e){
  const r=stick.getBoundingClientRect()
  const x=(e.clientX-r.x-r.width/2)/34,y=(e.clientY-r.y-r.height/2)/34,n=Math.max(1,Math.hypot(x,y))
