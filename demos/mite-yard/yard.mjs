@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
 import {canvasRenderer} from './canvas_fallback.mjs'
 import {ARENA,VIEW_FOV,VIEW_PITCH,MITE_TIMING,SWORD_SWING,cameraPose,clamp,createGame,step} from './combat.mjs'
-import {CRATES,DOCK,GANTRY,GANTRY_FALLBACK_OMIT,STACK} from './yard-layout.mjs'
+import {CRATES,DOCK,GANTRY,GANTRY_FALLBACK_OMIT,GANTRY_PLAQUE,STACK} from './yard-layout.mjs'
 import {createTouchLook} from './touch-look.mjs'
 import {CONCRETE_SIZE,CONCRETE_METERS,concretePixels} from './concrete-surface.mjs'
 import {createApron} from './yard-apron.mjs'
@@ -71,20 +71,37 @@ for(let x=-8.75;x<9;x+=.36)box(scene,iron,.10,2.3,.105,x,1.48,-10.82)
 box(scene,paint,9,.12,.13,4.4,2.35,-10.67)
 box(scene,steel,9,.12,.13,4.4,.29,-10.67)
 const loadYard=new GLTFLoader()
-function stageProp(url,placements,omit=[]){
+function mountGantryPlaque(prop){
+ let stencil
+ prop.traverse(o=>{if(o.isMesh&&o.material?.name==='Ivory stenciling')stencil=o})
+ if(!stencil)throw new Error('Yard 01 gantry stencil missing')
+ const {height,front,width,faceHeight,glyphScale}=GANTRY_PLAQUE
+ const frame=mat(0x6c7b75,.51,.49),panel=mat(0x27363a,.65,.20),hanger=mat(0x455150,.72,.39)
+ for(const y of [-1,1])box(prop,frame,width,.039,.042,0,height+y*(faceHeight-.039)/2,front-.027)
+ for(const x of [-1,1])box(prop,frame,.041,faceHeight-.078,.042,x*(width-.041)/2,height,front-.027)
+ const face=new THREE.Mesh(new THREE.PlaneGeometry(width-.075,faceHeight-.071,6,4),panel)
+ face.position.set(0,height,front-.047);face.receiveShadow=true;prop.add(face)
+ box(prop,hanger,width*.94,.115,.226,0,height,front-.142)
+ for(const x of [-.755,.755])box(prop,steel,.055,.034,.027,x,height,front+.005)
+ stencil.scale.set(glyphScale,glyphScale,1)
+ stencil.position.set(.025,height-3.97679687*glyphScale,front+.027-.261)
+}
+function stageProp(url,placements,omit=[],dress){
+
  return loadYard.loadAsync(url).then(({scene:prop})=>{
   prop.traverse(o=>{
    if(!o.isMesh)return
    o.castShadow=true;o.receiveShadow=true
    if(!renderer.isWebGLRenderer&&omit.includes(o.material?.name))o.visible=false
   })
+  if(dress)dress(prop)
   for(const p of placements){const copy=prop.clone();copy.position.set(...p);scene.add(copy)}
  })
 }
 const dressing=Promise.all([
  stageProp('./assets/dock.glb',[[DOCK.x,0,DOCK.z]]),
  stageProp('./assets/haul-crate.glb',CRATES),
- stageProp('./assets/gantry.glb',[[GANTRY.x,0,GANTRY.z]],GANTRY_FALLBACK_OMIT),
+ stageProp('./assets/gantry.glb',[[GANTRY.x,0,GANTRY.z]],GANTRY_FALLBACK_OMIT,mountGantryPlaque),
 ]).then(()=>true,e=>{console.error(e);return false})
 // Base plate keeps the authored stack aligned to its existing cover volume.
 box(scene,iron,STACK.width,.065,STACK.depth,STACK.x,.033,STACK.z)

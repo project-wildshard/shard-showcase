@@ -12,3 +12,7 @@ export const GANTRY_FEET=Object.freeze([-2.92,2.92].map(x=>Object.freeze([
  GANTRY.x+x,GANTRY.z,.91,.93,
 ])))
 export const GANTRY_FALLBACK_OMIT=Object.freeze(['Worn zinc fasteners','Carbon gasket'])
+
+// Runtime-only wall-mounted sign. It reuses the original gantry's one stencil
+// mesh; the recovered standalone asset remains intact for other scenes.
+export const GANTRY_PLAQUE=Object.freeze({height:2.18,front:-.57,width:1.78,faceHeight:.35,glyphScale:2.11})
