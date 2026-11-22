@@ -73,7 +73,11 @@ await write(d('card'),{...card,slug:'mite-calibration',name:'Mite calibration',s
 // The stock art receipt describes the unmodified upstream product, not this draft.
 await rm(join(output,'hero.json'),{force:true})
 const items=await load(d('items'));assert(items.rows.find(r=>r.id==='weapon.sword-iron')?.view.recipe==='kit.sword')
-items.loadout.primary='weapon.sword-iron';await write(d('items'),items)
+items.loadout.primary='weapon.sword-iron'
+// The data cell starts at held slot zero, independently of the configured primary.
+const swordIndex=items.rows.findIndex(r=>r.id===items.loadout.primary)
+items.rows.unshift(...items.rows.splice(swordIndex,1))
+await write(d('items'),items)
 const spawns=await load(d('creatures'))
 const base=spawns.spawns.find(s=>s.id==='grey-blob:1');assert(base)
 const brain=spawns.brains.find(b=>b.id===base.brain);assert(brain.kind==='pursue')
