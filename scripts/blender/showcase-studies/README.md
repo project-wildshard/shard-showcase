@@ -26,3 +26,16 @@ unneeded interim GLBs and report renders are not branch dependencies. Delete
 superseded branch outputs only once the verified replacement is present. Do not
 rewrite history for cleanup. Preserve a native source privately when a compact
 recipe can't yet reconstruct it.
+
+## Crate Mite rig checkpoint
+
+Build the separate skinned actor with
+`blender -b --python-exit-code 1 --python scripts/blender/showcase-studies/mite_rig.py -- "$out"`.
+The script derives the rig from the canonical phone-budget Mite source. It
+produces a standalone rig GLB and an editable .blend in the output directory.
+The .blend is reproducible and is not versioned. With the repository's Three
+dependency installed, run
+`node scripts/blender/showcase-studies/check_mite_rig.mjs "$out/wsc-actor-001-crate-mite-rig.glb"`.
+The GLB has eleven clips, including two named attacks and sleep/wake. Actor
+movement, hit timing, clip selection, collision and spawn state are runtime
+responsibilities; the rig checkpoint alone does not implement those.
