@@ -47,3 +47,8 @@ are Blender-only; no generated proof images are needed to edit the yard.
 Append `bite`, `overclock`, or `recover` after the Blender output path
 to render the closer pose proofs. Cue timing reads the same constants
 as the combat simulation. Proof lighting is not live gameplay footage.
+
+The East 01 floor is an editable, deterministic 374-triangle patch layout
+(`yard-apron.mjs`), not a downloaded texture. Blender reads the same layout
+and applies its own material bump. Append `flat` for a matched render without
+the new surface. Render-only details add no collision or movement changes.

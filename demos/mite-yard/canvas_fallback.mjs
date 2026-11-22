@@ -56,7 +56,7 @@ export function canvasRenderer(canvas){
     if(!m?.color)continue
     const normal=a.subVectors(world[ids[1]],world[ids[0]]).cross(b.subVectors(world[ids[2]],world[ids[0]])).normalize()
     const power=.57+.42*Math.max(0,normal.dot(light))
-    list.push([o.userData.paintBackground?-1e9:clipped.reduce((t,p)=>t+p.z,0)/clipped.length,screen,css(m.color,power,m)])
+    list.push([o.userData.paintLayer!==undefined?-1e9+o.userData.paintLayer:clipped.reduce((t,p)=>t+p.z,0)/clipped.length,screen,css(m.color,power,m)])
    }
   })
   list.sort((p,q)=>p[0]-q[0])

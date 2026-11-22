@@ -15,7 +15,7 @@ await cp(join(home,'../../public/assets/wildshard-art/wsc-actor-001-crate-mite-r
 for(const [source,filename] of [['wsc-prop-053-robot-dock.glb','dock.glb'],['haul-crate.glb','haul-crate.glb']]){
  await cp(join(home,'../../public/assets/wildshard-art',source),join(dest,'assets',filename))
 }
-for(const name of ['yard-layout.mjs','index.html','yard.css','yard.mjs','combat.mjs','canvas_fallback.mjs','viewmodel.mjs'])await cp(join(home,name),join(dest,name))
+for(const name of ['yard-layout.mjs','yard-apron.mjs','index.html','yard.css','yard.mjs','combat.mjs','canvas_fallback.mjs','viewmodel.mjs'])await cp(join(home,name),join(dest,name))
 const deps=new Set()
 async function module(name){
  if(deps.has(name))return

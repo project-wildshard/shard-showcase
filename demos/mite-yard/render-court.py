@@ -15,15 +15,16 @@ from mathutils import Vector
 args = sys.argv[sys.argv.index("--") + 1:]
 out = str(Path(args[0]).resolve())
 shot = args[1] if len(args) > 1 else "court"
-if shot not in ("court", "bite", "overclock", "recover"):
+if shot not in ("court", "flat", "bite", "overclock", "recover"):
     raise ValueError(f"Unknown proof shot: {shot}")
 repo = Path(__file__).resolve().parents[2]
 assets = repo / "public/assets/wildshard-art"
 source = """
+import {createApron} from './demos/mite-yard/yard-apron.mjs'
 import {DOCK, STACK, CRATES} from './demos/mite-yard/yard-layout.mjs'
 import {ARENA,MITE_TIMING,createGame} from './demos/mite-yard/combat.mjs'
 const {player,mite}=createGame()
-console.log(JSON.stringify({DOCK,STACK,CRATES,ARENA,MITE_TIMING,player,mite}))
+console.log(JSON.stringify({DOCK,STACK,CRATES,ARENA,MITE_TIMING,player,mite,apron:createApron()}))
 """
 cfg = json.loads(subprocess.check_output(
     ["node", "--input-type=module", "-e", source], cwd=repo, text=True,
@@ -83,7 +84,45 @@ plinth = mat("Dock asphalt", (.048, .062, .065), .16)
 wood = mat("Old cargo wood", (.175, .095, .045), 0)
 x0, z0 = cfg["DOCK"]["x"], cfg["DOCK"]["z"]
 width, depth = cfg["ARENA"]["width"], cfg["ARENA"]["depth"]
-box("Court", (0, 0, -.11), (width, depth, .22), concrete)
+def rgb(hexint):
+    def lin(n):
+        c = n / 255
+        return c/12.92 if c <= .04045 else ((c+.055)/1.055)**2.4
+    return tuple(lin((hexint >> shift) & 255) for shift in (16,8,0))
+
+def apron_patch(row, m):
+    vertices = [(x,-z,row["y"]) for x,z in reversed(row["points"])]
+    mesh = bpy.data.meshes.new(row["style"])
+    mesh.from_pydata(vertices, [], [list(range(len(vertices)))])
+    mesh.materials.append(m)
+    o = bpy.data.objects.new(row["style"], mesh)
+    s.collection.objects.link(o)
+
+if shot == "flat":
+    box("Court", (0, 0, -.11), (width, depth, .22), concrete)
+    for i in range(12):
+        for x in [-2.9, 2.9]:
+            box("Approach stripe", (x, 8-1.5*i, .004), (.065,.78,.006), stripe, 0)
+else:
+    palette = {}
+    for row in cfg["apron"]:
+        style, col = row["style"], row["color"]
+        k = (style,col)
+        if k not in palette:
+            m = palette[k] = mat(style, rgb(col), .46 if style=="metal" else 0)
+            if style in ("slab","repair"):
+                tree=m.node_tree
+                uv=tree.nodes.new("ShaderNodeTexCoord")
+                noise=tree.nodes.new("ShaderNodeTexNoise")
+                noise.inputs["Scale"].default_value=40
+                noise.inputs["Detail"].default_value=2
+                bump=tree.nodes.new("ShaderNodeBump")
+                bump.inputs["Strength"].default_value=.19
+                bump.inputs["Distance"].default_value=.013
+                tree.links.new(uv.outputs["Object"],noise.inputs["Vector"])
+                tree.links.new(noise.outputs["Fac"],bump.inputs["Height"])
+                tree.links.new(bump.outputs["Normal"],tree.nodes["Principled BSDF"].inputs["Normal"])
+        apron_patch(row, palette[k])
 box("Rear wall", (0, depth/2, 1.32), (width, .26, 2.65), corrugated)
 for i in range(50):
     box("Standing seam", (-8.75+i*.36, 10.82, 1.48), (.10,.105,2.3), corrugated)
@@ -91,9 +130,6 @@ for i in range(-8, 9, 2):
     box("Corner post", (i, 10.85, 1.51), (.19,.29,3.02), frame)
 for x in [-width/2,width/2]:
     box("Side wall", (x,0,1.32), (.27,depth,2.65), corrugated)
-for i in range(12):
-    for x in [-2.9, 2.9]:
-        box("Approach stripe", (x, 8-1.5*i, .004), (.065,.78,.006), stripe, 0)
 box("Dock zone", (x0,-z0,.009), (2.75,2.9,.018), plinth)
 for y in [-z0-1.35,-z0+1.35]:
     for j in range(9):
@@ -115,11 +151,11 @@ for ob in added:
     if ob.type == "ARMATURE" and ob.animation_data:
         for track in ob.animation_data.nla_tracks:
             track.mute = True
-        name = "telegraph" if shot == "court" else f"attack.{shot if shot != 'recover' else 'bite'}"
+        name = "telegraph" if shot in ("court", "flat") else f"attack.{shot if shot != 'recover' else 'bite'}"
         ob.animation_data.action = next(a for a in bpy.data.actions if a.name in (name, f'{name}_{ob.name}'))
 tell = round(cfg["MITE_TIMING"].get(shot, cfg["MITE_TIMING"]["bite"])["tell"] * s.render.fps)
-s.frame_set(11 if shot == "court" else 31 if shot == "recover" else tell - 1)
-if shot != "court":
+s.frame_set(11 if shot in ("court", "flat") else 31 if shot == "recover" else tell - 1)
+if shot not in ("court", "flat"):
     for ob in added:
         if ob.type != "MESH":
             continue
@@ -148,7 +184,7 @@ s.cycles.samples = 32
 s.cycles.use_denoising = False
 s.render.resolution_x, s.render.resolution_y = 1250, 800
 s.render.resolution_percentage = 100
-if shot != "court":
+if shot not in ("court", "flat"):
     cam.location = (1.66, -1.50, 1.27)
     point(cam, (.23, 1.87, .34))
     cam.data.lens = 55

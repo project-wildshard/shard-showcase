@@ -3,6 +3,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
 import {canvasRenderer} from './canvas_fallback.mjs'
 import {ARENA,SWORD_SWING,clamp,createGame,step} from './combat.mjs'
 import {CRATES,DOCK,STACK} from './yard-layout.mjs'
+import {createApron} from './yard-apron.mjs'
 import {createViewmodel,poseViewmodel} from './viewmodel.mjs'
 const el=q=>document.querySelector(q)
 let view=el('#view')
@@ -22,11 +23,30 @@ const camera=new THREE.PerspectiveCamera(65,1,.04,55);camera.rotation.order='YXZ
 scene.add(new THREE.HemisphereLight(0xc8efff,0x91745e,2.3))
 const sun=new THREE.DirectionalLight(0xffd1a0,2.7);sun.position.set(-8,14,8);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-14,right:14,top:16,bottom:-16,near:.1,far:45});sun.shadow.bias=-.001;scene.add(sun)
 const mat=(color,roughness=.68,metalness=0)=>new THREE.MeshStandardMaterial({color,roughness,metalness})
-const cement=mat(0xa59470),iron=mat(0x2a3d40,.56,.39),paint=mat(0x9e4a21,.62,.25),steel=mat(0xa0b2ad,.36,.65),sunwood=mat(0xa06938),leather=mat(0x39291d),warm=mat(0xe19a3b),pad=mat(0x42585a)
+const iron=mat(0x2a3d40,.56,.39),paint=mat(0x9e4a21,.62,.25),steel=mat(0xa0b2ad,.36,.65),sunwood=mat(0xa06938),leather=mat(0x39291d),warm=mat(0xe19a3b),pad=mat(0x42585a)
 function box(parent,m,w,h,d,x,y,z){
  const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;parent.add(o);return o
 }
-box(scene,cement,18,.22,22,0,-.11,0).userData.paintBackground=true
+const apronGroups=new Map()
+for(const patch of createApron()){
+ const key=patch.style+':'+patch.color+':'+patch.y
+ let batch=apronGroups.get(key)
+ if(!batch){batch={patch,positions:[]};apronGroups.set(key,batch)}
+ const [a,...rest]=patch.points
+ for(let i=0;i<rest.length-1;i++){
+  // Reverse X/Z winding to face upward in Three's Y-up scene.
+  for(const [x,z] of [a,rest[i+1],rest[i]])batch.positions.push(x,patch.y,z)
+ }
+}
+for(const {patch,positions} of apronGroups.values()){
+ const g=new THREE.BufferGeometry()
+ g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3))
+ g.computeVertexNormals()
+ const isMetal=patch.style==='metal'
+ const m=new THREE.Mesh(g,mat(patch.color,isMetal?.48:.79,isMetal?.46:0))
+ m.receiveShadow=true;m.userData.paintLayer=patch.y
+ scene.add(m)
+}
 // Short wall panels prevent a near end of a long triangle from sorting
 // in front of unrelated props in the software renderer.
 for(const x of [-9,9])for(let i=0;i<10;i++)box(scene,iron,.27,2.65,2.2,x,1.32,-9.9+i*2.2)
@@ -53,7 +73,6 @@ for(const [x,z,w,d] of ARENA.blocks){
  box(scene,sunwood,w,1.47,d,x,.735,z)
  for(const dx of [-.4,.4])box(scene,iron,.102,1.55,d+.055,x+w*dx,.776,z)
 }
-for(let z=-8;z<9;z+=1.5)for(const x of [-2.9,2.9])box(scene,warm,.065,.006,.78,x,.004,z)
 box(scene,pad,2.75,.018,2.9,DOCK.x,.009,DOCK.z)
 for(const z of [DOCK.z-1.35,DOCK.z+1.35]){
  for(let i=0;i<9;i++){
