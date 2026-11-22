@@ -1,12 +1,14 @@
-export const ARENA={width:18,depth:22,blocks:[[-6,-5,2.2,2.1],[6,-5,2.4,2],[-6,3,2.5,2],[5.8,2.5,2.2,2.2]]}
+import {DOCK,STACK} from './yard-layout.mjs'
+export const ARENA={width:18,depth:22,blocks:[[-6,-5,2.2,2.1],[STACK.x,STACK.z,STACK.width,STACK.depth],[-6,3,2.5,2],[5.8,2.5,2.2,2.2]]}
 export const SWORD_SWING=Object.freeze({impact:.148,end:.48})
 const TAU=Math.PI*2
 export const clamp=(x,a,b)=>Math.max(a,Math.min(b,x))
 const angle=(a,b)=>((b-a+Math.PI+TAU)%TAU)-Math.PI
 const approach=(a,b,m)=>a+clamp(angle(a,b),-m,m)
 const length=(x,z)=>Math.hypot(x,z)
-function blocked(x,z,r=.28){
+function blocked(x,z,r=.28,sight=false){
  return Math.abs(x)>ARENA.width/2-r||Math.abs(z)>ARENA.depth/2-r||
+ (!sight&&Math.abs(x-DOCK.x)<DOCK.width*.5+r&&Math.abs(z-DOCK.z)<DOCK.depth*.5+r)||
  ARENA.blocks.some(([u,v,w,d])=>Math.abs(x-u)<w*.5+r&&Math.abs(z-v)<d*.5+r)
 }
 function move(a,x,z,r){
@@ -15,7 +17,7 @@ function move(a,x,z,r){
 }
 function clear(a,b){
  const n=Math.ceil(length(b.x-a.x,b.z-a.z)/.13)
- for(let i=1;i<n;i++)if(blocked(a.x+(b.x-a.x)*i/n,a.z+(b.z-a.z)*i/n,0))return false
+ for(let i=1;i<n;i++)if(blocked(a.x+(b.x-a.x)*i/n,a.z+(b.z-a.z)*i/n,0,true))return false
  return true
 }
 const phase=(e,n)=>{e.phase=n;e.t=0;e.serial++}

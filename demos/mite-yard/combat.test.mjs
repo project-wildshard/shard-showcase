@@ -48,3 +48,11 @@ test('uncollected Servo expires and does not persist into a reset',()=>{
  assert.equal(g.drop,null);assert.equal(g.servos,0);assert.match(g.notice,/expired/)
  assert.equal(createGame().drop,null)
 })
+
+test('dock is solid, but central approach to the Mite stays open',()=>{
+ const side=createGame();Object.assign(side.player,{x:3.25,z:-3.7,yaw:0})
+ advance(side,.7,{forward:1});assert(side.player.z>-4.17)
+ const lane=createGame()
+ advance(lane,1.48,{forward:1});assert(lane.player.z<1.1)
+ assert.notEqual(lane.mite.phase,'sleep')
+})

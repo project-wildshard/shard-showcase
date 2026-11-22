@@ -32,3 +32,9 @@ Its windup, impact, follow-through and recovery share the simulation's
 impact time. The hit indicator only appears after confirmed damage. A
 projection check covers landscape and 402 × 874 portrait framing; it is
 not an iPhone performance test.
+
+The East E01 court uses the committed robot dock and haul crate GLBs, with
+layout in `yard-layout.mjs`. The dock is a movement obstacle, not opaque tall
+cover. The stack sits on the existing east cover footprint. The central
+wake/fight lane remains clear. This standalone layout is not a native shard
+placement.

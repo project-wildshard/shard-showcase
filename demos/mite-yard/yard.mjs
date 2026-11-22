@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
 import {canvasRenderer} from './canvas_fallback.mjs'
 import {ARENA,SWORD_SWING,clamp,createGame,step} from './combat.mjs'
+import {CRATES,DOCK,STACK} from './yard-layout.mjs'
 import {createViewmodel,poseViewmodel} from './viewmodel.mjs'
 const el=q=>document.querySelector(q)
 let view=el('#view')
@@ -29,12 +30,35 @@ box(scene,cement,18,.22,22,0,-.11,0).userData.paintBackground=true
 for(const x of [-9,9])box(scene,iron,.27,2.65,22,x,1.32,0)
 for(const z of [-11,11])box(scene,iron,18,2.65,.26,0,1.32,z)
 for(let i=-8;i<=8;i+=2){for(const x of [i])for(const z of [-10.85,10.85])box(scene,paint,.19,3.02,.29,x,1.51,z)}
+for(let x=-8.75;x<9;x+=.36)box(scene,iron,.10,2.3,.105,x,1.48,-10.82)
+box(scene,paint,9,.12,.13,4.4,2.35,-10.67)
+box(scene,steel,9,.12,.13,4.4,.29,-10.67)
+const loadYard=new GLTFLoader()
+function stageProp(url,placements){
+ return loadYard.loadAsync(url).then(({scene:prop})=>{
+  prop.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}})
+  for(const p of placements){const copy=prop.clone();copy.position.set(...p);scene.add(copy)}
+ })
+}
+const dressing=Promise.all([
+ stageProp('./assets/dock.glb',[[DOCK.x,0,DOCK.z]]),
+ stageProp('./assets/haul-crate.glb',CRATES),
+]).then(()=>true,e=>{console.error(e);return false})
+// Base plate keeps the authored stack aligned to its existing cover volume.
+box(scene,iron,STACK.width,.065,STACK.depth,STACK.x,.033,STACK.z)
 for(const [x,z,w,d] of ARENA.blocks){
+ if(x===STACK.x&&z===STACK.z)continue
  box(scene,sunwood,w,1.47,d,x,.735,z)
  for(const dx of [-.4,.4])box(scene,iron,.102,1.55,d+.055,x+w*dx,.776,z)
 }
 for(let z=-8;z<9;z+=1.5)for(const x of [-2.9,2.9])box(scene,warm,.065,.006,.78,x,.004,z)
-box(scene,pad,1.3,.10,.56,1.9,.049,-6.8)
+box(scene,pad,2.75,.018,2.9,DOCK.x,.009,DOCK.z)
+for(const z of [DOCK.z-1.35,DOCK.z+1.35]){
+ for(let i=0;i<9;i++){
+  const stripe=box(scene,i%2?iron:warm,.245,.009,.14,DOCK.x+(i-4)*.272,.021,z)
+  stripe.rotation.y=.38
+ }
+}
 const handRig=createViewmodel();camera.add(handRig);poseViewmodel(handRig,0)
 // Mechanical pickup, with editable geometry and no binary texture dependency.
 const servo=new THREE.Group();scene.add(servo);servo.visible=false
@@ -63,7 +87,8 @@ function reset(){
  mix?.stopAllAction();action=undefined;servo.visible=false
 }
 enter.disabled=true
-new GLTFLoader().load('./assets/mite.glb',g=>{
+new GLTFLoader().load('./assets/mite.glb',async g=>{
+ if(!await dressing){status.textContent='Could not load the E01 dock court.';enter.textContent='Assets unavailable';return}
  model=g.scene;scene.add(model);mix=new THREE.AnimationMixer(model)
  g.animations.forEach(a=>clips.set(a.name,a))
  model.traverse(o=>{
