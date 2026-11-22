@@ -7,15 +7,32 @@ export function canvasRenderer(canvas){
  const shadowMap={}
  let ratio=1
  function setSize(w,h){canvas.width=Math.round(w*ratio);canvas.height=Math.round(h*ratio)}
- const temp=new Vector3(),a=new Vector3(),b=new Vector3(),light=new Vector3(-.42,.8,.47).normalize()
- const css=(color,k,out)=>{
-  const s=color.clone().multiplyScalar(k)
-  const t=out?.emissive
-  if(t){s.r+=t.r*out.emissiveIntensity*.34;s.g+=t.g*out.emissiveIntensity*.34;s.b+=t.b*out.emissiveIntensity*.34}
-  return s.getStyle()
+ const temp=new Vector3(),a=new Vector3(),b=new Vector3()
+ const eye=new Vector3(),center=new Vector3(),half=new Vector3()
+ const light=new Vector3(-8,14,8).normalize()
+ const css=(m,normal,distance,cameraPosition,fog)=>{
+  if(m.isMeshBasicMaterial)return m.color.getStyle()
+  const sun=Math.max(0,normal.dot(light))
+  const sky=.30+.17*Math.max(0,normal.y)
+  const metal=m.metalness??0
+  let shine=0
+  if(sun>0&&metal>.10){
+   half.subVectors(cameraPosition,center).normalize().add(light).normalize()
+   const lobe=Math.max(0,normal.dot(half))**(6+26*(1-(m.roughness??.6)))
+   shine=lobe*metal*sun*.32
+  }
+  const color=m.color.clone()
+  color.r=color.r*(sky*.82+sun*.58)+shine*(.38+color.r*.8)
+  color.g=color.g*(sky*.98+sun*.43)+shine*(.34+color.g*.8)
+  color.b=color.b*(sky*1.19+sun*.29)+shine*(.29+color.b*.8)
+  const t=m.emissive
+  if(t){color.r+=t.r*m.emissiveIntensity*.34;color.g+=t.g*m.emissiveIntensity*.34;color.b+=t.b*m.emissiveIntensity*.34}
+  if(fog&&distance>fog.near)color.lerp(fog.color,Math.min(1,(distance-fog.near)/(fog.far-fog.near)))
+  return color.getStyle()
  }
  function render(scene,camera){
   scene.updateMatrixWorld(true);camera.updateMatrixWorld(true)
+  eye.setFromMatrixPosition(camera.matrixWorld)
   const w=canvas.width,h=canvas.height
   ctx.fillStyle=scene.background.getStyle();ctx.fillRect(0,0,w,h)
   const list=[],near=.06,inv=camera.matrixWorldInverse,proj=camera.projectionMatrix.elements
@@ -55,8 +72,9 @@ export function canvasRenderer(canvas){
     if(Array.isArray(m))m=m[geom.groups.find(g=>i>=g.start&&i<g.start+g.count)?.materialIndex??0]
     if(!m?.color)continue
     const normal=a.subVectors(world[ids[1]],world[ids[0]]).cross(b.subVectors(world[ids[2]],world[ids[0]])).normalize()
-    const power=.57+.42*Math.max(0,normal.dot(light))
-    list.push([o.userData.paintLayer!==undefined?-1e9+o.userData.paintLayer:clipped.reduce((t,p)=>t+p.z,0)/clipped.length,screen,css(m.color,power,m),m.transparent?m.opacity:1])
+    const depth=clipped.reduce((t,p)=>t+p.z,0)/clipped.length
+    center.copy(world[ids[0]]).add(world[ids[1]]).add(world[ids[2]]).multiplyScalar(1/3)
+    list.push([o.userData.paintLayer!==undefined?-1e9+o.userData.paintLayer:depth,screen,css(m,normal,-depth,eye,scene.fog),m.transparent?m.opacity:1])
    }
   })
   list.sort((p,q)=>p[0]-q[0])
