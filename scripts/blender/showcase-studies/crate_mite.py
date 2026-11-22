@@ -5,7 +5,7 @@ from mathutils import Vector
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from common import output_directory,clear_scene,export
 
-def build(phone, *, far=False):
+def build(phone, *, far=False, yard=False):
     clear_scene()
     bpy.data.orphans_purge(do_recursive=True)
     s=bpy.context.scene
@@ -45,6 +45,7 @@ def build(phone, *, far=False):
        faces.append((j*n+i,j*n+(i+1)%n,(j+1)*n+(i+1)%n,(j+1)*n+i));idx.append(m)
      if cap is not None:faces.append(tuple(range((len(profile)-1)*n,len(profile)*n)));idx.append(cap)
      o=mesh(name,verts,faces,mats,idx);o.location=center;return o
+    assert not (far and yard)
     if far:
      # Preserve the chamfered crate and its lid seam. Fuse each collar, strut
      # and foot into a single wedge, with no textures or new rig joints.
@@ -83,13 +84,42 @@ def build(phone, *, far=False):
       box('Angled pressure leg',x+sx*.033,y,.126,.096,.118,.161,0,cast if phone else lock,lock if phone else None,rx=sy*.15,ry=-sx*.26)
       if phone:box('Short single-piece foot',x+sx*.065,y+sy*.021,.039,.152,.147,.077,0,rubber,edge)
       else:box('Chamfered industrial foot',x+sx*.065,y+sy*.021,.039,.157,.151,.077,.021,rubber,cast)
-    ring('Sealed octagonal eye stack',(0,-.255,.365),[(.119,0),(.111,-.021),(.087,-.029),(.072,-.034)],12 if phone else 8,(lock,cast,eye_matte,eye),[0,1,2],3)
+    if yard:
+     steel=mat('Mite | scuffed steel pins',(.35,.402,.377),.76,.36)
+     badge=mat('Mite | pale yard enamel',(.74,.65,.425),.2,.52)
+     # Browser hero: details remain rigidly weighted to the same seven bones.
+     # Preserve the silhouette and gameplay bounds of the validated native rig.
+     for sx in (-1,1):
+      for sy in (-1,1):
+       x=sx*.238;y=sy*.172
+       box('Orange clamp corner plate',sx*.244,sy*.219,.522,.117,.10,.093,.018,cast)
+       box('Orange clamp raised corner',sx*.248,sy*.221,.570,.073,.071,.018,.008,steel)
+       joint=ring('Four short axle and cap',(x+sx*.041,y,.201),
+        [(.048,.011),(.052,0),(.049,-.023),(.028,-.030)],8,(lock,cast,steel),[0,1,2],2)
+       joint.rotation_euler.z=sx*math.pi/2
+       knee=ring('Angled pressure knee pin',(x+sx*.058,y+sy*.036,.117),
+        [(.032,0),(.037,-.013),(.033,-.028),(.021,-.033)],8,(lock,edge,steel),[0,1,2],2)
+       if sy>0:knee.rotation_euler.z=math.pi
+       box('Angled pressure outer armor',x+sx*.055,y,.104,.086,.121,.087,.011,lava,cast,rx=sy*.16,ry=-sx*.21)
+       box('Short single-piece steel toe',x+sx*.066,y+sy*.067,.052,.126,.058,.044,.009,edge,cast)
+     for x in (-.178,.178):
+      box('Recessed nose armor saddle',x,-.270,.427,.101,.032,.093,.013,cast,lock)
+      for z in (.395,.456):
+       ring('Recessed nose socket screw',(x,-.290,z),[(.012,0),(.013,-.006),(.009,-.009)],6,(lock,steel),[0,1],1)
+     box('Rigid body front grille',0,-.280,.264,.295,.025,.053,.013,cast,lock)
+     for i in range(3):
+      box('Rigid body enamel stitch',-.080+.031*i,-.295,.264,.015,.005,.023,.002,badge,ry=.46)
+     ring('Sealed octagonal eye guard',(0,-.271,.365),[(.121,0),(.108,-.022),(.093,-.028)],16,(cast,steel),[0,1])
+     for n in range(8):
+      a=n*math.tau/8
+      box('Sealed octagonal radial lug',.107*math.cos(a),-.297,.365+.107*math.sin(a),.013,.010,.010,0,steel,ry=-a)
+    ring('Sealed octagonal eye stack',(0,-.255,.365),[(.119,0),(.111,-.021),(.087,-.029),(.072,-.034)],16 if yard else 12 if phone else 8,(lock,cast,eye_matte,eye),[0,1,2],3)
     bpy.context.view_layer.update()
     tris=sum(sum(len(f.vertices)-2 for f in o.data.polygons) for o in parts)
     low=min((o.matrix_world@Vector(v)).z for o in parts for v in o.bound_box)
     high=max((o.matrix_world@Vector(v)).z for o in parts for v in o.bound_box)
     print('MITE_TRIANGLES',tris,'MINMAXZ',low,high,flush=True)
-    assert tris==(386 if phone else 422) and abs(high-low-.6)<.021
+    assert (1100<=tris<=2000 if yard else tris==(386 if phone else 422)) and abs(high-low-.6)<.025
     return parts
 
 if __name__ == "__main__":

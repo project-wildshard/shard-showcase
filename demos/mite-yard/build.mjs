@@ -11,7 +11,7 @@ const pkg=JSON.parse(await readFile(join(three,'package.json'),'utf8'))
 assert.equal(pkg.version,'0.186.0')
 await mkdir(dest,{recursive:true})
 await mkdir(join(dest,'assets'),{recursive:true})
-await cp(join(home,'../../public/assets/wildshard-art/wsc-actor-001-crate-mite-rig.glb'),join(dest,'assets/mite.glb'))
+await cp(join(home,'../../public/assets/wildshard-art/wsc-actor-001-crate-mite-rig-yard.glb'),join(dest,'assets/mite.glb'))
 for(const [source,filename] of [['wsc-prop-053-robot-dock.glb','dock.glb'],['haul-crate.glb','haul-crate.glb'],['wsc-module-018-road-gate-gantry.glb','gantry.glb']]){
  await cp(join(home,'../../public/assets/wildshard-art',source),join(dest,'assets',filename))
 }

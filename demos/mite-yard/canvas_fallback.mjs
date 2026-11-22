@@ -56,14 +56,16 @@ export function canvasRenderer(canvas){
     if(!m?.color)continue
     const normal=a.subVectors(world[ids[1]],world[ids[0]]).cross(b.subVectors(world[ids[2]],world[ids[0]])).normalize()
     const power=.57+.42*Math.max(0,normal.dot(light))
-    list.push([o.userData.paintLayer!==undefined?-1e9+o.userData.paintLayer:clipped.reduce((t,p)=>t+p.z,0)/clipped.length,screen,css(m.color,power,m)])
+    list.push([o.userData.paintLayer!==undefined?-1e9+o.userData.paintLayer:clipped.reduce((t,p)=>t+p.z,0)/clipped.length,screen,css(m.color,power,m),m.transparent?m.opacity:1])
    }
   })
   list.sort((p,q)=>p[0]-q[0])
-  for(const [_,v,style] of list){
+  for(const [_,v,style,alpha] of list){
+   ctx.globalAlpha=alpha
    ctx.fillStyle=style;ctx.strokeStyle=style;ctx.lineWidth=.61
-   ctx.beginPath();ctx.moveTo(...v[0]);for(let i=1;i<v.length;i++)ctx.lineTo(...v[i]);ctx.closePath();ctx.fill();ctx.stroke()
+   ctx.beginPath();ctx.moveTo(...v[0]);for(let i=1;i<v.length;i++)ctx.lineTo(...v[i]);ctx.closePath();ctx.fill();if(alpha===1)ctx.stroke()
   }
+  ctx.globalAlpha=1
  }
  return {shadowMap,render,setSize,getPixelRatio:()=>ratio,setPixelRatio:r=>{ratio=Math.min(1,r)}}
 }

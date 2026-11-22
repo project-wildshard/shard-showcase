@@ -64,3 +64,11 @@ and Dodge, or Q for dodge on desktop. Dodge has displacement and a short
 cooldown, not invulnerability. The warning stripes show attack direction,
 not exact hit volume. Chrome portrait QA uses a 402 × 874 viewport with
 touch controls selected; this is not Safari or iPhone device testing.
+
+The browser yard uses the separate 1,734-triangle hero rig: step armor,
+steel pins, new face details and a revised recoil. Blender source is
+`scripts/blender/showcase-studies/mite_rig.py` with `--yard`. It reuses
+the seven joints and eleven clip IDs. The reviewed 386- and 138-triangle
+GLBs remain the native calibration tiers. Do not replace either one
+with this model. The Canvas2D renderer layers contact shadows; WebGL
+uses its sun shadow map instead.

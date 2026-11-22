@@ -8,13 +8,14 @@ from crate_mite import build
 
 def variant_args(argv):
     args=argv[argv.index('--')+1:] if '--' in argv else []
-    if len(args)==1:return Path(args[0]).expanduser().resolve(),False
-    if len(args)==2 and args[1]=='--far':return Path(args[0]).expanduser().resolve(),True
-    raise SystemExit('Pass an output directory and optionally --far after --.')
+    if len(args)==1:return Path(args[0]).expanduser().resolve(),''
+    if len(args)==2 and args[1] in ('--far','--yard'):return Path(args[0]).expanduser().resolve(),args[1][2:]
+    raise SystemExit('Pass an output directory and optionally --far or --yard after --.')
 
-out,far=variant_args(sys.argv)
+out,tier=variant_args(sys.argv)
+far=tier=='far';yard=tier=='yard'
 out.mkdir(parents=True,exist_ok=True)
-parts=build(True,far=far)
+parts=build(True,far=far,yard=yard)
 bpy.ops.object.select_all(action="DESELECT")
 for ob in parts:
     label=ob.name
@@ -88,7 +89,13 @@ clip('turn',[(0,neutral),(6,F(rz=.18,leg=[.24,-.12,.14,-.21])),(12,F(rz=-.13,leg
 clip('telegraph',[(0,neutral),(12,F(dz=-.071,rx=.085,fl=.05)),(18,F(dz=-.10,rx=.12,fl=.27))])
 clip('attack.bite',[(0,neutral),(12,F(dz=-.071,rx=.085)),(18,F(dz=-.10,rx=.12,fl=.27)),(22,F(dz=.14,dy=-.13,rx=-.27,leg=[.21,.21,-.30,-.30])),(27,F(dz=-.035,rx=.13)),(36,neutral)])
 clip('attack.overclock',[(0,neutral),(8,F(dz=-.034,fl=.38,head=.18)),(16,F(dz=-.071,fl=-.17,head=-.17)),(23,F(dz=-.10,fl=.45,rx=.12)),(28,F(dz=.18,dy=-.18,rx=-.33,leg=[.27,.27,-.33,-.33])),(36,F(dz=-.07,rx=.15)),(44,neutral)])
-clip('hit',[(0,neutral),(4,F(dz=-.021,dy=.09,rx=.21,rz=.08,fl=-.38)),(12,neutral)])
+hit=[(0,neutral),(4,F(dz=-.021,dy=.09,rx=.21,rz=.08,fl=-.38)),(12,neutral)]
+if yard:
+    hit=[(0,neutral),(2,F(dz=.027,dy=.088,rx=.30,rz=.20,fl=-.40,head=.08,leg=[.22,-.16,.24,-.18])),
+         (5,F(dz=-.031,dy=.062,rx=-.11,rz=.12,fl=-.31,head=-.09,leg=[-.20,.22,-.12,.19])),
+         (9,F(dz=.012,dy=.012,rx=.05,rz=-.05,fl=-.12)),
+         (12,neutral)]
+clip('hit',hit)
 def break_pose(dz, rx, yaw, scatter, lift, lid, blink):
     """Scatter the pinned rigid modules; no generated geometry or changing joint order."""
     state=F(dz=dz,rx=rx,rz=yaw,fl=blink)
@@ -163,7 +170,7 @@ def linearize_constants(path):
     chunk+=b' '*((-len(chunk))%4)
     path.write_bytes(struct.pack('<4sIII4s',magic,version,20+len(chunk)+len(payload),len(chunk),kind)+chunk+payload)
 
-suffix='-far' if far else ''
+suffix='-'+tier if tier else ''
 target=out/f'wsc-actor-001-crate-mite-rig{suffix}.glb'
 bpy.ops.export_scene.gltf(filepath=str(target),
     export_format='GLB',use_selection=True,export_animations=True,

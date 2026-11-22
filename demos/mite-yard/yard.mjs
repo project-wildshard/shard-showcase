@@ -99,6 +99,26 @@ for(const y of [-.105,.105])servoRing(.132,.041,y,steel)
 for(const y of [-.067,-.034,0,.034,.067])servoRing(.107,.019,y,copper)
 servoRing(.068,.018,.135,servoLens)
 box(servo,leather,.077,.085,.112,.12,-.016,0)
+// Layered contact occlusion for the software renderer only. WebGL has
+// the actual sun shadow map, so don't darken it a second time.
+function footShadow(x,z,radiusX,radiusZ){
+ const g=new THREE.Group();scene.add(g);g.position.set(x,.007,z)
+ for(const [scale,opacity] of [[1.16,.105],[.87,.15],[.57,.105]]){
+  const o=new THREE.Mesh(new THREE.CircleGeometry(1,14),
+   new THREE.MeshBasicMaterial({color:0x201f1b,transparent:true,opacity}))
+  o.rotation.x=-Math.PI/2;o.scale.set(radiusX*scale,radiusZ*scale,1)
+  o.userData.paintLayer=.006+(1.16-scale)*.0001
+  g.add(o)
+ }
+ return g
+}
+let miteShadow
+if(!renderer.isWebGLRenderer){
+ miteShadow=footShadow(0,0,.43,.35)
+ footShadow(STACK.x-.065,STACK.z+.18,1.62,1.16)
+ footShadow(DOCK.x+.09,DOCK.z+.12,1.42,1.39)
+ for(const x of [-2.92,2.92])footShadow(x+.08,GANTRY.z+.15,.75,.68)
+}
 // The cue is anchored to the locked attack heading, not to the moving camera.
 const tell=new THREE.Group();scene.add(tell);tell.visible=false
 const tellMat=mat(0x55d9d5,.55);tellMat.emissive.setHex(0x18b9bf)
@@ -122,7 +142,7 @@ const setClip=(name,loop)=>{
  if(action?.getClip().name===name)return
  const clip=clips.get(name);if(!clip)return
  const next=mix.clipAction(clip).reset();next.setLoop(loop?THREE.LoopRepeat:THREE.LoopOnce,loop?Infinity:1);next.clampWhenFinished=!loop
- if(action)next.crossFadeFrom(action,.10,false);next.play();action=next
+ if(action)next.crossFadeFrom(action,name==='hit'?.035:.10,false);next.play();action=next
 }
 function reset(){
  game=createGame();yaw=0;pitch=VIEW_PITCH;oldPhase='';hurt=0;hit=0;swing=false;dodge=false;carry=0;closeTilt=0;stopStick();tell.visible=sparks.visible=false
@@ -205,6 +225,11 @@ function frame(now){
   closeTilt+=(assist-closeTilt)*(1-Math.exp(-10*dt))
   camera.position.set(p.x,1.62-Math.abs(lean)*.70,p.z);camera.rotation.set(p.pitch-closeTilt,-p.yaw,lean,'YXZ')
   model.position.set(m.x,0,m.z);model.rotation.y=m.yaw
+  if(miteShadow){
+   miteShadow.position.set(m.x+.05,.007,m.z+.06)
+   miteShadow.scale.setScalar(m.phase==='die'?1.24:m.phase==='lunge'?.91:1)
+   miteShadow.rotation.y=m.yaw
+  }
   const d=game.drop
   servo.visible=Boolean(d&&game.time>=d.readyAt)
   if(servo.visible){
@@ -256,6 +281,7 @@ function frame(now){
   if(status.textContent!==game.notice)status.textContent=game.notice
  }else if(model){
   camera.position.set(0,1.68,6.7);camera.rotation.x=-.20;model.position.set(game.mite.x,0,game.mite.z)
+  if(miteShadow)miteShadow.position.set(game.mite.x+.05,.007,game.mite.z+.06)
   setClip('sleep',true);mix.update(dt)
  }
  renderer.render(scene,camera)
