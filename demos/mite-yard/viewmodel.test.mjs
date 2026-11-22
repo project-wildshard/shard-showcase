@@ -1,8 +1,8 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { PerspectiveCamera, Vector3 } from 'three'
-import { createViewmodel, poseViewmodel, swordPose } from './viewmodel.mjs'
-import { createGame, step, SWORD_SWING } from './combat.mjs'
+import { createViewmodel, poseViewmodel, swordImpactPoint, swordPose } from './viewmodel.mjs'
+import { createGame, step, SWORD_SWING, cameraPose } from './combat.mjs'
 
 test('sword viewmodel is bounded, textured by materials alone, with no ready-pose overlap of the aim point',()=>{
  const root=createViewmodel()
@@ -51,4 +51,28 @@ test('windup, impact and follow-through align with the damage tick',()=>{
  step(g,{},.01);assert.equal(g.mite.hp,46)
  for(let i=0;i<20;i++)step(g,{},.01)
  assert.equal(g.mite.hp,46)
+})
+
+test('edge impact moves onto visible shoulder while center and damage stay fixed',()=>{
+ const aspect=402/874,camera=new PerspectiveCamera(65,aspect,.04,55)
+ for(const a of [0,-19,19,36]){
+  const radians=a*Math.PI/180,g=createGame(),p=g.player,m=g.mite
+  Object.assign(p,{x:0,z:2})
+  Object.assign(m,{x:1.8*Math.sin(radians),z:2-1.8*Math.cos(radians),phase:'wake',t:-600})
+  for(let i=0;i<30;i++)step(g,{aspect})
+  step(g,{attack:true,aspect});for(let i=0;i<9;i++)step(g,{aspect})
+  const pose=cameraPose(p)
+  camera.position.set(p.x,pose.height,p.z);camera.rotation.set(pose.pitch,-p.yaw,pose.roll,'YXZ')
+  camera.updateMatrixWorld()
+  const project=v=>new Vector3(...v).project(camera)
+  const center=swordImpactPoint(p,m,()=>({x:0,z:.8}))
+  const hit=swordImpactPoint(p,m,project)
+  if(!a)assert.deepEqual(hit,center)
+  if(Math.abs(a)===19){
+   assert(Math.abs(project(hit).x)<.99)
+   assert(Math.abs(project(hit).x)<Math.abs(project(center).x)-.21)
+   assert(Math.hypot(hit[0]-center[0],hit[2]-center[2])<=.323)
+  }
+  assert.equal(m.hp,a===36?70:46)
+ }
 })

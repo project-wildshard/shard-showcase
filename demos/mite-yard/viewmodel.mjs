@@ -146,3 +146,19 @@ export function poseViewmodel(mesh,elapsed,clock=0,moving=false,aspect=1){
  mesh.position.set(x*framing+(settled?Math.sin(clock*6.6)*.004:0),y*(.70+.30*framing)-phone*(settled?.20:.05)+(settled?Math.sin(clock*(moving?10:5))*(moving?.009:.004):0),z)
  mesh.rotation.set(rx,ry,rz*(.19+.81*framing*framing),'YXZ')
 }
+
+// This chooses a presentation point only after the simulation confirms
+// damage. Preserve centered hits; show glancing feedback on the shoulder
+// nearest the frame center if the old front-of-chassis origin is cropped.
+export function swordImpactPoint(player,mite,project){
+ const dx=player.x-mite.x,dz=player.z-mite.z,dist=Math.hypot(dx,dz)||1
+ const nx=dx/dist,nz=dz/dist
+ const origin=[mite.x+nx*.23,.44,mite.z+nz*.23]
+ const sp=project(origin)
+ const weight=clamp((Math.abs(sp.x)-.48)/.44,0,1)
+ if(!weight||sp.z<-1||sp.z>1)return origin
+ const shift=-Math.sign(sp.x)*.31*weight
+ const shoulder=[origin[0]+nz*shift+nx*.085*weight,origin[1]+.145*weight,origin[2]-nx*shift+nz*.085*weight]
+ const edge=project(shoulder)
+ return Math.abs(edge.x)<Math.abs(sp.x)&&Math.abs(edge.y)<.98?shoulder:origin
+}

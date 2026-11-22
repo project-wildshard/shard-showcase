@@ -8,7 +8,7 @@ import {CONCRETE_SIZE,CONCRETE_METERS,concretePixels} from './concrete-surface.m
 import {createRearCladding} from './yard-cladding.mjs'
 import {YARD_SUN,shadowDelta,shadowFootprint} from './yard-light.mjs'
 import {createApron} from './yard-apron.mjs'
-import {createViewmodel,poseViewmodel} from './viewmodel.mjs'
+import {createViewmodel,poseViewmodel,swordImpactPoint} from './viewmodel.mjs'
 const el=q=>document.querySelector(q)
 let view=el('#view')
 const status=el('#status'), enter=el('#enter'), reticle=el('#reticle')
@@ -192,6 +192,7 @@ for(const x of [-.62,.62])for(const z of [.56,1.40,2.24]){
  const stripe=box(tell,tellMat,.048,.007,.61,x,.009,z)
  stripe.castShadow=false;stripe.userData.paintLayer=.009
 }
+const impactProjection=new THREE.Vector3()
 const sparks=new THREE.Group();scene.add(sparks);sparks.visible=false
 const sparkMat=mat(0xffa94e,.45);sparkMat.emissive.setHex(0xff8e2c)
 for(let i=0;i<8;i++){
@@ -325,8 +326,8 @@ function frame(now){
   if(before!==p.hp)hurt=.72
   if(priorMiteHp>m.hp){
    hit=.19
-   const toward=new THREE.Vector2(p.x-m.x,p.z-m.z).normalize()
-   sparks.position.set(m.x+toward.x*.23,.44,m.z+toward.y*.23)
+   camera.updateMatrixWorld()
+   sparks.position.set(...swordImpactPoint(p,m,point=>impactProjection.set(...point).project(camera)))
   }else hit=Math.max(0,hit-dt)
   sparks.visible=hit>0
   if(sparks.visible){
