@@ -7,7 +7,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const here=dirname(fileURLToPath(import.meta.url))
 const output=resolve(process.argv[2]??'')
-assert(process.argv[2],'Pass a new output directory under an installed Wildshard project')
+assert(process.argv[2]&&(process.argv.length===3||process.argv.length===4&&process.argv[3]==='--far'),
+ 'Pass a new output directory under an installed Wildshard project, optionally followed by --far')
+const far=process.argv[3]==='--far'
 assert.equal(basename(output),'mite-calibration','The native folder must match the fixed shard slug')
 const resolveFrom=createRequire(process.env.WSC_NODE_PROJECT
  ? join(resolve(process.env.WSC_NODE_PROJECT),'package.json') : import.meta.url)
@@ -23,13 +25,13 @@ assert.equal((await load(join(format,'package.json'))).version,'0.43.0')
 await import(pathToFileURL(join(sdk,'src/sharddev/bake/format-hook.mjs')).href)
 const {parseGlbData}=await loadModule('@wildshard/format/glbCost')
 const {parseSkinFile,validateSkinAssets,skinLookRules}=await loadModule('@wildshard/format/skinAssets')
-const glb=await readFile(join(here,'../../public/assets/wildshard-art/wsc-actor-001-crate-mite-rig.glb'))
+const glb=await readFile(join(here,`../../public/assets/wildshard-art/wsc-actor-001-crate-mite-rig${far?'-far':''}.glb`))
 const rig=JSON.parse(glb.subarray(20,20+glb.readUInt32LE(12)))
 const node=rig.nodes.find(n=>n.skin!==undefined&&n.mesh!==undefined)
 assert(node&&rig.meshes[node.mesh].primitives.length===7)
 const file=sha(glb), costs=parseGlbData(glb)
 const cost={decoded:costs.decoded,gpu:costs.gpu,triangles:costs.triangles,draws:costs.draws}
-assert.equal(cost.triangles,386)
+assert.equal(cost.triangles,far?138:386)
 const row={id:'crate-mite',file,family:'pbr',rig:{skeleton:'wsc.crateMite',
   joints:[rig.skins[node.skin].joints.map(j=>rig.nodes[j].name)],
   clips:rig.animations.map(a=>a.name),sockets:['body','head']},cost}
@@ -114,4 +116,4 @@ const needle="animation: { recipe: 'platform.clips', parameters: { attackSpan: 1
 assert.equal(source.split(needle).length,2,'Pinned template skin generation changed')
 const animation=JSON.stringify(look.animation)
 await writeFile(product,source.replace(needle,`animation: entry.species === 'crate-mite' ? ${animation} : { recipe: 'platform.clips', parameters: { attackSpan: 1 } }`))
-console.log(JSON.stringify({output,file,skin,glbBytes:glb.length,cost,joints:row.rig.joints,clips:row.rig.clips,validated:'pinned native skin byte admission'}))
+console.log(JSON.stringify({output,tier:far?'far':'standard',file,skin,glbBytes:glb.length,cost,joints:row.rig.joints,clips:row.rig.clips,validated:'pinned native skin byte admission'}))

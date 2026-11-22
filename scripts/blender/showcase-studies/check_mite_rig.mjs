@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
-import { AnimationMixer, LoopOnce, Vector3 } from 'three'
+import { AnimationMixer, InterpolateLinear, LoopOnce, Vector3, Quaternion } from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 const file=process.argv[2]
 assert(file,'Pass the exported rig GLB')
@@ -10,6 +10,8 @@ const bytes=await readFile(file)
 const gltf=await new GLTFLoader().parseAsync(bytes.buffer.slice(bytes.byteOffset,bytes.byteOffset+bytes.byteLength),'')
 const clips=Object.fromEntries(gltf.animations.map(clip=>[clip.name,clip]))
 assert.deepEqual(Object.keys(clips).sort(),['idle','walk','run','turn','telegraph','attack.bite','attack.overclock','hit','die','sleep','wake'].sort())
+for(const clip of gltf.animations)for(const track of clip.tracks)
+    assert.equal(track.getInterpolation(),InterpolateLinear,'Native client requires linear sampled tracks')
 let tris=0,bones
 const boundJoints=new Set()
 gltf.scene.traverse(o=>{
@@ -26,6 +28,15 @@ gltf.scene.traverse(o=>{
 assert.equal(tris,expectedTriangles)
 assert.deepEqual(bones.map(b=>b.name),['body','head','eye','front_l','front_r','rear_l','rear_r'])
 assert.deepEqual([...boundJoints].sort(),bones.map(b=>b.name).sort())
+gltf.scene.traverse(o=>{
+    if(!o.isSkinnedMesh)return
+    for(const inverse of o.skeleton.boneInverses){
+        const rotation=new Quaternion(),scale=new Vector3()
+        inverse.clone().invert().decompose(new Vector3(),rotation,scale)
+        assert(Math.abs(Math.abs(rotation.w)-1)<1e-5,'Native rest joint must not be rotated')
+        assert(scale.distanceTo(new Vector3(1,1,1))<1e-5,'Native rest joint must not be scaled')
+    }
+})
 const mix=new AnimationMixer(gltf.scene)
 const play=(name,t)=>{
     mix.stopAllAction()

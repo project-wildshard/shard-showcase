@@ -52,3 +52,21 @@ actual held slot, and issues three ordinary wire attack presses. It verifies
 28 damage on the first strike, death attribution, kill credit, and the
 native clip selector for the two Mite abilities and death. Unlike this
 server-side check, witnessing the first-person swing needs a native client.
+
+For the 138-triangle tier, pass `--far` after a different empty
+`mite-calibration` output directory and build and validate it separately.
+Engine 0.1.44 uses format 0.37.1 and has no phone selection for authored
+creature skins. These are two products, not an automatic distance switch.
+
+To exercise the actual client asset loader independently of the game renderer:
+
+```sh
+node demos/native-mite/stage-client-check.mjs "$scratch/client-check" \
+  "$scratch/product/mite-calibration" "$scratch/far-product/mite-calibration"
+node_modules/.bin/vite build "$scratch/client-check" --base ./
+node_modules/.bin/vite preview "$scratch/client-check"
+```
+
+The page must report 386 and 138 triangles, each with seven joints and
+eleven sampled clips. This isolated loader check does not start a native
+World or validate rendering, touch controls, or iPhone performance.

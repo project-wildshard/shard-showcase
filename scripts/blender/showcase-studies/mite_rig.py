@@ -1,6 +1,6 @@
 """Editable rigid-part Crate Mite rig and local clips; no world movement baked into the actor."""
 from pathlib import Path
-import math,sys
+import json,struct,sys
 import bpy
 from mathutils import Quaternion,Vector
 sys.path.insert(0,str(Path(__file__).resolve().parent))
@@ -46,7 +46,10 @@ edit_bone('head',(0,0,.44),(0,0,.60),'body')
 edit_bone('eye',(0,-.269,.365),(0,-.269,.46),'body')
 for region,y in [('front',-.172),('rear',.172)]:
     for side,x in [('l',-.238),('r',.238)]:
-        edit_bone(f'{region}_{side}',(x,y,.23),(x,y,.065),'body')
+        # Bone length does not affect our rigid vertex weights. Keeping the
+        # same world-up axis as the parent avoids 180° inverse-bind frames,
+        # which Wildshard's position-only factory skeleton cannot reconstruct.
+        edit_bone(f'{region}_{side}',(x,y,.23),(x,y,.395),'body')
 bpy.ops.object.mode_set(mode='OBJECT')
 mesh.parent=rig
 m=mesh.modifiers.new('Mite rigid skeletal binding','ARMATURE');m.object=rig
@@ -132,11 +135,41 @@ s.frame_set(0)
 bpy.ops.object.select_all(action='DESELECT')
 for ob in (mesh,rig):ob.select_set(True)
 bpy.context.view_layer.objects.active=rig
+def linearize_constants(path):
+    """Keep the compact two-key holds, but use native-client linear samplers."""
+    raw=path.read_bytes()
+    magic,version,total,size,kind=struct.unpack_from('<4sIII4s',raw)
+    assert (magic,version,total,kind)==(b'glTF',2,len(raw),b'JSON')
+    model=json.loads(raw[20:20+size])
+    payload=raw[20+size:]
+    assert payload[4:8]==b'BIN\x00'
+    for anim in model['animations']:
+        for sampler in anim['samplers']:
+            mode=sampler.get('interpolation','LINEAR')
+            if mode=='LINEAR':continue
+            assert mode=='STEP','Exporter produced an unexpected sampler'
+            acc=model['accessors'][sampler['output']]
+            view=model['bufferViews'][acc['bufferView']]
+            assert acc['componentType']==5126 and 'sparse' not in acc
+            fmt='<'+{'VEC3':'3f','VEC4':'4f'}[acc['type']]
+            start=8+view.get('byteOffset',0)+acc.get('byteOffset',0)
+            stride=view.get('byteStride',struct.calcsize(fmt))
+            first=struct.unpack_from(fmt,payload,start)
+            for i in range(1,acc['count']):
+                other=struct.unpack_from(fmt,payload,start+i*stride)
+                assert max(abs(a-b) for a,b in zip(first,other))<1e-5,'STEP track carries authored motion'
+            sampler['interpolation']='LINEAR'
+    chunk=json.dumps(model,separators=(',',':')).encode()
+    chunk+=b' '*((-len(chunk))%4)
+    path.write_bytes(struct.pack('<4sIII4s',magic,version,20+len(chunk)+len(payload),len(chunk),kind)+chunk+payload)
+
 suffix='-far' if far else ''
-bpy.ops.export_scene.gltf(filepath=str(out/f'wsc-actor-001-crate-mite-rig{suffix}.glb'),
+target=out/f'wsc-actor-001-crate-mite-rig{suffix}.glb'
+bpy.ops.export_scene.gltf(filepath=str(target),
     export_format='GLB',use_selection=True,export_animations=True,
     export_animation_mode='NLA_TRACKS',export_frame_range=False,
     export_force_sampling=True,export_optimize_animation_size=True)
+linearize_constants(target)
 for track in rig.animation_data.nla_tracks:track.mute=track.name!='idle'
 s.frame_set(0)
 bpy.ops.wm.save_as_mainfile(filepath=str(out/f'crate-mite-rig{suffix}-edit.blend'),compress=True)

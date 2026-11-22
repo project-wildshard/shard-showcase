@@ -52,3 +52,6 @@ Pass `--far` after the GLB path when running the loader test too. This version
 uses 138 triangles (versus 386 for the phone rig), keeps the cyan eye,
 chamfered silhouette and four independently skinned legs, and runs all
 eleven clips. It is an alternate export, not yet a runtime distance switch.
+Both outputs use position-only rest joints and linear sampled tracks. The
+export wrapper normalizes only numerically constant two-key holds, leaving
+the motion curves and packed binary samples unchanged.
