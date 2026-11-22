@@ -8,9 +8,10 @@ function tint(color,k){
  const c=n=>Math.round(((color>>n)&255)*k)
  return (c(16)<<16)|(c(8)<<8)|c(0)
 }
-export function createRearCladding(){
+export function createRearCladding(skipBays=[]){
  const quads=[]
  for(let bay=0;bay<9;bay++){
+  if(skipBays.includes(bay))continue
   const start=-8.972+bay*2
   for(let rib=0;rib<4;rib++)for(let s=0;s<profile.length-1;s++){
    const [a,z]=profile[s],[b,w]=profile[s+1],x=start+rib*.486
