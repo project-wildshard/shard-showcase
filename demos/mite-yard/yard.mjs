@@ -148,13 +148,13 @@ function frame(now){
   }
   if(m.phase!==oldPhase){
    if(m.phase==='windup')setClip(m.special?'attack.overclock':'attack.bite',false)
-   else if(m.phase!=='lunge')setClip(...(opts[m.phase]||opts.idle))
+   else if(m.phase!=='lunge'&&m.phase!=='recover')setClip(...(opts[m.phase]||opts.idle))
    oldPhase=m.phase
   }
   const elapsed=p.swing?p.swingTime:SWORD_SWING.end
   const moving=['w','a','s','d'].some(key=>keys.has(key))
   poseViewmodel(handRig,elapsed,game.time,moving,camera.aspect)
-  if(eyeMat)eyeMat.emissiveIntensity=m.phase==='sleep'||m.phase==='die'?0:m.phase==='windup'?(m.special?3.3:2.8)+.7*Math.sin(m.t*33):1.45
+  if(eyeMat)eyeMat.emissiveIntensity=m.phase==='sleep'||m.phase==='die'?0:m.phase==='recover'?.38:m.phase==='windup'?(m.special?3.3:2.8)+.7*Math.sin(m.t*33):1.45
   mix.update(dt)
   if(before!==p.hp)hurt=.72
   hit=priorMiteHp>m.hp?.18:Math.max(0,hit-dt)

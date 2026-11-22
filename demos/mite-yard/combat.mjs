@@ -1,5 +1,9 @@
 import {DOCK,STACK} from './yard-layout.mjs'
 export const ARENA={width:18,depth:22,blocks:[[-6,-5,2.2,2.1],[STACK.x,STACK.z,STACK.width,STACK.depth],[-6,3,2.5,2],[5.8,2.5,2.2,2.2]]}
+export const MITE_TIMING=Object.freeze({
+ bite:Object.freeze({tell:18/30,charge:.30,total:36/30,speed:9.65,damage:23}),
+ overclock:Object.freeze({tell:23/30,charge:.30,total:44/30,speed:11.7,damage:37}),
+})
 export const SWORD_SWING=Object.freeze({impact:.148,end:.48})
 const TAU=Math.PI*2
 export const clamp=(x,a,b)=>Math.max(a,Math.min(b,x))
@@ -79,7 +83,8 @@ export function step(g,input={},dt=1/60){
   }
   if(e.phase!=='chase')phase(e,'chase')
   e.yaw=approach(e.yaw,target,dt*5.3)
-  if(dist<2.73&&dist>.18&&clear(e,p)){
+  if(dist<2.73&&dist>.18&&Math.abs(angle(e.yaw,target))<.12&&clear(e,p)){
+   e.yaw=target
    e.strikes++;e.special=e.strikes%3===0
    e.goalX=Math.sin(e.yaw);e.goalZ=Math.cos(e.yaw);e.didDamage=false
    phase(e,'windup')
@@ -91,20 +96,28 @@ export function step(g,input={},dt=1/60){
   }
   return
  }
+ const timing=e.special?MITE_TIMING.overclock:MITE_TIMING.bite
  if(e.phase==='windup'){
-  if(e.t>=(e.special?23/30:.6))phase(e,'lunge')
+  if(e.t+1e-9>=timing.tell)phase(e,'lunge')
   return
  }
  if(e.phase==='lunge'){
-  if(e.t<.31&&!e.didDamage){
-   move(e,e.goalX*dt*(e.special?11.7:9.65),e.goalZ*dt*(e.special?11.7:9.65),.35)
+  // The vector is fixed at the flash; there is no tracking during the hop.
+  const travel=clamp(timing.charge-(e.t-dt),0,dt)
+  if(travel&&!e.didDamage){
+   move(e,e.goalX*travel*timing.speed,e.goalZ*travel*timing.speed,.35)
    dx=p.x-e.x;dz=p.z-e.z;dist=length(dx,dz)
-   if(!e.didDamage&&dist<1.34&&clear(e,p)){
-    e.didDamage=true;p.hp=Math.max(0,p.hp-(e.special?37:23))
+   if(dist<1.34&&clear(e,p)){
+    e.didDamage=true;p.hp=Math.max(0,p.hp-timing.damage)
     g.notice=p.hp?'You were hit. Move sideways during the windup.':'You went down. Press R to reset.'
     if(p.hp===0)g.over=true
    }
   }
-  if(e.t>=(e.special?.70:.60))phase(e,'chase')
+  if(e.t+1e-9>=timing.charge){
+   phase(e,'recover')
+   if(!e.didDamage)g.notice='Missed you. Face the Mite and strike.'
+  }
+  return
  }
+ if(e.phase==='recover'&&e.t+1e-9>=timing.total-timing.tell-timing.charge)phase(e,'chase')
 }

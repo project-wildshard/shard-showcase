@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import {createGame,step} from './combat.mjs'
+import {createGame,MITE_TIMING,step} from './combat.mjs'
 const advance=(g,secs,i)=>{for(let n=0;n<secs*60;n++)step(g,i,1/60)}
 test('walking enters wake radius, turns and pursues',()=>{
  const g=createGame()
@@ -55,4 +55,30 @@ test('dock is solid, but central approach to the Mite stays open',()=>{
  const lane=createGame()
  advance(lane,1.48,{forward:1});assert(lane.player.z<1.1)
  assert.notEqual(lane.mite.phase,'sleep')
+})
+
+for(const kind of ['bite','overclock'])test(kind+' can be dodged on reaction and punished',()=>{
+ for(const dt of [1/60,1/30]){
+  const g=createGame(),{mite:e,player:p}=g
+  Object.assign(e,{phase:'chase',x:0,z:0,yaw:0,strikes:kind==='overclock'?2:0})
+  Object.assign(p,{x:0,z:2.54,pitch:0})
+  step(g,{},dt)
+  assert.equal(e.phase,'windup')
+  assert.equal(e.special,kind==='overclock')
+  const start=g.time
+  while(e.phase==='windup'||e.phase==='lunge'){
+   assert(g.time-start<1.5)
+   const elapsed=g.time-start
+   step(g,{strafe:Number(elapsed+.0001>=.25&&p.x<1.55)},dt)
+   if(e.phase==='windup')assert(elapsed<MITE_TIMING[kind].tell)
+  }
+  assert.equal(e.phase,'recover')
+  assert.equal(p.hp,100)
+  assert(Math.abs(e.x)<1e-8,'attack did not track the dodge')
+  assert.match(g.notice,/face the Mite and strike/i)
+  const aim=Math.atan2(e.x-p.x,p.z-e.z)
+  step(g,{yaw:aim,attack:true},dt)
+  while(e.hp===70){assert(p.swingTime<.22);step(g,{},dt)}
+  assert.equal(e.hp,46);assert.equal(e.phase,'hit');assert.equal(p.hp,100)
+ }
 })
