@@ -70,3 +70,19 @@ node_modules/.bin/vite preview "$scratch/client-check"
 The page must report 386 and 138 triangles, each with seven joints and
 eleven sampled clips. This isolated loader check does not start a native
 World or validate rendering, touch controls, or iPhone performance.
+
+To compare a stationary player with a delayed sidestep in the native
+server simulation:
+
+```sh
+HOME="$scratch/home" node --experimental-transform-types \
+  demos/native-mite/check-native-dodge.mjs "$scratch/product/mite-calibration"
+```
+
+For each attack, the check repeats the same approach from a fresh world,
+holds still for 15 ticks after the windup starts, then either stays in
+place or moves perpendicular to the recorded lane. It verifies matching
+start states, both phase edges, a hit in the control, and unchanged
+health through recovery in the sidestep. The reported active durations
+are observed server phases, not nominal strike fields. No browser, phone
+or live native shard is exercised by this check.
