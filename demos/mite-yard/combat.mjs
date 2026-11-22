@@ -21,7 +21,7 @@ const phase=(e,n)=>{e.phase=n;e.t=0;e.serial++}
 export function createGame(){
  return {player:{x:0,z:6.7,yaw:0,pitch:-.30,hp:100,swing:0,swingTime:0,spent:false},
  mite:{x:.23,z:-1.8,yaw:0,hp:70,phase:'sleep',t:0,serial:0,strikes:0},
- time:0,notice:'Approach the crate. It wakes within six meters.',over:false,kills:0}
+ time:0,notice:'Approach the crate. It wakes within six meters.',over:false,kills:0,servos:0,drop:null}
 }
 export function step(g,input={},dt=1/60){
  if(g.over)return
@@ -42,13 +42,28 @@ export function step(g,input={},dt=1/60){
   const face=(-dx*Math.sin(p.yaw)+dz*Math.cos(p.yaw))/Math.max(.001,dist)
   if(dist<2.24&&face>.72&&p.pitch<.6&&p.pitch>-.95&&clear(p,e)&&e.phase!=='die'){
    e.hp=Math.max(0,e.hp-24)
-   if(e.hp===0){phase(e,'die');g.kills++;g.notice='Mite down. Press R to reset.'}
+   if(e.hp===0){
+    phase(e,'die');g.kills++
+    // Land near the chassis as its breakup settles. Preserve the corpse
+    // origin so the pickup never follows the player or moving debris.
+    g.drop={x:e.x,z:e.z,readyAt:g.time+1.0,expiresAt:g.time+61.0}
+    g.notice='Mite down. Wait for the Servo to land.'
+   }
    else {phase(e,'hit');g.notice='Hit landed. Step back from the eye flash.'}
   }else if(e.phase!=='die')g.notice='Out of reach. Get closer and face the Mite.'
  }
  e.t+=dt
  const target=Math.atan2(dx,dz)
- if(e.phase==='die')return
+ if(e.phase==='die'){
+  const d=g.drop
+  if(d&&g.time>=d.expiresAt){g.drop=null;g.notice='Servo expired. Press R to reset.'}
+  else if(d&&g.time>=d.readyAt){
+   if(length(p.x-d.x,p.z-d.z)<=1.1&&clear(p,d)){
+    g.drop=null;g.servos++;g.notice='Servo salvaged. Press R to reset.'
+   }else g.notice='Walk over the Servo to salvage it.'
+  }
+  return
+ }
  if(e.phase==='sleep'){if(dist<6&&clear(e,p)){phase(e,'wake');g.notice='Awake. Watch the cyan eye.'}return}
  if(e.phase==='wake'){if(e.t>=.54)phase(e,'chase');return}
  if(e.phase==='hit'){if(e.t>=.4)phase(e,'chase');return}

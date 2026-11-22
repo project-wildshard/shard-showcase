@@ -4,6 +4,9 @@ A standalone Three.js combat test, not a native Wildshard shard or game release.
 It runs the rigged phone-budget Mite while testing movement, line of sight,
 waking, turning, chase, bite, overclock, hit reactions and death. The viewmodel
 is an editable procedural forearm, hand and sword with a timed swing.
+One copper-coil Servo lands where the Mite breaks apart. Walk within 1.1 m
+to add it to the demo counter before it expires. This does not modify a
+native inventory or save, and the art is generated in `yard.mjs`.
 
 ```sh
 node --test demos/mite-yard/combat.test.mjs

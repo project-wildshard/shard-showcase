@@ -43,6 +43,19 @@ box(handRig,warm,.197,.035,.057,-.022,.124,-.027)
 const blade=new THREE.Shape();blade.moveTo(-.053,0);blade.lineTo(-.044,.36);blade.lineTo(0,.49);blade.lineTo(.05,.363);blade.lineTo(.06,0);blade.closePath()
 const sword=new THREE.Mesh(new THREE.ExtrudeGeometry(blade,{depth:.022,steps:1,bevelEnabled:true,bevelSegments:1,bevelSize:.006,bevelThickness:.005}),steel)
 sword.position.set(-.025,.145,-.043);handRig.add(sword)
+// Mechanical pickup, with editable geometry and no binary texture dependency.
+const servo=new THREE.Group();scene.add(servo);servo.visible=false
+const copper=mat(0xc67a35,.44,.52),servoLens=mat(0x46cdd2,.29,.28)
+servoLens.emissive.setHex(0x15bfc7);servoLens.emissiveIntensity=1.7
+function servoRing(r,h,y,material){
+ const o=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,10),material)
+ o.position.y=y;o.castShadow=true;servo.add(o)
+}
+servoRing(.092,.23,0,iron)
+for(const y of [-.105,.105])servoRing(.132,.041,y,steel)
+for(const y of [-.067,-.034,0,.034,.067])servoRing(.107,.019,y,copper)
+servoRing(.068,.018,.135,servoLens)
+box(servo,leather,.077,.085,.112,.12,-.016,0)
 let game=createGame(),yaw=0,pitch=-.30,active=false,model,mix,action,eyeMat,oldPhase='',hurt=0,keys=new Set(),swing=false,last=performance.now(),touchDrag
 const clips=new Map()
 const opts={idle:['idle',true],sleep:['sleep',true],wake:['wake',false],turn:['turn',true],chase:['run',true],hit:['hit',false],die:['die',false]}
@@ -54,7 +67,7 @@ const setClip=(name,loop)=>{
 }
 function reset(){
  game=createGame();yaw=0;pitch=-.30;oldPhase='';hurt=0;swing=false
- mix?.stopAllAction();action=undefined
+ mix?.stopAllAction();action=undefined;servo.visible=false
 }
 enter.disabled=true
 new GLTFLoader().load('./assets/mite.glb',g=>{
@@ -109,6 +122,12 @@ function frame(now){
   const p=game.player,m=game.mite
   camera.position.set(p.x,1.68,p.z);camera.rotation.set(p.pitch,-p.yaw,0,'YXZ')
   model.position.set(m.x,0,m.z);model.rotation.y=m.yaw
+  const d=game.drop
+  servo.visible=Boolean(d&&game.time>=d.readyAt)
+  if(servo.visible){
+   const lift=Math.sin((game.time-d.readyAt)*3.5)*.035
+   servo.position.set(d.x,.28+lift,d.z);servo.rotation.set(.34,game.time*1.4,.17)
+  }
   if(m.phase!==oldPhase){
    if(m.phase==='windup')setClip(m.special?'attack.overclock':'attack.bite',false)
    else if(m.phase!=='lunge')setClip(...(opts[m.phase]||opts.idle))
@@ -121,7 +140,7 @@ function frame(now){
   mix.update(dt)
   if(before!==p.hp)hurt=.72
   hurt=Math.max(0,hurt-2.1*dt);el('#vignette').style.opacity=hurt
-  el('#life').textContent='HEALTH '+p.hp+' · MITE '+m.hp;status.textContent=game.notice
+  el('#life').textContent='HEALTH '+p.hp+' · MITE '+m.hp+' · SERVO '+game.servos;status.textContent=game.notice
  }else if(model){
   camera.position.set(0,1.68,6.7);camera.rotation.x=-.20;model.position.set(game.mite.x,0,game.mite.z)
   setClip('sleep',true);mix.update(dt)
