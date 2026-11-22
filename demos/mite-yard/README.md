@@ -38,3 +38,8 @@ layout in `yard-layout.mjs`. The dock is a movement obstacle, not opaque tall
 cover. The stack sits on the existing east cover footprint. The central
 wake/fight lane remains clear. This standalone layout is not a native shard
 placement.
+
+To reproduce the catalogue illustration from the same layout and GLBs,
+run `blender -b -P demos/mite-yard/render-court.py -- /tmp/court.webp`.
+Node is needed to read the playable layout. The composition and lighting
+are Blender-only; no generated proof images are needed to edit the yard.
