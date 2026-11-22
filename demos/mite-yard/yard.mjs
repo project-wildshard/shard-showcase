@@ -5,6 +5,7 @@ import {ARENA,VIEW_FOV,VIEW_PITCH,MITE_TIMING,SWORD_SWING,cameraPose,clamp,creat
 import {CRATES,DOCK,GANTRY,GANTRY_FALLBACK_OMIT,GANTRY_PLAQUE,STACK} from './yard-layout.mjs'
 import {createTouchLook} from './touch-look.mjs'
 import {CONCRETE_SIZE,CONCRETE_METERS,concretePixels} from './concrete-surface.mjs'
+import {createRearCladding} from './yard-cladding.mjs'
 import {createApron} from './yard-apron.mjs'
 import {createViewmodel,poseViewmodel} from './viewmodel.mjs'
 const el=q=>document.querySelector(q)
@@ -65,11 +66,24 @@ for(const {patch,positions} of apronGroups.values()){
 // Short wall panels prevent a near end of a long triangle from sorting
 // in front of unrelated props in the software renderer.
 for(const x of [-9,9])for(let i=0;i<10;i++)box(scene,iron,.27,2.65,2.2,x,1.32,-9.9+i*2.2)
-for(const z of [-11,11])for(let i=0;i<9;i++)box(scene,iron,2,2.65,.26,-8+i*2,1.32,z)
+for(let i=0;i<9;i++){box(scene,iron,2,2.65,.26,-8+i*2,1.32,11);box(scene,iron,2,2.65,.24,-8+i*2,1.32,-11.064)}
 for(let i=-8;i<=8;i+=2){for(const x of [i])for(const z of [-10.85,10.85])box(scene,paint,.19,3.02,.29,x,1.51,z)}
-for(let x=-8.75;x<9;x+=.36)box(scene,iron,.10,2.3,.105,x,1.48,-10.82)
-box(scene,paint,9,.12,.13,4.4,2.35,-10.67)
-box(scene,steel,9,.12,.13,4.4,.29,-10.67)
+const cladding=new THREE.BufferGeometry(),cladPos=[],cladColor=[],tone=new THREE.Color()
+for(const {points,top,bottom} of createRearCladding()){
+ for(const i of [0,1,2,0,2,3]){
+  cladPos.push(...points[i]);tone.setHex(i<2?bottom:top);cladColor.push(tone.r,tone.g,tone.b)
+ }
+}
+cladding.setAttribute('position',new THREE.Float32BufferAttribute(cladPos,3))
+cladding.setAttribute('color',new THREE.Float32BufferAttribute(cladColor,3))
+cladding.computeVertexNormals()
+const wallMaterial=mat(0xffffff,.62,.31);wallMaterial.vertexColors=true
+const rear=new THREE.Mesh(cladding,wallMaterial);rear.receiveShadow=true;rear.userData.verticalTint=true;scene.add(rear)
+const curb=mat(0x646d63,.89),flashing=mat(0x56635c,.63,.38)
+for(let x=-8;x<=8;x+=2){
+ box(scene,curb,1.975,.22,.25,x,.11,-10.76)
+ box(scene,flashing,1.965,.105,.22,x,2.62,-10.79)
+}
 const loadYard=new GLTFLoader()
 function mountGantryPlaque(prop){
  let stencil

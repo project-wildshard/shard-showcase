@@ -1,4 +1,4 @@
-import {Vector3} from 'three'
+import {Color,Vector3} from 'three'
 import {CONCRETE_SIZE,concretePixels,floorScanline} from './concrete-surface.mjs'
 import {ARENA} from './combat.mjs'
 
@@ -18,7 +18,7 @@ export function canvasRenderer(canvas){
  const temp=new Vector3(),a=new Vector3(),b=new Vector3()
  const eye=new Vector3(),center=new Vector3(),half=new Vector3()
  const light=new Vector3(-8,14,8).normalize()
- const css=(m,normal,distance,cameraPosition,fog)=>{
+ const css=(m,normal,distance,cameraPosition,fog,tint)=>{
   if(m.isMeshBasicMaterial)return m.color.getStyle()
   const sun=Math.max(0,normal.dot(light))
   const sky=.30+.17*Math.max(0,normal.y)
@@ -30,6 +30,7 @@ export function canvasRenderer(canvas){
    shine=lobe*metal*sun*.32
   }
   const color=m.color.clone()
+  if(tint)color.multiply(tint)
   color.r=color.r*(sky*.82+sun*.58)+shine*(.38+color.r*.8)
   color.g=color.g*(sky*.98+sun*.43)+shine*(.34+color.g*.8)
   color.b=color.b*(sky*1.19+sun*.29)+shine*(.29+color.b*.8)
@@ -96,7 +97,7 @@ export function canvasRenderer(canvas){
   }
   scene.traverseVisible(o=>{
    if(!o.isMesh)return
-   const geom=o.geometry,ps=geom.getAttribute('position'),idx=geom.index
+   const geom=o.geometry,ps=geom.getAttribute('position'),idx=geom.index,colors=o.userData.verticalTint?geom.getAttribute('color'):null
    if(!ps)return
    if(o.isSkinnedMesh)o.skeleton.update()
    const world=[],local=[]
@@ -120,7 +121,27 @@ export function canvasRenderer(canvas){
     const normal=a.subVectors(world[ids[1]],world[ids[0]]).cross(b.subVectors(world[ids[2]],world[ids[0]])).normalize()
     const depth=clipped.reduce((t,p)=>t+p.z,0)/clipped.length
     center.copy(world[ids[0]]).add(world[ids[1]]).add(world[ids[2]]).multiplyScalar(1/3)
-    list.push([o.userData.paintLayer!==undefined?-1e9+o.userData.paintLayer:depth,screen,css(m,normal,-depth,eye,scene.fog),m.transparent?m.opacity:1])
+    let style
+    if(colors&&clipped===vs){
+     // Each wall triangle has two equal tint endpoints and one on the
+     // opposite edge. Project that world-space gradient across its face.
+     const idsByY=[0,1,2].sort((a,b)=>world[ids[a]].y-world[ids[b]].y)
+     const [low,mid,high]=idsByY
+     const sa=screen[low],sb=screen[high]
+     const pairLow=world[ids[mid]].y===world[ids[low]].y
+     const [p,q,r]=pairLow?[sa,screen[mid],sb]:[sb,screen[mid],sa]
+     const x=q[0]-p[0],y=q[1]-p[1],len=x*x+y*y
+     if(len>.01){
+      const t=((r[0]-p[0])*x+(r[1]-p[1])*y)/len,ax=p[0]+t*x,ay=p[1]+t*y
+      if(Math.hypot(r[0]-ax,r[1]-ay)>.4){
+       style=ctx.createLinearGradient(ax,ay,r[0],r[1])
+       const make=j=>css(m,normal,-depth,eye,scene.fog,new Color().fromBufferAttribute(colors,ids[j]))
+       style.addColorStop(0,make(pairLow?low:high));style.addColorStop(1,make(pairLow?high:low))
+      }
+     }
+    }
+    if(!style)style=css(m,normal,-depth,eye,scene.fog, colors?new Color().fromBufferAttribute(colors,ids[0]):null)
+    list.push([o.userData.paintLayer!==undefined?-1e9+o.userData.paintLayer:depth,screen,style,m.transparent?m.opacity:1])
    }
   })
   list.sort((p,q)=>p[0]-q[0])
