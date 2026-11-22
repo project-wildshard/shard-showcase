@@ -5,6 +5,7 @@ small{font-size:10px;font-weight:800;letter-spacing:.18em;color:#ffba82}h1{font-
 #life,#reset,#status{background:#151f20e6;color:#fcf6e9;border:1px solid #507879;padding:.5rem .7rem;border-radius:8px}
 #life{font-weight:700;white-space:nowrap}#reset{position:absolute;top:64px;right:14px}
 #reticle{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-shadow:0 1px 4px #000;pointer-events:none}
+#reticle.hit{font-size:26px;font-weight:900;color:#ffc28a}
 #status{position:absolute;bottom:72px;left:50%;transform:translateX(-50%);max-width:min(90vw,510px);text-align:center;white-space:normal;pointer-events:none}
 #controls{display:none;position:absolute;inset:auto 16px 18px;justify-content:space-between;align-items:end;pointer-events:none}
 button{cursor:pointer;font-weight:800;color:#102124;background:#9de4dc;border:0;border-radius:8px;padding:9px 13px;touch-action:none}
@@ -14,3 +15,4 @@ button{cursor:pointer;font-weight:800;color:#102124;background:#9de4dc;border:0;
 h2{font-size:34px;margin:9px 0}p{line-height:1.4}.hint{font-size:13px;color:#bed0c7}
 #vignette{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 90px #d64934;opacity:0}
 @media(pointer:coarse){#controls{display:flex}#status{bottom:103px}}
+@media(max-width:450px){header{inset:10px 10px auto;gap:5px}#life{font-size:12px;white-space:normal;text-align:right;max-width:124px}#reset{right:10px}}

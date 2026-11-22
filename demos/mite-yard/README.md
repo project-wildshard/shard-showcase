@@ -26,3 +26,9 @@ range and completed a sword kill. Native product admission and phone
 performance have not been verified. The fixed-step simulation tests also
 cover direction, line-of-sight checks and an overclock strike killing the
 player.
+
+The first-person iron work sword and hand are procedural in `viewmodel.mjs`.
+Its windup, impact, follow-through and recovery share the simulation's
+impact time. The hit indicator only appears after confirmed damage. A
+projection check covers landscape and 402 × 874 portrait framing; it is
+not an iPhone performance test.

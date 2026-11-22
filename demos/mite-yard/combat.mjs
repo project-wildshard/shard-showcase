@@ -1,4 +1,5 @@
 export const ARENA={width:18,depth:22,blocks:[[-6,-5,2.2,2.1],[6,-5,2.4,2],[-6,3,2.5,2],[5.8,2.5,2.2,2.2]]}
+export const SWORD_SWING=Object.freeze({impact:.148,end:.48})
 const TAU=Math.PI*2
 export const clamp=(x,a,b)=>Math.max(a,Math.min(b,x))
 const angle=(a,b)=>((b-a+Math.PI+TAU)%TAU)-Math.PI
@@ -35,9 +36,9 @@ export function step(g,input={},dt=1/60){
  const current=length(p.x-e.x,p.z-e.z),proposed=length(p.x+px-e.x,p.z+pz-e.z)
  if(e.phase==='die'||proposed>1||proposed>current)move(p,px,pz,.32)
  if(p.swing>0){p.swing=Math.max(0,p.swing-dt);p.swingTime+=dt}
- if(input.attack&&p.swing===0){p.swing=.48;p.swingTime=0;p.spent=false}
+ if(input.attack&&p.swing===0){p.swing=SWORD_SWING.end;p.swingTime=0;p.spent=false}
  let dx=p.x-e.x,dz=p.z-e.z,dist=length(dx,dz)
- if(!p.spent&&p.swing>0&&p.swingTime>=.148){
+ if(!p.spent&&p.swing>0&&p.swingTime>=SWORD_SWING.impact){
   p.spent=true
   const face=(-dx*Math.sin(p.yaw)+dz*Math.cos(p.yaw))/Math.max(.001,dist)
   if(dist<2.24&&face>.72&&p.pitch<.6&&p.pitch>-.95&&clear(p,e)&&e.phase!=='die'){

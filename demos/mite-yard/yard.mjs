@@ -1,10 +1,11 @@
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
 import {canvasRenderer} from './canvas_fallback.mjs'
-import {ARENA,clamp,createGame,step} from './combat.mjs'
+import {ARENA,SWORD_SWING,clamp,createGame,step} from './combat.mjs'
+import {createViewmodel,poseViewmodel} from './viewmodel.mjs'
 const el=q=>document.querySelector(q)
 let view=el('#view')
-const status=el('#status'), enter=el('#enter')
+const status=el('#status'), enter=el('#enter'), reticle=el('#reticle')
 const touch=matchMedia('(pointer:coarse)').matches
 let renderer
 try{renderer=new THREE.WebGLRenderer({canvas:view,antialias:true})}
@@ -20,7 +21,7 @@ const camera=new THREE.PerspectiveCamera(65,1,.04,55);camera.rotation.order='YXZ
 scene.add(new THREE.HemisphereLight(0xc8efff,0x91745e,2.3))
 const sun=new THREE.DirectionalLight(0xffd1a0,2.7);sun.position.set(-8,14,8);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-14,right:14,top:16,bottom:-16,near:.1,far:45});sun.shadow.bias=-.001;scene.add(sun)
 const mat=(color,roughness=.68,metalness=0)=>new THREE.MeshStandardMaterial({color,roughness,metalness})
-const cement=mat(0xa59470),iron=mat(0x2a3d40,.56,.39),paint=mat(0x9e4a21,.62,.25),steel=mat(0xa0b2ad,.36,.65),sunwood=mat(0xa06938),leather=mat(0x39291d),skin=mat(0xa76e50),warm=mat(0xe19a3b),pad=mat(0x42585a)
+const cement=mat(0xa59470),iron=mat(0x2a3d40,.56,.39),paint=mat(0x9e4a21,.62,.25),steel=mat(0xa0b2ad,.36,.65),sunwood=mat(0xa06938),leather=mat(0x39291d),warm=mat(0xe19a3b),pad=mat(0x42585a)
 function box(parent,m,w,h,d,x,y,z){
  const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;parent.add(o);return o
 }
@@ -34,15 +35,7 @@ for(const [x,z,w,d] of ARENA.blocks){
 }
 for(let z=-8;z<9;z+=1.5)for(const x of [-2.9,2.9])box(scene,warm,.065,.006,.78,x,.004,z)
 box(scene,pad,1.3,.10,.56,1.9,.049,-6.8)
-const handRig=new THREE.Group();camera.add(handRig);handRig.position.set(.34,-.33,-.56)
-const limb=new THREE.Mesh(new THREE.CapsuleGeometry(.065,.25,3,7),leather);limb.rotation.x=-.83;limb.position.set(.068,-.132,.16);handRig.add(limb)
-const palm=new THREE.Mesh(new THREE.CapsuleGeometry(.053,.048,3,7),skin);palm.rotation.z=.34;palm.position.set(0,-.017,.014);handRig.add(palm)
-for(let i=0;i<4;i++)box(handRig,leather,.087,.014,.061,0,-.064+i*.024,-.017)
-box(handRig,leather,.044,.19,.045,-.025,.012,-.027)
-box(handRig,warm,.197,.035,.057,-.022,.124,-.027)
-const blade=new THREE.Shape();blade.moveTo(-.053,0);blade.lineTo(-.044,.36);blade.lineTo(0,.49);blade.lineTo(.05,.363);blade.lineTo(.06,0);blade.closePath()
-const sword=new THREE.Mesh(new THREE.ExtrudeGeometry(blade,{depth:.022,steps:1,bevelEnabled:true,bevelSegments:1,bevelSize:.006,bevelThickness:.005}),steel)
-sword.position.set(-.025,.145,-.043);handRig.add(sword)
+const handRig=createViewmodel();camera.add(handRig);poseViewmodel(handRig,0)
 // Mechanical pickup, with editable geometry and no binary texture dependency.
 const servo=new THREE.Group();scene.add(servo);servo.visible=false
 const copper=mat(0xc67a35,.44,.52),servoLens=mat(0x46cdd2,.29,.28)
@@ -56,7 +49,7 @@ for(const y of [-.105,.105])servoRing(.132,.041,y,steel)
 for(const y of [-.067,-.034,0,.034,.067])servoRing(.107,.019,y,copper)
 servoRing(.068,.018,.135,servoLens)
 box(servo,leather,.077,.085,.112,.12,-.016,0)
-let game=createGame(),yaw=0,pitch=-.30,active=false,model,mix,action,eyeMat,oldPhase='',hurt=0,keys=new Set(),swing=false,last=performance.now(),touchDrag
+let game=createGame(),yaw=0,pitch=-.30,active=false,model,mix,action,eyeMat,oldPhase='',hurt=0,hit=0,keys=new Set(),swing=false,last=performance.now(),touchDrag
 const clips=new Map()
 const opts={idle:['idle',true],sleep:['sleep',true],wake:['wake',false],turn:['turn',true],chase:['run',true],hit:['hit',false],die:['die',false]}
 const setClip=(name,loop)=>{
@@ -66,7 +59,7 @@ const setClip=(name,loop)=>{
  if(action)next.crossFadeFrom(action,.10,false);next.play();action=next
 }
 function reset(){
- game=createGame();yaw=0;pitch=-.30;oldPhase='';hurt=0;swing=false
+ game=createGame();yaw=0;pitch=-.30;oldPhase='';hurt=0;hit=0;swing=false
  mix?.stopAllAction();action=undefined;servo.visible=false
 }
 enter.disabled=true
@@ -117,7 +110,7 @@ function frame(now){
  const w=view.clientWidth,h=view.clientHeight
  if(w&&h&&(view.width!==Math.floor(w*renderer.getPixelRatio())||view.height!==Math.floor(h*renderer.getPixelRatio()))){renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
  if(active&&model){
-  const before=game.player.hp
+  const before=game.player.hp,priorMiteHp=game.mite.hp
   step(game,{yaw,pitch,forward:Number(keys.has('w'))-Number(keys.has('s')),strafe:Number(keys.has('d'))-Number(keys.has('a')),sprint:keys.has('shift'),attack:swing||keys.has(" ")},dt);swing=false
   const p=game.player,m=game.mite
   camera.position.set(p.x,1.68,p.z);camera.rotation.set(p.pitch,-p.yaw,0,'YXZ')
@@ -133,12 +126,16 @@ function frame(now){
    else if(m.phase!=='lunge')setClip(...(opts[m.phase]||opts.idle))
    oldPhase=m.phase
   }
-  const u=clamp(p.swingTime/.48,0,1),n=p.swing?Math.sin(Math.PI*u):0
-  handRig.rotation.set(.10+n*.75,-.19-n*.86,-.30+n*1.32)
-  handRig.position.set(.36-n*.40,-.36+Math.sin(game.time*5)*.004, -.63-n*.09)
+  const elapsed=p.swing?p.swingTime:SWORD_SWING.end
+  const moving=['w','a','s','d'].some(key=>keys.has(key))
+  poseViewmodel(handRig,elapsed,game.time,moving,camera.aspect)
   if(eyeMat)eyeMat.emissiveIntensity=m.phase==='sleep'||m.phase==='die'?0:m.phase==='windup'?(m.special?3.3:2.8)+.7*Math.sin(m.t*33):1.45
   mix.update(dt)
   if(before!==p.hp)hurt=.72
+  hit=priorMiteHp>m.hp?.18:Math.max(0,hit-dt)
+  const mark=hit>0?'×':'+'
+  if(reticle.textContent!==mark)reticle.textContent=mark
+  reticle.classList.toggle('hit',hit>0)
   hurt=Math.max(0,hurt-2.1*dt);el('#vignette').style.opacity=hurt
   el('#life').textContent='HEALTH '+p.hp+' · MITE '+m.hp+' · SERVO '+game.servos;status.textContent=game.notice
  }else if(model){

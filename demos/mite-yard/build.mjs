@@ -12,7 +12,7 @@ assert.equal(pkg.version,'0.186.0')
 await mkdir(dest,{recursive:true})
 await mkdir(join(dest,'assets'),{recursive:true})
 await cp(join(home,'../../public/assets/wildshard-art/wsc-actor-001-crate-mite-rig.glb'),join(dest,'assets/mite.glb'))
-for(const name of ['index.html','yard.css','yard.mjs','combat.mjs','canvas_fallback.mjs'])await cp(join(home,name),join(dest,name))
+for(const name of ['index.html','yard.css','yard.mjs','combat.mjs','canvas_fallback.mjs','viewmodel.mjs'])await cp(join(home,name),join(dest,name))
 const deps=new Set()
 async function module(name){
  if(deps.has(name))return
