@@ -1,0 +1,13 @@
+<!doctype html>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Wildshard · Crate Mite Test Yard</title>
+<link rel="stylesheet" href="./yard.css">
+<script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
+<main id="yard"><canvas id="view" aria-label="First-person combat yard"></canvas>
+<header><div><small>WILDSHARD ART LAB / EAST</small><h1>Crate Mite Test Yard</h1></div><div id="life">HEALTH 100</div></header>
+<div id="reticle">+</div><p id="status" role="status">Loading the rig…</p>
+<div id="controls"><div class="nav"><button data-key="w" aria-label="Forward">▲</button><div><button data-key="a" aria-label="Left">◀</button><button data-key="s" aria-label="Backward">▼</button><button data-key="d" aria-label="Right">▶</button></div></div><button id="attack" aria-label="Swing sword">SWING</button></div>
+<div id="start"><div><small>PLAYABLE TECH DEMO</small><h2>Wake the crate.</h2><p>Move within six meters. Sidestep the eye flash, then close in and strike. Keep moving for the overclock attack.</p><button id="enter">Enter the yard</button><p class="hint">Desktop: WASD, mouse, click to swing, R to reset. Touch: directional buttons, drag to look, Swing.</p></div></div>
+<button id="reset">RESET</button><div id="vignette"></div>
+</main>
+<script type="module" src="./yard.mjs"></script>
