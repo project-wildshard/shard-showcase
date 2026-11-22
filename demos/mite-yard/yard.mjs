@@ -27,8 +27,10 @@ function box(parent,m,w,h,d,x,y,z){
  const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;parent.add(o);return o
 }
 box(scene,cement,18,.22,22,0,-.11,0).userData.paintBackground=true
-for(const x of [-9,9])box(scene,iron,.27,2.65,22,x,1.32,0)
-for(const z of [-11,11])box(scene,iron,18,2.65,.26,0,1.32,z)
+// Short wall panels prevent a near end of a long triangle from sorting
+// in front of unrelated props in the software renderer.
+for(const x of [-9,9])for(let i=0;i<10;i++)box(scene,iron,.27,2.65,2.2,x,1.32,-9.9+i*2.2)
+for(const z of [-11,11])for(let i=0;i<9;i++)box(scene,iron,2,2.65,.26,-8+i*2,1.32,z)
 for(let i=-8;i<=8;i+=2){for(const x of [i])for(const z of [-10.85,10.85])box(scene,paint,.19,3.02,.29,x,1.51,z)}
 for(let x=-8.75;x<9;x+=.36)box(scene,iron,.10,2.3,.105,x,1.48,-10.82)
 box(scene,paint,9,.12,.13,4.4,2.35,-10.67)
