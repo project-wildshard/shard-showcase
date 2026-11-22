@@ -16,3 +16,19 @@ h2{font-size:34px;margin:9px 0}p{line-height:1.4}.hint{font-size:13px;color:#bed
 #vignette{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 90px #d64934;opacity:0}
 @media(pointer:coarse){#controls{display:flex}#status{bottom:103px}}
 @media(max-width:450px){header{inset:10px 10px auto;gap:5px}#life{font-size:12px;white-space:normal;text-align:right;max-width:124px}#reset{right:10px}}
+
+#life{font-size:11px;font-variant-numeric:tabular-nums}
+#controls{inset:auto 16px max(22px,env(safe-area-inset-bottom));align-items:end}
+#stick{width:104px;height:104px;border:1px solid #a7e6da91;border-radius:50%;background:#0f232870;box-shadow:0 0 0 1px #0f2424a0 inset;touch-action:none;pointer-events:auto;display:grid;place-items:center}
+#stick-thumb{display:block;width:45px;height:45px;border-radius:50%;border:2px solid #abece3b5;background:#a1d4d72c;pointer-events:none}
+#controls .actions{display:flex;gap:10px;align-items:flex-end}
+#controls .actions button{border:1px solid #a1f4e9;color:#effefd;background:#0f3037dc;border-radius:50%;font-size:11px;letter-spacing:.025em;box-shadow:0 2px 9px #0006}
+#controls #dodge{width:57px;height:57px;margin-bottom:6px}#controls #attack{width:76px;height:76px;margin-bottom:0}
+#controls #dodge.cooldown{border-color:#72908c;color:#acc2bf}
+@media(pointer:coarse){#status{bottom:130px}}
+@media(max-width:450px){
+ header{inset:10px 11px auto;align-items:center}h1{font-size:16px}header small{font-size:9px}
+ #life{font-size:10px;white-space:nowrap;max-width:none;text-align:center;padding:.4rem .44rem}
+ #reset{top:52px;padding:.28rem .53rem;font-size:10px}
+ #status{font-size:12px;width:max-content;max-width:78%;padding:.33rem .48rem}
+}

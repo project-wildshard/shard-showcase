@@ -58,3 +58,9 @@ colliders match measured bounds. The center still stops at the rear
 yard boundary, not a passage to another district. Canvas2D leaves out
 the zinc fasteners and carbon gasket; WebGL uses the full asset. Append
 `gantry` to the Blender proof command for the matched scene placement.
+
+Portrait pass: drag the movement stick and the scene to look. Use Swing
+and Dodge, or Q for dodge on desktop. Dodge has displacement and a short
+cooldown, not invulnerability. The warning stripes show attack direction,
+not exact hit volume. Chrome portrait QA uses a 402 × 874 viewport with
+touch controls selected; this is not Safari or iPhone device testing.

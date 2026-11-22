@@ -115,7 +115,8 @@ export function poseViewmodel(mesh,elapsed,clock=0,moving=false,aspect=1){
  const [x,y,z,rx,ry,rz]=swordPose(elapsed)
  const settled=elapsed<=0||elapsed>=end
  const framing=Math.min(1,aspect)
- mesh.scale.setScalar(.46+.54*framing)
- mesh.position.set(x*framing+(settled?Math.sin(clock*6.6)*.004:0),y*(.70+.30*framing)+(settled?Math.sin(clock*(moving?10:5))*(moving?.009:.004):0),z)
+ const phone=Math.max(0,1-aspect/.86)
+ mesh.scale.setScalar((.46+.54*framing)*(1-.34*phone*(settled?1:.55)))
+ mesh.position.set(x*framing+(settled?Math.sin(clock*6.6)*.004:0),y*(.70+.30*framing)-phone*(settled?.20:.05)+(settled?Math.sin(clock*(moving?10:5))*(moving?.009:.004):0),z)
  mesh.rotation.set(rx,ry,rz*(.19+.81*framing*framing),'YXZ')
 }

@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
 import {canvasRenderer} from './canvas_fallback.mjs'
-import {ARENA,SWORD_SWING,clamp,createGame,step} from './combat.mjs'
+import {ARENA,DODGE,VIEW_PITCH,MITE_TIMING,SWORD_SWING,clamp,createGame,step} from './combat.mjs'
 import {CRATES,DOCK,GANTRY,GANTRY_FALLBACK_OMIT,STACK} from './yard-layout.mjs'
 import {createApron} from './yard-apron.mjs'
 import {createViewmodel,poseViewmodel} from './viewmodel.mjs'
@@ -99,7 +99,23 @@ for(const y of [-.105,.105])servoRing(.132,.041,y,steel)
 for(const y of [-.067,-.034,0,.034,.067])servoRing(.107,.019,y,copper)
 servoRing(.068,.018,.135,servoLens)
 box(servo,leather,.077,.085,.112,.12,-.016,0)
-let game=createGame(),yaw=0,pitch=-.30,active=false,model,mix,action,eyeMat,oldPhase='',hurt=0,hit=0,keys=new Set(),swing=false,last=performance.now(),touchDrag
+// The cue is anchored to the locked attack heading, not to the moving camera.
+const tell=new THREE.Group();scene.add(tell);tell.visible=false
+const tellMat=mat(0x55d9d5,.55);tellMat.emissive.setHex(0x18b9bf)
+for(const x of [-.62,.62])for(const z of [.56,1.40,2.24]){
+ const stripe=box(tell,tellMat,.048,.007,.61,x,.009,z)
+ stripe.castShadow=false;stripe.userData.paintLayer=.009
+}
+const sparks=new THREE.Group();scene.add(sparks);sparks.visible=false
+const sparkMat=mat(0xffa94e,.45);sparkMat.emissive.setHex(0xff8e2c)
+for(let i=0;i<8;i++){
+ const chip=box(sparks,sparkMat,.016,.016,.13,0,0,0)
+ chip.castShadow=false
+}
+let game=createGame(),yaw=0,pitch=VIEW_PITCH,active=false,model,mix,action,eyeMat,oldPhase='',hurt=0,hit=0,keys=new Set(),swing=false,dodge=false,last=performance.now(),touchDrag,stickId,stickX=0,stickY=0,carry=0,closeTilt=0
+const dodgeButton=el('#dodge')
+const stick=el('#stick'),thumb=el('#stick-thumb')
+function stopStick(){stickId=undefined;stickX=stickY=0;thumb.style.transform=''}
 const clips=new Map()
 const opts={idle:['idle',true],sleep:['sleep',true],wake:['wake',false],turn:['turn',true],chase:['run',true],hit:['hit',false],die:['die',false]}
 const setClip=(name,loop)=>{
@@ -109,7 +125,7 @@ const setClip=(name,loop)=>{
  if(action)next.crossFadeFrom(action,.10,false);next.play();action=next
 }
 function reset(){
- game=createGame();yaw=0;pitch=-.30;oldPhase='';hurt=0;hit=0;swing=false
+ game=createGame();yaw=0;pitch=VIEW_PITCH;oldPhase='';hurt=0;hit=0;swing=false;dodge=false;carry=0;closeTilt=0;stopStick();tell.visible=sparks.visible=false
  mix?.stopAllAction();action=undefined;servo.visible=false
 }
 enter.disabled=true
@@ -132,11 +148,11 @@ function begin(){
 enter.onclick=begin
 el('#reset').onclick=reset
 document.addEventListener('keydown',e=>{
- const k=e.key.toLowerCase();if(['w','a','s','d','shift',' ','r'].includes(k)){e.preventDefault();keys.add(k)}
- if(k==='r')reset();if(k===' ')swing=true
+ const k=e.key.toLowerCase();if(['w','a','s','d','shift',' ','q','r'].includes(k)){e.preventDefault();keys.add(k)}
+ if(k==='r'&&!e.repeat)reset();if(k===' ')swing=true;if(k==='q'&&!e.repeat)dodge=true
 })
 document.addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()))
-window.addEventListener('blur',()=>keys.clear())
+window.addEventListener('blur',()=>{keys.clear();stopStick()})
 document.addEventListener('mousemove',e=>{
  if(document.pointerLockElement===view){yaw+=e.movementX*.0026;pitch=clamp(pitch-e.movementY*.0023,-1.10,1.10)}
 })
@@ -151,20 +167,43 @@ view.addEventListener('pointermove',e=>{
  yaw+=(e.clientX-touchDrag[0])*.006;pitch=clamp(pitch-(e.clientY-touchDrag[1])*.005,-1.1,1.1);touchDrag=[e.clientX,e.clientY]
 })
 for(const x of ['pointerup','pointercancel'])view.addEventListener(x,()=>touchDrag=null)
-for(const b of document.querySelectorAll('[data-key]')){
- b.onpointerdown=e=>{b.setPointerCapture(e.pointerId);keys.add(b.dataset.key)}
- for(const x of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(x,()=>keys.delete(b.dataset.key))
+function aimStick(e){
+ const r=stick.getBoundingClientRect()
+ const x=(e.clientX-r.x-r.width/2)/34,y=(e.clientY-r.y-r.height/2)/34,n=Math.max(1,Math.hypot(x,y))
+ stickX=x/n;stickY=-y/n
+ thumb.style.transform=`translate(${stickX*29}px,${-stickY*29}px)`
 }
+stick.addEventListener('pointerdown',e=>{
+ if(!active||stickId!==undefined)return
+ stickId=e.pointerId;stick.setPointerCapture(stickId);aimStick(e)
+})
+stick.addEventListener('pointermove',e=>{if(e.pointerId===stickId)aimStick(e)})
+for(const type of ['pointerup','pointercancel','lostpointercapture'])
+ stick.addEventListener(type,e=>{if(e.pointerId===stickId)stopStick()})
 el('#attack').onpointerdown=()=>{swing=true}
+dodgeButton.onpointerdown=()=>{dodge=true}
 function frame(now){
- requestAnimationFrame(frame);const dt=Math.min(.045,(now-last)/1000);last=now
+ requestAnimationFrame(frame);const dt=Math.min(.10,(now-last)/1000);last=now
  const w=view.clientWidth,h=view.clientHeight
  if(w&&h&&(view.width!==Math.floor(w*renderer.getPixelRatio())||view.height!==Math.floor(h*renderer.getPixelRatio()))){renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
  if(active&&model){
   const before=game.player.hp,priorMiteHp=game.mite.hp
-  step(game,{yaw,pitch,forward:Number(keys.has('w'))-Number(keys.has('s')),strafe:Number(keys.has('d'))-Number(keys.has('a')),sprint:keys.has('shift'),attack:swing||keys.has(" ")},dt);swing=false
+  const forward=clamp(Number(keys.has('w'))-Number(keys.has('s'))+stickY,-1,1)
+  const strafe=clamp(Number(keys.has('d'))-Number(keys.has('a'))+stickX,-1,1)
+  carry+=dt
+  let advanced=0
+  while(carry>=1/60){
+   step(game,{yaw,pitch,forward,strafe,sprint:keys.has('shift'),attack:swing||keys.has(' '),dodge},1/60)
+   carry-=1/60;advanced+=1/60;swing=dodge=false
+  }
   const p=game.player,m=game.mite
-  camera.position.set(p.x,1.68,p.z);camera.rotation.set(p.pitch,-p.yaw,0,'YXZ')
+  const lean=p.dodgeLeft>0?-.075*Math.sin(Math.PI*p.dodgeLeft/DODGE.duration):0
+  const x=m.x-p.x,z=m.z-p.z,range=Math.hypot(x,z)
+  const facing=(Math.sin(p.yaw)*x-Math.cos(p.yaw)*z)/Math.max(.001,range)
+  const assist=m.phase==='die'?0:.15*clamp((4.2-range)/2.6,0,1)*clamp((facing-.6)/.32,0,1)
+   *clamp(1-Math.abs(p.pitch-VIEW_PITCH)/.27,0,1)
+  closeTilt+=(assist-closeTilt)*(1-Math.exp(-10*dt))
+  camera.position.set(p.x,1.62-Math.abs(lean)*.70,p.z);camera.rotation.set(p.pitch-closeTilt,-p.yaw,lean,'YXZ')
   model.position.set(m.x,0,m.z);model.rotation.y=m.yaw
   const d=game.drop
   servo.visible=Boolean(d&&game.time>=d.readyAt)
@@ -178,17 +217,43 @@ function frame(now){
    oldPhase=m.phase
   }
   const elapsed=p.swing?p.swingTime:SWORD_SWING.end
-  const moving=['w','a','s','d'].some(key=>keys.has(key))
+  const moving=Math.abs(forward)+Math.abs(strafe)>.15
   poseViewmodel(handRig,elapsed,game.time,moving,camera.aspect)
   if(eyeMat)eyeMat.emissiveIntensity=m.phase==='sleep'||m.phase==='die'?0:m.phase==='recover'?.38:m.phase==='windup'?(m.special?3.3:2.8)+.7*Math.sin(m.t*33):1.45
-  mix.update(dt)
+  mix.update(advanced)
+  tell.visible=m.phase==='windup'
+  if(tell.visible){
+   tell.position.set(m.x,0,m.z)
+   tell.rotation.y=Math.atan2(m.goalX,m.goalZ)
+   tell.scale.z=m.special?1.20:1
+   tellMat.emissiveIntensity=.34+.44*Math.pow(Math.min(1,m.t/(m.special?MITE_TIMING.overclock.tell:MITE_TIMING.bite.tell)),2)
+  }
   if(before!==p.hp)hurt=.72
-  hit=priorMiteHp>m.hp?.18:Math.max(0,hit-dt)
+  if(priorMiteHp>m.hp){
+   hit=.19
+   const toward=new THREE.Vector2(p.x-m.x,p.z-m.z).normalize()
+   sparks.position.set(m.x+toward.x*.23,.44,m.z+toward.y*.23)
+  }else hit=Math.max(0,hit-dt)
+  sparks.visible=hit>0
+  if(sparks.visible){
+   const age=.19-hit
+   sparkMat.emissiveIntensity=2.1*(hit/.19)
+   sparks.children.forEach((o,i)=>{
+    const heading=.47+i*(Math.PI*2/8)
+    o.position.set(Math.cos(heading)*age*2.2,age*(1.1+i%3*.6)-2.7*age*age,Math.sin(heading)*age*2.2)
+    o.rotation.set(.4+i*.51,heading,heading*.77)
+    o.scale.z=.2+.8*hit/.19
+   })
+   handRig.rotation.x-=Math.sin(Math.PI*hit/.19)*.055
+  }
+  dodgeButton.classList.toggle('cooldown',p.dodgeCooldown>0)
   const mark=hit>0?'×':'+'
   if(reticle.textContent!==mark)reticle.textContent=mark
   reticle.classList.toggle('hit',hit>0)
   hurt=Math.max(0,hurt-2.1*dt);el('#vignette').style.opacity=hurt
-  el('#life').textContent='HEALTH '+p.hp+' · MITE '+m.hp+' · SERVO '+game.servos;status.textContent=game.notice
+  const label='HP '+p.hp+' · MITE '+m.hp+' · SERVO '+game.servos
+  if(el('#life').textContent!==label)el('#life').textContent=label
+  if(status.textContent!==game.notice)status.textContent=game.notice
  }else if(model){
   camera.position.set(0,1.68,6.7);camera.rotation.x=-.20;model.position.set(game.mite.x,0,game.mite.z)
   setClip('sleep',true);mix.update(dt)

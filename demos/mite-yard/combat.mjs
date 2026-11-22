@@ -5,6 +5,8 @@ export const MITE_TIMING=Object.freeze({
  bite:Object.freeze({tell:18/30,charge:.30,total:36/30,speed:9.65,damage:23}),
  overclock:Object.freeze({tell:23/30,charge:.30,total:44/30,speed:11.7,damage:37}),
 })
+export const VIEW_PITCH=-.30
+export const DODGE=Object.freeze({duration:.24,cooldown:.64,speed:7.5})
 export const SWORD_SWING=Object.freeze({impact:.148,end:.48})
 const TAU=Math.PI*2
 export const clamp=(x,a,b)=>Math.max(a,Math.min(b,x))
@@ -27,7 +29,7 @@ function clear(a,b){
 }
 const phase=(e,n)=>{e.phase=n;e.t=0;e.serial++}
 export function createGame(){
- return {player:{x:0,z:6.7,yaw:0,pitch:-.30,hp:100,swing:0,swingTime:0,spent:false},
+ return {player:{x:0,z:6.7,yaw:0,pitch:VIEW_PITCH,hp:100,dodgeLeft:0,dodgeCooldown:0,dodgeX:0,dodgeZ:0,swing:0,swingTime:0,spent:false},
  mite:{x:.23,z:-1.8,yaw:0,hp:70,phase:'sleep',t:0,serial:0,strikes:0},
  time:0,notice:'Approach the crate. It wakes within six meters.',over:false,kills:0,servos:0,drop:null}
 }
@@ -38,10 +40,19 @@ export function step(g,input={},dt=1/60){
  if(input.yaw!==undefined)p.yaw=input.yaw;if(input.pitch!==undefined)p.pitch=clamp(input.pitch,-1.12,1.12)
  let f=clamp(input.forward||0,-1,1),r=clamp(input.strafe||0,-1,1)
  const len=Math.max(1,length(f,r));f/=len;r/=len
- const pace=(input.sprint?5.0:3.85)*dt
- const px=(Math.sin(p.yaw)*f+Math.cos(p.yaw)*r)*pace,pz=(-Math.cos(p.yaw)*f+Math.sin(p.yaw)*r)*pace
+ const px0=Math.sin(p.yaw)*f+Math.cos(p.yaw)*r,pz0=-Math.cos(p.yaw)*f+Math.sin(p.yaw)*r
+ p.dodgeCooldown=Math.max(0,p.dodgeCooldown-dt)
+ if(input.dodge&&p.dodgeCooldown===0){
+  const mag=Math.hypot(px0,pz0)
+  p.dodgeX=mag>.12?px0/mag:Math.cos(p.yaw)
+  p.dodgeZ=mag>.12?pz0/mag:Math.sin(p.yaw)
+  p.dodgeLeft=DODGE.duration;p.dodgeCooldown=DODGE.cooldown
+ }
+ const dash=Math.min(dt,p.dodgeLeft),pace=(input.sprint?5:3.85)*(dt-dash)
+ p.dodgeLeft-=dash
+ const px=px0*pace+p.dodgeX*DODGE.speed*dash,pz=pz0*pace+p.dodgeZ*DODGE.speed*dash
  const current=length(p.x-e.x,p.z-e.z),proposed=length(p.x+px-e.x,p.z+pz-e.z)
- if(e.phase==='die'||proposed>1||proposed>current)move(p,px,pz,.32)
+ if(e.phase==='die'||proposed>1.25||proposed>current)move(p,px,pz,.32)
  if(p.swing>0){p.swing=Math.max(0,p.swing-dt);p.swingTime+=dt}
  if(input.attack&&p.swing===0){p.swing=SWORD_SWING.end;p.swingTime=0;p.spent=false}
  let dx=p.x-e.x,dz=p.z-e.z,dist=length(dx,dz)
@@ -108,7 +119,7 @@ export function step(g,input={},dt=1/60){
   if(travel&&!e.didDamage){
    move(e,e.goalX*travel*timing.speed,e.goalZ*travel*timing.speed,.35)
    dx=p.x-e.x;dz=p.z-e.z;dist=length(dx,dz)
-   if(dist<1.34&&clear(e,p)){
+   if(dist<1.49&&clear(e,p)){
     e.didDamage=true;p.hp=Math.max(0,p.hp-timing.damage)
     g.notice=p.hp?'You were hit. Move sideways during the windup.':'You went down. Press R to reset.'
     if(p.hp===0)g.over=true
