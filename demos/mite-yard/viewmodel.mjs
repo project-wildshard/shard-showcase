@@ -3,9 +3,16 @@ import {SWORD_SWING,clamp} from './combat.mjs'
 const material=(color,roughness,metalness=0)=>new T.MeshStandardMaterial({color,roughness,metalness})
 const poly=(v,indices,mats,groups)=>{
  const g=new T.BufferGeometry()
- g.setAttribute('position',new T.Float32BufferAttribute(v.flat(),3));g.setIndex(indices.flat())
+ const bins=mats.map(()=>[])
+ for(let i=0;i<groups.length;i++)bins[groups[i]].push(...indices[i])
+ g.setAttribute('position',new T.Float32BufferAttribute(v.flat(),3));g.setIndex(bins.flat())
  const flat=g.toNonIndexed();g.dispose();flat.computeVertexNormals()
- for(let i=0;i<groups.length;i++)flat.addGroup(i*6,6,groups[i])
+ let base=0
+ for(let i=0;i<bins.length;i++){
+  const count=bins[i].length
+  if(count)flat.addGroup(base,count,i)
+  base+=count
+ }
  return new T.Mesh(flat,mats)
 }
 function mesh(group,g,m,x=0,y=0,z=0){
@@ -31,20 +38,37 @@ function rings(group,rows,segments,m,dz=1){
  g.computeVertexNormals();return mesh(group,g,m)
 }
 function blade(group,materials){
- // Eight transverse faces: bright cutting bevels, dark flats and a flat recessed fuller.
- const cols=[[-1,0],[-.77,.009],[-.28,.011],[-.20,.005],[.20,.005],[.28,.011],[.77,.009],[1,0]]
- const rows=[[.105,.040,0,0],[.147,.051,0,.85],[.49,.037,.002,1],[.55,.032,.004,0],[.64,.002,.012,0]]
+ // Cold steel, four longitudinal grind rails and a recessed fuller.
+ // Rows are strike/draw marks on a forged tool, not a paint pattern.
+ const cols=[[-1,0],[-.915,.004],[-.77,.009],[-.62,.010],
+  [-.39,.011],[-.28,.011],[-.20,.005],[.20,.005],[.28,.011],
+  [.39,.011],[.62,.010],[.77,.009],[.915,.004],[1,0]]
+ // y, half-width, center offset, fuller depth, steel variation cycle.
+ const rows=[
+  [.105,.040,0,0,0],[.147,.051,0,.86,0],[.181,.0495,0,.89,0],
+  [.231,.0478,.0003,.92,0],[.237,.0475,.0003,.93,2],[.296,.0457,.0008,.95,0],
+  [.357,.0435,.0011,.97,0],[.397,.042,.0014,.98,0],[.403,.0416,.0014,.99,2],
+  [.455,.0391,.0019,1,0],[.49,.037,.002,1,0],[.55,.032,.004,0,0],[.64,.002,.012,0,0],
+ ]
  const v=[],faces=[],groups=[]
  for(const sign of [1,-1]){
   const start=v.length
   for(const [y,w,l,groove] of rows)for(let k=0;k<cols.length;k++){
-   const [x,d]=cols[k],height=k===3||k===4?.011+(.005-.011)*groove:d
+   const [x,d]=cols[k],height=k===6||k===7?.011+(.005-.011)*groove:d
    v.push([x*w+l,y,sign*(.0015+height*(1-y*.46))])
   }
   for(let j=0;j<rows.length-1;j++)for(let k=0;k<cols.length-1;k++){
    const a=start+j*cols.length+k,b=a+cols.length
    faces.push(sign===1?[a,a+1,b,b,a+1,b+1]:[a,b,a+1,b,b+1,a+1])
-   groups.push(k===0||k===6?0:k===3&&j<3?2:1)
+   const mark=rows[j+1][4]===2?2:0,side=sign===1?0:1
+   let band=1
+   if(k===0||k===12)band=j===7&&k===side*12?6:0
+   else if(k===1||k===11)band=mark===2&&(k===1)!==Boolean(side)?4:3
+   else if(k===6&&j>0&&j<10)band=2
+   else if(k===5||k===7)band=4
+   else if(k===2||k===10)band=5
+   else if(mark===2&&(k+side)%3===0)band=6
+   groups.push(band)
   }
  }
  const stride=cols.length,back=rows.length*stride
@@ -62,7 +86,9 @@ export function createViewmodel(){
  const glove=material(0x664936,.77),seam=material(0x291d16,.95)
  const bronze=material(0xc18a43,.38,.62),blackIron=material(0x38474a,.41,.75)
  const steel=material(0x8faaa9,.30,.73),edge=material(0xdbe7dc,.23,.8),fuller=material(0x385156,.49,.67)
- blade(sword,[edge,steel,fuller])
+ const grind=material(0xb2c2ba,.28,.73),heel=material(0x7e9896,.38,.66)
+ const satin=material(0xa4b7b3,.34,.68),nick=material(0x697e7c,.48,.55)
+ blade(sword,[edge,steel,fuller,grind,heel,satin,nick])
  rings(sword,[[-.148,.017],[-.141,.029],[-.11,.034],[-.085,.022],[-.067,.022],[.08,.025],[.091,.032],[.108,.024]],8,blackIron,.85)
  for(let i=0;i<10;i++){
   const y=-.071+i*.015

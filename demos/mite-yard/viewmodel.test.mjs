@@ -25,6 +25,19 @@ test('sword viewmodel is bounded, textured by materials alone, with no ready-pos
   }
  }
 })
+test('blade uses authored steel finishes without changing the silhouette scale',()=>{
+ const root=createViewmodel()
+ const blade=root.getObjectByName('Forged stepped fuller and steel cutting bevel')
+ assert.equal(blade.material.length,7)
+ assert.equal(blade.geometry.groups.length,7,'One draw group per finish')
+ assert.deepEqual(new Set(blade.geometry.groups.map(g=>g.materialIndex)),new Set([0,1,2,3,4,5,6]))
+ assert(blade.material[0].roughness<blade.material[6].roughness,'Polished edge, dull nicks')
+ assert(blade.material.every(m=>m.metalness>.5&&!m.map))
+ blade.geometry.computeBoundingBox()
+ const {max,min}=blade.geometry.boundingBox
+ assert(Math.abs(max.y-.64)<.0001)
+ assert(min.x>-.052&&max.x<.052)
+})
 test('windup, impact and follow-through align with the damage tick',()=>{
  const g=createGame();Object.assign(g.mite,{x:0,z:0,phase:'wake',hp:70})
  Object.assign(g.player,{x:0,z:1.65,yaw:0})
