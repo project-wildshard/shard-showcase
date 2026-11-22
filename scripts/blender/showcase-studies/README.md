@@ -39,3 +39,9 @@ dependency installed, run
 The GLB has eleven clips, including two named attacks and sleep/wake. Actor
 movement, hit timing, clip selection, collision and spawn state are runtime
 responsibilities; the rig checkpoint alone does not implement those.
+
+The 1.3 s death clip scatters the lid and four legs while the chassis
+settles. The recipe computes final ground contact from the rigid mesh,
+not joint heights. It keeps the same mesh, weights, seven joints and clip
+IDs. The loader test checks the separated lid, debris width, six grounded
+modules and eye shutoff on the exported animation.
