@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
 import {canvasRenderer} from './canvas_fallback.mjs'
-import {ARENA,DODGE,VIEW_PITCH,MITE_TIMING,SWORD_SWING,clamp,createGame,step} from './combat.mjs'
+import {ARENA,VIEW_FOV,VIEW_PITCH,MITE_TIMING,SWORD_SWING,cameraPose,clamp,createGame,step} from './combat.mjs'
 import {CRATES,DOCK,GANTRY,GANTRY_FALLBACK_OMIT,STACK} from './yard-layout.mjs'
 import {createTouchLook} from './touch-look.mjs'
 import {createApron} from './yard-apron.mjs'
@@ -21,7 +21,7 @@ catch{
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.shadowMap.enabled=true
 renderer.shadowMap.type=THREE.PCFShadowMap
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x8cb8c3);scene.fog=new THREE.Fog(0x8cb8c3,23,48)
-const camera=new THREE.PerspectiveCamera(65,1,.04,55);camera.rotation.order='YXZ';scene.add(camera)
+const camera=new THREE.PerspectiveCamera(VIEW_FOV,1,.04,55);camera.rotation.order='YXZ';scene.add(camera)
 scene.add(new THREE.HemisphereLight(0xc8efff,0x91745e,2.3))
 const sun=new THREE.DirectionalLight(0xffd1a0,2.7);sun.position.set(-8,14,8);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-14,right:14,top:16,bottom:-16,near:.1,far:45});sun.shadow.bias=-.001;scene.add(sun)
 const mat=(color,roughness=.68,metalness=0)=>new THREE.MeshStandardMaterial({color,roughness,metalness})
@@ -134,7 +134,7 @@ for(let i=0;i<8;i++){
  const chip=box(sparks,sparkMat,.016,.016,.13,0,0,0)
  chip.castShadow=false
 }
-let game=createGame(),yaw=0,pitch=VIEW_PITCH,active=false,model,mix,action,eyeMat,oldPhase='',hurt=0,hit=0,keys=new Set(),swing=false,dodge=false,last=performance.now(),stickId,stickX=0,stickY=0,carry=0,closeTilt=0
+let game=createGame(),yaw=0,pitch=VIEW_PITCH,active=false,model,mix,action,eyeMat,oldPhase='',hurt=0,hit=0,keys=new Set(),swing=false,dodge=false,last=performance.now(),stickId,stickX=0,stickY=0,carry=0
 const dodgeButton=el('#dodge')
 const stick=el('#stick'),thumb=el('#stick-thumb')
 function stopStick(){stickId=undefined;stickX=stickY=0;thumb.style.transform=''}
@@ -147,7 +147,7 @@ const setClip=(name,loop)=>{
  if(action)next.crossFadeFrom(action,name==='hit'?.035:.10,false);next.play();action=next
 }
 function reset(){
- game=createGame();yaw=0;pitch=VIEW_PITCH;oldPhase='';hurt=0;hit=0;swing=false;dodge=false;carry=0;closeTilt=0;stopStick();tell.visible=sparks.visible=false
+ game=createGame();yaw=0;pitch=VIEW_PITCH;oldPhase='';hurt=0;hit=0;swing=false;dodge=false;carry=0;stopStick();tell.visible=sparks.visible=false
  mix?.stopAllAction();action=undefined;servo.visible=false
 }
 enter.disabled=true
@@ -208,7 +208,8 @@ dodgeButton.onpointerdown=()=>{dodge=true}
 function frame(now){
  requestAnimationFrame(frame);const dt=Math.min(.10,(now-last)/1000);last=now
  const w=view.clientWidth,h=view.clientHeight
- if(w&&h&&(view.width!==Math.floor(w*renderer.getPixelRatio())||view.height!==Math.floor(h*renderer.getPixelRatio()))){renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+ if(w&&h&&(view.width!==Math.floor(w*renderer.getPixelRatio())||view.height!==Math.floor(h*renderer.getPixelRatio()))){renderer.setSize(w,h,false)}
+ if(w&&h&&camera.aspect!==w/h){camera.aspect=w/h;camera.updateProjectionMatrix()}
  if(active&&model){
   const before=game.player.hp,priorMiteHp=game.mite.hp
   const forward=clamp(Number(keys.has('w'))-Number(keys.has('s'))+stickY,-1,1)
@@ -216,17 +217,12 @@ function frame(now){
   carry+=dt
   let advanced=0
   while(carry>=1/60){
-   step(game,{yaw,pitch,forward,strafe,sprint:keys.has('shift'),attack:swing||keys.has(' '),dodge},1/60)
+   step(game,{yaw,pitch,aspect:camera.aspect,forward,strafe,sprint:keys.has('shift'),attack:swing||keys.has(' '),dodge},1/60)
    carry-=1/60;advanced+=1/60;swing=dodge=false
   }
   const p=game.player,m=game.mite
-  const lean=p.dodgeLeft>0?-.075*Math.sin(Math.PI*p.dodgeLeft/DODGE.duration):0
-  const x=m.x-p.x,z=m.z-p.z,range=Math.hypot(x,z)
-  const facing=(Math.sin(p.yaw)*x-Math.cos(p.yaw)*z)/Math.max(.001,range)
-  const assist=m.phase==='die'?0:.15*clamp((4.2-range)/2.6,0,1)*clamp((facing-.6)/.32,0,1)
-   *clamp(1-Math.abs(p.pitch-VIEW_PITCH)/.27,0,1)
-  closeTilt+=(assist-closeTilt)*(1-Math.exp(-10*dt))
-  camera.position.set(p.x,1.62-Math.abs(lean)*.70,p.z);camera.rotation.set(p.pitch-closeTilt,-p.yaw,lean,'YXZ')
+  const pose=cameraPose(p)
+  camera.position.set(p.x,pose.height,p.z);camera.rotation.set(pose.pitch,-p.yaw,pose.roll,'YXZ')
   model.position.set(m.x,0,m.z);model.rotation.y=m.yaw
   if(miteShadow){
    miteShadow.position.set(m.x+.05,.007,m.z+.06)

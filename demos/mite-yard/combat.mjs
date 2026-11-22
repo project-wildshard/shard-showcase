@@ -6,6 +6,8 @@ export const MITE_TIMING=Object.freeze({
  overclock:Object.freeze({tell:23/30,charge:.30,total:44/30,speed:11.7,damage:37}),
 })
 export const VIEW_PITCH=-.30
+export const VIEW_FOV=65
+const VIEW_TAN=Math.tan(VIEW_FOV*Math.PI/360)
 export const DODGE=Object.freeze({duration:.24,cooldown:.64,speed:7.5})
 export const SWORD_SWING=Object.freeze({impact:.148,end:.48})
 const TAU=Math.PI*2
@@ -13,6 +15,26 @@ export const clamp=(x,a,b)=>Math.max(a,Math.min(b,x))
 const angle=(a,b)=>((b-a+Math.PI+TAU)%TAU)-Math.PI
 const approach=(a,b,m)=>a+clamp(angle(a,b),-m,m)
 const length=(x,z)=>Math.hypot(x,z)
+export function cameraPose(p){
+ const roll=p.dodgeLeft>0?-.075*Math.sin(Math.PI*p.dodgeLeft/DODGE.duration):0
+ return {height:1.62-Math.abs(roll)*.70,pitch:p.pitch-p.closeTilt,roll}
+}
+export function armorInView(p,m,aspect){
+ // Test an inset armor sphere, not the center dot or the full leg span.
+ // Keep a partially visible chassis hittable without granting hits on an
+ // unseen Mite. Coordinates are in the same YXZ camera used for rendering.
+ const {height,pitch,roll}=cameraPose(p)
+ const dx=m.x-p.x,dz=m.z-p.z,y=.39-height
+ const lateral=dx*Math.cos(p.yaw)+dz*Math.sin(p.yaw)
+ const forward=dx*Math.sin(p.yaw)-dz*Math.cos(p.yaw)
+ const rise=y*Math.cos(pitch)-forward*Math.sin(pitch)
+ const depth=y*Math.sin(pitch)+forward*Math.cos(pitch)
+ const u=lateral*Math.cos(roll)+rise*Math.sin(roll)
+ const v=rise*Math.cos(roll)-lateral*Math.sin(roll)
+ const side=VIEW_TAN*aspect,radius=.30
+ return depth>.04&&Math.abs(u)<=depth*side+radius*Math.hypot(1,side)&&
+  Math.abs(v)<=depth*VIEW_TAN+radius*Math.hypot(1,VIEW_TAN)
+}
 function blocked(x,z,r=.28,sight=false){
  return Math.abs(x)>ARENA.width/2-r||Math.abs(z)>ARENA.depth/2-r||
  (!sight&&Math.abs(x-DOCK.x)<DOCK.width*.5+r&&Math.abs(z-DOCK.z)<DOCK.depth*.5+r)||
@@ -29,7 +51,7 @@ function clear(a,b){
 }
 const phase=(e,n)=>{e.phase=n;e.t=0;e.serial++}
 export function createGame(){
- return {player:{x:0,z:6.7,yaw:0,pitch:VIEW_PITCH,hp:100,dodgeLeft:0,dodgeCooldown:0,dodgeX:0,dodgeZ:0,swing:0,swingTime:0,spent:false},
+ return {player:{x:0,z:6.7,yaw:0,pitch:VIEW_PITCH,closeTilt:0,hp:100,dodgeLeft:0,dodgeCooldown:0,dodgeX:0,dodgeZ:0,swing:0,swingTime:0,spent:false},
  mite:{x:.23,z:-1.8,yaw:0,hp:70,phase:'sleep',t:0,serial:0,strikes:0},
  time:0,notice:'Approach the crate. It wakes within six meters.',over:false,kills:0,servos:0,drop:null}
 }
@@ -56,10 +78,13 @@ export function step(g,input={},dt=1/60){
  if(p.swing>0){p.swing=Math.max(0,p.swing-dt);p.swingTime+=dt}
  if(input.attack&&p.swing===0){p.swing=SWORD_SWING.end;p.swingTime=0;p.spent=false}
  let dx=p.x-e.x,dz=p.z-e.z,dist=length(dx,dz)
+ const face=(-dx*Math.sin(p.yaw)+dz*Math.cos(p.yaw))/Math.max(.001,dist)
+ const assist=e.phase==='die'?0:.15*clamp((4.2-dist)/2.6,0,1)*clamp((face-.6)/.32,0,1)
+  *clamp(1-Math.abs(p.pitch-VIEW_PITCH)/.27,0,1)
+ p.closeTilt+=(assist-p.closeTilt)*(1-Math.exp(-10*dt))
  if(!p.spent&&p.swing>0&&p.swingTime>=SWORD_SWING.impact){
   p.spent=true
-  const face=(-dx*Math.sin(p.yaw)+dz*Math.cos(p.yaw))/Math.max(.001,dist)
-  if(dist<2.24&&face>.72&&p.pitch<.6&&p.pitch>-.95&&clear(p,e)&&e.phase!=='die'){
+  if(dist<2.24&&face>.72&&p.pitch<.6&&p.pitch>-.95&&e.phase!=='die'&&armorInView(p,e,input.aspect??16/9)&&clear(p,e)){
    e.hp=Math.max(0,e.hp-24)
    if(e.hp===0){
     phase(e,'die');g.kills++

@@ -108,3 +108,22 @@ test('dodge clears the bite without invulnerability and respects solid cover',()
  step(exposed,{dodge:true,forward:1});advance(exposed,.38)
  assert(exposed.player.hp<100,'Dodging along the bite line gives no invulnerability')
 })
+
+test('portrait sword can catch visible edge armor but not an offscreen Mite',()=>{
+ const strike=(degrees,aspect,pitch)=>{
+  const g=createGame(),heading=degrees*Math.PI/180
+  Object.assign(g.player,{x:0,z:2})
+  Object.assign(g.mite,{x:1.8*Math.sin(heading),z:2-1.8*Math.cos(heading),phase:'wake'})
+  step(g,{attack:true,aspect,pitch})
+  for(let i=0;i<8;i++)step(g,{aspect})
+  assert.equal(g.mite.hp,70,'No damage before contact')
+  step(g,{aspect});return g.mite.hp
+ }
+ for(const angle of [0,19,-19])assert.equal(strike(angle,402/874),46)
+ for(const angle of [36,-36]){
+  assert.equal(strike(angle,402/874),70)
+  assert.equal(strike(angle,16/9),46,'Desktop still shows the target')
+ }
+ assert.equal(strike(0,402/874,.48),70,'Do not hit while looking above the armor')
+ assert.equal(strike(180,16/9),70)
+})
