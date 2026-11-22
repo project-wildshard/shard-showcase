@@ -43,3 +43,7 @@ To reproduce the catalogue illustration from the same layout and GLBs,
 run `blender -b -P demos/mite-yard/render-court.py -- /tmp/court.webp`.
 Node is needed to read the playable layout. The composition and lighting
 are Blender-only; no generated proof images are needed to edit the yard.
+
+Append `bite`, `overclock`, or `recover` after the Blender output path
+to render the closer pose proofs. Cue timing reads the same constants
+as the combat simulation. Proof lighting is not live gameplay footage.

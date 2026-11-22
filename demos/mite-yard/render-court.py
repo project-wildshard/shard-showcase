@@ -12,20 +12,25 @@ import sys
 import bpy
 from mathutils import Vector
 
-out = str(Path(sys.argv[sys.argv.index("--") + 1]).resolve())
+args = sys.argv[sys.argv.index("--") + 1:]
+out = str(Path(args[0]).resolve())
+shot = args[1] if len(args) > 1 else "court"
+if shot not in ("court", "bite", "overclock", "recover"):
+    raise ValueError(f"Unknown proof shot: {shot}")
 repo = Path(__file__).resolve().parents[2]
 assets = repo / "public/assets/wildshard-art"
 source = """
 import {DOCK, STACK, CRATES} from './demos/mite-yard/yard-layout.mjs'
-import {ARENA,createGame} from './demos/mite-yard/combat.mjs'
+import {ARENA,MITE_TIMING,createGame} from './demos/mite-yard/combat.mjs'
 const {player,mite}=createGame()
-console.log(JSON.stringify({DOCK,STACK,CRATES,ARENA,player,mite}))
+console.log(JSON.stringify({DOCK,STACK,CRATES,ARENA,MITE_TIMING,player,mite}))
 """
 cfg = json.loads(subprocess.check_output(
     ["node", "--input-type=module", "-e", source], cwd=repo, text=True,
 ))
 bpy.ops.wm.read_factory_settings(use_empty=True)
 s = bpy.context.scene
+s.render.fps = 30
 
 def mat(name, color, metal=0, rough=.7):
     m = bpy.data.materials.new(name)
@@ -110,8 +115,22 @@ for ob in added:
     if ob.type == "ARMATURE" and ob.animation_data:
         for track in ob.animation_data.nla_tracks:
             track.mute = True
-        ob.animation_data.action = next((a for a in bpy.data.actions if a.name=='telegraph'), None)
-s.frame_set(11)
+        name = "telegraph" if shot == "court" else f"attack.{shot if shot != 'recover' else 'bite'}"
+        ob.animation_data.action = next(a for a in bpy.data.actions if a.name in (name, f'{name}_{ob.name}'))
+tell = round(cfg["MITE_TIMING"].get(shot, cfg["MITE_TIMING"]["bite"])["tell"] * s.render.fps)
+s.frame_set(11 if shot == "court" else 31 if shot == "recover" else tell - 1)
+if shot != "court":
+    for ob in added:
+        if ob.type != "MESH":
+            continue
+        for slot in ob.material_slots:
+            m = slot.material
+            node = m.node_tree.nodes.get("Principled BSDF") if m and m.use_nodes else None
+            if not node:
+                continue
+            rgb = node.inputs["Emission Color"].default_value
+            if rgb[0] < .25 and rgb[1] > .65 and rgb[2] > .65:
+                node.inputs["Emission Strength"].default_value = 3.3 if shot=="overclock" else .38 if shot=="recover" else 2.8
 s.world = bpy.data.worlds.new("High cyan overcast")
 s.world.use_nodes = True
 s.world.node_tree.nodes["Background"].inputs[0].default_value=(.24,.32,.39,1)
@@ -129,6 +148,11 @@ s.cycles.samples = 32
 s.cycles.use_denoising = False
 s.render.resolution_x, s.render.resolution_y = 1250, 800
 s.render.resolution_percentage = 100
+if shot != "court":
+    cam.location = (1.66, -1.50, 1.27)
+    point(cam, (.23, 1.87, .34))
+    cam.data.lens = 55
+    s.render.resolution_x, s.render.resolution_y = 860, 585
 s.render.image_settings.file_format = "WEBP"
 s.render.image_settings.quality = 90
 s.render.filepath = out
