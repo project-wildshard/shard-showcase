@@ -87,6 +87,34 @@ def build(phone, *, far=False, yard=False):
     if yard:
      steel=mat('Mite | scuffed steel pins',(.35,.402,.377),.76,.36)
      badge=mat('Mite | pale yard enamel',(.74,.65,.425),.2,.52)
+     # Shallow paint-loss inlays and a depot stencil move with the lid.
+     # Keep them quads/triangles so the Canvas renderer sees the same wear.
+     shade=mat('Mite | exposed dark primer',(.19,.116,.059),.18,.64)
+     pale=mat('Mite | worn depot stencil',(.55,.46,.266),.16,.62)
+     lid_z=.5943
+     grazes=[
+      (-.200,-.177,.046,.009,.017),(-.183,-.169,.031,.006,.012),
+      (.183,.164,.040,.009,-.014),(.143,.208,.030,.007,-.016),
+      (-.111,.215,.036,.008,.012),(.053,-.221,.021,.005,.009),
+      (.026,-.235,.017,.006,.009),(.097,.154,.014,.004,-.010),
+      (-.091,-.187,.022,.004,.006),(.205,-.136,.021,.006,-.011),
+     ]
+     for i,(x,y,w,h,dy) in enumerate(grazes):
+      mesh('Orange clamp paint-loss',[(x,y,lid_z),(x+w,y+dy,lid_z),
+           (x+w*.64,y+dy+h,lid_z),(x+w*.13,y+h*.47,lid_z)],[(0,1,2,3)],
+           (shade if i%3 else cast,))
+     # Narrow, short restraint rubs on the orange nose rather than random dots.
+     for x,z,w in [(-.111,.521,.030),(-.077,.518,.016),(.096,.558,.022),(.115,.555,.019),(.209,.514,.027)]:
+      mesh('Orange clamp nose abrasion',[(x,-.2755,z),(x+w,-.2755,z+.004),
+           (x+w*.39,-.2755,z+.008)],[(0,1,2)],(shade,))
+     for x,digit in [(-.044,'0'),(.007,'7')]:
+      lo,hi=x,x+.034
+      for segment in ({'0':'ABCDEF','7':'ABC'}[digit]):
+       xa,za,xb,zb={'A':(lo,.563,hi,.568),'B':(hi-.004,.546,hi,.565),
+        'C':(hi-.004,.527,hi,.544),'D':(lo,.526,hi,.531),
+        'E':(lo,.528,lo+.004,.545),'F':(lo,.547,lo+.004,.565)}[segment]
+       mesh('Orange clamp 07 depot stencil',[(xa,-.276,z) for z in (za,zb)]+
+            [(xb,-.276,z) for z in (zb,za)],[(3,2,1,0)],(pale,))
      # Browser hero: details remain rigidly weighted to the same seven bones.
      # Preserve the silhouette and gameplay bounds of the validated native rig.
      for sx in (-1,1):

@@ -14,7 +14,7 @@ async function rig(suffix){
 test('yard Mite upgrades geometry without changing the native rig contract',async()=>{
  const stock=await rig(''), far=await rig('-far'), hero=await rig('-yard')
  assert.equal(stock.triangles,386);assert.equal(far.triangles,138)
- assert.equal(hero.triangles,1734)
+ assert.equal(hero.triangles,1777)
  assert(hero.bytes<275000);assert.equal(hero.j.textures?.length??0,0)
  assert.deepEqual(hero.joints,stock.joints);assert.deepEqual(hero.clips,stock.clips)
  assert.equal(hero.joints.length,7);assert.equal(hero.clips.length,11)
