@@ -6,7 +6,10 @@ test('East 01 apron geometry is deterministic, flat and within budget',()=>{
  assert.deepEqual(a,createApron())
  assert.equal(a.filter(p=>p.style==='slab').length,48)
  const tris=a.reduce((n,p)=>n+p.points.length-2,0)
- assert(tris<=400)
+ assert(tris<=820)
+ assert.equal(a.filter(p=>p.style==='aggregate').length,126)
+ assert(a.filter(p=>p.style==='rubber').length>=25)
+ assert(a.filter(p=>p.style==='spall').every(p=>p.y<.003))
  for(const {points,y} of a){
   assert(Math.abs(y)<=.005)
   for(const [x,z] of points)assert(Math.abs(x)<=9&&Math.abs(z)<=11)
