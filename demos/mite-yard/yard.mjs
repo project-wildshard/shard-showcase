@@ -8,7 +8,7 @@ import {CONCRETE_SIZE,CONCRETE_METERS,concretePixels} from './concrete-surface.m
 import {createRearCladding} from './yard-cladding.mjs'
 import {YARD_SUN,shadowDelta,shadowFootprint} from './yard-light.mjs'
 import {createApron} from './yard-apron.mjs'
-import {createViewmodel,poseViewmodel,swordImpactPoint} from './viewmodel.mjs'
+import {createViewmodel,poseViewmodel,portraitRightCut,swordImpactPoint} from './viewmodel.mjs'
 const el=q=>document.querySelector(q)
 let view=el('#view')
 const status=el('#status'), enter=el('#enter'), reticle=el('#reticle')
@@ -199,7 +199,7 @@ for(let i=0;i<8;i++){
  const chip=box(sparks,sparkMat,.016,.016,.13,0,0,0)
  chip.castShadow=false
 }
-let game=createGame(),yaw=0,pitch=VIEW_PITCH,active=false,model,mix,action,eyeMat,oldPhase='',hurt=0,hit=0,keys=new Set(),swing=false,dodge=false,last=performance.now(),stickId,stickX=0,stickY=0,carry=0
+let game=createGame(),yaw=0,pitch=VIEW_PITCH,active=false,model,mix,action,eyeMat,oldPhase='',hurt=0,hit=0,keys=new Set(),swing=false,dodge=false,last=performance.now(),stickId,stickX=0,stickY=0,carry=0,rightCut=0
 const dodgeButton=el('#dodge')
 const stick=el('#stick'),thumb=el('#stick-thumb')
 function stopStick(){stickId=undefined;stickX=stickY=0;thumb.style.transform=''}
@@ -212,7 +212,7 @@ const setClip=(name,loop)=>{
  if(action)next.crossFadeFrom(action,name==='hit'?.035:.10,false);next.play();action=next
 }
 function reset(){
- game=createGame();yaw=0;pitch=VIEW_PITCH;oldPhase='';hurt=0;hit=0;swing=false;dodge=false;carry=0;stopStick();tell.visible=sparks.visible=false
+ game=createGame();yaw=0;pitch=VIEW_PITCH;oldPhase='';hurt=0;hit=0;swing=false;dodge=false;carry=0;stopStick();rightCut=0;tell.visible=sparks.visible=false
  mix?.stopAllAction();action=undefined;servo.visible=false
 }
 enter.disabled=true
@@ -283,6 +283,8 @@ function frame(now){
   let advanced=0
   while(carry>=1/60){
    step(game,{yaw,pitch,aspect:camera.aspect,forward,strafe,sprint:keys.has('shift'),attack:swing||keys.has(' '),dodge},1/60)
+   if(game.player.swing===SWORD_SWING.end&&game.player.swingTime===0)
+    rightCut=portraitRightCut(game.player,game.mite,camera.aspect)
    carry-=1/60;advanced+=1/60;swing=dodge=false
   }
   const p=game.player,m=game.mite
@@ -313,7 +315,7 @@ function frame(now){
   }
   const elapsed=p.swing?p.swingTime:SWORD_SWING.end
   const moving=Math.abs(forward)+Math.abs(strafe)>.15
-  poseViewmodel(handRig,elapsed,game.time,moving,camera.aspect)
+  poseViewmodel(handRig,elapsed,game.time,moving,camera.aspect,rightCut)
   if(eyeMat)eyeMat.emissiveIntensity=m.phase==='sleep'||m.phase==='die'?0:m.phase==='recover'?.38:m.phase==='windup'?(m.special?3.3:2.8)+.7*Math.sin(m.t*33):1.45
   mix.update(advanced)
   tell.visible=m.phase==='windup'

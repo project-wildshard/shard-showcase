@@ -1,5 +1,5 @@
 import * as T from 'three'
-import {SWORD_SWING,clamp} from './combat.mjs'
+import {SWORD_SWING,armorInView,clamp} from './combat.mjs'
 const material=(color,roughness,metalness=0)=>new T.MeshStandardMaterial({color,roughness,metalness})
 const poly=(v,indices,mats,groups)=>{
  const g=new T.BufferGeometry()
@@ -128,17 +128,36 @@ const keys=[
  [.238,[-.28,-.42,-.70,.91,.24,1.70]],
  [end,ready],
 ]
-export function swordPose(elapsed){
+const rightKeys=[
+ [0,ready],
+ [.072,[.39,-.39,-.68,.47,-.57,-1.02]],
+ [impact,[.217,-.36,-.76,.70,-.18,0]],
+ [.238,[-.145,-.43,-.70,.96,.10,1.25]],
+ [end,ready],
+]
+export function portraitRightCut(player,mite,aspect){
+ if(aspect>=.75||mite.phase==='die')return 0
+ const dx=mite.x-player.x,dz=mite.z-player.z
+ const ahead=dx*Math.sin(player.yaw)-dz*Math.cos(player.yaw)
+ const x=dx*Math.cos(player.yaw)+dz*Math.sin(player.yaw)
+ if(ahead<=0||x<=0||Math.hypot(x,ahead)>2.65||!armorInView(player,mite,aspect))return 0
+ return clamp((Math.atan2(x,ahead)-.10)/.20,0,1)
+}
+export function swordPose(elapsed,rightCut=0){
  const t=clamp(elapsed,0,end)
  if(t===end)return ready.slice()
  const last=keys.findIndex(k=>k[0]>=t)
  if(last<=0)return ready.slice()
  const [a,lo]=keys[last-1],[b,hi]=keys[last]
- const s=(t-a)/(b-a),fade=s*s*(3-2*s)
- return lo.map((v,i)=>v+(hi[i]-v)*fade)
+ const q=(t-a)/(b-a),fade=q*q*(3-2*q)
+ const mix=(u,v)=>u+(v-u)*fade
+ return lo.map((v,i)=>{
+  const original=mix(v,hi[i])
+  return original+(mix(rightKeys[last-1][1][i],rightKeys[last][1][i])-original)*rightCut
+ })
 }
-export function poseViewmodel(mesh,elapsed,clock=0,moving=false,aspect=1){
- const [x,y,z,rx,ry,rz]=swordPose(elapsed)
+export function poseViewmodel(mesh,elapsed,clock=0,moving=false,aspect=1,rightCut=0){
+ const [x,y,z,rx,ry,rz]=swordPose(elapsed,rightCut)
  const settled=elapsed<=0||elapsed>=end
  const framing=Math.min(1,aspect)
  const phone=Math.max(0,1-aspect/.86)
@@ -154,11 +173,11 @@ export function swordImpactPoint(player,mite,project){
  const dx=player.x-mite.x,dz=player.z-mite.z,dist=Math.hypot(dx,dz)||1
  const nx=dx/dist,nz=dz/dist
  const origin=[mite.x+nx*.23,.44,mite.z+nz*.23]
- const sp=project(origin)
- const weight=clamp((Math.abs(sp.x)-.48)/.44,0,1)
- if(!weight||sp.z<-1||sp.z>1)return origin
- const shift=-Math.sign(sp.x)*.31*weight
+ const {x:projectedX,z:projectedDepth}=project(origin)
+ const weight=clamp((Math.abs(projectedX)-.48)/.44,0,1)
+ if(!weight||projectedDepth<-1||projectedDepth>1)return origin
+ const shift=-Math.sign(projectedX)*.31*weight
  const shoulder=[origin[0]+nz*shift+nx*.085*weight,origin[1]+.145*weight,origin[2]-nx*shift+nz*.085*weight]
  const edge=project(shoulder)
- return Math.abs(edge.x)<Math.abs(sp.x)&&Math.abs(edge.y)<.98?shoulder:origin
+ return Math.abs(edge.x)<Math.abs(projectedX)&&Math.abs(edge.y)<.98?shoulder:origin
 }

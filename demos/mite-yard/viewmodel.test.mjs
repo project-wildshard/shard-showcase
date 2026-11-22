@@ -1,7 +1,7 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { PerspectiveCamera, Vector3 } from 'three'
-import { createViewmodel, poseViewmodel, swordImpactPoint, swordPose } from './viewmodel.mjs'
+import { createViewmodel, poseViewmodel, portraitRightCut, swordImpactPoint, swordPose } from './viewmodel.mjs'
 import { createGame, step, SWORD_SWING, cameraPose } from './combat.mjs'
 
 test('sword viewmodel is bounded, textured by materials alone, with no ready-pose overlap of the aim point',()=>{
@@ -64,7 +64,8 @@ test('edge impact moves onto visible shoulder while center and damage stay fixed
   const pose=cameraPose(p)
   camera.position.set(p.x,pose.height,p.z);camera.rotation.set(pose.pitch,-p.yaw,pose.roll,'YXZ')
   camera.updateMatrixWorld()
-  const project=v=>new Vector3(...v).project(camera)
+  const point=new Vector3()
+  const project=v=>point.set(...v).project(camera)
   const center=swordImpactPoint(p,m,()=>({x:0,z:.8}))
   const hit=swordImpactPoint(p,m,project)
   if(!a)assert.deepEqual(hit,center)
@@ -75,4 +76,21 @@ test('edge impact moves onto visible shoulder while center and damage stay fixed
   }
   assert.equal(m.hp,a===36?70:46)
  }
+})
+
+
+test('right-side portrait cut is latched as a visual variant; ready and normal timing stay fixed',()=>{
+ const g=createGame(),p=g.player,m=g.mite,aspect=402/874
+ Object.assign(p,{x:0,z:2})
+ const setup=degrees=>{
+  const a=degrees*Math.PI/180;Object.assign(m,{x:1.8*Math.sin(a),z:2-1.8*Math.cos(a),phase:'wake'})
+ }
+ setup(0);assert.equal(portraitRightCut(p,m,aspect),0)
+ setup(-19);assert.equal(portraitRightCut(p,m,aspect),0)
+ setup(19);assert.equal(portraitRightCut(p,m,aspect),1)
+ assert.equal(portraitRightCut(p,m,16/9),0)
+ const elapsed=SWORD_SWING.impact
+ assert(swordPose(elapsed,1)[5]<swordPose(elapsed)[5]-.8)
+ for(const t of [0,SWORD_SWING.end])assert.deepEqual(swordPose(t,1),swordPose(t))
+ setup(36);assert.equal(portraitRightCut(p,m,aspect),0)
 })
