@@ -110,6 +110,7 @@ function stageProp(url,placements,omit=[],dress){
    if(!renderer.isWebGLRenderer&&omit.includes(o.material?.name))o.visible=false
   })
   if(dress)dress(prop)
+  prop.traverse(o=>{if(o.isMesh)o.userData.canvasScenery=true})
   for(const p of placements){const copy=prop.clone();copy.position.set(...p);scene.add(copy)}
  })
 }

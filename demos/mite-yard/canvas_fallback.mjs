@@ -1,13 +1,26 @@
-import {Color,Vector3} from 'three'
+import {Box3,Color,Frustum,Matrix4,Vector3} from 'three'
 import {CONCRETE_SIZE,concretePixels,floorScanline} from './concrete-surface.mjs'
 import {YARD_SUN} from './yard-light.mjs'
 import {ARENA} from './combat.mjs'
 
+// Match the painter's four screen planes. It deliberately has no far clip.
+export function outsideScenery(bounds,frustum,corner){
+ if(bounds.isEmpty())return false
+ for(let i=0;i<4;i++){
+  const plane=frustum.planes[i],n=plane.normal
+  corner.set(n.x>=0?bounds.max.x:bounds.min.x,n.y>=0?bounds.max.y:bounds.min.y,n.z>=0?bounds.max.z:bounds.min.z)
+  if(plane.distanceToPoint(corner)<-.025)return true
+ }
+ return false
+}
+
 // Small painter's algorithm for devices without WebGL. It renders the same animated Three scene.
-export function canvasRenderer(canvas){
+export function canvasRenderer(canvas,{sceneryCull=true}={}){
  const ctx=canvas.getContext('2d',{alpha:false})
  if(!ctx)throw new Error('No usable canvas renderer')
  const shadowMap={}
+ const stats={culledMeshes:0,skippedTriangles:0,visitedTriangles:0,paintedTriangles:0}
+ const frustum=new Frustum(),projectionView=new Matrix4(),bounds=new Box3(),corner=new Vector3()
  const layer=canvas.ownerDocument.createElement('canvas'),layerCtx=layer.getContext('2d')
  const texture=concretePixels(true),mask=CONCRETE_SIZE-1
  let rasterGrain,lastGrainPose
@@ -46,6 +59,8 @@ export function canvasRenderer(canvas){
   const w=canvas.width,h=canvas.height
   ctx.fillStyle=scene.background.getStyle();ctx.fillRect(0,0,w,h)
   const list=[],near=.06,inv=camera.matrixWorldInverse,proj=camera.projectionMatrix.elements
+  stats.culledMeshes=stats.skippedTriangles=stats.visitedTriangles=stats.paintedTriangles=0
+  if(sceneryCull)frustum.setFromProjectionMatrix(projectionView.multiplyMatrices(camera.projectionMatrix,inv))
   const edge=(p,q)=>{
    const t=(-near-p.z)/(q.z-p.z)
    return new Vector3(p.x+(q.x-p.x)*t,p.y+(q.y-p.y)*t,-near)
@@ -100,6 +115,14 @@ export function canvasRenderer(canvas){
    if(!o.isMesh)return
    const geom=o.geometry,ps=geom.getAttribute('position'),idx=geom.index,colors=o.userData.verticalTint?geom.getAttribute('color'):null
    if(!ps)return
+   const count=idx?.count??ps.count
+   if(sceneryCull&&o.userData.canvasScenery&&o.frustumCulled&&!o.isSkinnedMesh&&!o.isInstancedMesh&&!geom.morphAttributes.position?.length){
+    if(!geom.boundingBox)geom.computeBoundingBox()
+    if(outsideScenery(bounds.copy(geom.boundingBox).applyMatrix4(o.matrixWorld),frustum,corner)){
+     stats.culledMeshes++;stats.skippedTriangles+=count/3;return
+    }
+   }
+   stats.visitedTriangles+=count/3
    if(o.isSkinnedMesh)o.skeleton.update()
    const world=[],local=[]
    for(let i=0;i<ps.count;i++){
@@ -108,7 +131,7 @@ export function canvasRenderer(canvas){
     const v=temp.clone().applyMatrix4(o.matrixWorld)
     world.push(v);local.push(v.clone().applyMatrix4(inv))
    }
-   for(let i=0;i<(idx?.count??ps.count);i+=3){
+   for(let i=0;i<count;i+=3){
     const ids=[i,i+1,i+2].map(j=>idx?idx.getX(j):j)
     const vs=ids.map(j=>local[j])
     if(vs.every(v=>v.z>-near))continue
@@ -145,6 +168,7 @@ export function canvasRenderer(canvas){
     list.push([o.userData.paintLayer!==undefined?-1e9+o.userData.paintLayer:depth,screen,style,m.transparent?m.opacity:1])
    }
   })
+  stats.paintedTriangles=list.length
   list.sort((p,q)=>p[0]-q[0])
   let painted=false
   for(const [order,v,style,alpha] of list){
@@ -156,5 +180,5 @@ export function canvasRenderer(canvas){
   }
   ctx.globalAlpha=1
  }
- return {shadowMap,render,setSize,getPixelRatio:()=>ratio,setPixelRatio:r=>{ratio=Math.min(1,r)}}
+ return {shadowMap,stats,render,setSize,getPixelRatio:()=>ratio,setPixelRatio:r=>{ratio=Math.min(1,r)}}
 }
