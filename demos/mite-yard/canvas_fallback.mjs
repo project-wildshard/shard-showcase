@@ -1,5 +1,6 @@
 import {Color,Vector3} from 'three'
 import {CONCRETE_SIZE,concretePixels,floorScanline} from './concrete-surface.mjs'
+import {YARD_SUN} from './yard-light.mjs'
 import {ARENA} from './combat.mjs'
 
 // Small painter's algorithm for devices without WebGL. It renders the same animated Three scene.
@@ -17,7 +18,7 @@ export function canvasRenderer(canvas){
  function setSize(w,h){canvas.width=Math.round(w*ratio);canvas.height=Math.round(h*ratio)}
  const temp=new Vector3(),a=new Vector3(),b=new Vector3()
  const eye=new Vector3(),center=new Vector3(),half=new Vector3()
- const light=new Vector3(-8,14,8).normalize()
+ const light=new Vector3(...YARD_SUN).normalize()
  const css=(m,normal,distance,cameraPosition,fog,tint)=>{
   if(m.isMeshBasicMaterial)return m.color.getStyle()
   const sun=Math.max(0,normal.dot(light))

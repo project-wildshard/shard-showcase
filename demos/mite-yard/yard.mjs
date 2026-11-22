@@ -6,6 +6,7 @@ import {CRATES,DOCK,GANTRY,GANTRY_FALLBACK_OMIT,GANTRY_PLAQUE,STACK} from './yar
 import {createTouchLook} from './touch-look.mjs'
 import {CONCRETE_SIZE,CONCRETE_METERS,concretePixels} from './concrete-surface.mjs'
 import {createRearCladding} from './yard-cladding.mjs'
+import {YARD_SUN,shadowDelta,shadowFootprint} from './yard-light.mjs'
 import {createApron} from './yard-apron.mjs'
 import {createViewmodel,poseViewmodel} from './viewmodel.mjs'
 const el=q=>document.querySelector(q)
@@ -25,7 +26,7 @@ renderer.shadowMap.type=THREE.PCFShadowMap
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x8cb8c3);scene.fog=new THREE.Fog(0x8cb8c3,23,48)
 const camera=new THREE.PerspectiveCamera(VIEW_FOV,1,.04,55);camera.rotation.order='YXZ';scene.add(camera)
 scene.add(new THREE.HemisphereLight(0xc8efff,0x91745e,2.3))
-const sun=new THREE.DirectionalLight(0xffd1a0,2.7);sun.position.set(-8,14,8);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-14,right:14,top:16,bottom:-16,near:.1,far:45});sun.shadow.bias=-.001;scene.add(sun)
+const sun=new THREE.DirectionalLight(0xffd1a0,2.7);sun.position.set(...YARD_SUN);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-14,right:14,top:16,bottom:-16,near:.1,far:45});sun.shadow.bias=-.001;scene.add(sun)
 const mat=(color,roughness=.68,metalness=0)=>new THREE.MeshStandardMaterial({color,roughness,metalness})
 const iron=mat(0x2a3d40,.56,.39),paint=mat(0x9e4a21,.62,.25),steel=mat(0xa0b2ad,.36,.65),sunwood=mat(0xa06938),leather=mat(0x39291d),warm=mat(0xe19a3b),pad=mat(0x42585a)
 function box(parent,m,w,h,d,x,y,z){
@@ -158,11 +159,30 @@ function footShadow(x,z,radiusX,radiusZ){
  }
  return g
 }
-let miteShadow
+// These two thin layers are a directional extension, not a second light
+// pass. Keep their world bearing fixed when the Mite turns. The real WebGL
+// shadow map needs neither these approximations nor the contact decals.
+function directionalShadow(x,z,height,radius){
+ const g=new THREE.Group(),points=shadowFootprint(height,radius),positions=[]
+ const [dx,dz]=shadowDelta(height),ang=Math.atan2(dz,dx),c=Math.cos(ang),s=Math.sin(ang)
+ for(let i=1;i<points.length-1;i++)
+  for(const [u,v] of [points[0],points[i+1],points[i]])positions.push(u*c-v*s,0,u*s+v*c)
+ const geom=new THREE.BufferGeometry()
+ geom.setAttribute('position',new THREE.Float32BufferAttribute(positions,3))
+ for(const [scale,opacity] of [[1.12,.11],[1,.17]]){
+  const o=new THREE.Mesh(geom,new THREE.MeshBasicMaterial({color:0x252d35,transparent:true,opacity}))
+  o.scale.set(scale,1,scale);o.userData.paintLayer=.0058+(1.12-scale)*.0001
+  o.userData.baseOpacity=opacity;g.add(o)
+ }
+ g.position.set(x,.007,z);scene.add(g);return g
+}
+let miteShadow,miteCast
 if(!renderer.isWebGLRenderer){
  miteShadow=footShadow(0,0,.43,.35)
+ miteCast=directionalShadow(0,0,.60,.41)
  footShadow(STACK.x-.065,STACK.z+.18,1.62,1.16)
  footShadow(DOCK.x+.09,DOCK.z+.12,1.42,1.39)
+ directionalShadow(DOCK.x,DOCK.z,.63,1.24)
  for(const x of [-2.92,2.92])footShadow(x+.08,GANTRY.z+.15,.75,.68)
 }
 // The cue is anchored to the locked attack heading, not to the moving camera.
@@ -272,6 +292,12 @@ function frame(now){
    miteShadow.position.set(m.x+.05,.007,m.z+.06)
    miteShadow.scale.setScalar(m.phase==='die'?1.24:m.phase==='lunge'?.91:1)
    miteShadow.rotation.y=m.yaw
+   miteCast.position.set(m.x,.007,m.z)
+   // Breakup settles on the slabs rather than keeping a tall silhouette.
+   miteCast.scale.setScalar(m.phase==='die'?.69:m.phase==='lunge'?.94:1)
+   const margin=Math.min(ARENA.width/2-Math.abs(m.x),ARENA.depth/2-Math.abs(m.z))
+   const fade=clamp((margin-.48)/.38,0,1)*(m.phase==='die'?.46:1)
+   for(const layer of miteCast.children)layer.material.opacity=layer.userData.baseOpacity*fade
   }
   const d=game.drop
   servo.visible=Boolean(d&&game.time>=d.readyAt)
@@ -324,7 +350,7 @@ function frame(now){
   if(status.textContent!==game.notice)status.textContent=game.notice
  }else if(model){
   camera.position.set(0,1.68,6.7);camera.rotation.x=-.20;model.position.set(game.mite.x,0,game.mite.z)
-  if(miteShadow)miteShadow.position.set(game.mite.x+.05,.007,game.mite.z+.06)
+  if(miteShadow){miteShadow.position.set(game.mite.x+.05,.007,game.mite.z+.06);miteCast.position.set(game.mite.x,.007,game.mite.z)}
   setClip('sleep',true);mix.update(dt)
  }
  renderer.render(scene,camera)
