@@ -52,3 +52,9 @@ The East 01 floor is an editable, deterministic 374-triangle patch layout
 (`yard-apron.mjs`), not a downloaded texture. Blender reads the same layout
 and applies its own material bump. Append `flat` for a matched render without
 the new surface. Render-only details add no collision or movement changes.
+
+The Yard 01 gantry reuses the existing road-gate GLB. Its two foot
+colliders match measured bounds. The center still stops at the rear
+yard boundary, not a passage to another district. Canvas2D leaves out
+the zinc fasteners and carbon gasket; WebGL uses the full asset. Append
+`gantry` to the Blender proof command for the matched scene placement.

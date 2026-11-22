@@ -1,5 +1,6 @@
-import {DOCK,STACK} from './yard-layout.mjs'
+import {DOCK,GANTRY_FEET,STACK} from './yard-layout.mjs'
 export const ARENA={width:18,depth:22,blocks:[[-6,-5,2.2,2.1],[STACK.x,STACK.z,STACK.width,STACK.depth],[-6,3,2.5,2],[5.8,2.5,2.2,2.2]]}
+const COVER=[...ARENA.blocks,...GANTRY_FEET]
 export const MITE_TIMING=Object.freeze({
  bite:Object.freeze({tell:18/30,charge:.30,total:36/30,speed:9.65,damage:23}),
  overclock:Object.freeze({tell:23/30,charge:.30,total:44/30,speed:11.7,damage:37}),
@@ -13,7 +14,7 @@ const length=(x,z)=>Math.hypot(x,z)
 function blocked(x,z,r=.28,sight=false){
  return Math.abs(x)>ARENA.width/2-r||Math.abs(z)>ARENA.depth/2-r||
  (!sight&&Math.abs(x-DOCK.x)<DOCK.width*.5+r&&Math.abs(z-DOCK.z)<DOCK.depth*.5+r)||
- ARENA.blocks.some(([u,v,w,d])=>Math.abs(x-u)<w*.5+r&&Math.abs(z-v)<d*.5+r)
+ COVER.some(([u,v,w,d])=>Math.abs(x-u)<w*.5+r&&Math.abs(z-v)<d*.5+r)
 }
 function move(a,x,z,r){
  if(!blocked(a.x+x,a.z,r))a.x+=x

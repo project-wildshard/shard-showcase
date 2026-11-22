@@ -82,3 +82,12 @@ for(const kind of ['bite','overclock'])test(kind+' can be dodged on reaction and
   assert.equal(e.hp,46);assert.equal(e.phase,'hit');assert.equal(p.hp,100)
  }
 })
+
+test('gantry feet stop movement without blocking the center approach',()=>{
+ const blocked=createGame();Object.assign(blocked.player,{x:2.92,z:-8.1,yaw:0})
+ advance(blocked,.9,{forward:1})
+ assert(blocked.player.z> -9.215&&blocked.player.z< -9)
+ const clear=createGame();Object.assign(clear.player,{x:0,z:-8.1,yaw:0})
+ advance(clear,.9,{forward:1})
+ assert(clear.player.z< -10.6&&clear.player.z>=-10.68)
+})

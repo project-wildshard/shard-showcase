@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
 import {canvasRenderer} from './canvas_fallback.mjs'
 import {ARENA,SWORD_SWING,clamp,createGame,step} from './combat.mjs'
-import {CRATES,DOCK,STACK} from './yard-layout.mjs'
+import {CRATES,DOCK,GANTRY,GANTRY_FALLBACK_OMIT,STACK} from './yard-layout.mjs'
 import {createApron} from './yard-apron.mjs'
 import {createViewmodel,poseViewmodel} from './viewmodel.mjs'
 const el=q=>document.querySelector(q)
@@ -56,15 +56,20 @@ for(let x=-8.75;x<9;x+=.36)box(scene,iron,.10,2.3,.105,x,1.48,-10.82)
 box(scene,paint,9,.12,.13,4.4,2.35,-10.67)
 box(scene,steel,9,.12,.13,4.4,.29,-10.67)
 const loadYard=new GLTFLoader()
-function stageProp(url,placements){
+function stageProp(url,placements,omit=[]){
  return loadYard.loadAsync(url).then(({scene:prop})=>{
-  prop.traverse(o=>{if(o.isMesh){o.castShadow=true;o.receiveShadow=true}})
+  prop.traverse(o=>{
+   if(!o.isMesh)return
+   o.castShadow=true;o.receiveShadow=true
+   if(!renderer.isWebGLRenderer&&omit.includes(o.material?.name))o.visible=false
+  })
   for(const p of placements){const copy=prop.clone();copy.position.set(...p);scene.add(copy)}
  })
 }
 const dressing=Promise.all([
  stageProp('./assets/dock.glb',[[DOCK.x,0,DOCK.z]]),
  stageProp('./assets/haul-crate.glb',CRATES),
+ stageProp('./assets/gantry.glb',[[GANTRY.x,0,GANTRY.z]],GANTRY_FALLBACK_OMIT),
 ]).then(()=>true,e=>{console.error(e);return false})
 // Base plate keeps the authored stack aligned to its existing cover volume.
 box(scene,iron,STACK.width,.065,STACK.depth,STACK.x,.033,STACK.z)

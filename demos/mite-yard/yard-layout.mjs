@@ -5,3 +5,10 @@ export const STACK=Object.freeze({x:6,z:-5,width:2.4,depth:2})
 export const CRATES=Object.freeze([
  [-.565,0,0],[.565,0,0],[-.56,.864,0],
 ].map(([x,y,z])=>Object.freeze([STACK.x+x,y,STACK.z+z])))
+
+// The recovered Yard 01 sign faces +Z. Only the two measured feet collide.
+export const GANTRY=Object.freeze({x:0,z:-10})
+export const GANTRY_FEET=Object.freeze([-2.92,2.92].map(x=>Object.freeze([
+ GANTRY.x+x,GANTRY.z,.91,.93,
+])))
+export const GANTRY_FALLBACK_OMIT=Object.freeze(['Worn zinc fasteners','Carbon gasket'])

@@ -15,16 +15,16 @@ from mathutils import Vector
 args = sys.argv[sys.argv.index("--") + 1:]
 out = str(Path(args[0]).resolve())
 shot = args[1] if len(args) > 1 else "court"
-if shot not in ("court", "flat", "bite", "overclock", "recover"):
+if shot not in ("court", "flat", "gantry", "bite", "overclock", "recover"):
     raise ValueError(f"Unknown proof shot: {shot}")
 repo = Path(__file__).resolve().parents[2]
 assets = repo / "public/assets/wildshard-art"
 source = """
 import {createApron} from './demos/mite-yard/yard-apron.mjs'
-import {DOCK, STACK, CRATES} from './demos/mite-yard/yard-layout.mjs'
+import {DOCK, STACK, CRATES, GANTRY} from './demos/mite-yard/yard-layout.mjs'
 import {ARENA,MITE_TIMING,createGame} from './demos/mite-yard/combat.mjs'
 const {player,mite}=createGame()
-console.log(JSON.stringify({DOCK,STACK,CRATES,ARENA,MITE_TIMING,player,mite,apron:createApron()}))
+console.log(JSON.stringify({DOCK,STACK,CRATES,GANTRY,ARENA,MITE_TIMING,player,mite,apron:createApron()}))
 """
 cfg = json.loads(subprocess.check_output(
     ["node", "--input-type=module", "-e", source], cwd=repo, text=True,
@@ -135,6 +135,8 @@ for y in [-z0-1.35,-z0+1.35]:
     for j in range(9):
         o=box("Dock perimeter", (x0+(j-4)*.272,y,.021), (.245,.14,.009), stripe if not j % 2 else plinth, 0)
         o.rotation_euler.z=-.38
+if shot == "gantry":
+    glb("wsc-module-018-road-gate-gantry.glb", cfg["GANTRY"]["x"], 0, cfg["GANTRY"]["z"])
 glb("wsc-prop-053-robot-dock.glb", x0,0,z0)
 for crate in cfg["CRATES"]:
     glb("haul-crate.glb", *crate)
@@ -151,11 +153,11 @@ for ob in added:
     if ob.type == "ARMATURE" and ob.animation_data:
         for track in ob.animation_data.nla_tracks:
             track.mute = True
-        name = "telegraph" if shot in ("court", "flat") else f"attack.{shot if shot != 'recover' else 'bite'}"
+        name = "telegraph" if shot in ("court", "flat", "gantry") else f"attack.{shot if shot != 'recover' else 'bite'}"
         ob.animation_data.action = next(a for a in bpy.data.actions if a.name in (name, f'{name}_{ob.name}'))
 tell = round(cfg["MITE_TIMING"].get(shot, cfg["MITE_TIMING"]["bite"])["tell"] * s.render.fps)
-s.frame_set(11 if shot in ("court", "flat") else 31 if shot == "recover" else tell - 1)
-if shot not in ("court", "flat"):
+s.frame_set(11 if shot in ("court", "flat", "gantry") else 31 if shot == "recover" else tell - 1)
+if shot not in ("court", "flat", "gantry"):
     for ob in added:
         if ob.type != "MESH":
             continue
@@ -178,13 +180,17 @@ s.collection.objects.link(cam)
 cam.location = (-2.15,-3.8,4.6)
 point(cam, (2.24, 4.5, .45))
 cam.data.lens = 31
+if shot == "gantry":
+    cam.location = (-1.3, -5.1, 2.45)
+    point(cam,(1.0,6.0,1.86))
+    cam.data.lens = 31
 s.camera = cam
 s.render.engine = "CYCLES"
 s.cycles.samples = 32
 s.cycles.use_denoising = False
 s.render.resolution_x, s.render.resolution_y = 1250, 800
 s.render.resolution_percentage = 100
-if shot not in ("court", "flat"):
+if shot not in ("court", "flat", "gantry"):
     cam.location = (1.66, -1.50, 1.27)
     point(cam, (.23, 1.87, .34))
     cam.data.lens = 55
