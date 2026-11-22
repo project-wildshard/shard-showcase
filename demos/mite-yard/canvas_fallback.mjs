@@ -1,10 +1,18 @@
 import {Vector3} from 'three'
+import {CONCRETE_SIZE,concretePixels,floorScanline} from './concrete-surface.mjs'
+import {ARENA} from './combat.mjs'
 
 // Small painter's algorithm for devices without WebGL. It renders the same animated Three scene.
 export function canvasRenderer(canvas){
  const ctx=canvas.getContext('2d',{alpha:false})
  if(!ctx)throw new Error('No usable canvas renderer')
  const shadowMap={}
+ const layer=canvas.ownerDocument.createElement('canvas'),layerCtx=layer.getContext('2d')
+ const texture=concretePixels(true),mask=CONCRETE_SIZE-1
+ let rasterGrain,lastGrainPose
+ const floor=[[-ARENA.width/2,-ARENA.depth/2],[ARENA.width/2,-ARENA.depth/2],
+  [ARENA.width/2,ARENA.depth/2],[-ARENA.width/2,ARENA.depth/2]]
+
  let ratio=1
  function setSize(w,h){canvas.width=Math.round(w*ratio);canvas.height=Math.round(h*ratio)}
  const temp=new Vector3(),a=new Vector3(),b=new Vector3()
@@ -48,6 +56,44 @@ export function canvasRenderer(canvas){
    }
    return buf
   }
+  const raster=p=>[w*(.5-p.x*proj[0]/p.z*.5),h*(.5+p.y*proj[5]/p.z*.5)]
+  const drawConcrete=()=>{
+   if(!layerCtx)return
+   const bounds=cut(floor.map(([x,z])=>new Vector3(x,0,z).applyMatrix4(inv))).map(raster)
+   if(bounds.length<3)return
+   const roll=camera.rotation.z
+   // Use fixed padding so dodge roll does not resize/reallocate mid-swing.
+   const margin=Math.ceil(.076*Math.max(w,h)),width=Math.ceil((w+2*margin)/2),height=Math.ceil((h+2*margin)/2)
+   if(!rasterGrain||layer.width!==width||layer.height!==height){
+    layer.width=width;layer.height=height;rasterGrain=layerCtx.createImageData(width,height);lastGrainPose=null
+   }
+   const sx=(w+2*margin)/width,sy=(h+2*margin)/height,acc=rasterGrain.data
+   const view={w,h,fx:proj[0],fy:proj[5],yaw:-camera.rotation.y,pitch:camera.rotation.x,x:eye.x,y:eye.y,z:eye.z}
+   const pose=[w,h,view.fx,view.fy,view.yaw,view.pitch,eye.x,eye.y,eye.z]
+   if(!lastGrainPose||pose.some((v,i)=>Math.abs(v-lastGrainPose[i])>.001)){
+    for(let row=0,i=3;row<height;row++){
+     const sample=floorScanline(view,(row+.5)*sy-margin)
+     if(!sample){
+      for(let j=0;j<width;j++,i+=4)acc[i]=0
+      continue
+     }
+     const {du,dv,opacity}=sample
+     let u=(sample.u+du*(sx*.5-margin))*4096,v=(sample.v+dv*(sx*.5-margin))*4096
+     const us=du*sx*4096,vs=dv*sx*4096
+     for(let j=0;j<width;j++,i+=4,u+=us,v+=vs){
+      acc[i]=texture[((((v>>12)&mask)*CONCRETE_SIZE+((u>>12)&mask))*4)+3]*opacity
+     }
+    }
+    layerCtx.putImageData(rasterGrain,0,0);lastGrainPose=pose
+   }
+   ctx.save();ctx.beginPath();ctx.moveTo(...bounds[0])
+   for(let j=1;j<bounds.length;j++)ctx.lineTo(...bounds[j])
+   ctx.closePath();ctx.clip()
+   ctx.translate(w/2,h/2);ctx.rotate(roll);ctx.translate(-w/2,-h/2)
+   ctx.globalAlpha=1
+   ctx.drawImage(layer,-margin,-margin,w+2*margin,h+2*margin)
+   ctx.restore()
+  }
   scene.traverseVisible(o=>{
    if(!o.isMesh)return
    const geom=o.geometry,ps=geom.getAttribute('position'),idx=geom.index
@@ -66,7 +112,7 @@ export function canvasRenderer(canvas){
     if(vs.every(v=>v.z>-near))continue
     const clipped=vs.every(v=>v.z<=-near)?vs:cut(vs)
     if(clipped.length<3)continue
-    const screen=clipped.map(p=>[w*(.5-p.x*proj[0]/p.z*.5),h*(.5+p.y*proj[5]/p.z*.5)])
+    const screen=clipped.map(raster)
     if([0,1].some(d=>screen.every(p=>p[d]<0)||screen.every(p=>p[d]>(d===0?w:h))))continue
     let m=o.material
     if(Array.isArray(m))m=m[geom.groups.find(g=>i>=g.start&&i<g.start+g.count)?.materialIndex??0]
@@ -78,7 +124,10 @@ export function canvasRenderer(canvas){
    }
   })
   list.sort((p,q)=>p[0]-q[0])
-  for(const [_,v,style,alpha] of list){
+  let painted=false
+  for(const [order,v,style,alpha] of list){
+   // Texture the base before lane paint, spalls, occlusion, and actors.
+   if(!painted&&order>-1e9){drawConcrete();painted=true}
    ctx.globalAlpha=alpha
    ctx.fillStyle=style;ctx.strokeStyle=style;ctx.lineWidth=.61
    ctx.beginPath();ctx.moveTo(...v[0]);for(let i=1;i<v.length;i++)ctx.lineTo(...v[i]);ctx.closePath();ctx.fill();if(alpha===1)ctx.stroke()

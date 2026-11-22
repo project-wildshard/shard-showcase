@@ -4,6 +4,7 @@ import {canvasRenderer} from './canvas_fallback.mjs'
 import {ARENA,VIEW_FOV,VIEW_PITCH,MITE_TIMING,SWORD_SWING,cameraPose,clamp,createGame,step} from './combat.mjs'
 import {CRATES,DOCK,GANTRY,GANTRY_FALLBACK_OMIT,STACK} from './yard-layout.mjs'
 import {createTouchLook} from './touch-look.mjs'
+import {CONCRETE_SIZE,CONCRETE_METERS,concretePixels} from './concrete-surface.mjs'
 import {createApron} from './yard-apron.mjs'
 import {createViewmodel,poseViewmodel} from './viewmodel.mjs'
 const el=q=>document.querySelector(q)
@@ -29,6 +30,13 @@ const iron=mat(0x2a3d40,.56,.39),paint=mat(0x9e4a21,.62,.25),steel=mat(0xa0b2ad,
 function box(parent,m,w,h,d,x,y,z){
  const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;parent.add(o);return o
 }
+const concrete=renderer.isWebGLRenderer?new THREE.DataTexture(concretePixels(),CONCRETE_SIZE,CONCRETE_SIZE):null
+if(concrete){
+ concrete.colorSpace=THREE.SRGBColorSpace
+ concrete.wrapS=concrete.wrapT=THREE.RepeatWrapping
+ concrete.generateMipmaps=true;concrete.minFilter=THREE.LinearMipmapLinearFilter;concrete.magFilter=THREE.LinearFilter
+ concrete.anisotropy=Math.min(4,renderer.capabilities.getMaxAnisotropy());concrete.needsUpdate=true
+}
 const apronGroups=new Map()
 for(const patch of createApron()){
  const key=patch.style+':'+patch.color+':'+patch.y
@@ -46,6 +54,11 @@ for(const {patch,positions} of apronGroups.values()){
  g.computeVertexNormals()
  const isMetal=patch.style==='metal'
  const m=new THREE.Mesh(g,mat(patch.color,isMetal?.48:.79,isMetal?.46:0))
+ if(concrete&&patch.style==='slab'){
+  const uv=[]
+  for(let i=0;i<positions.length;i+=3)uv.push(positions[i]/CONCRETE_METERS,positions[i+2]/CONCRETE_METERS)
+  g.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));m.material.map=concrete
+ }
  m.receiveShadow=true;m.userData.paintLayer=patch.y
  scene.add(m)
 }
