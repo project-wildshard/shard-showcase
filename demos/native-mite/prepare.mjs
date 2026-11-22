@@ -79,18 +79,27 @@ const base=spawns.spawns.find(s=>s.id==='grey-blob:1');assert(base)
 const brain=spawns.brains.find(b=>b.id===base.brain);assert(brain.kind==='pursue')
 spawns.brains.push({...brain,id:'mite-pursuit',awareRadius:18,leashRadius:30,speed:2,stopDistance:1.35})
 Object.assign(base,{id:'crate-mite:1',species:'crate-mite',variant:'yard',brain:'mite-pursuit',strike:'crate-mite.bite',respawn:90})
+// Keep the nearby proof corridor free of unrelated grey-blob attacks.
+spawns.spawns=spawns.spawns.filter(s=>s.id!=='grey-blob:2'&&s.id!=='grey-blob:3')
 await write(d('creatures'),spawns)
 const species=await load(d('rows/species')),grey=species.find(s=>s.id==='grey-blob');assert(grey)
 species.push({...grey,id:'crate-mite',label:'Crate Mite',
  dims:{...grey.dims,bodyY:.32,bodyHalfLen:.28,bodyRadius:.29,headRadius:.13,legLen:.24,halfWidth:.36},
+ temperament:{brain:'mite-pursuit',reaction:'aggressive',leash:30,assist:0,home:{speed:2,stop:1.35}},
+ senses:{notice:18},
+ presentation:{blood:false,sounds:{}},
+ abilities:[
+  {use:'crate-mite.bite',range:[0,2.35],cooldown:1.2,weight:2,clip:'attack.bite',tell:'lane'},
+  {use:'crate-mite.overclock',range:[1.3,3.1],cooldown:3,weight:1,clip:'attack.overclock',tell:'lane'}
+ ],
  variants:[{...grey.variants[0],id:'yard',label:'Crate Mite',hp:70}]})
 await write(d('rows/species'),species)
 const strikes=await load(d('rows/strikes'))
 const lane=strikes.find(s=>s.id==='template.blob.lane');assert(lane)
 strikes.push({...lane,id:'crate-mite.bite',shape:{kind:'lane',length:3,width:1.05},
- windup:.6,active:.22,recover:.38,cooldown:1,range:2.7,damage:14,speed:8})
+ tags:['creature.crateMite'],windup:.6,active:.22,recover:.38,cooldown:1,range:2.7,damage:14,speed:8})
 strikes.push({...lane,id:'crate-mite.overclock',shape:{kind:'lane',length:3.55,width:1.18},
- windup:23/30,active:.22,recover:.48,cooldown:2,range:3.1,damage:22,speed:10})
+ tags:['creature.crateMite'],windup:23/30,active:.22,recover:.48,cooldown:2,range:3.1,damage:22,speed:10})
 await write(d('rows/strikes'),strikes)
 const oldlook=await load(d('look'));Object.assign(oldlook.materials,materials);await write(d('look'),oldlook)
 const skins=await load(d('skins'));skins.push({species:row.id,look:look.id,skin,glb:file,files})

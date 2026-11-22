@@ -12,7 +12,7 @@ From the repository root with its pinned dependencies installed:
 scratch="$PWD/tmp/mite-native"
 mkdir -p "$scratch/home"
 node demos/native-mite/prepare.mjs "$scratch/mite-calibration"
-HOME="$scratch/home" node_modules/.bin/wildshard build "$scratch/mite-calibration" "$scratch/product/mite-calibration"
+HOME="$scratch/home" node_modules/.bin/wildshard build "$scratch/mite-calibration" "$scratch/product/mite-calibration" --folder-only
 HOME="$scratch/home" node_modules/.bin/wildshard validate "$scratch/product/mite-calibration"
 ```
 
@@ -23,8 +23,19 @@ dependency root when its dependencies are separate from this checkout.
 The recipe runs the native skin byte-admission validator, checks all seven
 mapped materials (including the cyan eye), publishes content-addressed skin
 and GLB bytes into the scratch template, and configures native walk, bite,
-hit and die state mappings. The pinned pursue row selects only one strike;
-the overclock clip is mapped but this particular spawn does not select it.
-Separate turn, sleep and wake clips remain available in the source rig, but
-are not declared as unsupported native animation states. This is not a release
-or device benchmark.
+hit and die state mappings. The native temperament explicitly binds the bite and overclock abilities;
+their unique actor tag avoids inheriting stock template strikes. Separate
+turn, sleep and wake clips are available in the rig but not registered as
+unsupported native animation states.
+
+After building, run the pinned engine's headless check:
+
+```sh
+HOME="$scratch/home" node --experimental-transform-types \
+  demos/native-mite/check-native-pursuit.mjs "$scratch/product/mite-calibration"
+```
+
+The run must observe walking into range, both named strikes winding up and
+landing, and actual player damage. It does not prove native sword hits,
+browser graphics, client animation selection, or iPhone performance. This
+isolated calibration product is not a game release.
