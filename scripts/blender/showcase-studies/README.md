@@ -45,3 +45,10 @@ settles. The recipe computes final ground contact from the rigid mesh,
 not joint heights. It keeps the same mesh, weights, seven joints and clip
 IDs. The loader test checks the separated lid, debris width, six grounded
 modules and eye shutoff on the exported animation.
+
+For the far LOD, append `--far` after the output directory. This emits
+`wsc-actor-001-crate-mite-rig-far.glb` and a separate editable .blend.
+Pass `--far` after the GLB path when running the loader test too. This version
+uses 138 triangles (versus 386 for the phone rig), keeps the cyan eye,
+chamfered silhouette and four independently skinned legs, and runs all
+eleven clips. It is an alternate export, not yet a runtime distance switch.

@@ -4,11 +4,17 @@ import math,sys
 import bpy
 from mathutils import Quaternion,Vector
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from common import output_directory
 from crate_mite import build
 
-out=output_directory()
-parts=build(True)
+def variant_args(argv):
+    args=argv[argv.index('--')+1:] if '--' in argv else []
+    if len(args)==1:return Path(args[0]).expanduser().resolve(),False
+    if len(args)==2 and args[1]=='--far':return Path(args[0]).expanduser().resolve(),True
+    raise SystemExit('Pass an output directory and optionally --far after --.')
+
+out,far=variant_args(sys.argv)
+out.mkdir(parents=True,exist_ok=True)
+parts=build(True,far=far)
 bpy.ops.object.select_all(action="DESELECT")
 for ob in parts:
     label=ob.name
@@ -126,11 +132,12 @@ s.frame_set(0)
 bpy.ops.object.select_all(action='DESELECT')
 for ob in (mesh,rig):ob.select_set(True)
 bpy.context.view_layer.objects.active=rig
-bpy.ops.export_scene.gltf(filepath=str(out/'wsc-actor-001-crate-mite-rig.glb'),
+suffix='-far' if far else ''
+bpy.ops.export_scene.gltf(filepath=str(out/f'wsc-actor-001-crate-mite-rig{suffix}.glb'),
     export_format='GLB',use_selection=True,export_animations=True,
     export_animation_mode='NLA_TRACKS',export_frame_range=False,
     export_force_sampling=True,export_optimize_animation_size=True)
 for track in rig.animation_data.nla_tracks:track.mute=track.name!='idle'
 s.frame_set(0)
-bpy.ops.wm.save_as_mainfile(filepath=str(out/'crate-mite-rig-edit.blend'),compress=True)
+bpy.ops.wm.save_as_mainfile(filepath=str(out/f'crate-mite-rig{suffix}-edit.blend'),compress=True)
 print('Skin export and editable source complete',flush=True)

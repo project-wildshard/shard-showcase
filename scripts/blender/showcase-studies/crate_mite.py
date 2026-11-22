@@ -5,7 +5,7 @@ from mathutils import Vector
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from common import output_directory,clear_scene,export
 
-def build(phone):
+def build(phone, *, far=False):
     clear_scene()
     bpy.data.orphans_purge(do_recursive=True)
     s=bpy.context.scene
@@ -45,6 +45,29 @@ def build(phone):
        faces.append((j*n+i,j*n+(i+1)%n,(j+1)*n+(i+1)%n,(j+1)*n+i));idx.append(m)
      if cap is not None:faces.append(tuple(range((len(profile)-1)*n,len(profile)*n)));idx.append(cap)
      o=mesh(name,verts,faces,mats,idx);o.location=center;return o
+    if far:
+     # Preserve the chamfered crate and its lid seam. Fuse each collar, strut
+     # and foot into a single wedge, with no textures or new rig joints.
+     box('Single canted-wall crate shell',0,0,.361,.56,.51,.27,.049,lava,edge)
+     box('Orange clamp lid',0,0,.535,.60,.55,.123,.061,lava,cast)
+     box('Rigid charcoal bumper',0,0,.239,.568,.517,.073,0,lock)
+     for sx in (-1,1):
+      for sy in (-1,1):
+       x=sx*.238;y=sy*.172
+       # The lower rectangle is wider and offset out from the upper joint.
+       # Build in local space so the skinner still deduces the four leg slots.
+       v=[(sx*.061+dx*.075,sy*.021+dy*.073,-.226)
+          for dx,dy in ((-1,-1),(1,-1),(1,1),(-1,1))]
+       v += [(dx*.055,dy*.058,.019)
+             for dx,dy in ((-1,-1),(1,-1),(1,1),(-1,1))]
+       f=[(3,2,1,0),(4,5,6,7),(0,1,5,4),(1,2,6,5),(2,3,7,6),(3,0,4,7)]
+       o=mesh('Angled pressure leg and foot',v,f,(cast,rubber),[1,0,0,1 if sx>0 else 0,0,1 if sx<0 else 0])
+       o.location=(x,y,.23)
+     ring('Sealed octagonal eye stack',(0,-.255,.365),
+          [(.112,0),(.081,-.032)],8,(eye_matte,eye),[0],1)
+     bpy.context.view_layer.update()
+     assert sum(len(f.vertices)-2 for o in parts for f in o.data.polygons)==138
+     return parts
     # One 0.6m crate; mechanical gussets are trim geometry rather than texture.
     box('Single canted-wall crate shell',0,0,.361,.56,.51,.27,.049,lava,edge)
     box('Orange clamp lid',0,0,.543,.60,.55,.101,.061,lava,cast if phone else edge)
