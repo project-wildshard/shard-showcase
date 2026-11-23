@@ -1,0 +1,18 @@
+{
+  "asset_id": "WSC-SCENE-005",
+  "intent": "Art swatches from the six historical East portraits; editorial names and fitted composition, not map geometry",
+  "archive": {
+    "repository": "Raynos/project-wildshard-singleplayer",
+    "ref": "8c56c4616b2bc26dbd9da03945dfd340e875ecce",
+    "directory": "art/showcase-template/round-11-remaster/east"
+  },
+  "common_dock": ["wsc-prop-053-robot-dock.glb", "24550d532c55a98de78abd2df3c1adde9885554242e2be7ecff625ecb9ddafac"],
+  "cards": [
+    {"ref":"e01.jpg","name":"Crate yard","tone":[0.39,0.29,0.19],"pattern":"limestone","marks":"ochre","donor":["wsc-prop-009-stacked-pallets.glb","65c4445da8e7b3faf5f860b3280fb191646fb6951deeb9a950aea9eaa87e2ace"]},
+    {"ref":"e02.jpg","name":"Pallet court","tone":[0.31,0.22,0.13],"pattern":"earth","marks":"skip","donor":["wsc-module-020-corrugated-yard-wall.glb","b91f2dd3ccfebab574f5dfb682db6bfc04ea4bd1a2d56e53482e2a219bc52153"]},
+    {"ref":"e03.jpg","name":"Dock lane","tone":[0.37,0.32,0.23],"pattern":"limestone","marks":"pale","donor":["wsc-module-018-road-gate-gantry.glb","3628104623aafd3bd8e6de5b94f4a3f26a949d37c39ee1cc301eafb43824d555"]},
+    {"ref":"e04.jpg","name":"Foundry","tone":[0.45,0.124,0.065],"pattern":"brick","marks":"skip","donor":["wsc-prop-057-foundry-furnace.glb","0c47183c8f38699661f527d01b8e85a4891e03ec898cabd028b07568e32b8530"]},
+    {"ref":"e05.jpg","name":"Stealth yard","tone":[0.16,0.18,0.17],"pattern":"slab","marks":"ochre","donor":["wsc-prop-058-shipping-container.glb","8bd1c2bca075256315a8bf5a76b5da489b3e42fca0def63d06088031695232af"]},
+    {"ref":"e06.jpg","name":"Red court","tone":[0.49,0.143,0.114],"pattern":"coat","marks":"curve","donor":["wsc-prop-067-low-segmented-metal-barrier.glb","81c87f4b6bc1c792929fd2af0ef50251675c69a8e9ce9fedf3951f32dd648eb7"]}
+  ]
+}
