@@ -14,7 +14,7 @@ h1{font-size:clamp(30px,8.65vw,48px);letter-spacing:-.06em;line-height:1;margin:
 .switcher button:hover{background:#303f3d}.switcher button[aria-pressed=true]{background:#423726;border-color:#d18847;color:#ffe1aa;box-shadow:inset 0 -2px #eeb66c}
 svg{stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .switcher button svg{width:17px;height:17px;flex:none}
-.view{--mode:#89ddd5;position:relative;isolation:isolate;overflow:hidden;height:clamp(450px, calc(100svh - 247px),680px);background:#263b42;border:1px solid #536065;border-radius:13px;box-shadow:0 10px 26px #0006}
+.view{--mode:#89ddd5;position:relative;isolation:isolate;overflow:hidden;height:clamp(375px, calc(100svh - 310px),680px);background:#263b42;border:1px solid #536065;border-radius:13px;box-shadow:0 10px 26px #0006}
 .view[data-mode=quest]{--photo:url("../media/nov23-east-shadow-pools-on.jpg");--pos:59% 50%;--mode:#f2d17a}
 .view[data-mode=vault]{--photo:url("../media/nov23-vault-03-entry.jpg");--pos:53% 65%;--mode:#9de5e3}
 .view[data-mode=course]{--photo:url("../media/nov23-riding-mounted-height.jpg");--pos:50% 45%;--mode:#a3dac9}
