@@ -1,0 +1,103 @@
+{
+  "catalogue_id": "WSC-KIT-003",
+  "scene_support_id": "WSC-SCENE-003",
+  "scope": "Static W5a reuse proof; no route eligibility, collision, traversal, scoring or performance.",
+  "source": "scripts/blender/west-hover/assemble.py from tracked build",
+  "coordinates": "Blender x,y,z metres. World glTF x,z,-y.",
+  "assets": {
+    "bowl": {
+      "source_object": "HOVER | 24m bowl lip centered on source",
+      "file": "wsc-kit-003-hover-bowl-24m.glb",
+      "origin_blender_world_m": [
+        -212,
+        -216,
+        0
+      ],
+      "triangles": 1344,
+      "removed_zero_area_triangles": 64,
+      "raw_bytes": 73184,
+      "local_bounds_blender_m": [
+        [
+          -12.449997,
+          -12.449997,
+          0.005
+        ],
+        [
+          12.449997,
+          12.449997,
+          3.5
+        ]
+      ]
+    },
+    "funbox": {
+      "source_object": "HOVER | four-ramp funbox",
+      "file": "wsc-kit-003-hover-funbox.glb",
+      "origin_blender_world_m": [
+        -145,
+        -206,
+        0
+      ],
+      "triangles": 28,
+      "removed_zero_area_triangles": 0,
+      "raw_bytes": 3440,
+      "local_bounds_blender_m": [
+        [
+          -10.0,
+          -10.0,
+          0.0
+        ],
+        [
+          10.0,
+          10.0,
+          1.8
+        ]
+      ]
+    },
+    "quarter": {
+      "source_object": "HOVER | quarter pipe -122",
+      "file": "wsc-kit-003-hover-quarter-pipe.glb",
+      "origin_blender_world_m": [
+        -122,
+        -206,
+        0
+      ],
+      "triangles": 92,
+      "removed_zero_area_triangles": 2,
+      "raw_bytes": 7100,
+      "local_bounds_blender_m": [
+        [
+          0.0,
+          -7.0,
+          0.0
+        ],
+        [
+          6.055,
+          7.0,
+          5.047631
+        ]
+      ]
+    }
+  },
+  "design_bowl_place": [
+    -212,
+    -216,
+    0
+  ],
+  "nominal_inner_bowl_lip_diameter_m": 24,
+  "bowl_outer_diameter_m": 24.9,
+  "bowl_lip_z_m": 3.5,
+  "bowl_floor_z_m": 0.02,
+  "funbox_platform_m": [
+    10,
+    10,
+    1.8
+  ],
+  "quarter_pipe_count_in_scene": 2,
+  "quarter_second_world_blender_xyz": [
+    -168,
+    -206,
+    0
+  ],
+  "quarter_second_yaw_deg": 180,
+  "total_geometry_bytes": 83724
+}
