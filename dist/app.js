@@ -13,8 +13,27 @@ for(const a of DATA.assets.filter(a=>a.concept)){
 }
 ConceptAngles.mountRails();
 options('types',DATA.assets.map(x=>x.class));
-function rows(reveal){const q=el('query').value.trim().toLowerCase(), t=el('types').value; const list=DATA.assets.filter(a=>a.id===reveal||((!t||a.class===t)&&[a.id,a.name,a.evidence,a.reuse_or_open_edge].join(' ').toLowerCase().includes(q)));el('hits').textContent=list.length+' matching entries';const f=document.createDocumentFragment();for(const a of list){const d=node('details','',f);d.className='row';d.id='asset-'+a.id;const s=node('summary','',d);node('span',a.id,s);node('strong',a.name,s);node('p',[a.class,a.priority,a.status.replaceAll('-',' ')].join(' · '),d);node('p','Evidence: '+a.evidence,d);node('p',a.reuse_or_open_edge,d);if(ConceptAngles.available(a))ConceptAngles.rowButton(d,a);if(a.concept){const l=node('a','View concept board',d);l.href=a.concept}if(a.plan_studies){const line=node('p','',d);const l=node('a','View the three illustrated plan studies',line);l.href=a.plan_studies}if(a.reference_preview){const line=node('p','',d);const l=node('a','View original reference and observations',line);l.href=a.reference_preview}if(a.model_preview){const line=node('p','',d);const l=node('a','View Blender art candidate',line);l.href=a.model_preview}}el('rows').replaceChildren(f)}
-el('query').addEventListener('input',rows);el('types').addEventListener('change',rows);rows();
+const hasStudy=a=>Boolean(a.model_preview);
+const previewCounts={
+ all:DATA.assets.length,
+ linked:DATA.assets.filter(hasStudy).length
+};
+previewCounts.unlinked=previewCounts.all-previewCounts.linked;
+for(const o of el('previews').options){
+ o.textContent+=` (${previewCounts[o.value]})`;
+}
+function rows(reveal){
+ const q=el('query').value.trim().toLowerCase(),t=el('types').value,p=el('previews').value;
+ const matches=DATA.assets.filter(a=>(!t||a.class===t)
+  &&(p==='all'||hasStudy(a)===(p==='linked'))
+  &&[a.id,a.name,a.evidence,a.reuse_or_open_edge].join(' ').toLowerCase().includes(q));
+ const linked=reveal&&DATA.assets.find(a=>a.id===reveal);
+ const outside=Boolean(linked&&!matches.includes(linked));
+ const visible=outside?[linked,...matches]:matches;
+ el('hits').textContent=`${matches.length} matching ${matches.length===1?'entry':'entries'}${outside?' · plus linked entry outside filters':''}`;
+ const f=document.createDocumentFragment();for(const a of visible){const d=node('details','',f);d.className='row';d.id='asset-'+a.id;const s=node('summary','',d);node('span',a.id,s);node('strong',a.name,s);node('p',[a.class,a.priority,a.status.replaceAll('-',' ')].join(' · '),d);node('p','Evidence: '+a.evidence,d);node('p',a.reuse_or_open_edge,d);if(ConceptAngles.available(a))ConceptAngles.rowButton(d,a);if(a.concept){const l=node('a','View concept board',d);l.href=a.concept}if(a.plan_studies){const line=node('p','',d);const l=node('a','View the three illustrated plan studies',line);l.href=a.plan_studies}if(a.reference_preview){const line=node('p','',d);const l=node('a','View original reference and observations',line);l.href=a.reference_preview}if(a.model_preview){const line=node('p','',d);const l=node('a','View study',line);l.href=a.model_preview}}el('rows').replaceChildren(f)}
+for(const [id,event] of [['query','input'],['types','change'],['previews','change']])el(id).addEventListener(event,()=>rows());
+rows();
 options('groups',DATA.refs.map(r=>r.cat));let shown=0;
 function refs(reset){if(reset){shown=0;el('thumbs').replaceChildren()}const pick=el('groups').value;const list=DATA.refs.filter(r=>!pick||r.cat===pick);for(const r of list.slice(shown,shown+30)){const a=node('button','',el('thumbs'));a.type='button';a.addEventListener('click',()=>detail(r));const i=node('img','',a);i.src=r.img;i.loading='lazy';i.alt=r.name;node('small',r.name+' · '+r.cat,a)}shown+=30;el('more').hidden=shown>=list.length}
 el('groups').addEventListener('change',()=>refs(true));el('more').addEventListener('click',()=>refs(false));refs(true);
