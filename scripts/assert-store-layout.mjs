@@ -1,17 +1,23 @@
-// J230: prove the real pinned/candidate install uses the global store.
+// GVS G9 (J230): prove the real install uses pnpm's global virtual store.
+// CI runs it right after `pnpm install --config.ci=false`: pnpm turns the
+// store off whenever ci is true, so a kit sync must never undo the layout.
+// A repo with more to prove (engine's own deps, an ambient sharp) keeps its
+// own copy; the sync reports that as diverged and leaves it alone.
 import assert from 'node:assert/strict';
-import {createRequire} from 'node:module';
-import {readFileSync,realpathSync} from 'node:fs';
-import {resolve,sep} from 'node:path';
-if(process.env.GITHUB_ACTIONS==='true')assert.equal(process.env.CI,'true','Hosted runner must retain CI');
-const metadata=JSON.parse(readFileSync('node_modules/.modules.yaml','utf8'));
-const store=realpathSync(metadata.storeDir),links=realpathSync(resolve('node_modules',metadata.virtualStoreDir));
-assert.equal(links,resolve(store,'links'),'Expected the global virtual store');
-const pkg=JSON.parse(readFileSync('package.json','utf8'));
-const roots=Object.keys({...pkg.dependencies,...pkg.devDependencies});
-for(const name of roots){const slot=realpathSync(resolve('node_modules',name));assert.ok(slot.startsWith(links+sep),`${name} reached outside the installed store`);}
-const fromEngine=createRequire(new URL('./scripts/app-build/worldMapAtlas.ts',import.meta.resolve('@wildshard/engine/package.json')));
-for(const name of ['vite','@typescript/typescript6']){const slot=realpathSync(fromEngine.resolve(name));assert.ok(slot.startsWith(links+sep),`Engine ${name} reached outside the installed store`);}
-const engineSharp=realpathSync(fromEngine.resolve('sharp'));
-assert.ok(engineSharp.startsWith(links+sep),'Engine app builder reached an ambient Sharp');
-console.log(`global-store-layout ${JSON.stringify({store,links,declaredRoots:roots.length,engineSharp,runnerCi:process.env.CI})}`);
+import { readFileSync, realpathSync } from 'node:fs';
+import { resolve, sep } from 'node:path';
+
+if (process.env.GITHUB_ACTIONS === 'true') assert.equal(process.env.CI, 'true', 'Hosted runner must retain CI');
+const modules = JSON.parse(readFileSync('node_modules/.modules.yaml', 'utf8'));
+assert.equal(typeof modules.storeDir, 'string');
+assert.equal(typeof modules.virtualStoreDir, 'string');
+const store = realpathSync(modules.storeDir);
+const links = realpathSync(resolve('node_modules', modules.virtualStoreDir));
+assert.equal(links, resolve(store, 'links'), 'The installer selected a checkout-local virtual store');
+const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+const roots = Object.keys({ ...pkg.dependencies, ...pkg.devDependencies });
+for (const name of roots) {
+  const slot = realpathSync(resolve('node_modules', name));
+  assert.ok(slot.startsWith(links + sep), `${name} reached outside the installed store`);
+}
+console.log(`global-store-layout ${JSON.stringify({ store, links, declaredRoots: roots.length, runnerCi: process.env.CI })}`);
