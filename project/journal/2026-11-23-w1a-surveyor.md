@@ -13,7 +13,8 @@ oriented triangles, weights, inverse binds, joint order and animation
 samplers after decode. It does not quantize the positions. The packed
 129,432-byte download is below the catalogue's proposed 180,000 bytes.
 There is one mesh, one primitive/material, 3,920 triangles and one
-3-second `Idle_Studio` loop. The GLB requires a Meshopt decoder;
+3-second idle loop. The Blender action is `Idle_Studio`; the exported GLB
+clip is named `Animation`. The GLB requires a Meshopt decoder;
 it does not include native actor placement, portrait, dialogue, talk,
 idle blending, level conditions, collision or animations beyond that clip.
 
