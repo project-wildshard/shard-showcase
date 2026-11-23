@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1040" viewBox="0 0 1440 1040" role="img" aria-labelledby="title desc">
+<title id="title">Wildshard surface atlas and interior depths</title>
+<desc id="desc">Source-derived plan of a 500 metre cell with West Town, the East Gate, Gauntlet courts and Titan portal; a separate section places the Vault and hidden Titan arena below ground.</desc>
+<defs><pattern id="draft" width="76" height="76" patternUnits="userSpaceOnUse" x="52" y="181"><path d="M76 0H0V76" fill="none" stroke="#86a3ac" stroke-width="1" stroke-opacity=".15"/></pattern></defs>
+<rect x="0" y="0" width="1440" height="1040" rx="0" fill="#101d25" stroke="none" stroke-width="0"/>
+<text x="53" y="54" font-family="DejaVu Sans" font-size="16" fill="#f0c376" font-weight="700" text-anchor="start" letter-spacing="2.1">WILDSHARD   /   SHOWCASE FIELD ATLAS</text>
+<text x="49" y="114" font-family="DejaVu Sans" font-size="53" fill="#f4ebd5" font-weight="700" text-anchor="start" letter-spacing="0">One cell, two worlds</text>
+<text x="54" y="147" font-family="DejaVu Sans" font-size="15" fill="#a4b7b7" font-weight="700" text-anchor="start" letter-spacing="1.7">ROUND 5 SURFACE PLAN WITH LATER DESIGN DECISIONS</text>
+<text x="1388" y="54" font-family="DejaVu Sans" font-size="14" fill="#a4b7b7" font-weight="700" text-anchor="end" letter-spacing="1.3">PLATE 01     /     WSC-SCENE-009</text>
+<text x="1388" y="146" font-family="DejaVu Sans" font-size="16" fill="#9dddd2" font-weight="700" text-anchor="end" letter-spacing="1">500 × 500 m  •  NORTH UP</text>
+<rect x="52" y="181" width="760" height="760" rx="0" fill="#162c33" stroke="#79949a" stroke-width="1.6"/>
+<rect x="52" y="181" width="760" height="760" rx="0" fill="url(#draft)" stroke="none" stroke-width="0"/>
+<rect x="56.56" y="185.56" width="750.88" height="15.2" rx="0" fill="#405557" stroke="none" stroke-width="0"/>
+<rect x="56.56" y="921.24" width="750.88" height="15.2" rx="0" fill="#405557" stroke="none" stroke-width="0"/>
+<rect x="56.56" y="200.76" width="15.2" height="720.48" rx="0" fill="#405557" stroke="none" stroke-width="0"/>
+<rect x="792.24" y="200.76" width="15.2" height="720.48" rx="0" fill="#405557" stroke="none" stroke-width="0"/>
+<rect x="444.16" y="548.08" width="348.08" height="25.84" rx="0" fill="#5d5c51" stroke="none" stroke-width="0"/>
+<rect x="614.4" y="749.48" width="155.04" height="18.24" rx="0" fill="#5d5c51" stroke="none" stroke-width="0"/>
+<rect x="237.44" y="551.88" width="206.72" height="18.24" rx="0" fill="#52605b" stroke="none" stroke-width="0"/>
+<line x1="443.4" y1="200.76" x2="443.4" y2="551.88" stroke="#b7b4a1" stroke-width="3.3"/>
+<line x1="443.4" y1="570.12" x2="443.4" y2="921.24" stroke="#b7b4a1" stroke-width="3.3"/>
+<rect x="237.44" y="469.8" width="182.4" height="182.4" rx="2" fill="#5b4d37" stroke="#c7a66d" stroke-width="2"/>
+<rect x="292.16" y="664.36" width="118.56" height="155.04" rx="2" fill="#28484b" stroke="#598783" stroke-width="2"/>
+<rect x="292.16" y="834.6" width="118.56" height="82.08" rx="2" fill="#28484b" stroke="#598783" stroke-width="2"/>
+<rect x="88.48" y="211.4" width="316.16" height="133.76" rx="66.88" fill="#28484b" stroke="#598783" stroke-width="2"/>
+<rect x="337.76" y="360.36" width="72.96" height="91.2" rx="2" fill="#28484b" stroke="#598783" stroke-width="2"/>
+<rect x="176.64" y="360.36" width="148.96" height="88.16" rx="2" fill="#28484b" stroke="#598783" stroke-width="2"/>
+<rect x="76.32" y="360.36" width="88.16" height="179.36" rx="0" fill="#28484b" stroke="#598783" stroke-width="2"/>
+<rect x="164.48" y="454.6" width="60.8" height="88.16" rx="0" fill="#28484b" stroke="#598783" stroke-width="2"/>
+<rect x="164.48" y="582.28" width="60.8" height="85.12" rx="2" fill="#28484b" stroke="#598783" stroke-width="2"/>
+<rect x="85.44" y="582.28" width="66.88" height="91.2" rx="2" fill="#28484b" stroke="#598783" stroke-width="2"/>
+<rect x="76.32" y="731.24" width="203.68" height="185.44" rx="2" fill="#28484b" stroke="#598783" stroke-width="2"/>
+<rect x="623.52" y="582.28" width="161.12" height="158.08" rx="2" fill="#514842" stroke="#a78365" stroke-width="2"/>
+<rect x="492.8" y="747.96" width="121.6" height="28.88" rx="2" fill="#514842" stroke="#a78365" stroke-width="2"/>
+<rect x="453.28" y="776.84" width="124.64" height="63.84" rx="2" fill="#514842" stroke="#a78365" stroke-width="2"/>
+<rect x="453.28" y="849.8" width="124.64" height="66.88" rx="2" fill="#514842" stroke="#a78365" stroke-width="2"/>
+<circle cx="653.92" cy="843.72" r="63.84" fill="#514842" stroke="#a78365" stroke-width="2"/>
+<rect x="748.16" y="767.72" width="21.28" height="92.72" rx="0" fill="#4d445e" stroke="#a99ac7" stroke-width="2"/>
+<rect x="717.76" y="837.64" width="30.4" height="12.16" rx="0" fill="#4d445e" stroke="#a99ac7" stroke-width="2"/>
+<rect x="729.92" y="860.44" width="59.28" height="57.76" rx="0" fill="#4d445e" stroke="#a99ac7" stroke-width="2"/>
+<circle cx="577.92" cy="247.88" r="21.28" fill="#514842" stroke="#a78365" stroke-width="2"/>
+<rect x="742.08" y="451.56" width="33.44" height="33.44" rx="2" fill="#4d445e" stroke="#a99ac7" stroke-width="2"/>
+<rect x="470" y="840.68" width="15.2" height="9.12" rx="0" fill="#796855" stroke="none" stroke-width="0"/>
+<rect x="577.92" y="880.2" width="28.88" height="12.16" rx="0" fill="#796855" stroke="none" stroke-width="0"/>
+<rect x="717.76" y="837.64" width="30.4" height="12.16" rx="0" fill="#796855" stroke="none" stroke-width="0"/>
+<rect x="100.64" y="223.56" width="291.84" height="109.44" rx="54.72" fill="none" stroke="#86b7ac" stroke-width="1"/>
+<circle cx="419.84" cy="561" r="3.1" fill="#f0c376" stroke="none" stroke-width="0"/>
+<circle cx="377.28" cy="469.8" r="3.1" fill="#f0c376" stroke="none" stroke-width="0"/>
+<circle cx="287.6" cy="469.8" r="3.1" fill="#f0c376" stroke="none" stroke-width="0"/>
+<circle cx="237.44" cy="561" r="3.1" fill="#f0c376" stroke="none" stroke-width="0"/>
+<circle cx="287.6" cy="652.2" r="3.1" fill="#f0c376" stroke="none" stroke-width="0"/>
+<circle cx="377.28" cy="652.2" r="3.1" fill="#f0c376" stroke="none" stroke-width="0"/>
+<circle cx="128" cy="582.28" r="3.4" fill="#9dddd2" stroke="none" stroke-width="0"/>
+<circle cx="128" cy="673.48" r="3.4" fill="#9dddd2" stroke="none" stroke-width="0"/>
+<circle cx="760.32" cy="909.08" r="3.6" fill="#c0b2e0" stroke="none" stroke-width="0"/>
+<circle cx="443.4" cy="561" r="5" fill="#f0c376" stroke="#172a30" stroke-width="2"/>
+<text x="246.56" y="284.36" font-family="DejaVu Sans" font-size="21" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Riding Course</text>
+<text x="246.56" y="311.72" font-family="DejaVu Sans" font-size="12" fill="#9dddd2" font-weight="400" text-anchor="middle" letter-spacing="0">479 m lap</text>
+<text x="251.12" y="404.44" font-family="DejaVu Sans" font-size="16" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Movers Run</text>
+<text x="251.12" y="427.24" font-family="DejaVu Sans" font-size="11" fill="#9dddd2" font-weight="400" text-anchor="middle" letter-spacing="0">six stations</text>
+<text x="374.24" y="404.44" font-family="DejaVu Sans" font-size="13" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Paddock</text>
+<text x="128" y="442.44" font-family="DejaVu Sans" font-size="16" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Grapple</text>
+<text x="128" y="466.76" font-family="DejaVu Sans" font-size="16" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Course</text>
+<text x="118.88" y="624.84" font-family="DejaVu Sans" font-size="13" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">The Rock</text>
+<text x="118.88" y="644.6" font-family="DejaVu Sans" font-size="9.6" fill="#9dddd2" font-weight="400" text-anchor="middle" letter-spacing="0">Squeeze cave</text>
+<text x="194.88" y="618.76" font-family="DejaVu Sans" font-size="13" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Climb</text>
+<text x="194.88" y="638.52" font-family="DejaVu Sans" font-size="13" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Yard</text>
+<text x="333.2" y="550.36" font-family="DejaVu Sans" font-size="23" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">WEST TOWN</text>
+<text x="333.2" y="579.24" font-family="DejaVu Sans" font-size="13" fill="#e4c99b" font-weight="400" text-anchor="middle" letter-spacing="0">120 × 120 m</text>
+<text x="357.52" y="741.88" font-family="DejaVu Sans" font-size="15" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Weapon</text>
+<text x="357.52" y="763.16" font-family="DejaVu Sans" font-size="15" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Range</text>
+<text x="351.44" y="880.2" font-family="DejaVu Sans" font-size="14" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Physics Yard</text>
+<text x="176.64" y="814.84" font-family="DejaVu Sans" font-size="21" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Hover Park</text>
+<text x="176.64" y="845.24" font-family="DejaVu Sans" font-size="13" fill="#9dddd2" font-weight="400" text-anchor="middle" letter-spacing="0">Launch walls</text>
+<text x="176.64" y="866.52" font-family="DejaVu Sans" font-size="11" fill="#9dddd2" font-weight="400" text-anchor="middle" letter-spacing="0">Bowl · funbox · rails</text>
+<text x="698" y="655.24" font-family="DejaVu Sans" font-size="20" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Stealth Yard</text>
+<text x="698" y="681.08" font-family="DejaVu Sans" font-size="11" fill="#d9ae8d" font-weight="400" text-anchor="middle" letter-spacing="0">surface set</text>
+<text x="553.6" y="769.24" font-family="DejaVu Sans" font-size="11" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Gauntlet forecourt</text>
+<text x="515.6" y="817.88" font-family="DejaVu Sans" font-size="12" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">C1  Loading Yard</text>
+<text x="515.6" y="887.8" font-family="DejaVu Sans" font-size="14" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">C2  The Pit</text>
+<text x="653.92" y="833.08" font-family="DejaVu Sans" font-size="16" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">C3</text>
+<text x="653.92" y="855.88" font-family="DejaVu Sans" font-size="12" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Foreman’s Floor</text>
+<text x="757.28" y="887.8" font-family="DejaVu Sans" font-size="12" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Titan</text>
+<text x="757.28" y="903" font-family="DejaVu Sans" font-size="12" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">Portal</text>
+<text x="641.76" y="554.92" font-family="DejaVu Sans" font-size="13" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">East road</text>
+<text x="629.6" y="383.16" font-family="DejaVu Sans" font-size="21" fill="#9db0ad" font-weight="700" text-anchor="middle" letter-spacing="0">E A S T   F I E L D</text>
+<text x="629.6" y="412.04" font-family="DejaVu Sans" font-size="12" fill="#95a9a7" font-weight="400" text-anchor="middle" letter-spacing="0">Combat regions omitted from this plate</text>
+<line x1="758.8" y1="468.28" x2="699.52" y2="443.96" stroke="#c0b2e0" stroke-width="1.6"/>
+<text x="694.96" y="442.44" font-family="DejaVu Sans" font-size="14" fill="#c0b2e0" font-weight="700" text-anchor="end" letter-spacing="0">Vault Gate</text>
+<line x1="577.92" y1="247.88" x2="609.84" y2="229.64" stroke="#c6a488" stroke-width="1.5"/>
+<text x="615.92" y="228.12" font-family="DejaVu Sans" font-size="13" fill="#dabba0" font-weight="700" text-anchor="start" letter-spacing="0">Big Pallet</text>
+<line x1="431.62" y1="561" x2="470" y2="603.56" stroke="#f0c376" stroke-width="1.5"/>
+<text x="474.56" y="609.64" font-family="DejaVu Sans" font-size="14" fill="#f0c376" font-weight="700" text-anchor="start" letter-spacing="0">East Gate crossing</text>
+<text x="474.56" y="627.88" font-family="DejaVu Sans" font-size="11" fill="#f0c376" font-weight="400" text-anchor="start" letter-spacing="0">arch + seam wall</text>
+<text x="773" y="218" font-family="DejaVu Sans" font-size="16" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">N</text>
+<path d="M773 226l8 22-8-4-8 4z" fill="#f0c376" stroke="none" stroke-width="0" stroke-linejoin="round"/>
+<text x="53" y="973" font-family="DejaVu Sans" font-size="12" fill="#a4b7b7" font-weight="700" text-anchor="start" letter-spacing="1">← WEST</text>
+<text x="812" y="973" font-family="DejaVu Sans" font-size="12" fill="#a4b7b7" font-weight="700" text-anchor="end" letter-spacing="1">EAST →</text>
+<rect x="578" y="962" width="76" height="8" rx="0" fill="#f0c376" stroke="#9db2af" stroke-width="1"/>
+<rect x="654" y="962" width="76" height="8" rx="0" fill="#385254" stroke="#9db2af" stroke-width="1"/>
+<text x="578" y="991" font-family="DejaVu Sans" font-size="11" fill="#a4b7b7" font-weight="400" text-anchor="middle" letter-spacing="0">0</text>
+<text x="654" y="991" font-family="DejaVu Sans" font-size="11" fill="#a4b7b7" font-weight="400" text-anchor="middle" letter-spacing="0">50</text>
+<text x="730" y="991" font-family="DejaVu Sans" font-size="11" fill="#a4b7b7" font-weight="400" text-anchor="middle" letter-spacing="0">100 m</text>
+<rect x="844" y="181" width="544" height="760" rx="8" fill="#182831" stroke="#40535b" stroke-width="1.2"/>
+<text x="876" y="225" font-family="DejaVu Sans" font-size="29" fill="#f4ebd5" font-weight="700" text-anchor="start" letter-spacing="0">Below the surface</text>
+<text x="877" y="251" font-family="DejaVu Sans" font-size="13" fill="#a4b7b7" font-weight="700" text-anchor="start" letter-spacing="1.4">SHARED ELEVATION DATUM  /  METRES</text>
+<line x1="901" y1="292" x2="1360" y2="292" stroke="#596b70" stroke-width="1"/>
+<text x="897" y="297" font-family="DejaVu Sans" font-size="15" fill="#a4b7b7" font-weight="700" text-anchor="end" letter-spacing="0">0</text>
+<line x1="901" y1="383.2" x2="1360" y2="383.2" stroke="#596b70" stroke-width="1" stroke-dasharray="4 5"/>
+<text x="897" y="388.2" font-family="DejaVu Sans" font-size="15" fill="#a4b7b7" font-weight="700" text-anchor="end" letter-spacing="0">−30</text>
+<line x1="901" y1="444" x2="1360" y2="444" stroke="#596b70" stroke-width="1" stroke-dasharray="4 5"/>
+<text x="897" y="449" font-family="DejaVu Sans" font-size="15" fill="#a4b7b7" font-weight="700" text-anchor="end" letter-spacing="0">−50</text>
+<line x1="901" y1="535.2" x2="1360" y2="535.2" stroke="#596b70" stroke-width="1" stroke-dasharray="4 5"/>
+<text x="897" y="540.2" font-family="DejaVu Sans" font-size="15" fill="#a4b7b7" font-weight="700" text-anchor="end" letter-spacing="0">−80</text>
+<line x1="901" y1="748" x2="1360" y2="748" stroke="#596b70" stroke-width="1" stroke-dasharray="4 5"/>
+<text x="897" y="753" font-family="DejaVu Sans" font-size="15" fill="#a4b7b7" font-weight="700" text-anchor="end" letter-spacing="0">−150</text>
+<line x1="911" y1="292" x2="911" y2="748" stroke="#768a8c" stroke-width="1.5"/>
+<text x="934" y="284" font-family="DejaVu Sans" font-size="12" fill="#f0c376" font-weight="700" text-anchor="start" letter-spacing="1">SURFACE DATUM</text>
+<rect x="931" y="383.2" width="163" height="60.8" rx="4" fill="#3b5260" stroke="#95bbc3" stroke-width="1.5"/>
+<text x="945" y="408.2" font-family="DejaVu Sans" font-size="17" fill="#f4ebd5" font-weight="700" text-anchor="start" letter-spacing="0">Training Vault</text>
+<text x="945" y="428.2" font-family="DejaVu Sans" font-size="12" fill="#9dddd2" font-weight="400" text-anchor="start" letter-spacing="0">20 m tall · D41</text>
+<text x="1110" y="408.2" font-family="DejaVu Sans" font-size="14" fill="#a4b7b7" font-weight="400" text-anchor="start" letter-spacing="0">70 × 70 m envelope</text>
+<text x="1110" y="431.2" font-family="DejaVu Sans" font-size="12" fill="#a4b7b7" font-weight="400" text-anchor="start" letter-spacing="0">Four rooms under the east field</text>
+<line x1="1124" y1="446" x2="1124" y2="533.2" stroke="#f0c376" stroke-width="1.4"/>
+<line x1="1118" y1="446" x2="1130" y2="446" stroke="#f0c376" stroke-width="1.4"/>
+<line x1="1118" y1="533.2" x2="1130" y2="533.2" stroke="#f0c376" stroke-width="1.4"/>
+<text x="1141" y="494.6" font-family="DejaVu Sans" font-size="14" fill="#f0c376" font-weight="700" text-anchor="start" letter-spacing="0">30 m separation</text>
+<rect x="931" y="535.2" width="427" height="212.8" rx="5" fill="#342f46" stroke="#ad9bc7" stroke-width="1.5"/>
+<text x="951" y="569.2" font-family="DejaVu Sans" font-size="23" fill="#f4ebd5" font-weight="700" text-anchor="start" letter-spacing="0">Hidden Titan arena</text>
+<text x="952" y="595.2" font-family="DejaVu Sans" font-size="14" fill="#c0b2e0" font-weight="400" text-anchor="start" letter-spacing="0">Arena sky / −80 m</text>
+<text x="953" y="682" font-family="DejaVu Sans" font-size="14" fill="#d9cce9" font-weight="400" text-anchor="start" letter-spacing="0">140 m across the stands</text>
+<text x="953" y="703" font-family="DejaVu Sans" font-size="14" fill="#d9cce9" font-weight="400" text-anchor="start" letter-spacing="0">104 m arena floor</text>
+<text x="953" y="730" font-family="DejaVu Sans" font-size="12" fill="#c0b2e0" font-weight="400" text-anchor="start" letter-spacing="0">Reached through the surface portal</text>
+<circle cx="1255" cy="650.2" r="63" fill="none" stroke="#b4a2d4" stroke-width="1.4"/>
+<circle cx="1255" cy="650.2" r="46.8" fill="#514865" stroke="#cdbee2" stroke-width="1.2"/>
+<text x="1255" y="654.2" font-family="DejaVu Sans" font-size="11" fill="#f4ebd5" font-weight="700" text-anchor="middle" letter-spacing="0">FLOOR</text>
+<line x1="941" y1="786" x2="1358" y2="786" stroke="#536972" stroke-width="1"/>
+<text x="933" y="821" font-family="DejaVu Sans" font-size="14" fill="#f0c376" font-weight="700" text-anchor="start" letter-spacing="1.45">SHIFT ORIENTATION</text>
+<text x="933" y="851" font-family="DejaVu Sans" font-size="16" fill="#f4ebd5" font-weight="700" text-anchor="start" letter-spacing="0">Yard Boss  →  Range  →  Riding lap</text>
+<text x="933" y="878" font-family="DejaVu Sans" font-size="16" fill="#f4ebd5" font-weight="700" text-anchor="start" letter-spacing="0">Movers top deck  →  Zip  →  East Gate</text>
+<text x="933" y="909" font-family="DejaVu Sans" font-size="11" fill="#a4b7b7" font-weight="400" text-anchor="start" letter-spacing="0">D4 approved tour stops. No navigation line is implied.</text>
+<text x="844" y="980" font-family="DejaVu Sans" font-size="12" fill="#a4b7b7" font-weight="700" text-anchor="start" letter-spacing="0.8">DESIGN SCHEMATIC   •   NOT THE PLAYER MAP OR A LIVE BUILD</text>
+<line x1="53" y1="1007" x2="1388" y2="1007" stroke="#46575e" stroke-width="1"/>
+<text x="54" y="1029" font-family="DejaVu Sans" font-size="11" fill="#a4b7b7" font-weight="400" text-anchor="start" letter-spacing="0">R05 layout: ce1cf050b3   /   overlays: D4, D7, D41, D61, E12g</text>
+<text x="1388" y="1029" font-family="DejaVu Sans" font-size="11" fill="#a4b7b7" font-weight="400" text-anchor="end" letter-spacing="0">Horizontal map to scale. Depth chart uses its own linear axis.</text>
+</svg>
