@@ -1,0 +1,348 @@
+{
+  "source": {
+    "repository": "Raynos/project-wildshard-singleplayer",
+    "ref": "ce1cf050b3",
+    "path": "art/showcase-template/round-5-blockout/layout.js",
+    "blob_sha1": "5d019a020361c47187ec889f2bc947f82cd9f98a"
+  },
+  "semantics": {
+    "x": "east",
+    "z": "south",
+    "y": "up",
+    "dimensions": "metres"
+  },
+  "cell": [
+    500,
+    250
+  ],
+  "surface": {
+    "zones": {
+      "01": {
+        "label": "West Town",
+        "shape": "rect",
+        "geometry": [
+          -128,
+          -8,
+          -60,
+          60
+        ]
+      },
+      "02": {
+        "label": "Weapon Range",
+        "shape": "rect",
+        "geometry": [
+          -92,
+          -14,
+          68,
+          170
+        ]
+      },
+      "03": {
+        "label": "Physics Yard",
+        "shape": "rect",
+        "geometry": [
+          -92,
+          -14,
+          180,
+          234
+        ]
+      },
+      "04": {
+        "label": "Riding Course",
+        "shape": "stadium",
+        "geometry": [
+          -122,
+          -186,
+          44,
+          60
+        ]
+      },
+      "MP": {
+        "label": "Paddock",
+        "shape": "rect",
+        "geometry": [
+          -62,
+          -14,
+          -132,
+          -72
+        ]
+      },
+      "05": {
+        "label": "Movers Run",
+        "shape": "rect",
+        "geometry": [
+          -168,
+          -70,
+          -132,
+          -74
+        ]
+      },
+      "06": {
+        "label": "Grapple Course",
+        "shape": "rects",
+        "geometry": [
+          [
+            -234,
+            -176,
+            -132,
+            -14
+          ],
+          [
+            -176,
+            -136,
+            -70,
+            -12
+          ]
+        ]
+      },
+      "10": {
+        "label": "Climb Yard",
+        "shape": "rect",
+        "geometry": [
+          -176,
+          -136,
+          14,
+          70
+        ]
+      },
+      "H": {
+        "label": "The Rock",
+        "shape": "rect",
+        "geometry": [
+          -228,
+          -184,
+          14,
+          74
+        ]
+      },
+      "11": {
+        "label": "Hover Park",
+        "shape": "rect",
+        "geometry": [
+          -234,
+          -100,
+          112,
+          234
+        ]
+      },
+      "07": {
+        "label": "Stealth Yard",
+        "shape": "rect",
+        "geometry": [
+          126,
+          232,
+          14,
+          118
+        ]
+      },
+      "08F": {
+        "label": "Gauntlet Forecourt",
+        "shape": "rect",
+        "geometry": [
+          40,
+          120,
+          123,
+          142
+        ]
+      },
+      "08A": {
+        "label": "C1 Loading Yard",
+        "shape": "rect",
+        "geometry": [
+          14,
+          96,
+          142,
+          184
+        ]
+      },
+      "08B": {
+        "label": "C2 The Pit",
+        "shape": "rect",
+        "geometry": [
+          14,
+          96,
+          190,
+          234
+        ]
+      },
+      "08C": {
+        "label": "C3 Foreman’s Floor",
+        "shape": "disc",
+        "geometry": [
+          146,
+          186,
+          42
+        ]
+      },
+      "TG": {
+        "label": "Titan Portal",
+        "shape": "rects",
+        "geometry": [
+          [
+            208,
+            222,
+            136,
+            197
+          ],
+          [
+            188,
+            208,
+            182,
+            190
+          ],
+          [
+            196,
+            235,
+            197,
+            235
+          ]
+        ]
+      },
+      "M6": {
+        "label": "Big Pallet",
+        "shape": "disc",
+        "geometry": [
+          96,
+          -206,
+          14
+        ]
+      },
+      "TV": {
+        "label": "Vault Gate",
+        "shape": "rect",
+        "geometry": [
+          204,
+          226,
+          -72,
+          -50
+        ]
+      }
+    },
+    "seam_x": 7.5,
+    "town_gates": [
+      [
+        "E",
+        -8,
+        0
+      ],
+      [
+        "N",
+        -36,
+        -60
+      ],
+      [
+        "NW",
+        -95,
+        -60
+      ],
+      [
+        "W",
+        -128,
+        0
+      ],
+      [
+        "SW",
+        -95,
+        60
+      ],
+      [
+        "S",
+        -36,
+        60
+      ]
+    ],
+    "east_road": [
+      8,
+      237,
+      -8.5,
+      8.5
+    ],
+    "ring": [
+      237,
+      247
+    ],
+    "gauntlet_passages": [
+      [
+        25,
+        35,
+        184,
+        190
+      ],
+      [
+        96,
+        115,
+        210,
+        218
+      ],
+      [
+        188,
+        208,
+        182,
+        190
+      ]
+    ],
+    "titan_road": [
+      120,
+      222,
+      124,
+      136
+    ],
+    "cave_mouths": [
+      [
+        -200,
+        14
+      ],
+      [
+        -200,
+        74
+      ]
+    ],
+    "titan_portal": [
+      216,
+      229
+    ]
+  },
+  "below": {
+    "vault_bounds_round5": [
+      151,
+      221,
+      -99,
+      -29,
+      -40,
+      -30
+    ],
+    "vault_bounds_D41": [
+      151,
+      221,
+      -99,
+      -29,
+      -50,
+      -30
+    ],
+    "titan_layer_round5": [
+      80,
+      220,
+      95,
+      235,
+      -156,
+      -80
+    ],
+    "titan_floor_y": -150,
+    "titan_sky_y": -80,
+    "titan_floor_diameter": 104,
+    "titan_stands_diameter": 140
+  },
+  "overlays": {
+    "D7": "Launch walls; not a true halfpipe",
+    "D41": "Vault envelope y −50…−30",
+    "D61": "No player heatmap or minimap band borders",
+    "D4": [
+      "Yard Boss",
+      "Weapon Range",
+      "Riding lap",
+      "Movers top deck",
+      "Zip into town",
+      "Report at East Gate"
+    ]
+  }
+}
