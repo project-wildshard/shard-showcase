@@ -1,0 +1,23 @@
+{
+  "asset_id": "WSC-SCENE-007",
+  "scope": "Static C1 loading yard art; no native bindings",
+  "round_5_blob": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+  "round_5_repository": "Raynos/project-wildshard-singleplayer",
+  "round_5_ref": "ce1cf050b3",
+  "round_5_path": "art/showcase-template/round-5-blockout/layout.js",
+  "origin_world_x_y_z": [55, 0, 163],
+  "floor_x0_x1_z0_z1": [14, 96, 150, 184],
+  "entry_terrace": [14, 96, 142, 150],
+  "entry_y": 3,
+  "entry_x_z": [62, 142],
+  "ramp_center_x": [30, 80],
+  "staged_ramp_front_back_width": [150, 158.5, 6.8],
+  "door_x_z": {"D1": [14, 167], "D2": [96, 167]},
+  "door_closets": {"D1": [8, 14, 161, 173], "D2": [96, 104, 161, 173]},
+  "g1_x_z_width": [30, 187, 10],
+  "g1_passage": [25, 35, 184, 190],
+  "c2_landing_height": 2.5,
+  "wall_height": 5,
+  "cover": [["half", 34, 166], ["half", 76, 172], ["crates", 55, 160], ["crates", 55, 177], ["crates", 24, 178], ["pillar", 86, 158]],
+  "crate_sha256": "d7a5f8fcb2b835d0c0c77c3051ebd950ed449dc2c563e10779fdc5f01cc6bb44"
+}
