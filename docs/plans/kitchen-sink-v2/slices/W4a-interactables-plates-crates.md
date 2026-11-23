@@ -26,7 +26,7 @@ Research:
   by: 'player'|'barrel'|'any' }` (line 173). `plateOverlap` (`interact/barrel.ts`) sees groups `PLAYER`, `ITEM`.
 - **But it ships as named JSON, three ways.** Driftwood writes a data table (`src/shards/driftwood-isle/generators/interactables.ts`
   → `interactables.generated.json`, a named blob, no platform section); Pine builds on Driftwood's kit through
-  `@wildshard/sharddev/interactions` (`generators/questTable.ts:17`); Signal declares `format/questInteractions` rows
+  `@wildshard/sdk/interactions` (`generators/questTable.ts:17`); Signal declares `format/questInteractions` rows
   (`generators/signalInteractions.ts:23`). The engine kit: `src/engine/world/interact/` (1,535 lines).
 - **Dynamic props are declarable.** `sim/bodies` (`src/format/bodySlots.ts:25` `DeclaredBodyOpsRows { bodies, floors,
   colliders }`, G566) with `BodySpec` shapes `ball | cylinder | cuboid` (`src/engine/shared/physics/bodies.ts:43`), material,
