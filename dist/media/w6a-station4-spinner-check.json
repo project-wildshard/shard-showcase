@@ -1,0 +1,74 @@
+{
+  "scope": "Static two-pivot art handoff; preview angles are not movement timing or collision.",
+  "origin_blender_world_m": [
+    -147.0,
+    103.0,
+    0.0
+  ],
+  "gltf_world_m": [
+    -147,
+    0,
+    -103
+  ],
+  "disc_diameter_m": 9,
+  "deck_top_m": 6,
+  "donor_sha256": "2b5a6983fde90b9374414559fe51603aa939eaa46df42de913d012eda9e2df15",
+  "original_bounds_blender_m": {
+    "Movers_Axle": [
+      [
+        -0.32,
+        -0.32,
+        5.85
+      ],
+      [
+        0.32,
+        0.32,
+        7.05
+      ]
+    ],
+    "Movers_Disc": [
+      [
+        -4.5,
+        -4.5,
+        5.7
+      ],
+      [
+        4.5,
+        4.5,
+        6.0
+      ]
+    ],
+    "Movers_SweepArm": [
+      [
+        -0.0585,
+        -0.0774,
+        6.54
+      ],
+      [
+        3.2585,
+        2.5774,
+        6.76
+      ]
+    ],
+    "Movers_Pedestal": [
+      [
+        -1.2,
+        -1.2,
+        0.0
+      ],
+      [
+        1.2,
+        1.2,
+        5.4
+      ]
+    ]
+  },
+  "source_gap_m": 0.3,
+  "fixed_collar_added": true,
+  "test_pose_deg": {
+    "disc": 45,
+    "arm": 115
+  },
+  "triangles": 1176,
+  "bytes": 75812
+}
