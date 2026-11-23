@@ -1,0 +1,340 @@
+{
+  "catalogue_id": "WSC-KIT-005",
+  "scope": "Art-only reimport and instance placement. No horse, gate clearance, gameplay, deployment or runtime certification.",
+  "coordinates": "Blender metres (X, Y, Z); world glTF (X, Z, -Y).",
+  "reference": {
+    "art": "scripts/blender/west-scene-r02/assemble.py and finish.py",
+    "historical_layout_commit": "ce1cf050b3",
+    "historical_layout": "art/showcase-template/round-5-blockout/lab.js"
+  },
+  "oval": {
+    "center_blender_xy_m": [
+      -122,
+      186
+    ],
+    "outer_size_m": [
+      208,
+      88
+    ],
+    "centreline_m": 478.761,
+    "half_straight_m": 60,
+    "centerline_radius_m": 38,
+    "track_width_m": 12
+  },
+  "donor_meshes": {
+    "ring": {
+      "id": "WSC-PROP-043",
+      "path": "public/assets/wildshard-art/wsc-prop-043-riding-ring.glb",
+      "bounds_blender_m": [
+        [
+          -1.562,
+          -0.122,
+          0.0
+        ],
+        [
+          1.562,
+          0.122,
+          3.124
+        ]
+      ],
+      "sha256": "55b6d449492bcdff75631b7c55e8b6a8211986552dd050e37c4a147758668813"
+    },
+    "gantry": {
+      "id": "WSC-MODULE-010",
+      "path": "public/assets/wildshard-art/wsc-module-010-riding-start-gantry.glb",
+      "bounds_blender_m": [
+        [
+          -7.6,
+          -0.65,
+          0.0
+        ],
+        [
+          7.6,
+          0.65,
+          6.954
+        ]
+      ],
+      "sha256": "784738b070cdf0d5b400355249d0b3f12697369064274433857b9793b5786774"
+    },
+    "timer": {
+      "id": "WSC-PROP-042",
+      "path": "public/assets/wildshard-art/wsc-prop-042-riding-timer-display.glb",
+      "bounds_blender_m": [
+        [
+          -0.838,
+          -0.16304,
+          0.002
+        ],
+        [
+          0.838,
+          0.18,
+          0.632
+        ]
+      ],
+      "sha256": "d2cb7dd20b0ece91c20c08bf2ac735a0400ac7fffc985a479181e3f65accd5f9"
+    },
+    "jump": {
+      "id": "WSC-PROP-080",
+      "path": "public/assets/wildshard-art/w10b-reusable-riding-jump-wip.glb",
+      "bounds_blender_m": [
+        [
+          -2.375,
+          -0.525,
+          0.0
+        ],
+        [
+          2.375,
+          0.525,
+          1.58
+        ]
+      ],
+      "sha256": "0881ec693a68897ff8eadc60cd648237ec8bd969c4d05c7fd6faef09445c3680"
+    },
+    "fence": {
+      "id": "WSC-MODULE-011",
+      "path": "public/assets/wildshard-art/wsc-module-011-riding-fence.glb",
+      "bounds_blender_m": [
+        [
+          -1.569,
+          -0.165,
+          0.0
+        ],
+        [
+          1.569,
+          0.165,
+          1.236
+        ]
+      ],
+      "sha256": "4b080d634287a167eba8cc4690b7fbedd0323244154a7bb96402262b71c4afe0"
+    },
+    "conifer": {
+      "id": "WSC-PROP-046",
+      "path": "public/assets/wildshard-art/wsc-prop-046-conifer-tree.glb",
+      "bounds_blender_m": [
+        [
+          -1.48837,
+          -1.76668,
+          0.0
+        ],
+        [
+          1.9527,
+          1.53424,
+          6.11
+        ]
+      ],
+      "sha256": "a5b52da910f80f33a40fad2ba15d5e7904c0d2f3b1b438d4b6401971ace8c18d"
+    },
+    "oak": {
+      "id": "WSC-PROP-012",
+      "path": "public/assets/wildshard-art/wsc-prop-012-deciduous-tree.glb",
+      "bounds_blender_m": [
+        [
+          -2.81913,
+          -1.89509,
+          0.0
+        ],
+        [
+          2.76449,
+          2.3183,
+          5.39083
+        ]
+      ],
+      "sha256": "83685e45bd4ef2af08941de87909aaf0f7078dbecfe784bc06a9fc8fc4d8a355"
+    }
+  },
+  "rings": {
+    "count": 8,
+    "unscaled_clear_opening_m": 2.636,
+    "candidate_clear_opening_m": 4.56,
+    "uniform_scale": 1.729894,
+    "ring_center_z_m": 3.4,
+    "outer_arc_bottom_m": 0.698,
+    "clear_opening_bottom_m": 1.12,
+    "lower_arc": "Full ring retained, suspended in the visual comparison; no collision assigned.",
+    "checkpoint_pad_requirement_m": 4,
+    "checkpoint_pad_status": "Separate requirement, not modeled.",
+    "placements": [
+      {
+        "number": 1,
+        "r02_xy_blender_m": [
+          -145,
+          148
+        ],
+        "origin_blender_m": [
+          -145,
+          148,
+          0.69791
+        ],
+        "yaw_deg": 90.0
+      },
+      {
+        "number": 2,
+        "r02_xy_blender_m": [
+          -105,
+          148
+        ],
+        "origin_blender_m": [
+          -105,
+          148,
+          0.69791
+        ],
+        "yaw_deg": 90.0
+      },
+      {
+        "number": 3,
+        "r02_xy_blender_m": [
+          -28,
+          169
+        ],
+        "origin_blender_m": [
+          -28.01471,
+          169,
+          0.69791
+        ],
+        "yaw_deg": 153.42503
+      },
+      {
+        "number": 4,
+        "r02_xy_blender_m": [
+          -28,
+          203
+        ],
+        "origin_blender_m": [
+          -28.01471,
+          203,
+          0.69791
+        ],
+        "yaw_deg": 206.57497
+      },
+      {
+        "number": 5,
+        "r02_xy_blender_m": [
+          -100,
+          224
+        ],
+        "origin_blender_m": [
+          -100,
+          224,
+          0.69791
+        ],
+        "yaw_deg": 270.0
+      },
+      {
+        "number": 6,
+        "r02_xy_blender_m": [
+          -145,
+          224
+        ],
+        "origin_blender_m": [
+          -145,
+          224,
+          0.69791
+        ],
+        "yaw_deg": 270.0
+      },
+      {
+        "number": 7,
+        "r02_xy_blender_m": [
+          -216,
+          203
+        ],
+        "origin_blender_m": [
+          -215.98529,
+          203,
+          0.69791
+        ],
+        "yaw_deg": 333.42503
+      },
+      {
+        "number": 8,
+        "r02_xy_blender_m": [
+          -216,
+          169
+        ],
+        "origin_blender_m": [
+          -215.98529,
+          169,
+          0.69791
+        ],
+        "yaw_deg": 26.57497
+      }
+    ]
+  },
+  "jumps": {
+    "count": 4,
+    "r02_wip_blender_xy_m": [
+      [
+        -165,
+        148
+      ],
+      [
+        -125,
+        148
+      ],
+      [
+        -110,
+        224
+      ],
+      [
+        -160,
+        224
+      ]
+    ],
+    "rail_width_m": 4.1,
+    "donor_full_width_m": 4.75,
+    "historic_proxy_width_m": 10
+  },
+  "timer": {
+    "gantry_blender_xy_m": [
+      -80,
+      148
+    ],
+    "timer_blender_xyz_m": [
+      -80.71,
+      148,
+      5.25
+    ],
+    "status": "Static readability placement; not timed."
+  },
+  "camera": {
+    "mounted-height": {
+      "eye": [
+        -118.5,
+        148.0,
+        2.6
+      ],
+      "target": [
+        -74,
+        148,
+        3.89
+      ],
+      "lens": 36
+    },
+    "first-gate": {
+      "eye": [
+        -91.8,
+        141.6,
+        4.9
+      ],
+      "target": [
+        -80,
+        148.0,
+        4.25
+      ],
+      "lens": 37
+    },
+    "course-overview": {
+      "eye": [
+        -122,
+        186,
+        180
+      ],
+      "target": [
+        -122,
+        186,
+        0
+      ],
+      "ortho": 230
+    }
+  }
+}
