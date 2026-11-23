@@ -1,0 +1,147 @@
+{
+  "readiness": "static cave liner and alignment section; proposed art dimensions, not runtime cuts or collision",
+  "north_x_y_z_world": [
+    -200,
+    0,
+    14
+  ],
+  "south_x_y_z_world": [
+    -200,
+    0,
+    74
+  ],
+  "bench_source_world": [
+    -210,
+    16,
+    40
+  ],
+  "shaft_world_center": [
+    -200,
+    16,
+    39.0
+  ],
+  "shaft_crown_sample_count": 9,
+  "shaft_clear_vertical_center": true,
+  "shaft_bottom_half_size_m": [
+    0.59,
+    2
+  ],
+  "shaft_top_half_size_m": [
+    0.9,
+    2.1
+  ],
+  "minimum_x_clearance_shaft_to_bench_m": 8.784,
+  "ramp_run_m": 22,
+  "ramp_angle_deg": 15.255,
+  "squeeze_station_interval_m": [
+    28,
+    32
+  ],
+  "candidate_clear_height_m": 1.1,
+  "section_donor_is_clipped_at_world_x_m": -203.6,
+  "profile": [
+    [
+      0,
+      0,
+      2.0,
+      2.8
+    ],
+    [
+      2,
+      -0.545,
+      2.15,
+      3.1
+    ],
+    [
+      7,
+      -1.909,
+      2.3,
+      3.35
+    ],
+    [
+      15,
+      -4.091,
+      2.05,
+      3.18
+    ],
+    [
+      22,
+      -6,
+      3.35,
+      4.4
+    ],
+    [
+      23,
+      -6,
+      3.5,
+      4.8
+    ],
+    [
+      27,
+      -6,
+      3.1,
+      4.8
+    ],
+    [
+      28,
+      -6,
+      1.03,
+      1.1
+    ],
+    [
+      29.25,
+      -6,
+      1.02,
+      1.1
+    ],
+    [
+      30.8,
+      -6,
+      1.04,
+      1.1
+    ],
+    [
+      32,
+      -6,
+      1.03,
+      1.1
+    ],
+    [
+      34,
+      -6,
+      2.95,
+      3.9
+    ],
+    [
+      38,
+      -6,
+      2.78,
+      3.6
+    ],
+    [
+      43,
+      -4.636,
+      2.4,
+      3.32
+    ],
+    [
+      53,
+      -1.909,
+      2.25,
+      3.24
+    ],
+    [
+      58,
+      -0.545,
+      2.08,
+      2.98
+    ],
+    [
+      60,
+      0,
+      2.0,
+      2.8
+    ]
+  ],
+  "validated_floor_stations": 15
+}
