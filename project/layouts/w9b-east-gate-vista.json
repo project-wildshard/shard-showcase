@@ -1,0 +1,8 @@
+{
+  "study": "W9b east gate roof vista 6, static art framing only",
+  "geometry_transform": "scripts/blender/showcase-studies/east_gate_boundary.py",
+  "source": "Raynos/project-wildshard-singleplayer@ce1cf050b3:art/showcase-template/round-5-blockout/layout.js",
+  "source_blob": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+  "band_centers_world_xz": {"B1": [65, -65], "B2": [65, -179.5], "B3": [179.5, -179.5], "B4": [179.5, -65]},
+  "illustrative_target_height_m": {"B1": 7, "B2": 11, "B3": 12, "B4": 9}
+}
