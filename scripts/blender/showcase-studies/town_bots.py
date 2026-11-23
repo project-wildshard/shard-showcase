@@ -14,6 +14,9 @@ from common import clear_scene, output_directory
 OUT=output_directory()
 ROLES=(("001","stable-hand"),("002","weapons-keeper"))
 SURVEYOR=os.getenv("WSC_TOWN_SURVEYOR")=="1"
+ROOK=os.getenv("WSC_TOWN_ROOK")=="1"
+if SURVEYOR and ROOK:
+    raise ValueError("Select one role build at a time.")
 # Blender Z up, front -Y; glTF Y up, front +Z. Right is negative X.
 BONES=[
  ("hips",None,(0,0,.92)),("spine","hips",(0,0,1.04)),
@@ -145,11 +148,11 @@ class Bot:
         return rig,mesh
 
 
-def build(stable,slug,surveyor=False):
+def build(stable,slug,surveyor=False,rook=False):
     clear_scene()
     b=Bot()
-    shell="vest" if stable or surveyor else "navy"
-    seam="clay" if stable or surveyor else "denim"
+    shell="vest" if stable or surveyor or rook else "navy"
+    seam="clay" if stable or surveyor or rook else "denim"
     b.box("hips","iron",(0,0,.925),(.33,.252,.175),.041)
     b.box("spine","rubber",(0,0,1.083),(.30,.219,.21),.046)
     b.box("chest",shell,(0,0,1.285),(.465,.32,.34),.072)
@@ -172,7 +175,7 @@ def build(stable,slug,surveyor=False):
         b.rod("head","weld",(x(.205),0,1.654),(x(.225),0,1.654),.063)
         b.rod("head","alloy",(x(.222),0,1.654),(x(.232),0,1.654),.045)
         b.box(n("shoulder"),"rubber",(x(.26),0,1.359),(.135,.190,.163),.039)
-        b.box(n("twist"),"alloy" if stable or surveyor else shell,(x(.313),-.007,1.291),
+        b.box(n("twist"),"alloy" if stable or surveyor or rook else shell,(x(.313),-.007,1.291),
               (.145,.169,.202),.031,(0,-side*.52,0))
         b.box(n("twist"),"weld",(x(.365),-.01,1.205),(.108,.119,.11),.025,(0,-side*.52,0))
         b.rod(n("elbow"),"rubber",(x(.392),.047,1.151),(x(.392),-.076,1.151),.049)
@@ -180,7 +183,7 @@ def build(stable,slug,surveyor=False):
         b.rod(n("elbow"),"alloy",(x(.409),-.024,1.106),(x(.453),-.043,.965),.065,8,.043)
         b.box(n("elbow"),"edge",(x(.427),-.075,1.045),(.072,.028,.104),.01,(0,-side*.25,0))
         b.rod(n("hand"),"rubber",(x(.456),-.046,.968),(x(.463),-.054,.918),.042)
-        if not stable and not surveyor:b.rod(n("hand"),"copper",(x(.457),-.046,.967),(x(.460),-.05,.948),.050)
+        if not stable and not surveyor and not rook:b.rod(n("hand"),"copper",(x(.457),-.046,.967),(x(.460),-.05,.948),.050)
         b.box(n("hand"),"iron",(x(.472),-.063,.895),(.077,.084,.089),.018,(0,-side*.16,0))
         for idx in range(3):
             y=-.093+idx*.026
@@ -194,7 +197,7 @@ def build(stable,slug,surveyor=False):
         b.box(n("foot"),"rubber",(x(.154),-.058,.025),(.218,.326,.050),.018)
         b.box(n("foot"),"iron",(x(.154),-.057,.088),(.199,.302,.118),.027)
         b.box(n("foot"),"alloy",(x(.154),-.142,.124),(.173,.115,.052),.017)
-        b.box(n("foot"),"clay" if stable else ("weld" if surveyor else "copper"),(x(.154),-.143,.154),(.052,.079,.014),.004)
+        b.box(n("foot"),"clay" if stable else ("weld" if surveyor or rook else "copper"),(x(.154),-.143,.154),(.052,.079,.014),.004)
         b.box(n("foot"),"weld",(x(.152),-.005,.167),(.161,.145,.075),.020)
         if stable:
             b.box("chest","canvas",(x(.132),-.162,1.353),(.041,.027,.183),.009,(0,side*.13,0))
@@ -211,6 +214,23 @@ def build(stable,slug,surveyor=False):
             b.box("spine","clay",(x(.121),-.192,1.139),(.141,.020,.035),.006)
             b.box("spine","buckles",(x(.122),-.204,1.135),(.027,.011,.015),.004)
             b.box(n("elbow"),"weld",(x(.435),-.10,1.013),(.112,.021,.097),.017,(0,-side*.23,0))
+        elif rook:
+            # W04 shop keeper and WSC-ACTOR-018 brown leather shop apron.
+            b.box("chest","edge",(x(.122),-.171,1.367),(.034,.024,.182),.006,(0,-side*.065,0))
+            b.box("chest","canvas",(x(.124),.179,1.343),(.036,.022,.222),.006,(0,side*.07,0))
+            b.box("chest","clay",(x(.170),-.173,1.356),(.045,.028,.197),.008,(0,side*.10,0))
+            b.box("chest","clay",(x(.167),.185,1.349),(.044,.024,.192),.006)
+            shoulder=[(-.176,1.436),(-.11,1.457),(-.066,1.466),(.072,1.466),(.141,1.450),(.184,1.427)]
+            for (a,z0),(c,z1) in zip(shoulder,shoulder[1:]):
+                b.box("chest","clay",(x(.168),(a+c)/2,(z0+z1)/2),
+                      (.046,math.hypot(c-a,z1-z0)+.014,.024),.004,
+                      (math.atan2(z1-z0,c-a),0,0))
+            b.box("spine","clay",(x(.210),-.123,1.004),(.068,.112,.155),.013)
+            b.box("hips","clay",(x(.207),-.159,.824),(.086,.118,.231),.020)
+            b.box("hips","thread",(x(.212),-.222,.893),(.081,.031,.057),.009)
+            b.rod("hips","buckles",(x(.213),-.241,.889),(x(.213),-.247,.889),.014,8)
+            b.rod("head","weld",(x(.231),0,1.654),(x(.251),0,1.654),.064,10)
+            b.rod("head","alloy",(x(.249),0,1.654),(x(.256),0,1.654),.046,10)
         else:
             b.plate("chest","lapel",[(x(.038),-.177,1.288),(x(.177),-.156,1.39),
                 (x(.113),-.135,1.465),(x(.079),-.164,1.411)])
@@ -255,6 +275,28 @@ def build(stable,slug,surveyor=False):
         for a,c in [((-.065,1.300),(0,1.386)),((0,1.386),(.065,1.300)),
                     ((-.065,1.300),(.065,1.300))]:
             b.rod("chest","navy",(a[0],.202,a[1]),(c[0],.202,c[1]),.006,6)
+    elif rook:
+        b.plate("spine","clay",[(-.173,-.182,1.239),(-.211,-.185,.975),
+                                 (.211,-.185,.975),(.173,-.182,1.239)],.053)
+        b.plate("hips","clay",[(-.201,-.185,.991),(-.209,-.197,.738),
+                                (.209,-.197,.738),(.201,-.185,.991)],.046)
+        b.box("spine","thread",(0,-.218,1.135),(.233,.035,.126),.013)
+        b.box("spine","clay",(0,-.241,1.138),(.210,.020,.106),.011)
+        b.box("hips","thread",(0,-.221,.870),(.248,.054,.158),.018)
+        b.box("hips","clay",(0,-.253,.872),(.225,.023,.133),.012)
+        b.box("hips","iron",(0,.010,1.002),(.431,.342,.054),.016)
+        b.box("hips","thread",(0,.185,1.005),(.380,.029,.052),.009)
+        for x in (-.146,.146):
+            for z in (.902,1.187,1.218):
+                y=-.273 if z==.902 else -.236
+                b.rod("hips" if z<1 else "spine","buckles",(x,y,z),(x,y-.009,z),.011,8)
+        # Single worn maker plate; restrained asymmetry against the visible gold slit.
+        b.box("head","weld",(-.105,.153,1.685),(.108,.036,.079),.010)
+        for i in range(3):
+            b.box("head","buckles",(-.133+.026*i,.176,1.685),(.013,.012,.048),.003)
+        b.box("head","iron",(0,-.180,1.657),(.304,.027,.094),.018)
+        b.box("head","glass",(0,-.199,1.661),(.276,.021,.063),.012)
+        b.box("head","eye",(0,-.213,1.661),(.232,.011,.029),.008)
     else:
         b.box("hips","alloy",(0,-.167,.977),(.104,.036,.065),.012)
         b.box("hips","rubber",(0,-.186,.977),(.067,.012,.037),.006)
@@ -264,9 +306,9 @@ def build(stable,slug,surveyor=False):
     b.finish(slug)
 
 
-for code,slug in ((("017","surveyor"),) if SURVEYOR else ROLES):
-    build(code=="001",slug,surveyor=SURVEYOR)
-    filename=f"wsc-actor-{code}-{slug}.glb" if SURVEYOR else f"wsc-plan-{code}-{slug}.glb"
+for code,slug in ((("017","surveyor"),) if SURVEYOR else ((("018","tinker-rook"),) if ROOK else ROLES)):
+    build(code=="001",slug,surveyor=SURVEYOR,rook=ROOK)
+    filename=f"wsc-actor-{code}-{slug}.glb" if SURVEYOR or ROOK else f"wsc-plan-{code}-{slug}.glb"
     bpy.ops.export_scene.gltf(filepath=str(OUT/filename),
         export_format="GLB",use_selection=True,export_animations=True,export_apply=False,
         export_animation_mode="ACTIVE_ACTIONS",export_force_sampling=True)
@@ -277,7 +319,7 @@ for code,slug in ((("017","surveyor"),) if SURVEYOR else ROLES):
     "approximate_ground_toe_RL":[[-.154,0,.154],[.154,0,.154]],
 },indent=2)+"\n")
 
-if not SURVEYOR and os.getenv("WSC_TOWN_BOT_RENDER")=="1":
+if not SURVEYOR and not ROOK and os.getenv("WSC_TOWN_BOT_RENDER")=="1":
     clear_scene()
     for offset,(code,slug) in zip((-.76,.76),ROLES):
         before=set(bpy.context.scene.objects)
