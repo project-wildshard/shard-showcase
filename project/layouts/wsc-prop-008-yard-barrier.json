@@ -1,0 +1,24 @@
+{
+  "asset_id": "WSC-PROP-008",
+  "convention": "meters; X span, glTF Y up, +Z front",
+  "blender_bounds_min": [
+    -1.28,
+    -0.235,
+    0.0
+  ],
+  "blender_bounds_max": [
+    1.28,
+    0.235,
+    0.95
+  ],
+  "size_x_depth_height": [
+    2.56,
+    0.47,
+    0.95
+  ],
+  "bytes": 61236,
+  "triangles": 1108,
+  "primitives": 4,
+  "presentation": "procedural concept-derived prop; not an exact historic shot match",
+  "verification": "GLB reimport, origin and five visual ray samples; no physics collision"
+}
