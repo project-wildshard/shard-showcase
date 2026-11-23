@@ -271,7 +271,7 @@ scene.render.resolution_percentage=100
 scene.render.image_settings.file_format="JPEG";scene.render.image_settings.quality=92
 for name,pos,target,focal,res in (
     ("nov23-titan-bowl-overlook",(101,-137,113),(0,-1,6),37,(1500,1010)),
-    ("nov23-titan-bowl-floor",(-1.4,-53.2,3.4),(0,21,5.3),23,(1080,1320)),
+    ("nov23-titan-bowl-floor",(-4.3,-58.1,2.6),(17,22,7.2),26,(1380,920)),
 ):
     scene.camera.location=pos;aim(scene.camera,target);cam.lens=focal
     scene.render.resolution_x,scene.render.resolution_y=res
