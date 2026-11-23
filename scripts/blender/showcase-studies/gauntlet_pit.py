@@ -151,7 +151,7 @@ for kind,x,z,rot in layout["cover"]:
 bx,bz=layout["banner_x_z"];bw,bh,bd=layout["banner_dims_width_height_depth"]
 yb=layout["banner_bottom_y"]
 for x in (bx-bw/2-.23,bx+bw/2+.23):
-    box("12 Banner cantilever",steel,x,233.56,7.81,.38,.58,5.8)
+    box("12 Banner cantilever",steel,x,233.56,8.99,.38,.58,8.0)
     box("12 Banner cantilever",steel,x,232.8,yb+bh,.37,1.76,.48)
 box("12 Banner cantilever",rust,bx,bz,yb+bh+.15,9.03,.3,.31)
 for i in range(28):
@@ -241,11 +241,11 @@ gg=mat("Studio ground not exported",(.043,.059,.067))
 bpy.ops.mesh.primitive_plane_add(size=450,location=(0,0,-6.1))
 bpy.context.object.data.materials.append(gg)
 cam=bpy.data.cameras.new("C2 review camera");s.camera=bpy.data.objects.new(cam.name,cam);s.collection.objects.link(s.camera)
-s.render.engine="CYCLES";s.cycles.samples=38;s.cycles.use_denoising=False
+s.render.engine="CYCLES";s.cycles.samples=58;s.cycles.use_denoising=False
 s.view_settings.view_transform="AgX";s.view_settings.look="AgX - Medium High Contrast"
 s.render.resolution_percentage=100;s.render.image_settings.file_format="JPEG";s.render.image_settings.quality=92
 for label,pos,target,fl,res in (
-    ("nov23-gauntlet-pit-overlook",(51,54,63),(2,-3,1.5),37,(1450,1000)),
+    ("nov23-gauntlet-pit-overlook",(57,58,70),(3,-2,1.5),32,(1450,1000)),
     ("nov23-gauntlet-pit-lift",(-6,0,3),(0,-18,6.6),27,(1080,1230)),
 ):
     s.camera.location=pos;aim(s.camera,target);cam.lens=fl
