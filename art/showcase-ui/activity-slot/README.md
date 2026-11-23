@@ -5,3 +5,5 @@ WSC-SCENE-010 art review only. Replicates the UI-PICKS decisions for UI-20 (cour
 Copy index.html, style.css and app.js into the catalogue output activity-slot directory. The four JPEG stills are existing catalogue assets and link from sibling media, with no added source duplication. Run node test.mjs for state contract tests. Narrow phone screenshots should be taken from the preview, not from the game.
 
 Sources: docs/plans/kitchen-sink-v2/UI-PICKS.md and hud-character-mini-plan.md, original approved UI-20 / UI-29-A / UI-31 review frames.
+
+Optional phone.html provides the 390 × 844 CSS viewport review wrapper; it does not emulate a physical iPhone.
