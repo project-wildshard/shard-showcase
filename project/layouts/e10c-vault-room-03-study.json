@@ -1,0 +1,562 @@
+{
+  "catalogue_id": "WSC-KIT-008",
+  "support_id": "WSC-SCENE-006",
+  "scope": "E10c Room 3 art layout. No working ladder, scramble, bridge, winch, door, clearance or native runtime.",
+  "plan_refs": [
+    "E10c-vault-rooms",
+    "DECISIONS.md D41"
+  ],
+  "bounds_world_gltf_m": {
+    "x": [
+      151,
+      221
+    ],
+    "y": [
+      -50,
+      -30
+    ],
+    "z": [
+      -99,
+      -29
+    ]
+  },
+  "proposal_art_bounds_world_gltf_m": [
+    [
+      168.800001,
+      -50.0,
+      -69.1
+    ],
+    [
+      206.119999,
+      -35.235,
+      -59.15
+    ]
+  ],
+  "scene_transform": "world [186+x, -50+z, -64-y] for Blender x,y,z. Placement is proposed, not a native map anchor.",
+  "bridge": {
+    "length_overall_m": 8.7049,
+    "end_board_plane_world_y": -44.5,
+    "end_test_local_x": [
+      -4,
+      4
+    ],
+    "donor_end_board_z": [
+      0.681617,
+      0.681617
+    ],
+    "end_board_centerline_height_error_m": 4e-07
+  },
+  "lift": {
+    "donor": "Measured Gauntlet art donor only",
+    "fixed_frame_world_y": -44.5,
+    "platform_low_world_y": -44.5,
+    "platform_high_world_y": -40.5,
+    "shaft_bottom_low_world_y": -49.459,
+    "margin_above_box_bottom_m": 0.541,
+    "upper_deck_joins_apron_x_blender_m": 13.0,
+    "proposed_rise_m": 4
+  },
+  "route": [
+    "ladder",
+    "three scramble ledges",
+    "rope bridge",
+    "winch lift",
+    "last door"
+  ],
+  "donors": {
+    "bay": {
+      "file": "wsc-arch-002-industrial-wall-bay.glb",
+      "sha256": "24f3a7736d111033d724f0f6244c4d10f757fe3066ea1b8b12d5ef60a5a6f625",
+      "local_bounds_blender_m": [
+        [
+          -1.8,
+          -0.28,
+          0.0
+        ],
+        [
+          1.8,
+          0.28,
+          2.082
+        ]
+      ]
+    },
+    "plates": {
+      "file": "wsc-prop-064-metal-floor-plates.glb",
+      "sha256": "7e4eef8077b1d59fd31d17235ef1cedca8bab9910c0c283bcf5546fae144ed85",
+      "local_bounds_blender_m": [
+        [
+          -1.5775,
+          -1.5775,
+          0.0
+        ],
+        [
+          1.5775,
+          1.5775,
+          0.112
+        ]
+      ]
+    },
+    "ladder": {
+      "file": "wsc-prop-040-mover-access-ladder.glb",
+      "sha256": "b7f3235d92c1caa15629e19129fce8e4ebe3fe5e4d2a8135858f80a7561c6245",
+      "local_bounds_blender_m": [
+        [
+          -0.453,
+          -0.06,
+          0.025
+        ],
+        [
+          0.453,
+          0.3155,
+          3.755
+        ]
+      ]
+    },
+    "bridge": {
+      "file": "wsc-prop-048-rope-walkway.glb",
+      "sha256": "b3fcbaef46257c0af8b28082aab5211d9ec412200ac11201ec678590e3adf1e2",
+      "local_bounds_blender_m": [
+        [
+          -4.352455,
+          -0.863387,
+          0.0
+        ],
+        [
+          4.352455,
+          0.856605,
+          1.6535
+        ]
+      ]
+    },
+    "lift_frame": {
+      "file": "wsc-kit-009-reveal-lift-frame.glb",
+      "sha256": "54f88aa3ed7dd8e09f74677787ec2d62a274650a96e130da1c39e2a5903f1376",
+      "local_bounds_blender_m": [
+        [
+          -3.49,
+          -3.49,
+          -1.57
+        ],
+        [
+          3.49,
+          3.49,
+          0.0
+        ]
+      ]
+    },
+    "lift_deck": {
+      "file": "wsc-kit-009-reveal-lift-deck.glb",
+      "sha256": "522f9ad11c6b01ba54a78a84d88f16e9b3a4e912ce961ec2a99abbfb2bc14f33",
+      "local_bounds_blender_m": [
+        [
+          -3.0,
+          -3.0,
+          -4.959
+        ],
+        [
+          3.0,
+          3.0,
+          0.0
+        ]
+      ]
+    },
+    "door": {
+      "file": "wsc-prop-063-round-vault-bulkhead.glb",
+      "sha256": "25db93c5d45901a6599674ea857982700f57705c1b171e23978140537e41eedf",
+      "local_bounds_blender_m": [
+        [
+          -1.479,
+          -0.429,
+          0.0045
+        ],
+        [
+          1.479,
+          0.383,
+          2.96
+        ]
+      ]
+    }
+  },
+  "placements": [
+    {
+      "asset": "plates",
+      "label": "Entry tread",
+      "origin_blender_m": [
+        -13.6,
+        0,
+        0.903
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "ladder",
+      "label": "01 wall ladder",
+      "origin_blender_m": [
+        -10.94,
+        0,
+        0.875
+      ],
+      "yaw_deg": -90
+    },
+    {
+      "asset": "bridge",
+      "label": "03 original bridge",
+      "origin_blender_m": [
+        0,
+        0,
+        4.818383
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "lift_frame",
+      "label": "04 fixed shaft mouth",
+      "origin_blender_m": [
+        10,
+        0,
+        5.5
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "lift_deck",
+      "label": "Deck at lower mark",
+      "origin_blender_m": [
+        10,
+        0,
+        5.5
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "lift_deck",
+      "label": "Deck at upper mark",
+      "origin_blender_m": [
+        10,
+        0,
+        9.5
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "plates",
+      "label": "Last-door tread",
+      "origin_blender_m": [
+        16.15,
+        0,
+        9.503
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "door",
+      "label": "05 last door / static bulkhead",
+      "origin_blender_m": [
+        18.0,
+        0,
+        9.5
+      ],
+      "yaw_deg": -90
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -15.4,
+        4.54,
+        0.16
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -15.4,
+        4.54,
+        2.3
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -15.4,
+        4.54,
+        4.44
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -11.8,
+        4.54,
+        0.16
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -11.8,
+        4.54,
+        2.3
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -11.8,
+        4.54,
+        4.44
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -8.2,
+        4.54,
+        0.16
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -8.2,
+        4.54,
+        2.3
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -8.2,
+        4.54,
+        4.44
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -4.6,
+        4.54,
+        0.16
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -4.6,
+        4.54,
+        2.3
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -4.6,
+        4.54,
+        4.44
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -1.0,
+        4.54,
+        0.16
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -1.0,
+        4.54,
+        2.3
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        -1.0,
+        4.54,
+        4.44
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        2.5999999999999996,
+        4.54,
+        0.16
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        2.5999999999999996,
+        4.54,
+        2.3
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        2.5999999999999996,
+        4.54,
+        4.44
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        6.200000000000001,
+        4.54,
+        0.16
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        6.200000000000001,
+        4.54,
+        2.3
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        6.200000000000001,
+        4.54,
+        4.44
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        9.799999999999999,
+        4.54,
+        0.16
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        9.799999999999999,
+        4.54,
+        2.3
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        9.799999999999999,
+        4.54,
+        4.44
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        13.4,
+        4.54,
+        0.16
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        13.4,
+        4.54,
+        2.3
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        13.4,
+        4.54,
+        4.44
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        17.0,
+        4.54,
+        0.16
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        17.0,
+        4.54,
+        2.3
+      ],
+      "yaw_deg": 0
+    },
+    {
+      "asset": "bay",
+      "label": "Back wall repeated industrial bay",
+      "origin_blender_m": [
+        17.0,
+        4.54,
+        4.44
+      ],
+      "yaw_deg": 0
+    }
+  ]
+}
