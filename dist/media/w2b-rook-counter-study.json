@@ -1,0 +1,253 @@
+{
+  "scope": "W04 visual staging, open-air frontage only. Not a walk-in interior, route, collision or trade implementation.",
+  "catalogue_id": "WSC-SCENE-002",
+  "reference": "originals/round-11-remaster/west/w04.jpg; W0b Main Street 72m; W2b Shops.",
+  "actor": {
+    "id": "WSC-ACTOR-018",
+    "placement_blender_m": [
+      -0.86,
+      -1.73,
+      0
+    ],
+    "yaw_deg": 12,
+    "frame": 19,
+    "rig_joints": 21,
+    "authored_clip": "Idle_Studio",
+    "clip_length_s": 3,
+    "pose_motion_max_distance_m_at_frame_19": 0.0319,
+    "sha256": "41a9d103fba6aea871d9f499da8c57678181a1783635477fe3927e1796626cba",
+    "bytes": 150112
+  },
+  "donors": {
+    "storefront": {
+      "file": "wsc-prop-022-tinker-rook.glb",
+      "sha256": "8e60f3b07809b306c1babe3d938f502b696aff1eeecd5e84372064047e3967eb",
+      "filter": null
+    },
+    "awning": {
+      "file": "wsc-prop-023-shop-doorway-awning.glb",
+      "sha256": "5964e03434e78894134973f48ac09019c82016bac814680b84dfc944df7f3fac",
+      "filter": null
+    },
+    "wrench sign": {
+      "file": "wsc-prop-024-shop-wrench-sign.glb",
+      "sha256": "319b136f8027a24858c3d8ab10e126f44f1097f0f3b34a929e62ce529cdf4a02",
+      "filter": null
+    },
+    "counter": {
+      "file": "wsc-arch-006-shop-interior-kit.glb",
+      "sha256": "e2266b8e5bdc43a5399b70baac0f8a53c702618b7c7606062c1483d008ea670a",
+      "filter": "Oak display counter"
+    },
+    "lantern": {
+      "file": "wall-lantern.glb",
+      "sha256": "bdbdce040eee6e60693e110cdcdb25e1abc93d80ed4f79f7d2e72fc5490ecc09",
+      "filter": null
+    },
+    "cargo crate": {
+      "file": "haul-crate.glb",
+      "sha256": "d7a5f8fcb2b835d0c0c77c3051ebd950ed449dc2c563e10779fdc5f01cc6bb44",
+      "filter": null
+    },
+    "paving": {
+      "file": "wsc-arch-005-plaza-paving-kit.glb",
+      "sha256": "85b9ddb3f5c13a5168325fd4b6c34ccf0fde319a5c3511d67232ce6d762f97ea",
+      "filter": null
+    },
+    "street bay": {
+      "file": "wsc-arch-003-town-facade-kit.glb",
+      "sha256": "7b85446743a8134c06a1627f9e6a4503edcf7950c3e03a871542b01f52ef1f5d",
+      "filter": null
+    }
+  },
+  "placement_axes": "Blender x,y,z metres (x,z,-y for glTF)",
+  "placements": [
+    {
+      "name": "storefront",
+      "xyz_blender_m": [
+        0,
+        0,
+        0
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 1,
+      "recenter_on_base": false
+    },
+    {
+      "name": "awning",
+      "xyz_blender_m": [
+        0.57,
+        -0.48,
+        1.99
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 1.16,
+      "recenter_on_base": false
+    },
+    {
+      "name": "wrench sign",
+      "xyz_blender_m": [
+        3.15,
+        -0.457,
+        3.02
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 0.43,
+      "recenter_on_base": false
+    },
+    {
+      "name": "counter",
+      "xyz_blender_m": [
+        1.45,
+        -1.56,
+        0
+      ],
+      "yaw_degrees": -7,
+      "uniform_scale": 1,
+      "recenter_on_base": true
+    },
+    {
+      "name": "cargo crate",
+      "xyz_blender_m": [
+        3.57,
+        -1.21,
+        0
+      ],
+      "yaw_degrees": -12,
+      "uniform_scale": 0.81,
+      "recenter_on_base": false
+    },
+    {
+      "name": "lantern",
+      "xyz_blender_m": [
+        -2.99,
+        -0.38,
+        2.42
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 0.52,
+      "recenter_on_base": false
+    },
+    {
+      "name": "lantern",
+      "xyz_blender_m": [
+        2.97,
+        -0.38,
+        2.39
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 0.52,
+      "recenter_on_base": false
+    },
+    {
+      "name": "paving",
+      "xyz_blender_m": [
+        -4.8,
+        -7.2,
+        -0.015
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 1,
+      "recenter_on_base": false
+    },
+    {
+      "name": "paving",
+      "xyz_blender_m": [
+        0,
+        -7.2,
+        -0.015
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 1,
+      "recenter_on_base": false
+    },
+    {
+      "name": "paving",
+      "xyz_blender_m": [
+        4.8,
+        -7.2,
+        -0.015
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 1,
+      "recenter_on_base": false
+    },
+    {
+      "name": "paving",
+      "xyz_blender_m": [
+        -4.8,
+        -2.4,
+        -0.015
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 1,
+      "recenter_on_base": false
+    },
+    {
+      "name": "paving",
+      "xyz_blender_m": [
+        0,
+        -2.4,
+        -0.015
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 1,
+      "recenter_on_base": false
+    },
+    {
+      "name": "paving",
+      "xyz_blender_m": [
+        4.8,
+        -2.4,
+        -0.015
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 1,
+      "recenter_on_base": false
+    },
+    {
+      "name": "street bay",
+      "xyz_blender_m": [
+        -5.41,
+        0.44,
+        0
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 1,
+      "recenter_on_base": false
+    },
+    {
+      "name": "street bay",
+      "xyz_blender_m": [
+        -5.41,
+        0.44,
+        3.13
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 1,
+      "recenter_on_base": false
+    },
+    {
+      "name": "street bay",
+      "xyz_blender_m": [
+        5.44,
+        0.44,
+        0
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 1,
+      "recenter_on_base": false
+    },
+    {
+      "name": "street bay",
+      "xyz_blender_m": [
+        5.44,
+        0.44,
+        3.13
+      ],
+      "yaw_degrees": 0,
+      "uniform_scale": 1,
+      "recenter_on_base": false
+    }
+  ]
+}
