@@ -12,7 +12,7 @@ SHAPES = {"SCALAR": 1, "VEC2": 2, "VEC3": 3, "VEC4": 4, "MAT4": 16}
 FORMATS = {5121: "B", 5123: "H", 5125: "I", 5126: "f"}
 
 
-def check(path, target_triangles):
+def check(path, target_triangles, size_limit=450_000):
     blob=path.read_bytes()
     assert struct.unpack_from("<4sII",blob)==(b"glTF",2,len(blob))
     size=struct.unpack_from("<I",blob,12)[0]
@@ -45,7 +45,7 @@ def check(path, target_triangles):
     assert all(all(0<=w<=1 for w in v) and math.isclose(sum(v),1,abs_tol=1e-5) for v in weights)
     assert len({j for js,ws in zip(joints0,weights) for j,w in zip(js,ws) if w>0})>=15
     idx=doc["accessors"][p["indices"]]["count"]
-    assert idx==target_triangles*3 and len(blob)<450_000
+    assert idx==target_triangles*3 and len(blob)<size_limit
     clip,=doc["animations"]
     active=set()
     for c in clip["channels"]:
@@ -69,5 +69,7 @@ def check(path, target_triangles):
 
 
 directory=Path(sys.argv[1])
-assert (check(directory/"wsc-plan-001-stable-hand.glb",3396)==
-        check(directory/"wsc-plan-002-weapons-keeper.glb",3512)), "Shared palette did not match"
+palette=check(directory/"wsc-plan-001-stable-hand.glb",3396)
+assert palette==check(directory/"wsc-plan-002-weapons-keeper.glb",3512), "Shared palette did not match"
+if len(sys.argv)>2:
+    assert palette==check(Path(sys.argv[2]),3920,size_limit=600_000), "Surveyor atlas differs"

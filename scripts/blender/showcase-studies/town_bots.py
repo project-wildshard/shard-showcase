@@ -1,4 +1,4 @@
-"""Blender 4.3.2 source for the shared W1a stable hand / weapons keeper studies."""
+"""Blender 4.3.2 source for the shared W1a town bot studies."""
 import json
 import math
 import os
@@ -13,6 +13,7 @@ from common import clear_scene, output_directory
 
 OUT=output_directory()
 ROLES=(("001","stable-hand"),("002","weapons-keeper"))
+SURVEYOR=os.getenv("WSC_TOWN_SURVEYOR")=="1"
 # Blender Z up, front -Y; glTF Y up, front +Z. Right is negative X.
 BONES=[
  ("hips",None,(0,0,.92)),("spine","hips",(0,0,1.04)),
@@ -144,11 +145,11 @@ class Bot:
         return rig,mesh
 
 
-def build(stable,slug):
+def build(stable,slug,surveyor=False):
     clear_scene()
     b=Bot()
-    shell="vest" if stable else "navy"
-    seam="clay" if stable else "denim"
+    shell="vest" if stable or surveyor else "navy"
+    seam="clay" if stable or surveyor else "denim"
     b.box("hips","iron",(0,0,.925),(.33,.252,.175),.041)
     b.box("spine","rubber",(0,0,1.083),(.30,.219,.21),.046)
     b.box("chest",shell,(0,0,1.285),(.465,.32,.34),.072)
@@ -171,7 +172,7 @@ def build(stable,slug):
         b.rod("head","weld",(x(.205),0,1.654),(x(.225),0,1.654),.063)
         b.rod("head","alloy",(x(.222),0,1.654),(x(.232),0,1.654),.045)
         b.box(n("shoulder"),"rubber",(x(.26),0,1.359),(.135,.190,.163),.039)
-        b.box(n("twist"),"alloy" if stable else shell,(x(.313),-.007,1.291),
+        b.box(n("twist"),"alloy" if stable or surveyor else shell,(x(.313),-.007,1.291),
               (.145,.169,.202),.031,(0,-side*.52,0))
         b.box(n("twist"),"weld",(x(.365),-.01,1.205),(.108,.119,.11),.025,(0,-side*.52,0))
         b.rod(n("elbow"),"rubber",(x(.392),.047,1.151),(x(.392),-.076,1.151),.049)
@@ -179,7 +180,7 @@ def build(stable,slug):
         b.rod(n("elbow"),"alloy",(x(.409),-.024,1.106),(x(.453),-.043,.965),.065,8,.043)
         b.box(n("elbow"),"edge",(x(.427),-.075,1.045),(.072,.028,.104),.01,(0,-side*.25,0))
         b.rod(n("hand"),"rubber",(x(.456),-.046,.968),(x(.463),-.054,.918),.042)
-        if not stable:b.rod(n("hand"),"copper",(x(.457),-.046,.967),(x(.460),-.05,.948),.050)
+        if not stable and not surveyor:b.rod(n("hand"),"copper",(x(.457),-.046,.967),(x(.460),-.05,.948),.050)
         b.box(n("hand"),"iron",(x(.472),-.063,.895),(.077,.084,.089),.018,(0,-side*.16,0))
         for idx in range(3):
             y=-.093+idx*.026
@@ -193,13 +194,23 @@ def build(stable,slug):
         b.box(n("foot"),"rubber",(x(.154),-.058,.025),(.218,.326,.050),.018)
         b.box(n("foot"),"iron",(x(.154),-.057,.088),(.199,.302,.118),.027)
         b.box(n("foot"),"alloy",(x(.154),-.142,.124),(.173,.115,.052),.017)
-        b.box(n("foot"),"clay" if stable else "copper",(x(.154),-.143,.154),(.052,.079,.014),.004)
+        b.box(n("foot"),"clay" if stable else ("weld" if surveyor else "copper"),(x(.154),-.143,.154),(.052,.079,.014),.004)
         b.box(n("foot"),"weld",(x(.152),-.005,.167),(.161,.145,.075),.020)
         if stable:
             b.box("chest","canvas",(x(.132),-.162,1.353),(.041,.027,.183),.009,(0,side*.13,0))
             b.box("spine","clay",(x(.179),-.161,1.055),(.099,.057,.136),.014)
             b.box("spine","vest",(x(.179),-.194,1.085),(.102,.022,.048),.008)
             b.rod("spine","buckles",(x(.179),-.205,1.090),(x(.179),-.211,1.090),.010,8)
+        elif surveyor:
+            # Reflective tape wraps both sides of the vest; retained atlas swatches.
+            b.box("chest","edge",(x(.151),-.173,1.340),(.039,.024,.207),.008,(0,side*.05,0))
+            b.box("chest","edge",(x(.149),.174,1.337),(.039,.017,.196),.006,(0,-side*.06,0))
+            b.box("chest","edge",(x(.126),-.171,1.224),(.169,.023,.025),.006)
+            b.box("chest","edge",(x(.133),.182,1.226),(.174,.018,.025),.006)
+            b.box("spine","vest",(x(.121),-.158,1.107),(.136,.053,.154),.019)
+            b.box("spine","clay",(x(.121),-.192,1.139),(.141,.020,.035),.006)
+            b.box("spine","buckles",(x(.122),-.204,1.135),(.027,.011,.015),.004)
+            b.box(n("elbow"),"weld",(x(.435),-.10,1.013),(.112,.021,.097),.017,(0,-side*.23,0))
         else:
             b.plate("chest","lapel",[(x(.038),-.177,1.288),(x(.177),-.156,1.39),
                 (x(.113),-.135,1.465),(x(.079),-.164,1.411)])
@@ -228,6 +239,22 @@ def build(stable,slug):
         for k in (-1,1):
             b.box("hips","canvas",(k*.060,.167,.956),(.115,.038,.042),.014,(0,k*.34,0))
             b.box("hips","canvas",(k*.044,.166,.883),(.035,.031,.140),.009,(0,-k*.33,0))
+    elif surveyor:
+        b.box("spine","vest",(0,.034,1.128),(.372,.23,.105),.025)
+        b.box("chest","rubber",(0,-.169,1.319),(.023,.014,.186),.004)
+        # Compact optics on the right temple plus a chest-worn slate; a distinct silhouette, not new tools.
+        b.box("head","iron",(-.205,-.04,1.697),(.124,.165,.145),.022)
+        b.box("head","alloy",(-.217,-.133,1.696),(.082,.023,.085),.01)
+        b.rod("head","glass",(-.217,-.144,1.696),(-.217,-.158,1.696),.031,12)
+        b.rod("head","lapel",(-.217,-.156,1.696),(-.217,-.163,1.696),.022,12)
+        b.box("chest","iron",(.098,-.196,1.345),(.109,.034,.076),.012)
+        b.box("chest","lapel",(.098,-.219,1.349),(.084,.011,.052),.005)
+        for z0,x0 in [(1.331,.089),(1.346,.097),(1.362,.103)]:
+            b.box("chest","edge",(x0,-.226,z0),(.052,.010,.005),.001)
+        # Rear triangular survey datum on an atlas-colored id plate.
+        for a,c in [((-.065,1.300),(0,1.386)),((0,1.386),(.065,1.300)),
+                    ((-.065,1.300),(.065,1.300))]:
+            b.rod("chest","navy",(a[0],.202,a[1]),(c[0],.202,c[1]),.006,6)
     else:
         b.box("hips","alloy",(0,-.167,.977),(.104,.036,.065),.012)
         b.box("hips","rubber",(0,-.186,.977),(.067,.012,.037),.006)
@@ -237,9 +264,10 @@ def build(stable,slug):
     b.finish(slug)
 
 
-for code,slug in ROLES:
-    build(code=="001",slug)
-    bpy.ops.export_scene.gltf(filepath=str(OUT/f"wsc-plan-{code}-{slug}.glb"),
+for code,slug in ((("017","surveyor"),) if SURVEYOR else ROLES):
+    build(code=="001",slug,surveyor=SURVEYOR)
+    filename=f"wsc-actor-{code}-{slug}.glb" if SURVEYOR else f"wsc-plan-{code}-{slug}.glb"
+    bpy.ops.export_scene.gltf(filepath=str(OUT/filename),
         export_format="GLB",use_selection=True,export_animations=True,export_apply=False,
         export_animation_mode="ACTIVE_ACTIONS",export_force_sampling=True)
 
@@ -249,7 +277,7 @@ for code,slug in ROLES:
     "approximate_ground_toe_RL":[[-.154,0,.154],[.154,0,.154]],
 },indent=2)+"\n")
 
-if os.getenv("WSC_TOWN_BOT_RENDER")=="1":
+if not SURVEYOR and os.getenv("WSC_TOWN_BOT_RENDER")=="1":
     clear_scene()
     for offset,(code,slug) in zip((-.76,.76),ROLES):
         before=set(bpy.context.scene.objects)
