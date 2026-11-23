@@ -1,0 +1,26 @@
+{
+  "asset_id": "WSC-SCENE-008",
+  "scope": "Crate Titan hidden arena, environment study only; no Titan, cutscene, native level or gameplay",
+  "round5_source": {
+    "repository": "Raynos/project-wildshard-singleplayer",
+    "ref": "ce1cf050b3",
+    "path": "art/showcase-template/round-5-blockout/layout.js",
+    "blob": "5d019a020361c47187ec889f2bc947f82cd9f98a"
+  },
+  "approved_slice": "docs/plans/kitchen-sink-v2/slices/E12g-titan-arena-fight.md",
+  "origin_world_x_y_z": [150, -150, 165],
+  "blender_axes": "+X east, -Y south, +Z up; metres; local slab -6 to 0, sky ceiling at 70 (metadata only)",
+  "floor_radius": 52,
+  "wall_radius": 56,
+  "wall_height": 8,
+  "stands_radius": 70,
+  "stands_height": 24,
+  "leap_band_radii": [40, 50],
+  "lane_headings_degrees_east_toward_south": [45, 135, 225, 315],
+  "lane_width": 10,
+  "cardinal_cover_radius": 30,
+  "alcove_width": 16,
+  "alcove_depth": 14,
+  "floodlight_count": 4,
+  "interpretive": "Centered southern entrance, terraces, mast positions, surfacing, fixtures, visual extent of lane strips and lighting are art choices; no collision authored."
+}
