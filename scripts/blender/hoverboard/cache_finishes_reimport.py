@@ -42,6 +42,7 @@ for x,style in zip((-.893,-.298,.298,.893),FINISHES):
     for t in board.data.loop_triangles:actual[board.data.materials[t.material_index].name]+=1
     assert sorted(actual.values())==[140,192,376,524] and all(k.startswith(style["name"]) for k in actual)
     boards.append(board)
+    board.rotation_mode="XYZ"
     board.location=(x,.10,.19)
     board.rotation_euler=(math.radians(8),math.radians(-29),math.radians(-8))
     slab(style["name"]+" stand",(x,0,-.031),(.541,1.26,.062),base)
