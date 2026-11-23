@@ -22,6 +22,7 @@ previewCounts.unlinked=previewCounts.all-previewCounts.linked;
 for(const o of el('previews').options){
  o.textContent+=` (${previewCounts[o.value]})`;
 }
+let showingForcedRow=false;
 function rows(reveal){
  const q=el('query').value.trim().toLowerCase(),t=el('types').value,p=el('previews').value;
  const matches=DATA.assets.filter(a=>(!t||a.class===t)
@@ -29,6 +30,7 @@ function rows(reveal){
   &&[a.id,a.name,a.evidence,a.reuse_or_open_edge].join(' ').toLowerCase().includes(q));
  const linked=reveal&&DATA.assets.find(a=>a.id===reveal);
  const outside=Boolean(linked&&!matches.includes(linked));
+ showingForcedRow=outside;
  const visible=outside?[linked,...matches]:matches;
  el('hits').textContent=`${matches.length} matching ${matches.length===1?'entry':'entries'}${outside?' · plus linked entry outside filters':''}`;
  const f=document.createDocumentFragment();for(const a of visible){const d=node('details','',f);d.className='row';d.id='asset-'+a.id;const s=node('summary','',d);node('span',a.id,s);node('strong',a.name,s);node('p',[a.class,a.priority,a.status.replaceAll('-',' ')].join(' · '),d);node('p','Evidence: '+a.evidence,d);node('p',a.reuse_or_open_edge,d);if(ConceptAngles.available(a))ConceptAngles.rowButton(d,a);if(a.concept){const l=node('a','View concept board',d);l.href=a.concept}if(a.plan_studies){const line=node('p','',d);const l=node('a','View the three illustrated plan studies',line);l.href=a.plan_studies}if(a.reference_preview){const line=node('p','',d);const l=node('a','View original reference and observations',line);l.href=a.reference_preview}if(a.model_preview){const line=node('p','',d);const l=node('a','View study',line);l.href=a.model_preview}}el('rows').replaceChildren(f)}
@@ -65,6 +67,7 @@ function route(key,focus=false){
  ConceptAngles.close();
  key=aliases[key]||key;
  if(key.startsWith('asset-'))rows(key.slice(6));
+ else if(showingForcedRow)rows();
  const ref=refKeys.get(key),target=el(key),panel=ref?'originals':target?.closest('[role=tabpanel]')?.id||'assets';
  if(!ref&&el('detail').open)el('detail').close();
  for(const name of tabs){const active=name===panel, tab=el('tab-'+name);tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;el(name).hidden=!active;}
