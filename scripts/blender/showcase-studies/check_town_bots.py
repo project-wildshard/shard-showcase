@@ -12,7 +12,7 @@ SHAPES = {"SCALAR": 1, "VEC2": 2, "VEC3": 3, "VEC4": 4, "MAT4": 16}
 FORMATS = {5121: "B", 5123: "H", 5125: "I", 5126: "f"}
 
 
-def check(path, target_triangles, size_limit=450_000):
+def check(path, target_triangles, size_limit=450_000, palette_set='w1a'):
     blob=path.read_bytes()
     assert struct.unpack_from("<4sII",blob)==(b"glTF",2,len(blob))
     size=struct.unpack_from("<I",blob,12)[0]
@@ -40,7 +40,7 @@ def check(path, target_triangles, size_limit=450_000):
     pos,uv,joints0,weights=[values(a[k]) for k in ("POSITION","TEXCOORD_0","JOINTS_0","WEIGHTS_0")]
     assert len(pos)==len(uv)==len(joints0)==len(weights)
     assert min(v[1] for v in pos)==0 and 1.805<max(v[1] for v in pos)<1.806
-    assert len({(round(u,3),round(v,3)) for u,v in uv})>=12
+    assert len({(round(u,3),round(v,3)) for u,v in uv}) >= (10 if palette_set=="w1a-quest" else 12)
     assert all(all(0<=i<21 for i in v) for v in joints0)
     assert all(all(0<=w<=1 for w in v) and math.isclose(sum(v),1,abs_tol=1e-5) for v in weights)
     assert len({j for js,ws in zip(joints0,weights) for j,w in zip(js,ws) if w>0})>=15
@@ -63,13 +63,19 @@ def check(path, target_triangles, size_limit=450_000):
         view=doc["bufferViews"][img["bufferView"]]
         at=base+view.get("byteOffset",0)
         look[img["name"]]=blob[at:at+view["byteLength"]]
-    assert set(look)=={"w1a-albedo","w1a-signal"}
+    assert set(look)=={palette_set+"-albedo",palette_set+"-signal"}
     print(f"{path.name}: {len(blob):,} B, {idx//3:,} triangles; one skinned mesh, 21 ordered joints, 3 s idle")
     return look
 
 
-directory=Path(sys.argv[1])
-palette=check(directory/"wsc-plan-001-stable-hand.glb",3396)
-assert palette==check(directory/"wsc-plan-002-weapons-keeper.glb",3512), "Shared palette did not match"
-if len(sys.argv)>2:
-    assert palette==check(Path(sys.argv[2]),3920,size_limit=600_000), "Surveyor atlas differs"
+if __name__ == "__main__":
+    directory=Path(sys.argv[1])
+    if len(sys.argv)==3 and sys.argv[2]=="--quest":
+        first=check(directory/"yard-boss-decoded-for-blender.glb",3992,720_000,"w1a-quest")
+        second=check(directory/"shift-boss-decoded-for-blender.glb",4208,720_000,"w1a-quest")
+        assert first==second, "Quest giver atlas differs"
+    else:
+        palette=check(directory/"wsc-plan-001-stable-hand.glb",3396)
+        assert palette==check(directory/"wsc-plan-002-weapons-keeper.glb",3512), "Shared palette did not match"
+        if len(sys.argv)>2:
+            assert palette==check(Path(sys.argv[2]),3920,size_limit=600_000), "Surveyor atlas differs"

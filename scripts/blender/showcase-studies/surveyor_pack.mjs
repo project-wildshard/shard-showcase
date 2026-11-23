@@ -1,9 +1,10 @@
-// Usage: node surveyor_pack.mjs <node_modules> <rebuild directory> [surveyor|tinker-rook]
+// Add --exact-surveyor <tracked glb> to decode a pinned donor instead of packing.
+// Usage: node surveyor_pack.mjs <node_modules> <rebuild directory> [surveyor|tinker-rook|yard-boss|shift-boss]
 import {join,resolve} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import {stat} from 'node:fs/promises';
 const [, , modules,out,role='surveyor']=process.argv;
-const ids={'surveyor':'017','tinker-rook':'018'};
+const ids={'surveyor':'017','tinker-rook':'018','yard-boss':'015','shift-boss':'016'};
 if (!(role in ids)) throw new Error('Unsupported town-bot role');
 const stem='wsc-actor-'+ids[role]+'-'+role;
 const pkg=n=>import(pathToFileURL(join(resolve(modules),'@gltf-transform',n,'dist/index.js')));
@@ -14,6 +15,13 @@ await Promise.all([MeshoptEncoder.ready,MeshoptDecoder.ready]);
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({
   'meshopt.encoder':MeshoptEncoder,'meshopt.decoder':MeshoptDecoder
 });
+if(process.argv[5]==='--exact-surveyor'){
+  if(role!=='surveyor' || !process.argv[6]) throw new Error('Expected an exact Surveyor input file.');
+  const checked=await io.read(process.argv[6]);
+  checked.getRoot().listExtensionsUsed().filter(x=>x.extensionName===EXTMeshoptCompression.EXTENSION_NAME).forEach(x=>x.dispose());
+  await io.write(join(out,'surveyor-decoded-for-blender.glb'),checked);
+  process.exit(0);
+}
 const raw=join(out,stem+'.glb'),packed=join(out,stem+'-packed.glb');
 const doc=await io.read(raw);
 // Preserve float local mesh coordinates and inverse binds; reorder and losslessly encode.
