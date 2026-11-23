@@ -135,10 +135,10 @@ re=next(obj for obj in s.objects if obj.type=="MESH");assert re.location.length<
   "primitives":len(doc["meshes"][0]["primitives"]),"grip_pivot":True,"animations":0,"images":0},indent=2)+"\n")
 
 # Two reimported angles in a floating gallery. Only the asset is in the GLB.
-re.location=(-.42,0,.39)
+re.location=(-.48,0,.39);re.rotation_mode="XYZ"
 re.rotation_euler.y=-.19;re.rotation_euler.z=-.19
 other=re.copy();s.collection.objects.link(other)
-other.location=(.59,.075,.38)
+other.location=(.64,.075,.38);other.rotation_mode="XYZ"
 other.rotation_euler.y=.27;other.rotation_euler.z=math.pi+.84
 ground=mat("Gallery slate",(.052,.090,.107),.18,.66)
 bpy.ops.mesh.primitive_plane_add(size=200,location=(0,0,-.24))
@@ -151,9 +151,9 @@ def area(name,p,target,power,tint,size):
     o=bpy.data.objects.new(name,d);s.collection.objects.link(o);o.location=p;aim(o,target)
 
 s.world=bpy.data.worlds.new("Ink gallery");s.world.color=(.14,.18,.29)
-area("Gold key",(-2.2,-2.4,3.2),(0,0,1),510,(1,.75,.47),3.2)
-area("Blue edge",(1.8,1.2,3.1),(0,0,1),535,(.32,.69,1),2.8)
-area("Cool polar fill",(1.3,-2.2,1.8),(0,0,1),204,(.62,.83,1),2.4)
+area("Gold key",(-2.2,-2.4,3.2),(0,0,1),400,(1,.73,.49),3.2)
+area("Blue edge",(1.8,1.2,3.1),(0,0,1),410,(.32,.69,1),2.8)
+area("Cool polar fill",(1.3,-2.2,1.8),(0,0,1),116,(.62,.83,1),2.4)
 cam=bpy.data.cameras.new("Inventory angles");s.camera=bpy.data.objects.new(cam.name,cam)
 s.collection.objects.link(s.camera);s.camera.location=(.04,-6.2,1.38);aim(s.camera,(0,0,1.08))
 cam.type="ORTHO";cam.ortho_scale=3.20
