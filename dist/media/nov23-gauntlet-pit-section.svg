@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 475" role="img" aria-labelledby="title desc">
+<title id="title">C2 reveal lift fit check</title><desc id="desc">North to south section with a 5.6 metre shaft under the flush and raised lift. The fixed frame is 0.86 metres from the art wall. The moving deck stops four metres above ground and its guide is 4.959 metres below ground when flush.</desc>
+<rect width="1150" height="475" fill="#111b23"/>
+<style>text{font-family:system-ui,sans-serif} .mono{font-family:ui-monospace,monospace}</style>
+<text x="30" y="42" fill="#e0e5e4" font-size="26" class="">THE PIT  /  C2 REVEAL LIFT</text>
+<text x="30" y="68" fill="#a3b8bd" font-size="14" class="mono">NORTH → SOUTH  ·  MEASURED ART SECTION  ·  METRES</text>
+<rect x="30.0" y="89.0" width="533.0" height="341.0" fill="#162531"/>
+<text x="46" y="120" fill="#f4a451" font-size="16" class="mono">01  FLUSH</text>
+<rect x="85.0" y="256.0" width="140.8" height="123.2" fill="#303b44"/>
+<rect x="384.2" y="256.0" width="63.8" height="123.2" fill="#303b44"/>
+<rect x="225.8" y="379.2" width="158.4" height="8.8" fill="#303b44"/>
+<rect x="400.7" y="146.0" width="14.3" height="110.0" fill="#4e5964"/>
+<rect x="228.2" y="256.0" width="9.5" height="34.5" fill="#79d4d5"/>
+<rect x="372.3" y="256.0" width="9.5" height="34.5" fill="#79d4d5"/>
+<rect x="239.0" y="256.0" width="132.0" height="8.4" fill="#f4a451"/>
+<rect x="298.4" y="264.4" width="13.2" height="100.7" fill="#f4a451"/>
+<path d="M47.0,256.0 L175.0,256.0" fill="none" stroke="#a3b8bd" stroke-dasharray="5 4"/>
+<text x="46" y="249" fill="#a3b8bd" font-size="13" class="mono">COURT Y=0</text>
+<path d="M311.6,365.1 L371.0,365.1" fill="none" stroke="#f4a451" stroke-dasharray="5 4"/>
+<text x="313" y="361" fill="#f4a451" font-size="13" class="mono">-4.959 m guide</text>
+<text x="225" y="406" fill="#a3b8bd" font-size="14" class="mono">-5.6 m shaft floor</text>
+<path d="M381.8,186.0 L400.7,186.0" fill="none" stroke="#79d4d5"/>
+<text x="373" y="180" fill="#79d4d5" font-size="13" class="mono">0.86 m</text>
+<rect x="587.0" y="89.0" width="533.0" height="341.0" fill="#162531"/>
+<text x="603" y="120" fill="#f4a451" font-size="16" class="mono">02  RAISED</text>
+<rect x="642.0" y="256.0" width="140.8" height="123.2" fill="#303b44"/>
+<rect x="941.2" y="256.0" width="63.8" height="123.2" fill="#303b44"/>
+<rect x="782.8" y="379.2" width="158.4" height="8.8" fill="#303b44"/>
+<rect x="957.7" y="146.0" width="14.3" height="110.0" fill="#4e5964"/>
+<rect x="785.2" y="256.0" width="9.5" height="34.5" fill="#79d4d5"/>
+<rect x="929.3" y="256.0" width="9.5" height="34.5" fill="#79d4d5"/>
+<rect x="796.0" y="168.0" width="132.0" height="8.4" fill="#f4a451"/>
+<rect x="855.4" y="176.4" width="13.2" height="100.7" fill="#f4a451"/>
+<path d="M604.0,256.0 L732.0,256.0" fill="none" stroke="#a3b8bd" stroke-dasharray="5 4"/>
+<text x="603" y="249" fill="#a3b8bd" font-size="13" class="mono">COURT Y=0</text>
+<path d="M868.6,277.1 L928.0,277.1" fill="none" stroke="#f4a451" stroke-dasharray="5 4"/>
+<text x="870" y="273" fill="#f4a451" font-size="13" class="mono">-0.959 m guide</text>
+<text x="782" y="406" fill="#a3b8bd" font-size="14" class="mono">-5.6 m shaft floor</text>
+<path d="M790.5,168.0 L757.5,168.0" fill="none" stroke="#f4a451"/>
+<text x="682" y="172" fill="#f4a451" font-size="14" class="mono">+4.000 m</text>
+<text x="30" y="453" fill="#a3b8bd" font-size="14" class="">AMBER  moving deck and guide    ·    TEAL  fixed frame    ·    Art fit only; no gameplay collision.</text>
+</svg>
