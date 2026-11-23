@@ -187,7 +187,7 @@ s.render.image_settings.file_format="JPEG";s.render.image_settings.quality=89
 data=bpy.data.cameras.new("Boundary walk");cam=bpy.data.objects.new("Boundary walk",data);s.collection.objects.link(cam);s.camera=cam
 for name,eye,at,w,h,f in [
   ("plaza",(-30,2.4,1.65),(-6,0,3.31),1080,1360,27),
-  ("threshold",(-3.55,-1.05,1.68),(26,1.8,2.48),1340,820,28),
+  ("threshold",(13.7,-1.65,1.68),(-5.4,.42,3.13),1340,820,23),
   ("overhead",(-15,-36,27),(2,1,0),1440,900,44)]:
     s.render.resolution_x=w;s.render.resolution_y=h;s.render.resolution_percentage=100; data.lens=f
     cam.location=eye;cam.rotation_euler=(Vector(at)-cam.location).to_track_quat("-Z","Y").to_euler()
