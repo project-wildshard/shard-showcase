@@ -1,0 +1,27 @@
+{
+  "asset": "WSC-KIT-001",
+  "scope": "Fictional West activity courtyard diorama, not the complete zone or native placement",
+  "reference": "Original W05/W06 warm paneling and small pennants; Round 5 preserved West theme, not the source of local transforms",
+  "coordinates": "Blender x lateral, y forward toward orange backdrop, z up; studio origin is arbitrary",
+  "donors": {
+    "wall": ["wsc-module-006-range-backstop.glb", "be6d2b41b97f6b81a2ffbdc6aa833ca82b4b9be1af821bcb2d3701ebfac8b9b6"],
+    "curb": ["wsc-module-002-range-lane-curbing.glb", "a2f4cf2faf02559dad66d5a0c853ce345def0662e3732ff13e5c9925ac19bb4a"],
+    "timer": ["wsc-prop-027-range-timer-display.glb", "5e443a0211c4b5806c7f7118cc4a00c7bad19c31522a75d9f2295c3a71a42bc3"],
+    "pennants": ["wsc-prop-015-pennant-string.glb", "eddeb06d8d0a2f62925aba6c288fb801671b3555c2d4f42bfd1cec320a9d3825"],
+    "planter": ["wsc-prop-014-planter-bed.glb", "ac39cc51273c0d25c3b5c4cb957b4c71e4d427992b9d219152f89195332da7d7"],
+    "barrel": ["wsc-prop-021-timber-barrel.glb", "29a14a74d50ebd5c7b05a23fae9b85e762193681cebcb2d8da85ac14ca17664f"]
+  },
+  "placement": [
+    ["wall", -5.30, 2.9, 0, 0],
+    ["wall", 0, 2.9, 0, 0],
+    ["wall", 5.30, 2.9, 0, 0],
+    ["curb", -7.35, -0.04, 0, 90],
+    ["curb", 7.35, -0.04, 0, 90],
+    ["timer", 0, 2.41, 2.30, 0],
+    ["pennants", -2.46, 0.05, 3.24, 0],
+    ["pennants", 4.46, 0.05, 3.24, 0],
+    ["planter", -4.65, 1.25, 0, 0],
+    ["barrel", 4.80, 1.28, 0, 26],
+    ["barrel", 5.67, 1.58, 0, -15]
+  ]
+}
