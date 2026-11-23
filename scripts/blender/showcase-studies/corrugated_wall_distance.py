@@ -133,7 +133,15 @@ bounds_box((-.97,.031,.0535),(.97,.121,.5065),frame)
 bounds_box((-.972,-.135,.089),(.972,-.091,.161),dark)
 for z in (.596,1.355,2.385):
     block((0,.103,z),(1.90,.104,.093),frame)
-for a,b in [((-.90,.150,1.355),(.90,.150,.620)),((-.90,.150,1.355),(.90,.150,2.357))]:
+# The donor apex is on its +X side (seen on the left when viewed from the rear).
+apex_x=.90
+rear_steel=[orig.matrix_world@orig.data.vertices[i].co for p in orig.data.polygons
+            if p.material_index==1 for i in p.vertices]
+rear_end_levels=[[v.z for v in rear_steel if sign*v.x>.79 and v.y>.195] for sign in (-1,1)]
+assert all(1.30<z<1.41 for z in rear_end_levels[1])
+assert min(rear_end_levels[0])<.66 and max(rear_end_levels[0])>2.30
+for a,b in [((apex_x,.150,1.355),(-apex_x,.150,.620)),
+            ((apex_x,.150,1.355),(-apex_x,.150,2.357))]:
     delta=Vector(b)-Vector(a)
     block((Vector(a)+Vector(b))/2,(delta.length,.083,.104),tint(frame,1.10),-math.atan2(delta.z,delta.x))
 
@@ -202,6 +210,7 @@ manifest={'id':'WSC-MODULE-020','scope':'Static art distance variant, not native
           'original':near,'distance':far,'max_fold_station_spacing_m':round(max(b[0]-a[0] for a,b in zip(profile,profile[1:])),6),
           'max_horizontal_profile_depth_error_m':round(error,9),
           'folds':12,'fold_cross_section_blender_x_y_front_back':profile,
+          'rear_chevron_apex_blender_x_m':apex_x,
           'studio_bays':5,'studio_pitch_m':pitch,'shoe_x_envelope_gap_m':0.0,
           'upright_x_envelope_gap_m':round(pitch-2*1.1365,4),
           'seam_note':'Shoes meet without overlap. Upright seam is an intentional ~102 mm gap; no solid wall or collision inferred.',
@@ -259,5 +268,8 @@ for side,xyz,target in [('front',(-8.05,-10.8,3.15),(-.53,0,1.27)),('rear',(8.05
     for k,name in enumerate(('original','distance')):
         for j,group in enumerate(groups):
             for ob in group: ob.hide_render=k!=j
+        only=os.environ.get('WSC_WALL_VIEW')
+        if only and only!=f'{side}-{name}':
+            continue
         S.render.filepath=str(OUT/f'nov23-orange-wall-{side}-{name}.jpg')
         bpy.ops.render.render(write_still=True)

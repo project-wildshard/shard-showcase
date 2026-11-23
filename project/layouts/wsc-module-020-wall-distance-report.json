@@ -25,7 +25,7 @@
   "distance": {
     "file": "wsc-module-020-corrugated-wall-distance.glb",
     "bytes": 82780,
-    "sha256": "8ad493a8a09438441fc1ce7cdca42b086a7552dee37d7aaaeb0259c7bdac8157",
+    "sha256": "55a30da7d480a0d8847fed38a160d4f97b33684addf0f885b05abdb380c578f5",
     "triangles": 1140,
     "material_primitives": 1,
     "blender_bounds_m": [
@@ -298,6 +298,7 @@
       0.005434
     ]
   ],
+  "rear_chevron_apex_blender_x_m": 0.9,
   "studio_bays": 5,
   "studio_pitch_m": 2.375,
   "shoe_x_envelope_gap_m": 0.0,
