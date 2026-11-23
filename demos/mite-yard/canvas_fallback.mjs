@@ -2,6 +2,7 @@ import {Box3,Color,Frustum,Matrix4,Vector3} from 'three'
 import {CONCRETE_SIZE,concretePixels,floorScanline} from './concrete-surface.mjs'
 import {YARD_SUN} from './yard-light.mjs'
 import {ARENA} from './combat.mjs'
+import {CLOUDS,CLOUD_SIZE,cloudDirection,makeCloudImages,skyCss} from './yard-sky.mjs'
 
 // Match the painter's four screen planes. It deliberately has no far clip.
 export function outsideScenery(bounds,frustum,corner){
@@ -23,13 +24,14 @@ export function canvasRenderer(canvas,{sceneryCull=true}={}){
  const frustum=new Frustum(),projectionView=new Matrix4(),bounds=new Box3(),corner=new Vector3()
  const layer=canvas.ownerDocument.createElement('canvas'),layerCtx=layer.getContext('2d')
  const texture=concretePixels(true),mask=CONCRETE_SIZE-1
- let rasterGrain,lastGrainPose
+ let rasterGrain,lastGrainPose,cloudImages
  const floor=[[-ARENA.width/2,-ARENA.depth/2],[ARENA.width/2,-ARENA.depth/2],
   [ARENA.width/2,ARENA.depth/2],[-ARENA.width/2,ARENA.depth/2]]
 
  let ratio=1
  function setSize(w,h){canvas.width=Math.round(w*ratio);canvas.height=Math.round(h*ratio)}
  const temp=new Vector3(),a=new Vector3(),b=new Vector3()
+ const skyPoint=new Vector3()
  const eye=new Vector3(),center=new Vector3(),half=new Vector3()
  const light=new Vector3(...YARD_SUN).normalize()
  const css=(m,normal,distance,cameraPosition,fog,tint)=>{
@@ -57,7 +59,34 @@ export function canvasRenderer(canvas,{sceneryCull=true}={}){
   scene.updateMatrixWorld(true);camera.updateMatrixWorld(true)
   eye.setFromMatrixPosition(camera.matrixWorld)
   const w=canvas.width,h=canvas.height
-  ctx.fillStyle=scene.background.getStyle();ctx.fillRect(0,0,w,h)
+  ctx.globalAlpha=1
+  ctx.fillStyle=scene.background.getStyle()
+  if(scene.userData.outdoorSky){
+   const {x:pitch,z:roll}=camera.rotation
+   const focal=h*.5*camera.projectionMatrix.elements[5]
+   const horizon=h/2+focal*Math.tan(pitch)
+   const gx=-Math.sin(roll),gy=Math.cos(roll),span=Math.hypot(w,h)*.5
+   const gradient=ctx.createLinearGradient(w/2-gx*span,h/2-gy*span,w/2+gx*span,h/2+gy*span)
+   for(let i=0;i<=8;i++){
+    const d=((i/4-1)*span+h/2-horizon)/focal
+    gradient.addColorStop(i/8,skyCss(-d/Math.hypot(1,d)))
+   }
+   ctx.fillStyle=gradient
+  }
+  ctx.fillRect(0,0,w,h)
+  if(scene.userData.outdoorSky){
+   cloudImages??=makeCloudImages(canvas.ownerDocument)
+   const inv=camera.matrixWorldInverse,proj=camera.projectionMatrix.elements
+   for(const [bearing,elevation,span,opacity,variant] of CLOUDS){
+    skyPoint.set(...cloudDirection(bearing,elevation)).transformDirection(inv)
+    if(skyPoint.z>-.25)continue
+    const a=w*.5*(1-skyPoint.x*proj[0]/skyPoint.z),b=h*.5*(1+skyPoint.y*proj[5]/skyPoint.z)
+    const width=-w*.5*span*proj[0]/skyPoint.z,height=width*CLOUD_SIZE[1]/CLOUD_SIZE[0]
+    if(a<-.72*width||a>w+.72*width||b<-.72*width||b>h+.72*width)continue
+    ctx.save();ctx.translate(a,b);ctx.rotate(camera.rotation.z);ctx.globalAlpha=opacity
+    ctx.drawImage(cloudImages[variant],-width/2,-height/2,width,height);ctx.restore()
+   }
+  }
   const list=[],near=.06,inv=camera.matrixWorldInverse,proj=camera.projectionMatrix.elements
   stats.culledMeshes=stats.skippedTriangles=stats.visitedTriangles=stats.paintedTriangles=0
   if(sceneryCull)frustum.setFromProjectionMatrix(projectionView.multiplyMatrices(camera.projectionMatrix,inv))

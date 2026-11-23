@@ -10,6 +10,7 @@ import {BAY_FINISHES,LOADING_BAY,createLoadingBay} from './yard-loading-bay.mjs'
 import {YARD_SUN,shadowDelta,shadowFootprint} from './yard-light.mjs'
 import {createApron} from './yard-apron.mjs'
 import {createViewmodel,poseViewmodel,portraitRightCut,swordImpactPoint} from './viewmodel.mjs'
+import {CLOUDS,CLOUD_SIZE,cloudDirection,makeCloudImages,skyChannels} from './yard-sky.mjs'
 const el=q=>document.querySelector(q)
 let view=el('#view')
 const status=el('#status'), enter=el('#enter'), reticle=el('#reticle')
@@ -26,6 +27,29 @@ renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.shadowMap.enable
 renderer.shadowMap.type=THREE.PCFShadowMap
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x8cb8c3);scene.fog=new THREE.Fog(0x8cb8c3,23,48)
 const camera=new THREE.PerspectiveCamera(VIEW_FOV,1,.04,55);camera.rotation.order='YXZ';scene.add(camera)
+scene.userData.outdoorSky=true
+const sky=renderer.isWebGLRenderer?new THREE.Group():null
+if(sky){
+ scene.add(sky)
+ const g=new THREE.SphereGeometry(50,24,16),pos=g.getAttribute('position'),colors=[],tone=new THREE.Color()
+ for(let i=0;i<pos.count;i++){
+  tone.setRGB(...skyChannels(pos.getY(i)/50).map(x=>x/255),THREE.SRGBColorSpace)
+  colors.push(tone.r,tone.g,tone.b)
+ }
+ g.setAttribute('color',new THREE.Float32BufferAttribute(colors,3))
+ const bowl=new THREE.Mesh(g,new THREE.MeshBasicMaterial({vertexColors:true,side:THREE.BackSide,fog:false,depthWrite:false,toneMapped:false}))
+ bowl.renderOrder=-2;sky.add(bowl)
+ const sheets=makeCloudImages(document).map(image=>{
+  const t=new THREE.CanvasTexture(image);t.colorSpace=THREE.SRGBColorSpace;return t
+ })
+ for(const [bearing,elevation,span,opacity,variant] of CLOUDS){
+  const dist=41,w=span*dist
+  const cloud=new THREE.Mesh(new THREE.PlaneGeometry(w,w*CLOUD_SIZE[1]/CLOUD_SIZE[0]),
+   new THREE.MeshBasicMaterial({map:sheets[variant],opacity,transparent:true,fog:false,depthWrite:false,toneMapped:false}))
+  cloud.position.set(...cloudDirection(bearing,elevation)).multiplyScalar(dist)
+  cloud.lookAt(0,0,0);sky.add(cloud)
+ }
+}
 scene.add(new THREE.HemisphereLight(0xc8efff,0x91745e,2.3))
 const sun=new THREE.DirectionalLight(0xffd1a0,2.7);sun.position.set(...YARD_SUN);sun.castShadow=true;sun.shadow.mapSize.set(1024,1024);Object.assign(sun.shadow.camera,{left:-14,right:14,top:16,bottom:-16,near:.1,far:45});sun.shadow.bias=-.001;scene.add(sun)
 const mat=(color,roughness=.68,metalness=0)=>new THREE.MeshStandardMaterial({color,roughness,metalness})
@@ -374,6 +398,7 @@ function frame(now){
   if(miteShadow){miteShadow.position.set(game.mite.x+.05,.007,game.mite.z+.06);miteCast.position.set(game.mite.x,.007,game.mite.z)}
   setClip('sleep',true);mix.update(dt)
  }
+ if(sky)sky.position.copy(camera.position)
  renderer.render(scene,camera)
 }
 requestAnimationFrame(frame)
