@@ -1,0 +1,99 @@
+{
+  "scope": "Static placement study; center distances are not player reach, clearance or sightline tests.",
+  "floor_plan_coordinates": "world x,y,z with y up",
+  "source_donor": {
+    "asset": "WSC-PROP-034",
+    "sha256": "e37691b7e816021608a3da7e1936dee501fa903662723eb7e405dd59869950c7"
+  },
+  "hoop": {
+    "origin": "ring center",
+    "normal_axis_gltf": "+Z convention",
+    "triangles": 2112,
+    "bounds_blender_m": [
+      0.736,
+      0.0896,
+      0.736
+    ],
+    "bytes": 40196
+  },
+  "centers": [
+    {
+      "label": "1 \u00b7 Pole",
+      "world_m": [
+        -150,
+        12,
+        -44
+      ],
+      "provenance": "W08 pole proxy"
+    },
+    {
+      "label": "2 \u00b7 Pole",
+      "world_m": [
+        -170,
+        16,
+        -68
+      ],
+      "provenance": "W08 pole proxy"
+    },
+    {
+      "label": "3 \u00b7 Tank roof",
+      "world_m": [
+        -198,
+        19.25,
+        -92
+      ],
+      "provenance": "study rim point; 1.25 m above the roof"
+    },
+    {
+      "label": "4 \u00b7 Mast",
+      "world_m": [
+        -200,
+        28,
+        -68
+      ],
+      "provenance": "W08 mast proxy"
+    },
+    {
+      "label": "5 \u00b7 Tower",
+      "world_m": [
+        -214.5,
+        45.8,
+        -34
+      ],
+      "provenance": "W08 tower proxy"
+    }
+  ],
+  "adjacent_spans_m": [
+    31.5,
+    37.02,
+    25.62,
+    41.03
+  ],
+  "old_roof_proxy_m": [
+    -206,
+    19.7,
+    -104
+  ],
+  "pole_2_to_old_roof_proxy_m": 51.05,
+  "candidate_tank_rim_inset_m": 1.58,
+  "default_eye_to_hook_limit_m": 38,
+  "w7a_plan_hops_m": [
+    23,
+    31,
+    35,
+    21,
+    36
+  ],
+  "w7b_separate_endpoints_m": [
+    [
+      -212,
+      45,
+      -34
+    ],
+    [
+      -115,
+      14,
+      -16.5
+    ]
+  ]
+}

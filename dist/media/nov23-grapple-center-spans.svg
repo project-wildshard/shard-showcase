@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="972" height="692" viewBox="0 0 972 692" role="img" aria-labelledby="title desc">
+<title id="title">West grapple reference centers</title>
+<desc id="desc">Five reference hoop centers, with 3D spans and the old roof proxy, plus the separate W7b zipline.</desc>
+<rect width="972" height="692" rx="19" fill="#112831"/>
+<rect x="34" y="125" width="904" height="466" rx="9" fill="#0c1e26" stroke="#2e4750"/>
+<text x="38" y="55" fill="#e9eee9" font-family="system-ui,sans-serif" font-size="29" text-anchor="start">WEST GRAPPLE  /  REFERENCE CENTERS</text>
+<text x="39" y="91" fill="#a9c5cb" font-family="system-ui,sans-serif" font-size="18" text-anchor="start">WSC-KIT-004 • W7a tank placement study • world X/Z viewed from above</text>
+<path d="M142.4 188.0L142.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M180.4 188.0L180.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M218.4 188.0L218.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M256.4 188.0L256.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M294.4 188.0L294.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M332.4 188.0L332.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M370.4 188.0L370.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M408.4 188.0L408.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M446.4 188.0L446.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M484.4 188.0L484.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M522.4 188.0L522.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M560.4 188.0L560.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M598.4 188.0L598.4 571.8" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M112.0 218.4L609.8 218.4" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M112.0 256.4L609.8 256.4" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M112.0 294.4L609.8 294.4" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M112.0 332.4L609.8 332.4" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M112.0 370.4L609.8 370.4" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M112.0 408.4L609.8 408.4" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M112.0 446.4L609.8 446.4" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M112.0 484.4L609.8 484.4" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M112.0 522.4L609.8 522.4" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M112.0 560.4L609.8 560.4" fill="none" stroke="#233b43" stroke-width="1" stroke-linecap="round"/>
+<path d="M370.4 378.0L233.6 241.2" fill="none" stroke="#9c8d82" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 6"/>
+<circle cx="233.6" cy="241.2" r="6" fill="#0c1e26" stroke="#baa798" stroke-width="2"/>
+<text x="217.6" y="230.2" fill="#ddcdc1" font-family="system-ui,sans-serif" font-size="15" text-anchor="start" paint-order="stroke" stroke="#0c1e26" stroke-width="7" stroke-linejoin="round">Old roof proxy</text>
+<text x="216.6" y="270.2" fill="#ddcdc1" font-family="system-ui,sans-serif" font-size="15" text-anchor="start" paint-order="stroke" stroke="#0c1e26" stroke-width="7" stroke-linejoin="round">51.05 m from pole 2</text>
+<path d="M210.8 507.2L579.4 573.7" fill="none" stroke="#7688a7" stroke-width="3" stroke-linecap="round" stroke-dasharray="11 5"/>
+<circle cx="210.8" cy="507.2" r="5" fill="#b2bad5" stroke="#0e222a" stroke-width="2"/>
+<circle cx="579.4" cy="573.7" r="5" fill="#b2bad5" stroke="#0e222a" stroke-width="2"/>
+<text x="407" y="551" fill="#bfcbec" font-family="system-ui,sans-serif" font-size="16" text-anchor="start">W7b zipline • separate points</text>
+<path d="M446.4 469.2L370.4 378.0" fill="none" stroke="#62deca" stroke-width="3" stroke-linecap="round"/>
+<text x="422.4" y="430.6" fill="#62deca" font-family="system-ui,sans-serif" font-size="16" text-anchor="start" paint-order="stroke" stroke="#0c1e26" stroke-width="7" stroke-linejoin="round">31.50 m</text>
+<path d="M370.4 378.0L264.0 286.8" fill="none" stroke="#62deca" stroke-width="4" stroke-linecap="round"/>
+<text x="333.2" y="327.4" fill="#62deca" font-family="system-ui,sans-serif" font-size="16" text-anchor="start" paint-order="stroke" stroke="#0c1e26" stroke-width="7" stroke-linejoin="round">37.02 m</text>
+<path d="M264.0 286.8L256.4 378.0" fill="none" stroke="#62deca" stroke-width="3" stroke-linecap="round"/>
+<text x="274.2" y="339.4" fill="#62deca" font-family="system-ui,sans-serif" font-size="16" text-anchor="start" paint-order="stroke" stroke="#0c1e26" stroke-width="7" stroke-linejoin="round">25.62 m</text>
+<path d="M256.4 378.0L201.3 507.2" fill="none" stroke="#ffd582" stroke-width="4" stroke-linecap="round"/>
+<text x="203.85" y="449.6" fill="#ffd582" font-family="system-ui,sans-serif" font-size="16" text-anchor="end" paint-order="stroke" stroke="#0c1e26" stroke-width="7" stroke-linejoin="round">41.03 m</text>
+<circle cx="446.4" cy="469.2" r="8" fill="#a2f5dd" stroke="#0e222a" stroke-width="2"/>
+<text x="463.4" y="477.2" fill="#e9eee9" font-family="system-ui,sans-serif" font-size="17" text-anchor="start" paint-order="stroke" stroke="#0c1e26" stroke-width="7" stroke-linejoin="round">1 · Pole</text>
+<circle cx="370.4" cy="378.0" r="8" fill="#a2f5dd" stroke="#0e222a" stroke-width="2"/>
+<text x="387.4" y="366.0" fill="#e9eee9" font-family="system-ui,sans-serif" font-size="17" text-anchor="start" paint-order="stroke" stroke="#0c1e26" stroke-width="7" stroke-linejoin="round">2 · Pole</text>
+<circle cx="264.0" cy="286.8" r="8" fill="#a2f5dd" stroke="#0e222a" stroke-width="2"/>
+<text x="136.0" y="324.8" fill="#e9eee9" font-family="system-ui,sans-serif" font-size="17" text-anchor="start" paint-order="stroke" stroke="#0c1e26" stroke-width="7" stroke-linejoin="round">3 · Tank roof</text>
+<circle cx="256.4" cy="378.0" r="8" fill="#a2f5dd" stroke="#0e222a" stroke-width="2"/>
+<text x="270.4" y="366.0" fill="#e9eee9" font-family="system-ui,sans-serif" font-size="17" text-anchor="start" paint-order="stroke" stroke="#0c1e26" stroke-width="7" stroke-linejoin="round">4 · Mast</text>
+<circle cx="201.3" cy="507.2" r="8" fill="#a2f5dd" stroke="#0e222a" stroke-width="2"/>
+<text x="184.3" y="491.2" fill="#e9eee9" font-family="system-ui,sans-serif" font-size="17" text-anchor="start" paint-order="stroke" stroke="#0c1e26" stroke-width="7" stroke-linejoin="round">5 · Tower</text>
+<rect x="664" y="179" width="226" height="233" rx="5" fill="#162c36" stroke="#314c58"/>
+<text x="682" y="211" fill="#9fe7dd" font-family="system-ui,sans-serif" font-size="16" text-anchor="start">READING THE SPANS</text>
+<text x="682" y="245" fill="#e9eee9" font-family="system-ui,sans-serif" font-size="17" text-anchor="start">38 m is the default game</text>
+<text x="682" y="269" fill="#e9eee9" font-family="system-ui,sans-serif" font-size="17" text-anchor="start">eye-to-hook limit.</text>
+<text x="682" y="308" fill="#b7cbd1" font-family="system-ui,sans-serif" font-size="16" text-anchor="start">The map shows reference</text>
+<text x="682" y="333" fill="#b7cbd1" font-family="system-ui,sans-serif" font-size="16" text-anchor="start">centers, not takeoff eyes</text>
+<text x="682" y="358" fill="#b7cbd1" font-family="system-ui,sans-serif" font-size="16" text-anchor="start">or line-of-sight results.</text>
+<text x="682" y="392" fill="#ffd582" font-family="system-ui,sans-serif" font-size="16" text-anchor="start">Tank rim is a proposal.</text>
+<path d="M850.0 472.0L850.0 437.0" fill="none" stroke="#a7bcc7" stroke-width="3" stroke-linecap="round"/>
+<text x="850" y="429" fill="#adc5d3" font-family="system-ui,sans-serif" font-size="17" text-anchor="middle">−Z</text>
+<path d="M674.0 548.0L750.0 548.0" fill="none" stroke="#adc5d3" stroke-width="2" stroke-linecap="round"/>
+<text x="712" y="573" fill="#adc5d3" font-family="system-ui,sans-serif" font-size="15" text-anchor="middle">20 m plan scale</text>
+<text x="38" y="630" fill="#b8d1d3" font-family="system-ui,sans-serif" font-size="17" text-anchor="start">Next: measure the player’s actual eye positions and obstructions before setting hook rows.</text>
+<text x="38" y="657" fill="#90a8ac" font-family="system-ui,sans-serif" font-size="16" text-anchor="start">Drawing uses the existing tower proxy and does not move the W7b zip attachments.</text>
+</svg>
