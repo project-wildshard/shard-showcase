@@ -28,3 +28,6 @@ Rebuild the GLB, validation JSON and two previews from a clean art checkout:
 blender -b -t 6 --factory-startup --python-exit-code 1 \
   --python scripts/blender/showcase-studies/town_facade_grid.py -- /tmp/w0b-facades
 ```
+
+The overview camera includes the full three-storey ridge with margin; the
+detail camera intentionally crops in to show how trims meet the corner.

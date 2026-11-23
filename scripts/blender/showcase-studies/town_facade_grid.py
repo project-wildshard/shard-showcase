@@ -214,5 +214,5 @@ def render(key,p,q,scale,wh):
     bpy.ops.render.render(write_still=True)
 (out/'validation.json').write_text(json.dumps({'asset_id':'WSC-ARCH-003','bytes':len(raw),'triangles':tri,
     'parts':sorted(components),'floor_pitch_m':H,'footprint_m':[W,D],'examples':[2,3],'native':False},indent=2)+'\n')
-render('nov23-town-facade-grid',(12,-19,15),(0,.0,4.72),15.3,(1540,1175))
+render('nov23-town-facade-grid',(12,-19,15.70),(0,.0,5.42),16.65,(1540,1175))
 render('nov23-town-facade-corner',(11,-10,9),(3.16,-.04,4.71),7.3,(1160,1020))
