@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#141a1d">
+<title>Wildshard HUD · One activity slot</title>
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" class="definitions" aria-hidden="true">
+  <symbol id="s-quest" viewBox="0 0 24 24"><path d="M12 3l7 9-7 9-7-9 7-9zM12 9v4m0 3h.01"/></symbol>
+  <symbol id="s-vault" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="2.6"/><path d="M12 3.5v6m0 5v6M3.5 12h6m5 0h6"/></symbol>
+  <symbol id="s-clock" viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M9 2h6m-3 3v2m0 3v4l2.5 1.5M18 6l1.5-1.5"/></symbol>
+  <symbol id="s-trick" viewBox="0 0 24 24"><path d="M3 14l6 0 8-6h4m-16 8h7l8-6m-15 6l-2-2m7-6h3M5 6h3"/></symbol>
+  <symbol id="s-sight" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.5"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></symbol>
+  <symbol id="s-move" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18m-9-9l-3 3m3-3l3 3m-3 15l-3-3m3 3l3-3M3 12l3-3m-3 3l3 3m15-3l-3-3m3 3l-3 3"/></symbol>
+  <symbol id="s-jump" viewBox="0 0 24 24"><path d="M4 18h16m-8-4V5m0 0l-5 5m5-5l5 5"/></symbol>
+</svg>
+<main class="shell">
+  <header class="workbench">
+    <a class="back" href="../#nov23-activity-slot" aria-label="Art catalogue">↖ Catalogue</a>
+    <div class="stamp">WILDSHARD <span> / </span> INTERFACE STUDIES</div>
+  </header>
+  <div class="intro">
+    <div class="kicker"><span></span> UI 20 / 29 A / 31</div>
+    <h1>One activity slot<span>.</span></h1>
+    <p>The current activity takes the quest’s place. End it and the tracked quest comes back.</p>
+  </div>
+  <nav class="switcher" aria-label="Demo mode">
+    <button type="button" data-mode="quest"><svg aria-hidden="true"><use href="#s-quest"/></svg><span>Quest</span></button>
+    <button type="button" data-mode="vault"><svg aria-hidden="true"><use href="#s-vault"/></svg><span>Vault</span></button>
+    <button type="button" data-mode="course"><svg aria-hidden="true"><use href="#s-clock"/></svg><span>Course</span></button>
+    <button type="button" data-mode="tricks"><svg aria-hidden="true"><use href="#s-trick"/></svg><span>Tricks</span></button>
+  </nav>
+  <section class="view" aria-label="HUD layout prototype" data-mode="vault">
+    <div class="image" aria-hidden="true"></div>
+    <div class="film" aria-hidden="true"></div>
+    <header class="hud-top">
+      <div class="l-meta"><b>SHARD 01</b><span id="area">TRAINING VAULT</span></div>
+      <div class="r-meta">
+        <div class="map" aria-hidden="true">
+          <span class="north">N</span>
+          <svg viewBox="0 0 80 80"><circle cx="40" cy="40" r="37"/><path d="M40 4v72M4 40h72" class="cross"/><path d="M22 31h26v22h15m-36-4h-7v-9m23-10 12-9h13m-31 32v11H26" class="route"/><path d="M41 34l6 13-6-3-6 3z" class="marker"/></svg>
+        </div>
+        <div id="activity" class="activity" role="status" aria-live="polite">
+          <svg aria-hidden="true"><use id="activity-icon" href="#s-vault"/></svg>
+          <div><b id="activity-title">Training Vault</b><span id="activity-detail">ROOM 2 / 4 · 3 LEFT</span></div>
+        </div>
+      </div>
+    </header>
+    <svg class="reticle" aria-hidden="true"><use href="#s-sight"/></svg>
+    <div class="hud-bottom" aria-hidden="true">
+      <div class="meter-wrap"><span>LV 7</span><i><b></b></i></div>
+      <div class="buttons"><div><svg><use href="#s-move"/></svg><span>MOVE</span></div><div><svg><use href="#s-jump"/></svg><span>JUMP</span></div><div><svg><use href="#s-sight"/></svg><span>LOOK</span></div></div>
+    </div>
+  </section>
+  <footer class="foot">
+    <div><b id="mode-caption">Vault active</b><span>Illustrative stills · No live gameplay</span></div>
+    <button type="button" id="end">End activity</button>
+  </footer>
+</main>
+</body>
+</html>
