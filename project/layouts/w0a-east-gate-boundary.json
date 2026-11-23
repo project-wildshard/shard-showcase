@@ -1,0 +1,33 @@
+{
+  "scope": "self-contained static staging; not native terrain, collision or placement",
+  "west_mockup": "round-11-remaster/west/m07.jpg",
+  "world_axis": "x east / y up / z south; Blender x east / z up / y north",
+  "staged_gate_world_x": -8,
+  "candidate_industrial_seam_world_x": 0,
+  "span_mesh_min_world_y": 6.245,
+  "minimum_masonry_jamb_gap_m": 12.057,
+  "clear_points": 100,
+  "clear_corridor_sample_width_m": 11.76,
+  "elevation_m": [
+    0.25,
+    0.8,
+    1.7,
+    2.4
+  ],
+  "blocked_far_seam_samples_blender_y": [
+    -23,
+    -17,
+    -11,
+    11,
+    17,
+    23
+  ],
+  "asset_ids": [
+    "WSC-SCENE-004",
+    "WSC-ARCH-001",
+    "WSC-MODULE-005",
+    "WSC-ARCH-002",
+    "WSC-MODULE-003",
+    "WSC-MODULE-031"
+  ]
+}
