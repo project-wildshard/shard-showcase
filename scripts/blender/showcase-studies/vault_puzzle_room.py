@@ -2,6 +2,7 @@
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import sys
 
@@ -62,7 +63,7 @@ silver=material("Vault zinc edge",(.25,.31,.32),.42,.43)
 amber=material("Safety enamel amber",(.79,.237,.044),.54)
 pale=material("Warm ivory decals",(.84,.81,.69),.61,.04,.16)
 cyan=material("Cyan room wayfinding",(.075,.69,.89),.33,.08,2.15)
-green=material("Active plate luminance",(.10,.64,.33),.34,.12,2.1)
+green=material("Active plate luminance",(.045,.67,.16),.34,.12,2.35)
 unlit=material("Unpowered warm plate outline",(.79,.27,.039),.41,.15, .32)
 white=material("Ceiling panel lamp",(.63,.79,.82),.4,.06,2.6)
 
@@ -156,7 +157,7 @@ place("door","Locked round vault bulkhead",(0,D-.51,F),0,1.04)
 for x,m,letter in [(-.65,green,"A"),(.65,unlit,"B")]:
     signal((x,D-.47,3.48),m)
     text(f"Status {letter}",letter,(x,D-.570,3.69),.157,pale)
-text("Door legend","TRAINING VAULT   /   01",(0,D-.416,4.02),.21,pale)
+text("Door legend","TRAINING VAULT   /   01",(0,D-.416,3.89),.21,pale)
 for x in (-1.93,1.93):
     box("Door flanking lock mark",(x,D-.463,1.42),(.06,.035,1.40),amber,.011)
 text("Circuit instructions","WEIGH BOTH PLATES",(0,D-.417,.30),.151,pale)
@@ -165,12 +166,12 @@ plate_y=2.35
 for x,word,m in [(-2.20,"A",green),(2.20,"B",unlit)]:
     plate=place("plate",f"Plate {word}",(x,plate_y,F),0,.50,tread_mm=25 if word=="A" else 0)
     assert len(plate)==2
-    for dx in (-.87,.87):box("Plate side inlay",(x+dx,plate_y,F+.029),(.059,1.64,.037),m,.013)
-    for dy in (-.87,.87):box("Plate front inlay",(x,plate_y+dy,F+.029),(1.64,.059,.037),m,.013)
+    for dx in (-1.047,1.047):box("Plate side inlay",(x+dx,plate_y,F+.032),(.072,2.02,.057),m,.013)
+    for dy in (-1.047,1.047):box("Plate front inlay",(x,plate_y+dy,F+.032),(2.02,.072,.057),m,.013)
     box("Number plate",(x,plate_y-1.21,F+.036),(.54,.33,.050),reveal,.038)
     text("Floor marker",word,(x,plate_y-1.32,F+.066),.23,pale,(0,0,0))
 place("crate","Crate on plate A",(-2.20,plate_y,F+.3425*.50-.025),0)
-place("crate","Spare crate at start",(1.13,-3.09,F),0)
+place("crate","Spare crate at start",(1.25,-2.32,F),0)
 
 for x,m in [(-2.20,green),(2.20,unlit)]:
     # Indicative inset conduits, laid on the visible top of the exact checked floor tile.
@@ -181,7 +182,8 @@ for y in (-4.8,-1.6,1.6,4.8):
     for x in (-3.18,0,3.18):
         ceiling.append(box("Service ceiling cassette",(x,y,4.21),(3.115,3.11,.15),cladding,.043))
     ceiling.append(box("Overhead spine",(0,y,4.095),(.29,3.15,.11),reveal,.028))
-    ceiling.append(box("Overhead strip optic",(0,y,4.025),(.15,2.86,.057),white,.014))
+    span=2.28 if y>4 else 2.86
+    ceiling.append(box("Overhead strip optic",(0,y-.19 if y>4 else y,4.025),(.15,span,.057),white,.014))
     light("Ceiling strip",(0,y,3.97),(0,y,.12),220,2.80,(.72,.89,1),.15)
 
 light("Bulkhead key",(0,3.2,3.86),(0,D,2.04),200,3.0,(.72,.86,1))
@@ -189,7 +191,7 @@ light("Entrance reflection",(-1,-6.2,2.12),(0,4.0,.9),280,3.8,(1.0,.80,.61))
 light("Active feedback bounce",(-2.20,plate_y-.1,.65),(-2.20,plate_y+1.0,.2),22,.9,(.23,1.0,.60))
 light("Amber feedback bounce",(2.22,plate_y-.1,.48),(2.2,plate_y+1.1,.2),8,.75,(1.0,.49,.17))
 s=bpy.context.scene;s.world.color=(.12,.14,.16)
-s.render.engine='CYCLES';s.cycles.samples=52;s.cycles.use_denoising=False
+s.render.engine='CYCLES';s.cycles.samples=64;s.cycles.use_adaptive_sampling=True;s.cycles.adaptive_threshold=.055;s.cycles.use_denoising=False
 s.render.resolution_percentage=100;s.render.image_settings.file_format='JPEG';s.render.image_settings.quality=91
 
 def render(file,p,at,wh,lens,ortho=None):
@@ -212,7 +214,8 @@ report={
     "placements":placements,
 }
 (out/"vault-room-01-layout.json").write_text(json.dumps(report,indent=2)+"\n")
-render('nov23-vault-room-01-entry.jpg',(0,-5.95,1.72),(0,5.6,2.18),(1500,1080),23)
+if os.environ.get('VAULT_CUTAWAY_ONLY') != '1':
+    render('nov23-vault-room-01-entry.jpg',(0,-5.95,1.72),(0,5.6,2.18),(1500,1080),23)
 for ob in ceiling+walls:ob.hide_render=True
 # Roofing is hidden only for the analysis view. Keep the main four visibility anchors.
 for ob in bpy.context.scene.objects:
@@ -220,4 +223,4 @@ for ob in bpy.context.scene.objects:
 box("Cutaway backdrop",(0,0,-.42),(200,200,.17),material("Cutaway dark background",(.026,.047,.053)),.0)
 light("Cutaway key",(-6,-6,11),(0,0,0),1800,11,(.88,.93,1))
 light("Cutaway fill",(5,7,10),(0,0,0),1350,9,(.7,.87,1))
-render('nov23-vault-room-01-layout.jpg',(8,-11,13),(0,.18,1.02),(1440,1080),42,17.4)
+render('nov23-vault-room-01-layout.jpg',(8,-11,13),(0,.18,1.73),(1440,1080),42,19.30)

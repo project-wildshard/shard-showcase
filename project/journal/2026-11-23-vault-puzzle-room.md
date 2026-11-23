@@ -15,10 +15,11 @@ mockup's rectangular placeholder.
   `project/layouts/e10c-vault-room-01.json`.
 - Two 2 m study-scale plates have a 2.40 m central gap. A is visually depressed
   25 mm, supports a crate and shows green. B is empty and amber. A spare
-  crate is depicted on the floor near the start. These are illustration
+  crate is depicted on the floor near the start. Active and idle outlines
+  extend outside the plate frames to stay legible from the entry view. These are illustration
   transforms, not new puzzle tuning. No changes to the donor files.
 - New small asset: `wsc-kit-008-puzzle-indicators.glb`, a paired enclosure and
-  color-state sample for the bulkhead. Reimport: 58,136 bytes, 1,080 triangles,
+  color-state sample for the bulkhead. Reimport: 58,132 bytes, 1,080 triangles,
   1.33 × .157 × .23 m (Blender X/Y/Z); both materials intact. No callbacks.
   The complete composition is regenerated from source rather than stored
   as a second copy of the reuse assets.

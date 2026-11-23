@@ -12,7 +12,7 @@
       0.157,
       0.23
     ],
-    "bytes": 58136
+    "bytes": 58132
   },
   "plate_clear_gap_m": 2.4,
   "logic": "Illustrated state: A weighted, B empty, door locked. Static reference only.",
@@ -381,8 +381,8 @@
       "asset": "crate",
       "name": "Spare crate at start",
       "origin_m": [
-        1.13,
-        -3.09,
+        1.25,
+        -2.32,
         0.112
       ],
       "z_yaw_deg": 0,
