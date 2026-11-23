@@ -1,0 +1,311 @@
+{
+  "scope": "Illustrative E5b art layout. The decal does not set hidden state or claim collision or phone performance.",
+  "decal": {
+    "bytes": 6808,
+    "triangles": 220,
+    "alpha_max": 0.7569,
+    "width_m": 6,
+    "deep_m": 3.1
+  },
+  "source_assets": {
+    "container": {
+      "id": "WSC-PROP-058",
+      "file": "wsc-prop-058-shipping-container.glb",
+      "dimensions_blender_m": [
+        2.444,
+        4.701,
+        2.545
+      ],
+      "bytes": 637956,
+      "triangles": 10849,
+      "sha256": "8bd1c2bca075256315a8bf5a76b5da489b3e42fca0def63d06088031695232af"
+    },
+    "cover": {
+      "id": "WSC-PROP-066",
+      "file": "wsc-prop-066-orange-cover-barrier.glb",
+      "dimensions_blender_m": [
+        2.032,
+        0.612,
+        1.266
+      ],
+      "bytes": 220520,
+      "triangles": 3932,
+      "sha256": "e999ab405f289a1dfdebf307c26ae260eb2392d1c6b75b4a6ec35b3e1e0b6b36"
+    },
+    "fence": {
+      "id": "WSC-MODULE-023",
+      "file": "wsc-module-023-corrugated-yard-fence.glb",
+      "dimensions_blender_m": [
+        3.415,
+        0.253,
+        2.278
+      ],
+      "bytes": 277396,
+      "triangles": 3828,
+      "sha256": "7adef24ac76e756865ec8ddc7ab8c054375759334d0861ce93036791f098d020"
+    },
+    "floodlight": {
+      "id": "WSC-MODULE-024",
+      "file": "wsc-module-024-floodlight-tower.glb",
+      "dimensions_blender_m": [
+        2.94,
+        1.35,
+        8.9
+      ],
+      "bytes": 1444832,
+      "triangles": 18028,
+      "sha256": "316a77c8fdabebbbc2767fe035b7a24caa749773cffe98f2dcf99791d7ec16b2"
+    },
+    "hut": {
+      "id": "WSC-PROP-065",
+      "file": "wsc-prop-065-keycard-shed.glb",
+      "dimensions_blender_m": [
+        3.79,
+        2.609,
+        3.281
+      ],
+      "bytes": 579724,
+      "triangles": 8418,
+      "sha256": "1702aa6968159d7b35b319bcbae4112c89b123fb885113c4e3cfb94aab39c966"
+    }
+  },
+  "placements": [
+    {
+      "asset": "container",
+      "name": "A \u00b7 entry row",
+      "center_m": [
+        -5.1,
+        -0.7,
+        0
+      ],
+      "rotation_z": 0,
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "asset": "container",
+      "name": "B \u00b7 long yard row",
+      "center_m": [
+        -5.1,
+        4.1,
+        0
+      ],
+      "rotation_z": 180,
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "asset": "container",
+      "name": "C \u00b7 blocked rear turn",
+      "center_m": [
+        5.6,
+        3.9,
+        0
+      ],
+      "rotation_z": -90,
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "asset": "cover",
+      "name": "Short cover ahead",
+      "center_m": [
+        -0.72,
+        -0.9,
+        0
+      ],
+      "rotation_z": -13,
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "asset": "cover",
+      "name": "Second cover",
+      "center_m": [
+        3.8,
+        1.8,
+        0
+      ],
+      "rotation_z": 31,
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "asset": "fence",
+      "name": "Rear fence bay 1",
+      "center_m": [
+        -5.13,
+        7.13,
+        0
+      ],
+      "rotation_z": 0,
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "asset": "fence",
+      "name": "Rear fence bay 2",
+      "center_m": [
+        -1.71,
+        7.13,
+        0
+      ],
+      "rotation_z": 0,
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "asset": "fence",
+      "name": "Rear fence bay 3",
+      "center_m": [
+        1.71,
+        7.13,
+        0
+      ],
+      "rotation_z": 0,
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "asset": "fence",
+      "name": "Rear fence bay 4",
+      "center_m": [
+        5.13,
+        7.13,
+        0
+      ],
+      "rotation_z": 0,
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "asset": "floodlight",
+      "name": "Existing eight-lens tower",
+      "center_m": [
+        -7.65,
+        4.5,
+        0
+      ],
+      "rotation_z": -18,
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    {
+      "asset": "hut",
+      "name": "Foreman exterior background",
+      "center_m": [
+        5.78,
+        7.4,
+        0
+      ],
+      "rotation_z": 0,
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    }
+  ],
+  "pools": [
+    [
+      "Row A long pool",
+      [
+        -3.82,
+        -0.7,
+        0
+      ],
+      -90,
+      [
+        0.84,
+        0.96,
+        1
+      ]
+    ],
+    [
+      "Row B long pool",
+      [
+        -3.82,
+        4.1,
+        0
+      ],
+      -90,
+      [
+        0.8,
+        1.08,
+        1
+      ]
+    ],
+    [
+      "Turn recess pool",
+      [
+        3.04,
+        2.71,
+        0
+      ],
+      0,
+      [
+        0.86,
+        0.7,
+        1
+      ]
+    ],
+    [
+      "Short cover pool",
+      [
+        -0.72,
+        -0.55,
+        0
+      ],
+      -13,
+      [
+        0.37,
+        0.48,
+        1
+      ]
+    ],
+    [
+      "Far cover pool",
+      [
+        3.7,
+        2.14,
+        0
+      ],
+      31,
+      [
+        0.37,
+        0.43,
+        1
+      ]
+    ]
+  ]
+}
