@@ -101,7 +101,7 @@ for i,c in enumerate(cfg["cards"]):
         mark=ochre if c["marks"]=="ochre" else pale
         for j in range(8):
             box(g,mark,(x-1.67,y-1.51+.43*j,.006),(.073,.27,.010))
-        box(g,mark,(x-.77,y-1.56,.006),(1.86,.06,.01))
+        box(g,mark,(x-.70,y-1.56,.006),(1.84,.06,.01))
     if c["marks"]=="curve":
         vv=[]
         for j in range(24):
