@@ -152,7 +152,7 @@ for k,x,y,z,a in (
     ('crate',28,34,0,9),('crate',29.25,34.3,0,-18),
 ):
     place(k,'Illustrative East apron',Matrix.Translation((x,y,z))@Matrix.Rotation(math.radians(a),4,'Z'))
-for width,depth,x,y in [(17,17,29,19),(15,16,26,32),(19,17,41,48)]:
+for width,depth,x,y in [(17,14,29,19),(15,13.4,26,33),(19,16,41,48.5)]:
     cube('Preview apron',(x,y,-.02),(width,depth,.07),road)
 for j in range(28):
     cube('Tarmac divider preview',(7+j*7,0,-.001),(2.37,.13,.012),tone[3])
