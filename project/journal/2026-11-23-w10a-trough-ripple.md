@@ -7,11 +7,12 @@ is left untouched. The replacement only uses the original inset's
 at its native origin, hide the original `Inset water surface` node and load
 the new GLB without an offset.
 
-The 99,564-byte textureless GLB holds one mesh, 1,344 triangles, and the
+The 99,568-byte textureless GLB holds one mesh, 1,344 triangles, and the
 three-second `Trough_Ripple_Loop_3s` clip. Four shapes drive small height
 changes while all 124 perimeter vertices stay fixed. The checked exported
 start and end weights are identical and the reimported intermediate poses
-differ. The blue color is simple opaque PBR; the reflections in the images
+differ. The broader waves and rougher finish soften the original faceted glare.
+The blue color is simple opaque PBR; the reflections in the images
 need the preview lighting. Playback, lighting parity, and performance are
 not verified in the game.
 

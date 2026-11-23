@@ -35,7 +35,7 @@ vs=[((i/(nx-1)-.5)*length,(j/(ny-1)-.5)*width,z0) for j in range(ny) for i in ra
 fs=[(k,k+1,k+nx+1,k+nx) for j in range(ny-1) for i in range(nx-1) for k in [j*nx+i]]
 mesh=bpy.data.meshes.new('Trough replacement inset')
 mesh.from_pydata(vs,[],fs)
-mesh.materials.append(mat('Cool turquoise glazed water',(.021,.153,.175),.14,.28))
+mesh.materials.append(mat('Cool turquoise glazed water',(.021,.153,.175),.23,.12))
 mesh.update()
 for f in mesh.polygons:f.use_smooth=True
 o=bpy.data.objects.new('Paddock ripple inset',mesh);s.collection.objects.link(o)
@@ -51,7 +51,7 @@ for i in range(4):
         u,v=ix/(nx-1),iy/(ny-1)
         falloff=min(1,u/.08,(1-u)/.08)*math.sin(v*math.pi)**.75
         a=math.hypot(x+1.35,y-.22)
-        wave=.0059*math.sin(23*a-p)+.0018*math.cos(12*x+9*y+p)
+        wave=.0059*math.sin(13*a-p)+.0018*math.cos(8*x+6*y+p)
         k.data[idx].co.z=z+falloff*wave
     keys.append(k)
 for f in range(0,73,2):
@@ -135,7 +135,7 @@ def lamp(n,p,q,power,c,x,y):
 s.world=bpy.data.worlds.new('Paddock soft bounce')
 s.world.color=(.19,.23,.26)
 lamp('Warm outdoor key',(-2.9,-3.2,5.8),(0,0,.7),830,(1,.74,.50),2.5,3)
-lamp('Long sky reflection',(.4,2.2,2.75),(0,0,.64),640,(.62,.82,1),1.8,.53)
+lamp('Long sky reflection',(.4,2.2,2.75),(0,0,.64),430,(.62,.82,1),2.0,.8)
 lamp('Subtle cool rim',(-3,2.5,4.35),(0,0,.6),585,(.77,.90,1),3.1,2.1)
 c=bpy.data.cameras.new('Trough ripple proof')
 s.camera=bpy.data.objects.new(c.name,c);s.collection.objects.link(s.camera)
