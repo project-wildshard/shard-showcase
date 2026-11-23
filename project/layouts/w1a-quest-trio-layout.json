@@ -1,0 +1,78 @@
+{
+  "scope": "rigged noncombat studies, one 3 s studio idle each; no native actor or quest",
+  "role_ids": {
+    "yard-boss": "WSC-ACTOR-015",
+    "shift-boss": "WSC-ACTOR-016",
+    "surveyor": "WSC-ACTOR-017"
+  },
+  "screen_order": [
+    "shift-boss",
+    "surveyor",
+    "quest-board",
+    "yard-boss"
+  ],
+  "screen_x": [
+    0.13730670511722565,
+    0.3441603183746338,
+    0.584071695804596,
+    0.8409227132797241
+  ],
+  "viewer_eye_height_m": 1.7,
+  "level_one_markers": [
+    "yard-boss"
+  ],
+  "staged_actor_positions": [
+    [
+      "shift-boss",
+      [
+        -2.4,
+        0.15,
+        0
+      ],
+      -12
+    ],
+    [
+      "surveyor",
+      [
+        -1.05,
+        0.02,
+        0
+      ],
+      4
+    ],
+    [
+      "yard-boss",
+      [
+        2.25,
+        0.15,
+        0
+      ],
+      -9
+    ]
+  ],
+  "quest_board_uniform_scale": 0.81,
+  "donor_mesh_sizes_m": {
+    "board": [
+      2.480000138282776,
+      1.2987196445465088,
+      2.7249999344348907
+    ],
+    "house": [
+      7.739999771118164,
+      6.442300081253052,
+      8.048500329256058
+    ],
+    "paving": [
+      4.800000190734863,
+      4.800000190734863,
+      0.15599999576807022
+    ]
+  },
+  "unchanged_pinned_donors": {
+    "wsc-actor-017-surveyor.glb": "81c43903ce90891c98909e7763a2e6cfe7d71e8c8acd00e2076bcb097fc7bd3b",
+    "quest-board.glb": "84b82ec701da4529f5d9403e137d10a28ea370b87ada4ba28f837dc0ba1472aa",
+    "town-gate-merchant-house.glb": "266fc52858b80847add0627c536c1421d1305e3092c846625937d1d6d80017fe",
+    "wsc-arch-005-plaza-paving-kit.glb": "85b9ddb3f5c13a5168325fd4b6c34ccf0fde319a5c3511d67232ce6d762f97ea",
+    "market-awning-stall.glb": "b240fd8056db68d9b1caeaefc61459de4171f1345782726b0da40d0a1c614f04"
+  }
+}
