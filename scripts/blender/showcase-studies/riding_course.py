@@ -2,6 +2,7 @@
 import hashlib
 import json
 import math
+import os
 import random
 import sys
 from pathlib import Path
@@ -210,7 +211,7 @@ assert len(ring_records) == 8 and len(jump_xy) == 4 and 478.7 < LAP < 478.8
 (OUT/'w10b-riding-course-study.json').write_text(json.dumps(report, indent=2) + '\n')
 def diagram():
     # Render the authoritative study points, not a screenshot with guessed positions.
-    def pos(x,y): return 95 + (x + 228)*4.7, 55 + (y - 142)*4.7
+    def pos(x,y): return 95 + (x + 228)*4.7, 55 + (230 - y)*4.7
     def p1(x,y): return ','.join(f'{q:.1f}' for q in pos(x,y))
     trace=' '.join(p1(*course(LAP*i/256)[:2]) for i in range(256))
     svg=['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 550" role="img" aria-labelledby="title desc">',
@@ -236,7 +237,7 @@ def diagram():
     svg.insert(3,'<style>text{font: bold 14px system-ui,sans-serif}text[font-size="26"]{font-size:26px}</style>')
     return '\n'.join(svg+['</svg>',''])
 (OUT/'nov23-riding-route.svg').write_text(diagram())
-if 'metadata-only' in sys.argv:
+if os.environ.get('WSC_METADATA_ONLY') == '1':
     sys.exit(0)
 
 S.world = bpy.data.worlds.new('Riding oval late sun')
