@@ -1,0 +1,50 @@
+{
+  "source_sha256": "b52b733aecf641b084e9d2729aa5dcd9849b993553cc687fd4bb0fd1c77730b3",
+  "geometry_bytes": 118272,
+  "triangles": 1232,
+  "variant_bytes": 126860,
+  "bytes_over_default": 4468,
+  "finishes": [
+    {
+      "tag": "oval-ochre",
+      "name": "Oval Ochre",
+      "deck": 10974772,
+      "grip": 3942949,
+      "lamp": 16762485,
+      "pod": 5517857,
+      "rough": 0.48,
+      "metal": 0.29
+    },
+    {
+      "tag": "rock-jade",
+      "name": "Rock Jade",
+      "deck": 3107928,
+      "grip": 1979954,
+      "lamp": 9106091,
+      "pod": 1918777,
+      "rough": 0.57,
+      "metal": 0.26
+    },
+    {
+      "tag": "alley-violet",
+      "name": "Alley Violet",
+      "deck": 6505893,
+      "grip": 2629445,
+      "lamp": 15896537,
+      "pod": 4006991,
+      "rough": 0.39,
+      "metal": 0.43
+    },
+    {
+      "tag": "north-frost",
+      "name": "North Frost",
+      "deck": 8760515,
+      "grip": 2505552,
+      "lamp": 12121343,
+      "pod": 3363179,
+      "rough": 0.59,
+      "metal": 0.22
+    }
+  ],
+  "scope": "Cosmetic palette proposals; no cache assignment, unlock, physics or runtime shader changes."
+}
