@@ -11,3 +11,5 @@ From the repository root:
     blender -b -t 6 --python-exit-code 1 --python scripts/blender/west-hover/extract_secondary_kit.py -- --park-build "$tmp/park" --output "$tmp/kit"
 
 The main park scene lives in the tracked recipe. Only small standalone components and measurements are committed here, not the temporary park scene. Studio framing shows the original relative placement for these four instances; it does not establish a playable route, collision, gameplay or measured performance.
+
+The preview uses existing deciduous and conifer models, concrete staging and painted guidance lines outside the three exports. None of that changes the tested GLBs.

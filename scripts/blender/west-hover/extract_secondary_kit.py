@@ -4,6 +4,7 @@ from collections import Counter
 import json
 import math
 import os
+import random
 from pathlib import Path
 import sys
 
@@ -157,7 +158,7 @@ def mat(n,c,rough=.75):
     q.inputs['Roughness'].default_value=rough
     return x
 
-floor=mat('Warm fine aggregate',(.243,.267,.210),.86)
+floor=mat('Steel-green concrete',(.101,.134,.131),.87)
 q=floor.node_tree.nodes.get('Principled BSDF')
 n=floor.node_tree.nodes
 links=floor.node_tree.links
@@ -170,14 +171,44 @@ bump.inputs['Strength'].default_value=.18
 bump.inputs['Distance'].default_value=.06
 links.new(noise.outputs['Fac'],bump.inputs['Height'])
 links.new(bump.outputs['Normal'],q.inputs['Normal'])
-bpy.ops.mesh.primitive_plane_add(size=220,location=(0,0,-.004))
-bpy.context.object.data.materials.append(floor)
-edge=mat('Muted lane boundary',(.42,.36,.23))
-stripe=mat('Grit tape cream',(.63,.58,.42))
+edge=mat('Muted lane boundary',(.25,.24,.16))
+stripe=mat('Grit tape cream',(.48,.44,.29))
+meadow=mat('Park perimeter meadow',(.079,.127,.065),.93)
 def patch(n,xyz,w,d,m):
     bpy.ops.mesh.primitive_plane_add(size=1,location=xyz)
     ob=bpy.context.object;ob.name=n;ob.scale.x=w;ob.scale.y=d
     ob.data.materials.append(m)
+# Ground and trees are supporting studio staging. No obstacle GLB is changed.
+patch('West meadow',(0,0,-.038),650,650,meadow)
+patch('Art study apron',(3,-4,-.004),128,49,floor)
+patch('Trail shoulder',(3,-28.29,-.002),126,1.4,edge)
+patch('Trail shoulder',(3,20.22,-.002),126,1.4,edge)
+# Local scenery uses two existing catalogue assets at illustrative positions.
+base=Path(__file__).resolve().parents[3]/'public/assets/wildshard-art'
+rng=random.Random(96)
+def plant(file, placements):
+    old=set(S.objects)
+    bpy.ops.import_scene.gltf(filepath=str(base/file))
+    bpy.context.view_layer.update()
+    fresh=set(S.objects)-old
+    chunks=[(o.data,o.matrix_world.copy()) for o in sorted(fresh,key=lambda t:t.name) if o.type=='MESH']
+    for o in fresh:
+        bpy.data.objects.remove(o,do_unlink=True)
+    for xyz,scale in placements:
+        trans=Matrix.Translation(xyz) @ Matrix.Rotation(rng.uniform(0,math.tau),4,'Z') @ Matrix.Scale(scale,4)
+        for d,m in chunks:
+            ob=bpy.data.objects.new('Park preview scenery',d)
+            S.collection.objects.link(ob)
+            ob.matrix_world=trans@m
+rows=[]
+for x in range(-77,92,5):
+    rows.append(((x+rng.uniform(-.8,.8),rng.uniform(23,40),-.036),rng.uniform(.65,1.39)))
+for x in range(-101,-58,5):
+    for y in range(-29,31,10):
+        rows.append(((x+rng.uniform(-.8,.8),y+rng.uniform(-2.8,2.8),-.036),rng.uniform(.72,1.77)))
+plant('wsc-prop-046-conifer-tree.glb',rows)
+plant('wsc-prop-012-deciduous-tree.glb',[((x,y,-.035),k) for x,y,k in [(-27,24,1.0),(-51,25,1.3),
+       (10,25,.94),(53,26,.94),(67,17,1.05),(64,-16,1.2),(-67,-11,1.25)]])
 # Off-obstacle ground markings are render staging only.
 for x in range(-49,64,4):
     for y in (-25,17):
@@ -201,12 +232,12 @@ def aim(o,p):
     o.rotation_euler=(Vector(p)-o.location).to_track_quat('-Z','Y').to_euler()
 S.render.engine='CYCLES';S.cycles.samples=38;S.cycles.use_denoising=False
 S.cycles.use_adaptive_sampling=True;S.cycles.adaptive_threshold=.085
-S.view_settings.exposure=-.25
+S.view_settings.exposure=-.80
 S.render.resolution_x=1520;S.render.resolution_y=920;S.render.resolution_percentage=100
 S.render.image_settings.file_format='JPEG';S.render.image_settings.quality=90
 for name,eye,target,lens in [
-    ('nov23-hover-secondary-overview',(-13,-78,60),(3,-5,.3),30),
-    ('nov23-hover-secondary-bowl',(-48,-27,7),(-18,-5,1),32),
+    ('nov23-hover-secondary-overview',(-9,-89,68),(4,-3,1),29),
+    ('nov23-hover-secondary-bowl',(-55,-32,13),(-14,-4,2.0),31),
 ]:
     bpy.ops.object.camera_add(location=eye)
     S.camera=bpy.context.object
