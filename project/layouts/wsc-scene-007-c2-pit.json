@@ -1,0 +1,34 @@
+{
+  "asset_id": "WSC-SCENE-007",
+  "scope": "C2 The Pit environment study only",
+  "source": {
+    "repository": "Raynos/project-wildshard-singleplayer",
+    "ref": "ce1cf050b3",
+    "path": "art/showcase-template/round-5-blockout/layout.js",
+    "blob": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+    "slice": "E11c-gauntlet-courts-supervisor.md"
+  },
+  "origin_world_x_y_z": [55, 0, 212],
+  "floor_x0_x1_z0_z1": [14, 96, 197, 234],
+  "entry_ledge_x0_x1_z0_z1": [14, 96, 190, 197],
+  "entry_ledge_top": 2.5,
+  "ramp_x": [48, 76],
+  "descent_ramp_z_high_low": [197, 205.5],
+  "descent_ramp_width": 7,
+  "boundary_wall_height": 5,
+  "door_closets": {"D3": [8, 14, 210, 222], "D4": [96, 104, 222, 234]},
+  "G1_passage": [25, 35, 184, 190],
+  "G2_passage": [96, 115, 210, 218],
+  "lift_x_z": [55, 229],
+  "lift_rise": 4,
+  "banner_x_z": [55, 232.4],
+  "banner_dims_width_height_depth": [8, 5, 0.2],
+  "banner_bottom_y": 8,
+  "art_shaft_width": 7.2,
+  "art_shaft_floor": -5.6,
+  "cover": [["pillar", 40, 214, 0], ["pillar", 70, 214, 0], ["half", 26, 226, 1.57], ["half", 55, 205, 0], ["half", 84, 222, 1.57], ["crates", 55, 222, 0]],
+  "donors_sha256": {
+    "frame": "54f88aa3ed7dd8e09f74677787ec2d62a274650a96e130da1c39e2a5903f1376",
+    "deck": "522f9ad11c6b01ba54a78a84d88f16e9b3a4e912ce961ec2a99abbfb2bc14f33"
+  }
+}
