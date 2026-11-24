@@ -1,0 +1,27 @@
+{
+  "scope": "Optional understory studies, not native placements, physics or flora approval.",
+  "donors": {
+    "wsc-prop-036-landscape-boulder.glb": "d03ed70f69d230fa82c474770eb65a991189cbf4848db4fc750ec1cb6f812750",
+    "wsc-prop-012-deciduous-tree-far.glb": "33f381e232b215c9fa21e81ceb020212f092b8ca669b2fe76d9f1627a910ada9",
+    "wsc-prop-046-conifer-tree-far.glb": "43362bfe9c1673367c0065eef2eb88759564a69df379feb2f27dc140e9a699a6",
+    "wsc-prop-047-wildflower-clump-far.glb": "e67cfc6fd4d86d239929e0ba36239a8abbc0387410b0265b6fb1a635286c9d98"
+  },
+  "exports": {
+    "fern": {
+      "bytes": 46568,
+      "triangles": 576,
+      "radius_m": 0.561,
+      "height_m": 0.56538
+    },
+    "verge": {
+      "bytes": 42392,
+      "triangles": 528,
+      "radius_m": 0.47401,
+      "height_m": 0.4961
+    }
+  },
+  "new_prototype_instances": 15,
+  "staged_path_clear_width_m": 2,
+  "conservative_minimum_new_plant_margin_m": 0.04345,
+  "clearance_scope": "Radial extent and recorded scale of new foliage only; not collision."
+}
