@@ -1,0 +1,62 @@
+{
+  "readiness": "static placement study only; no pickup relocation in game, collision, light timing or player test",
+  "archive_reference": "Raynos/project-wildshard-singleplayer@ce1cf050b3:art/showcase-template/round-5-blockout/layout.js#L300",
+  "model_sha256": "3dfd3a95e261b340911f5b93ffce91a8840a91a0464b915336567aa2f3b6bce0",
+  "proof_method": "exact GLB triangles vs generated liner and dressing BVHs; 25 footprint floor and overhead ray samples",
+  "archived": {
+    "world_base_xyz_m": [
+      -200,
+      -5.5,
+      44
+    ],
+    "liner_triangle_pairs": 376,
+    "dressing_triangle_pairs": 0,
+    "bounds_blender_m": [
+      [
+        -200.5003,
+        -44.5003,
+        -5.5003
+      ],
+      [
+        -199.4997,
+        -43.4997,
+        -4.4997
+      ]
+    ],
+    "minimum_base_to_floor_m": 0.4997,
+    "minimum_top_to_liner_above_m": -0.4003,
+    "footprint_samples_floor_roof": [
+      25,
+      25
+    ],
+    "nearest_edge_to_centerline_m": 0
+  },
+  "proposed": {
+    "world_base_xyz_m": [
+      -201.8,
+      -5.5,
+      40
+    ],
+    "liner_triangle_pairs": 0,
+    "dressing_triangle_pairs": 0,
+    "bounds_blender_m": [
+      [
+        -202.3003,
+        -40.5003,
+        -5.5003
+      ],
+      [
+        -201.2997,
+        -39.4997,
+        -4.4997
+      ]
+    ],
+    "minimum_base_to_floor_m": 0.4997,
+    "minimum_top_to_liner_above_m": 2.3376,
+    "footprint_samples_floor_roof": [
+      25,
+      25
+    ],
+    "nearest_edge_to_centerline_m": 1.2997
+  }
+}

@@ -5,6 +5,7 @@ blender -b /abs/climb-rock-editable.blend -t 6 --python-exit-code 1 \
   --python scripts/blender/showcase-studies/rock_squeeze_cave.py -- /abs/out
 """
 import json
+import os
 import math
 import random
 from pathlib import Path
@@ -209,9 +210,9 @@ scene.collection.objects.link(camera); scene.camera=camera
 scene.render.engine="CYCLES"; scene.cycles.samples=38; scene.cycles.use_denoising=False
 scene.view_settings.view_transform="AgX"; scene.render.resolution_percentage=100
 scene.render.image_settings.file_format="JPEG"; scene.render.image_settings.quality=89
-for name,p,target,res,lens in [
+for name,p,target,res,lens in ([] if os.getenv("WILDSHARD_CAVE_SKIP_RENDER") == "1" else [
     ("section",(-140,-44,19),(-202,-44,4.9),(1450,710),74),
-    ("interior",(-198.6,-35.75,-4.37),(-200.2,-44.7,-4.9),(1000,1080),25)]:
+    ("interior",(-198.6,-35.75,-4.37),(-200.2,-44.7,-4.9),(1000,1080),25)]):
     section=name=="section"
     liners[1].hide_render=section # keep near floor and right wall for interior
     crag.hide_render=not section
