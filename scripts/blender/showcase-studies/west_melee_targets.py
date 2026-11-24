@@ -120,7 +120,7 @@ ring_base=[
 ]
 for x in (-.626,.626):
     ring_base.extend([
-        box("Hoop fork upright",(x,.045,1.86),(.156,.23,1.08),iron,.026),
+        box("Hoop fork upright",(x,.045,1.854),(.156,.23,1.068),iron,.026),
         box("Upper fork cap",(x,.045,2.365),(.178,.25,.07),brass,.012),
         box("Ring seat tab",(x,-.105,1.67),(.147,.24,.116),oxide,.018),
     ])

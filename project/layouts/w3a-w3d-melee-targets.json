@@ -62,9 +62,9 @@
       "sha256": "529a66c5c4fbf3c1f3e78f9aef87d32a7cbebbca5eb7252769bbedc66e3be25c"
     },
     "spear": {
-      "bytes": 53652,
+      "bytes": 53648,
       "triangles": 884,
-      "sha256": "642eddf0cbc96741f0785d0f346e069b67a3aff9b912e64b20a7ed38dc6fe617"
+      "sha256": "3c1eb29e25c1eaece1737699ade3e4d3f5f6f1f3c9014d01bb442f9c26f9e305"
     }
   }
 }
