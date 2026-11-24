@@ -1,0 +1,28 @@
+{
+  "map_origin_xyz": [
+    198,
+    0,
+    186
+  ],
+  "proof_floor_samples": 537,
+  "largest_sampled_step_m": 0.05000007152557373,
+  "passage_xz": [
+    188,
+    208,
+    182,
+    190
+  ],
+  "apron_centerline_m": 14,
+  "arch_design_opening_m": 8,
+  "passage_clear_between_walls_m": 7.2,
+  "lane_wall_gap_m": 8,
+  "lane_gross_width_m": 14,
+  "taper_chords_m": [
+    6.14758484688179,
+    7.464924456927887,
+    8.782264066973985,
+    9.221377270322684
+  ],
+  "separate_northern_shortcut_off_scene": true,
+  "native_gameplay": false
+}
