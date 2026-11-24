@@ -39,6 +39,16 @@ const pick=(id,value,evt="change")=>{get(id).value=value;get(id).events[evt]({ty
 const assertRows=n=>assert.equal(rows().length,n);
 assertRows(data.assets.length);
 const hasStudy=a=>Boolean(a.model_preview);
+const salvage=data.assets.filter(a=>a.related_study?.href==="#nov24-salvage-parts");
+assert.equal(salvage.length,6);
+assert.equal(salvage.filter(hasStudy).length,2);
+for (const a of salvage) {
+  const row=get("asset-"+a.id);
+  const link=row.children.flatMap(x=>x.children).find(c=>c.href===a.related_study.href);
+  assert.equal(link.textContent,a.related_study.label);
+}
+assert.ok(ids.has("nov24-salvage-parts"));
+
 const linked=data.assets.filter(hasStudy);
 assert.equal(select.options[1].textContent,`linked (${linked.length})`);
 pick("previews","linked");assertRows(linked.length);
