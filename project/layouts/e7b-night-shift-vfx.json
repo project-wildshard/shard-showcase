@@ -1,0 +1,18 @@
+{
+  "scope": "visual components only; not a new enemy, native lighting or behavior",
+  "source": "E7b night-shift look and E1a cosmetic palette slots",
+  "beam": {
+    "triangles": 80,
+    "bytes": 3112,
+    "sha256": "3fffeb0bfd65604cefaba6730f52a8d4ca182dd6818a8587d3d83f64b0f7f030",
+    "length_m": 2.72,
+    "gltf_forward": "-Z",
+    "gltf_alpha": "BLEND",
+    "Three_material_override": "AdditiveBlending with depthWrite false and depthTest true"
+  },
+  "chevron": {
+    "triangles": 144,
+    "bytes": 11020,
+    "sha256": "9659eba84f0e702235351ddd7a5d32fb8f2bea1efaac8ee6d6baf83dec00fbc4"
+  }
+}
