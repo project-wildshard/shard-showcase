@@ -1,0 +1,102 @@
+{
+  "readiness": "static modular shop fixture art and merchandising layout; no native shop room, selection or inventory logic",
+  "source": "W2b stock list; WSC-ARCH-006 related study; four exact inventory donors",
+  "assets": {
+    "wall": {
+      "bytes": 46024,
+      "triangles": 724,
+      "sha256": "6814c70fb358bc9bcec80938c4c01ec305f2f79b464f319c1a1baa86d408bfb0"
+    },
+    "riser": {
+      "bytes": 35000,
+      "triangles": 528,
+      "sha256": "204a3b6906ec74cd9ce4d6ee001df0670141b5b680fca66d66b3f7af03a31b30"
+    }
+  },
+  "inventory": {
+    "spear": {
+      "glb": "wsc-gear-002-spear.glb",
+      "sha256": "8788172b26a333cd6c3b36c9b039594d2b0c307defa4f908d8bf45e3104c0479",
+      "translation_blender": [
+        -0.85,
+        -0.285,
+        1.315
+      ],
+      "bounds_blender": [
+        [
+          -0.9304,
+          -0.40411,
+          0.285
+        ],
+        [
+          -0.73736,
+          -0.20329,
+          2.549
+        ]
+      ]
+    },
+    "sword": {
+      "glb": "wsc-gear-001-sword.glb",
+      "sha256": "64d9cf3926a58752233d9a40a467d87dfa9489b2270b83f95d577afa53295d62",
+      "translation_blender": [
+        0.0,
+        -0.26,
+        1.15
+      ],
+      "bounds_blender": [
+        [
+          -0.107,
+          -0.295,
+          0.988
+        ],
+        [
+          0.107,
+          -0.225,
+          2.09
+        ]
+      ]
+    },
+    "bow": {
+      "glb": "wsc-gear-003-bow.glb",
+      "sha256": "92f61a54ec6c49cb0bbcab8ca8f15bef0c64356c0b143db161a8dc3de6ed971b",
+      "translation_blender": [
+        0.75,
+        -0.28,
+        1.38
+      ],
+      "bounds_blender": [
+        [
+          0.685,
+          -0.321,
+          0.566
+        ],
+        [
+          0.911,
+          -0.239,
+          2.194
+        ]
+      ]
+    },
+    "crossbow": {
+      "glb": "wsc-gear-004-crossbow.glb",
+      "sha256": "389e87c5c33e364e072e91dbaa3f2b02ef04befe64241f5c6622b8e449657f7d",
+      "translation_blender": [
+        1.99,
+        -0.52,
+        0.675
+      ],
+      "bounds_blender": [
+        [
+          1.546,
+          -0.911,
+          0.556
+        ],
+        [
+          2.434,
+          -0.032,
+          0.77988
+        ]
+      ]
+    }
+  }
+}
