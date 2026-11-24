@@ -1,0 +1,76 @@
+{
+  "scope": "Static W06 art study; no in-game placement, scoring, hit, burn, or stagger wiring.",
+  "pin": "docs/plans/kitchen-sink-v2/slices/W3b-bow-crossbow-ammo.md and W06 polished mockup",
+  "file": "w3b-practice-plank.glb",
+  "bytes": 49724,
+  "triangles": 970,
+  "sha256": "0c384aeaf81cb455eb38b104da496cbb9f952eb38f4fc3c9b2155cca5007807c",
+  "nominal_asset_bounds_m": [
+    0.94,
+    0.45,
+    2.044
+  ],
+  "camera": {
+    "eye_m": 1.7,
+    "ground_distance_m": 20,
+    "horizontal_fov_deg": 50,
+    "image_width_px": 1240,
+    "roundel_nominal_width_px": 30.85
+  },
+  "unchanged_donors": [
+    {
+      "file": "wsc-prop-078-soft-practice-dummy.glb",
+      "sha256": "f8170426252c1c84d15f8c5fe503d70e6fc3602a58608fd2c42306a941a9b566",
+      "stage_xy_m": [
+        -2.3,
+        0.22
+      ],
+      "world_translation_m": [
+        -2.2987,
+        0.22,
+        -0.0
+      ],
+      "unscaled_bounds_m": [
+        0.9445,
+        0.912,
+        1.797
+      ]
+    },
+    {
+      "file": "wsc-prop-029-straw-bale-target.glb",
+      "sha256": "065d475508d3dcbbdad2b295f5ec417572a2505eb1280e8c9c5da7f7e72542a0",
+      "stage_xy_m": [
+        2.34,
+        0.27
+      ],
+      "world_translation_m": [
+        2.3383,
+        0.27,
+        -0.0
+      ],
+      "unscaled_bounds_m": [
+        1.3822,
+        0.828,
+        0.9668
+      ]
+    },
+    {
+      "file": "wsc-module-006-range-backstop.glb",
+      "sha256": "be6d2b41b97f6b81a2ffbdc6aa833ca82b4b9be1af821bcb2d3701ebfac8b9b6",
+      "stage_xy_m": [
+        0,
+        3.4
+      ],
+      "world_translation_m": [
+        0.0,
+        3.4,
+        -0.0
+      ],
+      "unscaled_bounds_m": [
+        5.28,
+        0.459,
+        2.5695
+      ]
+    }
+  ]
+}
