@@ -1,0 +1,574 @@
+{
+  "scope": "Static Room 2 art proposal. Room 1 native anchor and all gameplay are out of scope.",
+  "placement": "GLTF (+X,+Y,+Z) to world [160.5+x, -50+y, -64+z].",
+  "room3_source_sha256": "9caf60f2789ced4d31c5eb42756bf0cf3e9458134c64216b4ab76f785f000520",
+  "donors": {
+    "plate": [
+      "wsc-prop-064-metal-floor-plates.glb",
+      "7e4eef8077b1d59fd31d17235ef1cedca8bab9910c0c283bcf5546fae144ed85"
+    ],
+    "bay": [
+      "wsc-arch-002-industrial-wall-bay.glb",
+      "24f3a7736d111033d724f0f6244c4d10f757fe3066ea1b8b12d5ef60a5a6f625"
+    ],
+    "open": [
+      "wsc-module-021-open-circular-vault-door.glb",
+      "dcaca9e40d0e6421fdd62c1dedf537e7004ad0016b05144beed419377682cc68"
+    ],
+    "closed": [
+      "wsc-prop-063-round-vault-bulkhead.glb",
+      "25db93c5d45901a6599674ea857982700f57705c1b171e23978140537e41eedf"
+    ]
+  },
+  "placement_recipe": [
+    {
+      "key": "plate",
+      "name": "R2 floor 1:1",
+      "local_origin": [
+        -6.31,
+        -6.31,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 1:2",
+      "local_origin": [
+        -6.31,
+        -3.155,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 1:3",
+      "local_origin": [
+        -6.31,
+        0.0,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 1:4",
+      "local_origin": [
+        -6.31,
+        3.155,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 1:5",
+      "local_origin": [
+        -6.31,
+        6.31,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 2:1",
+      "local_origin": [
+        -3.155,
+        -6.31,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 2:2",
+      "local_origin": [
+        -3.155,
+        -3.155,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 2:3",
+      "local_origin": [
+        -3.155,
+        0.0,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 2:4",
+      "local_origin": [
+        -3.155,
+        3.155,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 2:5",
+      "local_origin": [
+        -3.155,
+        6.31,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 3:1",
+      "local_origin": [
+        0.0,
+        -6.31,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 3:2",
+      "local_origin": [
+        0.0,
+        -3.155,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 3:3",
+      "local_origin": [
+        0.0,
+        0.0,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 3:4",
+      "local_origin": [
+        0.0,
+        3.155,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 3:5",
+      "local_origin": [
+        0.0,
+        6.31,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 4:1",
+      "local_origin": [
+        3.155,
+        -6.31,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 4:2",
+      "local_origin": [
+        3.155,
+        -3.155,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 4:3",
+      "local_origin": [
+        3.155,
+        0.0,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 4:4",
+      "local_origin": [
+        3.155,
+        3.155,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 4:5",
+      "local_origin": [
+        3.155,
+        6.31,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 5:1",
+      "local_origin": [
+        6.31,
+        -6.31,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 5:2",
+      "local_origin": [
+        6.31,
+        -3.155,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 5:3",
+      "local_origin": [
+        6.31,
+        0.0,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 5:4",
+      "local_origin": [
+        6.31,
+        3.155,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "plate",
+      "name": "R2 floor 5:5",
+      "local_origin": [
+        6.31,
+        6.31,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "open",
+      "name": "R2 toward R3 round bulkhead",
+      "local_origin": [
+        7.43,
+        0,
+        0.016000000000000014
+      ],
+      "yaw": -90
+    },
+    {
+      "key": "closed",
+      "name": "R2 west end static round bulkhead",
+      "local_origin": [
+        -7.63,
+        0,
+        1.006
+      ],
+      "yaw": 90
+    },
+    {
+      "key": "plate",
+      "name": "Exact R3 tread for joining proof",
+      "local_origin": [
+        11.9,
+        0,
+        0.903
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        -5.45,
+        -8.02,
+        1.006
+      ],
+      "yaw": 180
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        -5.45,
+        -8.02,
+        3.088
+      ],
+      "yaw": 180
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        -1.84,
+        -8.02,
+        1.006
+      ],
+      "yaw": 180
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        -1.84,
+        -8.02,
+        3.088
+      ],
+      "yaw": 180
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        1.84,
+        -8.02,
+        1.006
+      ],
+      "yaw": 180
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        1.84,
+        -8.02,
+        3.088
+      ],
+      "yaw": 180
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        5.45,
+        -8.02,
+        1.006
+      ],
+      "yaw": 180
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        5.45,
+        -8.02,
+        3.088
+      ],
+      "yaw": 180
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        -5.45,
+        8.02,
+        1.006
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        -5.45,
+        8.02,
+        3.088
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        -1.84,
+        8.02,
+        1.006
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        -1.84,
+        8.02,
+        3.088
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        1.84,
+        8.02,
+        1.006
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        1.84,
+        8.02,
+        3.088
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        5.45,
+        8.02,
+        1.006
+      ],
+      "yaw": 0
+    },
+    {
+      "key": "bay",
+      "name": "Linked industrial bay",
+      "local_origin": [
+        5.45,
+        8.02,
+        3.088
+      ],
+      "yaw": 0
+    }
+  ],
+  "floor_count": [
+    5,
+    5
+  ],
+  "floor_pitch_m": 3.155,
+  "nominal_opening_span_m": 2.435,
+  "threshold_span_m": 2.432,
+  "east_joint_gap_m": 0.003,
+  "nominal_threshold_top_world_y": -48.994,
+  "join_samples": [
+    {
+      "blender_y_m": -0.6,
+      "heights_world_m": [
+        -48.994,
+        -48.994,
+        -48.994,
+        -48.994
+      ],
+      "worst_height_difference_mm": 0.0
+    },
+    {
+      "blender_y_m": 0,
+      "heights_world_m": [
+        -48.994,
+        -48.994,
+        -48.994,
+        -48.994
+      ],
+      "worst_height_difference_mm": 0.0
+    },
+    {
+      "blender_y_m": 0.6,
+      "heights_world_m": [
+        -48.994,
+        -48.994,
+        -48.994,
+        -48.994
+      ],
+      "worst_height_difference_mm": 0.0
+    }
+  ],
+  "no_bvh_surface_intersection_with_room3": true,
+  "door_open_mesh_ray_samples_y_and_height": [
+    [
+      -0.6,
+      0.08
+    ],
+    [
+      -0.6,
+      0.55
+    ],
+    [
+      -0.6,
+      1.05
+    ],
+    [
+      -0.6,
+      1.7
+    ],
+    [
+      -0.6,
+      2.0
+    ],
+    [
+      0,
+      0.08
+    ],
+    [
+      0,
+      0.55
+    ],
+    [
+      0,
+      1.05
+    ],
+    [
+      0,
+      1.7
+    ],
+    [
+      0,
+      2.0
+    ],
+    [
+      0.6,
+      0.08
+    ],
+    [
+      0.6,
+      0.55
+    ],
+    [
+      0.6,
+      1.05
+    ],
+    [
+      0.6,
+      1.7
+    ],
+    [
+      0.6,
+      2.0
+    ]
+  ],
+  "threshold_asset": {
+    "bytes": 5820,
+    "triangles": 48,
+    "sha256": "062500ecca62937fc39bd56e9f15c12a1275234409d764e89e8b853075976510"
+  }
+}
