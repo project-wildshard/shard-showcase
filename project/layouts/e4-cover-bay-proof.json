@@ -1,0 +1,34 @@
+{
+  "map_anchor_x_z": [
+    186.43627261251038,
+    -116.5796015237363
+  ],
+  "world_yaw": 1.6166407742660256,
+  "arch_x_z": [
+    224,
+    -122
+  ],
+  "marker_x_z": [
+    187.6350118053365,
+    -116.63459559234902
+  ],
+  "inspection_x_z": [
+    192.429968576641,
+    -116.85457186679986
+  ],
+  "original_proxy_radius_m": 1.4,
+  "mouth_m": 5.5,
+  "height_m": 3,
+  "floor_offset_m": 0.003,
+  "furnace_editorial_local_blender": [
+    0.52,
+    0.56,
+    0
+  ],
+  "furnace_bounds_margins": {
+    "back": 0.059999704360961914,
+    "side": 0.8700000047683716,
+    "slag_y": 0.014577627182006836
+  },
+  "native_placement_or_gameplay": false
+}
