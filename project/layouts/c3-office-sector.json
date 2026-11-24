@@ -1,0 +1,85 @@
+{
+  "scope": "Static C3 office and partial wall/terrace sector, not a full court or encounter",
+  "archive": "Raynos/project-wildshard-singleplayer@ce1cf050b3 art/showcase-template/round-5-blockout",
+  "layout_sha": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+  "lab_sha": "51a3b4bef1f2d4891172164d10893d98d450a3b9",
+  "map_court_xz": [
+    146,
+    186
+  ],
+  "axes": {
+    "description": "glTF +X radial 45deg toward office, +Z maps tangent near rail",
+    "sector_half_deg": 24,
+    "floor_cut_r_m": 16
+  },
+  "court": {
+    "floor_y_m": 0.05,
+    "floor_outer_r_m": 28,
+    "terrace_radius_m": [
+      28,
+      34,
+      40
+    ],
+    "terrace_top_m": [
+      1.5,
+      3
+    ],
+    "wall_r_m": [
+      40,
+      42
+    ],
+    "wall_top_m": 6,
+    "in_axis_ramp_runs_m": [
+      [
+        23,
+        28
+      ],
+      [
+        29,
+        34
+      ]
+    ],
+    "ramp_width_m": 4
+  },
+  "deck": {
+    "map_center_xz": [
+      175,
+      157
+    ],
+    "center_r_m": 41.012193308819754,
+    "rims_r_m": [
+      37.512193308819754,
+      44.512193308819754
+    ],
+    "size_m": [
+      7,
+      5,
+      0.5
+    ],
+    "bottom_top_m": [
+      6,
+      6.5
+    ],
+    "inner_edge_to_fight_floor_m": 9.512193308819754,
+    "vertical_drop_to_terrace_m": 3.5,
+    "guard_local_section_y_m": -2.4
+  },
+  "office": {
+    "map_bounds_xz": [
+      176,
+      186,
+      146,
+      156
+    ],
+    "wall_top_m": 8,
+    "roof_top_m": 8.5,
+    "sector_centerline_first_corner_r_m": 42.42640687119285
+  },
+  "eye_height_above_floor_m": 1.7,
+  "asset": {
+    "bytes": 176668,
+    "triangles": 2976,
+    "sha256": "631f39353d7eed6d4bba196f71a30342f7a5aac1fb1d3579560807c8db971f31"
+  },
+  "illustrative": "Office glazing, material breaks, wall ribs and partial floor markings"
+}
