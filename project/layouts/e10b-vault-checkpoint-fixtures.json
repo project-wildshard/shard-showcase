@@ -1,0 +1,25 @@
+{
+  "scope": "E10b visual fixtures only; no time tracking, seals, checkpoint, interaction or collision",
+  "donor": "wsc-arch-007-training-vault-portal.glb",
+  "donor_sha256": "41ef3e827971d3c80d4a89287b865a0934002ca50f160997defafe9c80f8e714",
+  "portal_scale_unchanged": true,
+  "plate_shell_separation_m": 0.265,
+  "state_variant_envelopes_equal": true,
+  "files": {
+    "record": {
+      "bytes": 45324,
+      "triangles": 724,
+      "sha256": "863e3f70474ec29e3434f0a93ae30ab89030f18a4e4a42c492ce1c6ca183ed9c"
+    },
+    "open": {
+      "bytes": 15924,
+      "triangles": 220,
+      "sha256": "0a3019a03ba16caed3b4f42b0f89f0b74feb95251b4413a5e7799c15d5901f05"
+    },
+    "sealed": {
+      "bytes": 15924,
+      "triangles": 220,
+      "sha256": "c8b4c30ef7ea693de233ba73f6b69788e6916565131a75241576cd584780e865"
+    }
+  }
+}
