@@ -1,0 +1,52 @@
+{
+  "scope": "Art-only restaging of the E13 Gold cue on the modern WSC-ARCH-008 gate; no pickup, path, parkour or gameplay.",
+  "archive": "ce1cf050b3 art/showcase-template/round-5-blockout/layout.js and lab.js",
+  "map_arch_xz": [
+    216,
+    229
+  ],
+  "map_gold_base": [
+    216,
+    18.5,
+    229
+  ],
+  "archive_arch_top_m": 18,
+  "unscaled_crown_height_m": 4.68,
+  "uniform_art_stage_scale": 3.846154,
+  "scaled_arch_outer_width_m": 23.7308,
+  "archived_lintel_width_m": 22,
+  "stage_world_from_gltf": "[216+x, y, 229+z] for the full stage only. The small seat GLB uses origin at crown (216,18,229).",
+  "sampled_arch_crown_y_m": [
+    18.0,
+    18.0,
+    18.0,
+    18.0,
+    18.0,
+    18.0,
+    18.0,
+    18.0
+  ],
+  "seat_surface_y_m": [
+    18.5,
+    18.5,
+    18.5,
+    18.5,
+    18.5,
+    18.5,
+    18.5,
+    18.5,
+    18.5
+  ],
+  "gold_actual_base_y_m": 18.5,
+  "plaza_eye_height_m": 1.7,
+  "plaza_eye_to_gold_center_ray_blocked_by_gate": true,
+  "unchanged_donors": {
+    "wsc-arch-008-titan-surface-gate.glb": "d52c233e077aa4f8178482b16ea44210464d077b5cb4c28b759ec1e7b2a2c73c",
+    "w9b-gold-find-cube.glb": "3dfd3a95e261b340911f5b93ffce91a8840a91a0464b915336567aa2f3b6bce0"
+  },
+  "asset": {
+    "bytes": 7468,
+    "triangles": 100,
+    "sha256": "6fb7956d81fb20b0fb53e761a4ccac5cb6d285da908f25fd08be8a26de4309f6"
+  }
+}
