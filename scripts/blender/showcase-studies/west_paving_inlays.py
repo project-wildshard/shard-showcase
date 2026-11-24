@@ -156,12 +156,11 @@ def medallion():
         a=i*math.tau/8
         reach=1.68 if i%2==0 else 1.11
         tail=polar(.22,a)
-        inner=polar(.55,a)
         tip=polar(reach,a)
         l=polar(.67,a+.325)
         r=polar(.67,a-.325)
-        m.flat([tail,r,tip,inner],.001,3 if i%2==0 else 4)
-        m.flat([tail,inner,tip,l],.001,7 if i%2==0 else 6)
+        m.flat([tail,r,tip],.001,3 if i%2==0 else 4)
+        m.flat([tail,tip,l],.001,7 if i%2==0 else 6)
     m.flat([polar(.35,k*math.tau/16) for k in range(16)], .002,5)
     m.flat([polar(.275,k*math.tau/12) for k in range(12)], .003,6)
     m.flat([polar(.106,k*math.tau/12) for k in range(12)], .004,3)
@@ -233,8 +232,8 @@ bpy.ops.object.camera_add()
 cam=bpy.context.object
 scene.camera=cam
 for name,loc,target,lens in [
-    ("medallion",(-19,-.8,4.6),(-31,-1.1,1.95),32),
-    ("ribbons",(-23.3,-.8,4.1),(-10,0,2.30),32),
+    ("medallion",(-19,-.8,4.6),(-30,-2.0,.60),27),
+    ("ribbons",(-31.7,.42,4.65),(-11,0,2.30),25),
 ]:
     cam.location=loc
     cam.rotation_euler=(Vector(target)-cam.location).to_track_quat("-Z","Y").to_euler()
