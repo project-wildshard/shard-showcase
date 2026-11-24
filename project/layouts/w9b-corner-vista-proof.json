@@ -1,0 +1,54 @@
+{
+  "nw": {
+    "anchor": [
+      -229,
+      0,
+      -229
+    ],
+    "bench": [
+      -229,
+      0,
+      -227
+    ],
+    "aim_map": [
+      -126,
+      0.85,
+      -178
+    ],
+    "clear_to_rim_m": 5.209999998055238,
+    "clear_to_subject_m": 15.579864516105943,
+    "eye_world_xyz_m": [
+      -228.8555145263672,
+      1.4800000190734863,
+      -226.93125915527344
+    ],
+    "yaw_degrees_blender": 64.55825185137633
+  },
+  "sw": {
+    "anchor": [
+      -229,
+      0,
+      229
+    ],
+    "bench": [
+      -229,
+      0,
+      231
+    ],
+    "aim_map": [
+      -148,
+      1.7,
+      228
+    ],
+    "clear_to_rim_m": 3.209999998055238,
+    "clear_to_subject_m": 7.431568095564508,
+    "eye_world_xyz_m": [
+      -228.84010314941406,
+      1.4800000190734863,
+      230.99407958984375
+    ],
+    "yaw_degrees_blender": 92.12109625446335,
+    "bowl_floor_ray": "occluded in study by W5a | 24m bowl lip centered on source",
+    "oblique_center_ray_clear": true
+  }
+}
