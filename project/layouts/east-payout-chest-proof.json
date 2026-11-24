@@ -1,0 +1,62 @@
+{
+  "scope": "Static Band 1 payout chest, no native placement, opening or economy.",
+  "round5_placement_ref": "Raynos/project-wildshard-singleplayer@ce1cf050b3:art/showcase-template/round-5-blockout/placement.js",
+  "placement_precision": "Source calculation rounded to four decimal places; ground height and facing are staging.",
+  "cover_standin_sha256": "d7a5f8fcb2b835d0c0c77c3051ebd950ed449dc2c563e10779fdc5f01cc6bb44",
+  "placements": [
+    {
+      "world_three_chest_xz": [
+        103.2476,
+        -89.0561
+      ],
+      "world_three_cover_xz": [
+        100.2476,
+        -92.0561
+      ],
+      "local_blender_delta": [
+        3,
+        -3,
+        0
+      ],
+      "plaque_in_approach_frame_xy": [
+        0.3969,
+        0.3011
+      ],
+      "plaque_cover_only_occlusion": false
+    },
+    {
+      "world_three_chest_xz": [
+        102.6855,
+        -103.4562
+      ],
+      "world_three_cover_xz": [
+        99.6855,
+        -106.4562
+      ],
+      "local_blender_delta": [
+        3,
+        -3,
+        0
+      ],
+      "plaque_in_approach_frame_xy": [
+        0.6541,
+        0.531
+      ],
+      "plaque_cover_only_occlusion": false
+    }
+  ],
+  "approx_archive_placeholder_xyz": [
+    1.4,
+    1.0,
+    0.9
+  ],
+  "glb_bounds_size_xyz": [
+    1.4,
+    1.0,
+    0.9
+  ],
+  "glb_bytes": 128684,
+  "triangles": 1695,
+  "materials": 7,
+  "approach_eye_height_m": 1.7
+}
