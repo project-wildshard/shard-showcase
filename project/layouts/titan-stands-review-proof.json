@@ -1,0 +1,263 @@
+{
+  "scope": "Static bowl-only art and scale guides; no actor, timeline, cutscene, reward, or native placement.",
+  "axis_test_x0_y64_z30_has_stand_below": false,
+  "donor_sha256": "cd4b20016133bab16940d85f0b3319aecd19708626a5fe9cdb35f68f83a92021",
+  "shots": {
+    "north-portrait": {
+      "camera_xyz": [
+        -3.4,
+        63.91,
+        30.0
+      ],
+      "raster": [
+        804,
+        1748
+      ],
+      "vertical_fov_deg": 55,
+      "horizontal_fov_deg": 26.93,
+      "sample_grid": [
+        72,
+        100
+      ],
+      "no_mesh_ray_fraction": 0.2951,
+      "top_quarter_no_mesh_ray_fraction": 1.0,
+      "screen_guides": {
+        "6m_base": {
+          "xy": [
+            0.7097,
+            0.3694
+          ],
+          "occluded": false
+        },
+        "6m_tip": {
+          "xy": [
+            0.715,
+            0.4444
+          ],
+          "occluded": false
+        },
+        "15m_base": {
+          "xy": [
+            0.3811,
+            0.3728
+          ],
+          "occluded": false
+        },
+        "15m_tip": {
+          "xy": [
+            0.3732,
+            0.5706
+          ],
+          "occluded": false
+        },
+        "south_checkpoint_inside_mouth": {
+          "xy": [
+            0.5493,
+            0.5817
+          ],
+          "occluded": false
+        },
+        "south_checkpoint_back_panel": {
+          "xy": [
+            0.5547,
+            0.5986
+          ],
+          "occluded": true
+        }
+      },
+      "camera_clearance_vertical_m": 11.25
+    },
+    "angled-portrait": {
+      "camera_xyz": [
+        15.0,
+        62.2,
+        30.0
+      ],
+      "raster": [
+        804,
+        1748
+      ],
+      "vertical_fov_deg": 55,
+      "horizontal_fov_deg": 26.93,
+      "sample_grid": [
+        72,
+        100
+      ],
+      "no_mesh_ray_fraction": 0.3069,
+      "top_quarter_no_mesh_ray_fraction": 1.0,
+      "screen_guides": {
+        "6m_base": {
+          "xy": [
+            0.7194,
+            0.3684
+          ],
+          "occluded": false
+        },
+        "6m_tip": {
+          "xy": [
+            0.7246,
+            0.4418
+          ],
+          "occluded": false
+        },
+        "15m_base": {
+          "xy": [
+            0.4023,
+            0.354
+          ],
+          "occluded": false
+        },
+        "15m_tip": {
+          "xy": [
+            0.396,
+            0.5548
+          ],
+          "occluded": false
+        },
+        "south_checkpoint_inside_mouth": {
+          "xy": [
+            0.302,
+            0.5675
+          ],
+          "occluded": false
+        },
+        "south_checkpoint_back_panel": {
+          "xy": [
+            0.2778,
+            0.5843
+          ],
+          "occluded": true
+        }
+      },
+      "camera_clearance_vertical_m": 11.25
+    },
+    "north-wide": {
+      "camera_xyz": [
+        -3.4,
+        63.91,
+        30.0
+      ],
+      "raster": [
+        1400,
+        940
+      ],
+      "vertical_fov_deg": 55,
+      "horizontal_fov_deg": 75.574,
+      "sample_grid": [
+        72,
+        100
+      ],
+      "no_mesh_ray_fraction": 0.2672,
+      "top_quarter_no_mesh_ray_fraction": 0.9956,
+      "screen_guides": {
+        "6m_base": {
+          "xy": [
+            0.5647,
+            0.3694
+          ],
+          "occluded": false
+        },
+        "6m_tip": {
+          "xy": [
+            0.5664,
+            0.4444
+          ],
+          "occluded": false
+        },
+        "15m_base": {
+          "xy": [
+            0.4633,
+            0.3728
+          ],
+          "occluded": false
+        },
+        "15m_tip": {
+          "xy": [
+            0.4608,
+            0.5706
+          ],
+          "occluded": false
+        },
+        "south_checkpoint_inside_mouth": {
+          "xy": [
+            0.5152,
+            0.5817
+          ],
+          "occluded": false
+        },
+        "south_checkpoint_back_panel": {
+          "xy": [
+            0.5169,
+            0.5986
+          ],
+          "occluded": true
+        }
+      },
+      "camera_clearance_vertical_m": 11.25
+    },
+    "floor-first-portrait": {
+      "camera_xyz": [
+        -3.4,
+        63.91,
+        30.0
+      ],
+      "raster": [
+        804,
+        1748
+      ],
+      "vertical_fov_deg": 45,
+      "horizontal_fov_deg": 21.573,
+      "sample_grid": [
+        72,
+        100
+      ],
+      "no_mesh_ray_fraction": 0.0793,
+      "top_quarter_no_mesh_ray_fraction": 0.3167,
+      "screen_guides": {
+        "6m_base": {
+          "xy": [
+            0.7611,
+            0.5004
+          ],
+          "occluded": false
+        },
+        "6m_tip": {
+          "xy": [
+            0.7706,
+            0.5939
+          ],
+          "occluded": false
+        },
+        "15m_base": {
+          "xy": [
+            0.3519,
+            0.5046
+          ],
+          "occluded": false
+        },
+        "15m_tip": {
+          "xy": [
+            0.3375,
+            0.7558
+          ],
+          "occluded": false
+        },
+        "south_checkpoint_inside_mouth": {
+          "xy": [
+            0.5632,
+            0.7704
+          ],
+          "occluded": false
+        },
+        "south_checkpoint_back_panel": {
+          "xy": [
+            0.5703,
+            0.7926
+          ],
+          "occluded": true
+        }
+      },
+      "camera_clearance_vertical_m": 11.25
+    }
+  }
+}
