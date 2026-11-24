@@ -1,0 +1,70 @@
+{
+  "donor_ids": [
+    "WSC-PROP-020",
+    "WSC-PROP-021"
+  ],
+  "geometry_placement_signature": "5105c6f1fcc71ea6b71204046c31897354ce4506b266922e36d1c0e3fe4574ce",
+  "altered_slots": [
+    [
+      "Spool",
+      "iron"
+    ],
+    [
+      "Spool",
+      "iron_dark"
+    ],
+    [
+      "Spool",
+      "wood0"
+    ],
+    [
+      "Spool",
+      "wood1"
+    ],
+    [
+      "Spool",
+      "wood2"
+    ],
+    [
+      "Spool",
+      "wood3"
+    ],
+    [
+      "Spool",
+      "wood4"
+    ],
+    [
+      "Spool",
+      "wood5"
+    ],
+    [
+      "Barrel",
+      "iron"
+    ],
+    [
+      "Barrel",
+      "wood0"
+    ],
+    [
+      "Barrel",
+      "wood1"
+    ],
+    [
+      "Barrel",
+      "wood2"
+    ],
+    [
+      "Barrel",
+      "wood3"
+    ],
+    [
+      "Barrel",
+      "wood4"
+    ],
+    [
+      "Barrel",
+      "wood5"
+    ]
+  ],
+  "native_shaders_or_glbs_changed": false
+}
