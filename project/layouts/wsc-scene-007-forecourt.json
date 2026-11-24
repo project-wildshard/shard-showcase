@@ -1,0 +1,18 @@
+{
+  "asset_id": "WSC-SCENE-007",
+  "source": "Raynos/project-wildshard-singleplayer@ce1cf050b3:art/showcase-template/round-5-blockout/layout.js",
+  "source_blob": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+  "origin_world_xyz": [80, 0, 132],
+  "forecourt_x0_x1_z0_z1": [40, 120, 123, 142],
+  "se_wall_z": 122,
+  "se_openings_x": [[54, 70], [100, 116]],
+  "checkpoint_xz": [48, 132],
+  "run_board_xz": [86, 130],
+  "ramp_center_x": 62,
+  "ramp_z0_z1": [132, 142],
+  "ramp_width_m": 8,
+  "ramp_rise_m": 3,
+  "titan_road_x0_x1_z0_z1": [120, 222, 124, 136],
+  "c1_origin_world_xyz": [55, 0, 163],
+  "c1_donor_sha256": "77cdcd7033f3c03a8fcf1c8e38b024adfca2470f53cd4af76b5b901a90431394"
+}
