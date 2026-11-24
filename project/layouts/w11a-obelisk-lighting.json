@@ -1,0 +1,56 @@
+{
+  "scope": "W11a comparative Blender lighting at the W0b obelisk, not runtime",
+  "obelisk_world_xyz": [
+    -34,
+    0,
+    0
+  ],
+  "axis": "Blender X east, Y north, Z up",
+  "shaft_height_m": 22,
+  "clock_center_height_m": 14.6,
+  "basin_visual_raise_m": 0.082,
+  "fixture_quadrant_offsets_m": [
+    [
+      -3.55,
+      -3.55
+    ],
+    [
+      -3.55,
+      3.55
+    ],
+    [
+      3.55,
+      3.55
+    ],
+    [
+      3.55,
+      -3.55
+    ]
+  ],
+  "pins": {
+    "shaft": [
+      "wsc-arch-004-obelisk.glb",
+      "19ac342e2615609121bf69a2e3fa4c43dfa5932775e0004f43aafaa3a8e7dc6d"
+    ],
+    "clock": [
+      "wsc-prop-017-clock.glb",
+      "816d38edd80147a64b55b9f07d2b55a56d221e016d5d6462172c9938c38fd3b5"
+    ],
+    "basin": [
+      "wsc-prop-018-basin.glb",
+      "5ccebdba563d8b507ac556972477888aa83709a986b68cb86805170e0bbb08f5"
+    ],
+    "house": [
+      "town-gate-merchant-house.glb",
+      "266fc52858b80847add0627c536c1421d1305e3092c846625937d1d6d80017fe"
+    ],
+    "planter": [
+      "wsc-prop-014-planter-bed.glb",
+      "ac39cc51273c0d25c3b5c4cb957b4c71e4d427992b9d219152f89195332da7d7"
+    ],
+    "tree": [
+      "wsc-prop-012-deciduous-tree-far.glb",
+      "33f381e232b215c9fa21e81ceb020212f092b8ca669b2fe76d9f1627a910ada9"
+    ]
+  }
+}

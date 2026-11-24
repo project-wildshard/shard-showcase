@@ -1,0 +1,16 @@
+{
+  "fixture_bytes": 31676,
+  "fixture_triangles": 388,
+  "fixture_count": 4,
+  "shaft_height_m": 22.0,
+  "sample_basin_radius_m": 4.263001581924149,
+  "minimum_fixture_clearance_m": 0.5355618265255204,
+  "shaft_probe_height_m": [
+    12.50522518157959,
+    12.505224227905273,
+    8.45855712890625,
+    8.458558082580566
+  ],
+  "comparison_geometry_unchanged": true,
+  "runtime_lights": false
+}
