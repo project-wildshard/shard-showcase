@@ -77,12 +77,15 @@ def bump(nt,p,n,depth,strength):
     nt.links.new(n.outputs['Fac'],b.inputs['Height'])
     nt.links.new(b.outputs['Normal'],p.inputs['Normal'])
 
+wood_fibre={"Spool":(58,29,1.9),"Barrel":(47,47,1.6)}
+assert all(v[2]<min(v[:2])/10 for v in wood_fibre.values())
+
 def wood(orig,obj,key):
     m=orig.copy();m.name=key+' fibre and abrasion'
     nt,p=get_nt(m)
     color=tuple(p.inputs['Base Color'].default_value)
     # Short-radius, long-axis fibre; object frame is shared across disconnected boards.
-    axis=(1.9,58,29) if key=='Spool' else (47,47,1.6)
+    axis=wood_fibre[key]
     grain=tex(nt,obj,axis,2.9,3.4)
     values=[(.15,.39),(.38,.69),(.56,1.02),(.79,1.42)]
     cr=ramp(nt,grain,[(pos,tuple(min(1,v*k) for v in color[:3])+(1,)) for pos,k in values])
@@ -124,7 +127,7 @@ assert all(any(e[3]==key and e[4].startswith('wood') for e in edits) and any(
 assert before==fingerprint()
 proof={'donor_ids':['WSC-PROP-020','WSC-PROP-021'],
        'geometry_placement_signature':before,'altered_slots':[(key,n) for *_,key,n in edits],
-       'native_shaders_or_glbs_changed':False}
+       'fibre_along_blender_local':'Z', 'native_shaders_or_glbs_changed':False}
 (out/'timber-hardware-proof.json').write_text(json.dumps(proof,indent=2)+'\n')
 if os.getenv('WILDSHARD_VALIDATE_ONLY')=='1':
     sys.exit(0)
