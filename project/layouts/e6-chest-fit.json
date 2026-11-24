@@ -1,0 +1,39 @@
+{
+  "archive": "Raynos/project-wildshard-singleplayer@ce1cf050b3",
+  "wall_three_xz_m": [
+    109.593,
+    14.015
+  ],
+  "wall_yaw_radians": -0.1027041,
+  "chest_sha256": "a7c686bfdb7d004b133cfb8c0e535b5caf8daebb4ff439829e572f053269fcf9",
+  "positions": {
+    "archive": {
+      "three_xz_m": [
+        112.593,
+        17.015
+      ],
+      "blender_local_xyz_m": [
+        3.0,
+        -3.0,
+        0
+      ],
+      "return_intersecting_triangle_pairs": 139,
+      "signed_separation_along_return_axis_m": -0.473477
+    },
+    "offset": {
+      "three_xz_m": [
+        112.593,
+        17.615
+      ],
+      "blender_local_xyz_m": [
+        3.0,
+        -3.599999999999998,
+        0
+      ],
+      "return_intersecting_triangle_pairs": 0,
+      "signed_separation_along_return_axis_m": 0.123361
+    }
+  },
+  "camera_height_m": 1.7,
+  "native_placement": false
+}
