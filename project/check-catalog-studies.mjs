@@ -49,6 +49,23 @@ for (const a of salvage) {
 }
 assert.ok(ids.has("nov24-salvage-parts"));
 
+const donors=data.assets.filter(a=>a.model_file);
+assert.deepEqual(Array.from(donors, a=>a.id).sort(),[
+  "WSC-ARCH-008","WSC-ARCH-009","WSC-ARCH-010","WSC-PROP-020","WSC-PROP-021","WSC-PROP-024"
+]);
+for (const a of donors) {
+  const {href,bytes,triangles,dimensions_m}=a.model_file;
+  assert.ok(/^https:\/\/github\.com\/project-wildshard\/shard-showcase\/blob\/[a-f0-9]{40}\/public\/assets\/wildshard-art\/[a-z0-9-]+\.glb$/.test(href));
+  assert.ok(href.includes(a.id.toLowerCase()));
+  assert.ok(bytes>0 && triangles>0 && dimensions_m.length===3 && dimensions_m.every(x=>x>0));
+  assert.ok(markup.includes(href));
+  assert.ok(hasStudy(a) && ["provisional-inventory","visual-candidate"].includes(a.status));
+  const row=get("asset-"+a.id);
+  const link=row.children.flatMap(x=>x.children).find(c=>c.href===href);
+  assert.equal(link.textContent,"Open GLB on GitHub (repo access required)");
+  assert.ok(row.children.some(x=>x.textContent.includes("Blender reimport verified")));
+}
+
 const linked=data.assets.filter(hasStudy);
 assert.equal(select.options[1].textContent,`linked (${linked.length})`);
 pick("previews","linked");assertRows(linked.length);
