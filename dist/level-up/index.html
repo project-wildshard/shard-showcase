@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Wildshard · Level-up portrait study</title>
+<link rel="stylesheet" href="../activity-slot/style.css">
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" class="definitions" aria-hidden="true">
+  <symbol id="s-sight" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.5"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4"/></symbol>
+  <symbol id="s-move" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18m-9-9l-3 3m3-3l3 3m-3 15l-3-3m3 3l3-3M3 12l3-3m-3 3l3 3m15-3l-3-3m3 3l-3 3"/></symbol>
+  <symbol id="s-jump" viewBox="0 0 24 24"><path d="M4 18h16m-8-4V5m0 0l-5 5m5-5l5 5"/></symbol>
+  <symbol id="s-level" viewBox="0 0 32 32"><path d="M6 18l10-10 10 10M10 23l6-6 6 6M16 2l2 2-2 2-2-2z"/></symbol>
+</svg>
+<main class="review">
+  <header class="toolbar">
+    <a class="back" href="../#nov24-level-up-portrait">↖ Catalogue</a>
+    <div class="stamp">WILDSHARD <span>/</span> INTERFACE STUDY</div>
+  </header>
+  <nav class="review-switch" aria-label="Level-up review states">
+    <button type="button" data-target="fight" aria-pressed="true"><span>01</span> Fight cue</button>
+    <button type="button" data-target="calm" aria-pressed="false"><span>02</span> Calm card</button>
+  </nav>
+  <section class="review-frame" id="frame" data-state="fight" aria-label="Illustrated portrait HUD">
+    <div class="scene-image" aria-hidden="true"></div>
+    <div class="scene-grade" aria-hidden="true"></div>
+    <header class="hud-top">
+      <div class="l-meta"><b>WILDSHARD</b><span id="location">EAST · CONTAINER YARD</span></div>
+      <p class="mode-note" id="note">2.5 SEC CUE</p>
+    </header>
+    <div class="burst" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <svg class="reticle" aria-hidden="true"><use href="#s-sight"/></svg>
+    <section class="level-card" id="card" aria-labelledby="card-title" hidden>
+      <div class="card-top"><span>FIELD RECORD</span><span>06 › 07</span></div>
+      <div class="seal" aria-hidden="true"><svg><use href="#s-level"/></svg></div>
+      <p class="eyebrow">PROGRESSION</p>
+      <h1 id="card-title">Level <em>7</em></h1>
+      <dl class="stats">
+        <div><dt>Vitality</dt><dd class="big-roll">+11</dd></div>
+        <div><dt>Strength</dt><dd>+3</dd></div>
+        <div><dt>Agility</dt><dd>+2</dd></div>
+        <div><dt>Focus</dt><dd class="zero">+0</dd></div>
+      </dl>
+      <button type="button" id="skip">Tap to skip</button>
+    </section>
+    <div class="hud-bottom">
+      <p class="fight-chip" id="cue" role="status"><strong>LEVEL 7</strong><span>·</span> +11 VIT</p>
+      <div class="meter-wrap" role="meter" aria-label="Example experience for level 7" aria-valuemin="0" aria-valuemax="100" aria-valuenow="18"><span>LV 7</span><i><b></b></i></div>
+      <div class="buttons" aria-label="Illustrative control placement; not interactive">
+        <div><svg aria-hidden="true"><use href="#s-move"/></svg><span>MOVE</span></div>
+        <div><svg aria-hidden="true"><use href="#s-jump"/></svg><span>JUMP</span></div>
+        <div><svg aria-hidden="true"><use href="#s-sight"/></svg><span>LOOK</span></div>
+      </div>
+    </div>
+  </section>
+  <footer>UI-01 / 02 / 03 <span>Portrait art · Not gameplay</span></footer>
+</main>
+</body>
+</html>
