@@ -1,0 +1,48 @@
+{
+  "scope": "Static W6d entry art: no timing, stats, trigger zone, clocks or movement.",
+  "archive": "ce1cf050b3 Round 5 MOVERS and lab buildMovers",
+  "base_semantic_signature": [
+    "3b367c34cd2849ba2b7140a05c1abafa86cd2928e53a0035ccd65682656229e9",
+    1535
+  ],
+  "start_map_xz": [
+    -74,
+    -90
+  ],
+  "board_map_xz": [
+    -66,
+    -96
+  ],
+  "start_radius_m": 3,
+  "separation_m": 10.0,
+  "terrain_start_z_m": [
+    0.09,
+    0.09,
+    0.09,
+    0.09,
+    0.09
+  ],
+  "board_footing_z_m": [
+    0.0,
+    0.0
+  ],
+  "board_faces_start": true,
+  "start_view_title_ray_clear": true,
+  "record_fields": [
+    "BEST --:--.--",
+    "LAST --:--.--"
+  ],
+  "course_station_count": 6,
+  "assets": {
+    "start-pad": {
+      "bytes": 58720,
+      "triangles": 1410,
+      "sha256": "8407a0ba51d66b9395183902559bfd05f2a2a3da17bafbaec355229346b4b806"
+    },
+    "record-board": {
+      "bytes": 92584,
+      "triangles": 1914,
+      "sha256": "b2f95b7f313e8be33e50898e5f2a739e2a5b8beed4fdaf04e37b01c6f5191097"
+    }
+  }
+}
