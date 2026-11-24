@@ -1,0 +1,47 @@
+{
+  "scope": "Static fictional inventory visuals, no native gameplay, grip fit, skins or animation.",
+  "WSC-GEAR-001": {
+    "bytes": 40580,
+    "triangles": 660,
+    "primitive_count": 7,
+    "bounds_blender": [
+      [
+        -0.107,
+        -0.035,
+        -0.162
+      ],
+      [
+        0.107,
+        0.035,
+        0.94
+      ]
+    ],
+    "inventory_pivot": [
+      0,
+      0,
+      0
+    ]
+  },
+  "WSC-GEAR-002": {
+    "bytes": 69596,
+    "triangles": 1160,
+    "primitive_count": 10,
+    "bounds_blender": [
+      [
+        -0.0804,
+        -0.11911,
+        -1.03
+      ],
+      [
+        0.11264,
+        0.08171,
+        1.234
+      ]
+    ],
+    "inventory_pivot": [
+      0,
+      0,
+      0
+    ]
+  }
+}
