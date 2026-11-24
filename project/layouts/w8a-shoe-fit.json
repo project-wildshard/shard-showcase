@@ -1,0 +1,101 @@
+{
+  "scope": "Static mounting study. Original terrain, rails, rungs and deck exits unchanged.",
+  "verified_base_fingerprint": [
+    "f372ebaa43777a1dae8f7f77e167045179425c5e5b176633ccfa8829cb133374",
+    2797
+  ],
+  "asset": {
+    "bytes": 18488,
+    "triangles": 308,
+    "sha256": "865c3893c65da4ea9888ca9fe409441c6b0da831f5ff04cf442d22813091fcf0"
+  },
+  "rail_centres": [
+    {
+      "deck": "A",
+      "shoe": 1,
+      "blender_xy": [
+        -166.31,
+        -31.4
+      ],
+      "ground_m": 0.0275,
+      "rail_bottom_m": 0.17,
+      "gap_mm": 142.5,
+      "deck_z_m": 6,
+      "seat_overlap_mm": 24.0,
+      "nominal_first_rung_clearance_mm": 107.0
+    },
+    {
+      "deck": "A",
+      "shoe": 2,
+      "blender_xy": [
+        -165.69,
+        -31.4
+      ],
+      "ground_m": 0.0275,
+      "rail_bottom_m": 0.17,
+      "gap_mm": 142.5,
+      "deck_z_m": 6,
+      "seat_overlap_mm": 24.0,
+      "nominal_first_rung_clearance_mm": 107.0
+    },
+    {
+      "deck": "B",
+      "shoe": 1,
+      "blender_xy": [
+        -146.31,
+        -47.4
+      ],
+      "ground_m": 0.0275,
+      "rail_bottom_m": 0.17,
+      "gap_mm": 142.5,
+      "deck_z_m": 10,
+      "seat_overlap_mm": 24.0,
+      "nominal_first_rung_clearance_mm": 107.0
+    },
+    {
+      "deck": "B",
+      "shoe": 2,
+      "blender_xy": [
+        -145.69,
+        -47.4
+      ],
+      "ground_m": 0.0275,
+      "rail_bottom_m": 0.17,
+      "gap_mm": 142.5,
+      "deck_z_m": 10,
+      "seat_overlap_mm": 24.0,
+      "nominal_first_rung_clearance_mm": 107.0
+    },
+    {
+      "deck": "C",
+      "shoe": 1,
+      "blender_xy": [
+        -170.31,
+        -63.4
+      ],
+      "ground_m": 0.0275,
+      "rail_bottom_m": 0.17,
+      "gap_mm": 142.5,
+      "deck_z_m": 14,
+      "seat_overlap_mm": 24.0,
+      "nominal_first_rung_clearance_mm": 107.0
+    },
+    {
+      "deck": "C",
+      "shoe": 2,
+      "blender_xy": [
+        -169.69,
+        -63.4
+      ],
+      "ground_m": 0.0275,
+      "rail_bottom_m": 0.17,
+      "gap_mm": 142.5,
+      "deck_z_m": 14,
+      "seat_overlap_mm": 24.0,
+      "nominal_first_rung_clearance_mm": 107.0
+    }
+  ],
+  "guard_opening_m": 1.5,
+  "upper_rail_rise_m": 0.78,
+  "notes": "Pocket overlaps rail intentionally. No structural, collision or climbing claim."
+}
