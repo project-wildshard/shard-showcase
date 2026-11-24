@@ -1,0 +1,15 @@
+{
+  "candidate_size_m": [
+    1.7,
+    8.4
+  ],
+  "mark_offset_m": [
+    0.003,
+    0.0048
+  ],
+  "floor_sample_count": 24,
+  "local_gltf_direction": "-Z",
+  "source_plan_telegraph_s": 0.9,
+  "visual_duration_implemented": false,
+  "native_gameplay": false
+}
