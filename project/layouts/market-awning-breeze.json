@@ -1,0 +1,18 @@
+{
+  "donor": "market-awning-stall.glb",
+  "donor_sha256": "b240fd8056db68d9b1caeaefc61459de4171f1345782726b0da40d0a1c614f04",
+  "frames": [
+    0,
+    72
+  ],
+  "seconds": 3,
+  "canopy_triangle_count": 5976,
+  "bytes": 269708,
+  "sha256": "fd19d9fb06d321f180d2bf2dd187e80a1eb345e05e396d9d78fd36bbefce041b",
+  "rest_to_peak_m": 0.06934,
+  "peak_to_peak_m": 0.12619,
+  "first_last_max_m": 0.0,
+  "fixed_ridge_or_outer_points": 968,
+  "fixed_points_max_m": 0.0,
+  "scope": "Canopy replacement only. Omit fixed donor cloth when installing; not a wind or cloth simulation."
+}
