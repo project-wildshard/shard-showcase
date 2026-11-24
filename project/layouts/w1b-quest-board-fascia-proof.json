@@ -1,0 +1,18 @@
+{
+  "title": "QUEST BOARD",
+  "unchanged_quest_board_donor_sha256": "84b82ec701da4529f5d9403e137d10a28ea370b87ada4ba28f837dc0ba1472aa",
+  "masked_legacy_ink_triangle_centres_per_camera": 123,
+  "output_bytes": 72680,
+  "triangles": 1263,
+  "round5_anchors_three_x_z": {
+    "quest": [
+      -36,
+      -17
+    ],
+    "contracts": [
+      -26,
+      17
+    ]
+  },
+  "native_game_modified": false
+}
