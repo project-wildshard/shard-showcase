@@ -1,0 +1,24 @@
+{
+  "scope": "Distance foliage-only art variant. No engine LOD, placement, draw-call or frame rate claim.",
+  "donor_sha256": "ac39cc51273c0d25c3b5c4cb957b4c71e4d427992b9d219152f89195332da7d7",
+  "donor_id": "WSC-PROP-014",
+  "masonry_and_loam_unchanged": true,
+  "asset": {
+    "bytes": 168684,
+    "triangles": 1977,
+    "sha256": "b6d6daa9b0cf78edc3dd7049a3ddd829706811a13f5a5b1a8dc763d41884d636"
+  },
+  "original_planting_triangles": 2932,
+  "max_bounds_component_difference_m": 0.000515,
+  "distance_m": 24,
+  "eye_m": 1.7,
+  "vertical_fov_deg": 55,
+  "reference_pixels": [
+    402,
+    874
+  ],
+  "union_overlap": 0.86904,
+  "original_covered_pixels": 1237,
+  "reduced_covered_pixels": 1075,
+  "reimport_nodes": 4
+}
