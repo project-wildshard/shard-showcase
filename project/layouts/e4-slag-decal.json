@@ -1,0 +1,32 @@
+{
+  "scope": "E4 static decal geometry study only; no damage, timing, status, placement or actor.",
+  "references": [
+    "E04 brick",
+    "E05 slate alternate",
+    "E4-band4-welder-units.md"
+  ],
+  "furnace_unchanged_sha256": "0c47183c8f38699661f527d01b8e85a4891e03ec898cabd028b07568e32b8530",
+  "asset": {
+    "bytes": 41272,
+    "triangles": 703,
+    "sha256": "5e4ff946ef5291df0d08ff0e5d7ed8f07a3a13c60716606da410604f774487c8"
+  },
+  "portrait_reference_px": [
+    402,
+    874
+  ],
+  "portrait_oversample": 2,
+  "degrees_vertical_fov": 55,
+  "eye_height_m": 1.7,
+  "distance_m": 6,
+  "projection_bbox_px": [
+    142.78,
+    36.76
+  ],
+  "floor_probes": [
+    169,
+    169
+  ],
+  "floor_lift_over_highest_mm": 3,
+  "preview": "Matched portrait camera/exposure. No bloom and no extra light from the material; camera-only emission in Blender preview."
+}
