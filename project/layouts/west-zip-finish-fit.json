@@ -1,0 +1,97 @@
+{
+  "scope": "Static art fit, not collision, support engineering or native traversal.",
+  "baseline_signature": [
+    "6e6b1692565a314162d3861223ab3454e9475e23bb1a2e01a88a14e76be6722f",
+    2580
+  ],
+  "pad_origin_blender": [
+    -115.0,
+    16.5,
+    12.420000076293945
+  ],
+  "pad_to_flange_axis_margin_mm": 8.4,
+  "origin_gap_mm": 86.0,
+  "fit_samples_per_shoe": 9,
+  "checks_per_contact_surface": 32,
+  "authored_seat_into_mesh_mm": 4,
+  "shoes": [
+    {
+      "shoe": 1,
+      "radius_m": 1.21,
+      "clock_deg": 25,
+      "gap_min_mm": 23.5,
+      "gap_max_mm": 23.5,
+      "flange_axis_margin_mm": 234.4,
+      "sampled_interpolated_seat_mm": [
+        4.0,
+        4.0
+      ]
+    },
+    {
+      "shoe": 2,
+      "radius_m": 1.21,
+      "clock_deg": 90,
+      "gap_min_mm": 23.5,
+      "gap_max_mm": 33.0,
+      "flange_axis_margin_mm": 1324.0,
+      "sampled_interpolated_seat_mm": [
+        4.0,
+        9.7
+      ]
+    },
+    {
+      "shoe": 3,
+      "radius_m": 1.21,
+      "clock_deg": 155,
+      "gap_min_mm": 23.5,
+      "gap_max_mm": 23.5,
+      "flange_axis_margin_mm": 2427.6,
+      "sampled_interpolated_seat_mm": [
+        4.0,
+        4.0
+      ]
+    },
+    {
+      "shoe": 4,
+      "radius_m": 1.21,
+      "clock_deg": 205,
+      "gap_min_mm": 23.5,
+      "gap_max_mm": 23.5,
+      "flange_axis_margin_mm": 2427.6,
+      "sampled_interpolated_seat_mm": [
+        4.0,
+        4.0
+      ]
+    },
+    {
+      "shoe": 5,
+      "radius_m": 1.21,
+      "clock_deg": 265,
+      "gap_min_mm": 23.5,
+      "gap_max_mm": 24.2,
+      "flange_axis_margin_mm": 1429.9,
+      "sampled_interpolated_seat_mm": [
+        4.0,
+        4.4
+      ]
+    },
+    {
+      "shoe": 6,
+      "radius_m": 1.21,
+      "clock_deg": 335,
+      "gap_min_mm": 23.5,
+      "gap_max_mm": 23.5,
+      "flange_axis_margin_mm": 234.4,
+      "sampled_interpolated_seat_mm": [
+        4.0,
+        4.0
+      ]
+    }
+  ],
+  "changed_donors_or_cable": false,
+  "asset": {
+    "bytes": 21992,
+    "triangles": 288,
+    "sha256": "401e93837f7449bb8e307b0eaa3704ba8737fe04b64a92a6c41882ca2406098a"
+  }
+}
