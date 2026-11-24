@@ -1,0 +1,20 @@
+[
+  {
+    "donor": "Movers",
+    "seat_y_m": 2.835,
+    "mount_blender_local_y_m": -0.12,
+    "contact_samples": 18,
+    "title_lamp_line_clear": true,
+    "title_reader_line_clear": true,
+    "material_only_neutral_export": true
+  },
+  {
+    "donor": "Range",
+    "seat_y_m": 1.245,
+    "mount_blender_local_y_m": -0.12,
+    "contact_samples": 18,
+    "title_lamp_line_clear": true,
+    "title_reader_line_clear": true,
+    "material_only_neutral_export": true
+  }
+]
