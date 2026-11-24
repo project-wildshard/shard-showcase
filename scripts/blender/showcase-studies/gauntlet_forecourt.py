@@ -176,7 +176,7 @@ for txt,x,z,y,size,ma in (
 ):
     parts.append(lettering(txt,x,z,y,size,ma))
 for j in range(5):
-    parts.append(lettering(str(j+1),bx+j-2,bz-.453,2.24,.26,letters))
+    parts.append(lettering(str(j+1),bx+2-j,bz-.453,2.24,.26,letters))
 
 dst=out/'wsc-scene-007-forecourt.glb'
 export(parts,dst)
