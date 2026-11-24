@@ -1,0 +1,36 @@
+{
+  "readiness": "nonfunctional static inventory art, no hands, equip poses, draw/reload, or game integration",
+  "source": "WSC-GEAR-003 and WSC-GEAR-004 provisional Art Catalog turnarounds; W3b plan",
+  "assets": {
+    "WSC-GEAR-003": {
+      "bytes": 49888,
+      "triangles": 864,
+      "primitives": 5,
+      "blender_dimensions": [
+        0.226,
+        0.082,
+        1.628
+      ],
+      "pivot": "authored model origin",
+      "textures": 0,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "92f61a54ec6c49cb0bbcab8ca8f15bef0c64356c0b143db161a8dc3de6ed971b"
+    },
+    "WSC-GEAR-004": {
+      "bytes": 52596,
+      "triangles": 924,
+      "primitives": 7,
+      "blender_dimensions": [
+        0.888,
+        0.879,
+        0.22388
+      ],
+      "pivot": "authored model origin",
+      "textures": 0,
+      "skins": 0,
+      "animations": 0,
+      "sha256": "389e87c5c33e364e072e91dbaa3f2b02ef04befe64241f5c6622b8e449657f7d"
+    }
+  }
+}
