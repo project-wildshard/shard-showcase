@@ -24,7 +24,7 @@ class Element {
   closest() { return {id:this.tag==="details"?"assets":(this.panel??"assets")} }
 }
 for(const id of [...markup.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]))ids.set(id,new Element("node "+id));
-for(const id of ["nov23-d7-launch-wall","nov23-round5-field-atlas","nov23-activity-slot","nov23-hover-secondary-kit","nov24-squeeze-cave-gold"])ids.get(id).panel="blender";
+for(const id of ["nov23-d7-launch-wall","nov23-round5-field-atlas","nov23-activity-slot","nov23-hover-secondary-kit","nov24-squeeze-cave-gold","nov24-w3b-ranged-inventory"])ids.get(id).panel="blender";
 const get=id=>ids.get(id)??ids.get("rows").children.find(x=>x.id===id);
 const select=get("previews");
 select.value="all";
@@ -58,7 +58,7 @@ assert.ok(get("asset-"+cave.id).children.flatMap(x=>x.children).some(c=>
 
 const donors=data.assets.filter(a=>a.model_file);
 assert.deepEqual(Array.from(donors, a=>a.id).sort(),[
-  "WSC-ARCH-008","WSC-ARCH-009","WSC-ARCH-010","WSC-PROP-020","WSC-PROP-021","WSC-PROP-024"
+  "WSC-ARCH-008","WSC-ARCH-009","WSC-ARCH-010","WSC-GEAR-003","WSC-GEAR-004","WSC-PROP-020","WSC-PROP-021","WSC-PROP-024"
 ]);
 for (const a of donors) {
   const {href,bytes,triangles,dimensions_m}=a.model_file;
@@ -71,6 +71,14 @@ for (const a of donors) {
   const link=row.children.flatMap(x=>x.children).find(c=>c.href===href);
   assert.equal(link.textContent,"Open GLB on GitHub (repo access required)");
   assert.ok(row.children.some(x=>x.textContent.includes("Blender reimport verified")));
+}
+
+for (const [id, bytes, triangles] of [["WSC-GEAR-003",49888,864],["WSC-GEAR-004",52596,924]]) {
+  const a=data.assets.find(row=>row.id===id);
+  assert.equal(a.model_preview,"#nov24-w3b-ranged-inventory");
+  assert.equal(a.model_file.bytes,bytes);
+  assert.equal(a.model_file.triangles,triangles);
+  assert.ok(a.concept && a.model_file.bytes<=Number(a.proposed_download_budget_bytes));
 }
 
 const linked=data.assets.filter(hasStudy);
