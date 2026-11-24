@@ -10,8 +10,8 @@ proposed art cues and no game state switches them yet.
 | Export | Bytes | Triangles |
 | --- | ---: | ---: |
 | Record plate | 45,324 | 724 |
-| Open indicator | 15,924 | 220 |
-| Sealed indicator | 15,924 | 220 |
+| Open indicator | 14,788 | 200 |
+| Sealed indicator | 14,972 | 206 |
 
 The reimport scene keeps the exact exterior portal GLB unscaled. The
 plaque has 0.265 m of lateral separation from the outside of the shell.

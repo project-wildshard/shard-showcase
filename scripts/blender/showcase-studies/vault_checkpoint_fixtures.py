@@ -109,10 +109,22 @@ def lamp(sealed=False):
     mat=amber if sealed else cyan
     for x in (-.091,.091):
         cube("Light bar",(x,-.143,.289),(.015,.006,.16),mat)
-    lines=[((-.048,.339),(.048,.239)),((-.048,.239),(.048,.339))] if sealed else [
-        ((-.040,.339),(.040,.288)),((.040,.288),(-.040,.239))]
-    for a,b in lines:
-        bar("State glyph",a,b,-.144,.019,mat)
+    # One silhouette per mark avoids two coplanar faces where the bars meet.
+    mark = [
+        (-.055,.048),(-.043,.060),(0,.014),(.043,.060),(.055,.048),
+        (.014,0),(.055,-.048),(.043,-.060),(0,-.014),(-.043,-.060),(-.055,-.048),(-.014,0)
+    ] if sealed else [
+        (-.050,.044),(-.039,.059),(.054,0),(-.039,-.059),(-.050,-.044),(.015,0)
+    ]
+    vertices = [(x,-.146,z+.289) for x,z in mark]
+    area = sum(x0*z1-x1*z0 for (x0,z0),(x1,z1) in zip(mark,mark[1:]+mark[:1]))
+    if area<0: vertices.reverse()
+    mesh=bpy.data.meshes.new("Continuous mark")
+    mesh.from_pydata(vertices,[],[tuple(range(len(vertices)))])
+    mesh.materials.append(mat)
+    obj=bpy.data.objects.new(mesh.name,mesh)
+    scene.collection.objects.link(obj)
+
 
 
 def make(name, fn):
