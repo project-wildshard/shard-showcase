@@ -24,7 +24,7 @@ class Element {
   closest() { return {id:this.tag==="details"?"assets":(this.panel??"assets")} }
 }
 for(const id of [...markup.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]))ids.set(id,new Element("node "+id));
-for(const id of ["nov23-d7-launch-wall","nov23-round5-field-atlas","nov23-activity-slot","nov23-hover-secondary-kit"])ids.get(id).panel="blender";
+for(const id of ["nov23-d7-launch-wall","nov23-round5-field-atlas","nov23-activity-slot","nov23-hover-secondary-kit","nov24-squeeze-cave-gold"])ids.get(id).panel="blender";
 const get=id=>ids.get(id)??ids.get("rows").children.find(x=>x.id===id);
 const select=get("previews");
 select.value="all";
@@ -48,6 +48,13 @@ for (const a of salvage) {
   assert.equal(link.textContent,a.related_study.label);
 }
 assert.ok(ids.has("nov24-salvage-parts"));
+
+const cave=data.assets.find(a=>a.id==="WSC-PROP-011");
+assert.equal(cave.model_preview,"#nov23-rock-squeeze-cave");
+assert.equal(cave.related_study?.href,"#nov24-squeeze-cave-gold");
+assert.ok(ids.has(cave.related_study.href.slice(1)));
+assert.ok(get("asset-"+cave.id).children.flatMap(x=>x.children).some(c=>
+  c.href===cave.related_study.href && c.textContent===cave.related_study.label));
 
 const donors=data.assets.filter(a=>a.model_file);
 assert.deepEqual(Array.from(donors, a=>a.id).sort(),[
@@ -83,6 +90,8 @@ location.hash="#catalog";handlers.get("popstate")();
 assertRows(0);
 assert.equal(get("hits").textContent,"0 matching entries");
 location.hash="#nov23-d7-launch-wall";handlers.get("popstate")();
+assert.equal(get("blender").hidden,false);
+location.hash="#nov24-squeeze-cave-gold";handlers.get("popstate")();
 assert.equal(get("blender").hidden,false);
 location.hash="#asset-WSC-SCENE-009";handlers.get("popstate")();
 assert.equal(get("assets").hidden,false);
