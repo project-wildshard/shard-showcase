@@ -1,0 +1,36 @@
+{
+  "scope": "Static E11c pose study, not authored wave/spawn/seal logic, collider or runtime path test",
+  "c1_sha256": "77cdcd7033f3c03a8fcf1c8e38b024adfca2470f53cd4af76b5b901a90431394",
+  "door_checks": {
+    "D1": {
+      "opening_rays_in_open_pose": 30,
+      "occluded_rays_in_closed_pose": 30,
+      "leaf_donor_mesh_overlaps": 0,
+      "world_center_xz": [
+        14,
+        167
+      ]
+    },
+    "D2": {
+      "opening_rays_in_open_pose": 30,
+      "occluded_rays_in_closed_pose": 30,
+      "leaf_donor_mesh_overlaps": 0,
+      "world_center_xz": [
+        96,
+        167
+      ]
+    }
+  },
+  "leaf": {
+    "closed_local_half_offset_m": 1.207,
+    "open_local_half_offset_m": 3.71,
+    "bytes": 39436,
+    "triangles": 624,
+    "sha256": "444e796844a2557a421ac69c86ca5d18be98595dc1607c7430aa323b4e924fec"
+  },
+  "relay": {
+    "bytes": 13636,
+    "triangles": 188,
+    "sha256": "851d34af7ebb765da8d7a129ddac454c71d568848997b129425e9d10ea95e424"
+  }
+}
