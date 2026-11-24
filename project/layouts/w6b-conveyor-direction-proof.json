@@ -1,0 +1,39 @@
+{
+  "course_poses": [
+    [
+      -84,
+      103,
+      0.1,
+      0
+    ],
+    [
+      -90,
+      103,
+      0.1,
+      3.141592653589793
+    ],
+    [
+      -96,
+      103,
+      0.1,
+      0
+    ]
+  ],
+  "preview_world_x_directions": [
+    -1,
+    1,
+    -1
+  ],
+  "tread_hits": 60,
+  "tread_hit_height_range": [
+    0.3869999647140503,
+    0.41950005292892456
+  ],
+  "mark_plane_y": [
+    0.422,
+    0.4224
+  ],
+  "model_tread_max_y": 0.4195,
+  "donor_clear_gap_m": 1.232,
+  "cue": "Art-only: positive motion is defined towards the course progression (west) for this preview. No engine axis, speed or UV behavior."
+}
