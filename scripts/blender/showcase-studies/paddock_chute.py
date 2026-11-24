@@ -130,18 +130,22 @@ def edge(a,b,n=None,check=False):
     length=direction.length
     yaw=math.atan2(direction.y,direction.x)
     n=n or max(1,round(length/span))
+    group=[]
     for i in range(n):
         x,y=a+direction*((i+.5)/n)
         obs=place('rail','Linked riding fence',(x,y,0),yaw,length/n/span)
+        group.extend(obs)
         if check:rail_groups.extend(obs)
+    return group
 for x in (-6.,6.):
     edge((x,0),(x,14),5,True)
-for a,b in (((-22,0),(-6,0)),((6,0),(26,0)),((-22,0),(-22,-60)),
-            ((26,0),(26,-60)),((-22,-60),(-2,-60)),((10,-60),(26,-60))):
+entrance_rails=edge((-22,0),(-6,0))+edge((6,0),(26,0))
+for a,b in (((-22,0),(-22,-60)),((26,0),(26,-60)),
+            ((-22,-60),(-2,-60)),((10,-60),(26,-60))):
     edge(a,b)
 signs=[]
 for x in (-7.22,7.22):
-    signs+=place('marker','Oval approach waymarker',(x,-.14,0))
+    signs+=place('marker','Oval approach waymarker',(x,-.55,0))
 place('block','Existing mounting block',(4,-36,0))
 place('trough','Existing paddock trough',(-12,-32,0))
 bpy.context.view_layer.update()
@@ -150,7 +154,10 @@ left=max(p.x for p in rr if p.x<0)
 right=min(p.x for p in rr if p.x>0)
 assert abs(right-left-11.67)<.0002 and min(v.y for v in rr)>-.05 and max(v.y for v in rr)<14.05,(left,right,min(v.y for v in rr),max(v.y for v in rr))
 sg=[o.matrix_world@v.co for o in signs for v in o.data.vertices]
-assert min(abs(p.x) for p in sg)>6.4 and abs(min(p.z for p in sg))<.0001
+front=min((o.matrix_world@v.co).y for o in entrance_rails for v in o.data.vertices)
+sign_clearance=front-max(p.y for p in sg)
+assert sign_clearance>.125,sign_clearance
+assert min(abs(p.x) for p in sg)>6.4 and abs(min(p.z for p in sg))<.0001 and max(p.y for p in sg)<-.295
 
 # Ground styling stays in the preview, with an explicitly inferred track strip.
 dirt=mat('Paddock umber',(.34,.247,.147),.92)
@@ -217,7 +224,7 @@ for tag,eye,target,lens in (
 (out/'chute-verify.json').write_text(json.dumps({
     'archive':'Raynos/project-wildshard-singleplayer@ce1cf050b3','three_threshold_xz':[-40,-132],
     'footprint_m':[48,60],'chute_m':[12,14],'measured_clear_width_m':round(right-left,4),
-    'donor_fence_span_m':round(span,5),'longitudinal_fence_scale':round(14/5/span,5),
+    'sign_to_entrance_fence_m':round(sign_clearance,4),'donor_fence_span_m':round(span,5),'longitudinal_fence_scale':round(14/5/span,5),
     'waymarker_bytes':len(raw),'waymarker_triangles':tri,'sha256':hashlib.sha256(raw).hexdigest(),
     'source_hashes':{k:x[1] for k,x in donors.items()},'native':False,
 },indent=2)+'\n')

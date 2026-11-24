@@ -10,7 +10,7 @@ the source. Rail and post geometry leaves 11.67 m clear.
 
 The mounting block and trough use the known pads from the
 archive. Reuse the new enamel OVAL waymarker on both sides
-of the entrance, outside the lane. The portable model is
+of the entrance, outside the lane and 135 mm clear of the fence. The portable model is
 16,048 B, 165 triangles, ground origin, face −Y in Blender.
 Trees and stubble are staging only. Only the new waymarker
 enters the export, not the ground and re-used donors.
