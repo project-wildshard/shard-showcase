@@ -101,7 +101,7 @@ wedge('C1 grade and edge strips',L['ramp_center_x'],*L['ramp_z0_z1'],L['ramp_wid
 # opening, not the 16 m clearance. Markings use the art's industrial palette.
 def wall(g,a,b,z,k=4.55):
     slab(g,steel,a,b,z-.40,z+.40,0,k)
-    slab(g,metal,a,b,z-.45,z+.45,k-.13,k)
+    slab(g,metal,a,b,z-.45,z+.45,k-.13,k+.012)
     slab(g,ochre,a,b,z-.415,z+.415,k-.36,k-.225)
     n=max(1,round((b-a)/2.55))
     for j in range(n):

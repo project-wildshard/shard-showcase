@@ -29,3 +29,6 @@ are presentation only.
 [Round 5 layout](https://github.com/Raynos/project-wildshard-singleplayer/blob/ce1cf050b3/art/showcase-template/round-5-blockout/layout.js#L315)
 · [Ramp and board source](https://github.com/Raynos/project-wildshard-singleplayer/blob/ce1cf050b3/art/showcase-template/round-5-blockout/lab.js#L521)
 · [E11c plan](../../docs/plans/kitchen-sink-v2/slices/E11c-gauntlet-courts-supervisor.md).
+
+The wall caps sit 12 mm proud of the field so visible faces are not
+coplanar. This changes neither gap width nor the ramp proof.
