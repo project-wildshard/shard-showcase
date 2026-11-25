@@ -1,0 +1,23 @@
+// Verify the portable single-header model without loading the town bake.
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {readFileSync} from 'node:fs';
+import {Box3,Vector3} from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+const here = file => readFileSync(new URL(file,import.meta.url));
+const report = JSON.parse(here('./layouts/w0b-north-west-gate-fit.json'));
+const model = here('../public/assets/wildshard-art/w0b-movers-gate-header.glb');
+const spec = report.movers_header;
+assert.equal(model.length,spec.bytes);
+assert.equal(createHash('sha256').update(model).digest('hex'),spec.sha256);
+const {scene,animations} = await new GLTFLoader().parseAsync(Uint8Array.from(model).buffer,'');
+const b = new Box3().setFromObject(scene), w = b.getSize(new Vector3());
+assert.ok(w.x>13.85 && w.x<13.88 && w.y>=.8 && w.y<.82 && w.z>=1.36 && w.z<1.43);
+assert.ok(Math.abs(b.min.y+.4)<.0001);
+const meshes = [];
+scene.traverse(o => {if (o.isMesh) meshes.push(o)});
+assert.equal(meshes.length,spec.draws);
+assert.equal(meshes.reduce((n,o)=>n+o.geometry.index.count/3,0),spec.triangles);
+assert.ok(animations.length===0 && meshes.every(o=>!o.isSkinnedMesh && !o.material.map));
+assert.deepEqual(['Stable','Movers','West'].map(k=>report.placements[k].clear_at_piers_m),[12,10.4,12]);
+console.log(spec.bytes,'bytes,',spec.triangles,'triangles,',spec.draws,'draws; dimensions:',w.toArray());

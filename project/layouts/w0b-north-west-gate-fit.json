@@ -1,0 +1,146 @@
+{
+  "scope": "Visual fit to regenerated art baseline, not native placement, navigation, performance or routing.",
+  "archived_layout_blob": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+  "sign_kit_sha256": "2daf80f5fa5f5bcdf22aeec26d2113a72d36250c864064fdb403d9a50718e480",
+  "placements": {
+    "Stable": {
+      "world_three_xz_m": [
+        -36,
+        -60
+      ],
+      "yaw_deg": 0.0,
+      "beam": "Stable Gate sign board",
+      "front_local_y_m": -0.64,
+      "frame_margins_m": [
+        2.165,
+        2.165,
+        0.155,
+        0.155
+      ],
+      "clear_at_piers_m": 12.0,
+      "unblocked_through_beam_and_piers_rays": 145,
+      "mounting_rays": 20,
+      "stud_contacts_blender_m": [
+        [
+          -37.485,
+          59.36,
+          5.673
+        ],
+        [
+          -37.485,
+          59.36,
+          5.987
+        ],
+        [
+          -34.515,
+          59.36,
+          5.673
+        ],
+        [
+          -34.515,
+          59.36,
+          5.987
+        ]
+      ],
+      "legacy_render_only_hidden": [
+        "Stable Gate sign inset",
+        "Stable Gate clear lettering"
+      ],
+      "frame_height_px": 61.1
+    },
+    "Movers": {
+      "world_three_xz_m": [
+        -95,
+        -60
+      ],
+      "yaw_deg": 0.0,
+      "beam": "Movers header | seasoned oak",
+      "front_local_y_m": -0.68,
+      "frame_margins_m": [
+        5.265,
+        5.265,
+        0.085,
+        0.085
+      ],
+      "clear_at_piers_m": 10.4,
+      "unblocked_through_beam_and_piers_rays": 145,
+      "mounting_rays": 20,
+      "stud_contacts_blender_m": [
+        [
+          -96.485,
+          59.32,
+          6.643
+        ],
+        [
+          -96.485,
+          59.32,
+          6.957
+        ],
+        [
+          -93.515,
+          59.32,
+          6.643
+        ],
+        [
+          -93.515,
+          59.32,
+          6.957
+        ]
+      ],
+      "legacy_render_only_hidden": [],
+      "frame_height_px": 62.38
+    },
+    "West": {
+      "world_three_xz_m": [
+        -128,
+        0
+      ],
+      "yaw_deg": 90.0,
+      "beam": "ZIP | West Gate beam",
+      "front_local_y_m": -0.8,
+      "frame_margins_m": [
+        4.34,
+        4.34,
+        0.01,
+        0.01
+      ],
+      "clear_at_piers_m": 12.0,
+      "unblocked_through_beam_and_piers_rays": 145,
+      "mounting_rays": 20,
+      "stud_contacts_blender_m": [
+        [
+          -127.2,
+          -1.485,
+          5.673
+        ],
+        [
+          -127.2,
+          -1.485,
+          5.987
+        ],
+        [
+          -127.2,
+          1.485,
+          5.673
+        ],
+        [
+          -127.2,
+          1.485,
+          5.987
+        ]
+      ],
+      "legacy_render_only_hidden": [],
+      "frame_height_px": 61.77
+    }
+  },
+  "movers_header": {
+    "bytes": 47272,
+    "triangles": 708,
+    "draws": 4,
+    "sha256": "2db2012a4c8cb4374a5e7cd3def3b50e387c5cdbbc66e5b475158830943724de",
+    "crown_overlap_each_m": [
+      1.925,
+      1.925
+    ]
+  }
+}
