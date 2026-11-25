@@ -1,0 +1,115 @@
+{
+  "scope": "Environment module and static ray test only; no production route, physics, AI, live encounters, or actor.",
+  "provenance": {
+    "archiveCommit": "ce1cf050b36fa236155ac26d43e721b9012c49df",
+    "layout": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+    "placement": "6a067ec22a8e07f1d99a9d495d23063d2863ab10",
+    "lab": "51a3b4bef1f2d4891172164d10893d98d450a3b9",
+    "e03Portrait": "6a069115c5247cf353196c6b03a722d0f6bfb2da"
+  },
+  "controls": {
+    "entry": [
+      122,
+      -224
+    ],
+    "archivedPillarRows": 27,
+    "conservative8mFootprintPasses": 19,
+    "nearestEntryRow": {
+      "x": 138.63795941026785,
+      "z": -221.81619162802406,
+      "yaw": 3.286559247670684,
+      "nearestPackCenterM": 8.87820522020375,
+      "boundEdgeToPackM": 4.169673046574477
+    }
+  },
+  "blender": {
+    "boundsBlender": [
+      [
+        -4.800000190734863,
+        -0.800000011920929,
+        0
+      ],
+      [
+        4.800000190734863,
+        0.800000011920929,
+        7
+      ]
+    ],
+    "raysBothFaces": {
+      "yM": [
+        0.85,
+        1.7,
+        2.1,
+        3,
+        4,
+        5,
+        7.2
+      ],
+      "hits": [
+        0,
+        0,
+        0,
+        66,
+        66,
+        66,
+        0
+      ],
+      "perHeight": 66
+    },
+    "bytes": 148792,
+    "triangles": 4592,
+    "drawPrimitives": 8,
+    "sha256": "b97aac0a7b80e50f2c2d066e51e89cbf32c1ccbed65b83cfd776c9b03c65f69e"
+  },
+  "three": {
+    "sha256": "b97aac0a7b80e50f2c2d066e51e89cbf32c1ccbed65b83cfd776c9b03c65f69e",
+    "bytes": 148792,
+    "triangles": 4592,
+    "distinctMaterials": 8,
+    "drawPrimitives": 8,
+    "localBoundsThree": [
+      [
+        -4.8,
+        0,
+        -0.8
+      ],
+      [
+        4.8,
+        7,
+        0.8
+      ]
+    ],
+    "row": {
+      "x": 127.00188806606545,
+      "z": -193.26727363805625,
+      "yaw": 1.6358347724869582
+    },
+    "nearestPack": {
+      "x": 146.5,
+      "z": -225.94061227794052
+    },
+    "conservativeEdgeToPackM": 33.70518235396334,
+    "centerRays": {
+      "heights": [
+        0.85,
+        1.7,
+        2.1,
+        3,
+        4,
+        5,
+        7.2
+      ],
+      "hitCounts": [
+        0,
+        0,
+        0,
+        66,
+        66,
+        66,
+        0
+      ],
+      "perHeight": 66
+    },
+    "bothPillarHits": 20
+  }
+}
