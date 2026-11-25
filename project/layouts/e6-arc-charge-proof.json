@@ -1,0 +1,74 @@
+{
+  "duration": 0.6,
+  "maxSegments": 62,
+  "meshCount": 1,
+  "capacity": 80,
+  "viewPixels": [
+    402,
+    874
+  ],
+  "distanceM": 10,
+  "verticalFov": 62,
+  "context": {
+    "cover": {
+      "xz": [
+        24.47554083283783,
+        20.41477750540468
+      ],
+      "yaw": 0.03516129780801075,
+      "long_xyz": [
+        5,
+        1.1,
+        0.8
+      ],
+      "return_xyz": [
+        0.8,
+        1.1,
+        3
+      ],
+      "bytes": 77032,
+      "triangles": 1176,
+      "draws": 6,
+      "sha256": "93588fe078bae7b87546d439ef007c6645c04aada40ebc79f48ff324ce68cc99"
+    },
+    "pack": [
+      44,
+      16.502577388071437
+    ]
+  },
+  "samples": [
+    {
+      "t": 0.075,
+      "segments": 34,
+      "widthPx": 57.42,
+      "heightPx": 7.73
+    },
+    {
+      "t": 0.315,
+      "segments": 59,
+      "widthPx": 57.71,
+      "heightPx": 14.44
+    },
+    {
+      "t": 0.595,
+      "segments": 62,
+      "widthPx": 63.46,
+      "heightPx": 24.65
+    }
+  ],
+  "render": {
+    "matched_dimensions": [
+      402,
+      874
+    ],
+    "changed_cyan_pixels": 299,
+    "cue_bbox_xyxy": [
+      169,
+      424,
+      232,
+      449
+    ],
+    "outside_cue_changed_pixels": 0
+  },
+  "scope": "Three mesh and matched Blender review only; not a Sentry actor, readable playtest or combat integration"
+}
