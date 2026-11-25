@@ -27,10 +27,10 @@ so the next stamp or `wildshard update` would undo or break it.
   main only) and `lint.mjs` (points at the deleted `kit/` config) are
   unused here. Done when repo-kit stops stamping them into this repo,
   or Jake keeps them.
-- [ ] **K5 `~/.claude/set-label.sh` labels the hc terminal.** It
-  still writes herdr's panel token; `hc label $HC_TERMINAL_ID goal=…`
-  would fill `peers.sh`'s goal column. Outside the repo: Jake's OK
-  first. Done when `peers.sh` shows a goal from the label.
+- [x] **K5 `~/.claude/set-label.sh` labels the hc terminal.** Done in
+  dotfiles 03cc526 by another agent: it runs `hc label
+  $HC_TERMINAL_ID goal=<tag>`, so `peers.sh` shows the goal (t14 read
+  `goal=showcase hygiene`, 2026-11-25).
 - [ ] **K6 sharddev `wildshard update` fits this layout.** It writes
   real folders into `.claude/skills` (agent-sync owns that) and has
   no way to add GUIDE.md and the 4 skills without a template. Done

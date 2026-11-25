@@ -21,3 +21,9 @@ as its authoring-slice does): `world.sky` a two-colour gradient,
 `world.ground` flat with one grass colour, a hemisphere light and a sun.
 `import * as THREE` trips our strict lint (import/namespace cannot see
 through three's re-exports), so it uses named imports.
+
+## K5 was done elsewhere
+
+The dotfiles agent made set-label.sh write `hc label goal=<tag>`
+(dotfiles 03cc526), so plan row K5 is ticked; peers.sh shows goals.
+Phase 2 is now the four repo-kit rows plus sharddev 0.5.0.
