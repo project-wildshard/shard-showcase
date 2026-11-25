@@ -188,3 +188,5 @@ assert.ok(ids.has("nov25-e8b-big-pallet-pit"));
 assert.ok(!data.assets.find(row=>row.id==="WSC-ACTOR-007").model_preview);
 assert.ok(ids.has("nov25-w12-range-gate-walk"));
 assert.ok(ids.has("west-range-landscape-wip"));
+assert.ok(ids.has("nov25-e7a-mite-rarity"));
+assert.equal(data.assets.find(row=>row.id==="WSC-ACTOR-001").model_preview,"#nov22-mite-rig");

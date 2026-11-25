@@ -1,0 +1,17 @@
+{
+  "sourceSha256": "708647a6422bcdaed61649520abee2da3871da048afd840f99caed13bbf656ad",
+  "variants": {
+    "Uncommon Steel": {
+      "Mite | warm chamfer": [[0.48, 0.56, 0.61, 1], 0.72, 0.34],
+      "Mite | bevel grey machined alloy": [[0.30, 0.40, 0.47, 1], 0.78, 0.33],
+      "Mite | scuffed steel pins": [[0.56, 0.64, 0.66, 1], 0.73, 0.28],
+      "Mite | pale yard enamel": [[0.58, 0.67, 0.70, 1], 0.43, 0.47]
+    },
+    "Rare Gold Stencil": {
+      "Mite | fired orange powder coat": [[0.097, 0.081, 0.047, 1], 0.41, 0.48],
+      "Mite | warm chamfer": [[0.57, 0.318, 0.061, 1], 0.68, 0.34],
+      "Mite | worn depot stencil": [[0.88, 0.53, 0.092, 1], 0.52, 0.50],
+      "Mite | pale yard enamel": [[0.63, 0.403, 0.12, 1], 0.54, 0.46]
+    }
+  }
+}
