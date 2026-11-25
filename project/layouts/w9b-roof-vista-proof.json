@@ -1,0 +1,102 @@
+{
+  "branchScope": "Static vista camera/bench art. No collision, interactables or reveals.",
+  "sourceLab": "51a3b4bef1f2d4891172164d10893d98d450a3b9",
+  "sourceLayout": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+  "canonicalScene": [
+    "e6bbb20e18adbc863c18fd637211e6c8a35ae4a01deed667d071f4850dce7b4f",
+    2692
+  ],
+  "donorBenchSha256": "9109111c13a27c81981839237b9f1880c9e964930f5888e24c1054ac819bfeb1",
+  "badgeBytes": 41420,
+  "badgeTriangles": 617,
+  "roofs": {
+    "02": {
+      "anchorWorld": [
+        -206,
+        18,
+        -104
+      ],
+      "legacyProxyWorld": [
+        -206,
+        18,
+        -102
+      ],
+      "legacyProxyDeckHeight": 18.0,
+      "fittedBenchWorld": [
+        -206.0,
+        18.0,
+        -102.0
+      ],
+      "benchOffsetHorizontalMeters": 0.0,
+      "badgePoseWorld": [
+        -205.49058532714844,
+        18.0,
+        -102.64637756347656
+      ],
+      "seatedEyeWorld": [
+        -206.03355407714844,
+        19.479999542236328,
+        -101.82315826416016
+      ],
+      "benchFloorRays": 15,
+      "badgeFloorRays": 5,
+      "clearCenterMeters": 59.0,
+      "target": "Grapple tower facet",
+      "firstHitWorld": [
+        -218.5206298828125,
+        48.25577926635742,
+        -36.007301330566406
+      ]
+    },
+    "03": {
+      "anchorWorld": [
+        -212,
+        45,
+        -34
+      ],
+      "legacyProxyWorld": [
+        -212,
+        45,
+        -32
+      ],
+      "legacyProxyDeckHeight": null,
+      "fittedBenchWorld": [
+        -214.5,
+        45.04999923706055,
+        -31.899999618530273
+      ],
+      "benchOffsetHorizontalMeters": 2.501999215856179,
+      "badgePoseWorld": [
+        -215.1632843017578,
+        45.04999923706055,
+        -32.387184143066406
+      ],
+      "seatedEyeWorld": [
+        -214.32211303710938,
+        46.529998779296875,
+        -31.872468948364258
+      ],
+      "benchFloorRays": 15,
+      "badgeFloorRays": 5,
+      "clearCenterMeters": 88.0,
+      "target": "Zip-house roof",
+      "firstHitWorld": [
+        -116.02619934082031,
+        14.336097717285156,
+        -16.658828735351562
+      ]
+    }
+  },
+  "threeReimport": {
+    "badgeMeshes": 2,
+    "triangles": 617,
+    "bytes": 41420,
+    "footprintMeters": [
+      0.57,
+      0.39
+    ],
+    "maximumHeightMeters": 0.063
+  },
+  "badgeSha256": "d78f69bee19637cde1554e5a5ea3bc39f14ceea015532ff87cc635b914da6ead",
+  "repeatExact": true
+}
