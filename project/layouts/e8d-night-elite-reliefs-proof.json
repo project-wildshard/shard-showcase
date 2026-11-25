@@ -1,0 +1,30 @@
+{
+  "frame_sha256": "3e7e28863742ebcdd2f494d97d98574d263d876dac01f03e21a2b0fd5b4a54c7",
+  "shared_frame_instances": 12,
+  "assets": [
+    {
+      "artwork_id": "sir-nibbles",
+      "edge_clearance_m": 0.057,
+      "forward_gap_m": 0.008,
+      "earned_triangles": 332,
+      "locked_triangles": 36
+    },
+    {
+      "artwork_id": "hot-mess",
+      "edge_clearance_m": 0.062,
+      "forward_gap_m": 0.008,
+      "earned_triangles": 348,
+      "locked_triangles": 80
+    },
+    {
+      "artwork_id": "riveting-rita",
+      "edge_clearance_m": 0.055,
+      "forward_gap_m": 0.008,
+      "earned_triangles": 524,
+      "locked_triangles": 56
+    }
+  ],
+  "sha256": "aa67b5fe77d99e3f70e56f25f4805a88eee49e04f75c6cf7880bf0238dd6a9a5",
+  "bytes": 75228,
+  "scope": "three provisional reliefs; stage positions are not canonical slots; no grants or actors"
+}
