@@ -1,0 +1,66 @@
+{
+  "scope": "Round 5 portable alcove art; not collision, gameplay, portals or fog effects.",
+  "bowlSha256": "cd4b20016133bab16940d85f0b3319aecd19708626a5fe9cdb35f68f83a92021",
+  "archive": {
+    "archiveRef": "ce1cf050b36fa236155ac26d43e721b9012c49df",
+    "layoutBlob": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+    "labBlob": "51a3b4bef1f2d4891172164d10893d98d450a3b9",
+    "bowlWorldOrigin": [
+      150,
+      -150,
+      165
+    ],
+    "exitCenterWorld": [
+      154,
+      -145.8,
+      232.8
+    ],
+    "checkpointAnchorWorld": [
+      146,
+      -149.6,
+      227.5
+    ],
+    "fogPlaneCenterWorld": [
+      150,
+      -146,
+      218
+    ]
+  },
+  "glb": {
+    "bytes": 628332,
+    "triangles": 8816,
+    "sha256": "b68b5978696be1612b9c2f271acfc8785bb55703d4428e2a78548656745811aa",
+    "meshNames": [
+      "01 Alcove shell",
+      "02 Inner checkpoint",
+      "03 Exit portal",
+      "04 Fog threshold surround"
+    ]
+  },
+  "reimport": {
+    "oldPlaceholdersHiddenForRenders": 7,
+    "floorFitRays": 50,
+    "floorYRange": [
+      0.004999980330467224,
+      0.019999995827674866
+    ],
+    "centerApproachClearRays": 25,
+    "centerApproachAlsoClearAgainstDonor": true,
+    "exitApertureClearRays": 25
+  },
+  "threeReimport": {
+    "bytes": 628332,
+    "triangles": 8816,
+    "names": [
+      "01 Alcove shell",
+      "02 Inner checkpoint",
+      "03 Exit portal",
+      "04 Fog threshold surround"
+    ],
+    "floorHits": 50,
+    "approachClear": 25,
+    "apertureClear": 25,
+    "machinedRimHits": 12
+  },
+  "geometryRepeatByteExact": true
+}
