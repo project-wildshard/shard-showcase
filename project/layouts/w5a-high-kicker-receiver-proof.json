@@ -1,0 +1,2318 @@
+{
+  "engine": "0.1.44",
+  "clockHz": 60,
+  "exactDonor": "b4bbdedf55a33ec120497bd36578aa8a96d2eceb1e96cc24ab6b20c410a24b27",
+  "receiverSha256": "ecab77f1b4cf1b7b51d9d6f9ef87eb78591602073c3f1d12e2c649e979b02d89",
+  "fit": {
+    "x": -167.39,
+    "flat_end": -184.5,
+    "rollout_end": -201,
+    "span": 4.6,
+    "lane_z": 154,
+    "crest_overlap_m": 0.01,
+    "wall_clearance_m": 5.94501,
+    "max_grade_degrees": 23.3778,
+    "touching_donor_bounds": {
+      "HOVER | ground extension y -128 to -248": [
+        -247,
+        3,
+        -248,
+        -128,
+        -0.7,
+        0
+      ],
+      "HOVER | zone paving precise footprint and Park Gate route": [
+        -234,
+        -91.630829,
+        -234,
+        -59.543163,
+        0,
+        0.032
+      ],
+      "HOVER | ramp 4.8 01": [
+        -167.39299,
+        -157,
+        -155.766006,
+        -152.233994,
+        0,
+        4.593835
+      ],
+      "HOVER | ramp 4.8 03": [
+        -167.395996,
+        -157.253998,
+        -155.764008,
+        -152.235992,
+        0,
+        4.78325
+      ],
+      "HOVER | ramp 4.8 04": [
+        -167.399994,
+        -158.207916,
+        -155.779495,
+        -152.220505,
+        0.063227,
+        4.8
+      ]
+    },
+    "bytes": 56948
+  },
+  "strongestContactMps": -9,
+  "attempts": 135,
+  "accepted": 120,
+  "controlledHighJumps": 15,
+  "passive": 15,
+  "controls": [
+    {
+      "startX": -116,
+      "offset": -1.1,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -116,
+      "offset": -0.65,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -116,
+      "offset": 0,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -116,
+      "offset": 0.65,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -116,
+      "offset": 1.1,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -114,
+      "offset": -1.1,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -114,
+      "offset": -0.65,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -114,
+      "offset": 0,
+      "stock": -8.25,
+      "bare": -14.5,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -114,
+      "offset": 0.65,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -114,
+      "offset": 1.1,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -112,
+      "offset": -1.1,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -112,
+      "offset": -0.65,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -112,
+      "offset": 0,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -112,
+      "offset": 0.65,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    },
+    {
+      "startX": -112,
+      "offset": 1.1,
+      "stock": -8.5,
+      "bare": -14.75,
+      "bareHP": 92.06666666666666
+    }
+  ],
+  "table": [
+    {
+      "startX": -116,
+      "offset": -1.1,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -116,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": -1.1,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 282,
+          "feet": [
+            -171.08632714906707,
+            5.415608437724904,
+            152.89981342119808
+          ],
+          "v": [
+            -13.999999999999982,
+            0.04105741761652826,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.21966062346473,
+          0.27939857854978745,
+          152.89981342119808
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 261,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.343165855296544,
+          "landingX": -182.5254549481906,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.49238979205340366
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 262,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.41499726165187,
+          "landingX": -182.8658383213915,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.529990430061906
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 263,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.428888888232043,
+          "landingX": -182.91292280936614,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5198224906300899
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 264,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.5067196668016,
+          "landingX": -183.24165788153186,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.5598936626411395
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 265,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.66085642153319,
+          "landingX": -183.70832539955154,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5718374599323156
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 266,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.766960739814595,
+          "landingX": -183.919660537038,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5316890087034836
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 267,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.415608437724904,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.27939857854978745
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 268,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.880243760454268,
+          "landingX": -184.61966054001823,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5192927626059778
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 269,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.936874419983228,
+          "landingX": -185.08632720867172,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.5118626660558704
+        }
+      ]
+    },
+    {
+      "startX": -116,
+      "offset": -0.65,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -116,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": -0.65,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 279,
+          "feet": [
+            -171.09002063398074,
+            5.4170021786206695,
+            153.34986317856172
+          ],
+          "v": [
+            -13.999999999999982,
+            0.03189679920304811,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.2233541083784,
+          0.2789819651679675,
+          153.34986317856172
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 258,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.342593935994414,
+          "landingX": -182.52475863669824,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.49252804222128743
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 259,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.415083302483717,
+          "landingX": -182.865732334301,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5299000765872308
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 260,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.429416185528823,
+          "landingX": -182.91376450632524,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5191330362180703
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 261,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.507855479481456,
+          "landingX": -183.24315982286643,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.5595740981717722
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 262,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.662052629581453,
+          "landingX": -183.70982774321746,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5716877256531407
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 263,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.765921787828512,
+          "landingX": -183.92335402195167,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5306500702045768
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 264,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.4170021786206695,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.2789819651679675
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 265,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.880250433922825,
+          "landingX": -184.6233540249319,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5182899220345156
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 266,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.937324942635994,
+          "landingX": -185.0900206935854,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.37955930990560843
+        }
+      ]
+    },
+    {
+      "startX": -116,
+      "offset": 0,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -116,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": 0,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 280,
+          "feet": [
+            -171.08306331754324,
+            5.416342516392532,
+            153.9994765863013
+          ],
+          "v": [
+            -13.999999999999982,
+            0.03569360068481284,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.2163967919409,
+          0.2797686810600507,
+          153.9994765863013
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 259,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.334411733796803,
+          "landingX": -182.51585531801578,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.49429304292664045
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 260,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.412883533676522,
+          "landingX": -182.85991360813972,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5311986858828471
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 261,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.428410453056756,
+          "landingX": -182.90969094455835,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.520357260968789
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 262,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.504568018437876,
+          "landingX": -183.23901426613924,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.5605431630073825
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 263,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.658762840789114,
+          "landingX": -183.70568093479272,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5119957743391677
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 264,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.766548245449673,
+          "landingX": -183.91639670551416,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5326089782447503
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 265,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.416342516392532,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.2797686810600507
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 266,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.88038783193489,
+          "landingX": -184.6163967084944,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5201684940658106
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 267,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.937250713543439,
+          "landingX": -185.08306337714788,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.5127628822093117
+        }
+      ]
+    },
+    {
+      "startX": -116,
+      "offset": 0.65,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -116,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": 0.65,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 279,
+          "feet": [
+            -171.08559734874876,
+            5.416533859074715,
+            154.64998678734787
+          ],
+          "v": [
+            -13.999999999999982,
+            0.024095799934677364,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.21893082314642,
+          0.27948993724051585,
+          154.64998678734787
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 258,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.340131679606495,
+          "landingX": -182.52214740717324,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.4930448429385904
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 259,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.413565964476613,
+          "landingX": -182.86267944180878,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5306746243828077
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 260,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.429084957294662,
+          "landingX": -182.91110010200651,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5200578450219036
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 261,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.505983655634828,
+          "landingX": -183.24098179989966,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.56001009422117
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 262,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.660347822044233,
+          "landingX": -183.70764751487883,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5116403248963948
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 263,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.768986779765044,
+          "landingX": -183.9189307367197,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.37788614507161944
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 264,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.416533859074715,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.27948993724051585
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 265,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.8830827363803495,
+          "landingX": -184.61893073969992,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.38095861434481526
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 266,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.939977125552678,
+          "landingX": -185.0855974083534,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.5120599435897554
+        }
+      ]
+    },
+    {
+      "startX": -116,
+      "offset": 1.1,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -116,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": 1.1,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 282,
+          "feet": [
+            -171.10853420430794,
+            5.416838425048058,
+            155.09962957869936
+          ],
+          "v": [
+            -13.999999999999982,
+            0.03822727037754253,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.00853434437886,
+          0.3040915900514477,
+          155.09962957869936
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 261,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.354530156043044,
+          "landingX": -182.53897012257949,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.550149983423402
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 262,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.421749453466483,
+          "landingX": -182.88490914786234,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5254353650741919
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 263,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.431892810996956,
+          "landingX": -182.92732213670388,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5167002249603855
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 264,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.516784267397289,
+          "landingX": -183.25503255659714,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.5572359772801637
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 265,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.670984654125708,
+          "landingX": -183.72169986600056,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5685060686823717
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 266,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.764732356626482,
+          "landingX": -183.94186759227887,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5891528392437408
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 267,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.416838425048058,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.3040915900514477
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 268,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.878880832814923,
+          "landingX": -184.6418675952591,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5758247803673372
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 269,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.935918140931184,
+          "landingX": -185.1085342639126,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.5674858018652003
+        }
+      ]
+    },
+    {
+      "startX": -114,
+      "offset": -1.1,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -114,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": -1.1,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 290,
+          "feet": [
+            -171.0915744154434,
+            5.415978821066395,
+            152.8998774627845
+          ],
+          "v": [
+            -13.999999999999982,
+            0.040324614727939384,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.22490788984106,
+          0.27880408749712576,
+          152.8998774627845
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 269,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.345150674172613,
+          "landingX": -182.52773153769778,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.4919384440215735
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 270,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.416713295032678,
+          "landingX": -182.86842668789433,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5289919309851239
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 271,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.429434979106186,
+          "landingX": -182.91546848404215,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.518713321014463
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 272,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.50853587747472,
+          "landingX": -183.24401956784533,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.5592573726940242
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 273,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.662716908984498,
+          "landingX": -183.71068714546965,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5712426333528389
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 274,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.76625987765524,
+          "landingX": -183.92490780341433,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5302078750173559
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 275,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.415978821066395,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.27880408749712576
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 276,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.8798022286029115,
+          "landingX": -184.62490780639456,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5178742499973206
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 277,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.936555693301252,
+          "landingX": -185.09157447504805,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.510396428955859
+        }
+      ]
+    },
+    {
+      "startX": -114,
+      "offset": -0.65,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -114,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": -0.65,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 288,
+          "feet": [
+            -171.09477791674513,
+            5.417066582869907,
+            153.3497931956277
+          ],
+          "v": [
+            -13.999999999999982,
+            0.03219078219545565,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.2281113911428,
+          0.27844330302979176,
+          153.3497931956277
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 267,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.344442194597379,
+          "landingX": -182.52692076303143,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.49210474861775616
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 268,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.416787444215256,
+          "landingX": -182.8702659282841,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5286378982597912
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 269,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.430071857906592,
+          "landingX": -182.91672371812243,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5188389860838212
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 270,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.510201488000188,
+          "landingX": -183.24609485752958,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.558922741820368
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 271,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.66433162569378,
+          "landingX": -183.71276131756682,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5709873334285889
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 272,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.76569483314158,
+          "landingX": -183.92811130471605,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5293030589095491
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 273,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.417066582869907,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.27844330302979176
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 274,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.880063961310157,
+          "landingX": -184.6281113076963,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5170103326294331
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 275,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.93716101547247,
+          "landingX": -185.09477797634977,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.3791482315287146
+        }
+      ]
+    },
+    {
+      "startX": -114,
+      "offset": 0,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -114,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": 0,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 285,
+          "feet": [
+            -170.98607992629417,
+            5.419860752845262,
+            153.9997264499805
+          ],
+          "v": [
+            -13.999999999999982,
+            0.1765995425315486,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.11941340069183,
+          0.29061681677066065,
+          153.9997264499805
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 264,
+          "flew": true,
+          "airTicks": 67,
+          "apexY": 7.140252591397109,
+          "landingX": -181.96763102213748,
+          "landingVy": -7.5,
+          "minHP": 100,
+          "returnedY": 0.47534635758405247
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 265,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.35780087937907,
+          "landingX": -182.54306058089145,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.5492928738492873
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 266,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.424066288810925,
+          "landingX": -182.8927632073582,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5237366906637203
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 267,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.435111455427598,
+          "landingX": -182.9345579842747,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5148897149732623
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 268,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.5669887887157925,
+          "landingX": -183.33964079121955,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.5420852311243658
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 269,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.722976817202228,
+          "landingX": -183.8194133142651,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5488299826520584
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 270,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.779518564070384,
+          "landingX": -184.28607998291858,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5601370058221163
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 271,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.419860752845262,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.29061681677066065
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 272,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.896117406339745,
+          "landingX": -184.75274665157207,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5321205461501148
+        }
+      ]
+    },
+    {
+      "startX": -114,
+      "offset": 0.65,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -114,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": 0.65,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 290,
+          "feet": [
+            -171.0890764872177,
+            5.415780810039227,
+            154.63057786137477
+          ],
+          "v": [
+            -13.999999999999982,
+            0.042278440737282263,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.22240996161537,
+          0.27908582463495113,
+          154.63057786137477
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 269,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.344401281970122,
+          "landingX": -182.52687361637192,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.4921084717600295
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 270,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.415754708419291,
+          "landingX": -182.86754842648344,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.529530932594255
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 271,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.429263256487701,
+          "landingX": -182.91462117234306,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5192676238919702
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 272,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.507757106987722,
+          "landingX": -183.24293337563114,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.5595713713541209
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 273,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.661888076797741,
+          "landingX": -183.70960049131946,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5112947524071687
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 274,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.766244554541176,
+          "landingX": -183.92240987518863,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.3783995437321649
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 275,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.415780810039227,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.27908582463495113
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 276,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.879631240808837,
+          "landingX": -184.62240987816887,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.381088189605881
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 277,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.936323503476324,
+          "landingX": -185.08907654682235,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.5110925766200263
+        }
+      ]
+    },
+    {
+      "startX": -114,
+      "offset": 1.1,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -114,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": 1.1,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 290,
+          "feet": [
+            -171.08839369197273,
+            5.415803160993907,
+            155.10006124762216
+          ],
+          "v": [
+            -13.999999999999982,
+            0.04278402540258447,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.22172716637039,
+          0.2791624506530075,
+          155.10006124762216
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 269,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.343725910179048,
+          "landingX": -182.52611048524165,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.4922624880734721
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 270,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.415256626638396,
+          "landingX": -182.86705401544356,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5297842720016586
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 271,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.42914922600885,
+          "landingX": -182.91366905723595,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5193447821022615
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 272,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.50719991930716,
+          "landingX": -183.24229500074767,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.5597747795547015
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 273,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.661365833335075,
+          "landingX": -183.7089609988489,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5717626281297272
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 274,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.766065090765059,
+          "landingX": -183.92172707994365,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5309531578565314
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 275,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.415803160993907,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.2791624506530075
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 276,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.879461406504274,
+          "landingX": -184.62172708292388,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5182025147973442
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 277,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.936162630454006,
+          "landingX": -185.08839375157737,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.5112776868036292
+        }
+      ]
+    },
+    {
+      "startX": -112,
+      "offset": -1.1,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -112,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": -1.1,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 299,
+          "feet": [
+            -171.075457976078,
+            5.414952710733339,
+            152.89995797665202
+          ],
+          "v": [
+            -13.999999999999982,
+            0.045903059701762144,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.20879145047567,
+          0.28062690013433383,
+          152.89995797665202
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 278,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.33754832819923,
+          "landingX": -182.51923484808705,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.49362251035274374
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 279,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.411693140994225,
+          "landingX": -182.85659936523936,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.531880066149678
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 280,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.438148827833951,
+          "landingX": -182.93976911610864,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5142108328441076
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 281,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.5017928492713,
+          "landingX": -183.23556244454286,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.5000484878393732
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 282,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.655945871236136,
+          "landingX": -183.70222991785906,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5733748281696212
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 283,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.767315923711159,
+          "landingX": -183.90879136404894,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5347567677601617
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 284,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.414952710733339,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.28062690013433383
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 285,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.880101168304783,
+          "landingX": -184.60879136702917,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5222302868569698
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 286,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.936524533254523,
+          "landingX": -185.07545803568266,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.5148766018367309
+        }
+      ]
+    },
+    {
+      "startX": -112,
+      "offset": -0.65,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -112,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": -0.65,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 299,
+          "feet": [
+            -171.09273470857087,
+            5.416012317467608,
+            153.36967209207592
+          ],
+          "v": [
+            -13.999999999999982,
+            0.04205577659847201,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.22606818296853,
+          0.2786712437192664,
+          153.36967209207592
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 278,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.346057320106342,
+          "landingX": -182.52884850942436,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.49173638877763415
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 279,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.416655081815579,
+          "landingX": -182.87142496102396,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5287106134805503
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 280,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.429593378699564,
+          "landingX": -182.9165728717381,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5188801504627572
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 281,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.5092667024909705,
+          "landingX": -183.24494315602723,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.5591478837625385
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 282,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.663438591265957,
+          "landingX": -183.7116099140877,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5713580892799542
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 283,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.765747804624122,
+          "landingX": -183.9260680965418,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5298812072333537
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 284,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.416012317467608,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.2786712437192664
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 285,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.879293986615809,
+          "landingX": -184.62606809952203,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5175567911115146
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 286,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.9360636653382235,
+          "landingX": -185.09273476817552,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.37956520853261183
+        }
+      ]
+    },
+    {
+      "startX": -112,
+      "offset": 0,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -112,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": 0,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 297,
+          "feet": [
+            -171.08130149179647,
+            5.415928683295408,
+            153.99955406906847
+          ],
+          "v": [
+            -13.999999999999982,
+            0.0313163238523706,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.21463496619413,
+          0.27997282540325397,
+          153.99955406906847
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 276,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.336650472402554,
+          "landingX": -182.51824587219903,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.4938181525056722
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 277,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.413481856666269,
+          "landingX": -182.86144896233031,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5309369690089619
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 278,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.42844769669045,
+          "landingX": -182.91043001794765,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5201304122192622
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 279,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.505136383102585,
+          "landingX": -183.2396242135162,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.5603835511291019
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 280,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.659306753127647,
+          "landingX": -183.70629259580323,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5114060641734012
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 281,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.768628418409042,
+          "landingX": -183.9146348797674,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5331073172137714
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 282,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.415928683295408,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.27997282540325397
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 283,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.882234947344811,
+          "landingX": -184.61463488274762,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5206460721234487
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 284,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.938945831394852,
+          "landingX": -185.0813015514011,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.5132534444591972
+        }
+      ]
+    },
+    {
+      "startX": -112,
+      "offset": 0.65,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -112,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": 0.65,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 296,
+          "feet": [
+            -171.0813302040742,
+            5.416462552754497,
+            154.64981598105456
+          ],
+          "v": [
+            -13.999999999999982,
+            0.035035619432267434,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.21466367847185,
+          0.2799646695159818,
+          154.64981598105456
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 275,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.337747690351255,
+          "landingX": -182.5194282696293,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.4935832709305256
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 276,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.412548500447187,
+          "landingX": -182.85781052118998,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5317460555862168
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 277,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.439951454347535,
+          "landingX": -182.9418404713915,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.513626980370789
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 278,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.504009719421024,
+          "landingX": -183.2382502645896,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.4994479800862881
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 279,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.657899399684097,
+          "landingX": -183.70491752928953,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.512408622274749
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 280,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.766425854129185,
+          "landingX": -183.91466359204512,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.37889723882383736
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 281,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.416462552754497,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.2799646695159818
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 282,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.880354105942028,
+          "landingX": -184.61466359502535,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5206167460502417
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 283,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.937255601975077,
+          "landingX": -185.08133026367884,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.5132485022554041
+        }
+      ]
+    },
+    {
+      "startX": -112,
+      "offset": 1.1,
+      "passive": {
+        "height": 4.8,
+        "z": 154,
+        "ramp": true,
+        "fit": true,
+        "startX": -112,
+        "jumpAt": null,
+        "jumpTick": null,
+        "offset": 1.1,
+        "hardHits": 0,
+        "hp0": 100,
+        "hpMin": 100,
+        "hpEnd": 100,
+        "airTicks": 0,
+        "peak": {
+          "tick": 299,
+          "feet": [
+            -171.08367345714203,
+            5.415581988033075,
+            155.10005604424532
+          ],
+          "v": [
+            -13.999999999999982,
+            0.04223556892482261,
+            9.860761315262648e-31
+          ],
+          "onGround": true,
+          "air": false,
+          "jump": false
+        },
+        "peakSpeed": 13.999999999999982,
+        "groundAtEnd": true,
+        "last": [
+          -204.2170069315397,
+          0.27969806576431705,
+          155.10005604424532
+        ]
+      },
+      "batch": [
+        {
+          "adjust": -4,
+          "jumpTick": 278,
+          "flew": true,
+          "airTicks": 68,
+          "apexY": 7.341505922882033,
+          "landingX": -182.52359410607448,
+          "landingVy": -7.75,
+          "minHP": 100,
+          "returnedY": 0.4927599119313747
+        },
+        {
+          "adjust": -3,
+          "jumpTick": 279,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.414567177340338,
+          "landingX": -182.86223126434913,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5307369044444488
+        },
+        {
+          "adjust": -2,
+          "jumpTick": 280,
+          "flew": true,
+          "airTicks": 69,
+          "apexY": 7.428506647053052,
+          "landingX": -182.91091431909433,
+          "landingVy": -8,
+          "minHP": 100,
+          "returnedY": 0.5199520098674572
+        },
+        {
+          "adjust": -1,
+          "jumpTick": 281,
+          "flew": true,
+          "airTicks": 70,
+          "apexY": 7.505264836855645,
+          "landingX": -183.23985970997444,
+          "landingVy": -8.25,
+          "minHP": 100,
+          "returnedY": 0.560285490554929
+        },
+        {
+          "adjust": 0,
+          "jumpTick": 282,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.659490235991221,
+          "landingX": -183.7065256186687,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5724778019909579
+        },
+        {
+          "adjust": 1,
+          "jumpTick": 283,
+          "flew": true,
+          "airTicks": 71,
+          "apexY": 7.7667299341932665,
+          "landingX": -183.91700684511295,
+          "landingVy": -8.5,
+          "minHP": 100,
+          "returnedY": 0.5322788248144136
+        },
+        {
+          "adjust": 2,
+          "jumpTick": 284,
+          "flew": false,
+          "airTicks": 0,
+          "apexY": 5.415581988033075,
+          "landingX": null,
+          "landingVy": null,
+          "minHP": 100,
+          "returnedY": 0.27969806576431705
+        },
+        {
+          "adjust": 3,
+          "jumpTick": 285,
+          "flew": true,
+          "airTicks": 72,
+          "apexY": 7.879982144469173,
+          "landingX": -184.61700684809318,
+          "landingVy": -8.75,
+          "minHP": 100,
+          "returnedY": 0.5194687311133048
+        },
+        {
+          "adjust": 4,
+          "jumpTick": 286,
+          "flew": true,
+          "airTicks": 73,
+          "apexY": 7.936607225437464,
+          "landingX": -185.08367351674667,
+          "landingVy": -9,
+          "minHP": 100,
+          "returnedY": 0.5125924918360221
+        }
+      ]
+    }
+  ]
+}
