@@ -1,34 +1,19 @@
 # shard-showcase: decisions
 
-Living doc. Decisions that bind this repo, newest last. Cross-repo decisions
-(J-numbers) are Jake's, from `Raynos/project-wildshard-meta` `docs/plans/MULTI-REPO-SAGA/decisions/`;
-this repo's own decisions are D-numbers.
-
-## Cross-repo (J)
-
-- **J3**: **The shardfile is the raw format**: a tarball of JSON + assets that authors upload. The engine does not run on it. The build **cooks** it into **runtime packs**, which are GPU- and physics-ready and keyed by shardfile hash + engine build (singleplayer DOWNLOAD, `docs/plans/DOWNLOAD.md:152-158`)
-- **J7**: `shardfile` holds spec + validator. The bake/build CLI goes to `sharddev`
-- **J13**: Large binaries go to R2; sources and small files stay in git
-- **J21**: The **author SDK** (what shard generators import) lives in **`sharddev`**, which re-exports what it needs from `engine`
-- **J27**: **`api-server` depends only on `shardfile`.** It validates uploaded shardfiles, stores them in R2, and tells the MMO server (the engine's server target) that a new shardfile exists. **Only the MMO server cooks.** `api-server` never runs or imports engine code
-
-## This repo (D)
+Living doc. Decisions that bind this repo, newest last. Cross-repo
+decisions (J-numbers) are Jake's and live in
+`Raynos/project-wildshard-meta` `docs/plans/MULTI-REPO-SAGA/decisions/`;
+this repo's own are D-numbers. The Kitchen Sink plan's rulings (§2) bind
+the shard itself.
 
 - **D25**: 2026-11-04: a commit of 30+ changed lines stages a
-  `project/journal/` entry (from greenroom; `.githooks/pre-commit`).
-- **D27**: 2026-11-04: main only: no branches, no worktrees, every
-  agent commits on `main` by pathspec (from greenroom). Relaxed
-  2026-11-12 by meta J240 and J290: a whole or half plan may work in
-  `.worktrees/<slug>` on `plan/<slug>` and land through `land`
-  (AGENTS.md); everything else stays on `main`.
-- **D28**: 2026-11-05: lint is the strictest of greenroom and
-  wildshard-singleplayer (every oxlint category denied, type-aware, warnings
-  denied, unused disable directives are errors, `import/no-nodejs-modules`
-  outside Node-side folders). Imported code may arrive under a shrink-only
-  ratchet (Jake, 2026-11-05).
-- **D29**: 2026-11-24: main only again: many agents on `main`, no
-  worktrees, no `plan/*` branches, no `land`. Replaces D27's 2026-11-12
-  relaxation (meta J240, J290) for this repo. Jake: "put this repo into
-  'many agents on main only, no worktrees, no landing' mode". The
-  pre-push gate runs the same `pnpm check` as CI, so landing's CI wait
-  bought little.
+  `project/journal/` entry (`.githooks/pre-commit`).
+- **D27**: 2026-11-04: main only. Superseded by D29.
+- **D28**: 2026-11-05, tightened 2026-11-25 (A9): the strictest lint
+  on `src/`: every oxlint category an error, nursery too, type-aware,
+  unused disable directives are errors; strict `tsc`.
+- **D29**: 2026-11-24: many agents on `main` only: no worktrees, no
+  `plan/*` branches, no `land`. Replaces D27 and its 2026-11-12
+  relaxation (meta J240, J290). Jake: "put this repo into 'many agents
+  on main only, no worktrees, no landing' mode". The pre-push gate runs
+  the same `pnpm check` as CI, so landing's CI wait bought little.

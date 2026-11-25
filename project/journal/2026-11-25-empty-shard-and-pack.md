@@ -35,3 +35,12 @@ in repo-kit (f970ade); its cleanup-coverage test read this checkout and
 went red on our moved kit, so shard-showcase waits in its pending list
 (01911a2). What lands here is opus-2026-11-25-sdk-0-5-and-kit.md: SDK
 0.5.0, `wildshard update --guide docs/GUIDE.md`, and the re-stamp.
+
+## docs/ trimmed to what is true
+
+Ask A15. prd.md now says what the repo is for, from the Kitchen Sink plan
+(Jake: "its the whole purpose of the repo"); design.md says how it is
+built today, including the tension between R-2 (0 % custom TS) and the
+placeholder scene. decisions.md drops the copied J list for a link and
+shrinks D27 to a pointer at D29. Kept as Jake asked: chromium.md,
+disk-audit.md, the Kitchen Sink plan and its folder.
