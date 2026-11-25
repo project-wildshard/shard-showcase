@@ -2,14 +2,24 @@
 
 A single hand-made MMO zone, played alone. It should feel like logging
 into an MMO when nobody else is online: a town full of people to talk
-to, wild areas full of enemies that get tougher as you go, a dungeon,
-and a huge final boss. It is also a showcase: every fun thing a game
-like this can do, packed into one place.
+to, wild areas full of enemies that get tougher as you go, a mini
+dungeon, and a raid-style final boss. It is also a showcase: every fun
+thing a game like this can do, packed into one place.
 
 ## Shape
 
-- One 500 × 500 m zone. Fit more in by stacking, building interiors
-  and going underground, rather than by making it bigger.
+- It is a real zone of a bigger MMO world: a grid of 500 × 500 m zones
+  joined by roads. So it is exactly 500 × 500 m, with four road
+  entrances, one at the middle of each edge. Here the roads just lead
+  off the edge; nothing beyond needs to exist.
+- **Everything lives inside one 500 × 500 × 500 m cube**, with the
+  road level at its middle height (250 m below, 250 m above). Fit more
+  in by stacking, building interiors and going underground or into the
+  sky, never by making it bigger.
+- The mini dungeon and the boss arena are interiors reached by portals
+  or teleports, but each one physically sits somewhere inside the
+  cube, and no two spaces overlap. No portal leads outside the cube.
+  Pack the content in cleverly.
 - The **west half is peaceful**: no enemies. The **east half is
   combat**. The town's east gate is the way across.
 - Day and night, weather and storms. Some enemies only come out at
@@ -39,12 +49,13 @@ like this can do, packed into one place.
 - **Levels 1 to 20**, levelled by fighting. Six level bands of three
   levels each, getting harder the deeper you go, with an elite at each
   band gate. Reaching 20 is a long grind, hours of play.
-- **The Training Vault**: a small dungeon behind a portal. Four rooms:
-  a puzzle, a fight, a climb and its boss, the Vault Warden.
+- **The Training Vault**: the mini dungeon, behind a portal. Four
+  rooms: a puzzle, a fight, a climb and its boss, the Vault Warden.
 - **The gauntlet**: a wave-survival arena of three sealed courts and
   five waves, with an elite in the middle waves.
-- **The Crate Titan's arena**: a vast hidden arena behind a boss
-  portal. Its road opens after your first gauntlet clear.
+- **The Crate Titan's arena**: a raid-style final boss fight in a vast
+  hidden arena behind a boss portal. Its road opens after your first
+  gauntlet clear.
 - **Storm hour**: a quest turns the whole zone to an evening storm
   until you light four beacons.
 

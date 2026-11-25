@@ -36,3 +36,11 @@ Jake: "you might have gone overboard … we do want to add some detail back in l
 list rather than me guessing: the west places by name, the robot roster, the set pieces (Vault rooms,
 gauntlet courts, Titan portal, storm hour), the quest/economy hooks and the six-band level shape.
 Combat feel and the HUD stay vague, so Fable invents those. ~95 lines, still no numbers or formulas.
+
+## The cube and the roads
+
+Jake: "we designed a bunch of shit and we don't want to lose" it: the mini dungeon, the raid-style
+boss, ruling 19ad's 500 m cube (interiors by portal, but physically inside the cube, never
+overlapping) and the zone staying a valid shard, 500 × 500 m with a road entrance mid-edge on all
+four sides. The description says it is one zone of a grid joined by roads, so Fable knows why the
+limits exist, and that the roads may just lead off the edge, so it doesn't build the neighbours.
