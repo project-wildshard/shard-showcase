@@ -1,0 +1,30 @@
+{
+  "frame_sha256": "3e7e28863742ebcdd2f494d97d98574d263d876dac01f03e21a2b0fd5b4a54c7",
+  "frame_instances": 12,
+  "slot_mapping": "illustrative only; final slot census unresolved",
+  "grant_or_actor": false,
+  "assets": [
+    {
+      "slug": "wardens-plate",
+      "bytes": 27464,
+      "triangles": 508,
+      "sha256": "5912935d78baff24bd3d966a5b703bc16a2337b0b57e3ecde95ee716d5dfbfee",
+      "forward_gap_m": 0.008,
+      "edge_margins_m": [
+        0.055,
+        0.108
+      ]
+    },
+    {
+      "slug": "titans-core",
+      "bytes": 33920,
+      "triangles": 604,
+      "sha256": "16905f9282e3f16891b58b94ffa90e6b876433a9c92e0e1c1c5bfe1921799e09",
+      "forward_gap_m": 0.008,
+      "edge_margins_m": [
+        0.07906,
+        0.058
+      ]
+    }
+  ]
+}
