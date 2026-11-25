@@ -49,7 +49,7 @@ Docs / Repo shape
 
 Code rules
 
- - In the test suite, No LLM, no claude, no herdr.
+ - In the test suite, No LLM, no claude, no real hc or herdr-app (fake them on PATH).
 
 Agent tooling
 

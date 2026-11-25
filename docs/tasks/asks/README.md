@@ -60,5 +60,5 @@ Nothing else: no `parked`, `paused`, `blocked` or `answered`.
   (AskUserQuestion: context, the trade-offs, one recommendation),
   never as a decision page. Collect them and ask at the end of a job.
   The ask waits as `needs pick` until he answers.
-- **Agent-to-agent requests** go over herdr / SendMessage to the
+- **Agent-to-agent requests** go over `hc send` / SendMessage to the
   owning agent, who replies with the SHA. Never an ask.

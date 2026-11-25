@@ -20,7 +20,7 @@
           },
           {
             "type": "command",
-            "command": "bash \"$CLAUDE_PROJECT_DIR/.agents/hooks/guard-herdr-prompt.sh\""
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.agents/hooks/guard-hc-send.sh\""
           },
           {
             "type": "command",

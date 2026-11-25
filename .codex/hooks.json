@@ -22,8 +22,8 @@
           },
           {
             "type": "command",
-            "command": "bash \"$(git rev-parse --show-toplevel)/.agents/hooks/guard-herdr-prompt.sh\"",
-            "statusMessage": "Checking herdr targets for an open question"
+            "command": "bash \"$(git rev-parse --show-toplevel)/.agents/hooks/guard-hc-send.sh\"",
+            "statusMessage": "Checking hc targets for an open question"
           },
           {
             "type": "command",

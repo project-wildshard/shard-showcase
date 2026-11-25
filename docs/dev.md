@@ -51,7 +51,8 @@ goes in `tmp/<task>/` and is deleted when done.
   (`github:project-wildshard/<repo>#vX.Y.Z`). They are private, so CI reads
   them with the org GitHub App token.
 - Tests use real things (git in temp dirs, real files and processes); never
-  mock git. No LLM, `claude`, herdr or network in tests.
+  mock git. No LLM, `claude`, real `hc` / `herdr-app` (fake them
+  on PATH) or network in tests.
 
 ## Git hooks
 

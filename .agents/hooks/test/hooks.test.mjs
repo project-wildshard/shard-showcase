@@ -22,8 +22,15 @@ after(() => {
   rmSync(scratch, { recursive: true, force: true });
 });
 
-// A clean environment: no agent or herdr variables, no GIT_* from a hook running this suite.
-const ENV = Object.fromEntries(Object.entries(process.env).filter(([key]) => !/^(?:GIT_|HERDR_|CLAUDE_)/.test(key)));
+// A clean environment: no agent, hc or herdr variables, no GIT_* from a hook running this suite.
+const ENV = Object.fromEntries(Object.entries(process.env).filter(([key]) => !/^(?:GIT_|HC_|HERDR_|CLAUDE_)/.test(key)));
+// A fake hc (herdr-core) in bin/: `hc ls` lists the terminals, `hc get <t>` gives one.
+const fakeHc = (bin, terminals) => {
+  writeFileSync(join(bin, 'terminals.json'), JSON.stringify(terminals));
+  writeFileSync(join(bin, 'hc'), `#!/usr/bin/env bash\ncase "$1" in\n  ls) jq -c '{terminals: [.[] | {address, agent, state}]}' "${join(bin, 'terminals.json')}" ;;\n  get) jq -c --arg t "$2" '.[] | select(.address == $t)' "${join(bin, 'terminals.json')}" ;;\nesac\n`);
+  chmodSync(join(bin, 'hc'), 0o755);
+};
+const terminal = (address, cwd, msg, state = 'working') => ({ address, agent: 'claude-code', state: 'live', status: { state, msg }, cwd: '/launched/elsewhere', foreground: { cwd } });
 const fixture = (tool, name, root = '/repo') => JSON.parse(readFileSync(join(FIXTURES, tool, `${name}.json`), 'utf8').replaceAll('__ROOT__', root));
 const git = (cwd, args) => spawnSync('git', args, { cwd, encoding: 'utf8', env: { ...ENV, GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@t', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@t' } });
 
@@ -195,7 +202,7 @@ describe('session-brief.sh: same brief from both tools', () => {
     const [claude, codex] = TOOLS.map((tool) => run(root, 'session-brief.sh', fixture(tool, 'session-start', root)));
     assert.equal(claude.status, 0, claude.stderr);
     assert.match(claude.stdout, new RegExp(`^== ${basename(root)} session brief \\(\\.agents/hooks/session-brief\\.sh\\) ==`));
-    assert.match(claude.stdout, /\(not running inside herdr\)/);
+    assert.match(claude.stdout, /\(not running inside hc\)/);
     assert.deepEqual(codex, claude);
   });
   test('a plan worktree reports its canonical checkout\'s name', () => {
@@ -226,30 +233,21 @@ describe('session-brief.sh: same brief from both tools', () => {
     cpSync(join(root, '.agents'), join(root, '.worktrees', 'x', '.agents'), { recursive: true });
     const bin = join(root, 'tmp-bin');
     mkdirSync(bin);
-    const agents = [
-      { pane_id: 'w1:p1', agent_status: 'working', cwd: root, agent_session: { value: 'a' }, terminal_title_stripped: 'On main' },
-      { pane_id: 'w1:p2', agent_status: 'idle', cwd: join(root, '.worktrees', 'x', 'src'), agent_session: { value: 'b' }, terminal_title_stripped: 'In plan x' },
-    ];
-    writeFileSync(join(bin, 'agents.json'), JSON.stringify({ result: { agents } }));
-    writeFileSync(join(bin, 'herdr'), `#!/usr/bin/env bash\n[ "$1 $2" = "agent list" ] && cat "${join(bin, 'agents.json')}"\n`);
-    chmodSync(join(bin, 'herdr'), 0o755);
-    const out = run(join(root, '.worktrees', 'x'), 'session-brief.sh', fixture('codex', 'session-start', root), { HERDR_ENV: '1', PATH: `${bin}:${process.env.PATH}` }).stdout;
-    assert.match(out, /w1:p1 {2}working {2}On main {2}\[main\]/);
-    assert.match(out, /w1:p2 {2}idle {2}In plan x {2}\[\.worktrees\/x\]/);
+    fakeHc(bin, [terminal('t1', root, 'On main'), terminal('t2', join(root, '.worktrees', 'x', 'src'), 'In plan x', 'idle')]);
+    const out = run(join(root, '.worktrees', 'x'), 'session-brief.sh', fixture('codex', 'session-start', root), { HC_TERMINAL_ID: 't0', PATH: `${bin}:${process.env.PATH}` }).stdout;
+    assert.match(out, /t1 {2}working {2}On main {2}\[main\]/);
+    assert.match(out, /t2 {2}idle {2}In plan x {2}\[\.worktrees\/x\]/);
   });
-  test('leaves out its own session, read from either tool\'s stdin', () => {
+  test('leaves out its own terminal ($HC_TERMINAL_ID) under either tool', () => {
     const root = sandbox();
     const bin = join(root, 'tmp-bin');
     mkdirSync(bin);
-    const agents = TOOLS.map((tool, index) => ({ pane_id: `w1:p${index + 1}`, agent_status: 'working', cwd: root, agent_session: { value: fixture(tool, 'session-start').session_id }, terminal_title_stripped: `Self ${tool}` }));
-    agents.push({ pane_id: 'w1:p9', agent_status: 'idle', cwd: root, agent_session: { value: 'peer' }, terminal_title_stripped: 'Build the queue view' });
-    writeFileSync(join(bin, 'agents.json'), JSON.stringify({ result: { agents } }));
-    writeFileSync(join(bin, 'herdr'), `#!/usr/bin/env bash\n[ "$1 $2" = "agent list" ] && cat "${join(bin, 'agents.json')}"\n`);
-    chmodSync(join(bin, 'herdr'), 0o755);
-    for (const tool of TOOLS) {
-      const out = run(root, 'session-brief.sh', fixture(tool, 'session-start', root), { HERDR_ENV: '1', PATH: `${bin}:${process.env.PATH}` }).stdout;
-      assert.match(out, /w1:p9 {2}idle {2}Build the queue view {2}\[main\]/, tool);
+    const terminals = TOOLS.map((tool, index) => terminal(`t${index + 1}`, root, `Self ${tool}`));
+    fakeHc(bin, [...terminals, terminal('t9', root, 'Build the queue view', 'idle')]);
+    TOOLS.forEach((tool, index) => {
+      const out = run(root, 'session-brief.sh', fixture(tool, 'session-start', root), { HC_TERMINAL_ID: `t${index + 1}`, PATH: `${bin}:${process.env.PATH}` }).stdout;
+      assert.match(out, /t9 {2}idle {2}Build the queue view {2}\[main\]/, tool);
       assert.doesNotMatch(out, new RegExp(`Self ${tool}`), tool);
-    }
+    });
   });
 });

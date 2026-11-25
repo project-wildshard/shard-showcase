@@ -14,12 +14,6 @@ cd "$root" || exit 0
 common="$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null)"
 repo="$(basename "$(dirname "${common:-$root/.git}")")"
 
-# SessionStart passes its JSON on stdin; its session_id lets the herdr
-# section leave this session out. Run by hand, stdin is a terminal.
-session="${CLAUDE_CODE_SESSION_ID:-}"
-if [ -z "$session" ] && [ ! -t 0 ]; then
-  session="$(node "$here/lib/payload.mjs" session 2>/dev/null)"
-fi
 
 # The brief lands in every session's context, so it stays within 40
 # lines (REPO-KIT K4, J273): 5 asks, 5 plans, 2 journal lines,
@@ -39,14 +33,15 @@ if [ "$(git config core.hooksPath 2>/dev/null)" != ".githooks" ]; then
   echo "!! git hooks are OFF in this clone. Run: git config core.hooksPath .githooks"
 fi
 
-if [ "${HERDR_ENV:-}" != 1 ]; then
-  show "other agents in this repo (herdr)" 3 "(not running inside herdr)" ""
+# Peers come from herdr-core (hc); this session is $HC_TERMINAL_ID, left out.
+if [ -z "${HC_TERMINAL_ID:-}" ]; then
+  show "other agents in this repo (hc)" 3 "(not running inside hc)" ""
 else
-  peers="$(bash "$here/herdr-peers.sh" "" "$session" | while IFS="$(printf '\t')" read -r pane status goal where; do
+  peers="$(bash "$here/peers.sh" "" | while IFS="$(printf '\t')" read -r terminal status goal where; do
     [ "$goal" = "-" ] && goal="(no goal set)"
-    echo "  $pane  $status  $goal  [$where]"
+    echo "  $terminal  $status  $goal  [$where]"
   done)"  # "": the canonical checkout
-  show "other agents in this repo (herdr)" 3 "(none: you're the only agent here)" "$peers"
+  show "other agents in this repo (hc)" 3 "(none: you're the only agent here)" "$peers"
   [ -n "$peers" ] && echo "  They share this checkout and its index: commit only your own paths."
 fi
 

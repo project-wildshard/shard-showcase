@@ -786,7 +786,7 @@ class Landing{
    mkdirSync(dirname(script),{recursive:true});writeFileSync(script,readFileSync(own));
    env={...this.env,WS_MAIN_WATCH_ROOT:canonical};
   }
-  const args=[script,`--follow=${head}`,`--lane=${this.lane}`,...(this.env.HERDR_PANE_ID?[`--pane=${this.env.HERDR_PANE_ID}`]:[])];
+  const args=[script,`--follow=${head}`,`--lane=${this.lane}`,...(this.env.HC_TERMINAL_ID?[`--pane=${this.env.HC_TERMINAL_ID}`]:[])];
   try{
    spawn(process.execPath,args,{cwd:canonical,env,detached:true,stdio:'ignore'}).unref();
    this.say('watch',`main-watch follows ${short(head)} and reports main's ci (receipt, and a message here on red)`);
