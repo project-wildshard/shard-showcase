@@ -70,3 +70,11 @@ per slice: play it, judge it against a shipped PS5 game, fix what falls short, t
 Jake: "Rename it from 'kitchen sink' to 'showcase MMO zone' … remove all references to 'kitchen sink'".
 Done for both prompt files (only their titles had it). The plan, its folder, this journal and the ask
 keep the old name: they are the plan and the history, not what Fable reads.
+
+## Moved to the clean room
+
+Jake: "move the files when done to ~/projects/game-demos/showcase-zone-clean-room", an empty git repo
+outside this one. Both files went there and left docs/prompts/. FABLE-PROMPT.md lost its how-to header
+on the way (it named Wildshard, sharddev and ask A16), so the clean room holds only what Fable should
+see. I didn't commit in that repo; that's Jake's to start. Their history up to the move is in this
+repo's log for docs/prompts/.
