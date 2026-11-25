@@ -1,0 +1,39 @@
+{
+  "file": "w3c-swing-steel-target.glb",
+  "sha256": "8fda063ee299102ca6529d5534bc129b027afb0a09d63a10d940a058472e7ebe",
+  "bytes": 109520,
+  "triangles": 1640,
+  "clip": "W3C_TargetImpact_1p4s",
+  "durationSec": 1.4,
+  "angleDegrees": [
+    -12,
+    30
+  ],
+  "minimumClearanceAboveFloorM": 0.7793,
+  "minimumClearanceToSidePostsM": 0.035,
+  "localAxis": "pivot X",
+  "reviewDistancesM": [
+    25,
+    50,
+    75
+  ],
+  "scope": "Standalone game art; no hit handler, sound, scoring or map placement.",
+  "mintPixelsIdleImpact": {
+    "25": [
+      0,
+      128
+    ],
+    "50": [
+      0,
+      43
+    ],
+    "75": [
+      0,
+      20
+    ]
+  },
+  "reviewResolution": [
+    402,
+    874
+  ]
+}
