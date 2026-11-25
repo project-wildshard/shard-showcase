@@ -49,6 +49,17 @@ for (const a of salvage) {
 }
 assert.ok(ids.has("nov24-salvage-parts"));
 
+const cores=data.assets.filter(a=>a.related_study?.href==="#nov25-pack-upgrade-cores");
+assert.deepEqual(Array.from(cores,a=>a.id).sort(), ["WSC-ACTOR-007","WSC-ACTOR-008","WSC-ACTOR-009"]);
+assert.ok(ids.has("nov25-pack-upgrade-cores"));
+for (const a of cores) {
+  assert.equal(a.status,"provisional-inventory");
+  assert.equal(a.model_preview,undefined);
+  assert.ok(get("asset-"+a.id).children.flatMap(x=>x.children).some(c=>
+    c.href===a.related_study.href && c.textContent===a.related_study.label));
+}
+
+
 const rook=data.assets.find(a=>a.id==="WSC-SCENE-002");
 assert.equal(rook.model_preview,"#nov23-tinker-rook-counter");
 assert.equal(rook.related_study?.href,"#nov25-w2b-rook-forge");
