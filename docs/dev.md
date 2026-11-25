@@ -41,8 +41,11 @@ goes in `tmp/<task>/` and is deleted when done.
 ## Code rules
 
 - TypeScript only, imports with explicit `.ts`/`.tsx` extensions.
-- Every function has an explicit return type. `kit/.oxlintrc.json` denies
-  every category (D28); disable a rule only with a one-line reason beside it.
+- Every function has an explicit return type. `.oxlintrc.author.json` makes
+  every category an error, nursery too (D28, A9); disable a rule only with a
+  one-line reason beside it. `tsconfig.json` has the strictest flags.
+- `.oxfmtrc.json` formats `src/` (no semicolons, single quotes, 80 columns);
+  `pnpm fix` applies it.
 - Pin dependencies exactly (`.npmrc` has `save-exact=true`).
 - Other Wildshard repos are git dependencies pinned by tag
   (`github:project-wildshard/<repo>#vX.Y.Z`). They are private, so CI reads

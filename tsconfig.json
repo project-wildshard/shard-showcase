@@ -29,7 +29,15 @@
     "skipLibCheck": true,
     "types": [
       "node"
-    ]
+    ],
+    "paths": {
+      "three": [
+        "./node_modules/@types/three/index.d.ts"
+      ],
+      "three/*": [
+        "./node_modules/@types/three/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts"

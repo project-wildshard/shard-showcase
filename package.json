@@ -15,24 +15,25 @@
     "pack": "wildshard build .",
     "lint": "node src/scripts/.kit/bin-tools.mjs -c .oxlintrc.author.json --no-error-on-unmatched-pattern src",
     "typecheck": "node src/scripts/typecheck.mjs",
-    "format:check": "npr oxfmt -c kit/.oxfmtrc.json --check kit '!src/test/.kit/**' '!src/scripts/**'",
-    "fix": "node src/scripts/.kit/bin-tools.mjs -c .oxlintrc.author.json --fix --no-error-on-unmatched-pattern src && npr oxfmt -c kit/.oxfmtrc.json kit '!src/test/.kit/**' '!src/scripts/**'",
+    "format:check": "npr oxfmt --check --no-error-on-unmatched-pattern src",
+    "fix": "node src/scripts/.kit/bin-tools.mjs -c .oxlintrc.author.json --fix --no-error-on-unmatched-pattern src && npr oxfmt --no-error-on-unmatched-pattern src",
     "test": "node --test 'src/test/.kit/*.test.mjs' '.githooks/*.test.mjs' '.agents/hooks/test/*.test.mjs'",
     "check": "pnpm lint && pnpm typecheck && pnpm format:check && pnpm test && node src/scripts/.kit/bin-pins.mjs && node src/scripts/.kit/asks.mjs check && node .githooks/agents-md.mjs lint && node src/scripts/.kit/agent-sync.mjs --check && node src/scripts/.kit/agent-parity.mjs --strict",
     "agents:sync": "node src/scripts/.kit/agent-sync.mjs"
   },
   "dependencies": {
+    "@wildshard/cli": "0.4.12",
     "@wildshard/format": "npm:@wildshard/shard-format@0.43.0",
     "@wildshard/sdk": "0.4.12",
     "three": "0.186.0",
-    "valibot": "1.5.0",
-    "@wildshard/cli": "0.4.12"
+    "valibot": "1.5.0"
   },
   "devDependencies": {
     "@types/node": "24.3.1",
+    "@types/three": "0.186.0",
+    "npm-bin-deps": "2.1.0",
     "oxlint": "1.89.0",
-    "vite": "8.3.0",
-    "npm-bin-deps": "2.1.0"
+    "vite": "8.3.0"
   },
   "binDependencies": {
     "typescript": "7.0.2",

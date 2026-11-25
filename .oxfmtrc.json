@@ -1,5 +1,4 @@
 {
-  "$schema": "./node_modules/oxfmt/configuration_schema.json",
   "printWidth": 80,
   "tabWidth": 2,
   "useTabs": false,
@@ -29,9 +28,10 @@
     "newlinesBetween": true
   },
   "ignorePatterns": [
-    // Plain-JS repo scripts, outside the TS project; covered by
-    // `pnpm test` instead. (.githooks/ sits outside kit/.)
-    "scripts/**",
+    // repo-kit's stamped copies and the repo's own tooling under src/,
+    // not shard source (A9); repo-kit formats its own.
+    "src/scripts/**",
+    "src/test/.kit/**",
     "dist/**",
     "node_modules/**",
     "test-results/**",
