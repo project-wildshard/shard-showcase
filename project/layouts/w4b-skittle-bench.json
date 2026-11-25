@@ -1,0 +1,83 @@
+{
+  "slice": "W4b",
+  "ids": [
+    "WSC-PLAN-004",
+    "WSC-PLAN-005"
+  ],
+  "source": "scripts/blender/west-physics/assemble.py plus the W4b plan on main",
+  "engine": "0.1.44",
+  "format": "0.43.0",
+  "clock_hz": 60,
+  "ramp": {
+    "toe": -42,
+    "crest": -18,
+    "rise": 6,
+    "width": 4,
+    "laneZ": 196
+  },
+  "floor_m": 0.04,
+  "donors_sha256": {
+    "ball": "c04881c87359049db80b6f17772628543628688dd6fee3c58e1bf6f7f3ebe171",
+    "pin": "6863ee9338d4859d2a7ef68dd556e16cdeb2949c6cb33a9ca90c808531fe1d43"
+  },
+  "assets": [
+    {
+      "name": "w4b-release-stand.glb",
+      "bytes": 45940,
+      "triangles": 631,
+      "sizeM": [
+        1.34,
+        1.767,
+        1
+      ],
+      "sha256": "c81fe635452ec55a31bdbd6db1980a26a252f0c3dbc945aefa89cd1b462eb54d"
+    },
+    {
+      "name": "w4b-skittle-scoreboard.glb",
+      "bytes": 62276,
+      "triangles": 1062,
+      "sizeM": [
+        4.31,
+        2.9265,
+        0.54
+      ],
+      "sha256": "1963bbb38549ace71df0408271b0b0457299cc99313f75f394f56cc05e32ac74"
+    }
+  ],
+  "physics": {
+    "balls": 4,
+    "pins": 10,
+    "awake_peak": 14,
+    "first_pin_over_60_tick": 368,
+    "ramp_toe_ticks_by_ball": [
+      338,
+      324,
+      309,
+      294
+    ],
+    "settle_frame": 1200,
+    "final_tilts_deg": [
+      63.762,
+      90,
+      89.997,
+      89.997,
+      89.994,
+      90.003,
+      89.997,
+      0,
+      90,
+      90
+    ],
+    "pins_over_60_at_end": 9,
+    "exact_second_fresh_world": true,
+    "current_native_roll_test": true
+  },
+  "not_proven": [
+    "live lever",
+    "player or release interlocks",
+    "saved best",
+    "mid-run restart",
+    "production ramp and player collision",
+    "phone performance"
+  ]
+}
