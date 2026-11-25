@@ -26,3 +26,9 @@ this repo's own decisions are D-numbers.
   denied, unused disable directives are errors, `import/no-nodejs-modules`
   outside Node-side folders). Imported code may arrive under a shrink-only
   ratchet (Jake, 2026-11-05).
+- **D29**: 2026-11-24: main only again: many agents on `main`, no
+  worktrees, no `plan/*` branches, no `land`. Replaces D27's 2026-11-12
+  relaxation (meta J240, J290) for this repo. Jake: "put this repo into
+  'many agents on main only, no worktrees, no landing' mode". The
+  pre-push gate runs the same `pnpm check` as CI, so landing's CI wait
+  bought little.

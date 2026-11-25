@@ -24,3 +24,11 @@ Ask A1 (Jake): too many top-level folders; he wants `src/ docs/ project/`.
   until phase 2 folds the two lines into repo-kit's copy (Jake's pick). `assert-store-layout` still sees the global store.
 - The "Ignored build scripts: esbuild" warning was there before: the HEAD config gives it too.
 - Also dropped `scripts/blender/targets.json`: it named a `build.sh` that never existed here.
+
+## Main only, no landing (D29)
+
+- Jake: put this repo into "many agents on main only, no worktrees, no landing" mode. AGENTS.md's two-mode git
+  section (J290) and its landing block became one main-only section; D29 in docs/decisions.md replaces D27's 11-12
+  relaxation. `land.config.json` went: it held only land's defaults, and nothing lands here now.
+- `scripts/land.mjs`, `worktree*.mjs` and their `test/tooling` tests stay: repo-kit stamps them. Dropping them is
+  phase 2, and the mode itself is a meta call (J290) for Jake to make org-wide if he wants.
