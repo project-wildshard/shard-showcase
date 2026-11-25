@@ -65,7 +65,7 @@ jobs:
           path: ~/.cache/npm-bin-deps
           key: npr-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('.bin-deps/package.json', '.bin-deps/pnpm-lock.yaml', '.bin-deps/pnpm-workspace.yaml') }}
       - run: pnpm exec npr install --frozen
-      - run: node kit/scripts/bin-pins.mjs
+      - run: node src/scripts/.kit/bin-pins.mjs
       - name: Prove the installed global store
         run: node src/scripts/.kit/assert-store-layout.mjs
       # The agent hook scripts are shellchecked in pnpm check, at this exact

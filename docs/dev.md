@@ -15,8 +15,8 @@ Run from the repo root.
 - `pnpm test`: every `node:test` file (`src/test/.kit/`, `.githooks/`,
   `.agents/hooks/test/`).
 - `pnpm fix`: the hooks only check; this fixes lint and format.
-- `node kit/scripts/md-wrap.mjs <file>`: rewraps Markdown prose to ~72 columns.
-- `kit/scripts/ask-new.sh "<Jake's words>"`: opens an ask (`docs/tasks/asks/README.md`).
+- `node src/scripts/.kit/md-wrap.mjs <file>`: rewraps Markdown prose to ~72 columns.
+- `src/scripts/.kit/ask-new.sh "<Jake's words>"`: opens an ask (`docs/tasks/asks/README.md`).
 
 ## Layout
 
@@ -25,7 +25,7 @@ The root stays thin: README.md and AGENTS.md (humans only), CLAUDE.md
 .editorconfig, `docs/`, `project/`, `src/` and the dot dirs. Scratch
 goes in `tmp/<task>/` and is deleted when done.
 
-- `kit/scripts/`: repo-kit's tooling (asks, lint, md-wrap), plain JS.
+- `src/scripts/.kit/`: repo-kit's tooling (asks, lint, md-wrap), plain JS.
 - `src/test/.kit/`: tests of repo-kit's scripts (hidden, beside the shard source).
 - `src/`: the shard source, like shard-brasscap's (not yet imported).
 - `docs/`: living docs. `docs/plans/` is the queue, `docs/tasks/asks/`

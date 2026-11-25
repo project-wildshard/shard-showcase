@@ -2,8 +2,8 @@
 // the session brief and the pre-commit hook. Ported from
 // project-wildshard-singleplayer's scripts/asks.mjs.
 //
-//   node kit/scripts/asks.mjs brief   asks still open: expired claims, picks for Jake
-//   node kit/scripts/asks.mjs check   pre-commit: every staged ask file follows the rules
+//   node src/scripts/.kit/asks.mjs brief   asks still open: expired claims, picks for Jake
+//   node src/scripts/.kit/asks.mjs check   pre-commit: every staged ask file follows the rules
 //
 // An ask is a receipt of Jake's words. Follow-up work is a plan row.
 import { spawnSync } from 'node:child_process'
@@ -11,7 +11,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { basename, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
-const ROOT = resolve(import.meta.dirname, '..', '..')
+const ROOT = resolve(import.meta.dirname, '..', '..', '..')
 const ASKS = 'docs/tasks/asks'
 const PLANS = 'docs/plans'
 const LEASE_HOURS = 71 // a claim with no commit touching it for 71 h has expired
@@ -67,7 +67,7 @@ export function targetExists(target, root = ROOT) {
 export function checkAsk(id, text, exists = targetExists) {
   const a = parseAsk(text)
   const out = []
-  if (a.title !== id) out.push(`first line must be "# ${id}" (create asks with kit/scripts/ask-new.sh)`)
+  if (a.title !== id) out.push(`first line must be "# ${id}" (create asks with src/scripts/.kit/ask-new.sh)`)
   if (!a.status) out.push('no **Status:** line')
   if (!a.ask) out.push("no **Ask:** line (Jake's words)")
   if (a.status && a.state === null) {
@@ -135,7 +135,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
   if (mode === 'check') check()
   else if (mode === 'brief') brief()
   else {
-    console.error('usage: node kit/scripts/asks.mjs brief | check')
+    console.error('usage: node src/scripts/.kit/asks.mjs brief | check')
     process.exitCode = 2
   }
 }

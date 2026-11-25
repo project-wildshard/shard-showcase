@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 export function checkBinPins(root = process.cwd()) {
-  const pins = JSON.parse(readFileSync(resolve(root, 'kit/bin-pins.json'), 'utf8'));
+  const pins = JSON.parse(readFileSync(resolve(root, 'src/scripts/.kit/bin-pins.json'), 'utf8'));
   const pkg = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8'));
   const problems = [];
   if (pkg.devDependencies?.['npm-bin-deps'] !== pins.runner) problems.push('npm-bin-deps must match the kit runner pin');

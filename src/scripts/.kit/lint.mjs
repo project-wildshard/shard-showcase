@@ -7,7 +7,7 @@
 // src/ with src's config, everything else with kit's. With no
 // src/.oxlintrc.json it is one plain run.
 //
-//   node kit/scripts/lint.mjs [oxlint flags] [paths...]
+//   node src/scripts/.kit/lint.mjs [oxlint flags] [paths...]
 //
 // Staged paths (the commit lane appends them) go to the run that owns
 // them; with no paths each run lints its whole tree.
