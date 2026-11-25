@@ -1,0 +1,55 @@
+{
+  "scope": "Two independently editable rewards; no actor, equipped or drop state",
+  "e12_reference_blob": "03833f41a2c703599fad5373dc01374fd55436a6",
+  "assets": [
+    {
+      "name": "e11d-foreman-whistle",
+      "bytes": 51108,
+      "triangles": 1220,
+      "dimensions_m": [
+        0.1363,
+        0.0329,
+        0.038
+      ],
+      "sha256": "8bce460baaf4fd596c70c4d34c63b3b7a63f520e319fdd0a7b6a49e6eb923d79"
+    },
+    {
+      "name": "e11d-foreman-hard-hat",
+      "bytes": 94476,
+      "triangles": 3344,
+      "dimensions_m": [
+        0.28,
+        0.347,
+        0.182
+      ],
+      "sha256": "1ad61c514c36931682107707941eedcb919bf312588d55708a1a4ef35a66b29e"
+    }
+  ],
+  "frame_donor_sha256": "3e7e28863742ebcdd2f494d97d98574d263d876dac01f03e21a2b0fd5b4a54c7",
+  "whistle_display_only_scale": 2.75,
+  "whistle_display_edge_margins_m": [
+    0.0715,
+    0.204
+  ],
+  "whistle_frame_forward_gap_m": 0.01375,
+  "loop_open_and_solid_control": true,
+  "under_hat_first_hits_m": [
+    0.146197,
+    0.146197,
+    0.147042,
+    0.147042,
+    0.139375,
+    0.13976
+  ],
+  "suspension_hits_m": [
+    0.087432,
+    0.087432,
+    0.092976,
+    0.092976
+  ],
+  "hat_wear_origin_provisional_blender_m": [
+    0,
+    0,
+    0
+  ]
+}
