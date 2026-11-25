@@ -32,7 +32,7 @@ The contact deck is 1.6 m wide; the rest chord sag is 0.65 m.
 | ---: | ---: | ---: | ---: | ---: |
 | 18 | 17.183 m | 0 ticks | 18 | by 9 s |
 | 27 | 17.107 m | 0 ticks | 27 | by 11 s |
-| 54 | 16.747 m | 1 tick | 54 | by 10 s |
+| 54 | 16.747 m | 1 tick | 54 | by 11 s |
 
 18 preserves all 54 visual planks (three per body) with the
 smallest sag and peak of these three. It takes 319 ticks (5.32 s)

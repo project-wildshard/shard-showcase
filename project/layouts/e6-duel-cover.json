@@ -1,0 +1,87 @@
+{
+  "scope": "Static art meshes with reimported ray proof. No runtime detection, collision or encounter.",
+  "archive": "Raynos/project-wildshard-singleplayer@ce1cf050b3/art/showcase-template/round-5-blockout",
+  "blobs": {
+    "layout.js": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+    "lab.js": "51a3b4bef1f2d4891172164d10893d98d450a3b9",
+    "placement.js": "6a067ec22a8e07f1d99a9d495d23063d2863ab10"
+  },
+  "sourceCounts": {
+    "sightwall": 14,
+    "half": 31,
+    "packs": 12
+  },
+  "sightwall": {
+    "xz": [
+      37,
+      28.62693304105358
+    ],
+    "yaw": -0.5235987755982991,
+    "dimensions_xyz": [
+      12,
+      3,
+      0.6
+    ],
+    "bytes": 192052,
+    "triangles": 2916,
+    "draws": 6,
+    "sha256": "102faeea77538d07423be1a4104c4b9260d39e35a84236157104b11da546db4e"
+  },
+  "half": {
+    "xz": [
+      24.47554083283783,
+      20.41477750540468
+    ],
+    "yaw": 0.03516129780801075,
+    "long_xyz": [
+      5,
+      1.1,
+      0.8
+    ],
+    "return_xyz": [
+      0.8,
+      1.1,
+      3
+    ],
+    "bytes": 78644,
+    "triangles": 1176,
+    "draws": 6,
+    "sha256": "097e0bdae86e1279f6ade60e541f79550038da52b22b971b046d04e2da8cd3e3"
+  },
+  "pack_midpoint_pair_xz": [
+    [
+      44,
+      16.502577388071437
+    ],
+    [
+      30,
+      40.75128869403572
+    ]
+  ],
+  "pack_center_eye_blocked_at_y": [
+    1.7
+  ],
+  "pack_center_eye_clear_at_y": [
+    3.1
+  ],
+  "local_face_samples_each": 37,
+  "cast_eyes_m": {
+    "0.85": [
+      37,
+      37
+    ],
+    "1.7": [
+      37,
+      0
+    ],
+    "3.1": [
+      0,
+      0
+    ]
+  },
+  "face_hit_order": [
+    "tall",
+    "low"
+  ],
+  "return_blocked_rays": 15
+}
