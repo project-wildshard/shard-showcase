@@ -1,0 +1,70 @@
+{
+  "scope": "Explicit local conveyor contact adapter with native player capsule and separate native rigid body trials; no stock conveyor row or live installation.",
+  "engine": "0.1.44",
+  "format": "0.43.0",
+  "clockHz": 60,
+  "lane": -103,
+  "top": 0.5195,
+  "halfW": 0.639,
+  "halfL": 2.059,
+  "crateHalf": 0.244,
+  "summary": [
+    {
+      "belt": {
+        "x": -84,
+        "v": -3
+      },
+      "pace": -2.999999516580232,
+      "cargoPace": -2.999267578125,
+      "exitTick": 42,
+      "jumpNoDrive": true,
+      "offNoDrive": true,
+      "boardNoDrive": true,
+      "maxRelative": 1.1349051969802417,
+      "deltaWith": -6.599146309233035,
+      "deltaAgainst": 0.5991470718719683,
+      "baseWith": -3.5991463073615293,
+      "baseAgainst": 3.599146662836006
+    },
+    {
+      "belt": {
+        "x": -90,
+        "v": 4
+      },
+      "pace": 4.000000146579292,
+      "cargoPace": 4.0008544921875,
+      "exitTick": 31,
+      "jumpNoDrive": true,
+      "offNoDrive": true,
+      "boardNoDrive": true,
+      "maxRelative": 1.1349050462143566,
+      "deltaWith": 7.599146720661842,
+      "deltaAgainst": 0.40085391448936747,
+      "baseWith": 3.599146662836006,
+      "baseAgainst": -3.5991463073615293
+    },
+    {
+      "belt": {
+        "x": -96,
+        "v": -5
+      },
+      "pace": -4.9999993605896975,
+      "cargoPace": -5.0006103515625,
+      "exitTick": 25,
+      "jumpNoDrive": true,
+      "offNoDrive": true,
+      "boardNoDrive": true,
+      "maxRelative": 1.1349052729798927,
+      "deltaWith": -8.599147051443481,
+      "deltaAgainst": -1.400853793876884,
+      "baseWith": -3.5991463073615293,
+      "baseAgainst": 3.599146662836006
+    }
+  ],
+  "nativeReplaySha256": "e6673d2113e0b2aae21423472ca61628109e46d5fdcbee5c7b050674b9b96009",
+  "engineAcceptsProposedRow": false,
+  "source": {
+    "basis": "project/layouts/w6b-conveyor-direction-proof.json",
+    "donorSha256": "1d0d5e0ac6fb0fd201daef538ed3e277824a2a0f6b9677968fe2f8dbb18debdb"
+  }
+}
