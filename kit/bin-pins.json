@@ -1,6 +1,6 @@
 {
   "runner": "2.1.0",
-  "installer": "npm",
+  "installer": "pnpm",
   "tools": {
     "typescript": "7.0.2",
     "oxfmt": "0.74.0",
@@ -8,6 +8,7 @@
   },
   "files": {
     "package.json": "5256b98d6e77328731b282eb71d06358fde7c487d5b788132b3dc0b8f24d8282",
-    "package-lock.json": "69e453e60fc8f51cc385fb873256419fc2f377d69fa31f7ac4dd8c204101e7e0"
+    "pnpm-lock.yaml": "dd39f659c155465a2d95824daf7c9da2a43565ef5d481edf4fb284d20f316545",
+    "pnpm-workspace.yaml": "735b120681d01cdaf189ae2cdedb57e023de7acf3b7f5e1614470326ee901599"
   }
 }

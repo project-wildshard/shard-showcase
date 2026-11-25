@@ -46,5 +46,5 @@
     "oxfmt": "0.74.0",
     "oxlint-tsgolint": "7.0.2004"
   },
-  "binDependenciesInstaller": "npm"
+  "binDependenciesInstaller": "pnpm"
 }

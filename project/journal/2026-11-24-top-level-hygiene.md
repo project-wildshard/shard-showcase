@@ -64,3 +64,11 @@ Ask A1 (Jake): too many top-level folders; he wants `src/ docs/ project/`.
   is back, settings only (no `packages:`): `allowBuilds`, the 80 `ignoredOptionalDependencies`, and the global-store
   pair. `.npmrc` is byte-identical to repo-kit's again. A frozen install still matches the lockfile (pnpm refuses one
   whose settings drift), and the CI cache keys list the file again.
+
+## Bin tools install with pnpm (A7)
+
+- Jake: flip `binDependenciesInstaller` to pnpm. `npr install` rewrote `.bin-deps/`: `pnpm-lock.yaml` and a generated
+  `pnpm-workspace.yaml` (our ignored optionals) replace `package-lock.json`. `kit/bin-pins.json` now pins installer
+  `pnpm` and those three hashes; the CI npr cache key hashes them too. `npr install --frozen` and `pnpm check` pass.
+- `kit/bin-pins.json` and `.bin-deps/` are repo-kit's (K1a: "consumers share the exact committed binary install"),
+  so this repo is off the kit profile until repo-kit moves to pnpm too (phase 2).
