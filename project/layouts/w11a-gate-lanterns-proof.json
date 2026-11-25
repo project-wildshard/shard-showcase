@@ -102,7 +102,7 @@
   },
   "fixture": {
     "type": "spot",
-    "watts_preview": 205,
+    "watts_preview": 420,
     "full_cone_degrees": 62,
     "blend": 0.74
   }

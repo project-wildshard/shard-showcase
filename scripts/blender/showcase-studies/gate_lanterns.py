@@ -131,7 +131,7 @@ for label,x,y,yaw,prefix,beam_name in [
         ray=target-origin
         for d in (scene_fit,body_tree):
             assert d.ray_cast(origin,ray.normalized(),ray.length)[0] is None,(label,idx)
-        lamp=light(label+" downlight "+str(idx+1),"SPOT",G@origin,G@target,205,(1,.61,.29))
+        lamp=light(label+" downlight "+str(idx+1),"SPOT",G@origin,G@target,420,(1,.64,.35))
         lamp.data.spot_size=math.radians(62);lamp.data.spot_blend=.74;lamp.data.shadow_soft_size=.15
         placements.append(dict(pier=pier.name,mount_three_xyz_m=as_three(G@Vector((x0,front+.001,z0))),
             light_three_xyz_m=as_three(G@origin),aim_three_xyz_m=as_three(G@target),
@@ -146,19 +146,23 @@ for o in signs:
     if o not in extra:o.hide_render=True
 receipt={"scope":"Exact art fit and scene-light witness; no native emitters or clock",
          "parity_signature":parity["matched_signature"],"pinned_donors":pins,"gates":proof,
-         "fixture":{"type":"spot","watts_preview":205,"full_cone_degrees":62,"blend":.74}}
+         "fixture":{"type":"spot","watts_preview":420,"full_cone_degrees":62,"blend":.74}}
 (args.out/"w11a-gate-lanterns-proof.json").write_text(json.dumps(receipt,indent=2)+"\n")
 scene_light=bpy.data.worlds.new("W11a evening")
 s.world=scene_light;s.world.use_nodes=True
 ns=s.world.node_tree.nodes
 ns["Background"].inputs["Color"].default_value=(.25,.38,.67,1)
-ns["Background"].inputs["Strength"].default_value=.14
-rim=light("Blue hour rim","SUN",(-78,-25,100),(-65,35,0),.34,(.49,.64,1))
+ns["Background"].inputs["Strength"].default_value=.23
+rim=light("Blue hour rim","SUN",(-78,-25,100),(-65,35,0),.53,(.49,.64,1))
 rim.data.angle=.18
 cd=bpy.data.cameras.new("Town gate eye")
 cam=bpy.data.objects.new(cd.name,cd);s.collection.objects.link(cam);s.camera=cam
 s.render.engine="CYCLES"
-s.cycles.samples=26;s.cycles.use_denoising=False;s.cycles.adaptive_threshold=.072
+s.cycles.samples=72;s.cycles.use_denoising=False;s.cycles.adaptive_threshold=.037
+s.cycles.adaptive_min_samples=22
+s.cycles.sample_clamp_indirect=1.8
+s.cycles.caustics_reflective=False
+s.cycles.caustics_refractive=False
 s.view_settings.view_transform="AgX"
 s.view_settings.look="AgX - Medium High Contrast"
 s.render.resolution_x=1370;s.render.resolution_y=850;s.render.resolution_percentage=100
