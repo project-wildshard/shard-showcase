@@ -44,3 +44,11 @@ boss, ruling 19ad's 500 m cube (interiors by portal, but physically inside the c
 overlapping) and the zone staying a valid shard, 500 × 500 m with a road entrance mid-edge on all
 four sides. The description says it is one zone of a grid joined by roads, so Fable knows why the
 limits exist, and that the roads may just lead off the edge, so it doesn't build the neighbours.
+
+## The brief, cut too
+
+Jake: "the PROMPT.md is also too leading". The brief is now four lines under the paste mark:
+TypeScript + three.js, single-player, mobile first in portrait, done at the Crate Titan on a phone.
+Gone: git, pnpm, Vitest, the asset ban, the enemy cap, the dev menu. The clean-room note (no
+Wildshard repo, sharddev or engine) stays above the paste mark, for whoever runs it, so Fable never
+hears those names.
