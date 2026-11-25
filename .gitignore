@@ -15,8 +15,6 @@ blob-report/
 
 # Build output (wildshard build / pack): the built folder and
 # <slug>.shardfile, as `wildshard new` ignores them. Never commit it.
-public/shardfiles/
-public/assets/*/map/
 # Lifted from singleplayer (P5).
 out/
 tmp/

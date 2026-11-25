@@ -275,5 +275,5 @@
   ],
   // src/scripts and src/test/.kit: repo-kit's stamped copies (checked in repo-kit) and the
   // repo's own tooling, not shard source (A9).
-  "ignorePatterns": ["src/scripts/**", "src/test/.kit/**", "**/*.generated.*", ".tsc-layers/", "dist/", "dist-native/", "ios/", "android/", ".native-build/", "node_modules/", "public/", "progress/", "art/", "sources/", "docs/"]
+  "ignorePatterns": ["src/scripts/**", "src/test/.kit/**", "**/*.generated.*", ".tsc-layers/", "dist/", "dist-native/", "ios/", "android/", ".native-build/", "node_modules/", "src/static/", "progress/", "art/", "sources/", "docs/"]
 }
