@@ -17,10 +17,14 @@
   land in .agents/skills/ (sharddev b6214533), then `pnpm agents:sync`;
   GUIDE.md sits under docs/ so the top level stays lean (A1). Done
   when the skills load and `agent-sync --check` stays green.
-- [ ] **U3 Re-stamp from repo-kit** once its K1-K4 ship. Done when the
+- [x] **U3 Re-stamp from repo-kit** once its K1-K4 ship. Done when the
   stamp changes nothing here, shard-showcase leaves repo-kit's
   `test/tooling/cleanup-coverage-pending.json`, and `pnpm check` is
   green. Then archive this plan.
+  **Done 2026-11-25:** d1400c8 (lean) and the L4 bin-cache re-stamp;
+  repo-kit `kit.mjs plan` is all `same`, the pending list no longer
+  names showcase, `pnpm check` green. The plan stays open for U1, U2,
+  U4.
 - [ ] **U4 Delete CLAUDE.md.** Claude Code ≥ 2.1.277 reads AGENTS.md
   itself (code.claude.com/docs/en/memory); repo-kit's
   `agent-parity.mjs --strict` still calls a missing CLAUDE.md a gap,

@@ -26,3 +26,6 @@ The bins moved to the kit's pnpm profile on npm-bin-deps 2.2.0, with
 overrides into `.bin-deps/`, so we share one cache entry with every repo.
 The re-stamp also brought the kit's newer hook, publish and main-push
 files. The kit plan is all `same`.
+
+U3 in `opus-2026-11-25-sdk-0-5-and-kit` is ticked: the kit plan is all
+`same` after the L4 re-stamp.
