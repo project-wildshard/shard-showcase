@@ -48,6 +48,9 @@
     "npm-bin-deps": "2.1.0"
   },
   "pnpm": {
+    "allowBuilds": {
+      "sharp": false
+    },
     "ignoredOptionalDependencies": [
       "@esbuild/aix-ppc64",
       "@esbuild/android-arm",

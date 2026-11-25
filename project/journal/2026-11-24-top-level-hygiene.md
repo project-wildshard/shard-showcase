@@ -14,3 +14,13 @@ Ask A1 (Jake): too many top-level folders; he wants `src/ docs/ project/`.
   copies in all 12 sibling shards, outside `sync.sh`'s `files/`. Phase 2 (repo-kit `.kit/`, sharddev `public/`) is
   a plan, not done here.
 - `node_modules` had no `@wildshard/sdk` at all before `pnpm install`, so `lint:shards` was failing locally.
+
+## pnpm-workspace.yaml goes
+
+- This repo is one package, so `packages: [.]` did nothing. `allowBuilds` moved to package.json's `pnpm` block: a
+  scratch install of sharp 0.34.5 is silent with it there and warns "Ignored build scripts" without it.
+- The global store settings (J230) went to `.npmrc`. package.json's `pnpm` block ignores `enableGlobalVirtualStore`
+  (a scratch install made a local `.pnpm`). `.npmrc` is a repo-kit file, so sync now reports it locally edited here
+  until phase 2 folds the two lines into repo-kit's copy (Jake's pick). `assert-store-layout` still sees the global store.
+- The "Ignored build scripts: esbuild" warning was there before: the HEAD config gives it too.
+- Also dropped `scripts/blender/targets.json`: it named a `build.sh` that never existed here.
