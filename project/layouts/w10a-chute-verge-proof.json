@@ -1,0 +1,492 @@
+{
+  "scope": "Reusable foliage and placement study; no native additions, colliders, LOD or wind shader.",
+  "reference_receipt": "project/journal/2026-11-24-w10a-paddock-chute.md",
+  "threshold_three_xz_m": [
+    -40,
+    -132
+  ],
+  "exports": {
+    "stubble": {
+      "bytes": 26188,
+      "triangles": 301,
+      "draws": 3,
+      "sha256": "c35b5f5cd27cf38e34f270977dd56f4a76366446c586e216127daccfac1a17db"
+    },
+    "teasel": {
+      "bytes": 80448,
+      "triangles": 1122,
+      "draws": 4,
+      "sha256": "ad5e8e31bc858b634fbb2820d010960c8bcb77f4f894216d9bbac5b2ca3bce28"
+    }
+  },
+  "sampled_reimported_vertices": 69804,
+  "min_lateral_margin_from_lane_m": 0.2533,
+  "min_lateral_margin_from_fence_geometry_m": 0.0883,
+  "min_forward_margin_from_sign_geometry_m": 0.3645,
+  "height_range_m": [
+    -0.0177,
+    0.9445
+  ],
+  "placements": [
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -46.926506,
+        -0.015,
+        -132.57172
+      ],
+      "yaw_radians": 0.164908,
+      "scale": 1.079066
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -46.975013,
+        -0.015,
+        -133.228297
+      ],
+      "yaw_radians": 2.567744,
+      "scale": 0.869566
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -47.142633,
+        -0.015,
+        -134.171252
+      ],
+      "yaw_radians": 2.20871,
+      "scale": 1.014361
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -46.91534,
+        -0.015,
+        -134.999682
+      ],
+      "yaw_radians": -0.71215,
+      "scale": 0.763173
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -47.024017,
+        -0.015,
+        -135.991652
+      ],
+      "yaw_radians": 2.269681,
+      "scale": 0.963346
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -46.886282,
+        -0.015,
+        -136.84259
+      ],
+      "yaw_radians": -1.607106,
+      "scale": 1.0871
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -47.152492,
+        -0.015,
+        -137.527175
+      ],
+      "yaw_radians": 2.601889,
+      "scale": 0.843759
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -46.908238,
+        -0.015,
+        -138.413612
+      ],
+      "yaw_radians": 2.398572,
+      "scale": 0.73309
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -46.877331,
+        -0.015,
+        -139.385744
+      ],
+      "yaw_radians": 0.163308,
+      "scale": 0.936963
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -47.044136,
+        -0.015,
+        -140.117256
+      ],
+      "yaw_radians": 1.961492,
+      "scale": 1.008516
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -47.067002,
+        -0.015,
+        -140.92095
+      ],
+      "yaw_radians": 0.825584,
+      "scale": 1.019832
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -46.943784,
+        -0.015,
+        -141.826929
+      ],
+      "yaw_radians": -2.358973,
+      "scale": 0.992654
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -46.807628,
+        -0.015,
+        -142.722087
+      ],
+      "yaw_radians": -0.543988,
+      "scale": 0.8892
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -46.831693,
+        -0.015,
+        -143.482968
+      ],
+      "yaw_radians": 0.991123,
+      "scale": 0.949622
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -47.204807,
+        -0.015,
+        -144.349767
+      ],
+      "yaw_radians": 1.753069,
+      "scale": 1.053722
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -46.920272,
+        -0.015,
+        -145.36774
+      ],
+      "yaw_radians": -0.707587,
+      "scale": 0.758404
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -47.489077,
+        -0.015,
+        -132.99355
+      ],
+      "yaw_radians": 0.981584,
+      "scale": 0.881536
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -47.756324,
+        -0.015,
+        -134.961172
+      ],
+      "yaw_radians": -2.850304,
+      "scale": 0.827437
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -47.534874,
+        -0.015,
+        -137.073196
+      ],
+      "yaw_radians": 2.604393,
+      "scale": 0.855684
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -47.63839,
+        -0.015,
+        -138.822257
+      ],
+      "yaw_radians": 1.292605,
+      "scale": 0.95654
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -47.922718,
+        -0.015,
+        -140.824214
+      ],
+      "yaw_radians": 1.000572,
+      "scale": 1.087899
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -47.515227,
+        -0.015,
+        -142.903276
+      ],
+      "yaw_radians": -1.474115,
+      "scale": 0.931768
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -47.720447,
+        -0.015,
+        -144.65113
+      ],
+      "yaw_radians": 1.62568,
+      "scale": 0.826714
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.235196,
+        -0.015,
+        -132.563857
+      ],
+      "yaw_radians": -0.891668,
+      "scale": 0.74372
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.213777,
+        -0.015,
+        -133.380794
+      ],
+      "yaw_radians": -1.116937,
+      "scale": 0.960815
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.079358,
+        -0.015,
+        -134.251573
+      ],
+      "yaw_radians": 0.51779,
+      "scale": 0.834367
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.01677,
+        -0.015,
+        -135.16487
+      ],
+      "yaw_radians": 0.352282,
+      "scale": 0.963843
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -32.912284,
+        -0.015,
+        -136.058145
+      ],
+      "yaw_radians": -2.868538,
+      "scale": 0.857614
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.193729,
+        -0.015,
+        -136.649521
+      ],
+      "yaw_radians": -2.705569,
+      "scale": 0.740498
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.216777,
+        -0.015,
+        -137.665375
+      ],
+      "yaw_radians": -2.278374,
+      "scale": 0.768569
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.233976,
+        -0.015,
+        -138.459753
+      ],
+      "yaw_radians": 0.753469,
+      "scale": 1.051053
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -32.808998,
+        -0.015,
+        -139.236595
+      ],
+      "yaw_radians": 0.050879,
+      "scale": 1.092349
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.254061,
+        -0.015,
+        -140.081285
+      ],
+      "yaw_radians": -1.506912,
+      "scale": 0.799779
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.201716,
+        -0.015,
+        -141.170802
+      ],
+      "yaw_radians": 2.748968,
+      "scale": 1.029682
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.26542,
+        -0.015,
+        -141.964351
+      ],
+      "yaw_radians": 1.510243,
+      "scale": 1.064472
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.278858,
+        -0.015,
+        -142.65508
+      ],
+      "yaw_radians": 1.579668,
+      "scale": 0.782983
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.262966,
+        -0.015,
+        -143.475226
+      ],
+      "yaw_radians": -2.998708,
+      "scale": 0.916428
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.217606,
+        -0.015,
+        -144.503344
+      ],
+      "yaw_radians": 0.509158,
+      "scale": 0.788439
+    },
+    {
+      "prototype": "stubble",
+      "world_three_xyz_m": [
+        -33.248851,
+        -0.015,
+        -145.431614
+      ],
+      "yaw_radians": 0.473368,
+      "scale": 0.999847
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -32.31938,
+        -0.015,
+        -132.827801
+      ],
+      "yaw_radians": -2.759226,
+      "scale": 1.085835
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -32.229848,
+        -0.015,
+        -135.055708
+      ],
+      "yaw_radians": -1.470069,
+      "scale": 0.873658
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -32.59095,
+        -0.015,
+        -137.000579
+      ],
+      "yaw_radians": -2.407307,
+      "scale": 1.059994
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -32.278894,
+        -0.015,
+        -138.928341
+      ],
+      "yaw_radians": -1.345976,
+      "scale": 0.95841
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -32.433227,
+        -0.015,
+        -140.795403
+      ],
+      "yaw_radians": 2.220359,
+      "scale": 1.088706
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -32.264991,
+        -0.015,
+        -142.842225
+      ],
+      "yaw_radians": 2.921409,
+      "scale": 0.862257
+    },
+    {
+      "prototype": "teasel",
+      "world_three_xyz_m": [
+        -32.166096,
+        -0.015,
+        -144.734622
+      ],
+      "yaw_radians": 2.697957,
+      "scale": 0.826379
+    }
+  ]
+}
