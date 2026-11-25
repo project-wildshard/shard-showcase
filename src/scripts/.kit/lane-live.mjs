@@ -5,7 +5,7 @@ import { existsSync, lstatSync, readFileSync, readdirSync, readlinkSync, realpat
 import { homedir } from 'node:os';
 import { join, sep } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { activeHoursSince } from '../.agents/hooks/active-hours.mjs';
+import { activeHoursSince } from '../../../.agents/hooks/active-hours.mjs';
 
 const RECEIPTS = join(homedir(), '.cache/wildshard/lane-receipts.log');
 /** @param {string} path @param {string} root */

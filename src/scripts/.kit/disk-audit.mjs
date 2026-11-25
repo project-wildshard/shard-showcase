@@ -10,7 +10,7 @@ for (let index = 0; index < args.length; index += 2) {
   if (args[index] !== '--root' || !args[index + 1]) throw new Error('usage: node scripts/disk-audit.mjs [--root <repo>]...');
   roots.push(resolve(args[index + 1]));
 }
-if (roots.length === 0) roots.push(resolve(import.meta.dirname, '..'));
+if (roots.length === 0) roots.push(resolve(import.meta.dirname, '../../..'));
 for (const root of roots) {
   const rows = leftovers({ root });
   const counts = Object.fromEntries(['ended', 'live', 'unknown'].map(state => [state, rows.filter(row => row.state === state).length]));

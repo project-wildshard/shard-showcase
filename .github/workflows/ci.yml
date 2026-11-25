@@ -67,7 +67,7 @@ jobs:
       - run: pnpm exec npr install --frozen
       - run: node kit/scripts/bin-pins.mjs
       - name: Prove the installed global store
-        run: node scripts/assert-store-layout.mjs
+        run: node src/scripts/.kit/assert-store-layout.mjs
       # The agent hook scripts are shellchecked in pnpm check, at this exact
       # version (.agents/hooks/test/shellcheck.test.mjs refuses any other on CI).
       # MR6: hosted runners are Linux/X64, the Mac mini's VM is Linux/ARM64;

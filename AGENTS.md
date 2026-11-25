@@ -17,7 +17,7 @@ Git hygiene
  - Main only (D29): many agents share one checkout
    (`~/projects/games/wildshard/shard-showcase`) and every commit goes
    straight on `main`. No worktrees, no branches, no landing;
-   `scripts/land.mjs` and `scripts/worktree.mjs` are repo-kit's and
+   `src/scripts/.kit/land.mjs` and `src/scripts/.kit/worktree.mjs` are repo-kit's and
    unused here.
  - Small commits early & often, by pathspec. After each:
    `git pull --rebase origin main`, then a plain `git push origin main`

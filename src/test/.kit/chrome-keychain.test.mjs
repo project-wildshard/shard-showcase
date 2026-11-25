@@ -4,8 +4,8 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'node:test';
-import { KEYCHAIN_ARGS } from '../../../scripts/chromium-keychain.mjs';
-import { keychainProblems } from '../../../scripts/chromium-keychain-check.mjs';
+import { KEYCHAIN_ARGS } from '../../scripts/.kit/chromium-keychain.mjs';
+import { keychainProblems } from '../../scripts/.kit/chromium-keychain-check.mjs';
 
 const paths = execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], {
   encoding: 'utf8', maxBuffer: 32 << 20,
@@ -20,7 +20,7 @@ const files = [...new Set(paths)]
 test('Chromium launch files spread the shared keychain flags', () => {
   assert.deepEqual(KEYCHAIN_ARGS, ['--use-mock-keychain', '--password-store=basic', '--mute-audio']);
   const bare = files.flatMap(({ file, text }) => keychainProblems(text).map(problem => `${file}: ${problem}`));
-  assert.deepEqual(bare, [], 'Import and spread scripts/chromium-keychain.mjs KEYCHAIN_ARGS at every Chromium launch');
+  assert.deepEqual(bare, [], 'Import and spread src/scripts/.kit/chromium-keychain.mjs KEYCHAIN_ARGS at every Chromium launch');
 });
 
 test('raw executable aliases and every child-process API are checked', () => {

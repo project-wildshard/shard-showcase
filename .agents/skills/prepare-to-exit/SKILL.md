@@ -98,7 +98,7 @@ in order; don't paraphrase or shortcut.
    paths (`rm -rf ./tmp/<task>`, your session scratchpad's big files);
    keep only small text the report links to. Never rename aside
    instead of deleting. Make scratch with
-   `node scripts/scratch-dir.mjs <task> "<purpose>"` (it writes
+   `node src/scripts/.kit/scratch-dir.mjs <task> "<purpose>"` (it writes
    `tmp/<task>/.owner`); a folder you must keep gets a one-line
    `.keep` saying why. The SessionEnd hook (`scratch-end.mjs`)
    removes any folder still owned by this session that has no

@@ -17,7 +17,7 @@ import { homedir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-const ROOT = resolve(import.meta.dirname, '..');
+const ROOT = resolve(import.meta.dirname, '../../..');
 const TASK = /^[A-Za-z0-9_-][A-Za-z0-9._-]*$/u;
 
 /** Why a task name is refused, or null when it is a plain folder name.

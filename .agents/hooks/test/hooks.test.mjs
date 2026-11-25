@@ -211,8 +211,8 @@ describe('session-brief.sh: same brief from both tools', () => {
     assert.equal(git(root, ['worktree', 'add', '-q', '-b', 'plan/foo', '.worktrees/foo']).status, 0);
     assert.match(mainOnly(root), /!! worktree .*\.worktrees\/foo/);
     assert.match(mainOnly(root), /!! branch plan\/foo/);
-    mkdirSync(join(root, 'scripts'));
-    writeFileSync(join(root, 'scripts', 'worktree.mjs'), '');
+    mkdirSync(join(root, 'src', 'scripts', '.kit'), { recursive: true });
+    writeFileSync(join(root, 'src', 'scripts', '.kit', 'worktree.mjs'), '');
     const allowed = mainOnly(root);
     assert.match(allowed, /plan worktrees \(1\): \.worktrees\/foo/);
     assert.match(allowed, /\(clean: main only\)/);

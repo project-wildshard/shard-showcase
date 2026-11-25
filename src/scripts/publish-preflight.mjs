@@ -12,7 +12,7 @@
 // installed SDK's `@wildshard/format`. A newer format minor than the cook reads refuses, naming the engine the SDK is
 // built on; a patch is compatible. When the channel's engine or format can't be read, it warns and goes on. With
 // PUBLISH_REHEARSE=true a refusal is a warning: a rehearsal never uploads.
-import { agentFetch as fetch } from './wildshard-agent-requests.mjs';
+import { agentFetch as fetch } from './.kit/wildshard-agent-requests.mjs';
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join } from 'node:path';

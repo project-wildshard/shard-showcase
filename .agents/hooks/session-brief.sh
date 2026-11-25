@@ -85,7 +85,7 @@ else
   show "latest journal" 2 "(none)" ""
 fi
 
-# A repo with the plan-worktree tool (scripts/worktree.mjs; engine since
+# A repo with the plan-worktree tool (src/scripts/.kit/worktree.mjs; engine since
 # J240, the rest at WORKTREE-LAND-STANDARD WL4) also allows
 # .worktrees/<slug> on plan/<slug>; any other repo stays main only.
 release_wt='/\.worktrees/release-(dryrun-)?v[0-9]+\.[0-9]+\.[0-9]+ +[0-9a-f]+ \[release/'
@@ -94,7 +94,7 @@ release_branch='^branch release/(dryrun-)?v[0-9]+\.[0-9]+\.[0-9]+$'
 plan_branch="^branch plan/[a-z0-9][a-z0-9._-]*$|$release_branch"
 release_remote='^remote [^/]+/release/(dryrun-)?v[0-9]+\.[0-9]+\.[0-9]+$'
 plan_remote="^remote [^/]+/plan/[a-z0-9][a-z0-9._-]*$|$release_remote"
-if [ -f scripts/worktree.mjs ]; then
+if [ -f src/scripts/.kit/worktree.mjs ]; then
   echo "-- main only, plus plan worktrees: .worktrees/<slug> on plan/<slug> (D27, J221, J240) --"
   wts="$(git worktree list 2>/dev/null | tail -n +2 | grep -E "$plan_wt" | sed -E 's#^.*/(\.worktrees/[^ ]+) .*#\1#' || true)"
   if [ -n "$wts" ]; then
@@ -164,8 +164,8 @@ else
 fi
 
 # -- J358 leftovers (report-only; a human audit decides removal) --
-if [ -f scripts/leftovers-report.mjs ]; then
-  show "left lying around (manual audit only)" 4 "  (leftovers report unavailable)" "$(node scripts/leftovers-report.mjs 2>/dev/null)"
+if [ -f src/scripts/.kit/leftovers-report.mjs ]; then
+  show "left lying around (manual audit only)" 4 "  (leftovers report unavailable)" "$(node src/scripts/.kit/leftovers-report.mjs 2>/dev/null)"
 fi
 
 show "uncommitted in this checkout (may be another agent's: don't sweep it)" 2 "(clean)" "$(git status --short 2>/dev/null | sed 's/^/  /')"

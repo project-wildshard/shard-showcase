@@ -3,7 +3,7 @@
 Every Chromium launch passes `--use-mock-keychain`,
 `--password-store=basic` and `--mute-audio` (Jake, 2026-11-13: "headless
 chromium with volume off"). WebKit has no mute flag. Import `KEYCHAIN_ARGS` from
-`scripts/chromium-keychain.mjs` and spread it into Playwright launch,
+`src/scripts/.kit/chromium-keychain.mjs` and spread it into Playwright launch,
 persistent-context and launch-server arguments, and raw executable
 arguments. Retain Playwright default arguments. Never use
 `ignoreDefaultArgs`.
@@ -25,7 +25,7 @@ CI runs it. Keep this command in the consumer check script too.
 
 These are plain Node tooling files outside the typed app project. Register
 their exact paths in that project's existing plain-script lint scope:
-`scripts/chromium-keychain*` and
+`src/scripts/.kit/chromium-keychain*` and
 `src/test/.kit/chrome-keychain.test.mjs`. Syntax and the source-inventory
 test run directly with Node; app lint rules remain unchanged.
 

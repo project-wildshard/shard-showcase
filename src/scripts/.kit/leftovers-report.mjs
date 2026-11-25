@@ -8,7 +8,7 @@ import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { laneLive } from './lane-live.mjs';
 
-const ROOT = resolve(import.meta.dirname, '..');
+const ROOT = resolve(import.meta.dirname, '../../..');
 const RECEIPTS = join(homedir(), '.cache/wildshard/lane-receipts.log');
 
 /** @param {string} path */

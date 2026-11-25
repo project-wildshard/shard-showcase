@@ -35,7 +35,7 @@ const inSrc = (path) => path === 'src' || path.startsWith('src/');
 // The kit's own trees are checked by their own suites, never by this lint
 // (a config's ignorePatterns resolve from kit/, so they can't say this). A
 // shard's src/ is linted by `wildshard check` unless src/ has its own config.
-const KIT_OWNED = ['.githooks/**', '.agents/**', 'scripts/**', ...(hasSrc ? [] : ['src/**'])];
+const KIT_OWNED = ['.githooks/**', '.agents/**', 'src/scripts/**', ...(hasSrc ? [] : ['src/**'])];
 const ignores = KIT_OWNED.flatMap((pattern) => ['--ignore-pattern', pattern]);
 const split = [...flags, ...(flags.includes('--no-error-on-unmatched-pattern') ? [] : ['--no-error-on-unmatched-pattern']), ...ignores];
 const runs = !hasSrc
