@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { test } from 'node:test';
-import { brief, leftovers } from '../../../scripts/leftovers-report.mjs';
+import { brief, leftovers } from '../../scripts/leftovers-report.mjs';
 
 mkdirSync('tmp/codex-netlag', { recursive: true });
 

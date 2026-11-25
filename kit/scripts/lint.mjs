@@ -32,7 +32,12 @@ const hasSrc = existsSync(SRC);
 const inSrc = (path) => path === 'src' || path.startsWith('src/');
 // Split, either run may own no files (a kit/ of ignored scripts, or only
 // ignored paths staged): not an error.
-const split = flags.includes('--no-error-on-unmatched-pattern') ? flags : [...flags, '--no-error-on-unmatched-pattern'];
+// The kit's own trees are checked by their own suites, never by this lint
+// (a config's ignorePatterns resolve from kit/, so they can't say this). A
+// shard's src/ is linted by `wildshard check` unless src/ has its own config.
+const KIT_OWNED = ['.githooks/**', '.agents/**', 'scripts/**', 'kit/test/**', ...(hasSrc ? [] : ['src/**'])];
+const ignores = KIT_OWNED.flatMap((pattern) => ['--ignore-pattern', pattern]);
+const split = [...flags, ...(flags.includes('--no-error-on-unmatched-pattern') ? [] : ['--no-error-on-unmatched-pattern']), ...ignores];
 const runs = !hasSrc
   ? [[KIT, paths]]
   : paths.length === 0

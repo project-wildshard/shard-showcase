@@ -1,7 +1,7 @@
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { after } from 'node:test';
-import { ownerRecord } from '../../../scripts/scratch-dir.mjs';
+import { ownerRecord } from '../../scripts/scratch-dir.mjs';
 
 const task = process.env.WS_LANE_NAME ?? 'codex-netlag';
 const parent = resolve('tmp', task);

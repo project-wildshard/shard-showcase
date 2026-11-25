@@ -10,7 +10,7 @@ Living doc: **how** this repo is built. What it does and why is
 Only the scaffold exists:
 
 - `kit/scripts/`: repo-kit's tooling (asks, lint, md-wrap), plain JS.
-- `src/test/.kit/`: tests of repo-kit's scripts.
+- `kit/test/`: tests of repo-kit's scripts.
 
 ## Dependencies
 

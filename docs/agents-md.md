@@ -32,7 +32,7 @@ rewritten whole files; the marker keeps Jake's words his own.
 ## What the check enforces
 
 The lint, on every commit (staged files), every push (each pushed
-tip), in `pnpm test:hooks` on CI (this repo's own files) and through
+tip), in `pnpm test` (pre-push and CI) (this repo's own files) and through
 `node .githooks/agents-md.mjs lint`:
 
 - `AGENTS.md` exists and holds the marker line exactly once, verbatim;

@@ -84,4 +84,3 @@ jobs:
           tar -xJf "$RUNNER_TEMP/shellcheck.tar.xz" -C "$RUNNER_TEMP"
           echo "$RUNNER_TEMP/shellcheck-v0.11.0" >> "$GITHUB_PATH"
       - run: pnpm check
-      - run: pnpm test:hooks

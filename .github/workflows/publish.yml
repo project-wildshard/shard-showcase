@@ -129,8 +129,7 @@ jobs:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
           PUBLISH_REHEARSE: ${{ inputs.rehearse }}
         run: node scripts/publish-preflight.mjs "${{ inputs.channel }}"
-      # As each shard repo's ci.yml does: build:shards first (its
-      # publish-public step lays out public/assets), then check.
+      # Build as each shard repo does (`wildshard build .`), then check.
       - name: Build, and name the product
         id: product
         run: node scripts/publish-shard.mjs build "${{ inputs.slug }}"

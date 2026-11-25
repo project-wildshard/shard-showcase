@@ -8,10 +8,14 @@ here; what the repo does is `docs/prd.md`, how it is built `docs/design.md`.
 Run from the repo root.
 
 - `pnpm install`: installs deps and points `core.hooksPath` at `.githooks/`.
-- `pnpm check`: lint + format:check + asks + agent checks + the `src/test/.kit/` tests. The pre-push hook runs it.
-- `pnpm test:hooks`: the `.githooks/` suite (CI, and pre-commit when hooks change).
-- `pnpm lint:fix` / `pnpm format`: the hooks only check; these fix.
-- `pnpm md:wrap`: rewraps Markdown prose to ~72 columns.
+- `pnpm dev` / `pnpm build`: `wildshard dev .` / `wildshard build .` on the shard
+  source in `src/` (once it exists).
+- `pnpm check`: the one gate (pre-push and CI): lint, format:check, test,
+  then the kit and agent checks.
+- `pnpm test`: every `node:test` file (`kit/test/`, `.githooks/`,
+  `.agents/hooks/test/`).
+- `pnpm fix`: the hooks only check; this fixes lint and format.
+- `node kit/scripts/md-wrap.mjs <file>`: rewraps Markdown prose to ~72 columns.
 - `kit/scripts/ask-new.sh "<Jake's words>"`: opens an ask (`docs/tasks/asks/README.md`).
 
 ## Layout
@@ -22,7 +26,8 @@ The root stays thin: README.md and AGENTS.md (humans only), CLAUDE.md
 goes in `tmp/<task>/` and is deleted when done.
 
 - `kit/scripts/`: repo-kit's tooling (asks, lint, md-wrap), plain JS.
-- `src/test/.kit/`: tests of repo-kit's scripts.
+- `kit/test/`: tests of repo-kit's scripts.
+- `src/`: the shard source, like shard-brasscap's (not yet imported).
 - `docs/`: living docs. `docs/plans/` is the queue, `docs/tasks/asks/`
   the receipts.
 - `project/`: history. `journal/`, `origins/` (the meta-repo plans this

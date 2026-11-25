@@ -18,7 +18,7 @@ Connections must belong to a safely launched Chromium process. When the
 launcher lives in another file, verify `Browser.getBrowserCommandLine`
 against `KEYCHAIN_ARGS` before using the connected browser.
 
-Run `node --test src/test/.kit/chrome-keychain.test.mjs`. The dependency-free
+Run `node --test kit/test/chrome-keychain.test.mjs`. The dependency-free
 source guard inspects each launch and child-process API, including
 executable aliases, raw paths, namespace and bracket calls. The template
 CI runs it. Keep this command in the consumer check script too.
@@ -26,7 +26,7 @@ CI runs it. Keep this command in the consumer check script too.
 These are plain Node tooling files outside the typed app project. Register
 their exact paths in that project's existing plain-script lint scope:
 `scripts/chromium-keychain*` and
-`src/test/.kit/chrome-keychain.test.mjs`. Syntax and the source-inventory
+`kit/test/chrome-keychain.test.mjs`. Syntax and the source-inventory
 test run directly with Node; app lint rules remain unchanged.
 
 K1 carries this document, both helpers, the declaration, the check and its
