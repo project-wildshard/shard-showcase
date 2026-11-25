@@ -1,0 +1,22 @@
+{
+  "crate": {
+    "bytes": 158956,
+    "triangles": 2782,
+    "primitives": 6,
+    "sha256": "7673f73baa03ed9e860cc9d5e415bfcc3e285fa6b54c412de9a9478f1ad21456"
+  },
+  "stock": {
+    "bytes": 10836,
+    "triangles": 160,
+    "primitives": 3,
+    "sha256": "1b21334db04e53f0b05c7c59d84fa05de2e2c89d5a9158690db3b217618ce295"
+  },
+  "wellClearRays": 50,
+  "wellFloorM": 0.346,
+  "nominalOrigin": "ground under crate center",
+  "baseSizeXZMetres": [
+    1.272,
+    0.741
+  ],
+  "visualsOnly": true
+}
