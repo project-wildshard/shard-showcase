@@ -169,3 +169,5 @@ assert.ok(ids.has("nov25-w4a-native-grate"));
 assert.ok(ids.has("nov24-w4a-plate-gate"));
 assert.ok(ids.has("nov25-w11a-gate-lanterns"));
 assert.ok(ids.has("nov25-w0b-north-west-gates"));
+assert.ok(ids.has("nov25-e1d-scrip-opening"));
+assert.ok(ids.has("nov24-east-payout-chest"));
