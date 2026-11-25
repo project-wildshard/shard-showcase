@@ -1,0 +1,70 @@
+{
+  "scope": "Static kit; no encounter, collider, actor, west route, or native placement.",
+  "sources": {
+    "archiveCommit": "ce1cf050b36fa236155ac26d43e721b9012c49df",
+    "layoutBlob": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+    "labBlob": "51a3b4bef1f2d4891172164d10893d98d450a3b9",
+    "e07PortraitBlob": "4103843a6c28b0ddb88b4969056a98c09dc4718f"
+  },
+  "placement": {
+    "basis": "Round 5 lab disc and gaps. Pillar locations are new candidates; stacked pallet GLB only appears in renders.",
+    "localForward": "Blender +Y north; Three −Z north.",
+    "plan": "docs/plans/kitchen-sink-v2/slices/E8b-big-pallet.md"
+  },
+  "blender": {
+    "sourceCenterThree": [
+      96,
+      0,
+      -206
+    ],
+    "archivedFloorRadiusM": 12,
+    "outerWallRadiusM": 14,
+    "gapAngleRads": 0.5,
+    "nominalInnerGapM": 5.93769502210855,
+    "clearLaneWidthTestedM": 5.6,
+    "clearLaneRays": 342,
+    "crossWallControls": 6,
+    "flatFloorProbes": 63,
+    "pillarHeightM": 2.9,
+    "pillarXs": [
+      -6.8,
+      6.8
+    ],
+    "pillarThreeZOffsets": [
+      -0.6,
+      0.6
+    ],
+    "bytes": 330292,
+    "triangles": 10488,
+    "drawPrimitives": 14,
+    "boundsBlender": [
+      [
+        -14,
+        -13.564773559570312,
+        0
+      ],
+      [
+        14,
+        13.564773559570312,
+        2.8999998569488525
+      ]
+    ],
+    "sha256": "37816bad3b38f8b8d72b8fe87af478488ee1243c9f6cfed9b92f5d7336ce799f"
+  },
+  "three": {
+    "center": [
+      96,
+      0,
+      -206
+    ],
+    "cleared": 342,
+    "arrivalWidthAt75cmM": [
+      5.937694972753524,
+      5.937694972753524
+    ],
+    "drawPrimitives": 14,
+    "triangles": 10488,
+    "bytes": 330292,
+    "sha256": "37816bad3b38f8b8d72b8fe87af478488ee1243c9f6cfed9b92f5d7336ce799f"
+  }
+}
