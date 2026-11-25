@@ -1,0 +1,198 @@
+{
+  "engine": "0.1.44",
+  "format": "0.43.0",
+  "clockHz": 60,
+  "padTop": 0.431,
+  "target": {
+    "x": -121,
+    "y": 6,
+    "z": -103,
+    "halfWidth": 2,
+    "halfDepth": 4
+  },
+  "staticFixture": true,
+  "slice": "W6b",
+  "catalogue_id": "WSC-PLAN-007",
+  "casing_sha256": "4ae1b0e5df65cc5d56471b0bf2abd3b72b6a04d759f0418594a85482189d02d5",
+  "assets": {
+    "w6b-jump-pad-vector": {
+      "bytes": 7100,
+      "triangles": 84,
+      "sha256": "641ba01cc4957041e40527487a96f4845d66278150d0e26770f17d84eeed0da1"
+    },
+    "w6b-landing-index": {
+      "bytes": 37804,
+      "triangles": 536,
+      "sha256": "e01b63b0514f0b5bc51a0d665a7fa2d6e683486091bee3a8fa6992ab6928450c"
+    }
+  },
+  "results": [
+    {
+      "padX": -104,
+      "impulse": [
+        -61,
+        40,
+        0
+      ],
+      "contactConsumed": {
+        "reair": 0,
+        "settle": {
+          "tick": 112,
+          "feet": [
+            -120.20200158216207,
+            6.019919576290704,
+            -102.99965958749382
+          ],
+          "ground": true,
+          "activeGround": "ledge"
+        }
+      },
+      "start": {
+        "tick": 0,
+        "feet": [
+          -104,
+          0.4509999853670597,
+          -102.99998327777757
+        ],
+        "ground": true,
+        "activeGround": null
+      },
+      "first": {
+        "tick": 40,
+        "feet": [
+          -120.2019904255867,
+          6.064144862035289,
+          -102.99970638672357
+        ],
+        "ground": true,
+        "activeGround": "ledge"
+      },
+      "settle": {
+        "tick": 112,
+        "feet": [
+          -121.88930928867515,
+          6.019729063584236,
+          -102.99968238356544
+        ],
+        "ground": true,
+        "activeGround": "ledge"
+      },
+      "apex": 7.493183029733598,
+      "reair": 27
+    },
+    {
+      "padX": -110,
+      "impulse": [
+        -39,
+        40,
+        0
+      ],
+      "contactConsumed": {
+        "reair": 0,
+        "settle": {
+          "tick": 112,
+          "feet": [
+            -120.3585963584647,
+            6.020099999550439,
+            -102.99962741949295
+          ],
+          "ground": true,
+          "activeGround": "ledge"
+        }
+      },
+      "start": {
+        "tick": 0,
+        "feet": [
+          -110,
+          0.4509999853670597,
+          -102.99998327777757
+        ],
+        "ground": true,
+        "activeGround": null
+      },
+      "first": {
+        "tick": 40,
+        "feet": [
+          -120.35864961892366,
+          6.064144862035289,
+          -102.99970638672357
+        ],
+        "ground": true,
+        "activeGround": "ledge"
+      },
+      "settle": {
+        "tick": 112,
+        "feet": [
+          -121.42605074007186,
+          6.020033838394738,
+          -102.99968289546803
+        ],
+        "ground": true,
+        "activeGround": "ledge"
+      },
+      "apex": 7.493183029733598,
+      "reair": 27
+    },
+    {
+      "padX": -116,
+      "impulse": [
+        -16,
+        40,
+        0
+      ],
+      "contactConsumed": {
+        "reair": 0,
+        "settle": {
+          "tick": 112,
+          "feet": [
+            -120.24970016002368,
+            6.0196608188562095,
+            -102.9996856211607
+          ],
+          "ground": true,
+          "activeGround": "ledge"
+        }
+      },
+      "start": {
+        "tick": 0,
+        "feet": [
+          -116,
+          0.4509999853670597,
+          -102.99998327777757
+        ],
+        "ground": true,
+        "activeGround": null
+      },
+      "first": {
+        "tick": 40,
+        "feet": [
+          -120.24970244802535,
+          6.064144862035289,
+          -102.99970638672357
+        ],
+        "ground": true,
+        "activeGround": "ledge"
+      },
+      "settle": {
+        "tick": 112,
+        "feet": [
+          -120.68276082728113,
+          6.019859849620843,
+          -102.99968656539419
+        ],
+        "ground": true,
+        "activeGround": "ledge"
+      },
+      "apex": 7.493183029733598,
+      "reair": 27
+    }
+  ],
+  "decorative_samples": 1764,
+  "pad_minimum_surface_offset_m": 0.0025,
+  "pad_maximum_surface_offset_m": 0.0025,
+  "landing_extents_m": [
+    1.4500000476837158,
+    2.680000066757202
+  ],
+  "format_launch_row": false
+}
