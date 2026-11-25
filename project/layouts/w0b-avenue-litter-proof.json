@@ -1,0 +1,32 @@
+{
+  "paving_sha256": "049c6b7e91fa8d05a84178d3280eee72c4221728e535b806b5b4434509936739",
+  "scope": "optional avenue-edge visual overlays, fit to one exact 4.2 m x 7.2 m donor at identity",
+  "center_clear_width": 2.58546662868243,
+  "checks_per_leaf": 25,
+  "variants": [
+    {
+      "asset": "w0b-avenue-litter-windrow.glb",
+      "sha256": "425f16f0df6a1acdb5995da88a73172d547210e0d06960345f6753d82ed69ed3",
+      "size": 43472,
+      "count": 78,
+      "triangles": 936,
+      "nearest_center_x": 1.3170896021998393,
+      "clearance_m": [
+        0.001888017753050683,
+        0.01872281153669491
+      ]
+    },
+    {
+      "asset": "w0b-avenue-litter-drift.glb",
+      "sha256": "9b1735ae3007dbfb6b315dddd9a71f06d4c54acf55ddaba7fe2f88ccfbfc98ec",
+      "size": 23480,
+      "count": 41,
+      "triangles": 492,
+      "nearest_center_x": 1.292733314341215,
+      "clearance_m": [
+        0.0018992354649633564,
+        0.019283625960133412
+      ]
+    }
+  ]
+}
