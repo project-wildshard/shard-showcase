@@ -1,0 +1,415 @@
+{
+  "engine": "0.1.44",
+  "format": "0.43.0",
+  "geometrySha256": "e4810042b6f29fe793078a51bf2c33a10b7b606e7ed278b08e9182427d31bb5d",
+  "colliderMeshes": 13,
+  "triangles": 5844,
+  "terrain": "bounded reimport geometry, stock capsule; no synthetic support or teleports",
+  "fixtures": [
+    {
+      "id": "sword-1",
+      "anchor": [
+        -30,
+        0.012,
+        86
+      ],
+      "at": [
+        -30,
+        1.572,
+        85.765
+      ]
+    },
+    {
+      "id": "sword-2",
+      "anchor": [
+        -24,
+        0.028,
+        86
+      ],
+      "at": [
+        -24,
+        1.588,
+        85.765
+      ]
+    },
+    {
+      "id": "sword-3",
+      "anchor": [
+        -18,
+        0.012,
+        86
+      ],
+      "at": [
+        -18,
+        1.572,
+        85.765
+      ]
+    },
+    {
+      "id": "spear-1",
+      "anchor": [
+        -30,
+        0.012,
+        104
+      ],
+      "at": [
+        -30,
+        2.012,
+        103.8
+      ]
+    },
+    {
+      "id": "spear-2",
+      "anchor": [
+        -24,
+        0.028,
+        104
+      ],
+      "at": [
+        -24,
+        2.028,
+        103.8
+      ]
+    },
+    {
+      "id": "spear-3",
+      "anchor": [
+        -18,
+        0.012,
+        104
+      ],
+      "at": [
+        -18,
+        2.012,
+        103.8
+      ]
+    }
+  ],
+  "repeatExactly": true,
+  "negativeControls": [
+    {
+      "name": "sword-1",
+      "kind": "off-axis",
+      "slot": "sword",
+      "gained": 0,
+      "orderedFlags": [],
+      "swingTick": 156,
+      "landingTick": null,
+      "origin": [
+        -31.047699554839998,
+        0.03209655591490446,
+        84.55612834163388
+      ],
+      "aim": [
+        -27.4,
+        1.572,
+        85.765
+      ]
+    },
+    {
+      "name": "sword-1",
+      "kind": "wrong weapon",
+      "slot": "spear",
+      "gained": 0,
+      "orderedFlags": [],
+      "swingTick": 210,
+      "landingTick": null,
+      "origin": [
+        -31.047699561027855,
+        0.032093059504404664,
+        84.55612836901994
+      ],
+      "aim": [
+        -30,
+        1.572,
+        85.765
+      ]
+    },
+    {
+      "name": "sword-1",
+      "kind": "duplicate",
+      "slot": "sword",
+      "gained": 0,
+      "orderedFlags": [
+        "yard.hit.sword-1"
+      ],
+      "swingTick": 318,
+      "landingTick": null,
+      "origin": [
+        -31.047699561027855,
+        0.03209304832853377,
+        84.55612836901994
+      ],
+      "aim": [
+        -30,
+        1.572,
+        85.765
+      ]
+    },
+    {
+      "name": "spear-1",
+      "kind": "outside bore",
+      "slot": "spear",
+      "gained": 0,
+      "orderedFlags": [
+        "yard.hit.sword-1",
+        "yard.hit.sword-2",
+        "yard.hit.sword-3"
+      ],
+      "swingTick": 1229,
+      "landingTick": null,
+      "origin": [
+        -29.778475896164828,
+        0.0320955138959107,
+        101.82464177911568
+      ],
+      "aim": [
+        -29.42,
+        2.012,
+        103.8
+      ]
+    }
+  ],
+  "started": 55,
+  "finished": 1381,
+  "routeMetres": 64.7914979484997,
+  "airTicks": 0,
+  "attempts": [
+    {
+      "name": "sword-1",
+      "kind": "center",
+      "slot": "sword",
+      "gained": 1,
+      "orderedFlags": [
+        "yard.hit.sword-1"
+      ],
+      "swingTick": 156,
+      "landingTick": 165,
+      "origin": [
+        -31.047699554839998,
+        0.03209655591490446,
+        84.55612834163388
+      ],
+      "aim": [
+        -30,
+        1.572,
+        85.765
+      ]
+    },
+    {
+      "name": "sword-2",
+      "kind": "center",
+      "slot": "sword",
+      "gained": 1,
+      "orderedFlags": [
+        "yard.hit.sword-1",
+        "yard.hit.sword-2"
+      ],
+      "swingTick": 365,
+      "landingTick": 374,
+      "origin": [
+        -23.83295345847682,
+        0.04809998551354511,
+        84.38329914802604
+      ],
+      "aim": [
+        -24,
+        1.588,
+        85.765
+      ]
+    },
+    {
+      "name": "sword-3",
+      "kind": "center",
+      "slot": "sword",
+      "gained": 1,
+      "orderedFlags": [
+        "yard.hit.sword-1",
+        "yard.hit.sword-2",
+        "yard.hit.sword-3"
+      ],
+      "swingTick": 490,
+      "landingTick": 499,
+      "origin": [
+        -19.17482675938127,
+        0.03209525879356079,
+        84.34323858336275
+      ],
+      "aim": [
+        -18,
+        1.572,
+        85.765
+      ]
+    },
+    {
+      "name": "spear-1",
+      "kind": "center",
+      "slot": "spear",
+      "gained": 1,
+      "orderedFlags": [
+        "yard.hit.sword-1",
+        "yard.hit.sword-2",
+        "yard.hit.sword-3",
+        "yard.hit.spear-1"
+      ],
+      "swingTick": 1067,
+      "landingTick": 1079,
+      "origin": [
+        -29.778772754477615,
+        0.03209297476860229,
+        101.82429698878776
+      ],
+      "aim": [
+        -30,
+        2.012,
+        103.8
+      ]
+    },
+    {
+      "name": "spear-2",
+      "kind": "center",
+      "slot": "spear",
+      "gained": 1,
+      "orderedFlags": [
+        "yard.hit.sword-1",
+        "yard.hit.sword-2",
+        "yard.hit.sword-3",
+        "yard.hit.spear-1",
+        "yard.hit.spear-2"
+      ],
+      "swingTick": 1212,
+      "landingTick": 1224,
+      "origin": [
+        -23.76456045363979,
+        0.047900952224154025,
+        101.84075493983808
+      ],
+      "aim": [
+        -24,
+        2.028,
+        103.8
+      ]
+    },
+    {
+      "name": "spear-3",
+      "kind": "center",
+      "slot": "spear",
+      "gained": 1,
+      "orderedFlags": [
+        "yard.hit.sword-1",
+        "yard.hit.sword-2",
+        "yard.hit.sword-3",
+        "yard.hit.spear-1",
+        "yard.hit.spear-2",
+        "yard.hit.spear-3"
+      ],
+      "swingTick": 1356,
+      "landingTick": 1368,
+      "origin": [
+        -17.816255105281815,
+        0.03209372700075619,
+        101.83998401915076
+      ],
+      "aim": [
+        -18,
+        2.012,
+        103.8
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "id": "sword-1",
+      "feet": [
+        -31.037168758064126,
+        0.03199887459585443,
+        84.5095195890126
+      ],
+      "grounded": true
+    },
+    {
+      "id": "sword-2",
+      "feet": [
+        -23.87953955251061,
+        0.0478755631246604,
+        84.37262781527737
+      ],
+      "grounded": true
+    },
+    {
+      "id": "sword-3",
+      "feet": [
+        -19.222608087409295,
+        0.031999005504883826,
+        84.3436462967468
+      ],
+      "grounded": true
+    },
+    {
+      "id": "spear-1",
+      "feet": [
+        -29.826433002725118,
+        0.03199831388145685,
+        101.82768687791095
+      ],
+      "grounded": true
+    },
+    {
+      "id": "spear-2",
+      "feet": [
+        -23.811813712002987,
+        0.047502268955111504,
+        101.84048807782246
+      ],
+      "grounded": true
+    },
+    {
+      "id": "spear-3",
+      "feet": [
+        -17.86403861832754,
+        0.03199899671552703,
+        101.83998292167901
+      ],
+      "grounded": true
+    }
+  ],
+  "clockHz": 60,
+  "scriptedSeconds": 22.1,
+  "geometrySource": [
+    "b492323858d35c975e9cf6c283401bda2028a085bf84b4729d387a7d8864122f",
+    3025
+  ],
+  "sight": [
+    {
+      "id": "sword-1",
+      "environment_blocked": false,
+      "fixture_intercept": true
+    },
+    {
+      "id": "sword-2",
+      "environment_blocked": false,
+      "fixture_intercept": true
+    },
+    {
+      "id": "sword-3",
+      "environment_blocked": false,
+      "fixture_intercept": true
+    },
+    {
+      "id": "spear-1",
+      "environment_blocked": false,
+      "fixture_intercept": false
+    },
+    {
+      "id": "spear-2",
+      "environment_blocked": false,
+      "fixture_intercept": false
+    },
+    {
+      "id": "spear-3",
+      "environment_blocked": false,
+      "fixture_intercept": false
+    }
+  ],
+  "scope": "Bench only; no target actor, equipment loan, scoring, persistent PB, held models, client or live shard install."
+}
