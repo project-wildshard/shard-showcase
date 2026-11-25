@@ -1,0 +1,53 @@
+{
+  "scope": "Blender visual fit only; nominal placement, no portal traversal or live collisions",
+  "reference_floor_three_m": [
+    166,
+    -38,
+    -83
+  ],
+  "world_bounds_xyz_m": [
+    [
+      159.96,
+      -38.302,
+      -88.745
+    ],
+    [
+      172.04,
+      -33.065,
+      -77.146
+    ]
+  ],
+  "floor_support_samples": 2553,
+  "floor_sample_z_range_m": [
+    -0.007,
+    -0.003
+  ],
+  "center_aisle_nominal_width_m": 2.256,
+  "clear_mesh_line_samples": 1020,
+  "ordered_layout": [
+    "surface arrival ring (unbuilt trigger)",
+    "optional side return console",
+    "training bulkhead"
+  ],
+  "training_bulkhead_sha256": "25db93c5d45901a6599674ea857982700f57705c1b171e23978140537e41eedf",
+  "training_bulkhead_local_blender_m": [
+    0,
+    5.62,
+    0
+  ],
+  "console_local_blender_m": [
+    -3.380000114440918,
+    -3.7899999618530273,
+    0.0
+  ],
+  "assets": {
+    "e10a-vault-arrival-shell.glb": {
+      "bytes": 527964,
+      "triangles": 6801
+    },
+    "e10a-vault-return-pedestal.glb": {
+      "bytes": 50028,
+      "triangles": 675
+    }
+  }
+}
