@@ -1,0 +1,91 @@
+{
+  "scope": "Material-only previews for E7a; no rarity or combat wiring.",
+  "build": {
+    "originalBytes": 254084,
+    "variantBytes": 256256,
+    "addedJsonBytes": 2172,
+    "variantSha256": "803743eadabe5492cf572b589680e661cc00d31d18c0b357cbcb1ba97ba4f494",
+    "binaryChunkSha256": "4395be7e1af05b94fbb5bb2141e028ea2d6032f304b1f83e0739762f578f7bd2",
+    "sourceSha256": "708647a6422bcdaed61649520abee2da3871da048afd840f99caed13bbf656ad",
+    "joints": 7,
+    "clipNames": [
+      "idle",
+      "walk",
+      "run",
+      "turn",
+      "telegraph",
+      "attack.bite",
+      "attack.overclock",
+      "hit",
+      "die",
+      "sleep",
+      "wake"
+    ],
+    "alteredSlots": [
+      [
+        "Uncommon Steel",
+        "Mite | warm chamfer"
+      ],
+      [
+        "Uncommon Steel",
+        "Mite | bevel grey machined alloy"
+      ],
+      [
+        "Uncommon Steel",
+        "Mite | scuffed steel pins"
+      ],
+      [
+        "Uncommon Steel",
+        "Mite | pale yard enamel"
+      ],
+      [
+        "Rare Gold Stencil",
+        "Mite | fired orange powder coat"
+      ],
+      [
+        "Rare Gold Stencil",
+        "Mite | warm chamfer"
+      ],
+      [
+        "Rare Gold Stencil",
+        "Mite | worn depot stencil"
+      ],
+      [
+        "Rare Gold Stencil",
+        "Mite | pale yard enamel"
+      ]
+    ],
+    "binaryChunkExact": true,
+    "baseJsonExactAfterRemovingExtension": true
+  },
+  "three": {
+    "skinnedPrimitives": 11,
+    "joints": 7,
+    "clipCount": 11,
+    "exactAnimationSamples": 33,
+    "changedMaterials": [
+      [
+        "Mite | warm chamfer · Uncommon Steel",
+        "Mite | bevel grey machined alloy · Uncommon Steel",
+        "Mite | scuffed steel pins · Uncommon Steel",
+        "Mite | pale yard enamel · Uncommon Steel"
+      ],
+      [
+        "Mite | fired orange powder coat · Rare Gold Stencil",
+        "Mite | warm chamfer · Rare Gold Stencil",
+        "Mite | worn depot stencil · Rare Gold Stencil",
+        "Mite | pale yard enamel · Rare Gold Stencil"
+      ]
+    ],
+    "lensUntouched": true,
+    "canRestoreDefault": true
+  },
+  "portrait": {
+    "width": 402,
+    "height": 874,
+    "verticalFOV": 80,
+    "groundSetbackM": 10,
+    "eyeHeightM": 1.7,
+    "actualDevicePlay": false
+  }
+}
