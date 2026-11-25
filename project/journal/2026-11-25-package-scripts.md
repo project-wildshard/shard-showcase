@@ -14,3 +14,6 @@ Ask A8 (Jake: "a choatic clusterfuck"; keep lint, pack, build for a shard like s
   So `lint` is a bare `node kit/scripts/lint.mjs`. Probed: kit/ is still linted, staged `scripts/` files skipped.
 - The kit tests left `src/test/.kit` for `kit/test` so `src/` can be the shard. `pnpm check`: 249 tests, 24 s.
 - Kit-owned leftovers for phase 2: `run-checks.mjs` still hints `pnpm lint:fix / pnpm format`.
+- Pre-push now runs the hook tests, and `lanes.test.mjs` failed there only: `.githooks/test-helpers.mjs` scrubbed
+  `GIT_*` and the bypass flags from the sandbox env but not pre-push's `WS_PUSH_REFS`, so a sandboxed
+  `run-checks.mjs push` chased the outer push's commit. Added it to the scrub list (a kit file; phase 2).

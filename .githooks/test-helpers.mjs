@@ -18,9 +18,10 @@ after(() => {
   for (const root of roots) rmSync(root, { recursive: true, force: true });
 });
 
-// Drop GIT_* (a hook running this suite exports its own GIT_INDEX_FILE)
+// Drop GIT_* (a hook running this suite exports its own GIT_INDEX_FILE),
+// pre-push's WS_PUSH_REFS (the outer push's refs, unknown to a sandbox)
 // and every bypass flag, then isolate from the user's git config.
-const BYPASS = new Set(['SKIP_ATTRIB', 'SKIP_JOURNAL', 'SKIP_CHECK', 'SKIP_BUDGET', 'ALLOW_BRANCH', 'ALLOW_BIG', 'ALLOW_SECRET', 'PRECOMMIT_SOFT_S', 'PRECOMMIT_HARD_S', 'HERDR_ENV', 'HERDR_PANE_ID', 'CLAUDE_CODE_SESSION_ID', 'SKIP_HERDR_PEERS']);
+const BYPASS = new Set(['WS_PUSH_REFS', 'SKIP_ATTRIB', 'SKIP_JOURNAL', 'SKIP_CHECK', 'SKIP_BUDGET', 'ALLOW_BRANCH', 'ALLOW_BIG', 'ALLOW_SECRET', 'PRECOMMIT_SOFT_S', 'PRECOMMIT_HARD_S', 'HERDR_ENV', 'HERDR_PANE_ID', 'CLAUDE_CODE_SESSION_ID', 'SKIP_HERDR_PEERS']);
 export const ENV = {
   ...Object.fromEntries(Object.entries(process.env).filter(([key]) => !key.startsWith('GIT_') && !BYPASS.has(key))),
   GIT_CONFIG_NOSYSTEM: '1',
