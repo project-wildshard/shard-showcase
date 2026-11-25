@@ -1,0 +1,92 @@
+{
+  "pitches": [
+    {
+      "pitch": 1,
+      "toe_three": [
+        -216.0,
+        0.06,
+        72.3
+      ],
+      "lip_three": [
+        -216.0,
+        5.35,
+        69.05
+      ],
+      "plane_width_m": 1.88,
+      "angle_deg": 58.435,
+      "minimum_shell_clearance_m": 2.0792,
+      "samples": 891
+    },
+    {
+      "pitch": 2,
+      "toe_three": [
+        -216.0,
+        5.35,
+        67.41
+      ],
+      "lip_three": [
+        -214.5,
+        10.75,
+        65.16
+      ],
+      "plane_width_m": 1.88,
+      "angle_deg": 63.4,
+      "minimum_shell_clearance_m": 1.2197,
+      "samples": 891
+    },
+    {
+      "pitch": 3,
+      "toe_three": [
+        -214.5,
+        10.75,
+        63.35
+      ],
+      "lip_three": [
+        -212.6,
+        16.0,
+        60.3
+      ],
+      "plane_width_m": 1.88,
+      "angle_deg": 55.61,
+      "minimum_shell_clearance_m": 1.3638,
+      "samples": 891
+    }
+  ],
+  "rests": [
+    {
+      "walking_height_m": 5.368,
+      "verified_lane_width_m": 1.1,
+      "center_run_m": 1.64,
+      "minimum_run_across_verified_lane_m": 1.353,
+      "minimum_core_clearance_m": 1.5826,
+      "summit_top_matches_m": null,
+      "core_samples": 150,
+      "deck_samples": 27
+    },
+    {
+      "walking_height_m": 10.768,
+      "verified_lane_width_m": 1.1,
+      "center_run_m": 1.81,
+      "minimum_run_across_verified_lane_m": 1.866,
+      "minimum_core_clearance_m": 1.7029,
+      "summit_top_matches_m": null,
+      "core_samples": 150,
+      "deck_samples": 30
+    },
+    {
+      "walking_height_m": 16.038,
+      "verified_lane_width_m": 1.1,
+      "center_run_m": 4.5,
+      "minimum_run_across_verified_lane_m": 4.192,
+      "minimum_core_clearance_m": null,
+      "summit_top_matches_m": 16,
+      "core_samples": 0,
+      "deck_samples": 66
+    }
+  ],
+  "archived_massing_removed_from_review_copy": 7,
+  "nodes": 7,
+  "triangles": 2796,
+  "bytes": 157268,
+  "limitations": "Static art. Archived baseline is unchanged. No climb motor, collision, mantle or playable route."
+}
