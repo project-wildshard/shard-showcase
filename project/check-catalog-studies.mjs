@@ -162,3 +162,6 @@ for (const id of ["WSC-ACTOR-015", "WSC-ACTOR-017"]) {
   assert.ok(row.model_preview.startsWith("#nov23-w1a-"));
 }
 assert.ok(ids.has("nov25-w1b-quest-markers"));
+assert.ok(ids.has("nov25-e5a-riveter-slam-vfx"));
+for (const id of ["WSC-ACTOR-005", "WSC-ACTOR-013"])
+  assert.ok(!data.assets.find(row => row.id === id).model_preview);
