@@ -1,0 +1,68 @@
+{
+  "slice": "W10b",
+  "catalogue_id": "WSC-KIT-005",
+  "historical_layout": "Raynos/project-wildshard-singleplayer@ce1cf050b36fa236155ac26d43e721b9012c49df",
+  "board_blender_xyz": [
+    -80,
+    137,
+    0
+  ],
+  "board_world_xyz": [
+    -80,
+    0,
+    -137
+  ],
+  "board_track_clearance_m": 4.775,
+  "cue_blender_xyz": [
+    -75.6,
+    141.1,
+    0
+  ],
+  "cue_track_clearance_m": 0.46,
+  "archived_eye_blender_xyz": [
+    -52,
+    149,
+    2.6
+  ],
+  "first_ring_blender_xyz": [
+    -105,
+    148,
+    3.4
+  ],
+  "r02_westbound_ring_order_provisional": [
+    2,
+    1,
+    8,
+    7,
+    6,
+    5,
+    4,
+    3
+  ],
+  "gantry_to_first_ring_m": 25,
+  "cue_ndc": [
+    0.2839422821998596,
+    0.4742009937763214,
+    24.352195739746094
+  ],
+  "first_ring_ndc": [
+    0.5999804139137268,
+    0.5074801445007324,
+    52.76233673095703
+  ],
+  "unobstructed_eye_to_ring_center": true,
+  "board_readout_rays": 3,
+  "assets": {
+    "w10b-riding-lap-board": {
+      "bytes": 68588,
+      "triangles": 1492,
+      "sha256": "7ecf9a3fb54edc8102e70cc31b8a9dd0a29b258ad1b7f6179f2f9d42c102b1ea"
+    },
+    "w10b-first-ring-ahead": {
+      "bytes": 17636,
+      "triangles": 219,
+      "sha256": "09433657315b4ea83550751d8769db15273a3be037ecd8e7fa3e1f71b3fdfd5a"
+    }
+  },
+  "scope": "Art fit, no route, mount, penalty, record or live scoring changes."
+}
