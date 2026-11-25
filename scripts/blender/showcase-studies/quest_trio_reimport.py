@@ -128,7 +128,8 @@ fascia_only=os.environ.get("WSC_QUEST_FASCIA_ONLY")=="1"
 clear_scene()
 fascia_path=build_fascia()
 clear_scene()
-if not fascia_only:
+marker_only=os.environ.get("WSC_QUEST_MARKERS_ONLY")=="1"
+if not fascia_only and not marker_only:
     slate=mat("Charcoal studio",(.044,.071,.083));wood=mat("Copper studio insert",(.340,.186,.086))
     words=mat("Names on proof",(.85,.82,.67),.35)
     for (x,role,yaw) in [(-1.05,"yard-boss",-13),(1.05,"shift-boss",12)]:
@@ -165,10 +166,11 @@ gold=mat("Level one quest pip",(.97,.37,.025),.50)
 shadow=mat("Marker border",(.054,.081,.080))
 ink=mat("Marker glyph",(.09,.075,.035),.35)
 # Marker isn't part of either actor bundle. It stages the original W01 L1 state.
-for i,(sz,m,y) in enumerate([(.262,shadow,-.041),(.218,gold,-.078)]):
-    o=box("L1 marker | Yard Boss",(2.25,y,2.245),(sz,.045,sz),m)
-    o.rotation_euler.y=math.radians(45)
-logo("!",(2.25,-.108,2.236),.194,ink)
+if not marker_only:
+    for i,(sz,m,y) in enumerate([(.262,shadow,-.041),(.218,gold,-.078)]):
+        o=box("L1 marker | Yard Boss",(2.25,y,2.245),(sz,.045,sz),m)
+        o.rotation_euler.y=math.radians(45)
+    logo("!",(2.25,-.108,2.236),.194,ink)
 world=bpy.data.worlds.new("West Town daylight");world.use_nodes=True;n=world.node_tree.nodes
 sky=n.new("ShaderNodeTexSky");sky.sky_type='NISHITA';sky.sun_elevation=.56;sky.sun_rotation=2.04
 sky.sun_size=.036;sky.sun_intensity=.65
@@ -221,6 +223,10 @@ assert triangles<1600 and fascia_path.stat().st_size<90000
   "round5_anchors_three_x_z":{"quest":[-36,-17],"contracts":[-26,17]},
   "native_game_modified":False,
 },indent=2)+"\n")
+if marker_only:
+    from quest_marker_plate import capture
+    capture(scene,out,root,eye,screen,cam)
+    sys.exit(0)
 render("plaza-quest-board",1500,1120)
 cam(detail_pos,(.54,.13,1.40),39)
 render("quest-board-detail",1360,1010)

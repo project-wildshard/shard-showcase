@@ -15,11 +15,11 @@ await Promise.all([MeshoptEncoder.ready,MeshoptDecoder.ready]);
 const io=new NodeIO().registerExtensions(ALL_EXTENSIONS).registerDependencies({
   'meshopt.encoder':MeshoptEncoder,'meshopt.decoder':MeshoptDecoder
 });
-if(process.argv[5]==='--exact-surveyor'){
-  if(role!=='surveyor' || !process.argv[6]) throw new Error('Expected an exact Surveyor input file.');
+if(['--exact-surveyor','--decode-tracked'].includes(process.argv[5])){
+  if((process.argv[5]==='--exact-surveyor' && role!=='surveyor') || !process.argv[6]) throw new Error('Expected an exact Surveyor input file.');
   const checked=await io.read(process.argv[6]);
   checked.getRoot().listExtensionsUsed().filter(x=>x.extensionName===EXTMeshoptCompression.EXTENSION_NAME).forEach(x=>x.dispose());
-  await io.write(join(out,'surveyor-decoded-for-blender.glb'),checked);
+  await io.write(join(out,role+'-decoded-for-blender.glb'),checked);
   process.exit(0);
 }
 const raw=join(out,stem+'.glb'),packed=join(out,stem+'-packed.glb');

@@ -1,0 +1,97 @@
+{
+  "scope": "Blender plate and raster UI proof; not running game",
+  "viewport_css_px": [
+    402,
+    874
+  ],
+  "output_px": [
+    804,
+    1748
+  ],
+  "eye_height_m": 1.7,
+  "outlined_glyph_clearance_css_px": 4,
+  "archive_style_blob": "297dff6669b7ac8c15239b30833338144cbee418",
+  "anchors": {
+    "shift-boss": {
+      "headX": 54.107,
+      "headY": 405.024,
+      "rigJoints": 21,
+      "sourceSHA256": "67d63f91344eddfe3f3f616ee7febefcf64716f8b3fd7d7cdd677485f5d32043"
+    },
+    "surveyor": {
+      "headX": 136.724,
+      "headY": 404.911,
+      "rigJoints": 21,
+      "sourceSHA256": "81c43903ce90891c98909e7763a2e6cfe7d71e8c8acd00e2076bcb097fc7bd3b"
+    },
+    "yard-boss": {
+      "headX": 344.615,
+      "headY": 405.03,
+      "rigJoints": 21,
+      "sourceSHA256": "f26580acb4a27e1789a8c08e3530da256449dcc0c922c4616b248df3ab35a6b6"
+    }
+  },
+  "states": {
+    "offer": {
+      "surveyor": {
+        "state": "locked",
+        "glyph": "!",
+        "color": "#a7aeb2",
+        "outlined_bounds_px": [
+          224,
+          721,
+          321,
+          802
+        ]
+      },
+      "yard-boss": {
+        "state": "available",
+        "glyph": "!",
+        "color": "#ffd54a",
+        "outlined_bounds_px": [
+          637,
+          721,
+          740,
+          802
+        ]
+      }
+    },
+    "turn-in": {
+      "surveyor": {
+        "state": "locked",
+        "glyph": "!",
+        "color": "#a7aeb2",
+        "outlined_bounds_px": [
+          224,
+          721,
+          321,
+          802
+        ]
+      },
+      "yard-boss": {
+        "state": "turnIn",
+        "glyph": "?",
+        "color": "#ffd54a",
+        "outlined_bounds_px": [
+          637,
+          721,
+          740,
+          802
+        ]
+      }
+    },
+    "cleared": {
+      "surveyor": {
+        "state": "locked",
+        "glyph": "!",
+        "color": "#a7aeb2",
+        "outlined_bounds_px": [
+          224,
+          721,
+          321,
+          802
+        ]
+      }
+    }
+  }
+}

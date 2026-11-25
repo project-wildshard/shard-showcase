@@ -1,0 +1,20 @@
+.quest-giver-marker {
+  position: absolute; transform: translate(-50%, calc(-100% - 4px));
+  pointer-events: none; text-align: center; width: max-content;
+  font-family: system-ui, sans-serif;
+}
+.quest-giver-marker .name {
+  display: block; font-size: 8px; line-height: 10px; font-weight: 650;
+  letter-spacing: .2em; color: #f2f4ed; text-transform: uppercase;
+  text-shadow: 0 0 6px #000, 0 1px 2px #000, 0 1px 2px #000;
+}
+.quest-giver-marker .symbol {
+  display: block; color: #ffd54a; font-size: 40px; line-height: 40px;
+  font-weight: 700; -webkit-text-stroke: 1.5px #2a1a02;
+  paint-order: stroke fill;
+  text-shadow: 0 0 14px rgba(255,200,60,.65), 0 2px 3px rgba(0,0,0,.8);
+}
+.quest-giver-marker[data-state="locked"] .symbol {
+  color: #a7aeb2; -webkit-text-stroke-color: #1b1f22;
+  text-shadow: 0 0 8px rgba(0,0,0,.6), 0 2px 3px rgba(0,0,0,.8);
+}
