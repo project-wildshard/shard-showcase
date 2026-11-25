@@ -9,9 +9,8 @@ Living doc: **how** this repo is built. What it does and why is
 
 Only the scaffold exists:
 
-- `kit/cli/`: the CLI (`--version`, `--help`; commands arrive with the import).
-- `kit/test/helpers/`: shared test helpers; `git.ts` makes real git repos in temp dirs.
-- `src/scripts/`: repo tooling (asks, md-wrap), plain JS.
+- `kit/scripts/`: repo-kit's tooling (asks, lint, md-wrap), plain JS.
+- `src/test/.kit/`: tests of repo-kit's scripts.
 
 ## Dependencies
 

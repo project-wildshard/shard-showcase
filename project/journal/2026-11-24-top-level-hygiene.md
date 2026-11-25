@@ -49,3 +49,11 @@ Ask A1 (Jake): too many top-level folders; he wants `src/ docs/ project/`.
   `pnpm check` list, the lint and format ignores, `docs/chromium.md` and `.githooks/session-brief.test.mjs` follow.
 - Top level now: `docs/ kit/ project/ scripts/ src/`. A repo-kit sync would put `test/tooling/worktree-guard` and
   `chrome-keychain` back and flag `session-brief.test.mjs`, until repo-kit learns the path (phase 2).
+
+## kit/cli and kit/test go (A4, A5)
+
+- `kit/cli` was a placeholder `shard-showcase` bin with only `--help` and `--version`; nothing called it.
+  `kit/test/helpers/git.ts` was a temp-git helper no test used. With both gone there is no TypeScript left, so
+  `typecheck`, `test`, `test:kit` and `kit/tsconfig.json` went too (pre-commit runs typecheck only when the script
+  exists). Also dropped the stale `public/**` and `vitest.config.ts` lint ignores; `docs/dev.md` and
+  `docs/design.md` no longer list a `src/scripts/` that never existed.
