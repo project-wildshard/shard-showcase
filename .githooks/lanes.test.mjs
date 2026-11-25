@@ -64,7 +64,7 @@ describe('check lanes', () => {
     toolchain(box, { ...pass, lint: 'node -e "console.error(\'no-any: a.ts:1\');process.exit(1)"' });
     const result = box.commit({ 'src/a.ts': 'export {};\n' }, MSG);
     assert.notEqual(result.status, 0);
-    assert.match(result.stderr, /pnpm lint failed:[\s\S]*no-any: a\.ts:1[\s\S]*pnpm lint:fix/);
+    assert.match(result.stderr, /pnpm lint failed:[\s\S]*no-any: a\.ts:1[\s\S]*pnpm fix fixes/);
   });
   test('commits with no code or JSON skip the lane', () => {
     const box = sandbox();

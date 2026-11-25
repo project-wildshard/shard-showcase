@@ -10,7 +10,7 @@
 //           checkout neither refuse the push nor leak into it.
 //   both:   .githooks/pinned-links.mjs first (commit warns, push refuses;
 //           SKIP_CHECK does not skip it).
-// The hooks only check; `pnpm lint:fix` / `pnpm format` fix.
+// The hooks only check; `pnpm fix` fixes.
 // Bypass a lane: SKIP_CHECK=1 (last resort; CI still runs it).
 import { spawn, spawnSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
@@ -129,7 +129,7 @@ copy?.remove();
 const failed = results.filter((result) => result.code !== 0);
 for (const { name, output } of failed) console.error(`\n  X pnpm ${name} failed:\n${output.trim().replace(/^/gm, '    ')}`);
 if (failed.length) {
-  const fix = lane === 'commit' ? ' (pnpm lint:fix / pnpm format fix most of it)' : '';
+  const fix = lane === 'commit' ? ' (pnpm fix fixes most of it)' : '';
   console.error(`\n  ${lane} blocked. Fix it${fix}; SKIP_CHECK=1 is a last resort.\n`);
   process.exit(1);
 }

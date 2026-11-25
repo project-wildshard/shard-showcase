@@ -9,9 +9,14 @@ Run from the repo root.
 
 - `pnpm install`: installs deps and points `core.hooksPath` at `.githooks/`.
 - `pnpm dev` / `pnpm build`: `wildshard dev .` / `wildshard build .` on the shard
-  source in `src/` (once it exists).
-- `pnpm check`: the one gate (pre-push and CI): lint, format:check, test,
-  then the kit and agent checks.
+  source in `src/` (once it exists). `pnpm pack` is `build` too: it writes the
+  `.shardfile` (output in `public/shardfiles/`, gitignored).
+- `pnpm lint`: the shard source with `.oxlintrc.author.json` (root, where
+  `wildshard check` reads it): every category an error, type-aware.
+- `pnpm typecheck`: `tsc` with the root `tsconfig.json` (strictest flags) over
+  `src/**/*.ts`; passes with a note while there is none.
+- `pnpm check`: the one gate (pre-push and CI): lint, typecheck, format:check,
+  test, then the kit and agent checks.
 - `pnpm test`: every `node:test` file (`src/test/.kit/`, `.githooks/`,
   `.agents/hooks/test/`).
 - `pnpm fix`: the hooks only check; this fixes lint and format.

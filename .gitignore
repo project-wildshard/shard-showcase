@@ -13,6 +13,10 @@ blob-report/
 # Plan worktrees live at .worktrees/<slug> on plan/<slug> (J221, J240, DEV-SPEED DS11).
 /.worktrees/
 
+# Build output (wildshard build / pack): the built folder and
+# <slug>.shardfile, as `wildshard new` ignores them. Never commit it.
+public/shardfiles/
+public/assets/*/map/
 # Lifted from singleplayer (P5).
 out/
 tmp/

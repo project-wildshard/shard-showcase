@@ -55,7 +55,7 @@ in order; don't paraphrase or shortcut.
      an AI. The commit-msg hook refuses the rest.
 2. **Gates green on HEAD.** The pre-commit lane ran on your staged
    files. If you touched `.githooks/` or `.agents/hooks/`, the hook
-   suite ran too (`pnpm test:hooks` / `node --test
+   suite ran too (`pnpm test` / `node --test
    .githooks/*.test.mjs` by hand). Red on your commit: fix it forward
    with a new pathspec commit (never `--amend` a pushed commit, never
    revert to hide it). Red on someone else's commit: name the commit
