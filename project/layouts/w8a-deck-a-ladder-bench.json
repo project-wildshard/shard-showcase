@@ -1,0 +1,162 @@
+{
+  "versions": {
+    "engine": "0.1.44",
+    "format": "0.43.0"
+  },
+  "route": {
+    "kind": "ladder",
+    "id": "w8a-deck-a",
+    "bottom": {
+      "x": -166,
+      "y": 0.0275,
+      "z": 31.78
+    },
+    "top": {
+      "x": -166,
+      "y": 6.035,
+      "z": 31.78
+    },
+    "exit": {
+      "x": -166,
+      "y": 6.035,
+      "z": 30.93
+    },
+    "normal": {
+      "x": 0,
+      "z": 1
+    },
+    "reach": 0.9,
+    "speed": 2
+  },
+  "deckRim": 31.23,
+  "normalRoom": {
+    "maxFeetY": 0.04759964937501354,
+    "installedLadder": false,
+    "peakDropPerTick": 0.25055554509162903
+  },
+  "explicitStockInstaller": {
+    "bottom": {
+      "tick": 25,
+      "feet": [
+        -166,
+        0.047591289672709536,
+        33.35
+      ],
+      "ground": true,
+      "contact": "deck-a-ground"
+    },
+    "attach": {
+      "tick": 42,
+      "feet": [
+        -166,
+        0.1808134905640036,
+        32.51303174197674
+      ],
+      "ground": false,
+      "contact": null
+    },
+    "mid": {
+      "tick": 127,
+      "feet": [
+        -166,
+        3.014146971667185,
+        31.78
+      ],
+      "ground": false,
+      "contact": null
+    },
+    "top": {
+      "tick": 218,
+      "feet": [
+        -166,
+        6.034999999368563,
+        31.78
+      ],
+      "ground": false,
+      "contact": null
+    },
+    "landed": {
+      "tick": 244,
+      "feet": [
+        -166,
+        6.0199972343742845,
+        30.943083289982752
+      ],
+      "ground": true,
+      "contact": "deck-a"
+    },
+    "descending": {
+      "tick": 268,
+      "feet": [
+        -165.99994607337686,
+        5.771994237356819,
+        31.60032023125794
+      ],
+      "ground": false,
+      "contact": null
+    },
+    "low": {
+      "tick": 438,
+      "feet": [
+        -166,
+        0.0474998573535122,
+        31.783583333222197
+      ],
+      "ground": true,
+      "contact": "deck-a-ground"
+    },
+    "still": {
+      "tick": 127,
+      "feet": [
+        -166,
+        2.014146919513121,
+        31.78
+      ],
+      "ground": false,
+      "contact": null
+    },
+    "released": {
+      "tick": 228,
+      "feet": [
+        -165.99999962195537,
+        0.04758388543268666,
+        31.78000023462579
+      ],
+      "ground": true,
+      "contact": "deck-a-ground"
+    },
+    "restoredTicks": 117,
+    "maxRestoreErrorMeters": 0,
+    "descendingTicks": 174,
+    "descentPeakMetersPerTick": 0.08503937721252441,
+    "alignedPeakMetersPerTick": 0.03333333507180214,
+    "alignedAt": {
+      "tick": 274,
+      "feet": [
+        -166.00000000000006,
+        5.495362151914276,
+        31.780000000349247
+      ],
+      "ground": false,
+      "contact": null
+    }
+  },
+  "artFit": {
+    "canonicalFingerprint": [
+      "f372ebaa43777a1dae8f7f77e167045179425c5e5b176633ccfa8829cb133374",
+      2797
+    ],
+    "groundSamples": 25,
+    "sixMetrePlankHits": 15,
+    "guardGapClearRays": 30,
+    "guardOpeningMeters": 1.5,
+    "renderedPoses": [
+      "mid",
+      "landed"
+    ]
+  },
+  "repeatTraceSha256": "601e966caaf3af932ba7cbf1e59fad1680fc860f8ba2d9d71056b3d74ad26a42",
+  "ascentFromInputSeconds": 3.65,
+  "physicalGeometry": "Isolated collision fit to Deck A, not original full yard collision.",
+  "runtimeIntegration": "Normal native assembly room does not bind the row; positive test explicitly calls existing stock installer."
+}
