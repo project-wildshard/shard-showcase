@@ -180,3 +180,5 @@ assert.ok(ids.has("nov25-e1d-scrip-opening"));
 assert.ok(ids.has("nov24-east-payout-chest"));
 assert.ok(ids.has("nov25-e11d-foreman-rewards"));
 assert.ok(!data.assets.find(row=>row.id==="WSC-ACTOR-009").model_preview);
+assert.ok(ids.has("nov25-e3-pillar-screen"));
+assert.ok(!data.assets.find(row=>row.id==="WSC-ACTOR-003").model_preview);
