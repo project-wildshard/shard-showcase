@@ -32,3 +32,11 @@ Ask A1 (Jake): too many top-level folders; he wants `src/ docs/ project/`.
   relaxation. `land.config.json` went: it held only land's defaults, and nothing lands here now.
 - `scripts/land.mjs`, `worktree*.mjs` and their `test/tooling` tests stay: repo-kit stamps them. Dropping them is
   phase 2, and the mode itself is a meta call (J290) for Jake to make org-wide if he wants.
+
+## guard-git-add: an apostrophe hid the pathspec (A2)
+
+- The guard stripped single-quoted strings, then double-quoted ones, in two sed passes. An apostrophe inside a
+  double-quoted message (`"AGENTS.md's"`) opened a fake single-quoted string that ran to the next `'` in the
+  command and ate the `-- <paths>`, so a pathspec commit was refused as bare. One pass with an alternation now:
+  the leftmost quote wins, and `\"` escapes stay inside their string. Five new cases in `hooks.test.mjs`, two red
+  before the fix. The hook is repo-kit's (agent-sync), so the fix diverges here until repo-kit takes it.

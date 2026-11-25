@@ -42,8 +42,10 @@ EOF
 }
 
 # Strip quoted strings (commit messages may contain ; & | or --),
-# then look at each command segment between ; & | boundaries.
-stripped="$(printf '%s' "$flat" | sed -E "s/'[^']*'//g; s/\"[^\"]*\"//g")"
+# then look at each command segment between ; & | boundaries. One pass,
+# so the quote that opens first wins: an apostrophe inside "..." (it's)
+# is text, not the start of a '...' that would swallow a later -- (A2).
+stripped="$(printf '%s' "$flat" | sed -E "s/'[^']*'|\"([^\"\\\\]|\\\\.)*\"//g")"
 B='(^|[;&|(])[[:space:]]*'
 ADD="${B}git([[:space:]]+-C[[:space:]]+[^[:space:]]+)?[[:space:]]+add([[:space:]]+[^;&|]*)?"
 COMMIT="${B}git([[:space:]]+-C[[:space:]]+[^[:space:]]+)?[[:space:]]+commit"

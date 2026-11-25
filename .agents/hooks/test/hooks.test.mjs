@@ -89,8 +89,13 @@ describe('payload adapter', () => {
 describe('guard-git-add.sh: same verdict from both tools', () => {
   const root = sandbox();
   const verdict = (tool, command) => run(root, 'guard-git-add.sh', withCommand(tool, command));
-  const blocked = ['git add -A', 'git add .', 'git add -u', 'git -C /repo add --all', 'git commit -am "fix: x"', 'git commit -m "fix: x"', 'git diff -- a && git commit -m "fix: x"'];
-  const allowed = ['git status --short', 'git add src/new.ts', 'git commit -m "fix: x" -- a.ts', 'git commit --amend --no-edit', 'SKIP_SWEEPGUARD=1 git commit -m "chore: all"', 'echo "git add -A"'];
+  const blocked = ['git add -A', 'git add .', 'git add -u', 'git -C /repo add --all', 'git commit -am "fix: x"', 'git commit -m "fix: x"', 'git diff -- a && git commit -m "fix: x"',
+    // An apostrophe inside a double-quoted message is not a quote: the bare commit is still bare.
+    'git commit -m "fix: the repo\'s rule"', 'git commit -m "fix: it\'s" | grep -E \'x\''];
+  const allowed = ['git status --short', 'git add src/new.ts', 'git commit -m "fix: x" -- a.ts', 'git commit --amend --no-edit', 'SKIP_SWEEPGUARD=1 git commit -m "chore: all"', 'echo "git add -A"',
+    // A2: an apostrophe in a double-quoted message once paired with a later single quote and hid the pathspec.
+    'git commit -m "docs: AGENTS.md\'s rule" -- a.ts 2>&1 | grep -E \'X |blocked\'', 'git commit -m \'say "hi" -- not a pathspec\' -- a.ts',
+    'git commit -m "fix: a \\"quoted\\" word, it\'s fine" -- a.ts | grep \'x\''];
   for (const command of blocked) {
     test(`blocks: ${command}`, () => {
       const [claude, codex] = TOOLS.map((tool) => verdict(tool, command));
