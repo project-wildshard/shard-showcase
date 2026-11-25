@@ -67,6 +67,13 @@ assert.ok(ids.has(rook.related_study.href.slice(1)));
 assert.ok(get("asset-"+rook.id).children.flatMap(x=>x.children).some(c=>
   c.href===rook.related_study.href && c.textContent===rook.related_study.label));
 
+const roofVista=data.assets.find(a=>a.id==="WSC-MODULE-001");
+assert.equal(roofVista.model_preview,"#west-venue-kits");
+assert.equal(roofVista.related_study?.href,"#nov25-w9b-roof-vistas");
+assert.ok(ids.has(roofVista.related_study.href.slice(1)));
+assert.ok(get("asset-"+roofVista.id).children.flatMap(x=>x.children).some(c=>
+  c.href===roofVista.related_study.href && c.textContent===roofVista.related_study.label));
+
 const sword=data.assets.find(a=>a.id==="WSC-GEAR-001");
 assert.equal(sword.model_preview,"#nov24-west-inventory-pair");
 assert.equal(sword.status,"model-study-available");
