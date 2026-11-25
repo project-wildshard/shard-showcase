@@ -1,0 +1,231 @@
+{
+  "scope": "Normal room adapter with in-memory calibration rows and two end plates; no cooked or client integration.",
+  "sourceStaticBridge": "scripts/blender/west-movers-roof/junction.py",
+  "selectedLinks": 18,
+  "visualBoardsPerLink": 3,
+  "limits": {
+    "minimumFeetYExclusive": 16.8,
+    "interiorLostContactTicks": 0,
+    "pinnedVersions": {
+      "engine": "0.1.44",
+      "format": "0.43.0"
+    }
+  },
+  "comparisons": [
+    {
+      "N": 18,
+      "len": 22.02271554554524,
+      "width": 1.6,
+      "sag": 0.65,
+      "a": {
+        "x": -168,
+        "y": 18,
+        "z": -103
+      },
+      "b": {
+        "x": -190,
+        "y": 18,
+        "z": -104
+      },
+      "minimumY": 17.182772015524343,
+      "minYSpan": 17.182772015524343,
+      "maxAwake": 18,
+      "maxLateral": 0.00021478015161591202,
+      "spanGroundTicks": 279,
+      "spanAirTicks": 0,
+      "restoredFrames": 166,
+      "maxRestoreDelta": 0,
+      "awakeByIdleSecond": [
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        18,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "restAwake": 18,
+      "firstDeck": 382,
+      "firstEnd": 701,
+      "endFeet": [
+        -190.82788341823615,
+        18.020000244408845,
+        -104.03760051247748
+      ],
+      "endTravel": 22.85145238664587,
+      "centreGround": true,
+      "restored": true,
+      "joints": 19,
+      "clockHz": 60,
+      "engine": "0.1.44",
+      "format": "0.43.0",
+      "scopedRoomBench": true,
+      "emptyFall": {
+        "tick": 236,
+        "feet": [
+          -170.47483694956588,
+          14.980170173954217,
+          -103.11250480854966
+        ]
+      },
+      "legacyRebuiltBodies": 18,
+      "legacyExitTick": 521,
+      "secondsFromFirstDeckContactToExit": 5.316666666666666,
+      "allAsleepByIdleSecond": 9,
+      "legacyUpgradeVerified": true
+    },
+    {
+      "N": 27,
+      "len": 22.02271554554524,
+      "width": 1.6,
+      "sag": 0.65,
+      "a": {
+        "x": -168,
+        "y": 18,
+        "z": -103
+      },
+      "b": {
+        "x": -190,
+        "y": 18,
+        "z": -104
+      },
+      "minimumY": 17.10672857132727,
+      "minYSpan": 17.10672857132727,
+      "maxAwake": 27,
+      "maxLateral": 0.00018187523192070287,
+      "spanGroundTicks": 279,
+      "spanAirTicks": 0,
+      "restoredFrames": 166,
+      "maxRestoreDelta": 0,
+      "awakeByIdleSecond": [
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "restAwake": 27,
+      "firstDeck": 382,
+      "firstEnd": 701,
+      "endFeet": [
+        -190.8211607275008,
+        18.020000244408845,
+        -104.03725181975857
+      ],
+      "endTravel": 22.84472079677494,
+      "centreGround": true,
+      "restored": true,
+      "joints": 28,
+      "clockHz": 60,
+      "engine": "0.1.44",
+      "format": "0.43.0",
+      "scopedRoomBench": true,
+      "emptyFall": {
+        "tick": 236,
+        "feet": [
+          -170.47483694956588,
+          14.980170173954217,
+          -103.11250480854966
+        ]
+      },
+      "legacyRebuiltBodies": 27,
+      "legacyExitTick": 521,
+      "secondsFromFirstDeckContactToExit": 5.316666666666666,
+      "allAsleepByIdleSecond": 11,
+      "legacyUpgradeVerified": true
+    },
+    {
+      "N": 54,
+      "len": 22.02271554554524,
+      "width": 1.6,
+      "sag": 0.65,
+      "a": {
+        "x": -168,
+        "y": 18,
+        "z": -103
+      },
+      "b": {
+        "x": -190,
+        "y": 18,
+        "z": -104
+      },
+      "minimumY": 16.7468236239,
+      "minYSpan": 16.7468236239,
+      "maxAwake": 54,
+      "maxLateral": 0.0001784700070088241,
+      "spanGroundTicks": 279,
+      "spanAirTicks": 1,
+      "restoredFrames": 167,
+      "maxRestoreDelta": 0,
+      "awakeByIdleSecond": [
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        54,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "restAwake": 54,
+      "firstDeck": 382,
+      "firstEnd": 702,
+      "endFeet": [
+        -190.80404923881787,
+        18.020000244408845,
+        -104.03647786938375
+      ],
+      "endTravel": 22.827591814628345,
+      "centreGround": true,
+      "restored": true,
+      "joints": 55,
+      "clockHz": 60,
+      "engine": "0.1.44",
+      "format": "0.43.0",
+      "scopedRoomBench": true,
+      "secondsFromFirstDeckContactToExit": 5.333333333333333,
+      "allAsleepByIdleSecond": 11,
+      "legacyUpgradeVerified": false
+    }
+  ]
+}
