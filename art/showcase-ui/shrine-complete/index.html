@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wildshard · Shrine completion study</title>
+<style>
+:root{color-scheme:dark;font:16px system-ui,sans-serif;background:#111b22;color:#e8eff0}
+body{margin:0;padding:18px max(12px, calc((100% - 402px)/2));min-width:0}
+main{width:min(100%,402px)}
+a{color:#a6e8f3}p{line-height:1.45}
+.device{position:relative;aspect-ratio:402/874;width:100%;border-radius:10px;overflow:hidden;background:#172733}
+#stage>svg{display:block;width:100%;height:100%}
+#continue{position:absolute;left:9.7%;top:62.2%;width:80.6%;height:6.3%;min-height:44px;display:block;background:transparent;border:0;border-radius:3px;color:transparent}
+:focus-visible,#continue:focus-visible{outline:3px solid #ffdc9c;outline-offset:-3px}
+#walk{display:flex;gap:10px;margin:10px 0}
+button{min-height:44px;padding:0 12px;border-radius:5px;font:600 1rem system-ui;border:1px solid #6997a2;background:#18323d;color:#e8f1f3;cursor:pointer}
+[hidden],#continue[hidden],#walk[hidden]{display:none}
+#status{min-height:3em;margin-bottom:4px}
+</style>
+<main aria-label="Shrine completion review">
+<a href="../#nov25-e10b-shrine-complete">← Art Catalog</a>
+<p>UI-30 · Completion and portal review. This is a schematic, not a game level.</p>
+<div class="device">
+ <div id="stage"></div>
+ <button id="continue" type="button">Continue</button>
+</div>
+<div id="walk" hidden>
+ <button id="forward" type="button">↑ Walk forward</button>
+ <button id="back" type="button">↓ Walk back</button>
+</div>
+<p id="status" aria-live="polite" tabindex="-1"></p>
+<noscript>The interactive review requires JavaScript.</noscript>
+</main>
+<script type="module" src="./review.mjs"></script>
+</html>

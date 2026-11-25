@@ -1,0 +1,31 @@
+import assert from 'node:assert/strict'
+import {start,update,threshold,route} from './model.mjs'
+import {board} from './board.mjs'
+const before=start()
+for(const e of ['forward','back','leave','rerun','open portal'])assert.equal(update(before,e),before)
+assert.equal((board(before,'BG').match(/CONTINUE/g)??[]).length,1)
+let state=update(before,'continue')
+assert.deepEqual(state,{...before,card:false})
+assert.equal(update(state,'continue'),state)
+assert.equal(update(state,'back'),state)
+assert.equal((board(state,'BG').match(/CONTINUE/g)??[]).length,0)
+for(let i=0;i<threshold-1;i++){
+ state=update(state,'forward')
+ assert.equal(state.place,'vault')
+ assert(state.puzzlesSolved&&state.chestOpen&&state.runs===1)
+}
+state=update(state,'forward')
+assert.equal(state.place,'outside')
+assert.equal(state.runs,1)
+state=update(state,'forward')
+assert.equal(state.position,route.length-1)
+state=update(state,'back')
+assert.equal(state.place,'outside')
+state=update(state,'back')
+assert.equal(state.place,'newRun')
+assert.equal(state.runs,2)
+assert.equal(state.puzzlesSolved,null)
+assert.equal(state.chestOpen,null)
+for(const e of ['forward','back','continue'])assert.equal(update(state,e),state)
+assert(route.every(p=>p[0]<182||p[1]<464),'illustrated route misses chest footprint')
+console.log('Card dismissal, no early exit, threshold departure, and reverse crossing into run two.')
