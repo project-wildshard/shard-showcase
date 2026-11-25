@@ -67,6 +67,14 @@ assert.ok(ids.has(rook.related_study.href.slice(1)));
 assert.ok(get("asset-"+rook.id).children.flatMap(x=>x.children).some(c=>
   c.href===rook.related_study.href && c.textContent===rook.related_study.label));
 
+const titan=data.assets.find(a=>a.id==="WSC-SCENE-008");
+assert.equal(titan.model_preview,"#nov23-titan-bowl");
+assert.equal(titan.status,"scene-study-available");
+assert.equal(titan.related_study?.href,"#nov25-e12g-titan-retry-alcove");
+assert.ok(ids.has(titan.related_study.href.slice(1)));
+assert.ok(get("asset-"+titan.id).children.flatMap(x=>x.children).some(c=>
+  c.href===titan.related_study.href && c.textContent===titan.related_study.label));
+
 const cave=data.assets.find(a=>a.id==="WSC-PROP-011");
 assert.equal(cave.model_preview,"#nov23-rock-squeeze-cave");
 assert.equal(cave.related_study?.href,"#nov24-squeeze-cave-gold");
