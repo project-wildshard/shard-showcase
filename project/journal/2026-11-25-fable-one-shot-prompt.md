@@ -12,3 +12,11 @@ Ask A16.
   level, XP ×10, teleport, time, storm) so "done" can be checked without the grind.
 - First person, because the game is (the mockups' figure is only for scale). Art and audio are made in
   code (three.js geometry, WebAudio), no downloads, so the orchestral score becomes procedural music.
+
+## Split in two
+
+Jake: "let's split this into two files." ZONE-DESCRIPTION.md is the game alone (look, map, combat,
+enemies, quests, HUD, audio) with no tech, so it can feed other builds too; FABLE-PROMPT.md is the
+short brief (stack, clean room, phone, tests, dev menu, done-when) that tells Fable to read it. The
+description is copied into the empty directory before the paste. Audio's "WebAudio only" moved to
+the brief, since that is tech.

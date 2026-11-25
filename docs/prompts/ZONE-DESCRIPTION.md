@@ -1,36 +1,14 @@
-# Fable one-shot: the Kitchen Sink zone, clean room
+# The Kitchen Sink: zone description
 
-Ask A16. Paste everything below the line into a fresh Fable session in
-an empty directory. It is self-contained on purpose: the builder never
-sees a Wildshard repo, sharddev, the shard format or the engine. It is
-distilled from [KITCHEN-SINK.md](../plans/KITCHEN-SINK.md) §1–§3 and
-levels-combat §15 as of 2026-11-25.
+One hand-made MMO zone, played alone. It should feel like logging into
+an MMO when nobody else is online: a town with quest givers and shops,
+level bands of enemies, elites, a mini dungeon and a raid-style final
+boss, all in a single 500 × 500 m area. First-person.
 
----
-
-Build a complete, playable, single-player game in one go: **the Kitchen
-Sink**, one hand-made MMO zone that you play alone. It should feel like
-logging into an MMO when nobody else is online: a town with quest
-givers and shops, level bands of enemies, elites, a mini dungeon and a
-raid-style final boss, all in a single 500 × 500 m area.
-
-## Ground rules
-
-- A new git repo in this directory. TypeScript (strict) + three.js +
-  Vite, pnpm. Commit as you go with clear messages.
-- Clean room: no game engine, no server, no multiplayer, no accounts.
-  Everything runs in the browser; save to localStorage.
-- No downloaded art or audio. Build models from three.js geometry in
-  code, sounds and music from WebAudio.
-- First-person camera.
-- **Mobile first.** It must run smoothly on an iPhone in **portrait**,
-  with touch controls. Desktop (WASD, mouse, click) works too. Cap the
-  pixel ratio, use instancing, and give full AI to at most 16 enemies
-  within 60 m; enemies further away idle cheaply.
-- Unit-test the combat and level maths (Vitest). `pnpm build` and
-  `pnpm test` must pass.
-- A dev menu (behind a small gear icon): set your level, XP ×10,
-  teleport to any zone, set the time of day, start a storm.
+Distilled from [KITCHEN-SINK.md](../plans/KITCHEN-SINK.md) §1–§3 and
+levels-combat §15 as of 2026-11-25 (ask A16). It describes the game
+only, with no engine or tech. [FABLE-PROMPT.md](FABLE-PROMPT.md) is the
+build brief that uses it.
 
 ## Look
 
@@ -117,7 +95,7 @@ The **east half is combat only**:
   Night elites: Sir Nibbles L4, Hot Mess L13, Riveting Rita L16.
 - Final boss: the Crate Titan, L20, 15 m tall, three phases (slam
   rings, rolling crate lanes, crate rain with Crate Mite adds). It has
-  a skippable in-engine intro the first time and drops the legendary
+  a skippable intro cutscene the first time and drops the legendary
   Titan Cleaver sword. Its portal opens after your first gauntlet clear.
 - Robots chirp; they never speak.
 
@@ -161,14 +139,6 @@ The **east half is combat only**:
 
 ## Audio
 
-WebAudio only: footsteps, weapon hits, deflect clangs, robot chirps,
-level-up and quest stings, ambience per area, and simple procedural
-music that shifts for elites and the boss.
-
-## Done when
-
-On a phone in portrait you can start at level 1 in town, take a quest,
-try the west toys, cross the east gate, level through the bands, clear
-the Training Vault and the gauntlet, and beat the Crate Titan (the dev
-menu may be used to skip the grind). Write a README with how to run it
-and what is in and out.
+Footsteps, weapon hits, deflect clangs, robot chirps, level-up and
+quest stings, ambience per area, and music that shifts for elites and
+the boss.
