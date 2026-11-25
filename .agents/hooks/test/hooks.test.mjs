@@ -34,13 +34,16 @@ const terminal = (address, cwd, msg, state = 'working') => ({ address, agent: 'c
 const fixture = (tool, name, root = '/repo') => JSON.parse(readFileSync(join(FIXTURES, tool, `${name}.json`), 'utf8').replaceAll('__ROOT__', root));
 const git = (cwd, args) => spawnSync('git', args, { cwd, encoding: 'utf8', env: { ...ENV, GIT_AUTHOR_NAME: 't', GIT_AUTHOR_EMAIL: 't@t', GIT_COMMITTER_NAME: 't', GIT_COMMITTER_EMAIL: 't@t' } });
 
-/** A git repo holding a copy of .agents/hooks/ (and the md-wrap tool), with one commit. */
-function sandbox() {
+/** Where this repo keeps the kit's md-wrap tool: src/scripts/.kit/ in a lean repo (D31), else kit/scripts/. */
+const WRAP = ['src/scripts/.kit/md-wrap.mjs', 'kit/scripts/md-wrap.mjs'].find((path) => existsSync(join(REPO, path)));
+
+/** A git repo holding a copy of .agents/hooks/ (and the md-wrap tool, at `wrapAt`), with one commit. */
+function sandbox(wrapAt = WRAP) {
   const root = realpathSync(mkdtempSync(join(scratch, 'box-')));
   boxes.push(root);
   git(root, ['init', '-q', '-b', 'main']);
   cpSync(HOOKS, join(root, '.agents', 'hooks'), { recursive: true, filter: (path) => !path.includes(`${join('hooks', 'test')}`) });
-  if (existsSync(join(REPO, 'src/scripts/.kit/md-wrap.mjs'))) cpSync(join(REPO, 'src/scripts/.kit/md-wrap.mjs'), join(root, 'src/scripts/.kit/md-wrap.mjs'));
+  if (WRAP && wrapAt) cpSync(join(REPO, WRAP), join(root, wrapAt));
   writeFileSync(join(root, 'notes.md'), '# t\n\nhello\n');
   git(root, ['add', '-A']);
   git(root, ['-c', 'core.hooksPath=/dev/null', 'commit', '-q', '-m', 'init']);
@@ -96,13 +99,14 @@ describe('payload adapter', () => {
 describe('guard-git-add.sh: same verdict from both tools', () => {
   const root = sandbox();
   const verdict = (tool, command) => run(root, 'guard-git-add.sh', withCommand(tool, command));
-  const blocked = ['git add -A', 'git add .', 'git add -u', 'git -C /repo add --all', 'git commit -am "fix: x"', 'git commit -m "fix: x"', 'git diff -- a && git commit -m "fix: x"',
-    // An apostrophe inside a double-quoted message is not a quote: the bare commit is still bare.
+  const blocked = ['git add -A', 'git add .', 'git add -u', 'git -C /repo add --all', 'git commit -am "fix: x"', 'git commit -m "fix: x"', 'git diff -- a && git commit -m "fix: x"', 'git commit-tree deadbeef', 'git commit-tree deadbeef --', 'git -C /repo commit-tree deadbeef --',
+    // An apostrophe inside a double-quoted message is not a quote: the bare commit is still bare (A2).
     'git commit -m "fix: the repo\'s rule"', 'git commit -m "fix: it\'s" | grep -E \'x\''];
-  const allowed = ['git status --short', 'git add src/new.ts', 'git commit -m "fix: x" -- a.ts', 'git commit --amend --no-edit', 'SKIP_SWEEPGUARD=1 git commit -m "chore: all"', 'echo "git add -A"',
+  const allowed = [
     // A2: an apostrophe in a double-quoted message once paired with a later single quote and hid the pathspec.
     'git commit -m "docs: AGENTS.md\'s rule" -- a.ts 2>&1 | grep -E \'X |blocked\'', 'git commit -m \'say "hi" -- not a pathspec\' -- a.ts',
-    'git commit -m "fix: a \\"quoted\\" word, it\'s fine" -- a.ts | grep \'x\''];
+    'git commit -m "fix: a \\"quoted\\" word, it\'s fine" -- a.ts | grep \'x\'',
+    'git status --short', 'git add src/new.ts', 'git commit -m "fix: x" -- a.ts', 'git commit --amend --no-edit', 'SKIP_SWEEPGUARD=1 git commit -m "chore: all"', 'echo "git add -A"', 'scripts/commit.sh --patch own.patch "fix: own" -- shared.ts', 'git grep commit-tree', 'echo "GIT_INDEX_FILE=x git commit-tree tree"', 'git -c core.x=1 status --short', 'env WS_LANE_NAME=wire scripts/commit.sh --patch own.patch "fix: own" -- shared.ts'];
   for (const command of blocked) {
     test(`blocks: ${command}`, () => {
       const [claude, codex] = TOOLS.map((tool) => verdict(tool, command));
@@ -118,12 +122,56 @@ describe('guard-git-add.sh: same verdict from both tools', () => {
       assert.deepEqual(codex, claude);
     });
   }
+  for (const command of [
+    'git -c core.x=1 commit-tree deadbeef',
+    'command git commit-tree deadbeef',
+    'git --no-pager -C /repo -c "core.x=1" commit-tree deadbeef --',
+    'git --git-dir=/repo/.git commit-tree deadbeef',
+    'WS_LANE_NAME=wire command git commit-tree deadbeef',
+  ]) test(`explicit plumbing refusal: ${command}`, () => {
+    for (const tool of TOOLS) {
+      const result = verdict(tool, command);
+      assert.equal(result.status, 2, result.stderr);
+      assert.match(result.stderr, /raw git commit-tree/u);
+    }
+  });
+  for (const command of [
+    'GIT_INDEX_FILE=lane.index git commit -m "fix: x" -- shared',
+    'env GIT_INDEX_FILE="lane index" git commit -m "fix: x" -- shared',
+    'export GIT_INDEX_FILE=lane.index; git commit -m "fix: x" -- shared',
+  ]) test(`external index refusal: ${command}`, () => {
+    for (const tool of TOOLS) {
+      const result = verdict(tool, command);
+      assert.equal(result.status, 2, result.stderr);
+      assert.match(result.stderr, /external GIT_INDEX_FILE/u);
+    }
+  });
+  test('the merge exception admits a real merge commit, never raw commit-tree', () => {
+    const merge = sandbox();
+    assert.equal(git(merge, ['checkout', '-qb', 'peer']).status, 0);
+    writeFileSync(join(merge, 'peer'), 'upstream\n');
+    assert.equal(git(merge, ['add', '--', 'peer']).status, 0);
+    assert.equal(git(merge, ['-c', 'core.hooksPath=/dev/null', 'commit', '-qm', 'peer']).status, 0);
+    assert.equal(git(merge, ['checkout', '-q', 'main']).status, 0);
+    assert.equal(git(merge, ['merge', '--no-ff', '--no-commit', 'peer']).status, 0);
+    for (const tool of TOOLS) {
+      const payload = (command) => {
+        const input = fixture(tool, 'pre-bash', merge);
+        input.tool_input.command = command;
+        return input;
+      };
+      assert.equal(run(merge, 'guard-git-add.sh', payload('git commit -m "merge"')).status, 0);
+      const blocked = run(merge, 'guard-git-add.sh', payload('git commit-tree deadbeef'));
+      assert.equal(blocked.status, 2, blocked.stderr);
+      assert.match(blocked.stderr, /raw git commit-tree/u);
+    }
+  });
   test('ignores an edit payload and empty input', () => {
     for (const payload of [fixture('claude', 'pre-edit', root), fixture('codex', 'pre-apply-patch', root), '']) assert.equal(run(root, 'guard-git-add.sh', payload).status, 0);
   });
 });
 
-describe('md-prose-width.sh: same advice from both tools', { skip: !existsSync(join(REPO, 'src/scripts/.kit/md-wrap.mjs')) && 'no src/scripts/.kit/md-wrap.mjs here' }, () => {
+describe('md-prose-width.sh: same advice from both tools', { skip: !WRAP && 'no md-wrap.mjs here' }, () => {
   const long = (n) => `${'word '.repeat(n).trim()}`;
   const codexPatch = (root, files) => {
     const payload = fixture('codex', 'post-apply-patch', root);
@@ -141,8 +189,17 @@ describe('md-prose-width.sh: same advice from both tools', { skip: !existsSync(j
     const claude = run(root, 'md-prose-width.sh', claudeEdit(root, 'notes.md'));
     const codex = run(root, 'md-prose-width.sh', codexPatch(root, ['notes.md']));
     assert.equal(claude.status, 2, claude.stderr);
-    assert.match(claude.stderr, /notes\.md:4: \d+ chars[\s\S]*node src\/scripts\/\.kit\/md-wrap\.mjs "notes\.md"/);
+    assert.match(claude.stderr, /notes\.md:4: \d+ chars[\s\S]*node (?:src\/scripts\/\.kit|kit\/scripts)\/md-wrap\.mjs "notes\.md"/);
     assert.deepEqual(codex, claude);
+  });
+  test('either layout: md-wrap runs from src/scripts/.kit/ or kit/scripts/', () => {
+    for (const at of ['src/scripts/.kit/md-wrap.mjs', 'kit/scripts/md-wrap.mjs']) {
+      const root = sandbox(at);
+      writeFileSync(join(root, 'notes.md'), `# t\n\nhello\n${long(20)}\n`);
+      const claude = run(root, 'md-prose-width.sh', claudeEdit(root, 'notes.md'));
+      assert.equal(claude.status, 2, claude.stderr);
+      assert.ok(claude.stderr.includes(`node ${at} "notes.md"`), claude.stderr);
+    }
   });
   test('Claude Write and Codex Add File, recorded payloads as sent', () => {
     const root = sandbox();
@@ -218,8 +275,8 @@ describe('session-brief.sh: same brief from both tools', () => {
     assert.equal(git(root, ['worktree', 'add', '-q', '-b', 'plan/foo', '.worktrees/foo']).status, 0);
     assert.match(mainOnly(root), /!! worktree .*\.worktrees\/foo/);
     assert.match(mainOnly(root), /!! branch plan\/foo/);
-    mkdirSync(join(root, 'src', 'scripts', '.kit'), { recursive: true });
-    writeFileSync(join(root, 'src', 'scripts', '.kit', 'worktree.mjs'), '');
+    mkdirSync(join(root, 'scripts'));
+    writeFileSync(join(root, 'scripts', 'worktree.mjs'), '');
     const allowed = mainOnly(root);
     assert.match(allowed, /plan worktrees \(1\): \.worktrees\/foo/);
     assert.match(allowed, /\(clean: main only\)/);

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # D9: the one commit entry. Only named files; serialize Git's shared files.
-# Usage: scripts/commit.sh [--patch file.patch] "message" -- files...
+# Usage: src/scripts/.kit/commit.sh [--patch file.patch] "message" -- files...
 set -euo pipefail
 [ -z "${GIT_INDEX_FILE:-}" ] || { echo 'commit.sh: private indexes are retired' >&2; exit 2; }
 patch=''
@@ -10,7 +10,7 @@ if [ "${1:-}" = --patch ]; then
   [ -r "$patch" ] || { echo "commit.sh: unreadable patch: $patch" >&2; exit 2; }
   shift 2
 fi
-[ "$#" -ge 3 ] && [ "$2" = -- ] || { echo 'usage: scripts/commit.sh "message" -- <files...>' >&2; exit 2; }
+[ "$#" -ge 3 ] && [ "$2" = -- ] || { echo 'usage: src/scripts/.kit/commit.sh "message" -- <files...>' >&2; exit 2; }
 message=$1; shift 2
 cd "$(git rev-parse --show-toplevel)"
 for path in "$@"; do

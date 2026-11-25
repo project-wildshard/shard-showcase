@@ -3,9 +3,9 @@
 // each load from the repo's single spec (meta
 // docs/plans/MULTI-AGENT-TOOLING-PLAN.md, MA2 and MA3).
 //
-//   node scripts/agent-sync.mjs [--root <dir>]          write it
-//   node scripts/agent-sync.mjs --check [--root <dir>]  exit 1 if stale or invalid
-//   node scripts/agent-sync.mjs --from <repo-kit> [--root <dir>]
+//   node src/scripts/.kit/agent-sync.mjs [--root <dir>]          write it
+//   node src/scripts/.kit/agent-sync.mjs --check [--root <dir>]  exit 1 if stale or invalid
+//   node src/scripts/.kit/agent-sync.mjs --from <repo-kit> [--root <dir>]
 //                                    stamp the kit's agent layout, then write
 //
 // The source, edited by hand:
@@ -39,7 +39,7 @@ import { createHash } from 'node:crypto';
 import { chmodSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, readlinkSync, realpathSync, renameSync, rmSync, rmdirSync, statSync, symlinkSync, unlinkSync, writeFileSync } from 'node:fs';
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { EVENTS, KIT_SCRIPTS, invocation, normalizeMatcher } from './agent-parity.mjs';
+import { EVENTS, KIT_SCRIPTS, invocation, leanLayout, normalizeMatcher } from './agent-parity.mjs';
 
 export const SPEC = '.agents/hooks.json';
 export const LOCAL_SPEC = '.agents/hooks.local.json';
@@ -64,7 +64,7 @@ const HANDLER_FIELDS = {
   codex: { type: (value) => value === 'command', command: nonEmptyString, commandWindows: nonEmptyString, timeout: positiveInt, async: (value) => typeof value === 'boolean', statusMessage: nonEmptyString, additionalContextLimit: positiveInt },
 };
 /** The kit's own hook scripts before MA2, removed by --from. */
-const LEGACY_HOOKS = ['session-brief.sh', 'guard-git-add.sh', 'md-prose-width.sh', 'herdr-peers.sh', 'guard-herdr-prompt.sh'];
+const LEGACY_HOOKS = ['session-brief.sh', 'guard-git-add.sh', 'md-prose-width.sh', 'herdr-peers.sh', 'guard-herdr-prompt.sh', 'peers.sh', 'guard-hc-send.sh'];
 
 const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
 const lexists = (path) => {
@@ -388,6 +388,9 @@ export function stamp(kitDir, rootDir) {
   if (realOr(kit) === realOr(root)) return refuse(['--from names this repo itself']);
 
   const problems = [];
+  // Lean-layout L1 (D31): a lean repo takes the kit scripts in src/scripts/.kit/ and every skill re-pointed.
+  const lean = leanLayout(kit, root);
+  const at = (path) => (lean ? lean.at(path) : path);
   const kitSpec = readSpec(kit, SPEC, true);
   problems.push(...kitSpec.problems.map((problem) => `the kit's ${problem}`));
   const files = kitFiles(kit);
@@ -426,7 +429,7 @@ export function stamp(kitDir, rootDir) {
   const stale = isRealDir(claudeSkills) ? readdirSync(claudeSkills).filter((name) => isLink(join(claudeSkills, name)) && !linked.includes(name)).map((name) => `${CLAUDE_SKILLS}/${name}`) : [];
   const legacy = LEGACY_HOOKS.map((name) => `.claude/hooks/${name}`).filter((path) => lexists(join(root, path)));
   // No write or removal may go through a symlink.
-  const writes = [...files, CLAUDE_SETTINGS, CODEX_HOOKS, ...own.map((name) => `${SKILLS}/${name}`)];
+  const writes = [...files.map(at), CLAUDE_SETTINGS, CODEX_HOOKS, ...own.map((name) => `${SKILLS}/${name}`)];
   const links = linked.map((name) => `${CLAUDE_SKILLS}/${name}`);
   const removes = [...legacy, ...stale, ...oldKitSkills.map((name) => `${CLAUDE_SKILLS}/${name}`), ...own.map((name) => `${CLAUDE_SKILLS}/${name}`)];
   for (const path of [...new Set([...writes, `${CLAUDE_SKILLS}/x`, ...removes.map((entry) => `${dirname(entry)}/x`)])]) {
@@ -473,16 +476,17 @@ export function stamp(kitDir, rootDir) {
   }
   for (const path of files) {
     const from = join(kit, path);
-    const to = join(root, path);
-    const bytes = readFileSync(from);
+    const to = join(root, at(path));
+    const kitBytes = readFileSync(from);
+    const bytes = lean && !kitBytes.includes(0) ? Buffer.from(lean.text(path, kitBytes.toString('utf8')), 'utf8') : kitBytes;
     const mode = statSync(from).mode & 0o777;
     const same = existsSync(to) && readFileSync(to).equals(bytes);
     if (!same || (statSync(to).mode & 0o777) !== mode) {
-      if (existsSync(to) && !same) differs(path, path);
+      if (existsSync(to) && !same) differs(at(path), path);
       mkdirSync(dirname(to), { recursive: true });
       writeFileSync(to, bytes);
       chmodSync(to, mode);
-      changed.add(path);
+      changed.add(at(path));
     }
   }
   const next = plan(root);
@@ -525,7 +529,7 @@ function main(argv) {
   const { actions, problems } = plan(root);
   for (const problem of problems) process.stderr.write(`agent-sync: ${problem}\n`);
   if (check) {
-    for (const action of actions) process.stderr.write(`agent-sync: ${action.path} is out of date (run node scripts/agent-sync.mjs)\n`);
+    for (const action of actions) process.stderr.write(`agent-sync: ${action.path} is out of date (run node src/scripts/.kit/agent-sync.mjs)\n`);
     return problems.length || actions.length ? 1 : 0;
   }
   if (problems.length) return 1;

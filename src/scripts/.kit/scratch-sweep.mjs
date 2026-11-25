@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // repo-kit's report-only scratch sweep (meta REPO-DISK-PLAN J358, was TEMP-HYGIENE T7). One copy lives in repo-kit; every org
-// repo carries a byte-identical copy at scripts/scratch-sweep.mjs, beside scratch-dir.mjs (DK3) and vite-tmp.mjs.
+// repo carries a byte-identical copy at src/scripts/.kit/scratch-sweep.mjs, beside scratch-dir.mjs (DK3) and vite-tmp.mjs.
 //
-//   node scripts/scratch-sweep.mjs [--root <repo>] [--days <n>]
+//   node src/scripts/.kit/scratch-sweep.mjs [--root <repo>] [--days <n>]
 //
 // It looks at each folder directly under <repo>/tmp/ and would remove one in which nothing (the folder or anything in
 // it) changed for <n> days (3 by default), with or without a DK3 `.owner`. It keeps:

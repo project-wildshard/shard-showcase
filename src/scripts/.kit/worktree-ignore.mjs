@@ -1,6 +1,6 @@
 // DS11 (J221, J240): plan worktrees live at <repo>/.worktrees/<plan>, on plan/<plan>, inside the canonical checkout.
 // Every tool that walks the canonical tree skips them, so a checkout with worktrees inside behaves like one without.
-// Repo-kit ships this file byte-identical to every org repo; test/tooling/worktree-ignore.test.mjs is its guard.
+// Repo-kit ships this file byte-identical to every org repo; src/test/.kit/worktree-ignore.test.mjs is its guard.
 //
 // Who already skips them without this file: Git (`/.worktrees/` in .gitignore), so oxlint and oxfmt (they read
 // .gitignore), `git status`/`git add` and so the staged-blob secrets and size checks. Vitest's include globs and the

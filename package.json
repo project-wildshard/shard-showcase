@@ -5,7 +5,7 @@
   "description": "The Showcase: a Wildshard shard.",
   "type": "module",
   "engines": {
-    "node": ">=24.18.0"
+    "node": ">=24.18.0 <25"
   },
   "packageManager": "pnpm@10.34.9",
   "scripts": {
@@ -14,7 +14,7 @@
     "build": "wildshard build .",
     "pack": "wildshard build . && wildshard prepare public/shardfiles/shard-showcase && wildshard build public/shardfiles/shard-showcase",
     "lint": "node src/scripts/.kit/bin-tools.mjs -c .oxlintrc.author.json --no-error-on-unmatched-pattern src",
-    "typecheck": "node src/scripts/typecheck.mjs",
+    "typecheck": "node src/scripts/.kit/typecheck.mjs",
     "format:check": "npr oxfmt --check src",
     "fix": "node src/scripts/.kit/bin-tools.mjs -c .oxlintrc.author.json --fix --no-error-on-unmatched-pattern src && npr oxfmt --no-error-on-unmatched-pattern src",
     "test": "node --test 'src/test/.kit/*.test.mjs' '.githooks/*.test.mjs' '.agents/hooks/test/*.test.mjs'",

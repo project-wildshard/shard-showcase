@@ -25,7 +25,9 @@ CI runs it. Keep this command in the consumer check script too.
 
 These are plain Node tooling files outside the typed app project. Register
 their exact paths in that project's existing plain-script lint scope:
-`src/scripts/.kit/chromium-keychain*` and
+`src/scripts/.kit/chromium-keychain.mjs`,
+`src/scripts/.kit/chromium-keychain.d.mts`,
+`src/scripts/.kit/chromium-keychain-check.mjs` and
 `src/test/.kit/chrome-keychain.test.mjs`. Syntax and the source-inventory
 test run directly with Node; app lint rules remain unchanged.
 

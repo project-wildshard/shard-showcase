@@ -55,11 +55,11 @@ in order; don't paraphrase or shortcut.
      an AI. The commit-msg hook refuses the rest.
 2. **Gates green on HEAD.** The pre-commit lane ran on your staged
    files. If you touched `.githooks/` or `.agents/hooks/`, the hook
-   suite ran too (`pnpm test` / `node --test
-   .githooks/*.test.mjs` by hand). Red on your commit: fix it forward
-   with a new pathspec commit (never `--amend` a pushed commit, never
-   revert to hide it). Red on someone else's commit: name the commit
-   and its owner in the report.
+   suite ran too (`pnpm test:hooks`, `pnpm test` in a lean repo, or
+   `node --test .githooks/*.test.mjs` by hand). Red on your commit:
+   fix it forward with a new pathspec commit (never `--amend` a pushed
+   commit, never revert to hide it). Red on someone else's commit:
+   name the commit and its owner in the report.
 3. **Push, and stop there.** `git push origin main`; pre-push re-scans
    the outgoing commits and runs the full `pnpm check`. Rejected
    (non-fast-forward): `git fetch origin && git merge origin/main`

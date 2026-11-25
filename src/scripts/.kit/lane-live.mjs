@@ -126,7 +126,7 @@ export function laneLive(path, { receipts = RECEIPTS, activeHours, cwdLive, cwds
 if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   const [path] = process.argv.slice(2);
   if (!path || process.argv.length !== 3) {
-    process.stderr.write('usage: node scripts/lane-live.mjs <lane-root>\n');
+    process.stderr.write('usage: node src/scripts/.kit/lane-live.mjs <lane-root>\n');
     process.exitCode = 2;
   } else {
     const result = laneLive(path, { receipts: process.env.WS_LANE_RECEIPTS ?? RECEIPTS });

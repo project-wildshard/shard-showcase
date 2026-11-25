@@ -46,3 +46,30 @@ test('it keeps silent wall-clock-old lanes live, ends only on DONE, and protects
     assert.match(laneLive(unowned, { receipts, cwds: [], activeHours: 72 }).reason, /72 active hours/u);
   } finally { rmSync(root, { recursive: true, force: true }); }
 });
+
+// lean-layout H1: the owner's hc terminal (scratch-dir's `pane`, now $HC_TERMINAL_ID) is live while `hc get` says
+// so. A fake hc on PATH answers; the real one is never run.
+test('an owner whose hc terminal is live keeps its lane live; a gone terminal does not', () => {
+  rmSync(root, { recursive: true, force: true });
+  mkdirSync(root, { recursive: true });
+  const bin = join(root, 'bin');
+  mkdirSync(bin);
+  writeFileSync(join(bin, 'hc'), '#!/bin/sh\n[ "$1" = get ] || exit 64\ncase "$2" in t-live) echo \'{"state":"live"}\' ;; *) exit 1 ;; esac\n', { mode: 0o755 });
+  const path = process.env.PATH;
+  process.env.PATH = `${bin}:/usr/bin:/bin`;
+  try {
+    const receipts = join(root, 'receipts.log');
+    writeFileSync(receipts, '10:00 UTC done DONE: work\n');
+    const owned = (name, pane) => {
+      const dir = join(root, name);
+      mkdirSync(dir);
+      writeFileSync(join(dir, '.owner'), JSON.stringify({ lane: 'done', session: 'sess-gone', pane, receiptOffset: 0 }));
+      return dir;
+    };
+    assert.deepEqual(laneLive(owned('live', 't-live'), { receipts, cwds: [], activeHours: 0 }), { state: 'live', reason: 'owner session is present' });
+    assert.equal(laneLive(owned('gone', 't-gone'), { receipts, cwds: [], activeHours: 0 }).state, 'ended');
+  } finally {
+    process.env.PATH = path;
+    rmSync(root, { recursive: true, force: true });
+  }
+});

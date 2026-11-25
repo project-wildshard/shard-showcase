@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 // Safe sync for many lanes in ONE shared checkout on main (meta MINI-DECISIONS M1, J389; Jake, 2026-11-16: "all
 // your agents ... work on one checkout of engine, commit to main push"). Kit copy (repo-kit files/scripts/) of
-// engine's scripts/main-push.mjs (meta HOW-WE-BUILD WL22), itself meta's scripts/meta-push.mjs (MF7) ported.
+// engine's src/scripts/.kit/main-push.mjs (meta HOW-WE-BUILD WL22), itself meta's scripts/meta-push.mjs (MF7) ported.
 // In place of `git commit -- <paths>`, `git pull --rebase origin main` and `git push origin main`:
 //
-//   node scripts/main-push.mjs -m "<subject>" [-m "<body>"]... <file>...   commit these files, then sync and push
-//   node scripts/main-push.mjs                                              push commits already made
-//   node scripts/main-push.mjs --onto <sha> -m "<subject>" <file>...        after a conflict: commit the files you
+//   node src/scripts/.kit/main-push.mjs -m "<subject>" [-m "<body>"]... <file>...   commit these files, then sync and push
+//   node src/scripts/.kit/main-push.mjs                                              push commits already made
+//   node src/scripts/.kit/main-push.mjs --onto <sha> -m "<subject>" <file>...        after a conflict: commit the files you
 //                                                                           merged against origin/main at <sha>
 //   options: --tries <n> (default 8), --wait <seconds> (first wait, doubling; default 5)
 //
@@ -76,12 +76,22 @@ export function checkState(cwd) {
  * them to new SHAs, so the subject is what survives. */
 const OWN = new Set();
 
+/** Meta QA 11-25 row 43: main-push and land run only under a lane name (`WS_LANE_NAME`); with none they once called
+ * themselves by the script's name, and a HOLD guard read the HOLD's own lander as a stranger. Null when the name is good.
+ * @param {NodeJS.ProcessEnv} env @param {string} script @returns {string|null} */
+export function laneRefusal(env, script) {
+  const lane = env.WS_LANE_NAME ?? '';
+  if (/^[a-z][a-z0-9_-]*$/u.test(lane)) return null;
+  return `${script} runs only under a lane name: set WS_LANE_NAME=<your lane> (lowercase letters, digits, _ or -, such as ` +
+    `WS_LANE_NAME=opus-ma node src/scripts/.kit/${script}.mjs ...)${lane === '' ? '' : `; ${JSON.stringify(lane)} is not one`}`;
+}
+
 /** One `lane-receipts.log` line, `<HH:MM Cancún> <lane> <text>` (the Mac's clock is Cancún time). WS_MAIN_PUSH_RECEIPT=0
  * (the tests) writes none. @param {string} text */
 function receipt(text) {
   if (process.env.WS_MAIN_PUSH_RECEIPT === '0') return;
   const file = resolve(process.env.WS_LANE_RECEIPTS ?? join(homedir(), '.cache/wildshard/lane-receipts.log'));
-  const lane = /^[a-z][a-z0-9_-]*$/u.test(process.env.WS_LANE_NAME ?? '') ? process.env.WS_LANE_NAME : 'main-push';
+  const lane = process.env.WS_LANE_NAME ?? 'unnamed';
   try {
     mkdirSync(dirname(file), { recursive: true });
     appendFileSync(file, `${new Date().toTimeString().slice(0, 5)} Cancún ${lane} ${text.replaceAll(/\s+/gu, ' ').slice(0, 1000)}\n`);
@@ -269,7 +279,7 @@ export function prepareOnto(cwd, onto, files, remote = 'origin') {
  * @param {string} upstream @param {string[]} messages @param {string[]} files */
 export function ontoCommand(upstream, messages, files) {
   const quote = (/** @type {string} */ text) => (/^[\w@%+=:,./-]+$/u.test(text) ? text : `'${text.replaceAll("'", `'\\''`)}'`);
-  return ['node scripts/main-push.mjs --onto', upstream.slice(0, 12), ...messages.flatMap((message) => ['-m', quote(message)]), ...files.map(quote)].join(' ');
+  return ['node src/scripts/.kit/main-push.mjs --onto', upstream.slice(0, 12), ...messages.flatMap((message) => ['-m', quote(message)]), ...files.map(quote)].join(' ');
 }
 
 /** The STOP text for a conflict: what to merge and the exact command that finishes it.
@@ -369,7 +379,7 @@ export function parseArgs(argv) {
 if (process.argv[1] !== undefined && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const options = parseArgs(process.argv.slice(2));
   if ('error' in options) {
-    console.error(`main-push: ${options.error}\nusage: node scripts/main-push.mjs [-m "<subject>" [-m "<body>"]... <file>...] [--tries n] [--wait s]`);
+    console.error(`main-push: ${options.error}\nusage: node src/scripts/.kit/main-push.mjs [-m "<subject>" [-m "<body>"]... <file>...] [--tries n] [--wait s]`);
     process.exit(2);
   }
   const cwd = git(process.cwd(), ['rev-parse', '--show-toplevel']);
@@ -378,6 +388,9 @@ if (process.argv[1] !== undefined && import.meta.url === pathToFileURL(resolve(p
   let made = '';
   try {
     checkState(cwd);
+    // Meta QA 11-25 row 43: a push runs only under a lane name, never calling itself `main-push`.
+    const lane = laneRefusal(process.env, 'main-push');
+    if (lane !== null) throw new StopError(lane);
     // Five lanes' gates can queue for the lock: wait up to about 30 min for it unless --tries says otherwise.
     release = takeLock(cwd, { tries: process.argv.includes('--tries') ? options.tries : 120, wait: options.wait, log });
     const commit = () => {

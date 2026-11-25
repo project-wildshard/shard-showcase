@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // repo-kit's scratch folder maker (meta docs/plans/REPO-DISK-PLAN.md row DK3). One copy lives in repo-kit; every org
-// repo and singleplayer carries a byte-identical copy at scripts/scratch-dir.mjs (DK8 checks the copies).
+// repo and singleplayer carries a byte-identical copy at src/scripts/.kit/scratch-dir.mjs (DK8 checks the copies).
 //
-//   node scripts/scratch-dir.mjs <task> "<purpose>" [--row <plan-row>]
+//   node src/scripts/.kit/scratch-dir.mjs <task> "<purpose>" [--row <plan-row>]
 //
 // creates <repo>/tmp/<task>/ and tmp/<task>/.owner, then prints the folder's absolute path. .owner is JSON: the session
 // id ($CODEX_THREAD_ID, else $CLAUDE_SESSION_ID, else $CLAUDE_CODE_SESSION_ID, else $WS_LANE_NAME), the lane name, the
@@ -102,7 +102,7 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? '').href) {
   const row = rowAt === -1 ? null : rest[rowAt + 1] ?? null;
   const other = rowAt === -1 ? rest : rest.filter((_, index) => index !== rowAt && index !== rowAt + 1);
   if (other.length > 0 || task === '--help' || task === '-h' || rowAt !== -1 && row === null) {
-    console.error('usage: node scripts/scratch-dir.mjs <task> "<purpose>" [--row <plan-row>]');
+    console.error('usage: node src/scripts/.kit/scratch-dir.mjs <task> "<purpose>" [--row <plan-row>]');
     process.exit(2);
   }
   try {

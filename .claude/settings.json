@@ -6,6 +6,11 @@
           {
             "type": "command",
             "command": "bash \"$CLAUDE_PROJECT_DIR/.agents/hooks/session-brief.sh\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.agents/hooks/session-cleanup.mjs\"",
+            "timeout": 10
           }
         ]
       }
@@ -21,6 +26,18 @@
           {
             "type": "command",
             "command": "bash \"$CLAUDE_PROJECT_DIR/.agents/hooks/guard-hc-send.sh\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.agents/hooks/no-pr-guard.mjs\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.agents/hooks/pkill-guard.mjs\""
+          },
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.agents/hooks/no-sound-guard.mjs\""
           },
           {
             "type": "command",
@@ -63,6 +80,11 @@
     "SessionEnd": [
       {
         "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/.agents/hooks/session-cleanup.mjs\"",
+            "timeout": 10
+          },
           {
             "type": "command",
             "command": "node \"$CLAUDE_PROJECT_DIR/.agents/hooks/scratch-end.mjs\"",
