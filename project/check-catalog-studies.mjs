@@ -203,3 +203,6 @@ assert.ok(ids.has("west-climb-rock-wip"));
 assert.ok(ids.has("nov25-w3a-native-six-targets"));
 assert.ok(ids.has("nov24-west-melee-targets"));
 assert.ok(ids.has("nov25-w12-range-gate-walk"));
+assert.ok(ids.has("nov25-e6-arc-charge"));
+assert.ok(ids.has("nov25-e6-duel-cover"));
+assert.ok(!data.assets.find(row=>row.id==="WSC-ACTOR-006").model_preview);
