@@ -1,0 +1,3820 @@
+{
+  "engine": "0.1.44",
+  "plateGeometrySha256": "6fc983e787a64e8605da1dfc3b62552baa8b61f1207d8c0832fb3f14345de365",
+  "levels": [
+    0.25825,
+    0.28325
+  ],
+  "floor": 0.112,
+  "dimensions": [
+    0.558,
+    0.43175,
+    0.5192
+  ],
+  "summary": [
+    {
+      "add": false,
+      "offset": -0.1,
+      "push": 0.42,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 221,
+        "crate": [
+          2.39563,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          2.39212,
+          0.13191,
+          3.96254
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 641,
+        "crate": [
+          2.15891,
+          0.54373,
+          -0.83029
+        ],
+        "rotation": [
+          0,
+          -0.00096,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15498,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.11715,
+          0.13175,
+          -0.94476
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 751,
+        "crate": [
+          2.15891,
+          0.54373,
+          -0.83029
+        ],
+        "rotation": [
+          0,
+          -0.00096,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15498,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.1175,
+          0.13207,
+          -1.04372
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": false,
+      "offset": -0.1,
+      "push": 0.67,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 221,
+        "crate": [
+          2.39563,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          2.39212,
+          0.13191,
+          3.96254
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 423,
+        "crate": [
+          2.06145,
+          0.54373,
+          -0.82396
+        ],
+        "rotation": [
+          0,
+          -0.00527,
+          0,
+          0.99999
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.16609,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.0381,
+          0.13175,
+          -0.9486
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 533,
+        "crate": [
+          2.06145,
+          0.54373,
+          -0.82396
+        ],
+        "rotation": [
+          0,
+          -0.00527,
+          0,
+          0.99999
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.16609,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.03814,
+          0.13205,
+          -1.10638
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": false,
+      "offset": -0.1,
+      "push": 0.8,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 221,
+        "crate": [
+          2.39563,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          2.39212,
+          0.13191,
+          3.96254
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 384,
+        "crate": [
+          2.07058,
+          0.54373,
+          -0.83017
+        ],
+        "rotation": [
+          0,
+          -0.00068,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15479,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.048,
+          0.13189,
+          -0.94227
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 494,
+        "crate": [
+          2.07058,
+          0.54373,
+          -0.83016
+        ],
+        "rotation": [
+          0,
+          -0.00067,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15479,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.04691,
+          0.13202,
+          -1.12626
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": false,
+      "offset": 0,
+      "push": 0.42,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 226,
+        "crate": [
+          2.49569,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          2.49222,
+          0.132,
+          3.96253
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 646,
+        "crate": [
+          2.26,
+          0.54373,
+          -0.83103
+        ],
+        "rotation": [
+          0,
+          -0.00053,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15376,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.21808,
+          0.13174,
+          -0.93232
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 756,
+        "crate": [
+          2.26,
+          0.54373,
+          -0.83103
+        ],
+        "rotation": [
+          0,
+          -0.00053,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15376,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.21831,
+          0.13207,
+          -1.03122
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": false,
+      "offset": 0,
+      "push": 0.67,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 226,
+        "crate": [
+          2.49569,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          2.49222,
+          0.132,
+          3.96253
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 428,
+        "crate": [
+          2.18188,
+          0.54373,
+          -0.83014
+        ],
+        "rotation": [
+          0,
+          -0.00122,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15542,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.1519,
+          0.13174,
+          -0.95304
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 538,
+        "crate": [
+          2.18188,
+          0.54373,
+          -0.83014
+        ],
+        "rotation": [
+          0,
+          -0.00122,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15542,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.15193,
+          0.13207,
+          -1.11088
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": false,
+      "offset": 0,
+      "push": 0.8,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 226,
+        "crate": [
+          2.49569,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          2.49222,
+          0.132,
+          3.96253
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 389,
+        "crate": [
+          2.13957,
+          0.54373,
+          -0.82874
+        ],
+        "rotation": [
+          0,
+          -0.0011,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15669,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.13954,
+          0.13175,
+          -0.93482
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 499,
+        "crate": [
+          2.13957,
+          0.54373,
+          -0.82874
+        ],
+        "rotation": [
+          0,
+          -0.0011,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15669,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.13992,
+          0.1321,
+          -1.11886
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": false,
+      "offset": 0.1,
+      "push": 0.42,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 231,
+        "crate": [
+          2.59574,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          2.59229,
+          0.13189,
+          3.96253
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 651,
+        "crate": [
+          2.35938,
+          0.54373,
+          -0.8308
+        ],
+        "rotation": [
+          0,
+          -0.0003,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15373,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.31751,
+          0.10239,
+          -0.93991
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 761,
+        "crate": [
+          2.35938,
+          0.54373,
+          -0.8308
+        ],
+        "rotation": [
+          0,
+          -0.0003,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15373,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.31753,
+          0.13204,
+          -1.03883
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": false,
+      "offset": 0.1,
+      "push": 0.67,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 231,
+        "crate": [
+          2.59574,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          2.59229,
+          0.13189,
+          3.96253
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 433,
+        "crate": [
+          2.27113,
+          0.54373,
+          -0.8308
+        ],
+        "rotation": [
+          0,
+          -0.00091,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15441,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.24228,
+          0.13174,
+          -0.95025
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 543,
+        "crate": [
+          2.27113,
+          0.54373,
+          -0.8308
+        ],
+        "rotation": [
+          0,
+          -0.00091,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15441,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.24228,
+          0.13128,
+          -1.10799
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": false,
+      "offset": 0.1,
+      "push": 0.8,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 231,
+        "crate": [
+          2.59574,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          2.59229,
+          0.13189,
+          3.96253
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 394,
+        "crate": [
+          2.25369,
+          0.54373,
+          -0.82966
+        ],
+        "rotation": [
+          0,
+          -0.00089,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15552,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.23997,
+          0.13174,
+          -0.95631
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 504,
+        "crate": [
+          2.25289,
+          0.54373,
+          -0.82967
+        ],
+        "rotation": [
+          0,
+          -0.00089,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.32699,
+            "bottom": 0.25818,
+            "held": true
+          },
+          {
+            "clearance": -1.15552,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          false,
+          false
+        ],
+        "feet": [
+          3.24008,
+          0.13201,
+          -1.14434
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": true,
+      "offset": -0.1,
+      "push": 0.42,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 221,
+        "crate": [
+          2.39563,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          2.39212,
+          0.13191,
+          3.96254
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 571,
+        "crate": [
+          2.1331,
+          0.54373,
+          -2.13006
+        ],
+        "rotation": [
+          0,
+          0.07466,
+          0,
+          0.99721
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": 0.06856,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          2.95884,
+          0.13185,
+          -1.35117
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 681,
+        "crate": [
+          2.11619,
+          0.54373,
+          -2.17586
+        ],
+        "rotation": [
+          0,
+          0.07483,
+          0,
+          0.9972
+        ],
+        "held": [
+          true,
+          true
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": 0.1142,
+            "bottom": 0.11198,
+            "held": true
+          }
+        ],
+        "both": true,
+        "doorBlocked": false,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          2.97799,
+          0.13208,
+          -1.42028
+        ],
+        "aFixed": true
+      },
+      "crossed": {
+        "name": "ordinary walk through open gate",
+        "tickNo": 817,
+        "crate": [
+          2.11284,
+          0.54373,
+          -2.18103
+        ],
+        "rotation": [
+          0,
+          0.07549,
+          0,
+          0.99715
+        ],
+        "held": [
+          true,
+          true
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": 0.11874,
+            "bottom": 0.11198,
+            "held": true
+          }
+        ],
+        "both": true,
+        "doorBlocked": false,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          0.0006,
+          0.13179,
+          -6.56662
+        ],
+        "aFixed": true
+      },
+      "relocked": {
+        "name": "crate removed by ordinary walk",
+        "tickNo": 1093,
+        "crate": [
+          2.30253,
+          0.54373,
+          -0.89459
+        ],
+        "rotation": [
+          0,
+          0.07417,
+          0,
+          0.99725
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -1.16645,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          1.85325,
+          0.13208,
+          -1.75684
+        ],
+        "aFixed": true
+      }
+    },
+    {
+      "add": true,
+      "offset": -0.1,
+      "push": 0.67,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 221,
+        "crate": [
+          2.39563,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          2.39212,
+          0.13191,
+          3.96254
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 443,
+        "crate": [
+          2.06923,
+          0.54373,
+          -1.92836
+        ],
+        "rotation": [
+          0,
+          0.06128,
+          0,
+          0.99812
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -0.12019,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.09179,
+          0.13182,
+          -2.04128
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 553,
+        "crate": [
+          2.06923,
+          0.54373,
+          -1.92836
+        ],
+        "rotation": [
+          0,
+          0.06128,
+          0,
+          0.99812
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -0.12019,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.09184,
+          0.13205,
+          -2.19909
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": true,
+      "offset": -0.1,
+      "push": 0.8,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 221,
+        "crate": [
+          2.39563,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          2.39212,
+          0.13191,
+          3.96254
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 410,
+        "crate": [
+          2.07109,
+          0.54373,
+          -2.02336
+        ],
+        "rotation": [
+          0,
+          0.05695,
+          0,
+          0.99838
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -0.02092,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.09753,
+          0.13172,
+          -2.16969
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 520,
+        "crate": [
+          2.07109,
+          0.54373,
+          -2.02336
+        ],
+        "rotation": [
+          0,
+          0.05695,
+          0,
+          0.99838
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -0.02092,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.09753,
+          0.13148,
+          -2.35812
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": true,
+      "offset": 0,
+      "push": 0.42,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 226,
+        "crate": [
+          2.49569,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          2.49222,
+          0.132,
+          3.96253
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 576,
+        "crate": [
+          2.2338,
+          0.54373,
+          -2.12906
+        ],
+        "rotation": [
+          0,
+          0.0747,
+          0,
+          0.99721
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": 0.06751,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.05771,
+          0.132,
+          -1.34927
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 686,
+        "crate": [
+          2.21672,
+          0.54373,
+          -2.17556
+        ],
+        "rotation": [
+          0,
+          0.07503,
+          0,
+          0.99718
+        ],
+        "held": [
+          true,
+          true
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": 0.1137,
+            "bottom": 0.11198,
+            "held": true
+          }
+        ],
+        "both": true,
+        "doorBlocked": false,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.07653,
+          0.13203,
+          -1.41861
+        ],
+        "aFixed": true
+      },
+      "crossed": {
+        "name": "ordinary walk through open gate",
+        "tickNo": 823,
+        "crate": [
+          2.21341,
+          0.54373,
+          -2.18075
+        ],
+        "rotation": [
+          0,
+          0.07575,
+          0,
+          0.99713
+        ],
+        "held": [
+          true,
+          true
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": 0.11822,
+            "bottom": 0.11198,
+            "held": true
+          }
+        ],
+        "both": true,
+        "doorBlocked": false,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          0.0007,
+          0.1318,
+          -6.56987
+        ],
+        "aFixed": true
+      },
+      "relocked": {
+        "name": "crate removed by ordinary walk",
+        "tickNo": 1099,
+        "crate": [
+          2.4037,
+          0.54373,
+          -0.90259
+        ],
+        "rotation": [
+          0,
+          0.07495,
+          0,
+          0.99719
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -1.15918,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          1.95841,
+          0.13204,
+          -1.76494
+        ],
+        "aFixed": true
+      }
+    },
+    {
+      "add": true,
+      "offset": 0,
+      "push": 0.67,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 226,
+        "crate": [
+          2.49569,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          2.49222,
+          0.132,
+          3.96253
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 448,
+        "crate": [
+          2.16717,
+          0.54373,
+          -1.92781
+        ],
+        "rotation": [
+          0,
+          0.06125,
+          0,
+          0.99812
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -0.12072,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.19057,
+          0.13172,
+          -2.0401
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 558,
+        "crate": [
+          2.16717,
+          0.54373,
+          -1.92781
+        ],
+        "rotation": [
+          0,
+          0.06125,
+          0,
+          0.99812
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -0.12072,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.19061,
+          0.13209,
+          -2.1979
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": true,
+      "offset": 0,
+      "push": 0.8,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 226,
+        "crate": [
+          2.49569,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          2.49222,
+          0.132,
+          3.96253
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 415,
+        "crate": [
+          2.17226,
+          0.54373,
+          -2.01912
+        ],
+        "rotation": [
+          0,
+          0.05691,
+          0,
+          0.99838
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -0.02512,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.19871,
+          0.13182,
+          -2.17097
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 525,
+        "crate": [
+          2.17226,
+          0.54373,
+          -2.01912
+        ],
+        "rotation": [
+          0,
+          0.05691,
+          0,
+          0.99838
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -0.02512,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.19871,
+          0.13206,
+          -2.35932
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": true,
+      "offset": 0.1,
+      "push": 0.42,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 231,
+        "crate": [
+          2.59574,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          2.59229,
+          0.13189,
+          3.96253
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 581,
+        "crate": [
+          2.33376,
+          0.54373,
+          -2.1282
+        ],
+        "rotation": [
+          0,
+          0.07476,
+          0,
+          0.9972
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": 0.0666,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.15827,
+          0.10115,
+          -1.34874
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 691,
+        "crate": [
+          2.31832,
+          0.54373,
+          -2.1708
+        ],
+        "rotation": [
+          0,
+          0.07479,
+          0,
+          0.9972
+        ],
+        "held": [
+          true,
+          true
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": 0.10918,
+            "bottom": 0.11198,
+            "held": true
+          }
+        ],
+        "both": true,
+        "doorBlocked": false,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.17936,
+          0.11115,
+          -1.4146
+        ],
+        "aFixed": true
+      },
+      "crossed": {
+        "name": "ordinary walk through open gate",
+        "tickNo": 830,
+        "crate": [
+          2.31517,
+          0.54373,
+          -2.17587
+        ],
+        "rotation": [
+          0,
+          0.07577,
+          0,
+          0.99712
+        ],
+        "held": [
+          true,
+          true
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": 0.11331,
+            "bottom": 0.11198,
+            "held": true
+          }
+        ],
+        "both": true,
+        "doorBlocked": false,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          0.00069,
+          0.1318,
+          -6.56856
+        ],
+        "aFixed": true
+      },
+      "relocked": {
+        "name": "crate removed by ordinary walk",
+        "tickNo": 1105,
+        "crate": [
+          2.5022,
+          0.54373,
+          -0.9025
+        ],
+        "rotation": [
+          0,
+          0.07346,
+          0,
+          0.9973
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -1.15785,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          2.0732,
+          0.13209,
+          -1.76822
+        ],
+        "aFixed": true
+      }
+    },
+    {
+      "add": true,
+      "offset": 0.1,
+      "push": 0.67,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 231,
+        "crate": [
+          2.59574,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          2.59229,
+          0.13189,
+          3.96253
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 453,
+        "crate": [
+          2.26911,
+          0.54373,
+          -1.92489
+        ],
+        "rotation": [
+          0,
+          0.0612,
+          0,
+          0.99813
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -0.12359,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.29189,
+          0.1319,
+          -2.04371
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 563,
+        "crate": [
+          2.26911,
+          0.54373,
+          -1.92489
+        ],
+        "rotation": [
+          0,
+          0.0612,
+          0,
+          0.99813
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -0.12359,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.2919,
+          0.13108,
+          -2.20153
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    },
+    {
+      "add": true,
+      "offset": 0.1,
+      "push": 0.8,
+      "density": 140,
+      "initial": {
+        "name": "initial",
+        "tickNo": 40,
+        "crate": [
+          1.25,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          -0.25,
+          0.13203,
+          2.32
+        ],
+        "aFixed": true
+      },
+      "aligned": {
+        "name": "aligned",
+        "tickNo": 231,
+        "crate": [
+          2.59574,
+          0.54375,
+          2.32
+        ],
+        "rotation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          false
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -4.3042,
+            "bottom": 0.112,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          2.59229,
+          0.13189,
+          3.96253
+        ],
+        "aFixed": true
+      },
+      "release": {
+        "name": "input released",
+        "tickNo": 420,
+        "crate": [
+          2.27164,
+          0.54373,
+          -2.01954
+        ],
+        "rotation": [
+          0,
+          0.05674,
+          0,
+          0.99839
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -0.02454,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.29847,
+          0.1319,
+          -2.17374
+        ],
+        "aFixed": true
+      },
+      "settled": {
+        "name": "settled",
+        "tickNo": 530,
+        "crate": [
+          2.27164,
+          0.54373,
+          -2.01954
+        ],
+        "rotation": [
+          0,
+          0.05674,
+          0,
+          0.99839
+        ],
+        "held": [
+          true,
+          false
+        ],
+        "overlap": [
+          true,
+          true
+        ],
+        "within": [
+          {
+            "clearance": 0.327,
+            "bottom": 0.112,
+            "held": true
+          },
+          {
+            "clearance": -0.02454,
+            "bottom": 0.11198,
+            "held": false
+          }
+        ],
+        "both": false,
+        "doorBlocked": true,
+        "bearing": [
+          true,
+          true
+        ],
+        "feet": [
+          3.29852,
+          0.13205,
+          -2.36219
+        ],
+        "aFixed": true
+      },
+      "crossed": null,
+      "relocked": null
+    }
+  ]
+}
