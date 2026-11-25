@@ -182,3 +182,5 @@ assert.ok(ids.has("nov25-e11d-foreman-rewards"));
 assert.ok(!data.assets.find(row=>row.id==="WSC-ACTOR-009").model_preview);
 assert.ok(ids.has("nov25-e3-pillar-screen"));
 assert.ok(!data.assets.find(row=>row.id==="WSC-ACTOR-003").model_preview);
+assert.ok(ids.has("nov25-w6b-native-conveyors"));
+assert.equal(data.assets.find(row=>row.id==="WSC-PROP-037").related_study.href,"#nov24-w6b-conveyor-direction");

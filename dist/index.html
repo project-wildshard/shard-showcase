@@ -753,6 +753,7 @@
 <p><a href="media/wsc-prop-014-far-planting.glb">Far foliage GLB</a> · 168,684 B. Replace the original foliage only; the masonry and loam are not bundled. <a href="https://github.com/project-wildshard/shard-showcase/blob/5ca8f98dfa6f5107a1257ec55ae4f375dd691c53/project/journal/2026-11-24-planter-distance.md">Rebuild and check notes</a>.</p></section>
 
 <section id="nov24-w6b-conveyor-direction">
+<p><a href="#nov25-w6b-native-conveyors">See the capsule and crate test</a>.</p>
 <p class="eyebrow">Blender · W6b · Reused equipment</p>
 <h2>Movers conveyors: read the reversal</h2>
 <p>The original cyan dashes are symmetric. This reversible arrow overlay uses the original three belt placements. The middle belt points opposite the other two. The unchanged donor models remain 1.232 m apart.</p>
@@ -762,6 +763,15 @@
 </div>
 <p><a href="media/wsc-prop-037-conveyor-direction.glb">Standalone marks GLB</a> · 9,244 B / 60 triangles. <a href="https://github.com/project-wildshard/shard-showcase/blob/f3eed3ebd2d8d8c574e568611c0dd17a048b59c2/project/journal/2026-11-24-w6b-conveyor-direction.md">Exact reimport and fit checks</a>. Static art only: no belt motion, crate behavior, UV scrolling, collision, or phone readability is claimed.</p>
 <p><a href="#nov25-w6b-jump-pads">See the next station’s jump pads and landing cue</a>.</p></section>
+<section id="nov25-w6b-native-conveyors">
+<p class="eyebrow">W6b · Movers Station 1 · Native physics bench</p>
+<h2>Three conveyors, tested with feet and cargo</h2>
+<p>The belts push west at 3 m/s, east at 4 m/s, and west at 5 m/s. Both the walking capsule and a rigid crate matched those speeds in separate trials. Walking with or against a belt changed the result by the right amount, and a real obstacle still stopped the capsule.</p>
+<div class="compare" style="max-width:1080px">
+<figure><a href="media/nov25-w6b-belt-foot.webp"><img src="media/nov25-w6b-belt-foot.webp" width="1330" height="800" alt="Mint capsule proxies and trace points on the three west movers conveyor belts" loading="lazy" decoding="async" style="height:auto"></a><figcaption>Walking trial · The middle belt moves in the opposite direction.</figcaption></figure>
+<figure><a href="media/nov25-w6b-belt-crate.webp"><img src="media/nov25-w6b-belt-crate.webp" width="1330" height="800" alt="Orange crate proxies and measured motion tracks on the three movers belts" loading="lazy" decoding="async" style="height:auto"></a><figcaption>Cargo trial · Fresh run with a real rigid body on each belt.</figcaption></figure>
+</div><p><a href="https://github.com/project-wildshard/shard-showcase/blob/4d4b9ff38d578fe2ce178ac0667e0435fcc73a09/demos/native-conveyor-bench/README.md">Source and repeatable checks</a>. Stock room data does not yet install conveyors. This local adapter proves grounded motion only; no live integration, animated tread, or phone test. Both images are Blender replays over unchanged art.</p>
+</section>
 <section id="nov25-w6b-jump-pads">
 <p class="eyebrow">West Movers · W6b · WSC-PLAN-007</p><h2>Jump pads and the six-metre landing</h2>
 <p>Three existing pad lids share one cyan chevron insert. The raised deck uses a separate amber landing marker. The pad overlay sits 2.5 mm above its donor surface at all 1,764 sampled points.</p>
