@@ -4,8 +4,8 @@ import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'node:test';
-import { KEYCHAIN_ARGS } from '../../scripts/chromium-keychain.mjs';
-import { keychainProblems } from '../../scripts/chromium-keychain-check.mjs';
+import { KEYCHAIN_ARGS } from '../../../scripts/chromium-keychain.mjs';
+import { keychainProblems } from '../../../scripts/chromium-keychain-check.mjs';
 
 const paths = execFileSync('git', ['ls-files', '-z', '--cached', '--others', '--exclude-standard'], {
   encoding: 'utf8', maxBuffer: 32 << 20,

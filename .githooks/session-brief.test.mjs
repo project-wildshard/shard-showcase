@@ -4,7 +4,7 @@ import { test, describe, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { chmodSync, cpSync, existsSync, mkdirSync, readFileSync, realpathSync, rmSync, utimesSync, writeFileSync } from 'node:fs';
-import { fixtureScratch } from '../kit/test/owned-scratch.mjs';
+import { fixtureScratch } from '../src/test/.kit/owned-scratch.mjs';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 

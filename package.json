@@ -13,9 +13,9 @@
     "dev": "wildshard dev .",
     "build": "wildshard build .",
     "lint": "node kit/scripts/lint.mjs",
-    "format:check": "npr oxfmt -c kit/.oxfmtrc.json --check kit '!kit/test/**'",
-    "fix": "node kit/scripts/lint.mjs --fix && npr oxfmt -c kit/.oxfmtrc.json kit '!kit/test/**'",
-    "test": "node --test 'kit/test/*.test.mjs' '.githooks/*.test.mjs' '.agents/hooks/test/*.test.mjs'",
+    "format:check": "npr oxfmt -c kit/.oxfmtrc.json --check kit '!src/test/.kit/**'",
+    "fix": "node kit/scripts/lint.mjs --fix && npr oxfmt -c kit/.oxfmtrc.json kit '!src/test/.kit/**'",
+    "test": "node --test 'src/test/.kit/*.test.mjs' '.githooks/*.test.mjs' '.agents/hooks/test/*.test.mjs'",
     "check": "pnpm lint && pnpm format:check && pnpm test && node kit/scripts/bin-pins.mjs && node kit/scripts/asks.mjs check && node .githooks/agents-md.mjs lint && node scripts/agent-sync.mjs --check && node scripts/agent-parity.mjs --strict",
     "agents:sync": "node scripts/agent-sync.mjs"
   },

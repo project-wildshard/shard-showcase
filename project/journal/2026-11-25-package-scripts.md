@@ -17,3 +17,6 @@ Ask A8 (Jake: "a choatic clusterfuck"; keep lint, pack, build for a shard like s
 - Pre-push now runs the hook tests, and `lanes.test.mjs` failed there only: `.githooks/test-helpers.mjs` scrubbed
   `GIT_*` and the bypass flags from the sandbox env but not pre-push's `WS_PUSH_REFS`, so a sandboxed
   `run-checks.mjs push` chased the outer push's commit. Added it to the scrub list (a kit file; phase 2).
+- Undone: moving the kit tests to `kit/test` was not signed off; Jake chose `src/test/.kit` (A3) and wants it.
+  Back there; `lint.mjs` drops `kit/test/**` (`src/**` is ignored without a src config anyway). The worry that
+  `src/` as shard source would pick them up found no support in sharddev: no walk over all of `src/`.
