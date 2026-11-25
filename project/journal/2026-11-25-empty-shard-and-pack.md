@@ -11,3 +11,13 @@ Asks A13, A14; closes A1 phase 1 and A9.
   It must be `pnpm run pack`: bare `pnpm pack` is pnpm's own tarball command and never reaches the script.
 - A1 phase 2 (repo-kit and sharddev fitting the lean layout, the hc port upstream, set-label) is a plan now:
   docs/plans/opus-2026-11-25-kit-phase-2.md. Jake: leave origin/art and origin/website alone.
+
+## Blue sky, green ground
+
+The bare shard was a flat gray plane under a gray sky (`emptyShardfile`:
+heights 0, colours 0.5, no look). Jake: "can we have blue sky and a flat
+green ground". Swapped the entry to the SDK's scene API (`defineShard`,
+as its authoring-slice does): `world.sky` a two-colour gradient,
+`world.ground` flat with one grass colour, a hemisphere light and a sun.
+`import * as THREE` trips our strict lint (import/namespace cannot see
+through three's re-exports), so it uses named imports.
