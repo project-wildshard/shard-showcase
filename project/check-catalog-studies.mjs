@@ -197,3 +197,6 @@ assert.ok(ids.has("nov25-e8d-night-reliefs"));
 assert.ok(ids.has("trophy-plaza-review"));
 assert.ok(ids.has("nov25-e4-slag-heat"));
 assert.ok(ids.has("nov24-e4-ground-slag"));
+assert.ok(ids.has("nov25-w8b-rock-three-pitches"));
+assert.ok(ids.has("nov24-w8b-scramble-deck-a"));
+assert.ok(ids.has("west-climb-rock-wip"));
