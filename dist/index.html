@@ -576,7 +576,15 @@
 </div>
 <p><a href="media/e4-cover-bay-shell.glb">Shell GLB</a> · 115,408 B / 1,300 triangles. <a href="https://github.com/project-wildshard/shard-showcase/blob/0b714a0e74edaa9e6b29e7ab6ceee32edf3f4f8f/project/journal/2026-11-24-e4-cover-bay.md">Source, placement and reimport checks</a>. No actors, world placement, collisions, heat or damage changed.</p>
 </section>
-<section id="nov24-e4-ground-slag"><p><a href="#nov24-e4-foundry-cover-bay">See the slag in one original foundry bay</a>.</p><p class="eyebrow">Blender · E4 · Static ground-effect study</p>
+<section id="nov25-e4-slag-heat">
+<p class="eyebrow">E4 · Foundry VFX</p><h2>Foundry slag: a six-second cooling cue</h2>
+<p>The same slag mesh starts bright, darkens to crust and clears at six seconds. It does not light the room or rely on bloom. Up to 12 placements can share one Three.js mesh batch while cooling independently. The original GLB, floor marker and furniture stay unchanged.</p>
+<div class="compare">
+<figure><a href="media/nov25-e4-slag-timeline.webp"><img src="media/nov25-e4-slag-timeline.webp" width="1232" height="928" alt="Four matched Blender frames: fresh orange slag, cooler fractures, dark crust, and a clear foundry floor" loading="lazy" decoding="async" style="height:auto"></a><figcaption>Matched detail camera · the furnace light is unchanged.</figcaption></figure>
+<figure><a href="media/nov25-e4-slag-portrait.webp"><img src="media/nov25-e4-slag-portrait.webp" width="804" height="914" alt="Matched phone-shaped Blender frames show the floor cue five meters away at birth and after cooling" loading="lazy" decoding="async" style="height:auto"></a><figcaption>402 × 874 view per panel · Blender frames, not phone footage.</figcaption></figure>
+</div><p><a href="https://github.com/project-wildshard/shard-showcase/blob/bc893798ad7cba209b4980a459d5f3231d54f20c/demos/slag-heat/README.md">Editable batch and reproducible tests</a>. The timing and instance data passed Three.js checks. No measured GPU throughput, Welder, automatic placement, burn damage or native deployment.</p>
+</section>
+<section id="nov24-e4-ground-slag"><p><a href="#nov25-e4-slag-heat">See the six-second cooling cue</a>.</p><p><a href="#nov24-e4-foundry-cover-bay">See the slag in one original foundry bay</a>.</p><p class="eyebrow">Blender · E4 · Static ground-effect study</p>
 <h2>Foundry: slag on the floor</h2>
 <p>A broken hot rim around a dark crust, separate from the airborne furnace embers. The same 1.70 m camera and exposure show the brick stage in daylight and dim light without bloom. From 6 m the roughly 1 m concept projects to about 143 × 37 px at a 402 × 874 reference size. This is a framing check, not a production radius or runtime test.</p>
 <div class="compare" style="max-width:940px">

@@ -195,3 +195,5 @@ assert.ok(ids.has("nov23-d7-launch-wall"));
 assert.ok(ids.has("west-hover-park-wip"));
 assert.ok(ids.has("nov25-e8d-night-reliefs"));
 assert.ok(ids.has("trophy-plaza-review"));
+assert.ok(ids.has("nov25-e4-slag-heat"));
+assert.ok(ids.has("nov24-e4-ground-slag"));
