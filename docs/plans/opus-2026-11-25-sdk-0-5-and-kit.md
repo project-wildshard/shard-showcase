@@ -21,3 +21,9 @@
   stamp changes nothing here, shard-showcase leaves repo-kit's
   `test/tooling/cleanup-coverage-pending.json`, and `pnpm check` is
   green. Then archive this plan.
+- [ ] **U4 Delete CLAUDE.md.** Claude Code ≥ 2.1.277 reads AGENTS.md
+  itself (code.claude.com/docs/en/memory); repo-kit's
+  `agent-parity.mjs --strict` still calls a missing CLAUDE.md a gap,
+  and another agent is fixing that there (Jake, 2026-11-25). Done when
+  the re-stamped parity check accepts AGENTS.md alone and CLAUDE.md is
+  gone with `pnpm check` green.

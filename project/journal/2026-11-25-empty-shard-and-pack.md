@@ -44,3 +44,9 @@ built today, including the tension between R-2 (0 % custom TS) and the
 placeholder scene. decisions.md drops the copied J list for a link and
 shrinks D27 to a pointer at D29. Kept as Jake asked: chromium.md,
 disk-audit.md, the Kitchen Sink plan and its folder.
+
+## Exit
+
+Ask records got their SHAs; deleting CLAUDE.md is plan row U4 (waits on
+repo-kit parity). Closed the tailscale serve I started (its dev server
+had exited).
