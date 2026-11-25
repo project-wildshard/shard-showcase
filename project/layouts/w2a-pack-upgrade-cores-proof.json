@@ -1,0 +1,99 @@
+{
+  "GLB": {
+    "bytes": 285596,
+    "triangles": 3812,
+    "sizesBlenderMeters": {
+      "Hydraulic Heart": [
+        0.304,
+        0.368776,
+        0.099
+      ],
+      "Plate Core": [
+        0.364,
+        0.238,
+        0.0715
+      ],
+      "Foreman's Capacitor": [
+        0.236,
+        0.397,
+        0.088
+      ]
+    },
+    "meshes": [
+      "Hydraulic Heart",
+      "Plate Core",
+      "Foreman's Capacitor"
+    ],
+    "sha256": "a4b3f8c4ad6090ba44ed6ff9e556f0b5c8952541117f55203811a98e6e0ef41e"
+  },
+  "mask": {
+    "thumbnailPixels": [
+      48,
+      48
+    ],
+    "minimumAlpha": 0.5,
+    "thresholdIou": 0.64,
+    "maxIouNewVsAny": 0.6233,
+    "newComparisons": {
+      "Servo / Hydraulic Heart": 0.5766,
+      "Servo / Plate Core": 0.433,
+      "Servo / Foreman's Capacitor": 0.6233,
+      "Tine / Hydraulic Heart": 0.3085,
+      "Tine / Plate Core": 0.2164,
+      "Tine / Foreman's Capacitor": 0.2512,
+      "Rotor / Hydraulic Heart": 0.1947,
+      "Rotor / Plate Core": 0.2129,
+      "Rotor / Foreman's Capacitor": 0.2522,
+      "Nozzle / Hydraulic Heart": 0.2905,
+      "Nozzle / Plate Core": 0.2183,
+      "Nozzle / Foreman's Capacitor": 0.427,
+      "Rivet plate / Hydraulic Heart": 0.5093,
+      "Rivet plate / Plate Core": 0.6038,
+      "Rivet plate / Foreman's Capacitor": 0.5906,
+      "Arc coil / Hydraulic Heart": 0.4243,
+      "Arc coil / Plate Core": 0.4841,
+      "Arc coil / Foreman's Capacitor": 0.3621,
+      "Hydraulic Heart / Plate Core": 0.4899,
+      "Hydraulic Heart / Foreman's Capacitor": 0.603,
+      "Plate Core / Foreman's Capacitor": 0.4288
+    },
+    "occupancy": {
+      "Servo": 483,
+      "Tine": 430,
+      "Rotor": 248,
+      "Nozzle": 273,
+      "Rivet plate": 472,
+      "Arc coil": 347,
+      "Hydraulic Heart": 660,
+      "Plate Core": 447,
+      "Foreman's Capacitor": 616
+    },
+    "comparisonGlbSha256": "29a624b4ab78289af692f49f1f56e7639acc7c8b38f4a030e29a997e9e70a3c3"
+  },
+  "planRewards": {
+    "Hydraulic Heart": {
+      "source": "Big Pallet",
+      "upgrade": "Dodge Servo"
+    },
+    "Plate Core": {
+      "source": "Vault Warden chest",
+      "upgrade": "Parry Gyro"
+    },
+    "Foreman's Capacitor": {
+      "source": "Foreman Unit 7",
+      "upgrade": "Arc Insulation"
+    }
+  },
+  "gameplayBindings": false,
+  "threeReimport": {
+    "bytes": 285596,
+    "triangles": 3812,
+    "names": [
+      "Hydraulic Heart",
+      "Plate Core",
+      "Foreman's Capacitor"
+    ],
+    "plateApertureClearRays": 25,
+    "plateFlanksHitRays": 20
+  }
+}
