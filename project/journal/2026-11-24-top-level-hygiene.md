@@ -57,3 +57,10 @@ Ask A1 (Jake): too many top-level folders; he wants `src/ docs/ project/`.
   `typecheck`, `test`, `test:kit` and `kit/tsconfig.json` went too (pre-commit runs typecheck only when the script
   exists). Also dropped the stale `public/**` and `vitest.config.ts` lint ignores; `docs/dev.md` and
   `docs/design.md` no longer list a `src/scripts/` that never existed.
+
+## pnpm settings back in pnpm-workspace.yaml (A6)
+
+- Jake regretted the `pnpm` key in package.json. pnpm 10's root settings file is pnpm-workspace.yaml, so it
+  is back, settings only (no `packages:`): `allowBuilds`, the 80 `ignoredOptionalDependencies`, and the global-store
+  pair. `.npmrc` is byte-identical to repo-kit's again. A frozen install still matches the lockfile (pnpm refuses one
+  whose settings drift), and the CI cache keys list the file again.

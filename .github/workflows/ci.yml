@@ -31,6 +31,7 @@ jobs:
           cache: pnpm
           cache-dependency-path: |
             pnpm-lock.yaml
+            pnpm-workspace.yaml
       # Private org git dependencies (github:project-wildshard/...): mint a
       # read-only token from the org app (meta repo P0.2, J34) and point
       # every github.com URL form at it. pnpm-lock.yaml records them as
