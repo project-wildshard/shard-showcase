@@ -140,8 +140,10 @@ def pose(closed):
     # Right leaf is mirrored by a true 180-degree rotation, not negative scale.
     step=0 if closed else pocket
     src.location=(-3.99-step,0,seat);other.location=(3.99+step,0,seat)
-    other.rotation_euler.z=math.pi
+    other.rotation_mode='XYZ'
+    other.rotation_euler=(0,0,math.pi)
     bpy.context.view_layer.update()
+    assert (other.matrix_world.to_3x3()@Vector((1,0,0))).x<-.99999
 
 def inspect(closed):
     pose(closed)
@@ -159,7 +161,7 @@ def inspect(closed):
     right=min((o.matrix_world@v.co).x for o in second if o.type=='MESH' for v in o.data.vertices)
     assert hit==(len(xz) if closed else 0),(hit,closed,left,right)
     assert (right-left<.002) if closed else (right-left>16)
-    return {'rays':len(xz),'hits':hit,'between_leaves_m':round(right-left,5)}
+    return {'rays':len(xz),'hits':hit,'between_leaves_m':round(right-left,5)+0.0}
 
 receipt={'slice':'E5b','catalogue_id':'WSC-KIT-006','assets':report,
          'origins_world_xyz':origin,'north_yaw_degrees':180,'west_yaw_degrees':-90,
