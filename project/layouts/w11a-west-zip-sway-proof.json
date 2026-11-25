@@ -1,0 +1,41 @@
+{
+  "scope": "Cosmetic GLB loop only; no change to engine route, sag, collision, rider or weather host.",
+  "canonicalScene": [
+    "e6bbb20e18adbc863c18fd637211e6c8a35ae4a01deed667d071f4850dce7b4f",
+    2692
+  ],
+  "launchWorld": [
+    -212,
+    45,
+    -34
+  ],
+  "arrivalWorld": [
+    -115,
+    14,
+    -16.5
+  ],
+  "sourceRingCount": 97,
+  "baseRadiusMeters": 0.065,
+  "planSpanMeters": 98.56596775763936,
+  "spatialChordMeters": 103.32594059576714,
+  "restSagMeters": 1.2,
+  "swayPerSideMeters": 0.38,
+  "peakExtraDropMeters": 0.076,
+  "sleevePerEnd": 0.06,
+  "periodSeconds": 5,
+  "bytes": 50924,
+  "triangles": 1548,
+  "blenderReimportCanonicalRadialSamples": 776,
+  "threeClipReplay": {
+    "duration": 5,
+    "steps": 241,
+    "lockedEndpointDriftMeters": 0,
+    "sleeveDriftMeters": 0,
+    "peakSwayMeters": 0.379999524751159,
+    "peakDipMeters": 0.07600021362304688,
+    "startEndEqual": true,
+    "rings": 97
+  },
+  "assetSha256": "cad62363848f6cd80fc2890ae1fe580b92a34022efe33f7e9c3c0d88cc461a22",
+  "repeatExact": true
+}
