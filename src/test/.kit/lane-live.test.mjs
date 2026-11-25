@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { appendFileSync, mkdirSync, mkdtempSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { test } from 'node:test';
-import { laneLive } from '../../scripts/lane-live.mjs';
+import { laneLive } from '../../../scripts/lane-live.mjs';
 
 mkdirSync('tmp/codex-netlag', { recursive: true });
 

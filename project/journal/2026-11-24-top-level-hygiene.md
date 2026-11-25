@@ -40,3 +40,12 @@ Ask A1 (Jake): too many top-level folders; he wants `src/ docs/ project/`.
   command and ate the `-- <paths>`, so a pathspec commit was refused as bare. One pass with an alternation now:
   the leftmost quote wins, and `\"` escapes stay inside their string. Five new cases in `hooks.test.mjs`, two red
   before the fix. The hook is repo-kit's (agent-sync), so the fix diverges here until repo-kit takes it.
+
+## test/tooling moves to src/test/.kit (A3)
+
+- Jake: "move test/tooling into src/test/.kit/ ... a good compromise". The four still in use moved there:
+  lane-live, leftovers-report, owned-scratch, chrome-keychain. The five worktree and land tests went (worktree-guard,
+  land-fixture, disk-land, reap-report, keep-copy): D29 retired that tooling here. Imports gain one `../`; the
+  `pnpm check` list, the lint and format ignores, `docs/chromium.md` and `.githooks/session-brief.test.mjs` follow.
+- Top level now: `docs/ kit/ project/ scripts/ src/`. A repo-kit sync would put `test/tooling/worktree-guard` and
+  `chrome-keychain` back and flag `session-brief.test.mjs`, until repo-kit learns the path (phase 2).
