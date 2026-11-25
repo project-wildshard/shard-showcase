@@ -190,3 +190,6 @@ assert.ok(ids.has("nov25-w12-range-gate-walk"));
 assert.ok(ids.has("west-range-landscape-wip"));
 assert.ok(ids.has("nov25-e7a-mite-rarity"));
 assert.equal(data.assets.find(row=>row.id==="WSC-ACTOR-001").model_preview,"#nov22-mite-rig");
+assert.ok(ids.has("nov25-w5a-native-kickers"));
+assert.ok(ids.has("nov23-d7-launch-wall"));
+assert.ok(ids.has("west-hover-park-wip"));
