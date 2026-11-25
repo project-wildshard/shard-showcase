@@ -20,3 +20,12 @@ enemies, quests, HUD, audio) with no tech, so it can feed other builds too; FABL
 short brief (stack, clean room, phone, tests, dev menu, done-when) that tells Fable to read it. The
 description is copied into the empty directory before the paste. Audio's "WebAudio only" moved to
 the brief, since that is tech.
+
+## Vaguer, standalone
+
+Jake: "the less you poison / steer / context rot it the better … The more vague we are the more fable
+will just make something magical & amazing." The description went from ~150 lines of distilled plan
+to ~60: no links or provenance (it is copied bare), no camera choice, no maths, no roster names, no
+HUD layout. What stays is the shape (500 m, peaceful west, combat east, levels 1–20, dungeon, gauntlet,
+boss portal), the look, "at least these" weapons and enemy kinds, and the Crate Titan, the one name
+settled since v1. The provenance now lives only here: KITCHEN-SINK.md §1–§3 as of 2026-11-25.
