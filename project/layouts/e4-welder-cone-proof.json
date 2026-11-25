@@ -1,0 +1,14 @@
+{
+  "asset": "e4-welder-cone-cue.glb",
+  "sha256": "c5590f1f24143e34760e22b206c2c9645751081bc0e8bb42159548c302b00f89",
+  "bytes": 11708,
+  "triangles": 176,
+  "primitives": 2,
+  "extent_radius_m": 6,
+  "half_angle_degrees_art_provisional": 28,
+  "plane_height_m": 0.006,
+  "glTF_forward": "-Z",
+  "plan_windup_ms": 800,
+  "visual_only": true,
+  "follows_runtime_wedge": false
+}
