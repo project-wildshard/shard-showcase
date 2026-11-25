@@ -193,3 +193,5 @@ assert.equal(data.assets.find(row=>row.id==="WSC-ACTOR-001").model_preview,"#nov
 assert.ok(ids.has("nov25-w5a-native-kickers"));
 assert.ok(ids.has("nov23-d7-launch-wall"));
 assert.ok(ids.has("west-hover-park-wip"));
+assert.ok(ids.has("nov25-e8d-night-reliefs"));
+assert.ok(ids.has("trophy-plaza-review"));
