@@ -308,6 +308,17 @@
 <figure><a href="media/nov24-w4a-grate-detail.jpg"><img src="media/nov24-w4a-grate-detail.jpg" alt="Detail of six braced metal bays inside the existing Physics Yard posts and header" width="1380" height="750" loading="lazy"></a><figcaption>Detail · The bars and gaps are geometry, not a texture.</figcaption></figure>
 </div>
 <p><a href="media/w4a-plate-gate-grate.glb">Grate insert GLB</a> · 151,960 B and 2,664 triangles. Fits the existing 19.45 m opening; the surrounding yard is not bundled. <a href="https://github.com/project-wildshard/shard-showcase/blob/0e3a42f279deab460eeca82b98b5d059021ff0c9/project/journal/2026-11-24-w4a-plate-gate.md">Rebuild and check notes</a>.</p>
+
+<article id="nov25-w4a-native-grate">
+<p class="eyebrow">W4a · Engine 0.1.44 test · No deploy</p>
+<h3>The hold-only grate failed to close in stock</h3>
+<p>Two settled crates and the player produced two, three, two, then three held plates. Stock stopped blocking the doorway the first time three plates were held and never re-armed. In the proposed reversible test, it re-closed on release, stayed open if a player was in the doorway, and blocked a normal approach once clear.</p>
+<div class="compare">
+<figure><a href="media/nov25-w4a-stock.webp"><img src="media/nov25-w4a-stock.webp" width="1440" height="820" alt="Original yard render with two crates, the player marker off the third plate and no grate in the doorway" loading="lazy" decoding="async" style="height:auto"></a><figcaption>Stock · Two held after release. The doorway ray and player passed through.</figcaption></figure>
+<figure><a href="media/nov25-w4a-reversible.webp"><img src="media/nov25-w4a-reversible.webp" width="1440" height="820" alt="Same yard, crates and player marker, but the grate fills the opening" loading="lazy" decoding="async" style="height:auto"></a><figcaption>Proposed test · Same release tick. The collider blocks the opening again.</figcaption></figure>
+</div>
+<p>These are Blender views of measured states, not game screenshots. The bench uses simplified fitted colliders and no live shard changes. <a href="https://github.com/project-wildshard/shard-showcase/blob/bde09752ce8718744c33ce8545030728c3e66bc4/demos/native-plate-grate/README.md">Replay and exact checks</a>.</p>
+</article>
 </section>
 <section id="nov23-west-physics-props"><p class="eyebrow">West Physics Yard · W4a/W4b</p><h2>Four standalone Physics Yard props</h2><p>The see-saw, rolling ball, skittle and pressure plate now have separate reusable GLBs. The see-saw axle and plate tread have independent pivots. This is Blender art validation only; there is no hinge physics, gate logic, or scoring in these exports.</p><p><a href="media/wsc-plan-003-hinged-seesaw.glb">Hinged see-saw GLB</a> · <a href="media/wsc-plan-004-rolling-ball.glb">Rolling ball GLB</a> · <a href="media/wsc-plan-005-skittle-pin.glb">Skittle pin GLB</a> · <a href="media/wsc-plan-006-pressure-plate.glb">Pressure plate GLB</a></p><figure><a href="media/west-physics-props.jpg"><img src="media/west-physics-props.jpg" width="1280" height="880" alt="Four Blender exports: timber seesaw, teal pressure plate, orange ball and ivory pin" loading="lazy" decoding="async"></a><figcaption>Blender studio render of the exported GLBs, reimported from disk.</figcaption></figure><p><a href="#nov25-w4b-skittles">Follow-up: the native physics roll and its two new control fixtures</a>.</p></section>
 <section id="nov25-w4b-skittles">
