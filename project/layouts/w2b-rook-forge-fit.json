@@ -1,0 +1,84 @@
+{
+  "scope": "Existing Rook frontage, static removable art; no panel logic, prices, inventory or purchases.",
+  "catalogue_id": "WSC-SCENE-002",
+  "counter_sha256": "e2266b8e5bdc43a5399b70baac0f8a53c702618b7c7606062c1483d008ea670a",
+  "actor_sha256": "41a9d103fba6aea871d9f499da8c57678181a1783635477fe3927e1796626cba",
+  "actor_frame": 19,
+  "forge_labels": [
+    "IRON",
+    "STEEL",
+    "ALLOY",
+    "TITANIUM"
+  ],
+  "exports": {
+    "forge-tray": {
+      "bytes": 112784,
+      "triangles": 2184,
+      "draws": 8,
+      "sha256": "aac5b540c25f59fc04867dcaaa4f7b2d2a437cbb9518407bcad224dcf30596e0"
+    },
+    "bench-placard": {
+      "bytes": 45412,
+      "triangles": 844,
+      "draws": 4,
+      "sha256": "6c287b8a2c9720c89b0e5061992fd563a0bcb2c02e585419182d442c1f9e46ff"
+    }
+  },
+  "pot_right_edge_raw_m": -0.446553,
+  "minimum_gaps_pot_tray_and_tray_bench_m": [
+    0.101553,
+    0.125
+  ],
+  "reimported_footprints_raw_blender_m": [
+    [
+      -0.345,
+      0.295,
+      -1.198,
+      -0.822
+    ],
+    [
+      0.42,
+      0.88,
+      -1.148,
+      -0.892
+    ]
+  ],
+  "placements": [
+    {
+      "name": "forge",
+      "xyz_blender_m": [
+        1.4227489,
+        -1.576804,
+        1.03
+      ],
+      "yaw_deg": -7,
+      "counter_raw_glb_xz_m": [
+        -0.025,
+        1.01
+      ],
+      "surface_contact_rays": 117,
+      "surface_height_range_raw_m": [
+        1.0295,
+        1.0295
+      ]
+    },
+    {
+      "name": "bench",
+      "xyz_blender_m": [
+        2.0914989,
+        -1.6689913,
+        1.03
+      ],
+      "yaw_deg": -7,
+      "counter_raw_glb_xz_m": [
+        0.65,
+        1.02
+      ],
+      "surface_contact_rays": 117,
+      "surface_height_range_raw_m": [
+        1.0295,
+        1.0295
+      ]
+    }
+  ]
+}
