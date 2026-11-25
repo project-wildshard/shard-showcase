@@ -67,3 +67,6 @@ Jake, a moment later: "fable will guzzle all the tokens", but "we do want to tel
 play it and judge it harsley … we just dont want to prompt it for 'loop' and 'dont stop'". So one pass
 per slice: play it, judge it against a shipped PS5 game, fix what falls short, then the next slice. No
 "loop", no "again", no "don't stop", so nothing invites open-ended polishing.
+Jake: "Rename it from 'kitchen sink' to 'showcase MMO zone' … remove all references to 'kitchen sink'".
+Done for both prompt files (only their titles had it). The plan, its folder, this journal and the ask
+keep the old name: they are the plan and the history, not what Fable reads.

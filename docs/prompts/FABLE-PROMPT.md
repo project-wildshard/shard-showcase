@@ -1,4 +1,4 @@
-# Fable prompt: build the Kitchen Sink, clean room
+# Fable prompt: build the Showcase MMO Zone, clean room
 
 Ask A16. Start a fresh Fable session in an empty directory, copy
 [ZONE-DESCRIPTION.md](ZONE-DESCRIPTION.md) into it, and paste

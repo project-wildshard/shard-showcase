@@ -1,4 +1,4 @@
-# The Kitchen Sink
+# The Showcase MMO Zone
 
 A single hand-made MMO zone, played alone. It should feel like logging
 into an MMO when nobody else is online: a town full of people to talk
