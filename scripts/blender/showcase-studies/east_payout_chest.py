@@ -114,30 +114,37 @@ for x in (-.058,0,.058):
     box("Amber status lamp",(x,-.506,.569),(.039,.010,.015),amber_lit,.004)
 box("Lid stripe",(0,0,.874),(.087,.674,.017),amber,.005)
 
-bpy.ops.object.select_all(action="SELECT")
-bpy.context.view_layer.objects.active=base
-bpy.ops.object.join()
-chest=bpy.context.object
-chest.name="E1d | East Band 1 Scrip chest"
-bpy.context.scene.cursor.location=(0,0,0)
-bpy.ops.object.origin_set(type="ORIGIN_CURSOR")
-# Fit all trim and the grounding pivot into the archival envelope.
-bounds=[[fn(v.co[k] for v in chest.data.vertices) for k in range(3)] for fn in (min,max)]
-for v in chest.data.vertices:
-    for k,target in enumerate((1.4,1.0,.9)):
-        lo,hi=(b[k] for b in bounds)
-        v.co[k]=target*((v.co[k]-lo)/(hi-lo)-(.5 if k<2 else 0))
-chest.data.update()
-f=O/"e1d-band1-scrip-chest.glb"
-export([chest],f)
-raw=f.read_bytes()
-assert struct.unpack_from("<4sII",raw)==(b"glTF",2,len(raw))
-doc=json.loads(raw[20:20+struct.unpack_from("<I",raw,12)[0]])
-assert not set(doc)&{"images","animations","skins","extensionsRequired"}
-ms,=doc["meshes"]
-tri=sum(doc["accessors"][p["indices"]]["count"]//3 for p in ms["primitives"])
-assert len(raw)<163840 and tri<2350,(len(raw),tri)
+if os.environ.get("WSC_PAYOUT_OPENING")=="1":
+    bpy.context.view_layer.update()
+    from east_chest_opening import build
+    donor=crate.parent/"e1d-band1-scrip-chest.glb"
+    opening=build(O,S,box,mat,donor)
+else:
+    opening=None
 
+    bpy.ops.object.select_all(action="SELECT")
+    bpy.context.view_layer.objects.active=base
+    bpy.ops.object.join()
+    chest=bpy.context.object
+    chest.name="E1d | East Band 1 Scrip chest"
+    bpy.context.scene.cursor.location=(0,0,0)
+    bpy.ops.object.origin_set(type="ORIGIN_CURSOR")
+    # Fit all trim and the grounding pivot into the archival envelope.
+    bounds=[[fn(v.co[k] for v in chest.data.vertices) for k in range(3)] for fn in (min,max)]
+    for v in chest.data.vertices:
+        for k,target in enumerate((1.4,1.0,.9)):
+            lo,hi=(b[k] for b in bounds)
+            v.co[k]=target*((v.co[k]-lo)/(hi-lo)-(.5 if k<2 else 0))
+    chest.data.update()
+    f=O/"e1d-band1-scrip-chest.glb"
+    export([chest],f)
+    raw=f.read_bytes()
+    assert struct.unpack_from("<4sII",raw)==(b"glTF",2,len(raw))
+    doc=json.loads(raw[20:20+struct.unpack_from("<I",raw,12)[0]])
+    assert not set(doc)&{"images","animations","skins","extensionsRequired"}
+    ms,=doc["meshes"]
+    tri=sum(doc["accessors"][p["indices"]]["count"]//3 for p in ms["primitives"])
+    assert len(raw)<163840 and tri<2350,(len(raw),tri)
 
 def mesh_in(path):
     old=set(S.objects)
@@ -151,16 +158,16 @@ def get_bounds(objects):
     return [[fn(v[k] for v in vs) for k in range(3)] for fn in (min,max)]
 
 
-clear_scene()
-o,=mesh_in(f)
-assert o.location.length<1e-6
-o.data.calc_loop_triangles()
-assert len(o.data.loop_triangles)==tri
-lo,hi=get_bounds([o])
-extent=[round(b-a,4) for a,b in zip(lo,hi)]
-assert extent[0]<=1.402 and extent[1]<=1.003 and extent[2]<=.912, extent
-assert abs(lo[2])<.002
-
+if opening is None:
+    clear_scene()
+    o,=mesh_in(f)
+    assert o.location.length<1e-6
+    o.data.calc_loop_triangles()
+    assert len(o.data.loop_triangles)==tri
+    lo,hi=get_bounds([o])
+    extent=[round(b-a,4) for a,b in zip(lo,hi)]
+    assert extent[0]<=1.402 and extent[1]<=1.003 and extent[2]<=.912, extent
+    assert abs(lo[2])<.002
 
 def camera(p,target,fl):
     d=bpy.data.cameras.new("Payout study camera")
@@ -228,6 +235,14 @@ light((-2.8,-3.4,3.3),(0,0,.50),370,(1,.88,.73),3.7)
 light((2.6,-1.7,1.9),(0,0,.69),160,(.68,.84,1),2.1)
 light((.4,1.9,2.54),(0,0,.55),270,(.53,.74,1),2.3)
 camera((1.70,-3.45,1.72),(0,0,.45),63)
+if opening is not None:
+    S.cycles.adaptive_threshold=.059
+    camera((1.94,-3.25,2.13),(0,0,.73),44.5)
+    if os.environ.get("WSC_PAYOUT_PROOF_ONLY")!="1":
+        for k,frame in (("opening-closed",0),("opening-open",27)):
+            S.frame_set(frame)
+            render(k,1390,930)
+    sys.exit(0)
 if os.environ.get("WSC_PAYOUT_PROOF_ONLY")!="1":
     render("detail",1500,1050)
 
