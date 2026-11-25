@@ -170,8 +170,9 @@ line_text("SURFACE",(0,-.227,1.115),.118,chalk)
 for x in (-.342,.342):
     for z in (.825,1.214):
         rod("Return front bolt",(x,-.230,z),.024,.020,iron,8)
-# A physical white chevron pointing towards the backed-out surface ring, not a light pulse.
-for a,b in [((-.12,-.233,.997),(0,-.233,.938)),((0,-.233,.938),(.12,-.233,.997))]:
+# Facing the plaque from the room, screen left leads back toward the arrival ring.
+for a,b in [((-.129,-.233,.982),(.12,-.233,.982)),((-.129,-.233,.982),(-.06,-.233,1.038)),
+            ((-.129,-.233,.982),(-.06,-.233,.926))]:
     beam("Return chevron",a,b,.019,.018,chalk,.004)
 console=merged("E10a surface return pedestal",[o for o in scene.objects if o not in before_console])
 console_name="e10a-vault-return-pedestal.glb"
@@ -262,7 +263,7 @@ cam=bpy.context.object
 scene.camera=cam
 for name,at,aim,lens in [
     ("arrival",(.22,-4.82,1.68),(0,5.55,1.73),21),
-    ("return",(-.36,-4.32,1.53),(-3.38,-3.74,1.05),53),
+    ("return",(-.36,-4.32,1.48),(-3.38,-3.74,.76),42),
 ]:
     cam.location=at
     cam.rotation_euler=(Vector(aim)-cam.location).to_track_quat("-Z","Y").to_euler()
