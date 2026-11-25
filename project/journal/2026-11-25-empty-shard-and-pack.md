@@ -27,3 +27,11 @@ through three's re-exports), so it uses named imports.
 The dotfiles agent made set-label.sh write `hc label goal=<tag>`
 (dotfiles 03cc526), so plan row K5 is ticked; peers.sh shows goals.
 Phase 2 is now the four repo-kit rows plus sharddev 0.5.0.
+
+## Phase 2 split by owner
+
+Jake: "yeah move the plan into the repokit repo". Rows K1-K4 now live
+in repo-kit (f970ade); its cleanup-coverage test read this checkout and
+went red on our moved kit, so shard-showcase waits in its pending list
+(01911a2). What lands here is opus-2026-11-25-sdk-0-5-and-kit.md: SDK
+0.5.0, `wildshard update --guide docs/GUIDE.md`, and the re-stamp.
