@@ -18,3 +18,11 @@ repo-kit `docs/showcase-restamp.md`:
 Still to come: `src/scripts/.kit/bin-pins.json` stays as is until
 repo-kit's L4 moves bins to pnpm (npm-bin-deps fix first). U3 in the
 sdk-0.5 plan ticks after that.
+
+## L4: one bin cache (later the same day)
+
+The bins moved to the kit's pnpm profile on npm-bin-deps 2.2.0, with
+`binDependenciesProjectSettings: false`: npr no longer copies our pnpm
+overrides into `.bin-deps/`, so we share one cache entry with every repo.
+The re-stamp also brought the kit's newer hook, publish and main-push
+files. The kit plan is all `same`.
