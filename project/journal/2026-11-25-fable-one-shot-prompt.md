@@ -63,3 +63,7 @@ thing, repeat. Done-when now includes "looks and feels AAA the whole way".
 
 Then, Jake: "I Dont think we can afford to prompt it to work in a loop". The play / screenshot / judge
 loop is gone; the AAA bar stays in the bullets and the done-when.
+Jake, a moment later: "fable will guzzle all the tokens", but "we do want to tell it to build a slice
+play it and judge it harsley … we just dont want to prompt it for 'loop' and 'dont stop'". So one pass
+per slice: play it, judge it against a shipped PS5 game, fix what falls short, then the next slice. No
+"loop", no "again", no "don't stop", so nothing invites open-ended polishing.
