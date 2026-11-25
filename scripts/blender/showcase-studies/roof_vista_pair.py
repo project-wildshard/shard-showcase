@@ -142,7 +142,7 @@ for row in rows:
         assert h is not None and abs(h.z-bp.z)<.0015,(row['id'],tuple(tp),h)
     matches=[o for o in tag_parts if o.name.startswith('Vista '+row['id'])]
     assert matches
-    for o in matches:o.matrix_world=Matrix.Translation(tp)@rot
+    for o in matches:o.matrix_world=Matrix.Translation(tp)@Matrix.Rotation(yaw+math.pi,4,"Z")
     eye=bp+d*.18+Vector((0,0,1.48))
     delta=dst-eye
     hit=world.ray_cast(eye,delta.normalized(),min(delta.length,row['near']))[0]
@@ -153,7 +153,7 @@ for row in rows:
     review[row['id']]={'anchorWorld':row['anchor'],'legacyProxyWorld':row['legacy_proxy'],
         'legacyProxyDeckHeight':None if proxy_h is None else round(proxy_h.z,5),
         'fittedBenchWorld':[bp.x,bp.z,-bp.y],'benchOffsetHorizontalMeters':(bp.xy-proxy.xy).length,
-        'badgePoseWorld':[tp.x,tp.z,-tp.y],'seatedEyeWorld':[eye.x,eye.z,-eye.y],'benchFloorRays':count,'badgeFloorRays':5,
+        'badgePoseWorld':[tp.x,tp.z,-tp.y],'badgeReadsFromApproach':True,'seatedEyeWorld':[eye.x,eye.z,-eye.y],'benchFloorRays':count,'badgeFloorRays':5,
         'clearCenterMeters':min(delta.length,row['near']),'target':row['target'],
         'firstHitWorld':None if target_hit is None else [target_hit.x,target_hit.z,-target_hit.y]}
 
