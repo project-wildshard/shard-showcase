@@ -52,3 +52,11 @@ TypeScript + three.js, single-player, mobile first in portrait, done at the Crat
 Gone: git, pnpm, Vitest, the asset ban, the enemy cap, the dev menu. The clean-room note (no
 Wildshard repo, sharddev or engine) stays above the paste mark, for whoever runs it, so Fable never
 hears those names.
+
+## The AAA bar
+
+Jake: "far more aggressive on the AAA nature", in his words "plays like a AAA PS5 MMORPG" and "a big
+wow impact". The brief opens on his two lines, adds feel and a living world, and keeps mobile first,
+now "still look stunning there". "A gauntlet loop light vibe" I read as a light self-review loop: build
+a slice, play it, screenshot at phone size, judge it against a shipped PS5 game, fix the weakest
+thing, repeat. Done-when now includes "looks and feels AAA the whole way".

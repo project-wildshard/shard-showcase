@@ -7,13 +7,26 @@ sharddev, the shard format or the engine.
 
 ---
 
-Build the zone described in `ZONE-DESCRIPTION.md` as a complete,
-playable game. Read all of it first.
+Make an absolutely amazing single-player game that feels like an MMO
+zone and plays like a AAA PS5 MMORPG. The zone is described in
+`ZONE-DESCRIPTION.md`. Read all of it first.
 
-- TypeScript and three.js.
-- Single-player. No multiplayer or server needed.
+- **Graphics:** amazing. It should feel like a polished AAA game and
+  have a big wow impact from the very first frame.
+- **Feel:** every swing, shot, jump, ride and kill should feel juicy
+  and satisfying, with real weight, impact and feedback.
+- **World:** alive and dense, with something worth finding around every
+  corner. Never empty, never grey, never placeholder.
 - **Mobile first.** It must play great on a phone held in portrait,
-  with touch controls. Desktop should work too.
+  with touch controls, and still look stunning there. Desktop should
+  work too.
+- TypeScript and three.js. Single-player; no multiplayer or server
+  needed.
+
+Work in a loop until it's AAA. Build a slice, play it yourself,
+screenshot it on a phone-sized screen, judge it harshly against a
+shipped PS5 game, then fix the weakest thing and go again. Don't stop
+at "it works".
 
 Done when you can play it on a phone from level 1 in town to beating
-the Crate Titan.
+the Crate Titan, and it looks and feels like a AAA game the whole way.
