@@ -1,0 +1,50 @@
+{
+  "scope": "Static dressing of existing C3 roof; no new collectible, route, actor, collision, pickup or tracking.",
+  "source_archive": "Raynos/project-wildshard-singleplayer@ce1cf050b3 art/showcase-template/round-5-blockout",
+  "archive_blobs": {
+    "layout.js": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+    "lab.js": "51a3b4bef1f2d4891172164d10893d98d450a3b9"
+  },
+  "map_gold_xyz_m": [
+    181,
+    8.5,
+    151
+  ],
+  "roof_height_m": 8.5,
+  "glb_origin": "Map Gold xyz, with glTF axes aligned to original map world axes.",
+  "sampled_gold_footprint_points": 361,
+  "sampled_dressing_vertices_over_roof": 864,
+  "cube_actual_bottom_y_m": 8.5,
+  "court_eye_height_above_floor_m": 1.7,
+  "roof_eye_height_above_cap_m": 1.7,
+  "centerline_sample_heights_m": [
+    8.55,
+    8.75,
+    9,
+    9.25,
+    9.45
+  ],
+  "line_of_sight_court": [
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "line_of_sight_roof": [
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "donor_pins": {
+    "c3-office-sector.glb": "631f39353d7eed6d4bba196f71a30342f7a5aac1fb1d3579560807c8db971f31",
+    "w9b-gold-find-cube.glb": "3dfd3a95e261b340911f5b93ffce91a8840a91a0464b915336567aa2f3b6bce0"
+  },
+  "asset": {
+    "bytes": 52348,
+    "triangles": 456,
+    "sha256": "b73367b786890b97ae7d95ce940b8d6992fd1a8427824b93f2532f5e45e98c38"
+  }
+}
