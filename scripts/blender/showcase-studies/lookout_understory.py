@@ -177,9 +177,16 @@ def proof(p):
     return dict(bytes=len(b),triangles=tri,radius_m=round(radial_extent,5),height_m=round(max(p.z for p in v),5))
 
 
+# Optional W11 animated review only; default invocation still emits the static studies.
+breeze_dir=os.environ.get("WSC_LOOKOUT_BREEZE_DIR")
+breeze_slots=[]
 out_paths={}
 stats={}
 for name,fn in (("fern",fern),("verge",verge)):
+    if breeze_dir:
+        out_paths[name]=Path(breeze_dir)/f"w11-lookout-{name}-breeze.glb"
+        stats[name]=dict(radius_m={"fern":.561,"verge":.47401}[name])
+        continue
     clear_scene()
     ob=fn().mesh("Lookout understory | "+name)
     p=O/f"w11-lookout-{name}.glb"
@@ -242,7 +249,7 @@ S.world=bpy.data.worlds.new("Warm gray gallery")
 S.world.color=(.46,.42,.36)
 sun((.45,.48,-1),2.40,(1,.88,.71))
 camera((.18,-3.8,1.48),(0,0,.24),ortho=2.8)
-if os.environ.get("WSC_UNDERSTORY_TRAIL_ONLY")!="1":
+if not breeze_dir and os.environ.get("WSC_UNDERSTORY_TRAIL_ONLY")!="1":
     render("understory-pair",1390,925)
 
 clear_scene()
@@ -258,12 +265,15 @@ def cache(p):
     return t
 
 
-def instance(template,label,xyz,rotation,scale):
+def instance(template,label,xyz,rotation,scale,unique=False):
     trans=Matrix.Translation(xyz)@Matrix.Rotation(rotation,4,"Z")@Matrix.Scale(scale,4)
     for d,m in template:
-        ob=bpy.data.objects.new(label,d)
+        ob=bpy.data.objects.new(label,d.copy() if unique else d)
         S.collection.objects.link(ob)
         ob.matrix_world=trans@m
+        if unique:
+            ob.data.shape_keys.animation_data_clear()
+            breeze_slots.append((label,ob,tuple(xyz),rotation,scale))
 
 
 rock=cache(asset/"wsc-prop-036-landscape-boulder.glb")
@@ -319,7 +329,7 @@ for name,fits in {"fern":[(-1.72,-.9,.92),(-2.28,2.8,.87),(1.72,.34,1.05),
                            (-1.64,1.7,.74),(1.45,1.6,.68),(2.30,3.7,.82),
                            (1.84,5.09,.91),(-1.81,3.6,.82),(-1.53,7.6,.68)]}.items():
     for x,y,q in fits:
-        instance(new[name],name,(x,y,0),rng.random()*math.tau,q)
+        instance(new[name],name,(x,y,0),rng.random()*math.tau,q,unique=bool(breeze_dir))
         clearances.append(abs(x)-stats[name]["radius_m"]*q-1)
 assert min(clearances)>.02
 
@@ -348,6 +358,11 @@ S.world.node_tree.links.new(sky.outputs[0],n["Background"].inputs[0])
 n["Background"].inputs[1].default_value=.21
 sun((.69,.46,-.74),2.8,(1,.88,.63))
 camera((-.20,-3.45,1.18),(.15,2.65,.46),lens=34)
+if breeze_dir:
+    sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"lookout-breeze"))
+    from staging import render_breeze
+    render_breeze(S,O,breeze_slots,camera)
+    raise SystemExit(0)
 render("understory-trail",1540,1040)
 
 (O/"lookout-understory-proof.json").write_text(json.dumps({
