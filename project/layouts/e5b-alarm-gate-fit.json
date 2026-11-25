@@ -1,0 +1,50 @@
+{
+  "slice": "E5b",
+  "catalogue_id": "WSC-KIT-006",
+  "assets": {
+    "e5b-alarm-gate-leaf": {
+      "bytes": 52068,
+      "triangles": 736,
+      "sha256": "0c041d5f6c4ff47171820aed4c07449bf70818a81dc84675e217b7c6769ada71"
+    },
+    "e5b-alarm-signal": {
+      "bytes": 28700,
+      "triangles": 388,
+      "sha256": "b9887518785fe1ae1680717cfd517319a5cf9be9cc8df9f87e1f855da8bfb89f"
+    }
+  },
+  "origins_world_xyz": {
+    "north": [
+      148,
+      0,
+      14
+    ],
+    "west": [
+      126,
+      0,
+      66
+    ]
+  },
+  "north_yaw_degrees": 180,
+  "west_yaw_degrees": -90,
+  "original": "ce1cf050b3 round-5-blockout/layout.js, YARD_GATES; z=14 and x=126 perimeter",
+  "test": "One local reusable leaf pair; x-width invariant under 90 degree rotation. Both sampled endpoints only.",
+  "travel_per_leaf_m": 8.12,
+  "open": {
+    "rays": 318,
+    "hits": 0,
+    "between_leaves_m": 16.24
+  },
+  "closed": {
+    "rays": 318,
+    "hits": 318,
+    "between_leaves_m": 0.0
+  },
+  "not_shipped": [
+    "alarm state",
+    "lock timer",
+    "actor detection",
+    "player collision",
+    "keycard or quests"
+  ]
+}
