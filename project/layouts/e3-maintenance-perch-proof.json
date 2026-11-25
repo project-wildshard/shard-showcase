@@ -1,0 +1,39 @@
+{
+  "donorSHA256": "b97aac0a7b80e50f2c2d066e51e89cbf32c1ccbed65b83cfd776c9b03c65f69e",
+  "assetSHA256": "4cd6018c7bfe879925e0c198d7ee4d810d28aaf4fa3569b2f4894b5e27defafc",
+  "bytes": 83208,
+  "triangles": 1380,
+  "primitives": 5,
+  "mountBlenderLocal": [
+    4.0,
+    0.0,
+    4.019999980926514
+  ],
+  "localBoundsBlender": [
+    [
+      0.0,
+      2.265
+    ],
+    [
+      -0.651,
+      0.651
+    ],
+    [
+      -0.468113,
+      0.19
+    ]
+  ],
+  "radialFitSamples": 48,
+  "radialFitGapMm": [
+    6.765,
+    6.939
+  ],
+  "padPlaneSamples": 35,
+  "nominalCenteredPadClearXzM": [
+    1.24,
+    1.02
+  ],
+  "untouchedCentralRays": 99,
+  "newActor": false,
+  "nativePlacement": false
+}
