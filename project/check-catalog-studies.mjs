@@ -24,7 +24,7 @@ class Element {
   closest() { return {id:this.tag==="details"?"assets":(this.panel??"assets")} }
 }
 for(const id of [...markup.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]))ids.set(id,new Element("node "+id));
-for(const id of ["nov23-d7-launch-wall","nov23-round5-field-atlas","nov23-activity-slot","nov23-hover-secondary-kit","nov24-squeeze-cave-gold","nov24-w3b-ranged-inventory"])ids.get(id).panel="blender";
+for(const id of ["nov23-d7-launch-wall","nov23-round5-field-atlas","nov23-activity-slot","nov23-hover-secondary-kit","nov24-squeeze-cave-gold","nov24-w3b-ranged-inventory","nov25-e4-welder-cone"])ids.get(id).panel="blender";
 const get=id=>ids.get(id)??ids.get("rows").children.find(x=>x.id===id);
 const select=get("previews");
 select.value="all";

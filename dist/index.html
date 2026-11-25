@@ -657,6 +657,16 @@
 </div>
 <p><a href="media/e4-cover-bay-shell.glb">Shell GLB</a> · 115,408 B / 1,300 triangles. <a href="https://github.com/project-wildshard/shard-showcase/blob/0b714a0e74edaa9e6b29e7ab6ceee32edf3f4f8f/project/journal/2026-11-24-e4-cover-bay.md">Source, placement and reimport checks</a>. No actors, world placement, collisions, heat or damage changed.</p>
 </section>
+<section id="nov25-e4-welder-cone">
+<p class="eyebrow">E4 · Foundry attack warning · Visual study</p>
+<h2>Welder floor cue: read the cone before the strike</h2>
+<p>Amber hatching marks the 6 m outer edge without covering the floor in a solid fill. This preview uses a provisional 28° half-angle. The planned 0.8 second wind-up is not implemented here; the shipped asset is a static outline. It is separate from the <a href="#nov25-e4-slag-heat">cooling slag cue</a>.</p>
+<div class="compare" style="max-width:1060px">
+<figure><a href="media/nov25-e4-welder-footprint.webp"><img src="media/nov25-e4-welder-footprint.webp" width="1320" height="900" alt="Amber outline and hatching marking a fan-shaped area on the ground in front of the foundry bay" loading="lazy" decoding="async"></a><figcaption>Oblique view · Existing furnace and bay for scale.</figcaption></figure>
+<figure><a href="media/nov25-e4-welder-approach.webp"><img src="media/nov25-e4-welder-approach.webp" width="804" height="1748" alt="Portrait eye-height view of the amber edge and dashes on the foundry floor" loading="lazy" decoding="async"></a><figcaption>Portrait composition · 10 m from the cone origin, without bloom.</figcaption></figure>
+</div>
+<p><a href="media/e4-welder-cone-cue.glb">Warning GLB</a> (11,708 B, 176 triangles) · <a href="https://github.com/project-wildshard/shard-showcase/blob/e9ed5cd8e8eb879e836f83e0a7298e9a12ddc1eb/scripts/blender/e4-welder-cue/README.md">Editable Blender source and calibration notes</a>. No actor, damage, timing, or live placement.</p>
+</section>
 <section id="nov25-e4-slag-heat">
 <p class="eyebrow">E4 · Foundry VFX</p><h2>Foundry slag: a six-second cooling cue</h2>
 <p>The same slag mesh starts bright, darkens to crust and clears at six seconds. It does not light the room or rely on bloom. Up to 12 placements can share one Three.js mesh batch while cooling independently. The original GLB, floor marker and furniture stay unchanged.</p>
