@@ -1,0 +1,48 @@
+{
+  "sha256": "5e4ff946ef5291df0d08ff0e5d7ed8f07a3a13c60716606da410604f774487c8",
+  "durationSeconds": 6,
+  "triangleCount": 703,
+  "staticGLBBytes": 41272,
+  "visibleInstancesMax": 12,
+  "materialsPerBatch": 1,
+  "meshGroups": 0,
+  "checks": [
+    "exact donor bounds",
+    "independent ages",
+    "stable placement",
+    "expired slot compaction",
+    "retriggers",
+    "capacity and bad input"
+  ],
+  "samples": [
+    [
+      0,
+      1
+    ],
+    [
+      0.38,
+      0.94
+    ],
+    [
+      2.1,
+      0.78
+    ],
+    [
+      3.8,
+      0.49
+    ],
+    [
+      5.22,
+      0.18
+    ],
+    [
+      5.9,
+      0
+    ],
+    [
+      6,
+      null
+    ]
+  ],
+  "scope": "CPU Three.js batch and timing checks, not a measured WebGL draw count or native install"
+}
