@@ -156,3 +156,9 @@ assert.equal(get("query").value,"totally-absent-asset");
 assert.equal(select.value,"unlinked");
 assert.ok(linked.every(a=>ids.has(a.model_preview.slice(1))));
 console.log(`${data.assets.length} entries, ${linked.length} study links, ${data.assets.length-linked.length} unlinked; filters, forced row, and hash routing passed.`);
+for (const id of ["WSC-ACTOR-015", "WSC-ACTOR-017"]) {
+  const row = data.assets.find(a => a.id === id);
+  assert.equal(row.related_study.href, "#nov25-w1b-quest-markers");
+  assert.ok(row.model_preview.startsWith("#nov23-w1a-"));
+}
+assert.ok(ids.has("nov25-w1b-quest-markers"));
