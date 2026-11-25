@@ -29,3 +29,10 @@ to ~60: no links or provenance (it is copied bare), no camera choice, no maths, 
 HUD layout. What stays is the shape (500 m, peaceful west, combat east, levels 1–20, dungeon, gauntlet,
 boss portal), the look, "at least these" weapons and enemy kinds, and the Crate Titan, the one name
 settled since v1. The provenance now lives only here: KITCHEN-SINK.md §1–§3 as of 2026-11-25.
+
+## Some detail back
+
+Jake: "you might have gone overboard … we do want to add some detail back in lol". He picked from a
+list rather than me guessing: the west places by name, the robot roster, the set pieces (Vault rooms,
+gauntlet courts, Titan portal, storm hour), the quest/economy hooks and the six-band level shape.
+Combat feel and the HUD stay vague, so Fable invents those. ~95 lines, still no numbers or formulas.
