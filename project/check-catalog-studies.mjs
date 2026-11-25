@@ -49,6 +49,13 @@ for (const a of salvage) {
 }
 assert.ok(ids.has("nov24-salvage-parts"));
 
+const rook=data.assets.find(a=>a.id==="WSC-SCENE-002");
+assert.equal(rook.model_preview,"#nov23-tinker-rook-counter");
+assert.equal(rook.related_study?.href,"#nov25-w2b-rook-forge");
+assert.ok(ids.has(rook.related_study.href.slice(1)));
+assert.ok(get("asset-"+rook.id).children.flatMap(x=>x.children).some(c=>
+  c.href===rook.related_study.href && c.textContent===rook.related_study.label));
+
 const cave=data.assets.find(a=>a.id==="WSC-PROP-011");
 assert.equal(cave.model_preview,"#nov23-rock-squeeze-cave");
 assert.equal(cave.related_study?.href,"#nov24-squeeze-cave-gold");
