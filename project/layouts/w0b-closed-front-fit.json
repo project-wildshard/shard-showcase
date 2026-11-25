@@ -1,0 +1,56 @@
+{
+  "plan": "W0b three reserved TO LET fronts",
+  "lotsSHA256": "4d6a89bea6ee246169407d48bb14dfc44ecda6e5ccdcf23f5cc2ef494437d61d",
+  "scope": "optional static shutters; signs and street unchanged",
+  "assets": {
+    "w0b-closed-front-14m.glb": {
+      "bytes": 180932,
+      "sha256": "ceb49b2e80321bcc91b7641dc5a484f2ef05c58df94aa43bc5ddd2daaed19312"
+    },
+    "w0b-closed-front-16m.glb": {
+      "bytes": 180924,
+      "sha256": "55cc7b0467651bc6ad0086c40eaf9d5cc11afe66bd15e6dc3533381c54d35072"
+    }
+  },
+  "placements": [
+    {
+      "lot": 3,
+      "asset": "w0b-closed-front-14m.glb",
+      "threeOrigin": [
+        -82.0,
+        0,
+        -6.4
+      ],
+      "yawRad": 0,
+      "lotLineInboardM": 0.0255,
+      "frontOfDonorHitMinM": 0.11,
+      "fitRays": 100
+    },
+    {
+      "lot": 4,
+      "asset": "w0b-closed-front-14m.glb",
+      "threeOrigin": [
+        -82.0,
+        0,
+        6.4
+      ],
+      "yawRad": 3.141592653589793,
+      "lotLineInboardM": 0.0255,
+      "frontOfDonorHitMinM": 0.11,
+      "fitRays": 100
+    },
+    {
+      "lot": 5,
+      "asset": "w0b-closed-front-16m.glb",
+      "threeOrigin": [
+        -112.0,
+        0,
+        6.4
+      ],
+      "yawRad": 3.141592653589793,
+      "lotLineInboardM": 0.0255,
+      "frontOfDonorHitMinM": 0.11,
+      "fitRays": 100
+    }
+  ]
+}
