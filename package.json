@@ -15,10 +15,11 @@
     "pack": "wildshard build .",
     "lint": "node src/scripts/.kit/bin-tools.mjs -c .oxlintrc.author.json --no-error-on-unmatched-pattern src",
     "typecheck": "node src/scripts/typecheck.mjs",
-    "format:check": "npr oxfmt --check --no-error-on-unmatched-pattern src",
+    "format:check": "npr oxfmt --check src",
     "fix": "node src/scripts/.kit/bin-tools.mjs -c .oxlintrc.author.json --fix --no-error-on-unmatched-pattern src && npr oxfmt --no-error-on-unmatched-pattern src",
     "test": "node --test 'src/test/.kit/*.test.mjs' '.githooks/*.test.mjs' '.agents/hooks/test/*.test.mjs'",
-    "check": "pnpm lint && pnpm typecheck && pnpm format:check && pnpm test && node src/scripts/.kit/bin-pins.mjs && node src/scripts/.kit/asks.mjs check && node .githooks/agents-md.mjs lint && node src/scripts/.kit/agent-sync.mjs --check && node src/scripts/.kit/agent-parity.mjs --strict",
+    "check:shard": "node src/scripts/check-shard.mjs",
+    "check": "pnpm lint && pnpm typecheck && pnpm format:check --no-error-on-unmatched-pattern && pnpm test && pnpm check:shard && node src/scripts/.kit/bin-pins.mjs && node src/scripts/.kit/asks.mjs check && node .githooks/agents-md.mjs lint && node src/scripts/.kit/agent-sync.mjs --check && node src/scripts/.kit/agent-parity.mjs --strict",
     "agents:sync": "node src/scripts/.kit/agent-sync.mjs"
   },
   "dependencies": {
