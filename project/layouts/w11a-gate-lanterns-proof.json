@@ -1,0 +1,109 @@
+{
+  "scope": "Exact art fit and scene-light witness; no native emitters or clock",
+  "parity_signature": [
+    "e6bbb20e18adbc863c18fd637211e6c8a35ae4a01deed667d071f4850dce7b4f",
+    2692
+  ],
+  "pinned_donors": {
+    "wall-lantern.glb": "bdbdce040eee6e60693e110cdcdb25e1abc93d80ed4f79f7d2e72fc5490ecc09",
+    "w0b-town-gate-nameplates.glb": "2daf80f5fa5f5bcdf22aeec26d2113a72d36250c864064fdb403d9a50718e480"
+  },
+  "gates": {
+    "Stable": {
+      "gate_three_xz_m": [
+        -36,
+        -60
+      ],
+      "yaw_deg": 0.0,
+      "donor_outside_corridor_m": 0.6396,
+      "lanterns": [
+        {
+          "pier": "New Stable Gate stone pier.001",
+          "mount_three_xyz_m": [
+            -29.2,
+            2.95,
+            -59.001
+          ],
+          "light_three_xyz_m": [
+            -29.2,
+            2.905,
+            -58.411
+          ],
+          "aim_three_xyz_m": [
+            -30.832,
+            0.07,
+            -56.8
+          ],
+          "bracket_contact_rays": 12,
+          "clear_center_beam_m": 3.6464
+        }
+      ],
+      "omissions": [
+        {
+          "pier": "New Stable Gate stone pier",
+          "reason": "Approach lantern intersects adjacent Lot 18 facade",
+          "clashes": [
+            "TOWN | LOT 18 house"
+          ]
+        }
+      ]
+    },
+    "West": {
+      "gate_three_xz_m": [
+        -128,
+        0
+      ],
+      "yaw_deg": 90.0,
+      "donor_outside_corridor_m": 0.6396,
+      "lanterns": [
+        {
+          "pier": "ZIP | West Gate pier",
+          "mount_three_xyz_m": [
+            -126.851,
+            2.95,
+            6.8
+          ],
+          "light_three_xyz_m": [
+            -126.261,
+            2.905,
+            6.8
+          ],
+          "aim_three_xyz_m": [
+            -124.8,
+            0.07,
+            5.168
+          ],
+          "bracket_contact_rays": 12,
+          "clear_center_beam_m": 3.5826
+        },
+        {
+          "pier": "ZIP | West Gate pier.001",
+          "mount_three_xyz_m": [
+            -126.851,
+            2.95,
+            -6.8
+          ],
+          "light_three_xyz_m": [
+            -126.261,
+            2.905,
+            -6.8
+          ],
+          "aim_three_xyz_m": [
+            -124.8,
+            0.07,
+            -5.168
+          ],
+          "bracket_contact_rays": 12,
+          "clear_center_beam_m": 3.5826
+        }
+      ],
+      "omissions": []
+    }
+  },
+  "fixture": {
+    "type": "spot",
+    "watts_preview": 205,
+    "full_cone_degrees": 62,
+    "blend": 0.74
+  }
+}
