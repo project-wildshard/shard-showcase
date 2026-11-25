@@ -10,7 +10,8 @@ source will live in `src/`; it is not there yet.
 ```sh
 pnpm install     # deps, pinned tools, git hooks
 pnpm dev         # wildshard dev .
-pnpm build       # wildshard build . (pack is the same)
+pnpm build       # wildshard build . (a draft)
+pnpm run pack    # build, prepare, build: the uploadable shard file
 pnpm check       # the gate: lint, typecheck, format, tests
 pnpm fix         # apply lint fixes and formatting
 ```

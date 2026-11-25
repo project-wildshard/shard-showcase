@@ -9,8 +9,13 @@ Run from the repo root.
 
 - `pnpm install`: installs deps and points `core.hooksPath` at `.githooks/`.
 - `pnpm dev` / `pnpm build`: `wildshard dev .` / `wildshard build .` on the shard
-  source in `src/` (once it exists). `pnpm pack` is `build` too: it writes the
-  `.shardfile` (output in `public/shardfiles/`, gitignored).
+  source in `src/`. `build` writes a draft `.shardfile` (sdk 0.2) in
+  `public/shardfiles/` (gitignored), which upload refuses.
+- `pnpm run pack` (not bare `pnpm pack`, pnpm's tarball command):
+  `build`, then `wildshard prepare` (records it in phone WebKit; the
+  first run fetches ~310 MB of engine client into
+  `~/.cache/wildshard`), then `build` of the prepared folder: the
+  uploadable shard file (sdk 0.3).
 - `pnpm lint`: the shard source with `.oxlintrc.author.json` (root, where
   `wildshard check` reads it): every category an error, type-aware.
 - `pnpm typecheck`: `tsc` with the root `tsconfig.json` (strictest flags) over

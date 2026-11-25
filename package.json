@@ -12,7 +12,7 @@
     "prepare": "git rev-parse --is-inside-work-tree >/dev/null 2>&1 && git config core.hooksPath .githooks || true",
     "dev": "wildshard dev .",
     "build": "wildshard build .",
-    "pack": "wildshard build .",
+    "pack": "wildshard build . && wildshard prepare public/shardfiles/shard-showcase && wildshard build public/shardfiles/shard-showcase",
     "lint": "node src/scripts/.kit/bin-tools.mjs -c .oxlintrc.author.json --no-error-on-unmatched-pattern src",
     "typecheck": "node src/scripts/typecheck.mjs",
     "format:check": "npr oxfmt --check src",
