@@ -67,6 +67,14 @@ assert.ok(ids.has(rook.related_study.href.slice(1)));
 assert.ok(get("asset-"+rook.id).children.flatMap(x=>x.children).some(c=>
   c.href===rook.related_study.href && c.textContent===rook.related_study.label));
 
+const sword=data.assets.find(a=>a.id==="WSC-GEAR-001");
+assert.equal(sword.model_preview,"#nov24-west-inventory-pair");
+assert.equal(sword.status,"model-study-available");
+assert.equal(sword.related_study?.href,"#nov25-e8e-sword-finishes");
+assert.ok(ids.has(sword.related_study.href.slice(1)));
+assert.ok(get("asset-"+sword.id).children.flatMap(x=>x.children).some(c=>
+  c.href===sword.related_study.href && c.textContent===sword.related_study.label));
+
 const titan=data.assets.find(a=>a.id==="WSC-SCENE-008");
 assert.equal(titan.model_preview,"#nov23-titan-bowl");
 assert.equal(titan.status,"scene-study-available");
