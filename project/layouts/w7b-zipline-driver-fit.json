@@ -1,0 +1,58 @@
+{
+  "scope": "Engine driver and art clearance sample only; no physics capsule or native level proof.",
+  "donor_sha256": "ccbef47fe8fd968b4fad81c81307b3b66d5c4bdc11e479ca78e5c2cfabf6f756",
+  "donor_baseline_signature": [
+    "6e6b1692565a314162d3861223ab3454e9475e23bb1a2e01a88a14e76be6722f",
+    2580
+  ],
+  "samples": 5058,
+  "visual_minimum_m": 0.0626,
+  "wall_visual_minimum_m": 10.6552,
+  "landing": [
+    12.746,
+    0.1555,
+    "PROP-035 \u00b7 Landing pad | WSC-PROP-035 | Teal enamel"
+  ],
+  "engine": "0.1.44",
+  "row": {
+    "kind": "zipline",
+    "id": "showcase.zipline.calibration",
+    "top": {
+      "x": -212,
+      "y": 45,
+      "z": -34
+    },
+    "bottom": {
+      "x": -115,
+      "y": 14,
+      "z": -16.5
+    },
+    "sag": 1.1613734102790827,
+    "hang": 1.55,
+    "gravity": 9.8,
+    "drag": 0.012,
+    "maxSpeed": 22,
+    "profile": {
+      "anchors": "direct",
+      "start": 1.05,
+      "release": 1.86,
+      "landing": {
+        "back": 0.66,
+        "deck": 0.035,
+        "velocity": 2.5
+      }
+    },
+    "landing": {
+      "x": -115,
+      "y": 12.746,
+      "z": -16.5
+    }
+  },
+  "plan_span_m": 98.566,
+  "wire_chord_m": 103.3259,
+  "ride_ticks": 562,
+  "seconds": 9.3667,
+  "observed_max_mps": 13.8028,
+  "sampled_release_step_m": 1.254,
+  "midpoint_restore_exact": true
+}
