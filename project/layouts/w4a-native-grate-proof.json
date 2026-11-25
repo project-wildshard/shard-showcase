@@ -1,0 +1,279 @@
+{
+  "scope": "Engine 0.1.44 one-player native resident rehearsal; no shard change",
+  "assets": {
+    "haul-crate.glb": "d7a5f8fcb2b835d0c0c77c3051ebd950ed449dc2c563e10779fdc5f01cc6bb44",
+    "wsc-plan-006-pressure-plate.glb": "cdf40fa1f1036818e460ba5a29f95cbb547c09f8e361e5fbbb1d536d895847cc",
+    "w4a-plate-gate-grate.glb": "c5e6b3f4cadc6a8735a73ce2e214ea603cc9a23e47eec1c04b80ecf10bc8a896"
+  },
+  "gate": {
+    "x": -52.03425,
+    "z": 192,
+    "hw": 0.20425,
+    "hd": 9.628006,
+    "yBottom": 0.06,
+    "yTop": 3.715
+  },
+  "plates": [
+    {
+      "id": "w4a-plate-1",
+      "x": -82,
+      "y": 0.3225,
+      "z": 192
+    },
+    {
+      "id": "w4a-plate-2",
+      "x": -72,
+      "y": 0.3225,
+      "z": 192
+    },
+    {
+      "id": "w4a-plate-3",
+      "x": -62,
+      "y": 0.3225,
+      "z": 192
+    }
+  ],
+  "stock": {
+    "mode": "stock",
+    "control": [
+      {
+        "crateBottomM": 0.32242,
+        "lowStripe": false,
+        "raisedTread": true
+      },
+      {
+        "crateBottomM": 0.32242,
+        "lowStripe": false,
+        "raisedTread": true
+      }
+    ],
+    "states": [
+      {
+        "name": "two crates",
+        "tick": 90,
+        "held": [
+          true,
+          true,
+          false
+        ],
+        "logicalOpen": false,
+        "colliderEnabled": true,
+        "doorwayRayBlocked": true,
+        "playerFeet": [
+          -62.00001,
+          0.0546,
+          187.50002
+        ]
+      },
+      {
+        "name": "player on",
+        "tick": 106,
+        "held": [
+          true,
+          true,
+          true
+        ],
+        "logicalOpen": true,
+        "colliderEnabled": false,
+        "doorwayRayBlocked": false,
+        "playerFeet": [
+          -62,
+          0.3426,
+          192
+        ]
+      },
+      {
+        "name": "player walks off",
+        "tick": 159,
+        "held": [
+          true,
+          true,
+          false
+        ],
+        "logicalOpen": false,
+        "colliderEnabled": false,
+        "doorwayRayBlocked": false,
+        "playerFeet": [
+          -62,
+          0.05449,
+          188.67948
+        ]
+      },
+      {
+        "name": "player walks back",
+        "tick": 215,
+        "held": [
+          true,
+          true,
+          true
+        ],
+        "logicalOpen": true,
+        "colliderEnabled": false,
+        "doorwayRayBlocked": false,
+        "playerFeet": [
+          -62,
+          0.34249,
+          191.85924
+        ]
+      }
+    ],
+    "rearm": null,
+    "stockReleaseCrossing": {
+      "name": "stock passage after release",
+      "tick": 294,
+      "held": [
+        true,
+        true,
+        false
+      ],
+      "logicalOpen": false,
+      "colliderEnabled": false,
+      "doorwayRayBlocked": false,
+      "playerFeet": [
+        -50.17396,
+        0.0545,
+        192.0281
+      ]
+    }
+  },
+  "proposed": {
+    "mode": "reversible",
+    "control": [
+      {
+        "crateBottomM": 0.32242,
+        "lowStripe": false,
+        "raisedTread": true
+      },
+      {
+        "crateBottomM": 0.32242,
+        "lowStripe": false,
+        "raisedTread": true
+      }
+    ],
+    "states": [
+      {
+        "name": "two crates",
+        "tick": 90,
+        "held": [
+          true,
+          true,
+          false
+        ],
+        "logicalOpen": false,
+        "colliderEnabled": true,
+        "doorwayRayBlocked": true,
+        "playerFeet": [
+          -62.00001,
+          0.0546,
+          187.50002
+        ]
+      },
+      {
+        "name": "player on",
+        "tick": 106,
+        "held": [
+          true,
+          true,
+          true
+        ],
+        "logicalOpen": true,
+        "colliderEnabled": false,
+        "doorwayRayBlocked": false,
+        "playerFeet": [
+          -62,
+          0.3426,
+          192
+        ]
+      },
+      {
+        "name": "player walks off",
+        "tick": 159,
+        "held": [
+          true,
+          true,
+          false
+        ],
+        "logicalOpen": false,
+        "colliderEnabled": true,
+        "doorwayRayBlocked": true,
+        "playerFeet": [
+          -62,
+          0.05449,
+          188.67948
+        ]
+      },
+      {
+        "name": "player walks back",
+        "tick": 215,
+        "held": [
+          true,
+          true,
+          true
+        ],
+        "logicalOpen": true,
+        "colliderEnabled": false,
+        "doorwayRayBlocked": false,
+        "playerFeet": [
+          -62,
+          0.34249,
+          191.85924
+        ]
+      }
+    ],
+    "rearm": {
+      "overlap": {
+        "name": "body in doorway",
+        "tick": 233,
+        "held": [
+          true,
+          true,
+          false
+        ],
+        "logicalOpen": false,
+        "colliderEnabled": false,
+        "doorwayRayBlocked": false,
+        "playerFeet": [
+          -52.03425,
+          0.05449,
+          192.02787
+        ]
+      },
+      "clear": {
+        "name": "doorway cleared",
+        "tick": 251,
+        "held": [
+          true,
+          true,
+          false
+        ],
+        "logicalOpen": false,
+        "colliderEnabled": true,
+        "doorwayRayBlocked": true,
+        "playerFeet": [
+          -49.03425,
+          0.05422,
+          192.0002
+        ]
+      },
+      "approach": {
+        "name": "normal closed approach",
+        "tick": 330,
+        "held": [
+          true,
+          true,
+          false
+        ],
+        "logicalOpen": false,
+        "colliderEnabled": true,
+        "doorwayRayBlocked": true,
+        "playerFeet": [
+          -52.63847,
+          0.05449,
+          191.99804
+        ]
+      }
+    },
+    "stockReleaseCrossing": null
+  },
+  "note": "Crates are placed by the fixture, player walks off and back on. No carrying, art animation or multiplayer."
+}

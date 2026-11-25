@@ -19,6 +19,7 @@ parser = argparse.ArgumentParser(__doc__)
 parser.add_argument("output", type=Path)
 parser.add_argument("yard", type=Path, help="Validated west-physics build directory")
 parser.add_argument("--draft", action="store_true")
+parser.add_argument("--trace", type=Path, help="Optional native plate-gate rehearsal receipt")
 args = parser.parse_args(sys.argv[sys.argv.index("--")+1:])
 out = args.output.resolve()
 out.mkdir(parents=True, exist_ok=True)
@@ -355,6 +356,38 @@ closed = floor_text("Third plate not held", "2 / 3   |   GRATE CLOSED",
 opened = floor_text("Third plate held", "3 / 3   |   GATE OPEN",
                     (-62,-198.4,.072), .52, mint)
 p, target = (-108,-233,34), (-66,-192,1.15)
+if args.trace:
+    trace = json.loads(args.trace.read_text())
+    assert receipt["glb_sha256"] == trace["assets"]["w4a-plate-gate-grate.glb"]
+    for name, expected in trace["assets"].items():
+        assert sha(assets / name) == expected, name
+    assert [list((row["x"],row["z"])) for row in trace["plates"]] == receipt["plate_centers_map_xz"]
+    assert all(abs(trace["plates"][i]["y"] - h) < .0001
+               for i,h in enumerate(receipt["crate_contact_z_m"]))
+    released = [trace[key]["states"][2] for key in ("stock","proposed")]
+    assert released[0]["held"] == released[1]["held"] == [True, True, False]
+    assert [s["colliderEnabled"] for s in released] == [False, True]
+    assert released[0]["playerFeet"] == released[1]["playerFeet"]
+    fx,fy,fz = released[0]["playerFeet"]
+    footprint.location += Vector((fx + 62, 192 - fz, fy - third_z + .04))
+    footprint.data.materials.clear()
+    footprint.data.materials.append(amber)
+    footprint.hide_render=False
+    opened.hide_render=True
+    closed.hide_render=True
+    labels=[
+        floor_text("Native stock results", "STOCK  /  GRATE STAYS OPEN",
+                   (-64,-198.6,.071), .55, amber),
+        floor_text("Reversible adapter results", "REVERSIBLE  /  GRATE RE-CLOSES",
+                   (-64,-198.6,.071), .55, mint)]
+    scene.cycles.samples = 24
+    for i,(tag,state) in enumerate(zip(("stock","reversible"),released,strict=True)):
+        labels[0].hide_render=i!=0
+        labels[1].hide_render=i!=1
+        for o in gate_meshes:
+            o.hide_render=not state["colliderEnabled"]
+        render("nov25-w4a-"+tag,p,target,44,1440,820)
+    sys.exit(0)
 opened.hide_render = footprint.hide_render = True
 render("nov24-w4a-grate-closed",p,target,44,1440,820)
 for o in gate_meshes:
