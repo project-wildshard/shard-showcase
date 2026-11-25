@@ -1,0 +1,70 @@
+{
+  "donorSha256": "64d9cf3926a58752233d9a40a467d87dfa9489b2270b83f95d577afa53295d62",
+  "BINBytes": 34488,
+  "BINSha256": "ca7f4305469a85195d0f7da46d7437df289ec91c5007d2699687b8970f7b8cbb",
+  "trianglesEach": 660,
+  "inventoryPivotUnchanged": true,
+  "unchangedOtherGLTFFields": true,
+  "variants": {
+    "warden": {
+      "sha256": "400829180e82c72f065833e41ca823d9269b0dd9097c5123d51654698340b354",
+      "bytes": 40308,
+      "materialsChanged": [
+        "Bright perimeter catch",
+        "Satin silver, light facet",
+        "Satin silver, shadow facet",
+        "Silver worn stipple",
+        "Graphite hardware"
+      ]
+    },
+    "hot-mess": {
+      "sha256": "7d6b3b5aa3f0e98d6b0a5572c0ce3688b8da3d80f9149bb0290b4ddc05a6fe3d",
+      "bytes": 40308,
+      "materialsChanged": [
+        "Bright perimeter catch",
+        "Satin silver, light facet",
+        "Satin silver, shadow facet",
+        "Silver worn stipple",
+        "Graphite hardware"
+      ]
+    }
+  },
+  "BlenderReimport": true,
+  "mask64": {
+    "occupancy": {
+      "base": 310,
+      "warden": 310,
+      "hot-mess": 310
+    },
+    "sameSilhouetteIou": {
+      "base/warden": 1.0,
+      "base/hot-mess": 1.0,
+      "warden/hot-mess": 1.0
+    },
+    "solidUpperPixelsMeanSRGB255": {
+      "base": [
+        210.88,
+        215.34,
+        220.21
+      ],
+      "warden": [
+        135.21,
+        171.33,
+        188.11
+      ],
+      "hot-mess": [
+        175.78,
+        122.16,
+        97.48
+      ]
+    }
+  },
+  "threeReimport": {
+    "sameBounds": true,
+    "samePivot": true,
+    "piecesEach": 7,
+    "trianglesEach": 660,
+    "changedNamedMaterialsEach": 5,
+    "untouchedWrapsEach": 2
+  }
+}
