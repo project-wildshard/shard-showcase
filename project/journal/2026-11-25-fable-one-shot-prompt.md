@@ -60,3 +60,6 @@ wow impact". The brief opens on his two lines, adds feel and a living world, and
 now "still look stunning there". "A gauntlet loop light vibe" I read as a light self-review loop: build
 a slice, play it, screenshot at phone size, judge it against a shipped PS5 game, fix the weakest
 thing, repeat. Done-when now includes "looks and feels AAA the whole way".
+
+Then, Jake: "I Dont think we can afford to prompt it to work in a loop". The play / screenshot / judge
+loop is gone; the AAA bar stays in the bullets and the done-when.

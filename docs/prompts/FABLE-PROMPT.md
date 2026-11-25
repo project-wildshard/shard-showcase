@@ -23,10 +23,5 @@ zone and plays like a AAA PS5 MMORPG. The zone is described in
 - TypeScript and three.js. Single-player; no multiplayer or server
   needed.
 
-Work in a loop until it's AAA. Build a slice, play it yourself,
-screenshot it on a phone-sized screen, judge it harshly against a
-shipped PS5 game, then fix the weakest thing and go again. Don't stop
-at "it works".
-
 Done when you can play it on a phone from level 1 in town to beating
 the Crate Titan, and it looks and feels like a AAA game the whole way.
