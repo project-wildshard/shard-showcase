@@ -11,7 +11,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import clear_scene, output_directory
 
 OUT = output_directory()
-TOWER = "wsc-kit-007-storm-beacon.glb"
+FAR = os.getenv("WSC_BEACON_FAR") == "1"
+TOWER = "wsc-kit-007-storm-beacon" + ("-far" if FAR else "") + ".glb"
 LAMP = "wsc-kit-007-storm-beacon-charged-lamp.glb"
 clear_scene()
 
@@ -112,36 +113,43 @@ for i in range(8):
     a=math.tau*i/8+math.pi/8
     details.append(rod("Lower edge rib",pt(1.015,a,.29),pt(.821,a,2.54),.043,steel,6))
     details.append(rod("Upper edge rib",pt(.745,a,2.79),pt(.525,a,4.40),.035,steel,6))
-    for j in range(7):
+    for j in range(0 if FAR else 7):
         z=.45+j*.31;r=1.024-(z-.30)*.085
         details.append(rod("Panel rivet",pt(r-.03,a,z),pt(r+.027,a,z),.035,silver,6))
-    for j in range(3):
+    for j in range(0 if FAR else 3):
         z=3.00+j*.45;r=.755-(z-2.78)*.140
         details.append(rod("Small panel rivet",pt(r-.03,a,z),pt(r+.024,a,z),.028,silver,6))
-    for z,r in ((.12,1.18),(2.62,.975),(4.49,.705)):
+    for z,r in (((.12,1.18),) if FAR else ((.12,1.18),(2.62,.975),(4.49,.705))):
         details.append(rod("Band fastener",pt(r-.032,a,z),pt(r+.028,a,z),.044,silver,6))
 # Maintenance ladder is dressing; the prototype contains no traversal.
 for x in (-.242,.242):
     details.append(rod("Ladder upright",(x,-1.046,.23),(x,-.95,2.86),.038,warm,8))
     for z in (.41,1.27,2.24):
         details.append(rod("Ladder stand-off",(x,-.82,z),(x,-1.047+(z-.23)*.037,z),.027,steel,8))
-for j in range(10):
+for j in (range(0,10,2) if FAR else range(10)):
     z=.36+j*.248;y=-1.046+(z-.23)*.0365
     details.append(rod("Ladder rung",(-.241,y,z),(.241,y,z),.024,warm,8))
-details.append(pipe("Conduit",[(.88,-.34,.28),(.88,-.34,1.31),(.86,-.34,1.67),(.68,-.34,1.84)],.071,steel))
-for z in (.36,1.14):
+if FAR:
+    points=[(.88,-.34,.28),(.88,-.34,1.31),(.86,-.34,1.67),(.68,-.34,1.84)]
+    details.extend(rod("Distant conduit",a,b,.071,steel,6) for a,b in zip(points,points[1:]))
+else:
+    details.append(pipe("Conduit",[(.88,-.34,.28),(.88,-.34,1.31),(.86,-.34,1.67),(.68,-.34,1.84)],.071,steel))
+for z in (() if FAR else (.36,1.14)):
     details.append(rod("Orange conduit clamp",(.88,-.34,z),(.88,-.34,z+.067),.086,warm,8))
 base.append(collar("Dark open lamp socket",4.56,.11,.418,dark))
 # The cage is an open mesh assembly, not a filled cone.
 for i in range(12):
     a=math.tau*i/12
-    details.append(rod("Crown cage rib",pt(.48,a,4.55),pt(.84,a,5.45),.044,inner,8))
+    details.append(rod("Crown cage rib",pt(.48,a,4.55),pt(.84,a,5.45),.044,inner,6 if FAR else 8))
     for z,r in ((4.73,.55),(5.04,.68),(5.37,.81)):
         b=a+math.tau/12
-        details.append(rod("Crown hoop segment",pt(r,a,z),pt(r,b,z),.036,inner,8))
-    details.append(rod("Small crown rivet",pt(.825,a,5.37),pt(.858,a,5.37),.023,silver,6))
+        details.append(rod("Crown hoop segment",pt(r,a,z),pt(r,b,z),.036,inner,6 if FAR else 8))
+    if not FAR:
+        details.append(rod("Small crown rivet",pt(.825,a,5.37),pt(.858,a,5.37),.023,silver,6))
 
 export(TOWER,[join("Beacon_Body_and_Socket",base),join("Beacon_Cage_and_Hardware",details)])
+if FAR:
+    sys.exit(0)  # Reuse the exact original charged insert.
 clear_scene()
 lamp=[collar("Charge cartridge lower flange",4.67,.085,.355,black),
       collar("Opal cartridge lower lens",4.75,.12,.254,opal,.321),

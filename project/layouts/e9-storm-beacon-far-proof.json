@@ -1,0 +1,75 @@
+{
+  "full": {
+    "bytes": 244772,
+    "triangles": 5164,
+    "primitives": 9,
+    "sha256": "3a525f2637d5150a1e5a85c04640d6a57772c842731f063aa429142810239833"
+  },
+  "far": {
+    "bytes": 109108,
+    "triangles": 2116,
+    "primitives": 9,
+    "sha256": "a1a8e133e2efdd45c74e6a948c4dc8a8d12d9074e7aaa764751390784d2a3ab5"
+  },
+  "originalLampSHA256": "ab7445a6977c9af5cea7a31618a9c660f539e1026e23e61b1bbc2b3426b77a5d",
+  "towerBoundsBlender": {
+    "original": [
+      [
+        -1.130629,
+        1.130629
+      ],
+      [
+        -1.130629,
+        1.130629
+      ],
+      [
+        0.0,
+        5.466342
+      ]
+    ],
+    "far": [
+      [
+        -1.130629,
+        1.130629
+      ],
+      [
+        -1.130629,
+        1.130629
+      ],
+      [
+        0.0,
+        5.466342
+      ]
+    ]
+  },
+  "conservativeLampRadialGapM": 0.083256,
+  "maskGrid": [
+    76,
+    144
+  ],
+  "pitchDegrees": [
+    0,
+    8
+  ],
+  "azimuthStepDegrees": 45,
+  "maskIoU": [
+    0.99611,
+    0.9958,
+    0.99537,
+    0.99623,
+    0.99611,
+    0.9958,
+    0.99537,
+    0.99623,
+    0.99593,
+    0.99564,
+    0.99501,
+    0.99605,
+    0.99593,
+    0.99584,
+    0.9948,
+    0.99604
+  ],
+  "automaticLOD": false,
+  "nativePlacement": false
+}
