@@ -2,7 +2,7 @@
 import hashlib
 import json
 import os
-from math import cos, pi, sin
+from math import pi
 from pathlib import Path
 import struct
 import sys
@@ -127,19 +127,19 @@ for s in (-1,1):
 screen,hi=artifact("e6-sight-screen",4800)
 
 # Fold the return exactly as in coverPiece('half'). +Z in the map is −Y here.
-box("Low continuous long block",(0,0,.55),(5,.8,1.1),gasket,.021)
-box("Low continuous right return",(2.9,-1.1,.55),(.8,3,1.1),gasket,.018)
+box("Low continuous long block",(0,0,.530),(5,.798,1.060),orange,.021)
+box("Low continuous right return",(2.9,-1.1,.530),(.798,3,1.060),orange,.018)
 for i in range(5):
     x=(i-2)*.985
     box("Cast orange long cladding",(x,0,.562),(.955,.784,1.003),orange,.041)
-    box("Bedded long wear cap",(x,0,1.037),(.957,.789,.120),steel,.018)
+    box("Bedded long wear cap",(x,0,1.040),(.957,.789,.120),steel,.018)
     for side in (-1,1):
-        box("Recessed long kick panels",(x,side*.389,.392),(.77,.022,.417),rust,.011)
+        box("Recessed long kick panels",(x,side*.389,.392),(.77,.022,.417),gasket,.011)
         box("Pale edge ticks",(x+.28,side*.398,.827),(.193,.004,.067),marker,.001)
 for i in range(3):
     y=-.10-i*1.0
     box("Cast orange return cladding",(2.90,y,.563),(.78,.96,1.003),orange,.041)
-    box("Bedded return wear cap",(2.90,y,1.034),(.79,.954,.124),steel,.018)
+    box("Bedded return wear cap",(2.90,y,1.038),(.79,.954,.124),steel,.018)
     for side in (-1,1):
         box("Recessed return kick panels",(2.90+side*.389,y,.392),(.022,.775,.417),rust,.011)
         box("Inset locator",(2.90+side*.396,y,.827),(.008,.21,.064),light,.002)

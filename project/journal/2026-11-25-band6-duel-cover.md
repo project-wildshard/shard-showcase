@@ -26,7 +26,7 @@ blender -b -t 6 --factory-startup --python-exit-code 1 \
 Set `WILDSHARD_VALIDATE_ONLY=1` to skip photographs. Same
 editable Blender Python rebuilds the textureless exports
 byte-for-byte. Each uses six material groups. Three loads
-the 192,052 B / 2,916-triangle screen and the 78,644 B /
+the 192,052 B / 2,916-triangle screen and the 77,032 B /
 1,176-triangle low return with exact bounds. Ground and
 lighting are review only. No actor, combat, collision or
 spawn wiring. See `project/layouts/e6-duel-cover.json`.
