@@ -67,6 +67,13 @@ assert.ok(ids.has(rook.related_study.href.slice(1)));
 assert.ok(get("asset-"+rook.id).children.flatMap(x=>x.children).some(c=>
   c.href===rook.related_study.href && c.textContent===rook.related_study.label));
 
+const zipCable=data.assets.find(a=>a.id==="WSC-PROP-033");
+assert.equal(zipCable.model_preview,"#west-route-details");
+assert.equal(zipCable.related_study?.href,"#nov25-w11a-zip-sway");
+assert.ok(ids.has(zipCable.related_study.href.slice(1)));
+assert.ok(get("asset-"+zipCable.id).children.flatMap(x=>x.children).some(c=>
+  c.href===zipCable.related_study.href && c.textContent===zipCable.related_study.label));
+
 const roofVista=data.assets.find(a=>a.id==="WSC-MODULE-001");
 assert.equal(roofVista.model_preview,"#west-venue-kits");
 assert.equal(roofVista.related_study?.href,"#nov25-w9b-roof-vistas");
