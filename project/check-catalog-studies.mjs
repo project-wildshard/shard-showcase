@@ -67,6 +67,13 @@ assert.ok(ids.has(rook.related_study.href.slice(1)));
 assert.ok(get("asset-"+rook.id).children.flatMap(x=>x.children).some(c=>
   c.href===rook.related_study.href && c.textContent===rook.related_study.label));
 
+const grapplePerch=data.assets.find(a=>a.id==="WSC-KIT-004");
+assert.equal(grapplePerch.model_preview,"#nov23-grapple-hoop");
+assert.equal(grapplePerch.related_study?.href,"#nov25-w7a-grapple-perch");
+assert.ok(ids.has(grapplePerch.related_study.href.slice(1)));
+assert.ok(get("asset-"+grapplePerch.id).children.flatMap(x=>x.children).some(c=>
+  c.href===grapplePerch.related_study.href && c.textContent===grapplePerch.related_study.label));
+
 const zipCable=data.assets.find(a=>a.id==="WSC-PROP-033");
 assert.equal(zipCable.model_preview,"#west-route-details");
 assert.equal(zipCable.related_study?.href,"#nov25-w11a-zip-sway");
