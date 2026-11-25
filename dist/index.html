@@ -263,7 +263,7 @@
 <figure><a href="media/west-zipline-wip-west-gate.webp"><img src="media/west-zipline-wip-west-gate.webp" width="1500" height="1000" alt="Historical West Gate camera · Schematic town frontage and roof arrival" loading="lazy" decoding="async" style="height:auto"></a><figcaption>Historical West Gate camera · Schematic town frontage and roof arrival</figcaption></figure>
 </div></article>
 <article id="nov24-zip-finish-fit"><h3>West zip-house · Seat the finish pad</h3>
-<p>The original pad floats 86 mm above the deck at its center. Six recessed metal shoes bridge the local 23.5–33.0 mm gaps at their bearing points, without moving the pad, roof, cable, or tie-down. This is a static art fit, not gameplay or collision validation.</p>
+<p>The original pad floats 86 mm above the deck at its center. Six recessed metal shoes bridge the local 23.5–33.0 mm gaps at their bearing points, without moving the pad, roof, cable, or tie-down. This is a static art fit, not gameplay or collision validation. See the separate <a href="#nov25-w7b-zipline-driver">engine calibration and trolley</a>.</p>
 <div class="grid compare">
 <figure><a href="media/nov24-zip-finish-arrival.jpg"><img src="media/nov24-zip-finish-arrival.jpg" width="1100" height="700" alt="Overhead view following the cable into the cyan rooftop" loading="lazy"></a><figcaption>Arrival · Cable, pad, flange and roof stay in their original positions.</figcaption></figure>
 <figure><a href="media/nov24-zip-finish-revealed.jpg"><img src="media/nov24-zip-finish-revealed.jpg" width="1050" height="760" alt="Six small copper-edged deck shoes with the circular pad hidden" loading="lazy"></a><figcaption>Fitting view · Pad hidden to reveal all six recessed shoes.</figcaption></figure>
@@ -271,6 +271,18 @@
 <figure><a href="media/nov24-zip-finish-low-original.jpg"><img src="media/nov24-zip-finish-low-original.jpg" width="960" height="560" alt="Low side view of the original gap under the circular pad" loading="lazy"></a><figcaption>Before · The pad is visibly separated from the deck.</figcaption></figure>
 <figure><a href="media/nov24-zip-finish-low-fitted.jpg"><img src="media/nov24-zip-finish-low-fitted.jpg" width="960" height="560" alt="Same side view with a thin copper support visible beneath the pad" loading="lazy"></a><figcaption>After · The support is tucked behind the unchanged rim.</figcaption></figure>
 </div><p><a href="media/west-zip-deck-shoes.glb">Deck shoes GLB</a> · 21,992 bytes, 288 triangles. This contains the new pieces only. <a href="https://github.com/project-wildshard/shard-showcase/blob/ec1b929db07229951836fa3a6d6eb4fb42f75bfc/project/journal/2026-11-24-zip-finish-fit.md">Rebuild and fit checks</a> · <a href="#west-zipline-return-wip">Full West route</a>.</p></article>
+
+<article id="nov25-w7b-zipline-driver">
+<p class="eyebrow">West Zipline · W7b / W08 · Engine calibration</p>
+<h3>Ochre trolley and sampled roof release</h3>
+<p>The new trolley follows positions sampled from the pinned cable driver on the 98.57 m route. The engine completed its 60 Hz run in 9.37 s and resumed exactly from a midpoint snapshot. The wire, tower and landing pad are unchanged.</p>
+<div class="compare">
+<figure><a href="media/nov25-w7b-trolley-launch.webp"><img src="media/nov25-w7b-trolley-launch.webp" width="1460" height="930" alt="Ochre metal handgrip trolley on the cable shortly after leaving the tower" loading="lazy" decoding="async"></a><figcaption>Departure · New ochre trolley on the original wire.</figcaption></figure>
+<figure><a href="media/nov25-w7b-trolley-roof.webp"><img src="media/nov25-w7b-trolley-roof.webp" width="1460" height="930" alt="The trolley approaching the cyan zip-house roof with a debug ring marking the release position" loading="lazy" decoding="async"></a><figcaption>Arrival · The ring marks the sampled release; it is not a gameplay effect.</figcaption></figure>
+</div>
+<p>5,058 ray samples checked the rider envelope against the rebuilt art. The release advanced the body by 1.25 m in one frame; it still needs a collision-aware handoff. Test only: no playable launch, character animation, or phone signoff.</p>
+<p><a href="media/w7b-ochre-cable-trolley.glb">Trolley GLB (68,796 bytes)</a> · <a href="https://github.com/project-wildshard/shard-showcase/tree/63867e206a78851c91afd6a837909a1a01a7966a/demos/native-zipline">Driver, editable Blender recipe and the fit test</a> · <a href="#nov24-zip-finish-fit">Unchanged pad and shoe study</a>.</p>
+</article>
 
 <article id="west-whole-town-shell-wip"><h3>West whole-town shell · Art WIP</h3><p>The town shell adds 35 residences and nine reserved lots, with six gate openings and a 40 × 40 m plaza. The checked West zipline cable is unchanged. Both views show the exported scene after reimport into Blender. This is a static art study, not a gameplay, collision or performance pass.</p><div class="grid compare">
 <figure><a href="media/west-whole-town-wip-overview.webp"><img src="media/west-whole-town-wip-overview.webp" width="1500" height="1050" alt="Town overview · Walled town, Main Street and preserved West precinct" loading="lazy" decoding="async" style="height:auto"></a><figcaption>Town overview · Walled town, Main Street and preserved West precinct</figcaption></figure>
