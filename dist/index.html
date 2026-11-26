@@ -627,8 +627,19 @@
 <figure><a href="media/nov25-w7b-trolley-launch.webp"><img src="media/nov25-w7b-trolley-launch.webp" width="1460" height="930" alt="Ochre metal handgrip trolley on the cable shortly after leaving the tower" loading="lazy" decoding="async"></a><figcaption>Departure · New ochre trolley on the original wire.</figcaption></figure>
 <figure><a href="media/nov25-w7b-trolley-roof.webp"><img src="media/nov25-w7b-trolley-roof.webp" width="1460" height="930" alt="The trolley approaching the cyan zip-house roof with a debug ring marking the release position" loading="lazy" decoding="async"></a><figcaption>Arrival · The ring marks the sampled release; it is not a gameplay effect.</figcaption></figure>
 </div>
-<p>5,058 ray samples checked the rider envelope against the rebuilt art. The release advanced the body by 1.25 m in one frame; it still needs a collision-aware handoff. Test only: no playable launch, character animation, or phone signoff.</p>
-<p><a href="media/w7b-ochre-cable-trolley.glb">Trolley GLB (68,796 bytes)</a> · <a href="https://github.com/project-wildshard/shard-showcase/tree/63867e206a78851c91afd6a837909a1a01a7966a/demos/native-zipline">Driver, editable Blender recipe and the fit test</a> · <a href="#nov24-zip-finish-fit">Unchanged pad and shoe study</a>.</p>
+<p>5,058 ray samples checked the rider envelope against the rebuilt art. The release advanced the body by 1.25 m in one frame; the linked release-only bench below tests a collision-aware handoff. Test only: no playable launch, character animation, or phone signoff.</p>
+<p><a href="media/w7b-ochre-cable-trolley.glb">Trolley GLB (68,796 bytes)</a> · <a href="https://github.com/project-wildshard/shard-showcase/tree/63867e206a78851c91afd6a837909a1a01a7966a/demos/native-zipline">Driver, editable Blender recipe and the fit test</a> · <a href="#nov24-zip-finish-fit">Unchanged pad and shoe study</a> · <a href="#nov26-w7b-roof-handoff">Collision-aware arrival and finish pulse</a>.</p>
+</article>
+
+<article id="nov26-w7b-roof-handoff">
+<p class="eyebrow">W7b · WSC-PROP-035 · Native motor test and finish art</p>
+<h3>Zip-house finish: land on the pad without the snap</h3>
+<p>The stock release assigns the rider's position in one 1.25 m step. Eight bounded sweeps with the actual player capsule get to the same spot on the unchanged roof. All 15 tested starts settled on the pad; each 60 Hz step moved no more than 157 mm. A test shutter stopped the motor about a metre short.</p>
+<div class="compare">
+<figure><a href="media/nov26-w7b-roof-sweep.webp"><img src="media/nov26-w7b-roof-sweep.webp" width="1360" height="980" alt="Amber collision-tested path under the trolley and onto the cyan roof pad" loading="lazy"></a><figcaption>Amber dots are sampled motor moves; the mint dot marks settled contact.</figcaption></figure>
+<figure><a href="media/nov26-w7b-roof-ack.webp"><img src="media/nov26-w7b-roof-ack.webp" width="1000" height="1000" alt="A new jade confirmation arc glowing just inside the original cyan ring" loading="lazy"></a><figcaption>Optional confirmation art at its peak; in the clip the jade arc pulses twice and goes away.</figcaption></figure>
+</div>
+<p><a href="media/w7b-finish-ack.glb">Confirmation GLB</a> · 6,456 bytes / 108 triangles. <a href="https://github.com/project-wildshard/shard-showcase/blob/47440505d877e53ec7fe9bf97622eed85df64016/demos/native-zipline-handoff/README.md">Editable source and reproducible checks</a>. Release-only bench, not wired to the ride, course clock, or phone controls.</p>
 </article>
 
 <article id="west-whole-town-shell-wip"><p><a href="#nov25-w0b-closed-fronts">Three fitted shutters for the TO LET storefronts</a>.</p><h3>West whole-town shell · Art WIP</h3><p>The town shell adds 35 residences and nine reserved lots, with six gate openings and a 40 × 40 m plaza. The checked West zipline cable is unchanged. Both views show the exported scene after reimport into Blender. This is a static art study, not a gameplay, collision or performance pass.</p><div class="grid compare">
