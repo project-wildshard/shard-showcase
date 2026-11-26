@@ -1,0 +1,33 @@
+{
+  "scope": "Art only, no collider, input behavior or live install. Earlier straight-line bench reused for placement reference.",
+  "receiver_sha256": "287034facd39d323ee6e9af95912c053a3506d6fe3f788e012c4f58158f3be7f",
+  "cue_sha256": "bde1b4c8fc25e92a85c76e8cbe51bc6724b1807e7c44d4633520833a8c5f04b7",
+  "bytes": 7080,
+  "triangles": 113,
+  "three_origin": [
+    -167.39,
+    0,
+    154
+  ],
+  "world_x_fit": [
+    -170.757,
+    -169.577
+  ],
+  "deck_offset_mm": [
+    1.999,
+    2.0
+  ],
+  "min_outer_edge_margin_m": 0.315,
+  "prior_exact_wall_early_release_at_x": -171,
+  "prior_min_stopped_short_m": 3.176,
+  "views": {
+    "rider": {
+      "glyph_width_px": 713,
+      "glyph_height_px": 79
+    },
+    "deck": {
+      "glyph_width_px": 280,
+      "glyph_height_px": 235
+    }
+  }
+}
