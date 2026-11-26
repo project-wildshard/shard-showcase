@@ -28,7 +28,7 @@ o=bpy.data.objects.new(cam.name,cam);S.collection.objects.link(o);S.camera=o;cam
 S.render.engine='CYCLES';S.cycles.samples=24;S.cycles.use_denoising=False
 S.view_settings.view_transform='AgX';S.render.resolution_percentage=100
 S.render.image_settings.file_format='WEBP';S.render.image_settings.quality=89
-for name,where,target,w,h,focal in (
+for name,where,target,(w,h),focal in (
  ('join',(145.5,1.72,187.5),(176,4.3,156),(804,1748),44),
  ('plan',(100,69,155),(145,0,186),(1400,960),103),
 ):
