@@ -283,3 +283,9 @@ for (const name of ["wide","eye"]) {
   assert.ok(markup.includes(`src="${path}"`));
   assert.ok(readFileSync(new URL(path, dist)).byteLength > 1000);
 }
+
+assert.ok(ids.has("nov26-avenue-service-cover"));
+for(const name of ["nov26-avenue-cover-context.webp","nov26-avenue-cover-detail.webp","w0b-avenue-service-cover.glb"]) {
+  assert.ok(markup.includes(`media/${name}`));
+  assert.ok(readFileSync(new URL(`media/${name}`,dist)).byteLength>1000);
+}
