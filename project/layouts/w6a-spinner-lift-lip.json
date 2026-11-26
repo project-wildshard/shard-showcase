@@ -1,0 +1,26 @@
+{
+  "glb_sha256": "2e0d5e768d1f6b6dce24d6d27bceaf6ff223f4eae5b77c3f503f13e6d1ce3dda",
+  "bytes": 44620,
+  "triangles": 608,
+  "bounds_blender_local": [
+    [
+      -1.245,
+      1.245
+    ],
+    [
+      -3.0,
+      3.0
+    ],
+    [
+      -0.3,
+      0.0
+    ]
+  ],
+  "three_origin": [
+    -152.995,
+    6.0,
+    -103
+  ],
+  "lift_side_visual_seam_m": 0.01,
+  "scope": "Fit-only GLB; stationary lift cage in bench. No installed collider, moving lift or arm collision."
+}

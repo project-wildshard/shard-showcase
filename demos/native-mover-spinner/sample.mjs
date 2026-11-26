@@ -6,7 +6,7 @@ import {createRequire} from 'node:module'
 import {dirname,join,resolve} from 'node:path'
 import {pathToFileURL} from 'node:url'
 
-const [fixture,out]=process.argv.slice(2)
+const [fixture,out,mode]=process.argv.slice(2)
 assert(fixture&&out,'Pass an admitted plan folder and output JSON path')
 const req=createRequire(process.env.WSC_NODE_PROJECT?join(resolve(process.env.WSC_NODE_PROJECT),'package.json'):import.meta.url)
 const root=dirname(req.resolve('@wildshard/engine/package.json'))
@@ -68,22 +68,26 @@ const make=(speed)=>{
     ...lowerMoverMotion({track,trigger,driver},{at:atRest,euler})}
 }
 const navPath='server/w6a-rehearsal-nav',nativePath='server/native-assembly.json'
+const crossing=mode==='--handoff'
+const block=([id,x,y,z,hx,hy,hz])=>({id,name:id,file:'w6a-rehearsal-only',active:true,surface:'metal',
+  colliders:[{kind:'box',x,y,z,hx,hy,hz,rot}]})
+const lip=['optional-lip',-152.995,5.85,-103,1.245,.15,3.0]
 const solids=[
   ['arrival',-141,5.75,-103,1,.25,4],
   ['base',-147,-.15,-103,10,.15,8],
   ['axle',-147,6.45,-103,.226,.6,.226],
-].map(([id,x,y,z,hx,hy,hz])=>({id,name:id,file:'w6a-rehearsal-only',active:true,surface:'metal',
-  colliders:[{kind:'box',x,y,z,hx,hy,hz,rot}]}))
-const native=new TextEncoder().encode(JSON.stringify({kind:'native-assembly',
+  ...(crossing?[['cage',-157,5.8,-103,2.75,.2,3.1]]:[]),
+].map(block)
+const native=addLip=>new TextEncoder().encode(JSON.stringify({kind:'native-assembly',
   level:{speed:4.3,ground:{size:500,height:0}},terrain:{kind:'flat'},navigation:{file:navPath},
-  entries:{proven:{lanes:0,steps:0,portalTransfers:0}},features:[{host:'collision.pieces',rows:{value:solids}}]}))
+  entries:{proven:{lanes:0,steps:0,portalTransfers:0}},features:[{host:'collision.pieces',rows:{value:addLip?[...solids,block(lip)]:solids}}]}))
 const p=base.product
-const input={...base,product:{...p,hasFile:n=>n===nativePath||n===navPath||p.hasFile(n),
-  file:n=>n===nativePath?Promise.resolve(native):n===navPath?Promise.resolve(nav()):p.file(n)}}
-async function open(speed,snapshot){
+const input=addLip=>({...base,product:{...p,hasFile:n=>n===nativePath||n===navPath||p.hasFile(n),
+  file:n=>n===nativePath?Promise.resolve(native(addLip)):n===navPath?Promise.resolve(nav()):p.file(n)}})
+async function open(speed,snapshot,addLip=false){
   let runtime
   const row=make(speed)
-  const resident=await createNativeHeadlessResident(input,snapshot,{room:true,install:host=>{
+  const resident=await createNativeHeadlessResident(input(addLip),snapshot,{room:true,install:host=>{
     const s=p.shardfile
     runtime=new MoverScriptDriver(parseMovers([row]),host).install(host,
       {content:{identity:s.identity,sim:{...s.sim,bindings:[]},state:s.state},
@@ -110,6 +114,63 @@ function set(run,xx,yy,zz){
 }
 const dist=(a,b)=>Math.hypot(...a.map((v,i)=>v-b[i]))
 const rate=Math.PI/4
+if(crossing){
+  const approach=async(addLip,dz,hold)=>{
+    const run=await open(rate,undefined,addLip)
+    try{
+      set(run,-141.3,6.04,z+dz)
+      step(run,24)
+      const samples=[], mark=()=>{const q=describe(run);samples.push(q);return q}
+      mark()
+      const west={...idle,moveX:-1}
+      let q,air=0
+      for(let i=0;i<60;i++){
+        step(run,1,west);q=mark();air+=!q.grounded
+        if(q.onDeck)break
+      }
+      assert(q.onDeck&&air===0)
+      for(let i=0;i<hold;i++){step(run,1);mark()}
+      const carryEnd=describe(run)
+      assert(carryEnd.onDeck)
+      // Stage a world-space path south of the unchanged axle, then take
+      // the west gap straight into the stationary bottom cage.
+      const points=[[x+2.8,z+1.30],[x-2.8,z+1.30],[-156.15,z+1.30]]
+      let reached=true
+      for(const [tx,tz] of points){
+        let reachedPoint=false
+        for(let i=0;i<235;i++){
+          q=describe(run)
+          const dx=tx-q.feet[0],dzz=tz-q.feet[2],d=Math.hypot(dx,dzz)
+          if(d<.12){reachedPoint=true;break}
+          step(run,1,{...idle,moveX:dx/d,moveZ:dzz/d})
+          q=mark()
+          if(q.feet[1]<5.5)break
+        }
+        if(!reachedPoint){reached=false;break}
+      }
+      const final=describe(run)
+      return {addLip,dz,hold,reached,airborne:samples.filter(q=>!q.grounded).length,carryEnd,final,samples}
+    }finally{run.resident.dispose()}
+  }
+  const trials=[]
+  for(const dz of [-.75,0,.75])for(const hold of [24,72])for(const enabled of [false,true])
+    trials.push(await approach(enabled,dz,hold))
+  for(const q of trials)
+    console.log(q.addLip,q.dz,q.hold,q.reached,q.airborne,q.final.feet)
+  for(const q of trials){
+    assert.equal(q.reached,q.addLip)
+    if(q.addLip){
+      assert(q.airborne===0&&q.final.grounded&&!q.final.onDeck&&q.final.feet[0]<-155.8&&q.final.feet[1]>5.99)
+    }else assert(q.airborne>0&&q.final.feet[1]<5.5)
+  }
+  assert.deepEqual(await approach(true,0,24),trials.find(r=>r.addLip&&r.dz===0&&r.hold===24))
+  const trace={sha,origin:[x,y,z],lip,trials}
+  const compact={scope:'Headless stock spinner, proposed fixed approach lip and stationary lower lift cage. No moving lift, arm collision or game install.',
+    sha,origin:trace.origin,lip,repeatMatched:true,runs:trials.map(({samples,...q})=>({...q,ticks:samples.length-1}))}
+  writeFileSync(out,JSON.stringify(compact,null,2)+'\n')
+  if(process.argv[5])writeFileSync(process.argv[5],JSON.stringify(trace)+'\n')
+  process.exit(0)
+}
 const spin=[]
 for(const [r,angle] of [[.85,.2],[2,1],[3.3,2],[3.85,4.2]]) {
   const live=await open(rate)

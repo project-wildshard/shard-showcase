@@ -86,6 +86,36 @@ def snap(label, pos, target, dims, focal):
     s.render.resolution_x,s.render.resolution_y=dims;s.render.resolution_percentage=100
     s.render.filepath=str(dest/(label+'.png'));bpy.ops.render.render(write_still=True)
 
+if 'trials' in spec:
+    _,lx,ly,lz,hx,hy,hz=spec['lip']
+    probe=json.loads((src.parent/'lip-proof.json').read_text())
+    path=src.parent/'w6a-spinner-lift-lip.glb'
+    assert hashlib.sha256(path.read_bytes()).hexdigest()==probe['glb_sha256']
+    before=set(bpy.context.scene.objects)
+    bpy.ops.import_scene.gltf(filepath=str(path))
+    lip=set(bpy.context.scene.objects)-before
+    for o in lip:
+        if o.parent is None:o.location+=Vector(coords((lx,ly+hy,lz),0))
+    block('Station 5 bottom cage envelope',(-10,0,5.8),(5.5,6.2,.4),deck,.025)
+    for t in (-2.65,2.65):
+        block('Illustrative cage rail',(-10,t,6.72),(4.9,.10,.095),rail,.017)
+        for u in (-12.3,-7.6):
+            block('Illustrative cage rail terminal',(u,t,6.36),(.12,.12,.72),rail,.016)
+    s.cycles.samples=28
+    for enabled in (False,True):
+        q=next(q for q in spec['trials'] if q['addLip']==enabled and q['dz']==0 and q['hold']==24)
+        for o in lip:o.hide_render=not enabled
+        disc.rotation_mode='XYZ'
+        disc.rotation_euler.z=q['final']['yaw']
+        feet=[coords(f['feet'],.073) for f in q['samples'][::4]]
+        feet.append(coords(q['final']['feet'],.073))
+        c=teal if enabled else yellow
+        trail=tube('Measured stock-player trace',feet,c,.058)
+        end=dot('Measured end point',feet[-1],.17,c)
+        snap('nov26-spinner-lift-'+('lip' if enabled else 'gap'),(-7.9,-19.3,19.2),(-2.9,0,4.15),(1320,900),39)
+        for o in (trail,end):bpy.data.objects.remove(o,do_unlink=True)
+    sys.exit(0)
+
 entry=next(q for q in spec['entries'] if q['dz']==0 and not q['jump'])
 j=next(q for q in spec['entries'] if q['dz']==0 and q['jump'] and q['spinEnabled'])
 disc.rotation_mode='XYZ';disc.rotation_euler.z=entry['firstDeck']['yaw']

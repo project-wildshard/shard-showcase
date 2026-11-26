@@ -37,3 +37,33 @@ Dependencies: Engine 0.1.44, Format 0.43.0 and the matching Rapier from
 the admitted plan workspace. Review trails are drawn from actual
 measured feet, not from a moving character mesh, and are not in the GLB.
 The two entry traces offset 10 cm sideways to let both read.
+
+## Optional bottom-cage approach
+
+The nominal Station 4 disc ends at X −151.50 m; the existing 5.50 ×
+6.20 m lift cage begins at X −154.25 m in its lower position. Try a
+fixed, removable 2.49 × 6.00 m landing insert between them. Its top is
+Y 6.00 m and its west edge stops 10 mm short of the cage.
+The 0.25 m nominal spinner-side gap leaves the rotating disc clear.
+
+The stock player walked on, waited 24 or 72 ticks for the disc to
+carry them, walked around the axle, and stepped into the stationary
+bottom cage from three entry offsets. All six installed cases stayed
+grounded; six matched gap controls fell below the landing. The
+test steers to waypoints, not free-input navigation. The cage does not
+move and the sweep arm remains visual. This does not prove lift
+boarding when in motion, safe guarding, timer, device play, or install.
+
+```sh
+D=/tmp/spinner-handoff
+mkdir -p "$D"
+node --experimental-transform-types demos/native-mover-spinner/sample.mjs \
+  /path/to/admitted/native/plan "$D/handoff.json" --handoff "$D/replay.json"
+blender -b -t 4 --factory-startup --python-exit-code 1 \
+  --python demos/native-mover-spinner/lip.py -- "$D"
+cmp "$D/handoff.json" project/layouts/w6a-spinner-lift-handoff.json
+cmp "$D/lip-proof.json" project/layouts/w6a-spinner-lift-lip.json
+cmp "$D/w6a-spinner-lift-lip.glb" public/assets/wildshard-art/w6a-spinner-lift-lip.glb
+blender -b -t 6 --factory-startup --python-exit-code 1 \
+  --python demos/native-mover-spinner/render.py -- "$D/replay.json" "$D"
+```
