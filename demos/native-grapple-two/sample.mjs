@@ -18,6 +18,7 @@ const {SimHost}=await at('src/server/engine/sim.ts')
 const {SIM_API_VERSION}=await at('src/shared/engine/sim/apiVersion.ts')
 const {loadRapier}=await at('src/shared/engine/physics/rapier.ts')
 const {groups}=await at('src/shared/engine/physics/groups.ts')
+const {floorBelow}=await at('src/shared/engine/physics/query.ts')
 const {Vector3}=await import(pathToFileURL(join(dirname(req.resolve('three')),'three.module.js')).href)
 const {parseGrappleProfile}=await import(pathToFileURL(formatPath).href)
 const {DEFAULT_GRAPPLE_MODE,hookVisible,landingFor}=await at('src/shared/game/grapple/sim.ts')
@@ -30,7 +31,12 @@ const read=(file)=>{const raw=readFileSync(join(dir,file));return {value:JSON.pa
 const corridor=read('corridor.json')
 const oneDress=read('perch-dressing.json')
 assert.equal(oneDress.sha,'18c875d3ed3ab629202d52dd07f72363176560173f39a8b1371a3d4f479f2ac6')
-const mast=process.argv.includes('--mast')
+const summit=process.argv.includes('--summit')
+const mast=summit||process.argv.includes('--mast')
+const summitHook=[-211.4,46.4,-38.9], oldSummitHook=[-214.5,45.8,-34], launchPoint=[-212,45,-34]
+const summitGeo=summit?read('summit.json'):null, summitRing=summit?read('summit-bracket.json'):null
+if(summit)assert.equal(summitGeo.sha,'deced7e029e6c628db29a43bbb8e300139c9390a6c1c415b162a5349e8a3183b')
+if(summit)assert.equal(summitRing.sha,'3d47fdf79dfe6cce585339bc85c4fede2f33405a8aba514f034c120723415aae')
 const tank=mast||process.argv.includes('--tank')
 const mastHook=[-200,28,-68]
 const mastGeo=mast?read('mast.json'):null, receiver=mast?read('mast-receiver-dressing.json'):null
@@ -56,9 +62,10 @@ const looks=Object.fromEntries(['muzzle','bite','dock','sparks','ribbon'].map(x=
 const profile=parseGrappleProfile({id:'w7a-two',course:{name:'West opening poles'},cues,looks,
   headless:{step:'w7a-step',lock:'w7a-lock',aim:'w7a-aim',eye:1.7,aspect:402/874,portraitFov:80}})
 
-function simulate(dx,dz,{installed=true,keepFrames=false,named=false,roofHook=rim,bracket=true,installedMast=true,crossRoof=true}={}) {
+function simulate(dx,dz,{installed=true,keepFrames=false,named=false,roofHook=rim,bracket=true,installedMast=true,crossRoof=true,summitTarget=summitHook,summitBracket=true}={}) {
   const route=tank?[...hooks,new Vector3(...roofHook)]:hooks
   if(mast)route.push(new Vector3(...mastHook))
+  if(summit)route.push(new Vector3(...summitTarget))
   const [x,z]=[start[0]+dx,start[1]+dz]
   const host=new SimHost({version:SIM_API_VERSION,id:'w7a-two',seed:25,ground:{size:500,height:.1},
     player:{at:{x,y:.07,z},yaw:Math.atan2(x-hooks[0].x,z-hooks[0].z),speed:4.3},entities:[],quests:[],
@@ -79,6 +86,14 @@ function simulate(dx,dz,{installed=true,keepFrames=false,named=false,roofHook=ri
       if(bracket)for(const g of saddle.value)mesh(g)
       if(mast){
         for(const g of mastGeo.value)mesh(g)
+        if(summit){
+          for(const g of summitGeo.value){
+            const c=mesh(g)
+            if(g.name.endsWith('Textured gray deck panels'))colliders[4]=c
+          }
+          assert(colliders[4])
+          if(summitBracket)for(const g of summitRing.value)mesh(g)
+        }
         if(installedMast){
           colliders[3]=box(deckFour)
           for(const g of receiver.value)mesh(g)
@@ -130,13 +145,23 @@ function simulate(dx,dz,{installed=true,keepFrames=false,named=false,roofHook=ri
         const phase=claw.sim.phase
         if(phase!==r.phases.at(-1))r.phases.push(phase)
         if(keepFrames)r.frames.push([n,p.position.toArray(),phase,p.fall.grounded])
-        if(phase==='idle'&&p.fall.grounded&&colliders[i]&&p.motor.result.groundCollider?.handle===colliders[i].handle){
+        if(phase==='idle'&&p.fall.grounded&&(i!==4||p.position.y>44.85)&&colliders[i]&&p.motor.result.groundCollider?.handle===colliders[i].handle){
           r.ticks??=n
           onDeck++
         }else onDeck=0
         if(onDeck>=12){
           r.settled=true;r.end=p.position.toArray();r.settleTicks=n
-          if(i===2){
+          if(i===4){
+            const {x,y,z}=p.position
+            const radius=.58
+            for(let ray=0;ray<16;ray++){
+              const angle=ray*Math.PI/8
+              const f=floorBelow(host.physics,x+Math.cos(angle)*radius,z+Math.sin(angle)*radius,y+.16,.27,
+                p.motor.collider,c=>c.handle===colliders[4].handle)
+              assert(f!==undefined&&Math.abs(f-45.05)<.012,JSON.stringify({x,y,z,ray,f}))
+            }
+            r.supportProbeRadius=radius
+          }else if(i===2){
             // Conservative inscribed 96-gon radius, then capsule radius.
             r.bodyMargin=16*Math.cos(Math.PI/96)-Math.hypot(p.position.x+206,p.position.z+104)-.38
           }else{
@@ -146,7 +171,7 @@ function simulate(dx,dz,{installed=true,keepFrames=false,named=false,roofHook=ri
           break
         }
       }
-      if(!r.settled)break
+      if(!r.settled){if(summit)r.last=p.position.toArray();break}
     }
     return hops
   }finally{host.dispose()}
@@ -155,6 +180,34 @@ const centre=simulate(0,0,{keepFrames:true})
 const noSecond=simulate(0,0,{installed:false})
 if(s2){console.log(JSON.stringify({second,centre:centre.map(({frames,...r})=>r),noSecond}));process.exit(0)}
 assert.equal(corridor.sha,'60098a20322fb4dbc908ce9e22c53a5966e7f400a0275b5f829eb25af0deb2a6')
+if(summit){
+  const trim=hops=>hops.map(({frames,...r})=>{
+    if(r.roofWalk){const {frames,...walk}=r.roofWalk;r.roofWalk=walk}
+    return r
+  })
+  const old=simulate(0,0,{summitTarget:oldSummitHook,summitBracket:false})
+  const cable=simulate(0,0,{summitTarget:launchPoint,summitBracket:false})
+  const good=hops=>hops.length===5&&hops.every(r=>r.settled)&&hops[4].supportProbeRadius===.58
+  assert(good(centre),JSON.stringify(trim(centre)))
+  assert.deepEqual(centre,simulate(0,0,{keepFrames:true,named:true}))
+  assert.deepEqual(centre,simulate(0,0,{keepFrames:true}))
+  assert(old.length===5&&old[4].reach<38&&!old[4].visible&&!old[4].locked)
+  assert(cable.length===5&&cable[4].locked&&!cable[4].settled&&cable[4].last[1]<37)
+  const cases=[]
+  for(const dx of [-1,-.5,0,.5,1])for(const dz of [-1,-.5,0,.5,1]){
+    const h=simulate(dx,dz)
+    assert(good(h),JSON.stringify({dx,dz,hops:trim(h)}))
+    cases.push({offset:[dx,dz],hops:trim(h)})
+  }
+  const proof={scope:'Ground to summit, five native server hops. No zipline carry, course install, clock or phone test.',
+    engine:'0.1.44',format:'0.43.0',frequencyHz:60,summitMeshSha:summitGeo.sha,summitRingSha:summitRing.sha,
+    summitTriangles:summitGeo.value.reduce((n,g)=>n+g.triangles.length/3,0),
+    hooks:[...hooks.map(h=>h.toArray()),rim,mastHook,summitHook],unchangedZiplineLaunch:launchPoint,
+    centre,cases,oldProxyControl:trim(old).at(-1),cableAnchorControl:trim(cable).at(-1)}
+  writeFileSync(output,JSON.stringify(proof)+'\n')
+  console.log(JSON.stringify({hops:trim(centre),cases:cases.length,old:proof.oldProxyControl,cable:proof.cableAnchorControl}))
+  process.exit(0)
+}
 if(mast){
   const trim=hops=>hops.map(({frames,...r})=>{
     if(r.roofWalk){const {frames,...walk}=r.roofWalk;r.roofWalk=walk}
