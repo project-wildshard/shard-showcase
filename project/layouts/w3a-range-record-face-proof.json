@@ -1,0 +1,44 @@
+{
+  "slice": "W3a",
+  "catalogHost": "WSC-PROP-027",
+  "donorSha256": "5e443a0211c4b5806c7f7118cc4a00c7bad19c31522a75d9f2295c3a71a42bc3",
+  "insertSha256": "dde743278e17380166608826c736a8786cbc0747ce646dd6cf8c0a43ddc84382",
+  "bytes": 68376,
+  "triangles": 1426,
+  "primitives": 6,
+  "localBoundsBlender": [
+    [
+      -0.8040000200271606,
+      -0.34100013971328735,
+      0.4480000138282776
+    ],
+    [
+      0.8040000200271606,
+      -0.3230000138282776,
+      1.0239999294281006
+    ]
+  ],
+  "clearanceToNearestDonorFaceM": 0.0020000040531158447,
+  "oldArtworkOcclusionRays": 27378,
+  "cameraPositions": 3,
+  "initialValues": "All unset; no example numbers in the asset",
+  "unsetNode": "RangeRecordUnsetValues",
+  "valueSlotsBlender": [
+    [
+      0.702,
+      -0.341,
+      0.779
+    ],
+    [
+      0.702,
+      -0.341,
+      0.659
+    ],
+    [
+      0.702,
+      -0.341,
+      0.552
+    ]
+  ],
+  "readiness": "Separate cosmetic face only; no live record bindings."
+}
