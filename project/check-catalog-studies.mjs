@@ -295,3 +295,11 @@ for(const name of ["nov26-vault-lift-boarding.webp","nov26-vault-lift-top.webp"]
   assert.ok(markup.includes(`media/${name}`));
   assert.ok(readFileSync(new URL(`media/${name}`,dist)).byteLength>1000);
 }
+
+assert.ok(ids.has("nov26-paddock-block-walk"));
+assert.equal(data.assets.find(a=>a.id==="WSC-PLAN-008").related_study.href,"#nov26-paddock-block-walk");
+for (const name of ["walk","treads"]) {
+  const path = `media/nov26-paddock-block-${name}.webp`;
+  assert.ok(markup.includes(`src="${path}"`));
+  assert.ok(readFileSync(new URL(path,dist)).byteLength > 1000);
+}
