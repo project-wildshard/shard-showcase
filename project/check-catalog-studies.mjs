@@ -276,3 +276,10 @@ assert.ok(markup.includes('href="media/w9-oval-cache-screen.glb"'));
 assert.ok(ids.has("nov26-e5b-gate-crossing"));
 assert.ok(markup.includes('href="#nov26-e5b-gate-crossing"'));
 for (const f of ["hold","release"]) assert.ok(markup.includes(`src="media/nov26-e5b-cross-${f}.webp"`));
+
+assert.ok(ids.has("nov26-vault-bridge-boarding"));
+for (const name of ["wide","eye"]) {
+  const path = `media/nov26-vault-bridge-lift-${name}.webp`;
+  assert.ok(markup.includes(`src="${path}"`));
+  assert.ok(readFileSync(new URL(path, dist)).byteLength > 1000);
+}
