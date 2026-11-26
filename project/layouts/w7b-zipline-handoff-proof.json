@@ -1,0 +1,170 @@
+{
+  "scope": "Release-only bench: native motor on W08 art triangles. No native carry owner, trigger or course install.",
+  "engine": "0.1.44",
+  "meshSha": "a8b955c7f7baa9e95c2b8bcdfdb0e3b7b6a6d5f1b3a3847500b338f46130be55",
+  "meshTriangles": 17508,
+  "frequencyHz": 60,
+  "maxRequestedStep": 0.18,
+  "approachTicks": 8,
+  "groundTicks": 12,
+  "stockDismountStep": 1.2539904158593198,
+  "start": [
+    -116.88222916948098,
+    12.960203272103506,
+    -16.839577427483682
+  ],
+  "goal": [
+    -115.649514243673,
+    12.901505409684015,
+    -16.617180404786364
+  ],
+  "colliderObjects": 18,
+  "motor": {
+    "radius": 0.38,
+    "height": 1.8
+  },
+  "centre": {
+    "passPad": true,
+    "arrivesWithErrorM": 0.0,
+    "maximumStepM": 0.15675,
+    "landedAt": [
+      -115.64951,
+      12.7661,
+      -16.61718
+    ],
+    "floor": "PROP-035 \u00b7 Landing pad | WSC-PROP-035 | Teal enamel"
+  },
+  "blocked": {
+    "passPad": false,
+    "arrivesWithErrorM": 1.00038,
+    "maximumStepM": 0.15675,
+    "landedAt": [
+      -116.64735,
+      12.92007,
+      -16.6859
+    ],
+    "floor": null
+  },
+  "firstConfirmedGroundStep": 12,
+  "cases": [
+    [
+      -0.1,
+      -0.025,
+      true,
+      0.15663
+    ],
+    [
+      -0.1,
+      0,
+      true,
+      0.15675
+    ],
+    [
+      -0.1,
+      0.025,
+      true,
+      0.15693
+    ],
+    [
+      -0.05,
+      -0.025,
+      true,
+      0.15663
+    ],
+    [
+      -0.05,
+      0,
+      true,
+      0.15675
+    ],
+    [
+      -0.05,
+      0.025,
+      true,
+      0.15693
+    ],
+    [
+      0,
+      -0.025,
+      true,
+      0.15663
+    ],
+    [
+      0,
+      0,
+      true,
+      0.15675
+    ],
+    [
+      0,
+      0.025,
+      true,
+      0.15693
+    ],
+    [
+      0.05,
+      -0.025,
+      true,
+      0.15663
+    ],
+    [
+      0.05,
+      0,
+      true,
+      0.15675
+    ],
+    [
+      0.05,
+      0.025,
+      true,
+      0.15693
+    ],
+    [
+      0.1,
+      -0.025,
+      true,
+      0.15663
+    ],
+    [
+      0.1,
+      0,
+      true,
+      0.15675
+    ],
+    [
+      0.1,
+      0.025,
+      true,
+      0.15693
+    ]
+  ],
+  "overlay": {
+    "bytes": 6456,
+    "triangles": 108,
+    "sha256": "fe978bda059fc8f3de8abdf865baefa98f78fa68ad8955417b21cdebf0aaf6d3",
+    "overlay_origin_three": [
+      -115,
+      12.754,
+      -16.5
+    ],
+    "fit_probes": 1350,
+    "duration_s": 0.7,
+    "material_primitives": 1,
+    "radial_support_m": [
+      0.78,
+      0.898
+    ],
+    "probed_clearance_mm": [
+      8.0,
+      19.0
+    ],
+    "scope": "Optional one-shot visual, not a collider or a course trigger."
+  },
+  "threePlayback": {
+    "duration": 0.699999988079071,
+    "hidden": 0.7800000273782225,
+    "firstPeak": 0.8980000243979822,
+    "secondPeak": 0.8980000266486534,
+    "ended": 0.7800000273782225
+  }
+}
