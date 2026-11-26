@@ -1,0 +1,3267 @@
+{
+  "scope": "Stock player test on flat floor comparing exact kinematic gate triangle pairs with a fixed blocker; fixture alarm and interlock only.",
+  "engine": "0.1.44",
+  "model": "e5b-alarm-gate-pair-motion.glb",
+  "sha256": "f79ae9baf004cc550db96aa6568a1a5194f04c32e8cac9a1557d07235a184d06",
+  "anchors": {
+    "north": [
+      148,
+      0,
+      14
+    ],
+    "west": [
+      126,
+      0,
+      66
+    ]
+  },
+  "releaseGapM": 2.05,
+  "closeTicks": 144,
+  "holdTicks": 1200,
+  "openTicks": 168,
+  "hz": 60,
+  "runs": [
+    {
+      "name": "north",
+      "mode": "cycle",
+      "offset": -0.53,
+      "airborne": 55,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529999,
+          0.020089,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529999,
+          0.020089,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020095,
+        "minY": 0.019782,
+        "tick": 169,
+        "feet": [
+          -0.529996,
+          0.020089,
+          -3.899997
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 55,
+        "peakY": 0.192308,
+        "minY": 0.019782,
+        "tick": 289,
+        "feet": [
+          -0.529987,
+          0.02,
+          -0.499044
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 55,
+        "peakY": 0.192308,
+        "minY": 0.019782,
+        "tick": 1369,
+        "feet": [
+          -0.530037,
+          0.02009,
+          -2.106009
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 55,
+        "peakY": 0.192308,
+        "minY": 0.019782,
+        "tick": 1537,
+        "feet": [
+          -0.530037,
+          0.02009,
+          -2.106009
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 55,
+        "peakY": 0.192308,
+        "minY": 0.019782,
+        "tick": 1667,
+        "feet": [
+          -0.530037,
+          0.01999,
+          6.975181
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0,
+      "releaseTick": null,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "north",
+      "mode": "clear",
+      "offset": -0.53,
+      "airborne": 0,
+      "openOnly": {
+        "phase": "open pass",
+        "airborne": 0,
+        "peakY": 0.02,
+        "minY": 0.019918,
+        "tick": 140,
+        "feet": [
+          -0.529999,
+          0.019992,
+          4.106192
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      }
+    },
+    {
+      "name": "north",
+      "mode": "cycle",
+      "offset": 0,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0,
+          0.020089,
+          -3.9
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0,
+          0.020089,
+          -3.9
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020089,
+        "minY": 0.01979,
+        "tick": 169,
+        "feet": [
+          0,
+          0.020089,
+          -3.899999
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.054545,
+        "minY": 0.01979,
+        "tick": 289,
+        "feet": [
+          -0.320061,
+          0.019995,
+          -0.499654
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.054545,
+        "minY": 0.01979,
+        "tick": 1369,
+        "feet": [
+          -0.319976,
+          0.020091,
+          -2.106625
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.054545,
+        "minY": 0.01979,
+        "tick": 1537,
+        "feet": [
+          -0.319976,
+          0.020091,
+          -2.106625
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.054545,
+        "minY": 0.01979,
+        "tick": 1667,
+        "feet": [
+          -0.319976,
+          0.01999,
+          6.974565
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0,
+      "releaseTick": null,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "north",
+      "mode": "clear",
+      "offset": 0,
+      "airborne": 0,
+      "openOnly": {
+        "phase": "open pass",
+        "airborne": 0,
+        "peakY": 0.020654,
+        "minY": 0.019984,
+        "tick": 140,
+        "feet": [
+          0.000001,
+          0.019997,
+          4.10619
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      }
+    },
+    {
+      "name": "north",
+      "mode": "cycle",
+      "offset": 0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.53,
+          0.020096,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.53,
+          0.020096,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020096,
+        "minY": 0.020088,
+        "tick": 169,
+        "feet": [
+          0.53,
+          0.020096,
+          -3.899999
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.19194,
+        "minY": 0.019988,
+        "tick": 289,
+        "feet": [
+          0.527977,
+          0.191741,
+          -0.554006
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.19194,
+        "minY": 0.019865,
+        "tick": 1369,
+        "feet": [
+          0.527964,
+          0.020091,
+          -2.160965
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.19194,
+        "minY": 0.019865,
+        "tick": 1537,
+        "feet": [
+          0.527964,
+          0.020068,
+          -2.160965
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.19194,
+        "minY": 0.019865,
+        "tick": 1667,
+        "feet": [
+          0.527964,
+          0.019991,
+          6.920226
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0,
+      "releaseTick": null,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "north",
+      "mode": "clear",
+      "offset": 0.53,
+      "airborne": 0,
+      "openOnly": {
+        "phase": "open pass",
+        "airborne": 0,
+        "peakY": 0.02,
+        "minY": 0.019976,
+        "tick": 140,
+        "feet": [
+          0.53,
+          0.019993,
+          4.106192
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      }
+    },
+    {
+      "name": "north",
+      "mode": "occupied",
+      "offset": 0,
+      "airborne": 0,
+      "deferred": 20,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0.02,
+        "minY": 0.019989,
+        "tick": 78,
+        "feet": [
+          0,
+          0.019996,
+          -0.337142
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0.020654,
+        "minY": 0.019984,
+        "tick": 98,
+        "feet": [
+          0.000001,
+          0.019995,
+          1.09619
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020654,
+        "minY": 0.019687,
+        "tick": 242,
+        "feet": [
+          -0.000002,
+          0.020092,
+          1.331679
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      }
+    },
+    {
+      "name": "north",
+      "mode": "cycle-near",
+      "offset": -0.53,
+      "airborne": 55,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529999,
+          0.020089,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529999,
+          0.020089,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020095,
+        "minY": 0.019782,
+        "tick": 169,
+        "feet": [
+          -0.529996,
+          0.020089,
+          -3.899997
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 55,
+        "peakY": 0.192308,
+        "minY": 0.019782,
+        "tick": 289,
+        "feet": [
+          -0.529987,
+          0.02,
+          -0.499044
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 55,
+        "peakY": 0.192308,
+        "minY": 0.019719,
+        "tick": 1369,
+        "feet": [
+          -0.529986,
+          0.019719,
+          -0.499049
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 55,
+        "peakY": 0.192308,
+        "minY": 0.01894,
+        "tick": 1537,
+        "feet": [
+          -8.193873,
+          0.020089,
+          -0.548139
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 55,
+        "peakY": 0.192308,
+        "minY": 0.01894,
+        "tick": 1667,
+        "feet": [
+          -8.193873,
+          0.019989,
+          -0.499662
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": -7.663887,
+      "releaseTick": null,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": false
+    },
+    {
+      "name": "north",
+      "mode": "slab",
+      "offset": -0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529999,
+          0.020089,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529999,
+          0.020089,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020095,
+        "minY": 0.019782,
+        "tick": 169,
+        "feet": [
+          -0.529996,
+          0.020089,
+          -3.899997
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.020095,
+        "minY": 0.019782,
+        "tick": 289,
+        "feet": [
+          -0.53237,
+          0.02,
+          -0.534714
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.0201,
+        "minY": 0.019738,
+        "tick": 1369,
+        "feet": [
+          -0.532367,
+          0.019738,
+          -0.535071
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.0201,
+        "minY": 0.019738,
+        "tick": 1537,
+        "feet": [
+          -0.532368,
+          0.019738,
+          -0.535071
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.0201,
+        "minY": 0.019738,
+        "tick": 1667,
+        "feet": [
+          -0.532368,
+          0.019989,
+          8.54612
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": -0.000001,
+      "releaseTick": 38,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "north",
+      "mode": "slab-held",
+      "offset": -0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529999,
+          0.020089,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529999,
+          0.020089,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020095,
+        "minY": 0.019782,
+        "tick": 169,
+        "feet": [
+          -0.529996,
+          0.020089,
+          -3.899997
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.020095,
+        "minY": 0.019782,
+        "tick": 289,
+        "feet": [
+          -0.53237,
+          0.02,
+          -0.534714
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.0201,
+        "minY": 0.019738,
+        "tick": 1369,
+        "feet": [
+          -0.532367,
+          0.019738,
+          -0.535071
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.0201,
+        "minY": 0.019738,
+        "tick": 1537,
+        "feet": [
+          -0.532678,
+          0.019989,
+          8.85323
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.020868,
+        "minY": 0.019738,
+        "tick": 1667,
+        "feet": [
+          -0.532673,
+          0.019984,
+          18.169888
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": -0.000311,
+      "releaseTick": 38,
+      "passDuringOpen": {
+        "tick": 45,
+        "gap": 2.872134,
+        "feet": [
+          -0.532678,
+          0.019996,
+          0.038231
+        ]
+      },
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "north",
+      "mode": "cycle-near",
+      "offset": 0,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0,
+          0.020089,
+          -3.9
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0,
+          0.020089,
+          -3.9
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020089,
+        "minY": 0.01979,
+        "tick": 169,
+        "feet": [
+          0,
+          0.020089,
+          -3.899999
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.054545,
+        "minY": 0.01979,
+        "tick": 289,
+        "feet": [
+          -0.320061,
+          0.019995,
+          -0.499654
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.054545,
+        "minY": 0.019717,
+        "tick": 1369,
+        "feet": [
+          -0.318894,
+          0.02,
+          -0.499675
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.054545,
+        "minY": 0.019009,
+        "tick": 1537,
+        "feet": [
+          -8.44829,
+          0.019804,
+          -0.537484
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.054545,
+        "minY": 0.019009,
+        "tick": 1667,
+        "feet": [
+          -8.44829,
+          0.019995,
+          -0.499993
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": -8.129396,
+      "releaseTick": null,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": false
+    },
+    {
+      "name": "north",
+      "mode": "slab",
+      "offset": 0,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0,
+          0.020089,
+          -3.9
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0,
+          0.020089,
+          -3.9
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020089,
+        "minY": 0.01979,
+        "tick": 169,
+        "feet": [
+          0,
+          0.020089,
+          -3.899999
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.020089,
+        "minY": 0.01979,
+        "tick": 289,
+        "feet": [
+          -0.000852,
+          0.019996,
+          -0.535051
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.0201,
+        "minY": 0.019455,
+        "tick": 1369,
+        "feet": [
+          -0.000996,
+          0.020095,
+          -0.535033
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.0201,
+        "minY": 0.019455,
+        "tick": 1537,
+        "feet": [
+          -0.000996,
+          0.020095,
+          -0.535033
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.020676,
+        "minY": 0.019455,
+        "tick": 1667,
+        "feet": [
+          -0.000995,
+          0.019993,
+          8.546155
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0,
+      "releaseTick": 38,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "north",
+      "mode": "slab-held",
+      "offset": 0,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0,
+          0.020089,
+          -3.9
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0,
+          0.020089,
+          -3.9
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020089,
+        "minY": 0.01979,
+        "tick": 169,
+        "feet": [
+          0,
+          0.020089,
+          -3.899999
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.020089,
+        "minY": 0.01979,
+        "tick": 289,
+        "feet": [
+          -0.000852,
+          0.019996,
+          -0.535051
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.0201,
+        "minY": 0.019455,
+        "tick": 1369,
+        "feet": [
+          -0.000996,
+          0.020095,
+          -0.535033
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.020645,
+        "minY": 0.019455,
+        "tick": 1537,
+        "feet": [
+          -0.001134,
+          0.019993,
+          8.853217
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.020646,
+        "minY": 0.019455,
+        "tick": 1667,
+        "feet": [
+          -0.001131,
+          0.020602,
+          18.169878
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": -0.000138,
+      "releaseTick": 38,
+      "passDuringOpen": {
+        "tick": 45,
+        "gap": 2.872134,
+        "feet": [
+          -0.001135,
+          0.019999,
+          0.038222
+        ]
+      },
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "north",
+      "mode": "cycle-near",
+      "offset": 0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.53,
+          0.020096,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.53,
+          0.020096,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020096,
+        "minY": 0.020088,
+        "tick": 169,
+        "feet": [
+          0.53,
+          0.020096,
+          -3.899999
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.19194,
+        "minY": 0.019988,
+        "tick": 289,
+        "feet": [
+          0.527977,
+          0.191741,
+          -0.554006
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.213263,
+        "minY": 0.019988,
+        "tick": 1369,
+        "feet": [
+          0.515255,
+          0.212677,
+          -0.533005
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.213263,
+        "minY": 0.019773,
+        "tick": 1537,
+        "feet": [
+          0.862956,
+          0.020093,
+          -0.533012
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.213263,
+        "minY": 0.019773,
+        "tick": 1667,
+        "feet": [
+          0.862956,
+          0.01999,
+          8.548178
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0.347701,
+      "releaseTick": null,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "north",
+      "mode": "slab",
+      "offset": 0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.53,
+          0.020096,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.53,
+          0.020096,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020096,
+        "minY": 0.020088,
+        "tick": 169,
+        "feet": [
+          0.53,
+          0.020096,
+          -3.899999
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.020096,
+        "minY": 0.019988,
+        "tick": 289,
+        "feet": [
+          0.528183,
+          0.019994,
+          -0.53494
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.020099,
+        "minY": 0.019741,
+        "tick": 1369,
+        "feet": [
+          0.528247,
+          0.020094,
+          -0.535025
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.020099,
+        "minY": 0.019741,
+        "tick": 1537,
+        "feet": [
+          0.528247,
+          0.020094,
+          -0.535025
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.020696,
+        "minY": 0.019741,
+        "tick": 1667,
+        "feet": [
+          0.528249,
+          0.01999,
+          8.546164
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0,
+      "releaseTick": 38,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "north",
+      "mode": "slab-held",
+      "offset": 0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.53,
+          0.020096,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.53,
+          0.020096,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020096,
+        "minY": 0.020088,
+        "tick": 169,
+        "feet": [
+          0.53,
+          0.020096,
+          -3.899999
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.020096,
+        "minY": 0.019988,
+        "tick": 289,
+        "feet": [
+          0.528183,
+          0.019994,
+          -0.53494
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.020099,
+        "minY": 0.019741,
+        "tick": 1369,
+        "feet": [
+          0.528247,
+          0.020094,
+          -0.535025
+        ],
+        "leafX": [
+          -3.990005,
+          3.990005
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.020099,
+        "minY": 0.019741,
+        "tick": 1537,
+        "feet": [
+          0.528345,
+          0.01999,
+          8.853429
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.020623,
+        "minY": 0.019741,
+        "tick": 1667,
+        "feet": [
+          0.528345,
+          0.019999,
+          18.170095
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0.000098,
+      "releaseTick": 38,
+      "passDuringOpen": {
+        "tick": 45,
+        "gap": 2.872134,
+        "feet": [
+          0.528345,
+          0.019996,
+          0.038431
+        ]
+      },
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "west",
+      "mode": "cycle",
+      "offset": -0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529997,
+          0.019809,
+          -3.900001
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529997,
+          0.019809,
+          -3.900001
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020091,
+        "minY": 0.019809,
+        "tick": 169,
+        "feet": [
+          -0.53,
+          0.020091,
+          -3.900002
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.020091,
+        "minY": 0.019809,
+        "tick": 289,
+        "feet": [
+          -0.53,
+          0.02,
+          -0.499908
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.0201,
+        "minY": 0.019692,
+        "tick": 1369,
+        "feet": [
+          -0.53001,
+          0.020096,
+          -2.106864
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.0201,
+        "minY": 0.019692,
+        "tick": 1537,
+        "feet": [
+          -0.53001,
+          0.020093,
+          -2.106864
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.020641,
+        "minY": 0.019537,
+        "tick": 1667,
+        "feet": [
+          -0.53001,
+          0.02,
+          6.974325
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0,
+      "releaseTick": null,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "west",
+      "mode": "clear",
+      "offset": -0.53,
+      "airborne": 0,
+      "openOnly": {
+        "phase": "open pass",
+        "airborne": 0,
+        "peakY": 0.02,
+        "minY": 0.019932,
+        "tick": 140,
+        "feet": [
+          -0.529997,
+          0.019991,
+          4.106189
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      }
+    },
+    {
+      "name": "west",
+      "mode": "cycle",
+      "offset": 0,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.000004,
+          0.020092,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.000004,
+          0.020092,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020092,
+        "minY": 0.020046,
+        "tick": 169,
+        "feet": [
+          -0.000004,
+          0.020092,
+          -3.899999
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.0405,
+        "minY": 0.019992,
+        "tick": 289,
+        "feet": [
+          -0.315258,
+          0.0405,
+          -0.49974
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.0405,
+        "minY": 0.019685,
+        "tick": 1369,
+        "feet": [
+          -0.315271,
+          0.020074,
+          -2.106731
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.0405,
+        "minY": 0.019685,
+        "tick": 1537,
+        "feet": [
+          -0.315271,
+          0.020074,
+          -2.106731
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.0405,
+        "minY": 0.019685,
+        "tick": 1667,
+        "feet": [
+          -0.315271,
+          0.019989,
+          6.974459
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0,
+      "releaseTick": null,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "west",
+      "mode": "clear",
+      "offset": 0,
+      "airborne": 0,
+      "openOnly": {
+        "phase": "open pass",
+        "airborne": 0,
+        "peakY": 0.02,
+        "minY": 0.019836,
+        "tick": 140,
+        "feet": [
+          -0.000004,
+          0.019997,
+          4.106192
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      }
+    },
+    {
+      "name": "west",
+      "mode": "cycle",
+      "offset": 0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.529999,
+          0.01978,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.529999,
+          0.01978,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020092,
+        "minY": 0.01978,
+        "tick": 169,
+        "feet": [
+          0.529992,
+          0.01978,
+          -3.899978
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.192059,
+        "minY": 0.01978,
+        "tick": 289,
+        "feet": [
+          0.527431,
+          0.191883,
+          -0.553803
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.192059,
+        "minY": 0.019751,
+        "tick": 1369,
+        "feet": [
+          0.527363,
+          0.020094,
+          -2.160789
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.192059,
+        "minY": 0.019751,
+        "tick": 1537,
+        "feet": [
+          0.527363,
+          0.020094,
+          -2.160789
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.192059,
+        "minY": 0.019751,
+        "tick": 1667,
+        "feet": [
+          0.527361,
+          0.019989,
+          6.920396
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0,
+      "releaseTick": null,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "west",
+      "mode": "clear",
+      "offset": 0.53,
+      "airborne": 0,
+      "openOnly": {
+        "phase": "open pass",
+        "airborne": 0,
+        "peakY": 0.02,
+        "minY": 0.019864,
+        "tick": 140,
+        "feet": [
+          0.529999,
+          0.01999,
+          4.106193
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      }
+    },
+    {
+      "name": "west",
+      "mode": "occupied",
+      "offset": 0,
+      "airborne": 0,
+      "deferred": 20,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0.02,
+        "minY": 0.019992,
+        "tick": 78,
+        "feet": [
+          -0.000004,
+          0.019999,
+          -0.337142
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0.02,
+        "minY": 0.019836,
+        "tick": 98,
+        "feet": [
+          -0.000004,
+          0.019994,
+          1.096192
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.0201,
+        "minY": 0.019756,
+        "tick": 242,
+        "feet": [
+          -0.000004,
+          0.020095,
+          1.331697
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      }
+    },
+    {
+      "name": "west",
+      "mode": "cycle-near",
+      "offset": -0.53,
+      "airborne": 49,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529997,
+          0.019809,
+          -3.900001
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529997,
+          0.019809,
+          -3.900001
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020091,
+        "minY": 0.019809,
+        "tick": 169,
+        "feet": [
+          -0.53,
+          0.020091,
+          -3.900002
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.020091,
+        "minY": 0.019809,
+        "tick": 289,
+        "feet": [
+          -0.53,
+          0.02,
+          -0.499908
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.020091,
+        "minY": 0.019809,
+        "tick": 1369,
+        "feet": [
+          -0.530015,
+          0.02,
+          -0.499908
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 7,
+        "peakY": 0.39,
+        "minY": 0.019664,
+        "tick": 1537,
+        "feet": [
+          -8.537256,
+          0.020219,
+          -0.513879
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 49,
+        "peakY": 0.497161,
+        "minY": 0.019664,
+        "tick": 1667,
+        "feet": [
+          -8.537592,
+          0.019989,
+          -0.499904
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": -8.007241,
+      "releaseTick": null,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": false
+    },
+    {
+      "name": "west",
+      "mode": "slab",
+      "offset": -0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529997,
+          0.019809,
+          -3.900001
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529997,
+          0.019809,
+          -3.900001
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020091,
+        "minY": 0.019809,
+        "tick": 169,
+        "feet": [
+          -0.53,
+          0.020091,
+          -3.900002
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.020489,
+        "minY": 0.019809,
+        "tick": 289,
+        "feet": [
+          -0.532097,
+          0.019995,
+          -0.534934
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.020489,
+        "minY": 0.019663,
+        "tick": 1369,
+        "feet": [
+          -0.532574,
+          0.020098,
+          -0.53509
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.020489,
+        "minY": 0.019663,
+        "tick": 1537,
+        "feet": [
+          -0.532574,
+          0.020091,
+          -0.535092
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.020646,
+        "minY": 0.019663,
+        "tick": 1667,
+        "feet": [
+          -0.532573,
+          0.02,
+          8.546096
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0,
+      "releaseTick": 38,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "west",
+      "mode": "slab-held",
+      "offset": -0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529997,
+          0.019809,
+          -3.900001
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.529997,
+          0.019809,
+          -3.900001
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020091,
+        "minY": 0.019809,
+        "tick": 169,
+        "feet": [
+          -0.53,
+          0.020091,
+          -3.900002
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.020489,
+        "minY": 0.019809,
+        "tick": 289,
+        "feet": [
+          -0.532097,
+          0.019995,
+          -0.534934
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.020489,
+        "minY": 0.019663,
+        "tick": 1369,
+        "feet": [
+          -0.532574,
+          0.020098,
+          -0.53509
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.020634,
+        "minY": 0.019663,
+        "tick": 1537,
+        "feet": [
+          -0.533479,
+          0.019994,
+          8.85346
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.020641,
+        "minY": 0.019663,
+        "tick": 1667,
+        "feet": [
+          -0.53348,
+          0.02,
+          18.170124
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": -0.000905,
+      "releaseTick": 38,
+      "passDuringOpen": {
+        "tick": 45,
+        "gap": 2.872134,
+        "feet": [
+          -0.533479,
+          0.019996,
+          0.038463
+        ]
+      },
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "west",
+      "mode": "cycle-near",
+      "offset": 0,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.000004,
+          0.020092,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.000004,
+          0.020092,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020092,
+        "minY": 0.020046,
+        "tick": 169,
+        "feet": [
+          -0.000004,
+          0.020092,
+          -3.899999
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.0405,
+        "minY": 0.019992,
+        "tick": 289,
+        "feet": [
+          -0.315258,
+          0.0405,
+          -0.49974
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.100429,
+        "minY": 0.018968,
+        "tick": 1369,
+        "feet": [
+          -0.316537,
+          0.018971,
+          -0.499992
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.100429,
+        "minY": 0.014364,
+        "tick": 1537,
+        "feet": [
+          -8.28631,
+          0.02009,
+          -0.546957
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.100429,
+        "minY": 0.014364,
+        "tick": 1667,
+        "feet": [
+          -8.28631,
+          0.019989,
+          -0.499997
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": -7.969773,
+      "releaseTick": null,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": false
+    },
+    {
+      "name": "west",
+      "mode": "slab",
+      "offset": 0,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.000004,
+          0.020092,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.000004,
+          0.020092,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020092,
+        "minY": 0.020046,
+        "tick": 169,
+        "feet": [
+          -0.000004,
+          0.020092,
+          -3.899999
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.020496,
+        "minY": 0.019992,
+        "tick": 289,
+        "feet": [
+          -0.001836,
+          0.019996,
+          -0.534634
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.020496,
+        "minY": 0.019469,
+        "tick": 1369,
+        "feet": [
+          -0.001484,
+          0.020096,
+          -0.53503
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.020496,
+        "minY": 0.019469,
+        "tick": 1537,
+        "feet": [
+          -0.001484,
+          0.019469,
+          -0.535031
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.02073,
+        "minY": 0.019469,
+        "tick": 1667,
+        "feet": [
+          -0.001484,
+          0.019994,
+          8.546156
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0,
+      "releaseTick": 38,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "west",
+      "mode": "slab-held",
+      "offset": 0,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.000004,
+          0.020092,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          -0.000004,
+          0.020092,
+          -3.899999
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020092,
+        "minY": 0.020046,
+        "tick": 169,
+        "feet": [
+          -0.000004,
+          0.020092,
+          -3.899999
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.020496,
+        "minY": 0.019992,
+        "tick": 289,
+        "feet": [
+          -0.001836,
+          0.019996,
+          -0.534634
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.020496,
+        "minY": 0.019469,
+        "tick": 1369,
+        "feet": [
+          -0.001484,
+          0.020096,
+          -0.53503
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.020918,
+        "minY": 0.019469,
+        "tick": 1537,
+        "feet": [
+          -0.001756,
+          0.019988,
+          8.853394
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.020919,
+        "minY": 0.019469,
+        "tick": 1667,
+        "feet": [
+          -0.001757,
+          0.02,
+          18.170053
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": -0.000272,
+      "releaseTick": 38,
+      "passDuringOpen": {
+        "tick": 45,
+        "gap": 2.872134,
+        "feet": [
+          -0.001759,
+          0.019991,
+          0.038402
+        ]
+      },
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "west",
+      "mode": "cycle-near",
+      "offset": 0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.529999,
+          0.01978,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.529999,
+          0.01978,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020092,
+        "minY": 0.01978,
+        "tick": 169,
+        "feet": [
+          0.529992,
+          0.01978,
+          -3.899978
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.192059,
+        "minY": 0.01978,
+        "tick": 289,
+        "feet": [
+          0.527431,
+          0.191883,
+          -0.553803
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.213463,
+        "minY": 0.01978,
+        "tick": 1369,
+        "feet": [
+          0.497959,
+          0.210786,
+          -0.534897
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.213463,
+        "minY": 0.019726,
+        "tick": 1537,
+        "feet": [
+          0.501408,
+          0.020093,
+          -0.534896
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.213463,
+        "minY": 0.019726,
+        "tick": 1667,
+        "feet": [
+          0.501406,
+          0.019988,
+          8.546291
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0.003449,
+      "releaseTick": null,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "west",
+      "mode": "slab",
+      "offset": 0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.529999,
+          0.01978,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.529999,
+          0.01978,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020092,
+        "minY": 0.01978,
+        "tick": 169,
+        "feet": [
+          0.529992,
+          0.01978,
+          -3.899978
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.02049,
+        "minY": 0.01978,
+        "tick": 289,
+        "feet": [
+          0.52887,
+          0.02,
+          -0.534619
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.02049,
+        "minY": 0.019738,
+        "tick": 1369,
+        "feet": [
+          0.528805,
+          0.020093,
+          -0.535038
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.02049,
+        "minY": 0.019738,
+        "tick": 1537,
+        "feet": [
+          0.528805,
+          0.020093,
+          -0.535038
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.02049,
+        "minY": 0.019738,
+        "tick": 1667,
+        "feet": [
+          0.528805,
+          0.019994,
+          8.546152
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": 0,
+      "releaseTick": 38,
+      "passDuringOpen": null,
+      "crossedWithOriginalInput": true
+    },
+    {
+      "name": "west",
+      "mode": "slab-held",
+      "offset": 0.53,
+      "airborne": 0,
+      "deferred": 0,
+      "request": {
+        "phase": "alarm request",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.529999,
+          0.01978,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "clear": {
+        "phase": "closure starts",
+        "airborne": 0,
+        "peakY": 0,
+        "minY": null,
+        "tick": 25,
+        "feet": [
+          0.529999,
+          0.01978,
+          -3.899998
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "closed": {
+        "phase": "fully closed",
+        "airborne": 0,
+        "peakY": 0.020092,
+        "minY": 0.01978,
+        "tick": 169,
+        "feet": [
+          0.529992,
+          0.01978,
+          -3.899978
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "denied": {
+        "phase": "blocked walk",
+        "airborne": 0,
+        "peakY": 0.02049,
+        "minY": 0.01978,
+        "tick": 289,
+        "feet": [
+          0.52887,
+          0.02,
+          -0.534619
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "endHold": {
+        "phase": "hold ends",
+        "airborne": 0,
+        "peakY": 0.02049,
+        "minY": 0.019738,
+        "tick": 1369,
+        "feet": [
+          0.528805,
+          0.020093,
+          -0.535038
+        ],
+        "leafX": [
+          -3.990002,
+          3.989998
+        ]
+      },
+      "opened": {
+        "phase": "fully open",
+        "airborne": 0,
+        "peakY": 0.020632,
+        "minY": 0.019738,
+        "tick": 1537,
+        "feet": [
+          0.527998,
+          0.019988,
+          8.853552
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "crossed": {
+        "phase": "post-open walk",
+        "airborne": 0,
+        "peakY": 0.020911,
+        "minY": 0.019738,
+        "tick": 1667,
+        "feet": [
+          0.527996,
+          0.019985,
+          18.170211
+        ],
+        "leafX": [
+          -12.110001,
+          12.110001
+        ]
+      },
+      "drift": -0.000807,
+      "releaseTick": 38,
+      "passDuringOpen": {
+        "tick": 45,
+        "gap": 2.872134,
+        "feet": [
+          0.527999,
+          0.019995,
+          0.038556
+        ]
+      },
+      "crossedWithOriginalInput": true
+    }
+  ]
+}

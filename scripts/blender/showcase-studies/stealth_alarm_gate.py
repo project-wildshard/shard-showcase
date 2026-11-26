@@ -249,6 +249,50 @@ if motion_path:
     for obj in reds+blues:
         for slot in obj.material_slots:
             slot.material=alarm if obj in reds else dim
+    cross_path=os.environ.get('WSC_E5B_CROSS_TRACE')
+    if cross_path:
+        trial=json.loads(Path(cross_path).read_text())
+        s.cycles.samples=30
+        s.render.resolution_x,s.render.resolution_y=1240,920
+        s.render.image_settings.file_format='WEBP'
+        s.render.image_settings.quality=88
+        def emit(name,color):
+            m=bpy.data.materials.new(name);m.use_nodes=True
+            nodes=m.node_tree.nodes
+            e=nodes.new('ShaderNodeEmission');e.inputs[0].default_value=(*color,1);e.inputs[1].default_value=2.1
+            m.node_tree.links.new(e.outputs[0],nodes.get('Material Output').inputs[0]);return m
+        red=emit('Sweep comparison / amber',(1,.212,.048))
+        green=emit('Fixed blocker comparison / mint',(.084,.87,.45))
+        def pin(p,mat):
+            x,_,z=p
+            bpy.ops.mesh.primitive_uv_sphere_add(segments=12,ring_count=6,radius=.14,location=(x,-z,.16))
+            ob=bpy.context.object;ob.name='Recorded player sample';ob.data.materials.append(mat)
+            return ob
+        def segment(a,b,mat):
+            d=bpy.data.curves.new('Between recorded endpoints','CURVE');d.dimensions='3D';d.bevel_depth=.034
+            sp=d.splines.new('POLY');sp.points.add(1)
+            for q,(x,_,z) in zip(sp.points,(a,b)):q.co=(x,-z,.074,1)
+            o=bpy.data.objects.new('Receipt overlay',d);s.collection.objects.link(o);o.data.materials.append(mat)
+            return o
+        def replay(label,p,colors,eye,target,lens):
+            for ob,x in zip(slides,p['leafX']):
+                ob.animation_data_clear();ob.location.x=x
+            figures=[]
+            for path,mat in colors:
+                for q in path:figures.append(pin(q,mat))
+                for a,b in zip(path,path[1:]):figures.append(segment(a,b,mat))
+            s.camera.location=eye;aim(s.camera,target);camd.lens=lens
+            s.render.filepath=str(out/('nov26-e5b-cross-'+label+'.webp'))
+            bpy.ops.render.render(write_still=True)
+            for ob in figures:bpy.data.objects.remove(ob,do_unlink=True)
+        slab,near=trial['slab'],trial['near']
+        replay('hold',slab['closed'],[([slab['request']['feet'],slab['denied']['feet']],red)],
+            (4.2,13.1,6.2),(0,.7,1.8),37)
+        replay('release',slab['opened'],[
+               ([near['endHold']['feet'],near['opened']['feet']],red),
+               ([slab['endHold']['feet'],slab['passDuringOpen']['feet'],slab['opened']['feet']],green)],
+            (-4.4,11.7,8.4),(-3.0,-1.0,.42),28)
+        sys.exit(0)
     s.camera.location=(1.6,-24.0,4.8)
     aim(s.camera,(0,0,2.2))
     s.render.resolution_x,s.render.resolution_y=1280,820
