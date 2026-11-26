@@ -14,6 +14,7 @@ out=ctx['out']
 replays=json.loads((out/'replay.json').read_text())
 assert len(replays)==2
 locked,flush=replays
+comparison=locked['add'] and flush.get('lockYaw',False)
 assert locked['settled']['held']==[True,False] and flush['settled']['held']==[True,True]
 s=ctx['s']
 s.cycles.samples=48
@@ -36,8 +37,9 @@ def move(r):
 def review(file):
     ctx['render'](file,(6.3,-9.5,8.7),(.05,.5,.72),(1120,880),46,13.3)
 
-move(locked)
-review('e10c-raised-plate.jpg')
+if not comparison:
+    move(locked)
+    review('e10c-raised-plate.jpg')
 move(flush)
 a=next(o for o in bpy.context.scene.objects if o.name.startswith('Crate on plate A ·'))
 a.location.z-=.14625
@@ -50,10 +52,16 @@ for cx in (-2.2,2.2):
     for o in set(bpy.context.scene.objects)-pre:
         if not o.parent:
             o.location+=Vector((cx,2.35,.112))
-    # The inserted tread does not move in this rehearsal. Use paired fixture indicators.
-    for y in (1.46,3.24):
-        ctx['box']('Flush plate status rail',(cx,y,.117),(.94,.021,.014),ctx['green'],.005)
+    # Keep identical scenery in the full-input comparison.
+    if not comparison:
+        for y in (1.46,3.24):
+            ctx['box']('Flush plate status rail',(cx,y,.117),(.94,.021,.014),ctx['green'],.005)
 for o in bpy.context.scene.objects:
-    if o.name.startswith(('Plate side inlay','Plate front inlay','Paced inset route marker')) and o.location.x>0:
+    if not comparison and o.name.startswith(('Plate side inlay','Plate front inlay','Paced inset route marker')) and o.location.x>0:
         o.data.materials[0]=ctx['green']
-review('e10c-flush-plate.jpg')
+if comparison:
+    for key,run in [('free',locked),('fixed',flush)]:
+        move(run)
+        review(f'e10c-full-push-{key}.jpg')
+else:
+    review('e10c-flush-plate.jpg')

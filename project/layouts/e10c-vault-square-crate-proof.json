@@ -1,0 +1,1198 @@
+{
+  "scope": "Isolated stock player, flush plate floor, proxy door; no install, human or phone test.",
+  "engine": "0.1.44",
+  "plateGeometrySha256": "6fc983e787a64e8605da1dfc3b62552baa8b61f1207d8c0832fb3f14345de365",
+  "floor": 0.112,
+  "dimensions": [
+    0.558,
+    0.43175,
+    0.5192
+  ],
+  "cases": [
+    {
+      "name": "original yaw and lateral compensation",
+      "lock": false,
+      "bias": 0.29,
+      "successes": 3,
+      "runs": [
+        {
+          "offset": -0.1,
+          "push": 0.42,
+          "alignedCrate": [
+            2.39563,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.11619,
+            0.54373,
+            -2.17586
+          ],
+          "yawQuaternion": [
+            0,
+            0.07483,
+            0,
+            0.9972
+          ],
+          "clearanceM": 0.1142,
+          "open": true,
+          "crossedZ": -6.56662,
+          "relocked": true
+        },
+        {
+          "offset": -0.1,
+          "push": 0.67,
+          "alignedCrate": [
+            2.39563,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.06923,
+            0.54373,
+            -1.92836
+          ],
+          "yawQuaternion": [
+            0,
+            0.06128,
+            0,
+            0.99812
+          ],
+          "clearanceM": -0.12019,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": -0.1,
+          "push": 0.8,
+          "alignedCrate": [
+            2.39563,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.07109,
+            0.54373,
+            -2.02336
+          ],
+          "yawQuaternion": [
+            0,
+            0.05695,
+            0,
+            0.99838
+          ],
+          "clearanceM": -0.02092,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": -0.1,
+          "push": 1,
+          "alignedCrate": [
+            2.39563,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.07675,
+            0.54373,
+            -1.25803
+          ],
+          "yawQuaternion": [
+            0,
+            0.06148,
+            0,
+            0.99811
+          ],
+          "clearanceM": -0.79073,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0,
+          "push": 0.42,
+          "alignedCrate": [
+            2.49569,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.21672,
+            0.54373,
+            -2.17556
+          ],
+          "yawQuaternion": [
+            0,
+            0.07503,
+            0,
+            0.99718
+          ],
+          "clearanceM": 0.1137,
+          "open": true,
+          "crossedZ": -6.56987,
+          "relocked": true
+        },
+        {
+          "offset": 0,
+          "push": 0.67,
+          "alignedCrate": [
+            2.49569,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.16717,
+            0.54373,
+            -1.92781
+          ],
+          "yawQuaternion": [
+            0,
+            0.06125,
+            0,
+            0.99812
+          ],
+          "clearanceM": -0.12072,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0,
+          "push": 0.8,
+          "alignedCrate": [
+            2.49569,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.17226,
+            0.54373,
+            -2.01912
+          ],
+          "yawQuaternion": [
+            0,
+            0.05691,
+            0,
+            0.99838
+          ],
+          "clearanceM": -0.02512,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0,
+          "push": 1,
+          "alignedCrate": [
+            2.49569,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.17609,
+            0.54373,
+            -1.26316
+          ],
+          "yawQuaternion": [
+            0,
+            0.06155,
+            0,
+            0.9981
+          ],
+          "clearanceM": -0.78566,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0.1,
+          "push": 0.42,
+          "alignedCrate": [
+            2.59574,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.31832,
+            0.54373,
+            -2.1708
+          ],
+          "yawQuaternion": [
+            0,
+            0.07479,
+            0,
+            0.9972
+          ],
+          "clearanceM": 0.10918,
+          "open": true,
+          "crossedZ": -6.56856,
+          "relocked": true
+        },
+        {
+          "offset": 0.1,
+          "push": 0.67,
+          "alignedCrate": [
+            2.59574,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.26911,
+            0.54373,
+            -1.92489
+          ],
+          "yawQuaternion": [
+            0,
+            0.0612,
+            0,
+            0.99813
+          ],
+          "clearanceM": -0.12359,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0.1,
+          "push": 0.8,
+          "alignedCrate": [
+            2.59574,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.27164,
+            0.54373,
+            -2.01954
+          ],
+          "yawQuaternion": [
+            0,
+            0.05674,
+            0,
+            0.99839
+          ],
+          "clearanceM": -0.02454,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0.1,
+          "push": 1,
+          "alignedCrate": [
+            2.59574,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.27723,
+            0.54373,
+            -1.26102
+          ],
+          "yawQuaternion": [
+            0,
+            0.06166,
+            0,
+            0.9981
+          ],
+          "clearanceM": -0.78791,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        }
+      ]
+    },
+    {
+      "name": "fixed yaw with old lateral compensation",
+      "lock": true,
+      "bias": 0.29,
+      "successes": 8,
+      "runs": [
+        {
+          "offset": -0.1,
+          "push": 0.42,
+          "alignedCrate": [
+            2.39563,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.39563,
+            0.54375,
+            -2.1964
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.13137,
+          "open": true,
+          "crossedZ": -6.56879,
+          "relocked": true
+        },
+        {
+          "offset": -0.1,
+          "push": 0.67,
+          "alignedCrate": [
+            2.39563,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.39563,
+            0.54375,
+            -2.31988
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.13137,
+          "open": true,
+          "crossedZ": -6.56694,
+          "relocked": true
+        },
+        {
+          "offset": -0.1,
+          "push": 0.8,
+          "alignedCrate": [
+            2.39563,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.39563,
+            0.54375,
+            -2.39577
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.13137,
+          "open": true,
+          "crossedZ": -6.55893,
+          "relocked": true
+        },
+        {
+          "offset": -0.1,
+          "push": 1,
+          "alignedCrate": [
+            2.39563,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.39563,
+            0.54375,
+            -2.53297
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.13137,
+          "open": true,
+          "crossedZ": -6.55764,
+          "relocked": true
+        },
+        {
+          "offset": 0,
+          "push": 0.42,
+          "alignedCrate": [
+            2.49568,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.49568,
+            0.54375,
+            -2.19673
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.03132,
+          "open": true,
+          "crossedZ": -6.57293,
+          "relocked": true
+        },
+        {
+          "offset": 0,
+          "push": 0.67,
+          "alignedCrate": [
+            2.49568,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.49568,
+            0.54375,
+            -2.31997
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.03132,
+          "open": true,
+          "crossedZ": -6.56379,
+          "relocked": true
+        },
+        {
+          "offset": 0,
+          "push": 0.8,
+          "alignedCrate": [
+            2.49568,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.49568,
+            0.54375,
+            -2.39564
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.03132,
+          "open": true,
+          "crossedZ": -6.5628,
+          "relocked": true
+        },
+        {
+          "offset": 0,
+          "push": 1,
+          "alignedCrate": [
+            2.49568,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.49568,
+            0.54375,
+            -2.533
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.03132,
+          "open": true,
+          "crossedZ": -6.56156,
+          "relocked": true
+        },
+        {
+          "offset": 0.1,
+          "push": 0.42,
+          "alignedCrate": [
+            2.59576,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.59576,
+            0.54375,
+            -2.19664
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": -0.06876,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0.1,
+          "push": 0.67,
+          "alignedCrate": [
+            2.59576,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.59576,
+            0.54375,
+            -2.31982
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": -0.06876,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0.1,
+          "push": 0.8,
+          "alignedCrate": [
+            2.59576,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.59576,
+            0.54375,
+            -2.39563
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": -0.06876,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0.1,
+          "push": 1,
+          "alignedCrate": [
+            2.59576,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.59576,
+            0.54375,
+            -2.53282
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": -0.06876,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        }
+      ]
+    },
+    {
+      "name": "free yaw with centered alignment",
+      "lock": false,
+      "bias": 0,
+      "successes": 1,
+      "runs": [
+        {
+          "offset": -0.1,
+          "push": 0.42,
+          "alignedCrate": [
+            2.10832,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            1.82943,
+            0.54373,
+            -2.1711
+          ],
+          "yawQuaternion": [
+            0,
+            0.07476,
+            0,
+            0.9972
+          ],
+          "clearanceM": -0.11475,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": -0.1,
+          "push": 0.67,
+          "alignedCrate": [
+            2.10832,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            1.78195,
+            0.54373,
+            -1.92226
+          ],
+          "yawQuaternion": [
+            0,
+            0.06113,
+            0,
+            0.99813
+          ],
+          "clearanceM": -0.15024,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": -0.1,
+          "push": 0.8,
+          "alignedCrate": [
+            2.10832,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            1.78377,
+            0.54373,
+            -2.02289
+          ],
+          "yawQuaternion": [
+            0,
+            0.05682,
+            0,
+            0.99838
+          ],
+          "clearanceM": -0.14453,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": -0.1,
+          "push": 1,
+          "alignedCrate": [
+            2.10832,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            1.78835,
+            0.54373,
+            -1.26353
+          ],
+          "yawQuaternion": [
+            0,
+            0.06157,
+            0,
+            0.9981
+          ],
+          "clearanceM": -0.78532,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0,
+          "push": 0.42,
+          "alignedCrate": [
+            2.20836,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            1.92948,
+            0.54373,
+            -2.17529
+          ],
+          "yawQuaternion": [
+            0,
+            0.07494,
+            0,
+            0.99719
+          ],
+          "clearanceM": -0.01484,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0,
+          "push": 0.67,
+          "alignedCrate": [
+            2.20836,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            1.88193,
+            0.54373,
+            -1.921
+          ],
+          "yawQuaternion": [
+            0,
+            0.06127,
+            0,
+            0.99812
+          ],
+          "clearanceM": -0.12755,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0,
+          "push": 0.8,
+          "alignedCrate": [
+            2.20836,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            1.8841,
+            0.54373,
+            -2.02077
+          ],
+          "yawQuaternion": [
+            0,
+            0.05686,
+            0,
+            0.99838
+          ],
+          "clearanceM": -0.04423,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0,
+          "push": 1,
+          "alignedCrate": [
+            2.20836,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            1.88848,
+            0.54373,
+            -1.26279
+          ],
+          "yawQuaternion": [
+            0,
+            0.06155,
+            0,
+            0.9981
+          ],
+          "clearanceM": -0.78603,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0.1,
+          "push": 0.42,
+          "alignedCrate": [
+            2.30841,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.02876,
+            0.54373,
+            -2.17553
+          ],
+          "yawQuaternion": [
+            0,
+            0.07503,
+            0,
+            0.99718
+          ],
+          "clearanceM": 0.08435,
+          "open": true,
+          "crossedZ": -6.56419,
+          "relocked": true
+        },
+        {
+          "offset": 0.1,
+          "push": 0.67,
+          "alignedCrate": [
+            2.30841,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            1.98224,
+            0.54373,
+            -1.92467
+          ],
+          "yawQuaternion": [
+            0,
+            0.06126,
+            0,
+            0.99812
+          ],
+          "clearanceM": -0.12387,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0.1,
+          "push": 0.8,
+          "alignedCrate": [
+            2.30841,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            1.98334,
+            0.54373,
+            -2.0207
+          ],
+          "yawQuaternion": [
+            0,
+            0.05683,
+            0,
+            0.99838
+          ],
+          "clearanceM": -0.02347,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        },
+        {
+          "offset": 0.1,
+          "push": 1,
+          "alignedCrate": [
+            2.30841,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            1.98927,
+            0.54373,
+            -1.26095
+          ],
+          "yawQuaternion": [
+            0,
+            0.06148,
+            0,
+            0.99811
+          ],
+          "clearanceM": -0.78781,
+          "open": false,
+          "crossedZ": null,
+          "relocked": false
+        }
+      ]
+    },
+    {
+      "name": "fixed yaw with centered alignment",
+      "lock": true,
+      "bias": 0,
+      "successes": 12,
+      "runs": [
+        {
+          "offset": -0.1,
+          "push": 0.42,
+          "alignedCrate": [
+            2.10832,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.10832,
+            0.54375,
+            -2.19631
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.21211,
+          "open": true,
+          "crossedZ": -6.56422,
+          "relocked": true
+        },
+        {
+          "offset": -0.1,
+          "push": 0.67,
+          "alignedCrate": [
+            2.10832,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.10832,
+            0.54375,
+            -2.31986
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.23532,
+          "open": true,
+          "crossedZ": -6.55494,
+          "relocked": true
+        },
+        {
+          "offset": -0.1,
+          "push": 0.8,
+          "alignedCrate": [
+            2.10832,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.10832,
+            0.54375,
+            -2.39574
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.23532,
+          "open": true,
+          "crossedZ": -6.55397,
+          "relocked": true
+        },
+        {
+          "offset": -0.1,
+          "push": 1,
+          "alignedCrate": [
+            2.10832,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.10832,
+            0.54375,
+            -2.53289
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.18291,
+          "open": true,
+          "crossedZ": -6.55281,
+          "relocked": true
+        },
+        {
+          "offset": 0,
+          "push": 0.42,
+          "alignedCrate": [
+            2.20837,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.20837,
+            0.54375,
+            -2.19638
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.21218,
+          "open": true,
+          "crossedZ": -6.56242,
+          "relocked": true
+        },
+        {
+          "offset": 0,
+          "push": 0.67,
+          "alignedCrate": [
+            2.20837,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.20837,
+            0.54375,
+            -2.31994
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.31863,
+          "open": true,
+          "crossedZ": -6.5592,
+          "relocked": true
+        },
+        {
+          "offset": 0,
+          "push": 0.8,
+          "alignedCrate": [
+            2.20837,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.20837,
+            0.54375,
+            -2.39552
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.31863,
+          "open": true,
+          "crossedZ": -6.55828,
+          "relocked": true
+        },
+        {
+          "offset": 0,
+          "push": 1,
+          "alignedCrate": [
+            2.20837,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.20837,
+            0.54375,
+            -2.53289
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.18291,
+          "open": true,
+          "crossedZ": -6.55716,
+          "relocked": true
+        },
+        {
+          "offset": 0.1,
+          "push": 0.42,
+          "alignedCrate": [
+            2.30842,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.30842,
+            0.54375,
+            -2.19655
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.21235,
+          "open": true,
+          "crossedZ": -6.56629,
+          "relocked": true
+        },
+        {
+          "offset": 0.1,
+          "push": 0.67,
+          "alignedCrate": [
+            2.30842,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.30842,
+            0.54375,
+            -2.31989
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.21858,
+          "open": true,
+          "crossedZ": -6.56322,
+          "relocked": true
+        },
+        {
+          "offset": 0.1,
+          "push": 0.8,
+          "alignedCrate": [
+            2.30842,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.30842,
+            0.54375,
+            -2.39558
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.21858,
+          "open": true,
+          "crossedZ": -6.56336,
+          "relocked": true
+        },
+        {
+          "offset": 0.1,
+          "push": 1,
+          "alignedCrate": [
+            2.30842,
+            0.54375,
+            2.32
+          ],
+          "settledCrate": [
+            2.30842,
+            0.54375,
+            -2.53281
+          ],
+          "yawQuaternion": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "clearanceM": 0.18299,
+          "open": true,
+          "crossedZ": -6.55486,
+          "relocked": true
+        }
+      ]
+    }
+  ],
+  "repeatReplayMatched": true
+}
