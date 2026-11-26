@@ -1,0 +1,81 @@
+{
+  "scope": "Optional W0a art fit; no installation, final map coordinates, collision or quest behavior.",
+  "pinned_donors": {
+    "span": {
+      "file": "east-gate-central-span.glb",
+      "sha256": "a0694bf433bcd12e14d0f41334f374f005b9b72a6c36f984a870f6b3ef8a97e3"
+    },
+    "tower": {
+      "file": "wsc-module-005-east-gate-tower.glb",
+      "sha256": "251b2e5913a394c07dce4f4399706fe3a66894e4b150a8ba8a74ec8bb55b09e5"
+    },
+    "bay": {
+      "file": "wsc-arch-002-industrial-wall-bay.glb",
+      "sha256": "24f3a7736d111033d724f0f6244c4d10f757fe3066ea1b8b12d5ef60a5a6f625"
+    },
+    "post": {
+      "file": "wsc-module-003-seam-gate-post.glb",
+      "sha256": "dce22d88b123d62ad5df6b1a360a2032ab88a6b55d6c0e3e60a299d9f1d40670"
+    },
+    "leaf": {
+      "file": "wsc-module-031-x-braced-seam-gate.glb",
+      "sha256": "94d7324d6d2434b0585128b950158340f3c53ed11dfee8e6769f2644d81ebe97"
+    },
+    "banner": {
+      "file": "wsc-prop-016-town-banner.glb",
+      "sha256": "2dc88fdd381683bd89ac331f5c35971babce7aaf6a24df647e9edb3f30f0ddfc"
+    },
+    "planter": {
+      "file": "wsc-prop-014-planter-bed.glb",
+      "sha256": "ac39cc51273c0d25c3b5c4cb957b4c71e4d427992b9d219152f89195332da7d7"
+    },
+    "lantern": {
+      "file": "wall-lantern.glb",
+      "sha256": "bdbdce040eee6e60693e110cdcdb25e1abc93d80ed4f79f7d2e72fc5490ecc09"
+    },
+    "cone": {
+      "file": "wsc-prop-010-traffic-cone.glb",
+      "sha256": "28da8d795da319800eef4e5ce90a28a431ab6b8dd7f11d22c8a1dc15beccec51"
+    }
+  },
+  "exports": {
+    "yard": {
+      "file": "w0a-east-direction-yard.glb",
+      "bytes": 44912,
+      "triangles": 693,
+      "sha256": "9a77f4bad281e881fb7535892a1474de0433364c7fa249b742bb3cc1b3d8ef96"
+    },
+    "return": {
+      "file": "w0a-east-direction-return.glb",
+      "bytes": 47468,
+      "triangles": 735,
+      "sha256": "c8fca21bc7c647bb7e871ec57129cd4faae9f6a9d72650b9c8218009d14b7a63"
+    }
+  },
+  "review": {
+    "yard": {
+      "stage_three_xyz": [
+        -3.2,
+        0,
+        6.82
+      ],
+      "yaw_degrees": -90.0,
+      "samples_clear": 135,
+      "samples_total": 135,
+      "passage_samples_clear": 100,
+      "nearest_centerline_m": 6.04
+    },
+    "return": {
+      "stage_three_xyz": [
+        4.4,
+        0,
+        6.82
+      ],
+      "yaw_degrees": 90.0,
+      "samples_clear": 135,
+      "samples_total": 135,
+      "passage_samples_clear": 100,
+      "nearest_centerline_m": 6.04
+    }
+  }
+}
