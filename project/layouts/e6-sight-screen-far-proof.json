@@ -1,0 +1,82 @@
+{
+  "scope": "Optional far render mesh only, same placement and source collider retained.",
+  "donor_sha256": "102faeea77538d07423be1a4104c4b9260d39e35a84236157104b11da546db4e",
+  "sha256": "12e2ac5b51c5a1453cc3911ba3dccf8f6c8d91e44ccacea49d23a07ed003ddc2",
+  "bytes": 76784,
+  "triangles": 968,
+  "primitives": 6,
+  "near_triangles": 2916,
+  "near_bytes": 192052,
+  "local_xyz_bounds": [
+    [
+      -6.0,
+      6.0
+    ],
+    [
+      -0.3,
+      0.3
+    ],
+    [
+      0.0,
+      3.0
+    ]
+  ],
+  "eye_height_rays": {
+    "0.85": [
+      73,
+      73
+    ],
+    "1.7": [
+      73,
+      73
+    ],
+    "3.1": [
+      0,
+      0
+    ]
+  },
+  "angles": [
+    {
+      "angle_deg": 0,
+      "near_hits": 6845,
+      "far_hits": 6845,
+      "intersection": 6845,
+      "silhouette_iou": 1.0
+    },
+    {
+      "angle_deg": 25,
+      "near_hits": 6228,
+      "far_hits": 6235,
+      "intersection": 6226,
+      "silhouette_iou": 0.998236
+    },
+    {
+      "angle_deg": 55,
+      "near_hits": 4151,
+      "far_hits": 4159,
+      "intersection": 4149,
+      "silhouette_iou": 0.997116
+    },
+    {
+      "angle_deg": 90,
+      "near_hits": 441,
+      "far_hits": 441,
+      "intersection": 441,
+      "silhouette_iou": 1.0
+    },
+    {
+      "angle_deg": 135,
+      "near_hits": 5015,
+      "far_hits": 5023,
+      "intersection": 5013,
+      "silhouette_iou": 0.997612
+    },
+    {
+      "angle_deg": 180,
+      "near_hits": 6845,
+      "far_hits": 6845,
+      "intersection": 6845,
+      "silhouette_iou": 1.0
+    }
+  ]
+}
