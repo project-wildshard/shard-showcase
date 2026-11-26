@@ -1,0 +1,42 @@
+{
+  "glb_sha256": "33ffea4a64ab2caf50f6b89b37f6996d152f313c6b7247f69f9768db70add144",
+  "sites": [
+    {
+      "anchor": 1,
+      "three_xz": [
+        103.24763157789019,
+        -89.05607039949673
+      ],
+      "yaw_degrees": 0,
+      "continuous_approach_clear_width_m": 0.9,
+      "approach_front_z_offsets_m": [
+        0.98,
+        3.0
+      ],
+      "nearby_blocker_count": 13,
+      "lid_samples": 109,
+      "minimum_lid_horizontal_aabb_gap_m": 0.938614,
+      "minimum_approach_horizontal_aabb_gap_m": 2.336398,
+      "intersecting_sample_count": 0
+    },
+    {
+      "anchor": 2,
+      "three_xz": [
+        102.68546104789034,
+        -103.45616810696953
+      ],
+      "yaw_degrees": 0,
+      "continuous_approach_clear_width_m": 0.9,
+      "approach_front_z_offsets_m": [
+        0.98,
+        3.0
+      ],
+      "nearby_blocker_count": 25,
+      "lid_samples": 109,
+      "minimum_lid_horizontal_aabb_gap_m": 1.188085,
+      "minimum_approach_horizontal_aabb_gap_m": 3.089615,
+      "intersecting_sample_count": 0
+    }
+  ],
+  "scope": "Round 5 blockout only; no runtime geometry, enemies, currency, claim state, or touch validation."
+}
