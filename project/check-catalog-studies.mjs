@@ -231,3 +231,8 @@ assert.equal(movers.model_preview, "#nov23-station6-landings");
 assert.equal(movers.related_study.href, "#nov26-w6a-native-spinner");
 assert.ok(ids.has(movers.related_study.href.slice(1)));
 assert.ok(get("asset-"+movers.id).children.flatMap(x=>x.children).some(c=>c.href===movers.related_study.href));
+const stormKit = data.assets.find(a => a.id === "WSC-KIT-007");
+assert.equal(stormKit.model_preview, "#nov23-e9-storm-beacon");
+assert.equal(stormKit.related_study.href, "#nov26-e9-beacon-ground-control");
+assert.ok(ids.has(stormKit.related_study.href.slice(1)));
+assert.ok(get("asset-"+stormKit.id).children.flatMap(x=>x.children).some(c=>c.href===stormKit.related_study.href));
