@@ -1,0 +1,236 @@
+{
+  "scope": "E12h opening set prop. Static optional GLB; no assembled Titan, animation, collision, timeline or game installation.",
+  "bowl_sha256": "cd4b20016133bab16940d85f0b3319aecd19708626a5fe9cdb35f68f83a92021",
+  "sky_sha256": "a18d14cb35ee4dc1eac30e75882b6b877cbd768cedf99c1bedb64852f6b249fe",
+  "export_sha256": "ac5e09bb3cef809f9280974297dc70aaa8e4af0f88bfbfaa0f695030a6dc674e",
+  "bytes": 104972,
+  "mesh_definitions": 1,
+  "material_primitives": 6,
+  "unique_triangles": 1724,
+  "visible_triangles_at_full_stack": 13792,
+  "bounds_xyz_m": [
+    [
+      -3.05,
+      2.83
+    ],
+    [
+      -2.84,
+      2.73
+    ],
+    [
+      0.0,
+      6.0
+    ]
+  ],
+  "placements": {
+    "donor_sha256": "d7a5f8fcb2b835d0c0c77c3051ebd950ed449dc2c563e10779fdc5f01cc6bb44",
+    "placements": [
+      {
+        "name": "Tier 1 | haul crate 1",
+        "layer": 1,
+        "slab_local_xyz": [
+          -1.58,
+          -1.48,
+          0
+        ],
+        "dimensions_m": [
+          2.94,
+          2.72,
+          2.25
+        ],
+        "blender_yaw_deg": 0
+      },
+      {
+        "name": "Tier 1 | haul crate 2",
+        "layer": 1,
+        "slab_local_xyz": [
+          1.44,
+          -1.42,
+          0
+        ],
+        "dimensions_m": [
+          2.74,
+          2.62,
+          2.25
+        ],
+        "blender_yaw_deg": 180
+      },
+      {
+        "name": "Tier 1 | haul crate 3",
+        "layer": 1,
+        "slab_local_xyz": [
+          -1.53,
+          1.39,
+          0
+        ],
+        "dimensions_m": [
+          2.84,
+          2.68,
+          2.25
+        ],
+        "blender_yaw_deg": 180
+      },
+      {
+        "name": "Tier 1 | haul crate 4",
+        "layer": 1,
+        "slab_local_xyz": [
+          1.49,
+          1.4,
+          0
+        ],
+        "dimensions_m": [
+          2.68,
+          2.58,
+          2.25
+        ],
+        "blender_yaw_deg": 0
+      },
+      {
+        "name": "Tier 2 | haul crate 1",
+        "layer": 2,
+        "slab_local_xyz": [
+          -0.91,
+          -1.05,
+          2.25
+        ],
+        "dimensions_m": [
+          2.6,
+          2.06,
+          2.04
+        ],
+        "blender_yaw_deg": 180
+      },
+      {
+        "name": "Tier 2 | haul crate 2",
+        "layer": 2,
+        "slab_local_xyz": [
+          1.08,
+          1.11,
+          2.25
+        ],
+        "dimensions_m": [
+          2.42,
+          2.1,
+          2.04
+        ],
+        "blender_yaw_deg": 0
+      },
+      {
+        "name": "Tier 2 | haul crate 3",
+        "layer": 2,
+        "slab_local_xyz": [
+          -1.65,
+          1.25,
+          2.25
+        ],
+        "dimensions_m": [
+          2.35,
+          2.13,
+          2.04
+        ],
+        "blender_yaw_deg": 0
+      },
+      {
+        "name": "Tier 3 | haul crate 1",
+        "layer": 3,
+        "slab_local_xyz": [
+          -0.72,
+          0.6,
+          4.29
+        ],
+        "dimensions_m": [
+          2.15,
+          2.02,
+          1.71
+        ],
+        "blender_yaw_deg": 0
+      }
+    ]
+  },
+  "vertical_overlap_probes": [
+    {
+      "node": "Tier 1 | haul crate 1",
+      "valid_overlap_samples": 169,
+      "total_samples": 169,
+      "nearest_slab_or_lower_roof_m": -0.025
+    },
+    {
+      "node": "Tier 1 | haul crate 2",
+      "valid_overlap_samples": 169,
+      "total_samples": 169,
+      "nearest_slab_or_lower_roof_m": -0.025
+    },
+    {
+      "node": "Tier 1 | haul crate 3",
+      "valid_overlap_samples": 169,
+      "total_samples": 169,
+      "nearest_slab_or_lower_roof_m": -0.025
+    },
+    {
+      "node": "Tier 1 | haul crate 4",
+      "valid_overlap_samples": 169,
+      "total_samples": 169,
+      "nearest_slab_or_lower_roof_m": -0.025
+    },
+    {
+      "node": "Tier 2 | haul crate 1",
+      "valid_overlap_samples": 133,
+      "total_samples": 169,
+      "nearest_slab_or_lower_roof_m": -0.0
+    },
+    {
+      "node": "Tier 2 | haul crate 2",
+      "valid_overlap_samples": 132,
+      "total_samples": 169,
+      "nearest_slab_or_lower_roof_m": -0.0
+    },
+    {
+      "node": "Tier 2 | haul crate 3",
+      "valid_overlap_samples": 169,
+      "total_samples": 169,
+      "nearest_slab_or_lower_roof_m": -0.0
+    },
+    {
+      "node": "Tier 3 | haul crate 1",
+      "valid_overlap_samples": 129,
+      "total_samples": 169,
+      "nearest_slab_or_lower_roof_m": 0.0
+    }
+  ],
+  "views": {
+    "opening": {
+      "camera_xyz_m": [
+        1.9,
+        -17.8,
+        1.72
+      ],
+      "screen_bounds_xy": [
+        [
+          0.0486,
+          0.855
+        ],
+        [
+          0.2446,
+          0.6943
+        ]
+      ]
+    },
+    "footing": {
+      "camera_xyz_m": [
+        13,
+        -13,
+        6.5
+      ],
+      "screen_bounds_xy": [
+        [
+          0.2631,
+          0.7246
+        ],
+        [
+          0.1516,
+          0.7967
+        ]
+      ]
+    }
+  }
+}
