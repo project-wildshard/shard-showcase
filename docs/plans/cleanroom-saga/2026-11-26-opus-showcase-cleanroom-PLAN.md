@@ -1,10 +1,11 @@
-# The Showcase clean room as the target (CR)
+# The Showcase clean room: target and restyle (CR)
 
 > Written by: Claude
 
-> **State:** ready for review, 2026-11-26: Jake's picks are in
-> (below); the rows hold until he says go. Ask: A18 (the prompt itself
-> was A16).
+> **State:** in progress, 2026-11-26: CR4 (Brasswick concept
+> candidates) is building; the rest hold for Jake's go. Ask: A18 (the
+> prompt itself was A16).
+> The re-look came out of the saga grill (D36).
 
 Saga: [cleanroom saga](2026-11-26-opus-cleanroom-saga-master-PLAN.md),
 phase 0. It serves the
@@ -89,8 +90,9 @@ times, and the clean room's `docs/AAA-PLAN.md`):
 
 ## Rows
 
-Each row is one lane. The clean room is read only from here: Cratefall
-stays its own game (Jake), so no row writes there.
+Each row is one lane. No agent edits Cratefall's code: Jake runs its
+restyle in his own Fable session (D34, D36), and agents only prepare
+the inputs for it.
 
 **Mix and match** (Jake, 2026-11-26): *"we are going to mix & match
 the look, we are going to mix & match the design, some of the
@@ -116,9 +118,9 @@ palette and style are not.
     doesn't copy Cratefall's art direction.
 
   Copy the most important frames into `support/cleanroom-targets/`.
-  Link the rest. The shard's own art direction (the polished
-  orange-and-grey look, ruling 19ab, the round-11 remaster mockups)
-  stays the style target. Done when every chosen frame has a spot and
+  Link the rest. The style target is CR4's three approved concept
+  images, painted in the shard's orange-and-grey look (ruling 19ab,
+  D36). Done when every chosen frame has a spot and
   a quality-versus-style note, frames with no place in the map are
   listed as dropped with a reason, and Jake has approved the list.
 - [ ] **CR2 Mix and match the design.** Read Cratefall's state page,
@@ -142,6 +144,22 @@ palette and style are not.
   §6. Add one line to `kitchen-sink-v2/STATE.md`: the shard's quality
   bar is the CR1 frames, and its style stays its own. Done when the
   three links resolve.
+- [ ] **CR4 Brasswick concept art.** Jake: *"the art refresh of
+  brashwick"*. Make nine candidates with Codex's default `image_gen`
+  (D36): the Brasswick town square, the gate and the Crate Fields
+  beyond it, and a fight. Each is repainted from a Cratefall golden
+  frame into the Kitchen Sink's orange-and-grey style (19ab), keeping
+  Cratefall's quality and losing its neon and palette. They go in
+  `support/showcase/candidates/` with the prompts. Done when Jake has
+  picked three. Those become the target for the restyle and for the
+  Kitchen Sink.
+- [ ] **CR5 The restyle brief.** A short brief for Jake's Fable
+  session in Cratefall's repo: restyle the look (palette, materials,
+  lighting, no neon) to the three CR4 images, keep the gameplay, and
+  apply the camera rule (D35: a drawn ranged weapon goes first
+  person). Done when the brief and the images sit in Cratefall's
+  `concept/` folder, uncommitted, for Jake. It runs after the Signal
+  Dunes pilot (D33).
 
 ## Seams
 
@@ -152,8 +170,9 @@ palette and style are not.
 - **Other agents:** `t14` is working on plan archiving on `main`.
   That touches `docs/plans/` but not the Kitchen Sink files. Work is on
   `main` only (D29).
-- **Clean room:** a separate repo with its own session. It is read
-  only from here.
+- **Clean room:** a separate repo with its own session. Jake runs its
+  restyle himself (D34). CR5 only drops a brief and three images into
+  its `concept/` folder.
 
 ## Verification
 
@@ -178,3 +197,7 @@ by `pnpm check` (the asks and plan gates) and by Jake reading the list.
 2. **Which Cratefall:** the latest build.
 3. **Media:** link it, and copy the important frames.
 4. **Build:** hold. Rows wait for Jake's go.
+5. **Re-look** (the saga grill, D36): Cratefall gets new concept art
+   and a restyle. *"we need to make brand new concept art for it and
+   restyle it somehow"*. It is Jake's Fable session, after the
+   pilot.
