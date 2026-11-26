@@ -20,7 +20,9 @@ const {Scope}=await at('src/shared/engine/app/scope.ts')
 const {DeclaredBodyOps}=await at('src/server/game/quest/bodyOps.ts')
 const {SCRIPT_V1_COMMANDS: C,SCRIPT_V1_READS: Reads}=await import('@wildshard/format/scriptAbiV1')
 const R=await loadRapier(readFileSync(join(dirname(req.resolve('@dimforge/rapier3d-simd/package.json')), 'rapier_wasm3d_bg.wasm')))
-const [geometryFile,proofFile,traceFile]=process.argv.slice(2)
+const [geometryFile,proofFile,traceFile,mode]=process.argv.slice(2)
+assert(mode===undefined||mode==='--lever','Unknown fixture mode')
+const bench=mode==='--lever'?await import('./lever.mjs'):null
 assert(geometryFile&&proofFile&&traceFile,'Need ramp triangles, proof, replay paths')
 const input=readFileSync(geometryFile)
 const geometrySHA256=createHash('sha256').update(input).digest('hex')
@@ -32,7 +34,7 @@ const dt=1/60
 const p=(x,y,z)=>({x,y,z})
 const tilt=q=>Math.acos(Math.max(-1,Math.min(1,1-2*(q.x*q.x+q.z*q.z))))*180/Math.PI
 
-function trial(offset,release){
+function trial(offset,release,exercise){
   const rows=[]
   for(let i=0;i<4;i++){
     const x=-19.5-1.8*i
@@ -47,8 +49,10 @@ function trial(offset,release){
       yaw:0,owner:{kind:'w4b-gate-fixture',id},material:'wood',density:170,
       friction:.58,restitution:.04,angularDamping:.22,linearDamping:.32,rolling:.045,ccd:true})
   }
-  const scope=new Scope('w4b gate')
-  const phy=new Physics(R)
+  const session=exercise===undefined?null:bench.make(R,exercise)
+  // The lever bench lends the exact physics world used by its own stock player.
+  const scope=session?.sim.scope??new Scope('w4b gate')
+  const phy=session?.sim.physics??new Physics(R)
   try{
     const W=phy.world
     W.createCollider(R.ColliderDesc.cuboid(39,1,27).setTranslation(-53,floor-1,laneZ).setCollisionGroups(groups('WORLD')).setFriction(.8))
@@ -63,17 +67,19 @@ function trial(offset,release){
       ops.prepare(rows.slice(i,i+4).map(row=>[C['body.spawn'],0,id(row),0,0])).commit()
     assert(rows.every(row=>ops.read(Reads.bodyAlive,id(row),0)===1))
     const bodies=rows.map(row=>ops.body(row.id)), balls=bodies.slice(0,4)
-    function step(){ops.pre(dt);phy.step();ops.post(dt)}
+    session?.setup(W)
+    function step(input){ops.pre(dt);if(session===null)phy.step();else session.sim.step(input);ops.post(dt)}
     for(let i=0;i<240;i++)step()
     const held=balls.map(b=>({...b.curr}))
     assert(held.every(v=>v.x>gate.x+.49&&v.x<-19&&Math.abs(v.z-laneZ)<1.05),JSON.stringify(held))
+    const activated=session?.approach(step)
     const frames=[]
     const toes=Array(4).fill(null), gatePasses=Array(4).fill(null)
     let firstTip=null
     function save(tick){frames.push({tick,bar:{...bar.translation()},bodies:bodies.map((b,i)=>({id:rows[i].id,p:{...b.curr},q:{...b.currRot}}))})}
     save(0)
     for(let i=1;i<=1200;i++){
-      if(release && i<=gate.ticks){
+      if((session===null?release:session.on()) && i<=gate.ticks){
         const q=i/gate.ticks
         bar.setNextKinematicTranslation(p(gate.x,gate.baseY+gate.lift*(3*q*q-2*q*q*q),gate.z))
       }
@@ -88,22 +94,55 @@ function trial(offset,release){
     const angles=bodies.slice(4).map(b=>tilt(b.currRot))
     const fallen=angles.filter(a=>a>60).length
     assert(bodies.every(b=>[b.curr.x,b.curr.y,b.curr.z].every(Number.isFinite)))
-    return {offset,release,held,toes,gatePasses,firstTip,fallen,angles,frames}
+    return {offset,release,held,toes,gatePasses,firstTip,fallen,angles,frames,
+      ...(session===null?{}:{exercise,activation:activated,transitions:session.transitions()})}
   }finally{
-    scope.dispose()
-    phy.dispose()
+    if(session)session.sim.dispose()
+    else {scope.dispose();phy.dispose()}
   }
 }
-const runs=[]
-for(const o of [-.12,0,.12]){
-  const blocked=trial(o,false), released=trial(o,true)
-  assert.deepEqual(blocked.held,released.held)
-  assert(blocked.gatePasses.every(x=>x===null)&&blocked.toes.every(x=>x===null)&&blocked.firstTip===null,JSON.stringify(blocked.toes))
-  assert(released.toes.every(Number.isInteger)&&released.firstTip!==null&&released.fallen>0,JSON.stringify(released.toes))
-  runs.push(blocked,released)
+if(bench!==null){
+  await bench.init(at)
+  const runs=['no-input','blocked-sight','press','press'].map(kind=>trial(0,kind==='press',kind))
+  assert.deepEqual(runs[2],runs[3])
+  const [idle,blocked,pressed]=runs
+  for(const row of [idle,blocked]){
+    assert.equal(row.transitions,0)
+    assert.deepEqual(row.toes,[null,null,null,null])
+    assert.equal(row.fallen,0)
+  }
+  assert.deepEqual(idle.held,blocked.held)
+  assert.deepEqual(idle.held,pressed.held)
+  assert.equal(pressed.transitions,1)
+  for(const frame of pressed.frames.slice(-11))assert.equal(frame.bodies.slice(4).filter(b=>tilt(b.q)>60).length,pressed.fallen)
+  assert(pressed.toes.every(Number.isInteger)&&pressed.fallen>0,JSON.stringify(pressed.toes))
+  const assets=new URL('../../public/assets/wildshard-art/',import.meta.url)
+  const donors=Object.fromEntries(['w4b-release-stand.glb','w4b-ball-gate-bar.glb','w4b-ball-gate-yoke.glb','wsc-plan-004-rolling-ball.glb','wsc-plan-005-skittle-pin.glb']
+    .map(name=>[name,createHash('sha256').update(readFileSync(new URL(name,assets))).digest('hex')]))
+  assert.deepEqual(donors,{
+    'w4b-release-stand.glb':'c81fe635452ec55a31bdbd6db1980a26a252f0c3dbc945aefa89cd1b462eb54d',
+    'w4b-ball-gate-bar.glb':'904f00c4786f491114112a165e516eb2ff3ae5aabe76a886bcb8bfd72165c960',
+    'w4b-ball-gate-yoke.glb':'bfc8d29690d27da4bafe01feee379aaabb875aec6db0f01781ba3f4dcb79624c',
+    'wsc-plan-004-rolling-ball.glb':'c04881c87359049db80b6f17772628543628688dd6fee3c58e1bf6f7f3ebe171',
+    'wsc-plan-005-skittle-pin.glb':'6863ee9338d4859d2a7ef68dd556e16cdeb2949c6cb33a9ca90c808531fe1d43',
+  })
+  const summary={scope:'Authored prompt and stock player in the isolated native ramp bench; physical lift bridge belongs to the fixture.',engine:'0.1.44',format:formatVersion,
+    hz:60,geometrySHA256,donors,stand:bench.stand,spot:bench.spot,gate,runs:runs.slice(0,3).map(({frames,...row})=>row),freshReplayMatched:true}
+  writeFileSync(proofFile,JSON.stringify(summary,null,2)+'\n')
+  writeFileSync(traceFile,JSON.stringify({gate,geometrySHA256,blocked:idle,released:pressed,stand:bench.stand,spot:bench.spot,donors})+'\n')
+  console.table(summary.runs.map(({exercise,activation,transitions,toes,fallen})=>({exercise,activation:JSON.stringify(activation),transitions,toes,fallen})))
+} else {
+  const runs=[]
+  for(const o of [-.12,0,.12]){
+    const blocked=trial(o,false), released=trial(o,true)
+    assert.deepEqual(blocked.held,released.held)
+    assert(blocked.gatePasses.every(x=>x===null)&&blocked.toes.every(x=>x===null)&&blocked.firstTip===null,JSON.stringify(blocked.toes))
+    assert(released.toes.every(Number.isInteger)&&released.firstTip!==null&&released.fallen>0,JSON.stringify(released.toes))
+    runs.push(blocked,released)
+  }
+  assert.deepEqual(trial(0,true),runs[3])
+  writeFileSync(proofFile,JSON.stringify({engine:'0.1.44',format:formatVersion,hz:60,gate,geometrySHA256,
+    runs:runs.map(({frames,...r})=>r)},null,2)+'\n')
+  writeFileSync(traceFile,JSON.stringify({gate,geometrySHA256,blocked:runs[2],released:runs[3]})+'\n')
+  console.table(runs.map(({offset,release,gatePasses,toes,firstTip,fallen})=>({offset,release,gatePasses,toes,firstTip,fallen})))
 }
-assert.deepEqual(trial(0,true),runs[3])
-writeFileSync(proofFile,JSON.stringify({engine:'0.1.44',format:formatVersion,hz:60,gate,geometrySHA256,
-  runs:runs.map(({frames,...r})=>r)},null,2)+'\n')
-writeFileSync(traceFile,JSON.stringify({gate,geometrySHA256,blocked:runs[2],released:runs[3]})+'\n')
-console.table(runs.map(({offset,release,gatePasses,toes,firstTip,fallen})=>({offset,release,gatePasses,toes,firstTip,fallen})))

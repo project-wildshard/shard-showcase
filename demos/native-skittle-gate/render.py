@@ -33,15 +33,36 @@ def load(path):
 # Hide scene-only balls; the original ramp and rails remain visible.
 for ob in tuple(scene.objects):
     if 'shared scene-only study' in ob.name and 'ball ' in ob.name:ob.hide_render=True
-yy=load(model/'w4b-ball-gate-yoke.glb')
+lever='stand' in r
+folder=assets if lever else model
+if lever:
+    for name,sha in r['donors'].items():
+        assert hashlib.sha256((assets/name).read_bytes()).hexdigest()==sha
+    for ob in tuple(scene.objects):
+        if ('shared scene-only study' in ob.name and 'pin' in ob.name.lower()) or ob.name=='release lever and pin approach static arts':
+            ob.hide_render=True
+yy=load(folder/'w4b-ball-gate-yoke.glb')
 transform(yy,r['blocked']['frames'][0]['bar'])
-bar=load(model/'w4b-ball-gate-bar.glb')
+bar=load(folder/'w4b-ball-gate-bar.glb')
 balls=[load(ballfile) for _ in range(4)]
+if lever:
+    stand=load(assets/'w4b-release-stand.glb')
+    arm,=[o for o,_ in stand if o.name.startswith('Release_arm_localX_pivot')]
+    transform(stand,r['stand'])
+    arm_ready=arm.matrix_world.copy()
+    pins=[load(assets/'wsc-plan-005-skittle-pin.glb') for _ in range(10)]
 
 def pose(frame):
     transform(bar,frame['bar'])
     for body,roots in zip(frame['bodies'],balls):
         transform(roots,body['p'],body['q'])
+    if lever:
+        # Grip is visual staging; gate and pin poses are from the simulation.
+        arm.matrix_world=arm_ready@Matrix.Rotation(.56*min(frame['tick']/36,1),4,'X')
+        for body,roots in zip(frame['bodies'][4:],pins):
+            p,q=body['p'],body['q']
+            shift=Quaternion((q['w'],q['x'],-q['z'],q['y']))@Vector((0,0,-.645))
+            transform(roots,{'x':p['x']+shift.x,'y':p['y']+shift.z,'z':p['z']-shift.y},q)
     bpy.context.view_layer.update()
 
 scene.render.engine='CYCLES'
@@ -75,7 +96,16 @@ def render(n,eye,target,lens,res):
     scene.render.filepath=str(out/(n+'.webp'))
     bpy.ops.render.render(write_still=True)
 
-pose(r['blocked']['frames'][0])
-render('nov26-w4b-gate-held',(-17.6,-189.2,10.8),(-25.0,-196,5.15),38,(1360,900))
-pose(next(f for f in r['released']['frames'] if f['tick']==144))
-render('nov26-w4b-gate-raised',(-32.0,-192.1,6.7),(-25.9,-196,5.55),33,(804,1748))
+if lever:
+    feet=r['released']['activation']['arrived']
+    pose(r['blocked']['frames'][0])
+    render('nov26-w4b-player-lever', (feet[0],-feet[2],feet[1]+1.68),(-29.65,-200.0,1.62),25,(960,1280))
+    pose(next(f for f in r['released']['frames'] if f['tick']==144))
+    render('nov26-w4b-player-release',(-32,-204.1,7.85),(-27.4,-196.3,4.64),32,(1240,880))
+    pose(r['released']['frames'][-1])
+    render('nov26-w4b-player-settled',(-42.9,-193.5,3.2),(-52.0,-196.1,.75),34,(1240,880))
+else:
+    pose(r['blocked']['frames'][0])
+    render('nov26-w4b-gate-held',(-17.6,-189.2,10.8),(-25.0,-196,5.15),38,(1360,900))
+    pose(next(f for f in r['released']['frames'] if f['tick']==144))
+    render('nov26-w4b-gate-raised',(-32.0,-192.1,6.7),(-25.9,-196,5.55),33,(804,1748))

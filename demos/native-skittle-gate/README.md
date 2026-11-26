@@ -34,3 +34,31 @@ blender -b -t 6 "$d/yard/physics-yard-editable.blend" --python-exit-code 1 --pyt
 Set `WSC_NODE_PROJECT` if Engine 0.1.44 / Format 0.43.0 dependencies
 aren't installed in the art checkout. Images use the exact Blender
 ramp and the reimported rolling-ball and gate GLBs at recorded poses.
+
+## Walk up and use the existing release stand
+
+The optional player run reuses that ramp and the five hash-pinned GLBs. The
+stand is on the flat shoulder at Three `(-30, .04, 200.55)` (identity yaw);
+the prompt is near its grip at `(-30, 1.64, 200.70)`, reach 2.5 m.
+Those are bench coordinates, not installation instructions for a new map.
+
+The stock player walks about 5.93 m on the same physics world, remaining
+grounded for all 86 movement ticks. Engine 0.1.44's headless prompt picker and
+admitted latched lever run the author's row. The bench observes the resulting
+flag to drive the existing 36-tick gate lift. Moving into reach without a
+press, pressing from far away, and pressing at valid distance through an
+opaque blocker do not release the balls. A clear press releases all four and
+leaves nine pins above the 60° tilt threshold for the final second. A second
+press is ignored. An independent fresh session repeats all results exactly.
+This is not a map install, network/UI playtest, saved best, nor player reset.
+In the renders the grip pose is staged; balls, gate and pins are replay data.
+
+After generating `"$d/ramp.json"` with the commands above:
+
+```sh
+node --experimental-transform-types demos/native-skittle-gate/sample.mjs \
+  "$d/ramp.json" "$d/lever-proof.json" "$d/lever-trace.json" --lever
+cmp "$d/lever-proof.json" project/layouts/w4b-player-lever-proof.json
+blender -b -t 6 "$d/yard/physics-yard-editable.blend" --python-exit-code 1 \
+  --python demos/native-skittle-gate/render.py -- "$d/lever-trace.json" "$d"
+```
