@@ -309,3 +309,15 @@ for(const name of ["nov26-e6-screen-near.webp","nov26-e6-screen-far.webp","e6-si
   assert.ok(markup.includes(`media/${name}`));
   assert.ok(readFileSync(new URL(`media/${name}`,dist)).byteLength>1000);
 }
+
+assert.ok(ids.has("nov26-w4b-skittle-reset"));
+for (const id of ["WSC-PLAN-004","WSC-PLAN-005"]) {
+  const asset=data.assets.find(a=>a.id===id);
+  assert.equal(asset.model_preview,"#nov23-west-physics-props");
+  assert.equal(asset.related_study.href,"#nov26-w4b-skittle-reset");
+}
+for (const state of ["result","reset","replay"]) {
+  const path=`media/nov26-w4b-score-${state}.webp`;
+  assert.ok(markup.includes(`src="${path}"`));
+  assert.ok(readFileSync(new URL(path,dist)).byteLength>1000);
+}
