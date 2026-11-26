@@ -1,0 +1,159 @@
+{
+  "originThree": [
+    146,
+    0,
+    186
+  ],
+  "gradeY": 0.05,
+  "yardDatum": 0,
+  "laneY": 0.045,
+  "discardedName": "C3 exact eastern fight floor",
+  "donorSha": "d8d061f6f206b886971c245e97b0d5692a21daba339011fa7fc5791c8c75de62",
+  "geometrySha": "67eb5896958a84569133d9957276f394a7b5edabf1a8193c88e4d4298fc6a03d",
+  "bothSeamsProbePoints": 82,
+  "bytes": 5216,
+  "triangles": 52,
+  "sha256": "97d809deb0bcad6f443b5c6041a82ffe3399fc773263344c669d9ef8c91853f0",
+  "engine": "0.1.44",
+  "scope": "G2 through C3 and G3 into Titan Lane with gate assumed open. No combat, live gate or phone.",
+  "samples": [
+    {
+      "offset": -1.3,
+      "completed": true,
+      "distanceM": 238.78064753601532,
+      "tick": 3343,
+      "air": 0,
+      "longestStall": 0,
+      "groundTicks": {
+        "g2": 647,
+        "office": 0,
+        "infill": 1356,
+        "apron": 391,
+        "g3": 949,
+        "datum": 0
+      },
+      "apronMinY": 0.06881280514597893,
+      "apronMaxY": 0.06999999183416367,
+      "end": [
+        112.4257531204826,
+        0.044221227208152414,
+        212.6867674052379
+      ]
+    },
+    {
+      "offset": -0.65,
+      "completed": true,
+      "distanceM": 239.32880280102833,
+      "tick": 3351,
+      "air": 0,
+      "longestStall": 0,
+      "groundTicks": {
+        "g2": 659,
+        "office": 0,
+        "infill": 1344,
+        "apron": 390,
+        "g3": 958,
+        "datum": 0
+      },
+      "apronMinY": 0.06887993115186691,
+      "apronMaxY": 0.06999998810887337,
+      "end": [
+        112.43344035661679,
+        0.0443405437162146,
+        213.33284702402824
+      ]
+    },
+    {
+      "offset": 0,
+      "completed": true,
+      "distanceM": 240.29081779842122,
+      "tick": 3365,
+      "air": 0,
+      "longestStall": 0,
+      "groundTicks": {
+        "g2": 671,
+        "office": 0,
+        "infill": 1332,
+        "apron": 391,
+        "g3": 971,
+        "datum": 0
+      },
+      "apronMinY": 0.06982054460048676,
+      "apronMaxY": 0.0700010925992392,
+      "end": [
+        112.43191546365054,
+        0.044309738010168076,
+        213.98377330186105
+      ]
+    },
+    {
+      "offset": 0.65,
+      "completed": true,
+      "distanceM": 241.464004614819,
+      "tick": 3382,
+      "air": 0,
+      "longestStall": 0,
+      "groundTicks": {
+        "g2": 683,
+        "office": 0,
+        "infill": 1319,
+        "apron": 391,
+        "g3": 989,
+        "datum": 0
+      },
+      "apronMinY": 0.06913279163371772,
+      "apronMaxY": 0.06999999555945396,
+      "end": [
+        112.45840082694784,
+        0.04460255543916719,
+        214.6200288229093
+      ]
+    },
+    {
+      "offset": 1.3,
+      "completed": true,
+      "distanceM": 242.78529252698013,
+      "tick": 3401,
+      "air": 0,
+      "longestStall": 0,
+      "groundTicks": {
+        "g2": 695,
+        "office": 0,
+        "infill": 1307,
+        "apron": 391,
+        "g3": 1008,
+        "datum": 0
+      },
+      "apronMinY": 0.06835549991764128,
+      "apronMaxY": 0.06999999555945396,
+      "end": [
+        112.45016760154837,
+        0.044506812255247497,
+        215.27424440438205
+      ]
+    }
+  ],
+  "without": {
+    "offset": 0,
+    "completed": true,
+    "distanceM": 120.14891697803822,
+    "tick": 1682,
+    "air": 0,
+    "longestStall": 0,
+    "groundTicks": {
+      "g2": 337,
+      "office": 0,
+      "infill": 666,
+      "apron": 0,
+      "g3": 483,
+      "datum": 196
+    },
+    "apronMinY": 0.01997329528489039,
+    "apronMaxY": 0.0199999909344995,
+    "end": [
+      215.6961553789479,
+      0.0649197843503207,
+      194.77620500749836
+    ]
+  }
+}
