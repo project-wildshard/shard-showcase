@@ -1,0 +1,477 @@
+{
+  "scope": "Native 4 m platform track connected to the tested room 3 crossing; shared call is a test signal. Exit stops on upper landing before closed door.",
+  "engine": "0.1.44",
+  "format": "0.43.0",
+  "collisionHash": "a06124c9eb6dc11288af838bde9fdc3ca305b771d4623f1f77209c57c9e9acff",
+  "row": {
+    "id": "vault-r3-moving-deck",
+    "entity": 2781,
+    "execution": "native",
+    "kind": "platform",
+    "at": {
+      "x": 196,
+      "y": -44.5,
+      "z": -64
+    },
+    "euler": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "enabled": true,
+    "boxes": [
+      {
+        "x": 0,
+        "y": -0.115,
+        "z": 0,
+        "hx": 3,
+        "hy": 0.115,
+        "hz": 3,
+        "rot": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      }
+    ],
+    "track": {
+      "clip": "VaultLift",
+      "duration": 2.5,
+      "loop": "once",
+      "speed": 1,
+      "times": [
+        0,
+        0.25,
+        0.6,
+        1.25,
+        1.9,
+        2.25,
+        2.5
+      ],
+      "position": [
+        [
+          196,
+          -44.5,
+          -64
+        ],
+        [
+          196,
+          -44.415,
+          -64
+        ],
+        [
+          196,
+          -44.064,
+          -64
+        ],
+        [
+          196,
+          -42.5,
+          -64
+        ],
+        [
+          196,
+          -40.936,
+          -64
+        ],
+        [
+          196,
+          -40.585,
+          -64
+        ],
+        [
+          196,
+          -40.5,
+          -64
+        ]
+      ]
+    },
+    "trigger": {
+      "kind": "shared",
+      "field": 1,
+      "equals": true
+    },
+    "driver": {
+      "kind": "track"
+    },
+    "module": "871aef47d9b0dd009d46ad41e5cb3c793625bc20325bdaca00134a8677b0c6f1",
+    "input": [
+      0,
+      2.5,
+      1,
+      0,
+      3,
+      0,
+      0,
+      0,
+      1,
+      196,
+      -44.5,
+      -64,
+      0,
+      0,
+      0,
+      7,
+      0,
+      196,
+      -44.5,
+      -64,
+      0,
+      0,
+      0,
+      1,
+      0.25,
+      196,
+      -44.415,
+      -64,
+      0,
+      0,
+      0,
+      1,
+      0.6,
+      196,
+      -44.064,
+      -64,
+      0,
+      0,
+      0,
+      1,
+      1.25,
+      196,
+      -42.5,
+      -64,
+      0,
+      0,
+      0,
+      1,
+      1.9,
+      196,
+      -40.936,
+      -64,
+      0,
+      0,
+      0,
+      1,
+      2.25,
+      196,
+      -40.585,
+      -64,
+      0,
+      0,
+      0,
+      1,
+      2.5,
+      196,
+      -40.5,
+      -64,
+      0,
+      0,
+      0,
+      1
+    ]
+  },
+  "cases": [
+    {
+      "offset": -0.45,
+      "enable": true,
+      "boarded": {
+        "tick": 266,
+        "feet": [
+          195.78822445890242,
+          -44.480001435697076,
+          -64.20919829790203
+        ],
+        "y": -44.5,
+        "floor": "movingDeck",
+        "grounded": true
+      },
+      "afterRide": {
+        "tick": 441,
+        "feet": [
+          195.83600527662261,
+          -40.48000058633089,
+          -64.20919829790203
+        ],
+        "y": -40.5,
+        "floor": "movingDeck",
+        "grounded": true
+      },
+      "topTick": 150,
+      "boardAir": 0,
+      "ascentAir": 0,
+      "ascentOther": 0,
+      "maxFootDelta": 0.020104990878159867,
+      "exitAir": 0,
+      "final": {
+        "tick": 530,
+        "feet": [
+          201.90904271099194,
+          -40.37594770945189,
+          -64.20896764290913
+        ],
+        "y": -40.5,
+        "floor": "upper",
+        "grounded": true
+      }
+    },
+    {
+      "offset": -0.225,
+      "enable": true,
+      "boarded": {
+        "tick": 262,
+        "feet": [
+          195.7454093684126,
+          -44.48000014302134,
+          -64.21260053194898
+        ],
+        "y": -44.5,
+        "floor": "movingDeck",
+        "grounded": true
+      },
+      "afterRide": {
+        "tick": 437,
+        "feet": [
+          195.7931901861328,
+          -40.48005691084664,
+          -64.21260053194898
+        ],
+        "y": -40.5,
+        "floor": "movingDeck",
+        "grounded": true
+      },
+      "topTick": 150,
+      "boardAir": 0,
+      "ascentAir": 0,
+      "ascentOther": 0,
+      "maxFootDelta": 0.020161315393913526,
+      "exitAir": 0,
+      "final": {
+        "tick": 527,
+        "feet": [
+          201.95584850128472,
+          -40.37539532275888,
+          -64.21247129849269
+        ],
+        "y": -40.5,
+        "floor": "upper",
+        "grounded": true
+      }
+    },
+    {
+      "offset": 0,
+      "enable": true,
+      "boarded": {
+        "tick": 262,
+        "feet": [
+          195.74804863662877,
+          -44.48000698265433,
+          -63.99942126594657
+        ],
+        "y": -44.5,
+        "floor": "movingDeck",
+        "grounded": true
+      },
+      "afterRide": {
+        "tick": 437,
+        "feet": [
+          195.79582945434896,
+          -40.48004622123891,
+          -63.99942126594657
+        ],
+        "y": -40.5,
+        "floor": "movingDeck",
+        "grounded": true
+      },
+      "topTick": 150,
+      "boardAir": 0,
+      "ascentAir": 0,
+      "ascentOther": 0,
+      "maxFootDelta": 0.020150625786179432,
+      "exitAir": 0,
+      "final": {
+        "tick": 527,
+        "feet": [
+          201.92503959490506,
+          -40.37600344893336,
+          -64.00002353910293
+        ],
+        "y": -40.5,
+        "floor": "upper",
+        "grounded": true
+      }
+    },
+    {
+      "offset": 0.225,
+      "enable": true,
+      "boarded": {
+        "tick": 262,
+        "feet": [
+          195.74677613090495,
+          -44.48002435368299,
+          -63.788614863740236
+        ],
+        "y": -44.5,
+        "floor": "movingDeck",
+        "grounded": true
+      },
+      "afterRide": {
+        "tick": 437,
+        "feet": [
+          195.79455694862514,
+          -40.480018661439416,
+          -63.788614863740236
+        ],
+        "y": -40.5,
+        "floor": "movingDeck",
+        "grounded": true
+      },
+      "topTick": 150,
+      "boardAir": 0,
+      "ascentAir": 0,
+      "ascentOther": 0,
+      "maxFootDelta": 0.020123065986688005,
+      "exitAir": 0,
+      "final": {
+        "tick": 527,
+        "feet": [
+          201.95805354722648,
+          -40.37518857730366,
+          -63.788348754033905
+        ],
+        "y": -40.5,
+        "floor": "upper",
+        "grounded": true
+      }
+    },
+    {
+      "offset": 0.45,
+      "enable": true,
+      "boarded": {
+        "tick": 266,
+        "feet": [
+          195.78641762401926,
+          -44.480019268661735,
+          -63.78683850099603
+        ],
+        "y": -44.5,
+        "floor": "movingDeck",
+        "grounded": true
+      },
+      "afterRide": {
+        "tick": 441,
+        "feet": [
+          195.83419844173946,
+          -40.480014276772735,
+          -63.78683850099603
+        ],
+        "y": -40.5,
+        "floor": "movingDeck",
+        "grounded": true
+      },
+      "topTick": 150,
+      "boardAir": 0,
+      "ascentAir": 0,
+      "ascentOther": 0,
+      "maxFootDelta": 0.020118681320006715,
+      "exitAir": 0,
+      "final": {
+        "tick": 530,
+        "feet": [
+          201.90436070078172,
+          -40.375999634236095,
+          -63.786735556143164
+        ],
+        "y": -40.5,
+        "floor": "upper",
+        "grounded": true
+      }
+    }
+  ],
+  "center": {
+    "offset": 0,
+    "enable": true,
+    "boarded": {
+      "tick": 262,
+      "feet": [
+        195.74804863662877,
+        -44.48000698265433,
+        -63.99942126594657
+      ],
+      "y": -44.5,
+      "floor": "movingDeck",
+      "grounded": true
+    },
+    "afterRide": {
+      "tick": 437,
+      "feet": [
+        195.79582945434896,
+        -40.48004622123891,
+        -63.99942126594657
+      ],
+      "y": -40.5,
+      "floor": "movingDeck",
+      "grounded": true
+    },
+    "topTick": 150,
+    "boardAir": 0,
+    "ascentAir": 0,
+    "ascentOther": 0,
+    "maxFootDelta": 0.020150625786179432,
+    "exitAir": 0,
+    "final": {
+      "tick": 527,
+      "feet": [
+        201.92503959490506,
+        -40.37600344893336,
+        -64.00002353910293
+      ],
+      "y": -40.5,
+      "floor": "upper",
+      "grounded": true
+    }
+  },
+  "control": {
+    "offset": 0,
+    "enable": false,
+    "boarded": {
+      "tick": 262,
+      "feet": [
+        195.74804863662877,
+        -44.48000698265433,
+        -63.99942126594657
+      ],
+      "y": -44.5,
+      "floor": "movingDeck",
+      "grounded": true
+    },
+    "afterRide": {
+      "tick": 437,
+      "feet": [
+        195.79582945434896,
+        -44.48004622123891,
+        -63.99942126594657
+      ],
+      "y": -44.5,
+      "floor": "movingDeck",
+      "grounded": true
+    },
+    "topTick": null,
+    "boardAir": 0,
+    "ascentAir": 0,
+    "ascentOther": 0,
+    "maxFootDelta": 0.01999845254421473,
+    "exitAir": 29,
+    "final": {
+      "tick": 526,
+      "feet": [
+        201.93873302816002,
+        -47.40661742965504,
+        -63.99942419284559
+      ],
+      "y": -44.5,
+      "floor": null,
+      "grounded": false
+    }
+  }
+}

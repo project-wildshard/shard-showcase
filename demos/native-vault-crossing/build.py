@@ -7,10 +7,13 @@ import sys
 import bpy
 
 repo=Path(__file__).resolve().parents[2]
-out=Path(sys.argv[sys.argv.index('--')+1]).resolve()
+args=sys.argv[sys.argv.index('--')+1:]
+out=Path(args[0]).resolve()
+lift='--lift' in args
 out.mkdir(parents=True,exist_ok=True)
-receipt=out/'walk.json'
+receipt=out/('lift-walk.json' if lift else 'walk.json')
 os.environ['WSC_METADATA_ONLY']='1'
+sys.argv[sys.argv.index('--')+1:]=[str(out)]
 try:
     runpy.run_path(str(repo/'scripts/blender/showcase-studies/vault_climb_room.py'))
 except SystemExit as e:
@@ -18,6 +21,8 @@ except SystemExit as e:
         raise
 
 def role(name):
+    if lift and name.startswith(('Last-door landing','Last-door tread')):
+        return 'upper'
     for prefix,key in (
         ('Scramble step C / bridge apron','west'),
         ('03 original bridge','bridge'),('Winch approach','east'),
@@ -44,18 +49,20 @@ for ob in sorted(bpy.context.scene.objects,key=lambda a:a.name):
             parts.append(dict(role=k,name=ob.name,vertices=coords,triangles=faces))
     finally:
         ev.to_mesh_clear()
-assert {p['role'] for p in parts}=={'west','bridge','east','frame','deck','bottom'}
-(out/'collision.json').write_text(json.dumps(parts,separators=(',',':'))+'\n')
+assert {p['role'] for p in parts}==({'west','bridge','east','frame','deck','bottom'}|({'upper'} if lift else set()))
+(out/('lift-collision.json' if lift else 'collision.json')).write_text(json.dumps(parts,separators=(',',':'))+'\n')
 print([(x['role'],x['name'],len(x['triangles'])//3) for x in parts])
 
 if not receipt.exists():
     sys.exit(0)
 record=json.loads(receipt.read_text())
 import hashlib
-assert hashlib.sha256((out/'collision.json').read_bytes()).hexdigest()==record['collisionHash']
+assert hashlib.sha256((out/('lift-collision.json' if lift else 'collision.json')).read_bytes()).hexdigest()==record['collisionHash']
 from mathutils import Vector
 V=Vector
 scene=bpy.context.scene
+lower=[o for o in scene.objects if o.name.startswith('Deck at lower mark')]
+upper=[o for o in scene.objects if o.name.startswith('Deck at upper mark')]
 for o in scene.objects:
     if o.name.startswith(('Deck at upper mark','Section label plaque','Landing label plaque','Landing plane dash','01   ','02   ','03   ','04   ','05   ','LOW  ','HIGH  ')):
         o.hide_render=True
@@ -74,8 +81,14 @@ def path(name,rgb,frames):
     o=bpy.data.objects.new(name,c);scene.collection.objects.link(o)
     return o
 
-path('Measured grounded boarding',(.06,.62,.58),record['centerCompact']['frames'])
-fall=path('Measured test without the bridge',(.98,.24,.055),[r for r in record['control']['frames'] if not r['grounded']])
+if lift:
+    traces=[
+        path('Real boarding trace',(.06,.62,.58),record['center']['boardFrames']+[record['center']['boarded']]),
+        path('Real lift trace',(.20,.70,.95),[record['center']['boarded']]+record['center']['ascFrames']),
+        path('Real exit trace',(.06,.62,.58),[record['center']['afterRide']]+record['center']['exitFrames']+[record['center']['final']])]
+else:
+    path('Measured grounded boarding',(.06,.62,.58),record['centerCompact']['frames'])
+    fall=path('Measured test without the bridge',(.98,.24,.055),[r for r in record['control']['frames'] if not r['grounded']])
 scene.world=bpy.data.worlds.new('Cool concrete ambient');scene.world.use_nodes=True
 p=scene.world.node_tree.nodes['Background'];p.inputs[0].default_value=(.16,.30,.40,1);p.inputs[1].default_value=.26
 def aim(o,target):
@@ -90,10 +103,22 @@ for name,eye,target,energy,size,rgb in [
 c=bpy.data.cameras.new('Proof camera');o=bpy.data.objects.new('Proof camera',c);scene.collection.objects.link(o);scene.camera=o
 scene.render.engine='CYCLES';scene.cycles.samples=34;scene.cycles.use_denoising=False;scene.cycles.adaptive_threshold=.052
 scene.render.image_settings.file_format='PNG';scene.render.resolution_percentage=100;scene.view_settings.view_transform='AgX'
-for name,eye,target,wh,scale in [
+settings=[
     ('bridge-lift-wide',(1,-18,10.6),(1.9,0,5.0),(1260,865),19),
-    ('bridge-lift-eye',(-3.65,-.18,7.18),(5.2,0,5.53),(760,1000),None)]:
-    fall.hide_render=scale is None
+    ('bridge-lift-eye',(-3.65,-.18,7.18),(5.2,0,5.53),(760,1000),None)]
+if lift:
+    settings=[
+        ('vault-lift-boarding',(1,-18,10.6),(1.9,0,5.0),(1260,865),19),
+        ('vault-lift-top',(7.8,-12,13.1),(10.6,0,8.10),(1260,865),14.6)]
+for i,(name,eye,target,wh,scale) in enumerate(settings):
+    if lift:
+        for ob in lower:ob.hide_render=bool(i)
+        for ob in upper:ob.hide_render=not bool(i)
+        traces[0].hide_render=bool(i)
+        traces[1].hide_render=not bool(i)
+        traces[2].hide_render=not bool(i)
+    else:
+        fall.hide_render=scale is None
     c.type='ORTHO' if scale else 'PERSP'
     if scale:c.ortho_scale=scale
     else:c.lens=24
