@@ -384,3 +384,13 @@ for (const file of ["nov26-keycard-shed-entry.webp","nov26-keycard-shed-card.web
   if (file.endsWith(".glb")) assert.equal(bytes.subarray(0,4).toString(),"glTF");
   else assert.equal(bytes.subarray(8,12).toString(),"WEBP");
 }
+
+assert.ok(ids.has("nov26-w9a-native-squeeze"));
+assert.match(markup,/id="nov23-rock-squeeze-cave"><p><a href="#nov26-w9a-native-squeeze"/);
+for (const state of ["stock","candidate"]) {
+  const path=`media/nov26-w9a-squeeze-${state}.webp`;
+  assert.ok(markup.includes(path));
+  const bytes=readFileSync(new URL(path,dist));
+  assert.ok(bytes.byteLength>1000);
+  assert.equal(bytes.subarray(8,12).toString(),"WEBP");
+}
