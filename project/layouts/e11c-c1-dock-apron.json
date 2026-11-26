@@ -1,0 +1,168 @@
+{
+  "scope": "visual only, no floor cut, collider, door or wave change",
+  "pinned_donors": {
+    "wsc-scene-007-c1-loading-yard": "77cdcd7033f3c03a8fcf1c8e38b024adfca2470f53cd4af76b5b901a90431394",
+    "e11c-c1-dock-shutter-leaf": "444e796844a2557a421ac69c86ca5d18be98595dc1607c7430aa323b4e924fec",
+    "e11c-c1-dock-relay-strip": "851d34af7ebb765da8d7a129ddac454c71d568848997b129425e9d10ea95e424"
+  },
+  "models": {
+    "e11c-c1-dock-drain-cap": {
+      "bytes": 21580,
+      "triangles": 348,
+      "primitives": 3,
+      "sha256": "c6e939569521952450068688717395d95c3752de8ade63c11525f232803e13df"
+    },
+    "e11c-c1-dock-side-mark": {
+      "bytes": 2464,
+      "triangles": 10,
+      "primitives": 2,
+      "sha256": "fc36de9cb75de089123d97d2e7b2384d9ab5451035639cf3a64cdb74acb489ca"
+    }
+  },
+  "placements": [
+    {
+      "dock": "D1",
+      "side": -1,
+      "overlay": "drain",
+      "floor_rays": 25,
+      "blender_x_y_z": [
+        -38.009998,
+        -7.07,
+        0.012001
+      ],
+      "three_x_y_z": [
+        16.990002,
+        0.012001,
+        170.07
+      ],
+      "blender_yaw": 3.1415927,
+      "max_rise_m": 0.012
+    },
+    {
+      "dock": "D1",
+      "side": -1,
+      "overlay": "paint",
+      "floor_rays": 25,
+      "blender_x_y_z": [
+        -36.220001,
+        -6.88,
+        0.012001
+      ],
+      "three_x_y_z": [
+        18.779999,
+        0.012001,
+        169.88
+      ],
+      "blender_yaw": 1.5707963,
+      "max_rise_m": 0.002
+    },
+    {
+      "dock": "D1",
+      "side": 1,
+      "overlay": "drain",
+      "floor_rays": 25,
+      "blender_x_y_z": [
+        -38.009998,
+        -0.93,
+        0.012
+      ],
+      "three_x_y_z": [
+        16.990002,
+        0.012,
+        163.93
+      ],
+      "blender_yaw": 3.1415927,
+      "max_rise_m": 0.012
+    },
+    {
+      "dock": "D1",
+      "side": 1,
+      "overlay": "paint",
+      "floor_rays": 25,
+      "blender_x_y_z": [
+        -36.220001,
+        -1.12,
+        0.012001
+      ],
+      "three_x_y_z": [
+        18.779999,
+        0.012001,
+        164.12
+      ],
+      "blender_yaw": 1.5707963,
+      "max_rise_m": 0.002
+    },
+    {
+      "dock": "D2",
+      "side": -1,
+      "overlay": "drain",
+      "floor_rays": 25,
+      "blender_x_y_z": [
+        38.009998,
+        -7.07,
+        0.012
+      ],
+      "three_x_y_z": [
+        93.009998,
+        0.012,
+        170.07
+      ],
+      "blender_yaw": 0.0,
+      "max_rise_m": 0.012
+    },
+    {
+      "dock": "D2",
+      "side": -1,
+      "overlay": "paint",
+      "floor_rays": 25,
+      "blender_x_y_z": [
+        36.220001,
+        -6.88,
+        0.012
+      ],
+      "three_x_y_z": [
+        91.220001,
+        0.012,
+        169.88
+      ],
+      "blender_yaw": -1.5707963,
+      "max_rise_m": 0.002
+    },
+    {
+      "dock": "D2",
+      "side": 1,
+      "overlay": "drain",
+      "floor_rays": 25,
+      "blender_x_y_z": [
+        38.009998,
+        -0.93,
+        0.012001
+      ],
+      "three_x_y_z": [
+        93.009998,
+        0.012001,
+        163.93
+      ],
+      "blender_yaw": 0.0,
+      "max_rise_m": 0.012
+    },
+    {
+      "dock": "D2",
+      "side": 1,
+      "overlay": "paint",
+      "floor_rays": 25,
+      "blender_x_y_z": [
+        36.220001,
+        -1.12,
+        0.012
+      ],
+      "three_x_y_z": [
+        91.220001,
+        0.012,
+        164.12
+      ],
+      "blender_yaw": -1.5707963,
+      "max_rise_m": 0.002
+    }
+  ]
+}
