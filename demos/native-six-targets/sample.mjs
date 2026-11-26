@@ -20,7 +20,9 @@ const {WorldTargetHost}=await mod('src/shared/game/shardfile/worldTargets.ts')
 const {installNativeMelee,bindNativeLoadout}=await mod('src/server/game/plugin/simulation.ts')
 const {parseWorldTargets,worldTargetRules}=await import(pathToFileURL(format).href)
 const R=await loadRapier(readFileSync(join(dirname(req.resolve('@dimforge/rapier3d-simd/package.json')),'rapier_wasm3d_bg.wasm')))
-const [geometryFile,out]=process.argv.slice(2)
+const [geometryFile,out,mode]=process.argv.slice(2)
+assert(!mode||mode==='--entry')
+const entry=mode==='--entry'
 assert(geometryFile&&out)
 const raw=readFileSync(geometryFile)
 const {fixtures,parts}=JSON.parse(raw)
@@ -46,16 +48,18 @@ const content={items:{rows:specs.map((s,i)=>({kind:'weapon',id:s.id,contacts:con
   quests:{flags:fixtures.map(x=>rowFlag(x.id))}}
 assert.deepEqual(worldTargetRules(input,content),[])
 
-function replay(withControls) {
+function replay(withControls, offset=0, barrier=false) {
   const host=new SimHost({version:SIM_API_VERSION,id:'w3a-six-target-yard-bench',seed:25,
-    ground:{size:500,height:0},player:{at:{x:-30,y:.23,z:80},yaw:Math.PI,speed:4.3},
+    ground:{size:500,height:0},player:{at:{x:entry?-36+offset:-30,y:.23,z:entry?54:80},yaw:Math.PI,speed:4.3},
     entities:[],quests:[],weapon:{id:'w3a-unused-simple-weapon',damage:0}},{rapier:R,ground:false})
   const player=host.players.get('actor.player')
   const world=host.physics.world
   try {
     for (const c of parts) world.createCollider(R.ColliderDesc.trimesh(
       new Float32Array(c.vertices),new Uint32Array(c.triangles)).setCollisionGroups(groups('WORLD')))
-    let wanted=0, stream=[], pitch=0, frames=[], attempts=[], samples=[], airTicks=0, routeMetres=0
+    if(barrier)world.createCollider(R.ColliderDesc.cuboid(2.2,1,.18)
+      .setTranslation(-36,1,62).setCollisionGroups(groups('WORLD')))
+    let wanted=0, stream=[], pitch=0, frames=[], attempts=[], samples=[], airTicks=0, routeMetres=0, stalls=0, maxStalls=0
     const loadout=bindNativeLoadout(host,{slots:[0,1],initial:0,lower:0,raise:0},{
       owned:()=>true,step:{id:'yardBench.loadout',phase:'beforeBodies',pick:()=>wanted},
     })
@@ -78,7 +82,10 @@ function replay(withControls) {
       host.step(new Map([[player.id,{moveX,moveZ,yaw}]]))
       if(host.state.tick>40){
         if(!player.fall.grounded)airTicks++
-        routeMetres+=Math.hypot(player.position.x-before.x,player.position.z-before.z)
+        const distance=Math.hypot(player.position.x-before.x,player.position.z-before.z)
+        routeMetres+=distance
+        stalls=Math.hypot(moveX,moveZ)>.05&&distance<.004?stalls+1:0
+        maxStalls=Math.max(maxStalls,stalls)
       }
       if(host.state.tick%6===0)frames.push([host.state.tick,...player.position.toArray(),wanted,flags().length])
     }
@@ -86,9 +93,10 @@ function replay(withControls) {
     const walk=(x,z)=>{
       for(let n=0;n<440;n++){
         const dx=x-player.position.x,dz=z-player.position.z,d=Math.hypot(dx,dz)
-        if(d<.065)return
+        if(d<.065)return true
         const speed=Math.min(1,d*60/4.3)
         tick(dx/d*speed,dz/d*speed,Math.atan2(-dx,-dz))
+        if(barrier&&stalls>=30)return false
       }
       throw new Error('Blocked route '+JSON.stringify([x,z,player.position.toArray()]))
     }
@@ -112,6 +120,15 @@ function replay(withControls) {
     idle(55,Math.PI)
     assert(player.fall.grounded)
     const started=host.state.tick
+    let gateToYard=null
+    if(entry){
+      if(!walk(-36+offset,79.9)){
+        return {flags:[...flags()],maxStalls,feet:player.position.toArray()}
+      }
+      walk(-31.25,79.9)
+      walk(-30,80)
+      gateToYard={tick:host.state.tick,routeMetres,feet:player.position.toArray(),offset}
+    }
     for(const [i,f] of fixtures.entries()){
       const [x,y,z]=f.at
       // Walk between rows along an unobstructed central service aisle, not
@@ -133,15 +150,25 @@ function replay(withControls) {
     }
     assert.deepEqual(flags(),fixtures.map(f=>rowFlag(f.id)))
     assert.equal(airTicks,0)
-    return {started,finished:host.state.tick,routeMetres,airTicks,attempts,samples,frames}
+    const receipt={started,finished:host.state.tick,routeMetres,airTicks,attempts,samples,frames}
+    if(entry)Object.assign(receipt,{gateToYard,maxStalls,firstMovementToLastHitTicks:attempts.at(-1).landingTick-started,
+      drillClockTicks:attempts.at(-1).landingTick-gateToYard.tick})
+    return receipt
   }finally{host.dispose()}
 }
 const run=replay(false), checks=replay(true)
 assert.deepEqual(run,replay(false))
 assert.deepEqual(checks,replay(true))
 assert(run.attempts.every((a,i)=>a.gained===1&&a.landingTick-a.swingTick===(i<3?9:12)),run.attempts)
+const entryRuns=entry?[-.65,0,.65].map(offset=>{
+  const r=offset===0?run:replay(false,offset)
+  assert(r.gateToYard && r.maxStalls<30 && r.airTicks===0)
+  return {...r,frames:undefined}
+}):undefined
+const closedGate=entry?replay(false,0,true):undefined
+if(closedGate)assert(closedGate.maxStalls===30&&closedGate.feet[2]<62&&closedGate.flags.length===0)
 writeFileSync(out,JSON.stringify({engine:'0.1.44',format:'0.43.0',geometrySha256,
   colliderMeshes:parts.length,triangles:parts.reduce((a,c)=>a+c.triangles.length/3,0),
   terrain:'bounded reimport geometry, stock capsule; no synthetic support or teleports',fixtures,
-  repeatExactly:true,negativeControls:checks.attempts.filter(a=>a.kind!=='center'),...run},null,2)+'\n')
+  repeatExactly:true,entryRuns,closedGate,negativeControls:checks.attempts.filter(a=>a.kind!=='center'),...run},null,2)+'\n')
 console.log(JSON.stringify({triangles:parts.reduce((a,c)=>a+c.triangles.length/3,0),attempts:run.attempts.map(({name,kind,gained})=>[name,kind,gained]),air:run.airTicks,ticks:run.finished-run.started}))

@@ -38,3 +38,35 @@ Trail lines and checks are annotations, not game UI. Large rebuilds stay
 in scratch. No game-world host/install, equipment loan, player animation,
 scoring board, persistence, native client, phone review or public game
 deployment is part of this rehearsal.
+
+## Range Gate entry extension
+
+The optional `--entry` mode starts outside the original gate at Three
+(−36±0.65, 0, 54). It follows the already measured gate center route to
+z=79.90, turns into the melee yard, and uses the same native capsule,
+fixtures and loadout for the six strikes. The course timer here is a
+measurement from the common yard entry point to the final native hit,
+not a saved personal best. No collider or visual was added to the real
+gate or yard. The temporary closed-gate control tests whether the trace
+can incorrectly score while stopped at the gate.
+
+```sh
+blender -b "$B" -t 6 --python-exit-code 1 --python "$D/geometry.py" -- --entry "$T/entry-geometry.json"
+node --experimental-transform-types "$D/sample.mjs" "$T/entry-geometry.json" "$T/entry-run.json" --entry
+blender -b "$B" -t 6 --python-exit-code 1 --python "$D/geometry.py" -- --entry "$T/entry-geometry.json" "$T/entry-run.json"
+```
+
+Use the same flags in extraction and rendering. The gate-to-yard image
+shows measured trace lines over the unchanged scenery. The entrance
+view is a staged eye-height render, not a client screenshot. This
+extension is not an equipment loan or drill/records host.
+
+Three offsets finished all six with zero airborne ticks and zero
+commanded stalls. The center path covered 96.81 m; final impact was
+1,761 ticks from first movement (29.35 s), and all three timed 1,309
+ticks from the common yard point to impact (21.82 s). The wall control
+stopped at z=61.420 m with no target flags. Original yard-only output
+matches the previous receipt; two independent entry traces also match.
+
+`summarize-entry.mjs ENTRY_RUN SCENERY_PARITY SIGHT_JSON RECEIPT`
+regenerates `project/layouts/w3a-native-range-entry-proof.json`.

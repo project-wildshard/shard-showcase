@@ -1,0 +1,361 @@
+{
+  "scope": "untouched Range Gate and existing six fixtures; travel, equipped strikes and timing in one headless host only",
+  "engine": "0.1.44",
+  "format": "0.43.0",
+  "ticksPerSecond": 60,
+  "scenery": {
+    "matched_signature": [
+      "b492323858d35c975e9cf6c283401bda2028a085bf84b4729d387a7d8864122f",
+      3025
+    ],
+    "raw_signature": [
+      "b492323858d35c975e9cf6c283401bda2028a085bf84b4729d387a7d8864122f",
+      3025
+    ],
+    "inherited_arm_uv_writes": 0,
+    "rebuilt_sha256": "3089fa682587732c92dd906047531afb8db00b77f504a3875a4415e9b9a31874",
+    "bytes": 19921968
+  },
+  "geometrySha256": "87a98228e80a03642302a366903d60257ad3129611929e5fb73e0e38926d110c",
+  "colliderMeshes": 23,
+  "triangles": 10451,
+  "fixtures": [
+    {
+      "id": "sword-1",
+      "anchor": [
+        -30,
+        0.012,
+        86
+      ],
+      "at": [
+        -30,
+        1.572,
+        85.765
+      ]
+    },
+    {
+      "id": "sword-2",
+      "anchor": [
+        -24,
+        0.028,
+        86
+      ],
+      "at": [
+        -24,
+        1.588,
+        85.765
+      ]
+    },
+    {
+      "id": "sword-3",
+      "anchor": [
+        -18,
+        0.012,
+        86
+      ],
+      "at": [
+        -18,
+        1.572,
+        85.765
+      ]
+    },
+    {
+      "id": "spear-1",
+      "anchor": [
+        -30,
+        0.012,
+        104
+      ],
+      "at": [
+        -30,
+        2.012,
+        103.8
+      ]
+    },
+    {
+      "id": "spear-2",
+      "anchor": [
+        -24,
+        0.028,
+        104
+      ],
+      "at": [
+        -24,
+        2.028,
+        103.8
+      ]
+    },
+    {
+      "id": "spear-3",
+      "anchor": [
+        -18,
+        0.012,
+        104
+      ],
+      "at": [
+        -18,
+        2.012,
+        103.8
+      ]
+    }
+  ],
+  "paths": [
+    {
+      "offset": -0.65,
+      "routeMetres": 97.44076722751745,
+      "gateToYard": {
+        "tick": 516,
+        "routeMetres": 32.60233333114519,
+        "feet": [
+          -30.015148027892486,
+          0.04698106871172786,
+          79.99695584583048
+        ],
+        "offset": -0.65
+      },
+      "airTicks": 0,
+      "maxStalls": 0,
+      "firstMovementToLastHitTicks": 1770,
+      "drillClockTicks": 1309,
+      "hits": [
+        [
+          "sword-1",
+          571
+        ],
+        [
+          "sword-2",
+          776
+        ],
+        [
+          "sword-3",
+          901
+        ],
+        [
+          "spear-1",
+          1481
+        ],
+        [
+          "spear-2",
+          1626
+        ],
+        [
+          "spear-3",
+          1770
+        ]
+      ]
+    },
+    {
+      "offset": 0,
+      "routeMetres": 96.81177482329913,
+      "gateToYard": {
+        "tick": 507,
+        "routeMetres": 31.95951639155554,
+        "feet": [
+          -30.01046355815523,
+          0.047499964863061905,
+          79.99739767611027
+        ],
+        "offset": 0
+      },
+      "airTicks": 0,
+      "maxStalls": 0,
+      "firstMovementToLastHitTicks": 1761,
+      "drillClockTicks": 1309,
+      "hits": [
+        [
+          "sword-1",
+          562
+        ],
+        [
+          "sword-2",
+          767
+        ],
+        [
+          "sword-3",
+          892
+        ],
+        [
+          "spear-1",
+          1472
+        ],
+        [
+          "spear-2",
+          1617
+        ],
+        [
+          "spear-3",
+          1761
+        ]
+      ]
+    },
+    {
+      "offset": 0.65,
+      "routeMetres": 96.18251208069776,
+      "gateToYard": {
+        "tick": 498,
+        "routeMetres": 31.32972736618049,
+        "feet": [
+          -30.008266816247833,
+          0.047499889018479735,
+          79.99748803850053
+        ],
+        "offset": 0.65
+      },
+      "airTicks": 0,
+      "maxStalls": 0,
+      "firstMovementToLastHitTicks": 1752,
+      "drillClockTicks": 1309,
+      "hits": [
+        [
+          "sword-1",
+          553
+        ],
+        [
+          "sword-2",
+          758
+        ],
+        [
+          "sword-3",
+          883
+        ],
+        [
+          "spear-1",
+          1463
+        ],
+        [
+          "spear-2",
+          1608
+        ],
+        [
+          "spear-3",
+          1752
+        ]
+      ]
+    }
+  ],
+  "closedGate": {
+    "flags": [],
+    "maxStalls": 30,
+    "feet": [
+      -36.00431573438558,
+      0.06099998104572296,
+      61.41989820540766
+    ]
+  },
+  "sight": [
+    {
+      "id": "sword-1",
+      "environment_blocked": false,
+      "fixture_intercept": true
+    },
+    {
+      "id": "sword-2",
+      "environment_blocked": false,
+      "fixture_intercept": true
+    },
+    {
+      "id": "sword-3",
+      "environment_blocked": false,
+      "fixture_intercept": true
+    },
+    {
+      "id": "spear-1",
+      "environment_blocked": false,
+      "fixture_intercept": false
+    },
+    {
+      "id": "spear-2",
+      "environment_blocked": false,
+      "fixture_intercept": false
+    },
+    {
+      "id": "spear-3",
+      "environment_blocked": false,
+      "fixture_intercept": false
+    }
+  ],
+  "negativeControls": [
+    {
+      "name": "sword-1",
+      "kind": "off-axis",
+      "slot": "sword",
+      "gained": 0,
+      "orderedFlags": [],
+      "swingTick": 608,
+      "landingTick": null,
+      "origin": [
+        -31.04761896426297,
+        0.032097976058139466,
+        84.51591296619009
+      ],
+      "aim": [
+        -27.4,
+        1.572,
+        85.765
+      ]
+    },
+    {
+      "name": "sword-1",
+      "kind": "wrong weapon",
+      "slot": "spear",
+      "gained": 0,
+      "orderedFlags": [],
+      "swingTick": 662,
+      "landingTick": null,
+      "origin": [
+        -31.04761830523805,
+        0.0320930165835307,
+        84.51591323320658
+      ],
+      "aim": [
+        -30,
+        1.572,
+        85.765
+      ]
+    },
+    {
+      "name": "sword-1",
+      "kind": "duplicate",
+      "slot": "sword",
+      "gained": 0,
+      "orderedFlags": [
+        "yard.hit.sword-1"
+      ],
+      "swingTick": 770,
+      "landingTick": null,
+      "origin": [
+        -31.047618304915407,
+        0.032093024034111295,
+        84.51591500781605
+      ],
+      "aim": [
+        -30,
+        1.572,
+        85.765
+      ]
+    },
+    {
+      "name": "spear-1",
+      "kind": "outside bore",
+      "slot": "spear",
+      "gained": 0,
+      "orderedFlags": [
+        "yard.hit.sword-1",
+        "yard.hit.sword-2",
+        "yard.hit.sword-3"
+      ],
+      "swingTick": 1677,
+      "landingTick": null,
+      "origin": [
+        -29.779622696846243,
+        0.03209540239913622,
+        101.82345244613565
+      ],
+      "aim": [
+        -29.42,
+        2.012,
+        103.8
+      ]
+    }
+  ]
+}

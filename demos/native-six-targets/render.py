@@ -1,5 +1,5 @@
 # Runs with geometry.py's reimported fixtures and exact native replay.
-receipt=Path(sys.argv[-1]).resolve()
+receipt=Path(args[-1]).resolve()
 run=json.loads(receipt.read_text())
 assert run["fixtures"]==fixtures and run["repeatExactly"] and run["airTicks"]==0
 assert hashlib.sha256(out.read_bytes()).hexdigest()==run["geometrySha256"]
@@ -96,8 +96,10 @@ ring_hit=next(a for a in run["attempts"] if a["name"]=="spear-1")
 x,y,z=ring_hit["origin"]
 a,b,c=ring_hit["aim"]
 for name,loc,target,size,lens in [
-    ("overview",(-1,-70,31),(-24,-92,.5),(1280,890),40),
-    ("ring",(x+.19,-z+.78,y+1.54),(a,-c,b-.28),(670,940),31),
+    (("gate-to-yard",(-7,-61,49),(-29,-78,.5),(1280,890),31)
+     if entry else ("overview",(-1,-70,31),(-24,-92,.5),(1280,890),40)),
+    (("gate-eye",(-36.15,-55.2,1.72),(-36,-65.2,2.28),(710,950),28)
+     if entry else ("ring",(x+.19,-z+.78,y+1.54),(a,-c,b-.28),(670,940),31)),
 ]:
     ob.location=loc
     ob.rotation_euler=(V(target)-ob.location).to_track_quat("-Z","Y").to_euler()

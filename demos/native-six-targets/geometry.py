@@ -9,7 +9,12 @@ from mathutils import Matrix, Vector
 from mathutils.bvhtree import BVHTree
 
 assert "--" in sys.argv, "Pass an output path after --"
-out = Path(sys.argv[sys.argv.index("--") + 1])
+args = sys.argv[sys.argv.index("--") + 1:]
+entry = "--entry" in args
+args = [arg for arg in args if arg != "--entry"]
+out = Path(args[0])
+envelope = [(-43, -13.8), (-109, -51), (-1, 8)] if entry else [
+    (-34.2, -13.8), (-109, -76), (-1, 3.3)]
 scene = bpy.context.scene
 ROOT = Path(__file__).resolve().parents[2]
 assets = ROOT/"public/assets/wildshard-art"
@@ -67,15 +72,14 @@ for obj in sorted(scene.objects, key=lambda o: o.name):
             continue
         lo = tuple(min(v[i] for v in vertices) for i in range(3))
         hi = tuple(max(v[i] for v in vertices) for i in range(3))
-        if any(hi[i] < a or lo[i] > b for i, (a, b) in enumerate([
-                (-34.2, -13.8), (-109, -76), (-1, 3.3)])):
+        if any(hi[i] < a or lo[i] > b for i, (a, b) in enumerate(envelope)):
             continue
         mesh.calc_loop_triangles()
         index, positions, triangles = {}, [], []
         for tri in mesh.loop_triangles:
             pts = [vertices[i] for i in tri.vertices]
             if any(max(v[k] for v in pts) < a or min(v[k] for v in pts) > b
-                   for k, (a, b) in enumerate([(-34.2, -13.8), (-109, -76), (-1, 3.3)])):
+                   for k, (a, b) in enumerate(envelope)):
                 continue
             for i in tri.vertices:
                 if i not in index:
@@ -94,6 +98,6 @@ out.write_text(raw)
 print(len(parts), sum(len(p["triangles"]) // 3 for p in parts),
       hashlib.sha256(raw.encode()).hexdigest())
 
-if len(sys.argv[sys.argv.index("--")+1:])==2:
+if len(args)==2:
     render=Path(__file__).with_name("render.py")
     exec(compile(render.read_text(),str(render),"exec"))
