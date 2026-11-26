@@ -263,3 +263,6 @@ for (const state of ["lever", "release", "settled"])
 assert.ok(ids.has("nov26-e1-first-cover"));
 assert.ok(markup.includes('href="#nov26-e1-first-cover"'));
 assert.ok(markup.includes('href="media/e1-first-cover-cradle.glb"'));
+assert.ok(ids.has("nov26-w9-oval-cache-screen"));
+assert.ok(markup.includes('href="#nov26-w9-oval-cache-screen"'));
+assert.ok(markup.includes('href="media/w9-oval-cache-screen.glb"'));
