@@ -206,3 +206,9 @@ assert.ok(ids.has("nov25-w12-range-gate-walk"));
 assert.ok(ids.has("nov25-e6-arc-charge"));
 assert.ok(ids.has("nov25-e6-duel-cover"));
 assert.ok(!data.assets.find(row=>row.id==="WSC-ACTOR-006").model_preview);
+
+const seesaw=data.assets.find(a=>a.id==="WSC-PLAN-003");
+assert.equal(seesaw.model_preview,"#nov23-seesaw-fit");
+assert.equal(seesaw.status,"static-study-available");
+assert.equal(seesaw.related_study?.href,"#nov26-w4b-seesaw-launch");
+assert.ok(ids.has(seesaw.related_study.href.slice(1)));
