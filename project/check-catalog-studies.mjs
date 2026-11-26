@@ -235,7 +235,7 @@ pick("previews","all");
 pick("types","KIT");
 const movers = data.assets.find(a => a.id === "WSC-KIT-002");
 assert.equal(movers.model_preview, "#nov23-station6-landings");
-assert.equal(movers.related_study.href, "#nov26-w6a-native-spinner");
+assert.equal(movers.related_study.href, "#nov26-w6a-spinner-lift-handoff");
 assert.ok(ids.has(movers.related_study.href.slice(1)));
 assert.ok(get("asset-"+movers.id).children.flatMap(x=>x.children).some(c=>c.href===movers.related_study.href));
 const stormKit = data.assets.find(a => a.id === "WSC-KIT-007");
@@ -347,4 +347,10 @@ for (const state of ["free","fixed"]) {
   const path=`media/nov26-vault-full-push-${state}.webp`;
   assert.ok(markup.includes(path));
   assert.ok(readFileSync(new URL(path,dist)).byteLength>1000);
+}
+
+assert.ok(ids.has("nov26-w6a-spinner-lift-handoff"));
+for (const file of ["nov26-spinner-lift-gap.webp","nov26-spinner-lift-lip.webp","w6a-spinner-lift-lip.glb"]) {
+  assert.ok(markup.includes(`media/${file}`));
+  assert.ok(readFileSync(new URL(`media/${file}`,dist)).byteLength>1000);
 }
