@@ -374,3 +374,13 @@ for (const state of ["low-beam","raised-beam"]) {
   assert.ok(bytes.byteLength>1000);
   assert.equal(bytes.subarray(8,12).toString(),"WEBP");
 }
+
+assert.ok(ids.has("nov26-e5b-keycard-entry"));
+assert.equal(data.assets.find(a=>a.id==="WSC-PROP-065").related_study.href,"#nov26-e5b-keycard-entry");
+for (const file of ["nov26-keycard-shed-entry.webp","nov26-keycard-shed-card.webp","e5b-keycard-shed-open.glb"]) {
+  assert.ok(markup.includes(`media/${file}`));
+  const bytes=readFileSync(new URL(`media/${file}`,dist));
+  assert.ok(bytes.byteLength>1000);
+  if (file.endsWith(".glb")) assert.equal(bytes.subarray(0,4).toString(),"glTF");
+  else assert.equal(bytes.subarray(8,12).toString(),"WEBP");
+}
