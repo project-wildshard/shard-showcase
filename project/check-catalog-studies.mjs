@@ -236,3 +236,14 @@ assert.equal(stormKit.model_preview, "#nov23-e9-storm-beacon");
 assert.equal(stormKit.related_study.href, "#nov26-e9-beacon-ground-control");
 assert.ok(ids.has(stormKit.related_study.href.slice(1)));
 assert.ok(get("asset-"+stormKit.id).children.flatMap(x=>x.children).some(c=>c.href===stormKit.related_study.href));
+for(const [id,original,type] of [
+  ['WSC-KIT-005','#nov23-west-riding-course','KIT'],
+  ['WSC-PROP-080','#w10b-riding-jump','PROP'],
+]){
+  pick("types",type);
+  const a=data.assets.find(x=>x.id===id);
+  assert.equal(a.model_preview,original);
+  assert.equal(a.related_study.href,'#nov26-w10b-four-rails');
+  assert.ok(ids.has(a.related_study.href.slice(1)));
+  assert.ok(get('asset-'+id).children.flatMap(x=>x.children).some(c=>c.href===a.related_study.href));
+}
