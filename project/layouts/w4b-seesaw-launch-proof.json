@@ -1,0 +1,428 @@
+{
+  "engine": "0.1.44",
+  "format": "0.43.0",
+  "hz": 60,
+  "pivotY": 1.4700000286102295,
+  "top": 0.39899998903274536,
+  "crateH": 0.8635000586509705,
+  "floor": 0.02,
+  "release": 90,
+  "drop": 120,
+  "limitDeg": 9.55,
+  "runs": [
+    {
+      "base": [
+        -80,
+        224
+      ],
+      "offset": -0.18,
+      "mode": "live",
+      "clearFrames": 80,
+      "longestClear": 80,
+      "bestClear": 2.311432323635896,
+      "settledY": 1.1739306449890137,
+      "apexY": 5.148525238037109,
+      "apexTick": 223,
+      "lowest": 0.25843797096982635,
+      "angleDeg": [
+        -9.576748344722311,
+        9.550989052374508
+      ],
+      "maxPivotDrift": 0.0015704440558386794,
+      "firstLift": 182,
+      "landed": 264,
+      "peakTick": 215
+    },
+    {
+      "base": [
+        -80,
+        224
+      ],
+      "offset": -0.18,
+      "mode": "locked",
+      "clearFrames": 0,
+      "longestClear": 0,
+      "bestClear": 0,
+      "settledY": 1.1739306449890137,
+      "apexY": 1.1739306449890137,
+      "apexTick": 120,
+      "lowest": 0.50857732830244,
+      "angleDeg": [
+        7.499999513972282,
+        7.499999513972282
+      ],
+      "maxPivotDrift": 1.907348634588857e-8,
+      "firstLift": null,
+      "landed": null,
+      "peakTick": 0
+    },
+    {
+      "base": [
+        -80,
+        224
+      ],
+      "offset": -0.18,
+      "mode": "no-weight",
+      "clearFrames": 0,
+      "longestClear": 0,
+      "bestClear": 0,
+      "settledY": 1.1739306449890137,
+      "apexY": 0.9783253073692322,
+      "apexTick": 121,
+      "lowest": 0.2642879479015754,
+      "angleDeg": [
+        7.499999513972282,
+        9.550989052374508
+      ],
+      "maxPivotDrift": 0.000007632546965671642,
+      "firstLift": null,
+      "landed": null,
+      "peakTick": 0
+    },
+    {
+      "base": [
+        -80,
+        224
+      ],
+      "offset": 0,
+      "mode": "live",
+      "clearFrames": 83,
+      "longestClear": 80,
+      "bestClear": 2.09997607105189,
+      "settledY": 1.1738710403442383,
+      "apexY": 5.139195919036865,
+      "apexTick": 223,
+      "lowest": 0.26248665966658624,
+      "angleDeg": [
+        -9.566152448647623,
+        9.550329379861491
+      ],
+      "maxPivotDrift": 0.0008227710592643178,
+      "firstLift": 182,
+      "landed": 277,
+      "peakTick": 222
+    },
+    {
+      "base": [
+        -80,
+        224
+      ],
+      "offset": 0,
+      "mode": "locked",
+      "clearFrames": 0,
+      "longestClear": 0,
+      "bestClear": 0,
+      "settledY": 1.1738710403442383,
+      "apexY": 1.1738710403442383,
+      "apexTick": 120,
+      "lowest": 0.50857732830244,
+      "angleDeg": [
+        7.499999513972282,
+        7.499999513972282
+      ],
+      "maxPivotDrift": 1.907348634588857e-8,
+      "firstLift": null,
+      "landed": null,
+      "peakTick": 0
+    },
+    {
+      "base": [
+        -80,
+        224
+      ],
+      "offset": 0,
+      "mode": "no-weight",
+      "clearFrames": 0,
+      "longestClear": 0,
+      "bestClear": 0,
+      "settledY": 1.1738710403442383,
+      "apexY": 0.9782431125640869,
+      "apexTick": 121,
+      "lowest": 0.2643484588379388,
+      "angleDeg": [
+        7.499999513972282,
+        9.550329379861491
+      ],
+      "maxPivotDrift": 0.000018367836655990327,
+      "firstLift": null,
+      "landed": null,
+      "peakTick": 0
+    },
+    {
+      "base": [
+        -80,
+        224
+      ],
+      "offset": 0.18,
+      "mode": "live",
+      "clearFrames": 80,
+      "longestClear": 80,
+      "bestClear": 2.1813380022179523,
+      "settledY": 1.1739422082901,
+      "apexY": 5.138401508331299,
+      "apexTick": 223,
+      "lowest": 0.2642366666107454,
+      "angleDeg": [
+        -9.550727849521227,
+        9.550213951900158
+      ],
+      "maxPivotDrift": 0.0008602318544655135,
+      "firstLift": 182,
+      "landed": 264,
+      "peakTick": 221
+    },
+    {
+      "base": [
+        -80,
+        224
+      ],
+      "offset": 0.18,
+      "mode": "locked",
+      "clearFrames": 0,
+      "longestClear": 0,
+      "bestClear": 0,
+      "settledY": 1.1739422082901,
+      "apexY": 1.1739422082901,
+      "apexTick": 120,
+      "lowest": 0.50857732830244,
+      "angleDeg": [
+        7.499999513972282,
+        7.499999513972282
+      ],
+      "maxPivotDrift": 1.907348634588857e-8,
+      "firstLift": null,
+      "landed": null,
+      "peakTick": 0
+    },
+    {
+      "base": [
+        -80,
+        224
+      ],
+      "offset": 0.18,
+      "mode": "no-weight",
+      "clearFrames": 0,
+      "longestClear": 0,
+      "bestClear": 0,
+      "settledY": 1.1739422082901,
+      "apexY": 0.9783333539962769,
+      "apexTick": 121,
+      "lowest": 0.26436506567421914,
+      "angleDeg": [
+        7.499999513972282,
+        9.550213951900158
+      ],
+      "maxPivotDrift": 0.000010867118835466982,
+      "firstLift": null,
+      "landed": null,
+      "peakTick": 0
+    },
+    {
+      "base": [
+        -62,
+        224
+      ],
+      "offset": -0.18,
+      "mode": "live",
+      "clearFrames": 88,
+      "longestClear": 80,
+      "bestClear": 2.1498548662254704,
+      "settledY": 1.1739306449890137,
+      "apexY": 5.124948024749756,
+      "apexTick": 223,
+      "lowest": 0.2642089427957839,
+      "angleDeg": [
+        -9.550979411281096,
+        9.550187576781433
+      ],
+      "maxPivotDrift": 0.0010941414745828945,
+      "firstLift": 182,
+      "landed": 263,
+      "peakTick": 219
+    },
+    {
+      "base": [
+        -62,
+        224
+      ],
+      "offset": -0.18,
+      "mode": "locked",
+      "clearFrames": 0,
+      "longestClear": 0,
+      "bestClear": 0,
+      "settledY": 1.1739306449890137,
+      "apexY": 1.1739306449890137,
+      "apexTick": 120,
+      "lowest": 0.50857732830244,
+      "angleDeg": [
+        7.499999513972282,
+        7.499999513972282
+      ],
+      "maxPivotDrift": 1.907348634588857e-8,
+      "firstLift": null,
+      "landed": null,
+      "peakTick": 0
+    },
+    {
+      "base": [
+        -62,
+        224
+      ],
+      "offset": -0.18,
+      "mode": "no-weight",
+      "clearFrames": 0,
+      "longestClear": 0,
+      "bestClear": 0,
+      "settledY": 1.1739306449890137,
+      "apexY": 0.978323757648468,
+      "apexTick": 120,
+      "lowest": 0.2643715312292574,
+      "angleDeg": [
+        7.499999513972282,
+        9.550187576781433
+      ],
+      "maxPivotDrift": 0.000009436607360857607,
+      "firstLift": null,
+      "landed": null,
+      "peakTick": 0
+    },
+    {
+      "base": [
+        -62,
+        224
+      ],
+      "offset": 0,
+      "mode": "live",
+      "clearFrames": 81,
+      "longestClear": 80,
+      "bestClear": 2.100805433262674,
+      "settledY": 1.1738710403442383,
+      "apexY": 5.140429496765137,
+      "apexTick": 223,
+      "lowest": 0.26425008233560754,
+      "angleDeg": [
+        -9.550715938182062,
+        9.550309811227235
+      ],
+      "maxPivotDrift": 0.0008403278458596749,
+      "firstLift": 182,
+      "landed": 275,
+      "peakTick": 222
+    },
+    {
+      "base": [
+        -62,
+        224
+      ],
+      "offset": 0,
+      "mode": "locked",
+      "clearFrames": 0,
+      "longestClear": 0,
+      "bestClear": 0,
+      "settledY": 1.1738710403442383,
+      "apexY": 1.1738710403442383,
+      "apexTick": 120,
+      "lowest": 0.50857732830244,
+      "angleDeg": [
+        7.499999513972282,
+        7.499999513972282
+      ],
+      "maxPivotDrift": 1.907348634588857e-8,
+      "firstLift": null,
+      "landed": null,
+      "peakTick": 0
+    },
+    {
+      "base": [
+        -62,
+        224
+      ],
+      "offset": 0,
+      "mode": "no-weight",
+      "clearFrames": 0,
+      "longestClear": 0,
+      "bestClear": 0,
+      "settledY": 1.1738710403442383,
+      "apexY": 0.9782435894012451,
+      "apexTick": 121,
+      "lowest": 0.26435183063735535,
+      "angleDeg": [
+        7.499999513972282,
+        9.550309811227235
+      ],
+      "maxPivotDrift": 0.00001620994997178144,
+      "firstLift": null,
+      "landed": null,
+      "peakTick": 0
+    },
+    {
+      "base": [
+        -62,
+        224
+      ],
+      "offset": 0.18,
+      "mode": "live",
+      "clearFrames": 81,
+      "longestClear": 81,
+      "bestClear": 2.119126199986916,
+      "settledY": 1.1739422082901,
+      "apexY": 5.155099868774414,
+      "apexTick": 223,
+      "lowest": 0.26238117499879676,
+      "angleDeg": [
+        -9.558705464828119,
+        9.550021664673276
+      ],
+      "maxPivotDrift": 0.0011515354931054096,
+      "firstLift": 182,
+      "landed": 264,
+      "peakTick": 221
+    },
+    {
+      "base": [
+        -62,
+        224
+      ],
+      "offset": 0.18,
+      "mode": "locked",
+      "clearFrames": 0,
+      "longestClear": 0,
+      "bestClear": 0,
+      "settledY": 1.1739422082901,
+      "apexY": 1.1739422082901,
+      "apexTick": 120,
+      "lowest": 0.50857732830244,
+      "angleDeg": [
+        7.499999513972282,
+        7.499999513972282
+      ],
+      "maxPivotDrift": 1.907348634588857e-8,
+      "firstLift": null,
+      "landed": null,
+      "peakTick": 0
+    },
+    {
+      "base": [
+        -62,
+        224
+      ],
+      "offset": 0.18,
+      "mode": "no-weight",
+      "clearFrames": 0,
+      "longestClear": 0,
+      "bestClear": 0,
+      "settledY": 1.1739422082901,
+      "apexY": 0.9786807298660278,
+      "apexTick": 120,
+      "lowest": 0.264402901207089,
+      "angleDeg": [
+        7.499999513972282,
+        9.550021664673276
+      ],
+      "maxPivotDrift": 0.000005822181701642393,
+      "firstLift": null,
+      "landed": null,
+      "peakTick": 0
+    }
+  ]
+}
