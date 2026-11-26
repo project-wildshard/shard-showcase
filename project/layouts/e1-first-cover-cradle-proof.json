@@ -1,0 +1,347 @@
+{
+  "archive": "Raynos/project-wildshard-singleplayer@ce1cf050b3",
+  "pins": {
+    "layout.js": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+    "placement.js": "6a067ec22a8e07f1d99a9d495d23063d2863ab10"
+  },
+  "ROAD": {
+    "half": 8.5,
+    "x0": 8,
+    "x1": 237
+  },
+  "rows": [
+    {
+      "band": 1,
+      "x": 14.541375793768733,
+      "z": -17.097034128893654,
+      "kind": "crates",
+      "ry": 4.562775715809269,
+      "h": 0.6662076030234841
+    },
+    {
+      "band": 1,
+      "x": 28.88962516230048,
+      "z": -16.06989721584594,
+      "kind": "crates",
+      "ry": 1.6687352259077335,
+      "h": 0.3635912981646095
+    },
+    {
+      "band": 1,
+      "x": 42.56928091802135,
+      "z": -16.095610815144894,
+      "kind": "crates",
+      "ry": 0.013657211588536033,
+      "h": 0.6225172284164081
+    }
+  ],
+  "dayPacks": [
+    {
+      "band": 1,
+      "x": 108.5,
+      "z": -39.88526329025128,
+      "tier": 0,
+      "lv": 1,
+      "size": 3,
+      "spacing": 29,
+      "enemy": "Crate Mite",
+      "night": false,
+      "rare": false,
+      "inYard": false
+    },
+    {
+      "band": 1,
+      "x": 79.5,
+      "z": -39.88526329025128,
+      "tier": 0,
+      "lv": 1,
+      "size": 3,
+      "spacing": 29,
+      "enemy": "Crate Mite",
+      "night": false,
+      "rare": false,
+      "inYard": false
+    },
+    {
+      "band": 1,
+      "x": 94,
+      "z": -65,
+      "tier": 0,
+      "lv": 1,
+      "size": 3,
+      "spacing": 29,
+      "enemy": "Crate Mite",
+      "night": false,
+      "rare": false,
+      "inYard": false
+    },
+    {
+      "band": 1,
+      "x": 50.5,
+      "z": -39.88526329025128,
+      "tier": 1,
+      "lv": 2,
+      "size": 3,
+      "spacing": 29,
+      "enemy": "Crate Mite",
+      "night": false,
+      "rare": false,
+      "inYard": false
+    },
+    {
+      "band": 1,
+      "x": 108.5,
+      "z": -90.11473670974871,
+      "tier": 1,
+      "lv": 2,
+      "size": 3,
+      "spacing": 29,
+      "enemy": "Crate Mite",
+      "night": false,
+      "rare": false,
+      "inYard": false
+    },
+    {
+      "band": 1,
+      "x": 79.5,
+      "z": -90.11473670974871,
+      "tier": 1,
+      "lv": 2,
+      "size": 3,
+      "spacing": 29,
+      "enemy": "Crate Mite",
+      "night": false,
+      "rare": false,
+      "inYard": false
+    },
+    {
+      "band": 1,
+      "x": 36,
+      "z": -65,
+      "tier": 2,
+      "lv": 3,
+      "size": 3,
+      "spacing": 29,
+      "enemy": "Crate Mite",
+      "night": false,
+      "rare": false,
+      "inYard": false
+    }
+  ],
+  "scope": "Three optional static cover fits on flat terrain; no map install or actor.",
+  "model": {
+    "file": "e1-first-cover-cradle.glb",
+    "bytes": 102252,
+    "triangles": 1304,
+    "sha256": "407b038dfb475bcefb8363fa07f87957293470cf2b97b36b469b34b063f1fc05"
+  },
+  "crate": {
+    "file": "haul-crate.glb",
+    "sha256": "d7a5f8fcb2b835d0c0c77c3051ebd950ed449dc2c563e10779fdc5f01cc6bb44",
+    "sharedInstancesPerCover": 5
+  },
+  "crateTranslationsXYZ": [
+    [
+      -1.15,
+      0.161,
+      -0.095
+    ],
+    [
+      0,
+      0.161,
+      0
+    ],
+    [
+      1.15,
+      0.161,
+      0.045
+    ],
+    [
+      -0.88,
+      1.0245,
+      -0.095
+    ],
+    [
+      0.27,
+      1.0245,
+      0
+    ]
+  ],
+  "roadClearanceM": [
+    6.6994,
+    5.6944,
+    6.8748
+  ],
+  "geometry_sha256": "934571822805579fc7b0a5fcf726527c816dea925cfc6cfeaed3a94d6abdc632",
+  "engine": "0.1.44",
+  "stockPlayer": [
+    {
+      "coverX": 14.541375793768733,
+      "localStartX": 0,
+      "hasArt": true,
+      "onRoad": false,
+      "final": [
+        13.57554,
+        0.020564,
+        -17.243226
+      ],
+      "finalLocalZ": 0.976837,
+      "airborne": 0
+    },
+    {
+      "coverX": 14.541375793768733,
+      "localStartX": 0,
+      "hasArt": false,
+      "onRoad": false,
+      "final": [
+        19.662757,
+        0.021051,
+        -16.325121
+      ],
+      "finalLocalZ": -5.179228,
+      "airborne": 0
+    },
+    {
+      "coverX": 14.541375793768733,
+      "localStartX": -2.8,
+      "hasArt": true,
+      "onRoad": false,
+      "final": [
+        20.080243,
+        0.02,
+        -19.09376
+      ],
+      "finalLocalZ": -5.179368,
+      "airborne": 0
+    },
+    {
+      "coverX": 14.541375793768733,
+      "localStartX": 2.8,
+      "hasArt": true,
+      "onRoad": false,
+      "final": [
+        19.245588,
+        0.02,
+        -13.556222
+      ],
+      "finalLocalZ": -5.179439,
+      "airborne": 0
+    },
+    {
+      "coverX": 28.88962516230048,
+      "localStartX": 0,
+      "hasArt": true,
+      "onRoad": false,
+      "final": [
+        29.862346,
+        0.020564,
+        -16.159624
+      ],
+      "finalLocalZ": 0.976833,
+      "airborne": 0
+    },
+    {
+      "coverX": 28.88962516230048,
+      "localStartX": 0,
+      "hasArt": false,
+      "onRoad": false,
+      "final": [
+        23.735448,
+        0.02,
+        -15.563093
+      ],
+      "finalLocalZ": -5.179034,
+      "airborne": 0
+    },
+    {
+      "coverX": 28.88962516230048,
+      "localStartX": -2.8,
+      "hasArt": true,
+      "onRoad": false,
+      "final": [
+        24.008971,
+        0.02,
+        -12.776921
+      ],
+      "finalLocalZ": -5.17926,
+      "airborne": 0
+    },
+    {
+      "coverX": 28.88962516230048,
+      "localStartX": 2.8,
+      "hasArt": true,
+      "onRoad": false,
+      "final": [
+        23.461263,
+        0.02,
+        -18.350044
+      ],
+      "finalLocalZ": -5.17939,
+      "airborne": 0
+    },
+    {
+      "coverX": 42.56928091802135,
+      "localStartX": 0,
+      "hasArt": true,
+      "onRoad": false,
+      "final": [
+        42.583184,
+        0.020564,
+        -15.118869
+      ],
+      "finalLocalZ": 0.976841,
+      "airborne": 0
+    },
+    {
+      "coverX": 42.56928091802135,
+      "localStartX": 0,
+      "hasArt": false,
+      "onRoad": false,
+      "final": [
+        42.498398,
+        0.019999,
+        -21.274289
+      ],
+      "finalLocalZ": -5.179163,
+      "airborne": 0
+    },
+    {
+      "coverX": 42.56928091802135,
+      "localStartX": -2.8,
+      "hasArt": true,
+      "onRoad": false,
+      "final": [
+        39.698744,
+        0.019999,
+        -21.236287
+      ],
+      "finalLocalZ": -5.179399,
+      "airborne": 0
+    },
+    {
+      "coverX": 42.56928091802135,
+      "localStartX": 2.8,
+      "hasArt": true,
+      "onRoad": false,
+      "final": [
+        45.298319,
+        0.019999,
+        -21.312773
+      ],
+      "finalLocalZ": -5.179406,
+      "airborne": 0
+    },
+    {
+      "coverX": 14.541375793768733,
+      "localStartX": 0,
+      "hasArt": true,
+      "onRoad": true,
+      "final": [
+        50.763868,
+        0.020628,
+        -7.000084
+      ],
+      "airborne": 0
+    }
+  ]
+}
