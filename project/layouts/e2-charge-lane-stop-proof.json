@@ -1,0 +1,147 @@
+{
+  "scope": "Optional E2 lane-end fixture in local review staging; no actor, stun, strike or level install.",
+  "hashes": {
+    "e2-charge-lane-warning.glb": "a66841c0328e58988dec7574f4a69adebb091955490cb1f1f55503f82fe43351",
+    "haul-crate.glb": "d7a5f8fcb2b835d0c0c77c3051ebd950ed449dc2c563e10779fdc5f01cc6bb44"
+  },
+  "sha256": "5f2f840da0b8b293b99dbbfd80aa3d6a76d6113eaff45ae535f007fa85d80742",
+  "bytes": 90332,
+  "triangles": 1138,
+  "texture_count": 0,
+  "local_origin_direction": "glTF front edge center; footprint extends -Z",
+  "staged_world_xyz": [
+    0,
+    0,
+    -8.4
+  ],
+  "stop_bounds_blender": [
+    [
+      -1.2375,
+      8.4,
+      0
+    ],
+    [
+      1.2375,
+      9.411547,
+      1.386
+    ]
+  ],
+  "lane_width_m": 1.7,
+  "lane_length_m": 8.4,
+  "blocked_face_rays": 315,
+  "clear_flank_rays": 18,
+  "test_flank_x_m": [
+    -1.85,
+    1.85
+  ],
+  "crates_x": [
+    -3.2,
+    3.2
+  ],
+  "crates_z": [
+    -3.85,
+    -6.25
+  ],
+  "geometry_sha256": "1715c5fa06168d31d64f7394e111e7475fdfb776a193fb248310dafea2780b14",
+  "player_bench": {
+    "scope": "Engine 0.1.44 stock player motor against exported triangle geometry on a flat test slab. No robot, hit or stun.",
+    "runs": [
+      {
+        "startX": -0.65,
+        "withStop": true,
+        "front": [
+          -0.65047,
+          0.02,
+          -7.9999
+        ],
+        "behind": null,
+        "airborne": 0
+      },
+      {
+        "startX": -0.65,
+        "withStop": false,
+        "front": [
+          -0.65,
+          0.01999,
+          -13.73952
+        ],
+        "behind": null,
+        "airborne": 0
+      },
+      {
+        "startX": 0,
+        "withStop": true,
+        "front": [
+          0.00056,
+          0.01999,
+          -8.00515
+        ],
+        "behind": null,
+        "airborne": 0
+      },
+      {
+        "startX": 0,
+        "withStop": false,
+        "front": [
+          0,
+          0.02064,
+          -13.73951
+        ],
+        "behind": null,
+        "airborne": 0
+      },
+      {
+        "startX": 0.65,
+        "withStop": true,
+        "front": [
+          0.65032,
+          0.01999,
+          -7.9999
+        ],
+        "behind": null,
+        "airborne": 0
+      },
+      {
+        "startX": 0.65,
+        "withStop": false,
+        "front": [
+          0.64999,
+          0.01999,
+          -13.73951
+        ],
+        "behind": null,
+        "airborne": 0
+      },
+      {
+        "startX": -1.85,
+        "withStop": true,
+        "front": [
+          -1.85,
+          0.01999,
+          -13.73951
+        ],
+        "behind": [
+          -0.1503,
+          0.01999,
+          -13.97481
+        ],
+        "airborne": 0
+      },
+      {
+        "startX": 1.85,
+        "withStop": true,
+        "front": [
+          1.84999,
+          0.01999,
+          -13.73951
+        ],
+        "behind": [
+          0.15028,
+          0.01999,
+          -13.9748
+        ],
+        "airborne": 0
+      }
+    ]
+  }
+}
