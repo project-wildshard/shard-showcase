@@ -1,0 +1,343 @@
+{
+  "scope": "Detached wall presentation and placement fit only. No installed slots, perks, unlocks, or game changes.",
+  "mount_count": 12,
+  "existing_earned_meshes_fitted": 9,
+  "slots_left_unassigned": 3,
+  "camera_blender_m": [
+    -42.0,
+    -9.15,
+    1.74
+  ],
+  "backing_blender_m": [
+    -42.0,
+    -18.0,
+    0.099
+  ],
+  "sha256_by_asset_stem": {
+    "west-plaza-empty-mounts": "3e7e28863742ebcdd2f494d97d98574d263d876dac01f03e21a2b0fd5b4a54c7",
+    "wsc-module-017-trophy-wall-backing": "bfda7b2120a07b78d154f95698759032c58b604c28749b2c72d90e435335a7cb",
+    "wsc-prop-052-big-pallet-trophy": "ea4bd4b80135019f0b0bdd03aab3f21f5870cd3e60515e133d55034e598114fc",
+    "cache-trophy-marks": "32a35c5324974601cc8f6639e43f547f515d09bc993c8b25154f2a853544551e",
+    "e8d-night-elite-reliefs": "aa67b5fe77d99e3f70e56f25f4805a88eee49e04f75c6cf7880bf0238dd6a9a5",
+    "e8d-wardens-plate-relief": "5912935d78baff24bd3d966a5b703bc16a2337b0b57e3ecde95ee716d5dfbfee",
+    "e8d-titans-core-relief": "16905f9282e3f16891b58b94ffa90e6b876433a9c92e0e1c1c5bfe1921799e09",
+    "e11d-foreman-whistle": "8bce460baaf4fd596c70c4d34c63b3b7a63f520e319fdd0a7b6a49e6eb923d79"
+  },
+  "frames": [
+    {
+      "frame": "W14 trophy mount 01",
+      "anchor_blender_m": [
+        -45.125,
+        -17.841,
+        1.58
+      ],
+      "support_rays": 9,
+      "backing_contact_m": 0.001999,
+      "display": "big-pallet",
+      "source_asset": "wsc-prop-052-big-pallet-trophy.glb",
+      "source_node": "WSC-PROP-052 | trophy",
+      "display_transform": {
+        "blender_translation_m": [
+          -45.125,
+          -17.73525,
+          1.40825
+        ],
+        "gltf_translation_m": [
+          -45.125,
+          1.40825,
+          17.73525
+        ],
+        "scale": 0.5
+      },
+      "frame_clearance_m": 0.058,
+      "forward_gap_m": 0.007999,
+      "projection_m": 0.425249,
+      "locked": "preview envelope",
+      "visible_earned_samples": 9
+    },
+    {
+      "frame": "W14 trophy mount 02",
+      "anchor_blender_m": [
+        -43.875,
+        -17.841,
+        1.58
+      ],
+      "support_rays": 9,
+      "backing_contact_m": 0.001999,
+      "display": null,
+      "reserve": "unspecified elite art"
+    },
+    {
+      "frame": "W14 trophy mount 03",
+      "anchor_blender_m": [
+        -42.625,
+        -17.841,
+        1.58
+      ],
+      "support_rays": 9,
+      "backing_contact_m": 0.001999,
+      "display": null,
+      "reserve": "unspecified elite art"
+    },
+    {
+      "frame": "W14 trophy mount 04",
+      "anchor_blender_m": [
+        -41.375,
+        -17.841,
+        1.58
+      ],
+      "support_rays": 9,
+      "backing_contact_m": 0.001999,
+      "display": "sir-nibbles",
+      "source_asset": "e8d-night-elite-reliefs.glb",
+      "source_node": "sir-nibbles-earned",
+      "display_transform": {
+        "blender_translation_m": [
+          -41.375,
+          -17.801,
+          1.53025
+        ],
+        "gltf_translation_m": [
+          -41.375,
+          1.53025,
+          17.801
+        ],
+        "scale": 1
+      },
+      "frame_clearance_m": 0.057,
+      "forward_gap_m": 0.007999,
+      "projection_m": 0.059999,
+      "locked": "authored relief cut",
+      "visible_earned_samples": 9
+    },
+    {
+      "frame": "W14 trophy mount 05",
+      "anchor_blender_m": [
+        -40.125,
+        -17.841,
+        1.58
+      ],
+      "support_rays": 9,
+      "backing_contact_m": 0.001999,
+      "display": "hot-mess",
+      "source_asset": "e8d-night-elite-reliefs.glb",
+      "source_node": "hot-mess-earned",
+      "display_transform": {
+        "blender_translation_m": [
+          -40.126,
+          -17.801,
+          1.5935
+        ],
+        "gltf_translation_m": [
+          -40.126,
+          1.5935,
+          17.801
+        ],
+        "scale": 1
+      },
+      "frame_clearance_m": 0.063001,
+      "forward_gap_m": 0.007999,
+      "projection_m": 0.07,
+      "locked": "authored relief cut",
+      "visible_earned_samples": 9
+    },
+    {
+      "frame": "W14 trophy mount 06",
+      "anchor_blender_m": [
+        -38.875,
+        -17.841,
+        1.58
+      ],
+      "support_rays": 9,
+      "backing_contact_m": 0.001999,
+      "display": "riveting-rita",
+      "source_asset": "e8d-night-elite-reliefs.glb",
+      "source_node": "riveting-rita-earned",
+      "display_transform": {
+        "blender_translation_m": [
+          -38.875,
+          -17.801,
+          1.572
+        ],
+        "gltf_translation_m": [
+          -38.875,
+          1.572,
+          17.801
+        ],
+        "scale": 1
+      },
+      "frame_clearance_m": 0.055001,
+      "forward_gap_m": 0.007999,
+      "projection_m": 0.091999,
+      "locked": "authored relief cut",
+      "visible_earned_samples": 9
+    },
+    {
+      "frame": "W14 trophy mount 07",
+      "anchor_blender_m": [
+        -45.125,
+        -17.841,
+        2.26
+      ],
+      "support_rays": 9,
+      "backing_contact_m": 0.001999,
+      "display": "warden",
+      "source_asset": "e8d-wardens-plate-relief.glb",
+      "source_node": "Warden's Plate · broad latch relief",
+      "display_transform": {
+        "blender_translation_m": [
+          -45.125,
+          -17.801,
+          2.26
+        ],
+        "gltf_translation_m": [
+          -45.125,
+          2.26,
+          17.801
+        ],
+        "scale": 1
+      },
+      "frame_clearance_m": 0.055001,
+      "forward_gap_m": 0.007999,
+      "projection_m": 0.111,
+      "locked": "preview envelope",
+      "visible_earned_samples": 9
+    },
+    {
+      "frame": "W14 trophy mount 08",
+      "anchor_blender_m": [
+        -43.875,
+        -17.841,
+        2.26
+      ],
+      "support_rays": 9,
+      "backing_contact_m": 0.003998,
+      "display": "foreman-proposed-whistle",
+      "source_asset": "e11d-foreman-whistle.glb",
+      "source_node": "Foremans_Whistle",
+      "display_transform": {
+        "blender_translation_m": [
+          -43.858913,
+          -17.751775,
+          2.20775
+        ],
+        "gltf_translation_m": [
+          -43.858913,
+          2.20775,
+          17.751775
+        ],
+        "scale": 2.75
+      },
+      "frame_clearance_m": 0.071588,
+      "forward_gap_m": 0.007999,
+      "projection_m": 0.098475,
+      "locked": "preview envelope",
+      "visible_earned_samples": 9
+    },
+    {
+      "frame": "W14 trophy mount 09",
+      "anchor_blender_m": [
+        -42.625,
+        -17.841,
+        2.26
+      ],
+      "support_rays": 9,
+      "backing_contact_m": 0.001999,
+      "display": "titan",
+      "source_asset": "e8d-titans-core-relief.glb",
+      "source_node": "Titan's Core · hex cargo relief",
+      "display_transform": {
+        "blender_translation_m": [
+          -42.625,
+          -17.801,
+          2.26
+        ],
+        "gltf_translation_m": [
+          -42.625,
+          2.26,
+          17.801
+        ],
+        "scale": 1
+      },
+      "frame_clearance_m": 0.058,
+      "forward_gap_m": 0.007999,
+      "projection_m": 0.123999,
+      "locked": "preview envelope",
+      "visible_earned_samples": 9
+    },
+    {
+      "frame": "W14 trophy mount 10",
+      "anchor_blender_m": [
+        -41.375,
+        -17.841,
+        2.26
+      ],
+      "support_rays": 9,
+      "backing_contact_m": 0.001999,
+      "display": "cache-compass-art",
+      "source_asset": "cache-trophy-marks.glb",
+      "source_node": "Cache I · Compass medallion",
+      "display_transform": {
+        "blender_translation_m": [
+          -41.375,
+          -17.801,
+          2.26
+        ],
+        "gltf_translation_m": [
+          -41.375,
+          2.26,
+          17.801
+        ],
+        "scale": 1
+      },
+      "frame_clearance_m": 0.055,
+      "forward_gap_m": 0.007999,
+      "projection_m": 0.099998,
+      "locked": "preview envelope",
+      "visible_earned_samples": 9
+    },
+    {
+      "frame": "W14 trophy mount 11",
+      "anchor_blender_m": [
+        -40.125,
+        -17.841,
+        2.26
+      ],
+      "support_rays": 9,
+      "backing_contact_m": 0.001999,
+      "display": "cache-clasp-art",
+      "source_asset": "cache-trophy-marks.glb",
+      "source_node": "Cache II · Relic plaque",
+      "display_transform": {
+        "blender_translation_m": [
+          -40.125,
+          -17.801,
+          2.26
+        ],
+        "gltf_translation_m": [
+          -40.125,
+          2.26,
+          17.801
+        ],
+        "scale": 1
+      },
+      "frame_clearance_m": 0.0555,
+      "forward_gap_m": 0.007999,
+      "projection_m": 0.107,
+      "locked": "preview envelope",
+      "visible_earned_samples": 9
+    },
+    {
+      "frame": "W14 trophy mount 12",
+      "anchor_blender_m": [
+        -38.875,
+        -17.841,
+        2.26
+      ],
+      "support_rays": 9,
+      "backing_contact_m": 0.001999,
+      "display": null,
+      "reserve": "spare"
+    }
+  ]
+}
