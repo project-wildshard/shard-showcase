@@ -59,7 +59,7 @@ def box(name, p, dims, mat, bevel=0):
 # Feet straddle the original raised countercloth, never replace it.
 body_start = len(parts)
 box('Shallow oak carrier', (0, 0, .023), (1.44, .451, .046), oak, .009)
-box('Felt bed', (0, .018, .0475), (1.320, .317, .007), felt, .003)
+box('Felt bed', (0, -.018, .0475), (1.320, .317, .007), felt, .003)
 for y in (-.191, .192):
     box('Inset brass fillet', (0, y, .048), (1.365, .004, .004), brass)
 for sx in (-1, 1):
@@ -77,7 +77,8 @@ caption.resolution_u = 3
 caption.materials.append(enamel)
 o = bpy.data.objects.new(caption.name, caption)
 scene.collection.objects.link(o)
-o.location = (0, -.165, .0482)
+o.location = (0, .165, .0482)
+o.rotation_euler.z = 3.141592653589793
 bpy.ops.object.select_all(action='DESELECT')
 o.select_set(True)
 bpy.context.view_layer.objects.active = o
@@ -193,7 +194,7 @@ orientation = Matrix.Rotation(.045,4,'Z') @ Matrix.Rotation(-1.5707963267948966,
 o.matrix_world = orientation @ o.matrix_world
 bpy.context.view_layer.update()
 a,b=ext(vertices(sword))
-target=Vector((x,y+.020,lh[2]+.0004))
+target=Vector((x,y-.020,lh[2]+.0004))
 o.location += target - Vector(((a[0]+b[0])/2,(a[1]+b[1])/2,a[2]))
 bpy.context.view_layer.update()
 sl,sh=ext(vertices(sword))
@@ -239,17 +240,17 @@ c=bpy.data.objects.new(cam.name,cam)
 scene.collection.objects.link(c)
 scene.camera=c
 scene.render.engine='CYCLES'
-scene.cycles.samples=32
+scene.cycles.samples=96
 scene.cycles.use_adaptive_sampling=True
-scene.cycles.adaptive_threshold=.07
+scene.cycles.adaptive_threshold=.045
 scene.cycles.use_denoising=False
 scene.view_settings.view_transform='AgX'
 scene.render.resolution_percentage=100
 scene.render.image_settings.file_format='JPEG'
 scene.render.image_settings.quality=93
 for name,p,t,lens,w,h in [
-    ('detail',(-66.30,-3.48,2.48),(-66.16,-4.71,1.10),47,1200,760),
-    ('street',(-68.95,.07,1.75),(-65.5,-4.65,1.71),42,840,1120),
+    ('detail',(-66.26,-3.35,2.59),(-66.16,-4.69,1.11),39,1200,760),
+    ('street',(-68.1,.45,1.81),(-65.24,-4.56,1.80),35,840,1120),
 ]:
     c.location=p
     aim(c,t)

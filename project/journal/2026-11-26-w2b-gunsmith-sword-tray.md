@@ -10,7 +10,7 @@ The four .028 m feet straddle the old .022 m raised countercloth. The reimported
 tray clears it by 6.5 mm at sampled points and sits at least 199 mm inside
 the counter bounds. All 36 foot-pad samples hit the same tabletop height;
 225 samples cover the full tray footprint. The original sword sits 0.4 mm
-above the felt with at least 48.8 mm to its rectangle's edge. The 75,680-byte
+above the felt with at least 48.8 mm to its rectangle's edge. The 75,688-byte
 textureless GLB contains only the removable tray (1,455 triangles; four
 material primitives). Both keepers, fascia, counter and sword donor are
 unchanged.
