@@ -1,0 +1,66 @@
+{
+  "donorSHA256": "b91f2dd3ccfebab574f5dfb682db6bfc04ea4bd1a2d56e53482e2a219bc52153",
+  "pitchM": 2.375,
+  "heightM": 3,
+  "testSpanM": 7.125,
+  "rays": {
+    "count": 2790,
+    "originalHits": 1986,
+    "assembledHits": 2790,
+    "clearControls": 5
+  },
+  "heightBreakdown": [
+    {
+      "heightM": 0.09,
+      "originalHits": 294,
+      "assembledHits": 310
+    },
+    {
+      "heightM": 0.55,
+      "originalHits": 282,
+      "assembledHits": 310
+    },
+    {
+      "heightM": 0.98,
+      "originalHits": 282,
+      "assembledHits": 310
+    },
+    {
+      "heightM": 1.4,
+      "originalHits": 282,
+      "assembledHits": 310
+    },
+    {
+      "heightM": 1.7,
+      "originalHits": 282,
+      "assembledHits": 310
+    },
+    {
+      "heightM": 2.25,
+      "originalHits": 282,
+      "assembledHits": 310
+    },
+    {
+      "heightM": 2.58,
+      "originalHits": 282,
+      "assembledHits": 310
+    },
+    {
+      "heightM": 2.78,
+      "originalHits": 0,
+      "assembledHits": 310
+    },
+    {
+      "heightM": 2.95,
+      "originalHits": 0,
+      "assembledHits": 310
+    }
+  ],
+  "export": {
+    "bytes": 146616,
+    "triangles": 1896,
+    "primitives": 3,
+    "sha256": "e18218c32f0c5c17cc5cc7a711a166fa5959e0993ad07d0861b605e91b4f5f51"
+  },
+  "scope": "local art fixture, not placed; no collision, perception, or gameplay changes"
+}
