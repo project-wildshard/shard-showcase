@@ -303,3 +303,9 @@ for (const name of ["walk","treads"]) {
   assert.ok(markup.includes(`src="${path}"`));
   assert.ok(readFileSync(new URL(path,dist)).byteLength > 1000);
 }
+
+assert.ok(ids.has("nov26-e6-screen-far"));
+for(const name of ["nov26-e6-screen-near.webp","nov26-e6-screen-far.webp","e6-sight-screen-far.glb"]){
+  assert.ok(markup.includes(`media/${name}`));
+  assert.ok(readFileSync(new URL(`media/${name}`,dist)).byteLength>1000);
+}
