@@ -364,3 +364,13 @@ for (const state of ["locked","earned"]) {
   assert.ok(bytes.byteLength>1000);
   assert.equal(bytes.subarray(8,12).toString(),"WEBP");
 }
+
+assert.ok(ids.has("nov26-w6a-station5-ride"));
+assert.match(markup, /id="nov26-w6a-spinner-lift-handoff"><p><a href="#nov26-w6a-station5-ride"/);
+for (const state of ["low-beam","raised-beam"]) {
+  const path=`media/nov26-station5-${state}.webp`;
+  assert.ok(markup.includes(path));
+  const bytes=readFileSync(new URL(path,dist));
+  assert.ok(bytes.byteLength>1000);
+  assert.equal(bytes.subarray(8,12).toString(),"WEBP");
+}
