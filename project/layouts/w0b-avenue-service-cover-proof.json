@@ -1,0 +1,30 @@
+{
+  "scope": "Optional decorative inserts just outside the exact WSC-MODULE-004 paving at identity. No drainage simulation or collision change.",
+  "donor_sha256": "049c6b7e91fa8d05a84178d3280eee72c4221728e535b806b5b4434509936739",
+  "asset": "w0b-avenue-service-cover.glb",
+  "sha256": "af57177460ed5a950a7d4d8623168d6a648a82075a9db2365c5a1a4e243a79a3",
+  "bytes": 72816,
+  "triangles": 1280,
+  "primitives": 5,
+  "placements": [
+    {
+      "x": 2.338,
+      "y_along": -0.74,
+      "yaw_rad": 0,
+      "min_edge_clearance_m": 0.004000091552734286,
+      "maximum_top_m": 0.04100000113248825,
+      "below_original_curb_m": 0.004499998867511748
+    },
+    {
+      "x": -2.338,
+      "y_along": 1.36,
+      "yaw_rad": 3.141592653589793,
+      "min_edge_clearance_m": 0.004000091552734286,
+      "maximum_top_m": 0.04100000113248825,
+      "below_original_curb_m": 0.004499998867511748
+    }
+  ],
+  "open_slot_rays_to_recess": 148,
+  "rays_to_bars": 153,
+  "total_slot_rays": 301
+}
