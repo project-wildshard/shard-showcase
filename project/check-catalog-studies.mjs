@@ -321,3 +321,15 @@ for (const state of ["result","reset","replay"]) {
   assert.ok(markup.includes(`src="${path}"`));
   assert.ok(readFileSync(new URL(path,dist)).byteLength>1000);
 }
+
+assert.ok(ids.has("nov26-e12h-dormant-stack"));
+const titanCutsceneParts=data.assets.find(a=>a.id==="WSC-KIT-010");
+assert.equal(titanCutsceneParts.related_study.href,"#nov26-e12h-dormant-stack");
+assert.equal(titanCutsceneParts.model_preview,undefined);
+location.hash="#asset-WSC-KIT-010";handlers.get("hashchange")();
+assert.ok(get("asset-WSC-KIT-010").children.flatMap(x=>x.children).some(c=>c.href===titanCutsceneParts.related_study.href));
+for (const name of ["nov26-titan-haul-stack-opening.webp","nov26-titan-haul-stack-footing.webp","e12h-dormant-haul-stack.glb"]) {
+  const path=`media/${name}`;
+  assert.ok(markup.includes(path));
+  assert.ok(readFileSync(new URL(path,dist)).byteLength>1000);
+}
