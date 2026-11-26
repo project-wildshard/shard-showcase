@@ -1,0 +1,701 @@
+{
+  "scope": "Stock walking input around original mounting block at its archive pad. No horse, loan or mounting.",
+  "engine": "0.1.44",
+  "assetSha": "efc0615bfb51f527545bee0d5b36fff8856559928ddaf87a963955333867bf7a",
+  "origin": [
+    -36,
+    0,
+    -96
+  ],
+  "geometrySha256": "df7f7398d81827de09efc7c6c2f6a5b97b9c64cf36ac376e847c53fa374b8df5",
+  "cases": [
+    {
+      "mode": "exact",
+      "offset": -0.25,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 12,
+      "maxY": 0.564774312132504,
+      "end": {
+        "feet": [
+          -36.25001256103013,
+          0.5599998188316822,
+          -96.36161890711082
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "exact",
+      "offset": -0.25,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 14,
+      "maxY": 0.5623516664253547,
+      "end": {
+        "feet": [
+          -36.25000957526014,
+          0.01997322462731993,
+          -93.79208173867066
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "exact",
+      "offset": -0.125,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 12,
+      "maxY": 0.565188867111716,
+      "end": {
+        "feet": [
+          -36.12500421023786,
+          0.5599942159950733,
+          -96.40903025449065
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "exact",
+      "offset": -0.125,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 14,
+      "maxY": 0.5629928283505141,
+      "end": {
+        "feet": [
+          -36.12500094689928,
+          0.019863022216597248,
+          -93.79207625366841
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "exact",
+      "offset": 0,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 11,
+      "maxY": 0.5644989670717024,
+      "end": {
+        "feet": [
+          -36.000000888238425,
+          0.5599999976456165,
+          -96.36904763028303
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "exact",
+      "offset": 0,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 14,
+      "maxY": 0.5642351018376648,
+      "end": {
+        "feet": [
+          -36.00000333670619,
+          0.01994619752978971,
+          -93.79216904752057
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "exact",
+      "offset": 0.125,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 12,
+      "maxY": 0.5644962955219655,
+      "end": {
+        "feet": [
+          -35.875000783785815,
+          0.5599999380409717,
+          -96.37014564297925
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "exact",
+      "offset": 0.125,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 14,
+      "maxY": 0.5634199878312647,
+      "end": {
+        "feet": [
+          -35.87500145134628,
+          0.019870949343314515,
+          -93.79213777577552
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "exact",
+      "offset": 0.25,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 11,
+      "maxY": 0.564902882097954,
+      "end": {
+        "feet": [
+          -35.74999424840825,
+          0.5599999976456165,
+          -96.36834344835856
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "exact",
+      "offset": 0.25,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 14,
+      "maxY": 0.5628786835931241,
+      "end": {
+        "feet": [
+          -35.75000307834309,
+          0.01992045600666109,
+          -93.79210960949165
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "treads",
+      "offset": -0.25,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 12,
+      "maxY": 0.564052507334855,
+      "end": {
+        "feet": [
+          -36.249997558495366,
+          0.5599974942505359,
+          -96.36913126322906
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "treads",
+      "offset": -0.25,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 15,
+      "maxY": 0.5599999976456165,
+      "end": {
+        "feet": [
+          -36.24999623685322,
+          0.019937650258649964,
+          -93.79180425262693
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "treads",
+      "offset": -0.125,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 12,
+      "maxY": 0.5636661835732193,
+      "end": {
+        "feet": [
+          -36.12501123228207,
+          0.559999729424715,
+          -96.37008078831117
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "treads",
+      "offset": -0.125,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 15,
+      "maxY": 0.5599976730644702,
+      "end": {
+        "feet": [
+          -36.125000379756486,
+          0.01999989363132154,
+          -93.79180044802321
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "treads",
+      "offset": 0,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 12,
+      "maxY": 0.5634237467774064,
+      "end": {
+        "feet": [
+          -35.99998876903139,
+          0.5599999380409717,
+          -96.36939741455296
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "treads",
+      "offset": 0,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 15,
+      "maxY": 0.5599999976456165,
+      "end": {
+        "feet": [
+          -36.00000025779146,
+          0.019866885284428204,
+          -93.79177926673849
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "treads",
+      "offset": 0.125,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 12,
+      "maxY": 0.5633823312772421,
+      "end": {
+        "feet": [
+          -35.87500010743903,
+          0.5599999082386493,
+          -96.3655756589381
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "treads",
+      "offset": 0.125,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 15,
+      "maxY": 0.5599999976456165,
+      "end": {
+        "feet": [
+          -35.87500072939474,
+          0.01995043004164404,
+          -93.79179938724546
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "treads",
+      "offset": 0.25,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 12,
+      "maxY": 0.5637979162919471,
+      "end": {
+        "feet": [
+          -35.74999454139737,
+          0.5599996400177478,
+          -96.37155421087422
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "treads",
+      "offset": 0.25,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 15,
+      "maxY": 0.5600000274479389,
+      "end": {
+        "feet": [
+          -35.74998905915363,
+          0.019875214393249963,
+          -93.79179154988633
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "nothing",
+      "offset": -0.25,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 0,
+      "maxY": 0.01999996485887162,
+      "end": {
+        "feet": [
+          -36.25,
+          0.019999935735483476,
+          -96.36459965800168
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "nothing",
+      "offset": -0.25,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 0,
+      "maxY": 0.019999964848918694,
+      "end": {
+        "feet": [
+          -36.25000539850002,
+          0.019859240700782543,
+          -93.79207519532565
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "nothing",
+      "offset": -0.125,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 0,
+      "maxY": 0.019999957889344444,
+      "end": {
+        "feet": [
+          -36.12499979889714,
+          0.019999944077369325,
+          -96.36460357029559
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "nothing",
+      "offset": -0.125,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 0,
+      "maxY": 0.019999945361571625,
+      "end": {
+        "feet": [
+          -36.125,
+          0.0198630062271275,
+          -93.79206703662639
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "nothing",
+      "offset": 0,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 0,
+      "maxY": 0.019999953789344105,
+      "end": {
+        "feet": [
+          -35.99999793799876,
+          0.019997950614137283,
+          -96.36459564754784
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "nothing",
+      "offset": 0,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 0,
+      "maxY": 0.019999963116132335,
+      "end": {
+        "feet": [
+          -35.999998019908716,
+          0.0198668736095991,
+          -93.79206619776882
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "nothing",
+      "offset": 0.125,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 0,
+      "maxY": 0.019999954728408043,
+      "end": {
+        "feet": [
+          -35.875005800029854,
+          0.019999917923936128,
+          -96.36460743544222
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "nothing",
+      "offset": 0.125,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 0,
+      "maxY": 0.01999995128653148,
+      "end": {
+        "feet": [
+          -35.87500017973093,
+          0.019999938628924963,
+          -93.79206745599832
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "nothing",
+      "offset": 0.25,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 0,
+      "maxY": 0.019999957771239807,
+      "end": {
+        "feet": [
+          -35.74999830584088,
+          0.019992780569678736,
+          -96.36459914039492
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    },
+    {
+      "mode": "nothing",
+      "offset": 0.25,
+      "reverse": true,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 0,
+      "maxY": 0.019999956755724135,
+      "end": {
+        "feet": [
+          -35.74999994810152,
+          0.01987520904123069,
+          -93.79206726018883
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    }
+  ],
+  "traces": [
+    {
+      "mode": "exact",
+      "offset": 0,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 11,
+      "maxY": 0.5644989670717024,
+      "end": {
+        "feet": [
+          -36.000000888238425,
+          0.5599999976456165,
+          -96.36904763028303
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "treads",
+      "offset": 0,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 12,
+      "maxY": 0.5634237467774064,
+      "end": {
+        "feet": [
+          -35.99998876903139,
+          0.5599999380409717,
+          -96.36939741455296
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "nothing",
+      "offset": 0,
+      "reverse": false,
+      "speed": 2.2,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 0,
+      "maxY": 0.019999953789344105,
+      "end": {
+        "feet": [
+          -35.99999793799876,
+          0.019997950614137283,
+          -96.36459564754784
+        ],
+        "grounded": true,
+        "support": "datum"
+      }
+    }
+  ],
+  "fast": [
+    {
+      "mode": "exact",
+      "offset": -0.25,
+      "reverse": false,
+      "speed": 4.3,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 12,
+      "maxY": 0.564774312132504,
+      "end": {
+        "feet": [
+          -36.25001272064658,
+          0.5599998784363269,
+          -96.35501255454437
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "exact",
+      "offset": 0,
+      "reverse": false,
+      "speed": 4.3,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 11,
+      "maxY": 0.5644989670717024,
+      "end": {
+        "feet": [
+          -36.0000008964988,
+          0.5599711489975452,
+          -96.35501293149298
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    },
+    {
+      "mode": "exact",
+      "offset": 0.25,
+      "reverse": false,
+      "speed": 4.3,
+      "air": 0,
+      "longestStall": 0,
+      "blockTicks": 11,
+      "maxY": 0.564902882097954,
+      "end": {
+        "feet": [
+          -35.749994296652424,
+          0.5599999976456165,
+          -96.35497838406204
+        ],
+        "grounded": true,
+        "support": "block"
+      }
+    }
+  ]
+}
