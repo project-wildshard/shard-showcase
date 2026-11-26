@@ -1,0 +1,627 @@
+{
+  "scope": "Three consecutive native server hops. Exact W08 roof, guard and shell; optional rim hook. No course install, timer, or phone playtest.",
+  "engine": "0.1.44",
+  "format": "0.43.0",
+  "frequencyHz": 60,
+  "meshSha": "60098a20322fb4dbc908ce9e22c53a5966e7f400a0275b5f829eb25af0deb2a6",
+  "tankMeshSha": "682a9dfdc85cb5ec2f95149da9c76b2d7a935a5af72e9f603d29f3c079d5fec5",
+  "tankTriangles": 18070,
+  "firstDressingSha": "18c875d3ed3ab629202d52dd07f72363176560173f39a8b1371a3d4f479f2ac6",
+  "secondDressingSha": "76e4a05b99fd4ef51b7f7e604a6bf0dbf08cb3c59a16850b8fe3cffe5f7d84b7",
+  "saddleSha": "6be1f97256325705847b65b1ed3f28d5187c60699fa4a446ca63a9965e16be65",
+  "hooks": [
+    [
+      -150,
+      12,
+      -44
+    ],
+    [
+      -170,
+      16,
+      -68
+    ],
+    [
+      -193.2,
+      21.35,
+      -91.2
+    ]
+  ],
+  "centre": [
+    {
+      "start": [
+        -142.00000707501306,
+        0.020086631474552252,
+        -22.000001252339857
+      ],
+      "reach": 25.567097030388044,
+      "visible": true,
+      "side": 2,
+      "locked": true,
+      "landing": [
+        -150.8201827520054,
+        4.52000057220459,
+        -46.25550443433678
+      ],
+      "approach": [
+        -150.8201826497927,
+        6.1200005722045905,
+        -46.255504471504985
+      ],
+      "settled": true,
+      "phases": [
+        "fire",
+        "bite",
+        "zip",
+        "vault",
+        "settle",
+        "idle"
+      ],
+      "ticks": 141,
+      "end": [
+        -150.80991630648504,
+        4.420092249762092,
+        -46.12130221149803
+      ],
+      "settleTicks": 152,
+      "bodyMargin": 0.241302211498036
+    },
+    {
+      "start": [
+        -150.80991630648504,
+        4.420092249762092,
+        -46.12130221149803
+      ],
+      "reach": 30.733520889054034,
+      "visible": true,
+      "side": 2,
+      "locked": true,
+      "landing": [
+        -171.58256889993328,
+        8.319999809265136,
+        -69.80429367813666
+      ],
+      "approach": [
+        -171.58256889960833,
+        9.919999809265136,
+        -69.80429367842169
+      ],
+      "settled": true,
+      "phases": [
+        "fire",
+        "bite",
+        "zip",
+        "vault",
+        "settle",
+        "idle"
+      ],
+      "ticks": 156,
+      "end": [
+        -171.484583915518,
+        8.22009291016002,
+        -69.57717786621954
+      ],
+      "settleTicks": 167,
+      "bodyMargin": 0.29717786621954023
+    },
+    {
+      "start": [
+        -171.484583915518,
+        8.22009291016002,
+        -69.57717786621954
+      ],
+      "reach": 32.70701008703883,
+      "visible": true,
+      "side": 2,
+      "locked": true,
+      "landing": [
+        -195.467570966157,
+        18.120000095367434,
+        -93.45790210448587
+      ],
+      "approach": [
+        -195.46757096567433,
+        19.720000095367435,
+        -93.45790210497061
+      ],
+      "settled": true,
+      "phases": [
+        "fire",
+        "bite",
+        "zip",
+        "vault",
+        "settle",
+        "idle"
+      ],
+      "ticks": 159,
+      "end": [
+        -195.3477745564456,
+        18.02009999955044,
+        -93.33861609261507
+      ],
+      "settleTicks": 170,
+      "bodyMargin": 0.5404343046396488
+    }
+  ],
+  "cases": [
+    {
+      "offset": [
+        -1,
+        -1
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.50922,
+      "cornerMargin": 0.70945
+    },
+    {
+      "offset": [
+        -1,
+        -0.5
+      ],
+      "landed": 3,
+      "thirdTicks": 159,
+      "thirdReach": 32.70182,
+      "cornerMargin": 0.54541
+    },
+    {
+      "offset": [
+        -1,
+        0
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.52621,
+      "cornerMargin": 0.70946
+    },
+    {
+      "offset": [
+        -1,
+        0.5
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.49176,
+      "cornerMargin": 0.70945
+    },
+    {
+      "offset": [
+        -1,
+        1
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.49101,
+      "cornerMargin": 0.70946
+    },
+    {
+      "offset": [
+        -0.5,
+        -1
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.49218,
+      "cornerMargin": 0.70945
+    },
+    {
+      "offset": [
+        -0.5,
+        -0.5
+      ],
+      "landed": 3,
+      "thirdTicks": 159,
+      "thirdReach": 32.64232,
+      "cornerMargin": 0.60234
+    },
+    {
+      "offset": [
+        -0.5,
+        0
+      ],
+      "landed": 3,
+      "thirdTicks": 159,
+      "thirdReach": 32.68387,
+      "cornerMargin": 0.56258
+    },
+    {
+      "offset": [
+        -0.5,
+        0.5
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.51686,
+      "cornerMargin": 0.70945
+    },
+    {
+      "offset": [
+        -0.5,
+        1
+      ],
+      "landed": 3,
+      "thirdTicks": 159,
+      "thirdReach": 32.65969,
+      "cornerMargin": 0.58573
+    },
+    {
+      "offset": [
+        0,
+        -1
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.49257,
+      "cornerMargin": 0.70944
+    },
+    {
+      "offset": [
+        0,
+        -0.5
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.56882,
+      "cornerMargin": 0.67266
+    },
+    {
+      "offset": [
+        0,
+        0
+      ],
+      "landed": 3,
+      "thirdTicks": 159,
+      "thirdReach": 32.70701,
+      "cornerMargin": 0.54043
+    },
+    {
+      "offset": [
+        0,
+        0.5
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.49152,
+      "cornerMargin": 0.70945
+    },
+    {
+      "offset": [
+        0,
+        1
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.50767,
+      "cornerMargin": 0.70946
+    },
+    {
+      "offset": [
+        0.5,
+        -1
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.56377,
+      "cornerMargin": 0.67749
+    },
+    {
+      "offset": [
+        0.5,
+        -0.5
+      ],
+      "landed": 3,
+      "thirdTicks": 159,
+      "thirdReach": 32.64611,
+      "cornerMargin": 0.59872
+    },
+    {
+      "offset": [
+        0.5,
+        0
+      ],
+      "landed": 3,
+      "thirdTicks": 159,
+      "thirdReach": 32.6906,
+      "cornerMargin": 0.55614
+    },
+    {
+      "offset": [
+        0.5,
+        0.5
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.49175,
+      "cornerMargin": 0.70945
+    },
+    {
+      "offset": [
+        0.5,
+        1
+      ],
+      "landed": 3,
+      "thirdTicks": 159,
+      "thirdReach": 32.61255,
+      "cornerMargin": 0.63083
+    },
+    {
+      "offset": [
+        1,
+        -1
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.54558,
+      "cornerMargin": 0.69488
+    },
+    {
+      "offset": [
+        1,
+        -0.5
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.49285,
+      "cornerMargin": 0.70944
+    },
+    {
+      "offset": [
+        1,
+        0
+      ],
+      "landed": 3,
+      "thirdTicks": 160,
+      "thirdReach": 32.56416,
+      "cornerMargin": 0.67711
+    },
+    {
+      "offset": [
+        1,
+        0.5
+      ],
+      "landed": 3,
+      "thirdTicks": 159,
+      "thirdReach": 32.67524,
+      "cornerMargin": 0.57085
+    },
+    {
+      "offset": [
+        1,
+        1
+      ],
+      "landed": 3,
+      "thirdTicks": 159,
+      "thirdReach": 32.6776,
+      "cornerMargin": 0.56858
+    }
+  ],
+  "centreControl": [
+    {
+      "start": [
+        -142.00000707501306,
+        0.020086631474552252,
+        -22.000001252339857
+      ],
+      "reach": 25.567097030388044,
+      "visible": true,
+      "side": 2,
+      "locked": true,
+      "landing": [
+        -150.8201827520054,
+        4.52000057220459,
+        -46.25550443433678
+      ],
+      "approach": [
+        -150.8201826497927,
+        6.1200005722045905,
+        -46.255504471504985
+      ],
+      "settled": true,
+      "phases": [
+        "fire",
+        "bite",
+        "zip",
+        "vault",
+        "settle",
+        "idle"
+      ],
+      "ticks": 141,
+      "end": [
+        -150.80991630648504,
+        4.420092249762092,
+        -46.12130221149803
+      ],
+      "settleTicks": 152,
+      "bodyMargin": 0.241302211498036
+    },
+    {
+      "start": [
+        -150.80991630648504,
+        4.420092249762092,
+        -46.12130221149803
+      ],
+      "reach": 30.733520889054034,
+      "visible": true,
+      "side": 2,
+      "locked": true,
+      "landing": [
+        -171.58256889993328,
+        8.319999809265136,
+        -69.80429367813666
+      ],
+      "approach": [
+        -171.58256889960833,
+        9.919999809265136,
+        -69.80429367842169
+      ],
+      "settled": true,
+      "phases": [
+        "fire",
+        "bite",
+        "zip",
+        "vault",
+        "settle",
+        "idle"
+      ],
+      "ticks": 156,
+      "end": [
+        -171.484583915518,
+        8.22009291016002,
+        -69.57717786621954
+      ],
+      "settleTicks": 167,
+      "bodyMargin": 0.29717786621954023
+    },
+    {
+      "start": [
+        -171.484583915518,
+        8.22009291016002,
+        -69.57717786621954
+      ],
+      "reach": 49.4118359274299,
+      "visible": false,
+      "side": 1,
+      "locked": false,
+      "landing": [
+        -205.15033293388692,
+        18.12000011920929,
+        -103.15261232203743
+      ],
+      "approach": null,
+      "settled": false,
+      "phases": []
+    }
+  ],
+  "noBracket": [
+    {
+      "start": [
+        -142.00000707501306,
+        0.020086631474552252,
+        -22.000001252339857
+      ],
+      "reach": 25.567097030388044,
+      "visible": true,
+      "side": 2,
+      "locked": true,
+      "landing": [
+        -150.8201827520054,
+        4.52000057220459,
+        -46.25550443433678
+      ],
+      "approach": [
+        -150.8201826497927,
+        6.1200005722045905,
+        -46.255504471504985
+      ],
+      "settled": true,
+      "phases": [
+        "fire",
+        "bite",
+        "zip",
+        "vault",
+        "settle",
+        "idle"
+      ],
+      "ticks": 141,
+      "end": [
+        -150.80991630648504,
+        4.420092249762092,
+        -46.12130221149803
+      ],
+      "settleTicks": 152,
+      "bodyMargin": 0.241302211498036
+    },
+    {
+      "start": [
+        -150.80991630648504,
+        4.420092249762092,
+        -46.12130221149803
+      ],
+      "reach": 30.733520889054034,
+      "visible": true,
+      "side": 2,
+      "locked": true,
+      "landing": [
+        -171.58256889993328,
+        8.319999809265136,
+        -69.80429367813666
+      ],
+      "approach": [
+        -171.58256889960833,
+        9.919999809265136,
+        -69.80429367842169
+      ],
+      "settled": true,
+      "phases": [
+        "fire",
+        "bite",
+        "zip",
+        "vault",
+        "settle",
+        "idle"
+      ],
+      "ticks": 156,
+      "end": [
+        -171.484583915518,
+        8.22009291016002,
+        -69.57717786621954
+      ],
+      "settleTicks": 167,
+      "bodyMargin": 0.29717786621954023
+    },
+    {
+      "start": [
+        -171.484583915518,
+        8.22009291016002,
+        -69.57717786621954
+      ],
+      "reach": 32.70701008703883,
+      "visible": true,
+      "side": 2,
+      "locked": true,
+      "landing": [
+        -195.467570966157,
+        18.120000095367434,
+        -93.45790210448587
+      ],
+      "approach": [
+        -195.46757096567433,
+        19.720000095367435,
+        -93.45790210497061
+      ],
+      "settled": true,
+      "phases": [
+        "fire",
+        "bite",
+        "zip",
+        "vault",
+        "settle",
+        "idle"
+      ],
+      "ticks": 159,
+      "end": [
+        -195.3477745564456,
+        18.02009999955044,
+        -93.33861609261507
+      ],
+      "settleTicks": 170,
+      "bodyMargin": 0.5404343046396488
+    }
+  ],
+  "nextMastEyeDistance": 27.06003346420752,
+  "saddleExport": {
+    "bytes": 51952,
+    "triangles": 1160,
+    "sha256": "13f80fbdf697f7003dd6d9ec6f9307b80f66ac518f6edd9a67ca2592e1afdb2e",
+    "mesh_sha256": "6be1f97256325705847b65b1ed3f28d5187c60699fa4a446ca63a9965e16be65",
+    "origin_three": [
+      -193.2,
+      21.35,
+      -91.2
+    ],
+    "rotation_three": [
+      0,
+      0,
+      0
+    ]
+  }
+}

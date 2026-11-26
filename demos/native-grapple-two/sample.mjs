@@ -30,10 +30,16 @@ const read=(file)=>{const raw=readFileSync(join(dir,file));return {value:JSON.pa
 const corridor=read('corridor.json')
 const oneDress=read('perch-dressing.json')
 assert.equal(oneDress.sha,'18c875d3ed3ab629202d52dd07f72363176560173f39a8b1371a3d4f479f2ac6')
+const tank=process.argv.includes('--tank')
+const rim=[-193.2,21.35,-91.2], roofCentre=[-206,18,-104]
+const extra=tank?read('tank.json'):null, saddle=tank?read('saddle.json'):null
+if(tank)assert.equal(extra.sha,'682a9dfdc85cb5ec2f95149da9c76b2d7a935a5af72e9f603d29f3c079d5fec5')
+if(tank)assert.equal(saddle.sha,'6be1f97256325705847b65b1ed3f28d5187c60699fa4a446ca63a9965e16be65')
 const hooks=[new Vector3(-150,12,-44),new Vector3(-170,16,-68)]
 const first={x:-151,y:4.4,z:-46.62,w:3.4,d:2.24,h:.24}
 const start=[-142,-22]
 const s2=process.env.WSC_GRAPPLE_CANDIDATE
+assert(!(tank&&s2),'The tank proof uses the exact second tower, not a candidate.')
 const second=s2 ? JSON.parse(s2) : {x:-172,y:8.2,z:-70.2,w:3.4,d:2.6,h:.24}
 const dress=s2? null : read('pole-two-dressing.json')
 const cues=Object.fromEntries(['fire','bite','zip','reel','dock'].map(x=>[x,x]))
@@ -41,7 +47,8 @@ const looks=Object.fromEntries(['muzzle','bite','dock','sparks','ribbon'].map(x=
 const profile=parseGrappleProfile({id:'w7a-two',course:{name:'West opening poles'},cues,looks,
   headless:{step:'w7a-step',lock:'w7a-lock',aim:'w7a-aim',eye:1.7,aspect:402/874,portraitFov:80}})
 
-function simulate(dx,dz,{installed=true,keepFrames=false,named=false}={}) {
+function simulate(dx,dz,{installed=true,keepFrames=false,named=false,roofHook=rim,bracket=true}={}) {
+  const route=tank?[...hooks,new Vector3(...roofHook)]:hooks
   const [x,z]=[start[0]+dx,start[1]+dz]
   const host=new SimHost({version:SIM_API_VERSION,id:'w7a-two',seed:25,ground:{size:500,height:.1},
     player:{at:{x,y:.07,z},yaw:Math.atan2(x-hooks[0].x,z-hooks[0].z),speed:4.3},entities:[],quests:[],
@@ -53,12 +60,20 @@ function simulate(dx,dz,{installed=true,keepFrames=false,named=false}={}) {
   try {
     for(const g of [...corridor.value,...oneDress.value])mesh(g)
     const colliders=[box(first),installed?box(second):null]
+    if(tank) {
+      for(const g of extra.value){
+        const c=mesh(g)
+        if(g.name==='JUNCTION | continuous landable roof')colliders[2]=c
+      }
+      assert(colliders[2])
+      if(bracket)for(const g of saddle.value)mesh(g)
+    }
     if(installed&&dress)for(const g of dress.value)mesh(g)
-    const claw=installGrapple(host,{commands:()=>[],emit:()=>{}},profile,DEFAULT_GRAPPLE_MODE,hooks,[])
+    const claw=installGrapple(host,{commands:()=>[],emit:()=>{}},profile,DEFAULT_GRAPPLE_MODE,route,[])
     for(let i=0;i<30;i++)host.step()
     assert(p.hasMotor&&p.motor.opts.radius===.38&&p.fall.grounded)
     const hops=[]
-    for(const [i,hook] of hooks.entries()){
+    for(const [i,hook] of route.entries()){
       const feet=p.position.clone(),eye=feet.clone().add(new Vector3(0,profile.headless.eye,0))
       const ports={physics:host.physics,body:{position:feet,motor:p.motor}}
       const visible=hookVisible(ports,claw.sim.course,eye,hook)
@@ -87,8 +102,13 @@ function simulate(dx,dz,{installed=true,keepFrames=false,named=false}={}) {
         }else onDeck=0
         if(onDeck>=12){
           r.settled=true;r.end=p.position.toArray();r.settleTicks=n
-          const d=i?second:first
-          r.bodyMargin=Math.min(d.w/2-Math.abs(p.position.x-d.x),d.d/2-Math.abs(p.position.z-d.z))-.38
+          if(i===2){
+            // Conservative inscribed 96-gon radius, then capsule radius.
+            r.bodyMargin=16*Math.cos(Math.PI/96)-Math.hypot(p.position.x+206,p.position.z+104)-.38
+          }else{
+            const d=i?second:first
+            r.bodyMargin=Math.min(d.w/2-Math.abs(p.position.x-d.x),d.d/2-Math.abs(p.position.z-d.z))-.38
+          }
           break
         }
       }
@@ -101,6 +121,32 @@ const centre=simulate(0,0,{keepFrames:true})
 const noSecond=simulate(0,0,{installed:false})
 if(s2){console.log(JSON.stringify({second,centre:centre.map(({frames,...r})=>r),noSecond}));process.exit(0)}
 assert.equal(corridor.sha,'60098a20322fb4dbc908ce9e22c53a5966e7f400a0275b5f829eb25af0deb2a6')
+if(tank) {
+  const trim=hops=>hops.map(({frames,...r})=>r)
+  const centreControl=simulate(0,0,{roofHook:roofCentre,bracket:false})
+  const noBracket=simulate(0,0,{bracket:false})
+  assert(centre.length===3&&centre.every(r=>r.settled&&r.bodyMargin>.09),JSON.stringify(centre.map(({frames,...r})=>({...r,last:frames.at(-1)}))))
+  assert.deepEqual(centre,simulate(0,0,{keepFrames:true,named:true}))
+  assert.deepEqual(centre,simulate(0,0,{keepFrames:true}))
+  assert.deepEqual(centre.map(r=>[r.ticks,r.end]),noBracket.map(r=>[r.ticks,r.end]))
+  assert(centreControl.slice(0,2).every(r=>r.settled))
+  assert(centreControl.length===3&&centreControl[2].reach>38&&!centreControl[2].locked)
+  const cases=[]
+  for(const dx of [-1,-.5,0,.5,1])for(const dz of [-1,-.5,0,.5,1]){
+    const hops=simulate(dx,dz)
+    assert(hops.length===3&&hops.every(r=>r.settled&&r.bodyMargin>.09),JSON.stringify({dx,dz,hops:trim(hops)}))
+    cases.push({offset:[dx,dz],hops:trim(hops)})
+  }
+  const proof={scope:'Three consecutive native server hops. Exact W08 roof, guard and shell; optional rim hook. No course install, timer, or phone playtest.',
+    engine:'0.1.44',format:'0.43.0',frequencyHz:60,meshSha:corridor.sha,tankMeshSha:extra.sha,
+    tankTriangles:extra.value.reduce((n,g)=>n+g.triangles.length/3,0),
+    firstDressingSha:oneDress.sha,secondDressingSha:dress.sha,saddleSha:saddle.sha,
+    hooks:[...hooks.map(h=>h.toArray()),rim],centre,cases,centreControl:trim(centreControl),noBracket:trim(noBracket),
+    nextMastEyeDistance:Math.hypot(centre[2].end[0]+200,centre[2].end[1]+1.7-28,centre[2].end[2]+68)}
+  writeFileSync(output,JSON.stringify(proof)+'\n')
+  console.log(JSON.stringify({centre:trim(centre),cases:cases.length,centreControl:centreControl[2],nextMastEyeDistance:proof.nextMastEyeDistance}))
+  process.exit(0)
+}
 assert.equal(centre.length,2)
 assert(centre.every(r=>r.settled&&r.bodyMargin>.09))
 assert.deepEqual(centre,simulate(0,0,{keepFrames:true,named:true}))
