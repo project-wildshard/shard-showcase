@@ -227,7 +227,17 @@
 <p><a href="media/e5b-alarm-gate-leaf.glb">Gate leaf GLB</a> · <a href="media/e5b-alarm-signal.glb">Status signal GLB</a> · <a href="https://github.com/project-wildshard/shard-showcase/blob/5a46c2841668b54c453b5b79f1a81f03287f5f46/project/journal/2026-11-25-e5b-alarm-gates.md">Source and fit</a> · <a href="#asset-WSC-KIT-006">Catalogue entry</a>.</p>
 <p>All 318 geometry sample lines cross the open pose and hit the closed leaves. This checks the endpoint visuals, not player collision, detection, the lock timer or Keycard behavior. <a href="#nov25-e5a-riveter-slam-vfx">See the separate Band 5 slam effects</a>.</p>
 </section>
-<section id="nov26-e5b-gate-motion">
+<section id="nov26-e5b-gate-crossing">
+<p class="eyebrow">East · E5b · Native crossing rehearsal</p>
+<h2>The gate can slide without dragging the player</h2>
+<p>Opening the exact moving collision mesh while the player stood against it pulled them sideways by up to 8.13 m. Four of six no-retreat walks missed the open path. A fixed blocker avoids tying player motion to the sliding leaves.</p>
+<div class="compare">
+<figure><a href="media/nov26-e5b-cross-hold.webp"><img src="media/nov26-e5b-cross-hold.webp" width="1240" height="920" alt="Closed alarm leaves in the original North gate cutaway with an amber line stopping short" loading="lazy" decoding="async"></a><figcaption>Shut for 20 s in the fixture · The stock player stops before the plane.</figcaption></figure>
+<figure><a href="media/nov26-e5b-cross-release.webp"><img src="media/nov26-e5b-cross-release.webp" width="1240" height="920" alt="Opened leaves with amber sideways drift and a mint route straight through the same gate" loading="lazy" decoding="async"></a><figcaption>Amber: moving collision drags sideways. Mint: fixed blocker releases. Lines connect measured endpoints.</figcaption></figure>
+</div>
+<p>The blocker releases once the visible gap reaches 2.05 m. All 12 blocker tests stayed grounded across both original orientations; held input crossed 45 ticks into opening. <a href="https://github.com/project-wildshard/shard-showcase/blob/65fec684582806daa69bfe6c1e174d448203be4d/demos/native-alarm-gate/README.md">Exact samples and re-render instructions</a>. This is not live collision, stealth, or late-entry closure validation.</p>
+</section>
+<section id="nov26-e5b-gate-motion"><p><a href="#nov26-e5b-gate-crossing">See the stock player collision comparison.</a></p>
 <p class="eyebrow">East Stealth Yard · E5b · WSC-KIT-006</p>
 <h2>The alarm doors close together</h2>
 <p>The same two leaves now glide inward in 2.4 seconds and retract in 2.8 seconds, using a single shared mesh set. Three.js sampled both clips at the original north and west openings, 626 samples per gate. The moving gap stays centered and closes without crossing leaves.</p>

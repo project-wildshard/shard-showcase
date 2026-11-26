@@ -266,3 +266,6 @@ assert.ok(markup.includes('href="media/e1-first-cover-cradle.glb"'));
 assert.ok(ids.has("nov26-w9-oval-cache-screen"));
 assert.ok(markup.includes('href="#nov26-w9-oval-cache-screen"'));
 assert.ok(markup.includes('href="media/w9-oval-cache-screen.glb"'));
+assert.ok(ids.has("nov26-e5b-gate-crossing"));
+assert.ok(markup.includes('href="#nov26-e5b-gate-crossing"'));
+for (const f of ["hold","release"]) assert.ok(markup.includes(`src="media/nov26-e5b-cross-${f}.webp"`));
