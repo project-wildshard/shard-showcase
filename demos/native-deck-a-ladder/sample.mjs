@@ -1,4 +1,4 @@
-// Isolated Deck A collision and stock ladder behavior; no production change.
+// Isolated Climb Yard deck colliders and stock ladder behavior; no production change.
 import assert from 'node:assert/strict'
 import { readFileSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
@@ -30,13 +30,17 @@ const rapier = await loadRapier(readFileSync(wasm))
 const base = await loadCookedFolder(fixture, rapier)
 const product = base.product
 
-// assemble.py: x=-166, z=28, visible rail z=31.4, floor y=.0275,
-// outer deck beam ends at z=31.35, and outermost tread at z=31.23.
-// Put the capsule track outside the beam, and land atop the actual planks.
-const x = -166, floor = .0275, rim = 31.23
-const normal = {x:0,z:1}
-const route = parse(LadderModeSchema, {kind:'ladder',id:'w8a-deck-a',normal,reach:.9,speed:2,
-  bottom:{x,y:floor,z:31.78},top:{x,y:6.035,z:31.78},exit:{x,y:6.035,z:30.93}})
+// The deck centers and repeated 6.6 m wide plank kit match assemble.py.
+const letter=process.env.WSC_CLIMB_DECK || 'A'
+const layout={A:[-166,28,6],B:[-146,44,10],C:[-170,60,14]}
+assert(Object.hasOwn(layout,letter),'Choose deck A, B or C')
+const [x,z,h]=layout[letter], floor=.0275
+const id='deck-'+letter.toLowerCase()
+const rim=z+3.23, approach=z+5.35, lane=z+3.78, exitZ=z+2.93
+const walkY=h+.035, maxTicks=160+Math.ceil(h*60/2)
+const normal={x:0,z:1}
+const route=parse(LadderModeSchema,{kind:'ladder',id:'w8a-'+id,normal,reach:.9,speed:2,
+  bottom:{x,y:floor,z:lane},top:{x,y:walkY,z:lane},exit:{x,y:walkY,z:exitZ}})
 const nativePath = 'server/native-assembly.json', navPath = 'server/w8a-bench-nav'
 function nav() {
   const b = Buffer.alloc(120); let n = 0
@@ -45,9 +49,9 @@ function nav() {
   const f = v => { b.writeFloatLE(v,n); n+=4 }
   const bytes = a => { for (const x of a) b[n++]=x }
   bytes([87,83,78,77]);u32(1);u32(1)
-  for(const x of [.38,1.8,.3,.25,.1,-168,0,27,4])f(x)
+  for(const v of [.38,1.8,.3,.25,.1,x-2,0,z-1,4])f(v)
   u32(1);u32(0);u32(0)
-  for(const x of [-168,0,27,-164,1,31])f(x)
+  for(const v of [x-2,0,z-1,x+2,1,z+3])f(v)
   u16(3);u16(1);u16(0);bytes([0,0,8,0,8,0]);u16(0);u16(0);u16(0)
   bytes([3,0,1,0,1,2,0,0,0,0,0])
   return b.subarray(0,n)
@@ -55,16 +59,16 @@ function nav() {
 const rot={x:0,y:0,z:0,w:1}
 const box=(x,y,z,hx,hy,hz)=>({kind:'box',x,y,z,hx,hy,hz,rot})
 const piece=(id,surface,colliders)=>({id,name:id,file:'w8a-bench-only',active:true,surface,colliders})
-const boards = Array.from({length:12},(_,j)=>box(x,5.915,28+(j-5.5)*.54,3.3,.085,.26))
+const boards = Array.from({length:12},(_,j)=>box(x,h-.085,z+(j-5.5)*.54,3.3,.085,.26))
 const guards = []
 for (const [a,b] of [[-3.15,-.75],[.75,3.15]]) {
-  for (const dx of [a,b]) guards.push(box(x+dx,6.54,31.2,.035,.54,.035))
-  for (const y of [6.55,7.02]) guards.push(box(x+(a+b)/2,y,31.2,(b-a)/2,.024,.024))
+  for (const dx of [a,b]) guards.push(box(x+dx,h+.54,z+3.2,.035,.54,.035))
+  for (const y of [h+.55,h+1.02]) guards.push(box(x+(a+b)/2,y,z+3.2,(b-a)/2,.024,.024))
 }
 const pieces=[
-  piece('deck-a-ground','stone',[box(x,floor-.2,31.5,12,.2,12)]),
-  piece('deck-a','wood',[box(x,5.68,28,3.3,.16,3.35),...boards]),
-  piece('deck-a-opening','wood',guards),
+  piece(id+'-ground','stone',[box(x,floor-.2,z+3.5,12,.2,12)]),
+  piece(id,'wood',[box(x,h-.32,z,3.3,.16,3.35),...boards]),
+  piece(id+'-opening','wood',guards),
 ]
 const native=Buffer.from(JSON.stringify({kind:'native-assembly',level:{speed:4.3,ground:{size:500,height:0}},
   terrain:{kind:'flat'},navigation:{file:navPath},entries:{proven:{lanes:0,steps:0,portalTransfers:0}},
@@ -84,16 +88,16 @@ const setFeet=(run, xx, yy, zz)=>{
   p.position.set(xx,yy,zz);p.motor.resetAt(p.position)
 }
 const step=(run,cmd,n=1)=>{for(let i=0;i<n;i++)run.step([cmd]);return describe(run)}
-const start=run=>{setFeet(run,x,.065,33.35);return step(run,idle,25)}
+const start=run=>{setFeet(run,x,.065,approach);return step(run,idle,25)}
 const normalHost=await openWorldAdapter(input)
 let proof, resumed, release, gated
 try {
   start(normalHost)
   const nativeTrace=Array.from({length:280},()=>step(normalHost,up))
   const nativeMax=Math.max(...nativeTrace.map(x=>x.feet[1]))
-  setFeet(normalHost,x,6.035,30.943)
+  setFeet(normalHost,x,walkY,exitZ+.013)
   step(normalHost,idle,6)
-  const nativeDown=Array.from({length:130},()=>step(normalHost,down))
+  const nativeDown=Array.from({length:Math.max(130,Math.ceil(65+h*6))},()=>step(normalHost,down))
   const unsupportedFall=Math.max(...nativeDown.slice(1).map((f,i)=>nativeDown[i].feet[1]-f.feet[1]))
   assert(unsupportedFall>.08 && nativeDown.some(f=>f.feet[1]<.09 && f.ground))
   // Keep the native room result separate from the stock mode behind a test installer.
@@ -102,11 +106,11 @@ try {
   proof=await open()
   const bottom=start(proof), samples=[bottom]
   let attach, mid, top, landed, restoredTicks=0, error=0
-  for(let i=0;i<360;i++){
+  for(let i=0;i<maxTicks;i++){
     const f=step(proof,up)
     if(i%10===0)samples.push(f)
     if(!attach && f.feet[1]>.15)attach=f
-    if(!mid && f.feet[1]>=3){
+    if(!mid && f.feet[1]>=h/2){
       mid=f
       resumed=await open(snapshotSimHostBytes(proof.host))
       assert.deepEqual(describe(resumed).feet,mid.feet)
@@ -115,28 +119,42 @@ try {
       error=Math.max(error,Math.hypot(...f.feet.map((v,j)=>v-a.feet[j])))
       restoredTicks++
     }
-    if(!top && f.feet[1]>=6.02)top=f
-    if(f.feet[1]>5.98 && f.feet[2]<rim-.05 && f.ground && f.contact==='deck-a'){landed=f;break}
+    if(!top && f.feet[1]>=h+.02)top=f
+    if(f.feet[1]>h-.02 && f.feet[2]<rim-.05 && f.ground && f.contact===id){landed=f;break}
   }
   console.log('ascent',{nativeMax,bottom,attach,mid,top,landed,error,restoredTicks,last:describe(proof)})
   assert(attach&&mid&&top&&landed&&error<.00001&&restoredTicks>65,'Capsule did not climb/land or restore diverged')
   step(proof,idle,5)
-  let low, descending, descentPeak=0, steadyDescentPeak=0, alignDescent, prev=describe(proof), descendingTicks=0
-  for(let i=0;i<360;i++){
-    const f=step(proof,down)
-    const drop=prev.feet[1]-f.feet[1]
-    prev=f
-    descentPeak=Math.max(descentPeak,drop)
-    if(drop>.02)descendingTicks++
-    if(alignDescent&&f.feet[1]>.20)steadyDescentPeak=Math.max(steadyDescentPeak,drop)
-    if(!alignDescent && Math.abs(f.feet[2]-route.top.z)<.001)alignDescent=f
-    if(!descending && f.feet[1]<5.8)descending=f
-    if(f.feet[1]<.09&&f.ground){low=f;break}
+  const landingSave=snapshotSimHostBytes(proof.host)
+  function descend(run,approachInput) {
+    let low, descending, descentPeak=0, steadyDescentPeak=0, alignDescent, prev=describe(run), descendingTicks=0
+    for(let i=0;i<maxTicks;i++){
+      const f=step(run,alignDescent ? down : {...down,moveZ:approachInput})
+      const drop=prev.feet[1]-f.feet[1]
+      prev=f
+      descentPeak=Math.max(descentPeak,drop)
+      if(drop>.02)descendingTicks++
+      if(alignDescent&&f.feet[1]>.20)steadyDescentPeak=Math.max(steadyDescentPeak,drop)
+      if(!alignDescent && Math.abs(f.feet[2]-route.top.z)<.001)alignDescent=f
+      if(!descending && f.feet[1]<h-.2)descending=f
+      if(f.feet[1]<.09&&f.ground){low=f;break}
+    }
+    assert(descending && alignDescent && low?.contact===id+'-ground' && descendingTicks>=Math.floor((h-.34)*30))
+    assert(steadyDescentPeak<.04,'Fully aligned descent exceeded the speed envelope')
+    return {descending,low,descendingTicks,descentPeakMetersPerTick:descentPeak,alignedPeakMetersPerTick:steadyDescentPeak,alignedAt:alignDescent}
   }
-  console.log('descent',{descending,low,descentPeak,descendingTicks,unsupportedFall,last:describe(proof)})
-  assert(descending && alignDescent && low?.contact==='deck-a-ground' && descendingTicks>=170)
-  assert(descentPeak<.09 && steadyDescentPeak<.04,
-    'Deck edge handoff or aligned descent exceeded the measured envelope')
+  const selected=letter==='A' ? 1 : .70
+  const descent=descend(proof,selected)
+  assert(descent.descentPeakMetersPerTick<.09,'Selected edge handoff exceeded 90 mm')
+  const approachTrials=[]
+  if(letter!=='A') for(const input of [.40,.55,.70,.85,1]) {
+    const match=await open(landingSave)
+    try {
+      const trial=descend(match,input)
+      approachTrials.push({input,peakDropMetersPerTick:trial.descentPeakMetersPerTick,ticks:trial.low.tick-landed.tick-5})
+      if(input===selected) assert.deepEqual(trial,descent,'Matched restore did not reproduce main descent')
+    } finally {match.dispose()}
+  }
   release=await open()
   start(release)
   for(let i=0;i<200&&describe(release).feet[1]<2;i++)step(release,up)
@@ -146,12 +164,12 @@ try {
   const released=step(release,idle,100)
   assert(released.ground&&released.feet[1]<.1)
   gated=await open()
-  setFeet(gated,x+1.5,.065,33.35);step(gated,idle,25)
+  setFeet(gated,x+1.5,.065,approach);step(gated,idle,25)
   const off=Array.from({length:240},()=>step(gated,up))
   assert(Math.max(...off.map(f=>f.feet[1]))<.15,'Off-center approach attached')
   const result={versions:{engine:'0.1.44',format:'0.43.0'},route,deckRim:rim,
     normalRoom:{maxFeetY:nativeMax,installedLadder:false,peakDropPerTick:unsupportedFall},
-    explicitStockInstaller:{bottom,attach,mid,top,landed,descending,low,still,released,restoredTicks,maxRestoreErrorMeters:error,descendingTicks,descentPeakMetersPerTick:descentPeak,alignedPeakMetersPerTick:steadyDescentPeak,alignedAt:alignDescent}, samples}
+    explicitStockInstaller:{bottom,attach,mid,top,landed,descending:descent.descending,low:descent.low,still,released,restoredTicks,maxRestoreErrorMeters:error,descendingTicks:descent.descendingTicks,descentPeakMetersPerTick:descent.descentPeakMetersPerTick,alignedPeakMetersPerTick:descent.alignedPeakMetersPerTick,alignedAt:descent.alignedAt}, ...(approachTrials.length?{selectedApproachInput:selected,approachTrials}:{}), samples}
   writeFileSync(output,JSON.stringify(result,null,2)+'\n')
 }finally{
   for(const room of [normalHost,proof,resumed,release,gated])room?.dispose()

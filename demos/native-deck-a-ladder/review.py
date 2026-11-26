@@ -1,4 +1,4 @@
-"""Render the exact canonical deck with sampled player feet; no game actor."""
+"""Render a canonical Climb Yard deck with measured feet; no game actor."""
 import json
 from pathlib import Path
 import sys
@@ -29,7 +29,11 @@ def bvh(o):
                                 [tuple(p.vertices) for p in o.data.polygons])
 
 ground=take('CLIMB | source yard footprint')
-deck=take('CLIMB | deck A and ladder')
+letter=trace['route']['id'][-1].upper()
+x,y,h={'A':(-166,-28,6),'B':(-146,-44,10),'C':(-170,-60,14)}[letter]
+assert abs(trace['route']['top']['y']-(h+.035))<1e-6
+assert abs(trace['route']['top']['z']-(-y+3.78))<1e-6
+deck=take(f'CLIMB | deck {letter} and ladder')
 for o in list(s.objects):
     if o.type=='LIGHT':
         bpy.data.objects.remove(o,do_unlink=True)
@@ -39,26 +43,25 @@ for o in list(s.objects):
             o.hide_render=True
 
 gt,dt=bvh(ground),bvh(deck)
-x,y=-166,-28
 ys=[y-3.20,y-3.18,y-3.13,y-3.04,y-2.99]
-assert all(dt.ray_cast((x+dx, yy,6.3),(0,0,-1),.36)[0] is not None
+assert all(dt.ray_cast((x+dx, yy,h+.3),(0,0,-1),.36)[0] is not None
            for dx in [-.5,0,.5] for yy in ys)
-assert dt.ray_cast((x,y-3.26,6.3),(0,0,-1),.36)[0] is None
-assert abs(dt.ray_cast((x,y-3.18,6.3),(0,0,-1),.36)[0].z-6)<.00002
-g=[gt.ray_cast((x+dx,-31.78+dy,.15),(0,0,-1),.20)[0].z
+assert dt.ray_cast((x,y-3.26,h+.3),(0,0,-1),.36)[0] is None
+assert abs(dt.ray_cast((x,y-3.18,h+.3),(0,0,-1),.36)[0].z-h)<.00002
+g=[gt.ray_cast((x+dx,y-3.78+dy,.15),(0,0,-1),.20)[0].z
    for dx in [-.5,-.25,0,.25,.5] for dy in [-.50,-.25,0,.25,.50]]
 assert max(abs(v-.0275) for v in g)<.00002
 opening=[]
-for z in [6.44,6.55,6.68,6.91,7.02,7.13]:
+for z in [h+.44,h+.55,h+.68,h+.91,h+1.02,h+1.13]:
     for dx in [-.62,-.31,0,.31,.62]:
         # The separate ladder rails end 0.20 m in front of this guard.
-        opening.append(dt.ray_cast((x+dx,-31.29,z),(0,1,0),.19)[0] is None)
+        opening.append(dt.ray_cast((x+dx,y-3.29,z),(0,1,0),.19)[0] is None)
 assert all(opening)
 end=measurement['landed']['feet']
-assert dt.ray_cast((end[0],-end[2],6.3),(0,0,-1),.36)[0] is not None
+assert dt.ray_cast((end[0],-end[2],h+.3),(0,0,-1),.36)[0] is not None
 (out/'art-fit.json').write_text(json.dumps({
-  'canonicalFingerprint':parity,'groundSamples':len(g),'sixMetrePlankHits':15,'guardGapClearRays':len(opening),
-  'guardOpeningMeters':1.5,'renderedPoses':['mid','landed']},indent=2)+'\n')
+  'canonicalFingerprint':parity,'groundSamples':len(g),'deck':letter,'treadHits':15,'guardGapClearRays':len(opening),
+  'guardOpeningMeters':1.5,'renderedPoses':{'A':['mid','landed'],'B':['landed'],'C':['mid']}[letter]},indent=2)+'\n')
 
 def mat(n,color,em=0):
     m=bpy.data.materials.new(n);m.use_nodes=True
@@ -70,7 +73,7 @@ def mat(n,color,em=0):
     return m
 
 # Dark studio base keeps the isolated terrain from reading as a hole in the scene.
-bpy.ops.mesh.primitive_plane_add(size=130,location=(-166,-29,-.035))
+bpy.ops.mesh.primitive_plane_add(size=130,location=(x,y-1,-.035))
 bpy.context.object.name='Review base, not playable geometry'
 bpy.context.object.data.materials.append(mat('Review slate',(.075,.094,.115)))
 amber=mat('Review amber',(.93,.34,.065),.50)
@@ -100,10 +103,10 @@ def ring(n,p,r,minor,ma):
 # Tick indicators chosen by test samples (not baked animation).
 for f in trace['samples'][2::2]:
     xx,yy,zz=f['feet']
-    if .24<yy<5.95:
+    if .24<yy<h-.05:
         sphere('Measured path tick',(xx,-zz,yy),.029,pale)
 for t in [.20,.4,.60,.80]:
-    sphere('Upper landing path',(x,-31.78+.85*t,6.035),.025,pale)
+    sphere('Upper landing path',(x,y-3.78+.85*t,h+.035),.025,pale)
 
 marker=[]
 for pose in ['mid','landed']:
@@ -132,8 +135,8 @@ def light(n,p,q,color,value,size=None):
     if size is None:d.angle=.16
     else:d.shape='DISK';d.size=size
     o=bpy.data.objects.new(n,d);s.collection.objects.link(o);aim(o,p,q)
-light('Low late afternoon',(-155,-41,19),(-166,-28,0),(1,.79,.55),2.65)
-light('Soft cool fill',(-172,-28,11),(-166,-31,4),(.54,.78,1),570,9)
+light('Low late afternoon',(x+11,y-13,h+13),(x,y,0),(1,.79,.55),2.65)
+light('Soft cool fill',(x-6,y,h+5),(x,y-3,h-2),(.54,.78,1),570,9)
 s.render.engine='CYCLES'
 s.cycles.samples=32
 s.cycles.use_denoising=False
@@ -148,11 +151,17 @@ s.render.image_settings.file_format='JPEG'
 s.render.image_settings.color_mode='RGB'
 s.render.image_settings.quality=94
 for i,(name,camera,look,lens) in enumerate([
-    ('climb',(-156.5,-44.7,7.15),(-166,-29.95,3.25),52),
-    ('landing',(-159.3,-37.5,10.75),(-166,-30.15,6.25),54),
+    ('climb',(x+9.5,y-16.7,h+1.15),(x,y-1.95,h/2+.25),52),
+    ('landing',(x+6.7,y-9.5,h+4.75),(x,y-2.15,h+.25),54),
 ]):
+    if (letter=='B' and name!='landing') or (letter=='C' and name!='climb'): continue
+    if letter=='C':
+        camera=(x+10.5,y-27,h*.60)
+        look=(x,y-2,h*.53)
+        lens=43
     for j, group in enumerate(marker):
         for o in group:o.hide_render=i!=j
     aim(cam,camera,look);cam.data.lens=lens
-    s.render.filepath=str(out/f'nov25-deck-a-ladder-{name}.jpg')
+    stamp='nov25' if letter=='A' else 'nov26'
+    s.render.filepath=str(out/f'{stamp}-deck-{letter.lower()}-ladder-{name}.jpg')
     bpy.ops.render.render(write_still=True)

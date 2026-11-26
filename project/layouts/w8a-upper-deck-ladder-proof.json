@@ -1,0 +1,209 @@
+{
+  "versions": {
+    "engine": "0.1.44",
+    "format": "0.43.0"
+  },
+  "slice": "W8a",
+  "scope": "Separate stock installer benches; normal native room does not attach. No new geometry, control binding or live changes.",
+  "exactReplay": "Each approach comparison restores the same landed state; same measured point, no position overwrite during ascent/descent.",
+  "decks": {
+    "B": {
+      "route": {
+        "kind": "ladder",
+        "id": "w8a-deck-b",
+        "bottom": {
+          "x": -146,
+          "y": 0.0275,
+          "z": 47.78
+        },
+        "top": {
+          "x": -146,
+          "y": 10.035,
+          "z": 47.78
+        },
+        "exit": {
+          "x": -146,
+          "y": 10.035,
+          "z": 46.93
+        },
+        "normal": {
+          "x": 0,
+          "z": 1
+        },
+        "reach": 0.9,
+        "speed": 2
+      },
+      "deckRim": 47.23,
+      "normalRoom": {
+        "maxFeetY": 0.04754835701704724,
+        "installedLadder": false,
+        "peakDropPerTick": 0.3361110985279083
+      },
+      "artFit": {
+        "canonicalFingerprint": [
+          "f372ebaa43777a1dae8f7f77e167045179425c5e5b176633ccfa8829cb133374",
+          2797
+        ],
+        "groundSamples": 25,
+        "deck": "B",
+        "treadHits": 15,
+        "guardGapClearRays": 30,
+        "guardOpeningMeters": 1.5,
+        "renderedPoses": [
+          "landed"
+        ]
+      },
+      "selectedApproachInput": 0.7,
+      "approachTrials": [
+        {
+          "input": 0.4,
+          "peakDropMetersPerTick": 0.08797459304332733,
+          "ticks": 311
+        },
+        {
+          "input": 0.55,
+          "peakDropMetersPerTick": 0.10107071697711945,
+          "ticks": 310
+        },
+        {
+          "input": 0.7,
+          "peakDropMetersPerTick": 0.06149103492498398,
+          "ticks": 312
+        },
+        {
+          "input": 0.85,
+          "peakDropMetersPerTick": 0.06765741109848022,
+          "ticks": 311
+        },
+        {
+          "input": 1,
+          "peakDropMetersPerTick": 0.08486664295196533,
+          "ticks": 309
+        }
+      ],
+      "riseSeconds": 5.65,
+      "landed": {
+        "tick": 364,
+        "feet": [
+          -146,
+          10.019997297413182,
+          46.94308328998275
+        ],
+        "ground": true,
+        "contact": "deck-b"
+      },
+      "returned": {
+        "tick": 681,
+        "feet": [
+          -146.00000010764816,
+          0.047499690239317716,
+          47.783583210195715
+        ],
+        "ground": true,
+        "contact": "deck-b-ground"
+      },
+      "restoredTicks": 177,
+      "maxRestoreErrorMeters": 0,
+      "alignedPeakMetersPerTick": 0.03333333507180214
+    },
+    "C": {
+      "route": {
+        "kind": "ladder",
+        "id": "w8a-deck-c",
+        "bottom": {
+          "x": -170,
+          "y": 0.0275,
+          "z": 63.78
+        },
+        "top": {
+          "x": -170,
+          "y": 14.035,
+          "z": 63.78
+        },
+        "exit": {
+          "x": -170,
+          "y": 14.035,
+          "z": 62.93
+        },
+        "normal": {
+          "x": 0,
+          "z": 1
+        },
+        "reach": 0.9,
+        "speed": 2
+      },
+      "deckRim": 63.23,
+      "normalRoom": {
+        "maxFeetY": 0.04754837750614388,
+        "installedLadder": false,
+        "peakDropPerTick": 0.397457093000412
+      },
+      "artFit": {
+        "canonicalFingerprint": [
+          "f372ebaa43777a1dae8f7f77e167045179425c5e5b176633ccfa8829cb133374",
+          2797
+        ],
+        "groundSamples": 25,
+        "deck": "C",
+        "treadHits": 15,
+        "guardGapClearRays": 30,
+        "guardOpeningMeters": 1.5,
+        "renderedPoses": [
+          "mid"
+        ]
+      },
+      "selectedApproachInput": 0.7,
+      "approachTrials": [
+        {
+          "input": 0.4,
+          "peakDropMetersPerTick": 0.09490403532981873,
+          "ticks": 431
+        },
+        {
+          "input": 0.55,
+          "peakDropMetersPerTick": 0.11631765961647034,
+          "ticks": 429
+        },
+        {
+          "input": 0.7,
+          "peakDropMetersPerTick": 0.06434405595064163,
+          "ticks": 432
+        },
+        {
+          "input": 0.85,
+          "peakDropMetersPerTick": 0.07229296863079071,
+          "ticks": 431
+        },
+        {
+          "input": 1,
+          "peakDropMetersPerTick": 0.09189845621585846,
+          "ticks": 429
+        }
+      ],
+      "riseSeconds": 7.65,
+      "landed": {
+        "tick": 484,
+        "feet": [
+          -169.99999990030923,
+          14.019998486071826,
+          62.94648353938945
+        ],
+        "ground": true,
+        "contact": "deck-c"
+      },
+      "returned": {
+        "tick": 921,
+        "feet": [
+          -169.99999999813753,
+          0.04749971072841436,
+          63.7835833338927
+        ],
+        "ground": true,
+        "contact": "deck-c-ground"
+      },
+      "restoredTicks": 237,
+      "maxRestoreErrorMeters": 0,
+      "alignedPeakMetersPerTick": 0.03333333507180214
+    }
+  }
+}
