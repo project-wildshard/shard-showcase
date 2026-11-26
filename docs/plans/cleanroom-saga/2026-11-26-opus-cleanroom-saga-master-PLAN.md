@@ -5,9 +5,12 @@
 > **State:** in progress, 2026-11-26. This is a saga master plan. As
 > in meta (J446, J447) it holds no rows of its own: each member plan
 > counts its own. Jake answered the open decisions in a grill
-> (D30–D39 in `docs/decisions.md`). Building now:
-> - the phase 1 starter packs and concept-art candidates;
-> - the phase 2 format docs site.
+> (D30–D39 in `docs/decisions.md`). Where it stands:
+> - phase 1: the eight starter packs are done; the concept candidates
+>   wait on Jake's picks (ZC3);
+> - phase 2: the format docs site is live at `format.wildshard.io`
+>   (shard-format `661430f`–`f47ccda`), deployed by hand; Jake to
+>   review it and the Worker name `wildshard-format`.
 >
 > Ask: A19.
 
