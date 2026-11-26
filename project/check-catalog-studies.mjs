@@ -250,3 +250,9 @@ for(const [id,original,type] of [
 assert.ok(ids.has("nov26-e2-charge-stop"));
 assert.ok(markup.includes('href="#nov26-e2-charge-stop"'));
 assert.equal(data.assets.find(a=>a.id==="WSC-ACTOR-002").model_preview,"#nov22-pallet-jack");
+assert.ok(ids.has("nov26-east-threshold-direction"));
+assert.ok(markup.includes('href="#nov26-east-threshold-direction"'));
+for (const side of ["yard", "return"]) {
+  assert.ok(markup.includes(`href="media/w0a-east-direction-${side}.glb"`));
+  assert.ok(markup.includes(`src="media/nov26-east-threshold-${side}.webp"`));
+}
