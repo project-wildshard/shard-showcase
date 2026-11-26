@@ -67,3 +67,40 @@ cmp "$D/w6a-spinner-lift-lip.glb" public/assets/wildshard-art/w6a-spinner-lift-l
 blender -b -t 6 --factory-startup --python-exit-code 1 \
   --python demos/native-mover-spinner/render.py -- "$D/replay.json" "$D"
 ```
+
+## Stand-trigger lift to the 18 m receiver
+
+Keep the accepted 6 m approach insert and cage footprint. In this
+separate test the cage is a native moving platform, driven by a
+one-shot position track with a 1.25-second continuous grounded stand
+delay. On this pinned engine/format, the interact winch rejects a
+stand trigger; this fixture uses the supported stand-trigger track.
+An unattended check held the cage at 6 m for 480 ticks.
+
+All six guided walks from the Station 3 ledge carried through the
+turntable, boarded at 6 m, rose to 18 m, and walked west onto the
+original Station 6 deck without an airborne tick. With the original
+head beam acting as a box collider, the matching center run lost
+deck ownership; the cage stopped at 17.605 m and the player did not
+reach Station 6. The correction raises the same head beam 2 m
+to center 20.5 m, allowing 2.20 m from walking plane to beam underside.
+Four same-section steel guide extensions support that pose visually
+and clear the cage's side envelope by 175 mm. The beam and extension
+transforms are recorded, and the review renderer rebuilds them
+against the preserved WIP source. No duplicate GLBs are needed.
+
+This is a one-way half-course bench, not an installed game feature.
+The sweep arm and side guide/bracing/rail collision, reset, call or
+return logic, mid-ride reload, free input and phone feel remain open.
+The review traces show measured feet plus a small drawing offset;
+unmodeled colliders should not be inferred from the stills.
+
+```sh
+D=/tmp/station5-ride
+mkdir -p "$D"
+node --experimental-transform-types demos/native-mover-spinner/sample.mjs \
+  /path/to/admitted/native/plan "$D/ride.json" --ride "$D/trace.json"
+cmp "$D/ride.json" project/layouts/w6a-station5-ride.json
+blender -b -t 6 --factory-startup --python-exit-code 1 \
+  --python demos/native-mover-spinner/render-ride.py -- "$D/trace.json" "$D"
+```

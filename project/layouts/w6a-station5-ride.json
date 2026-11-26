@@ -1,0 +1,588 @@
+{
+  "scope": "Stock grounded stand-trigger position track, not an interact winch. Same cage and receiver dimensions; head-beam collider A/B. Rails, arm sweep, return cycle, phone and native installation are not tested.",
+  "engine": "0.1.44",
+  "format": "0.43.0",
+  "sha": "d6eada249cb5b79d4e24de992678f063560f41fc7fa4cfc5892d8d7ee9a4a5e5",
+  "lipSha": "2e0d5e768d1f6b6dce24d6d27bceaf6ff223f4eae5b77c3f503f13e6d1ce3dda",
+  "sourceSha": "2b5a6983fde90b9374414559fe51603aa939eaa46df42de913d012eda9e2df15",
+  "origin": [
+    -147,
+    6,
+    -103
+  ],
+  "lip": [
+    "optional-lip",
+    -152.995,
+    5.85,
+    -103,
+    1.245,
+    0.15,
+    3
+  ],
+  "upper": [
+    "station6-top",
+    -164,
+    17.7,
+    -103,
+    4,
+    0.3,
+    5
+  ],
+  "archivedBeam": [
+    "lift-head-beam",
+    -157,
+    18.5,
+    -103,
+    3,
+    0.3,
+    4
+  ],
+  "raisedBeam": [
+    "lift-head-beam",
+    -157,
+    20.5,
+    -103,
+    3,
+    0.3,
+    4
+  ],
+  "guideExtensions": [
+    [
+      "guide-extension",
+      -159.6,
+      19.2,
+      -106.5,
+      0.225,
+      1,
+      0.225
+    ],
+    [
+      "guide-extension",
+      -159.6,
+      19.2,
+      -99.5,
+      0.225,
+      1,
+      0.225
+    ],
+    [
+      "guide-extension",
+      -154.4,
+      19.2,
+      -106.5,
+      0.225,
+      1,
+      0.225
+    ],
+    [
+      "guide-extension",
+      -154.4,
+      19.2,
+      -99.5,
+      0.225,
+      1,
+      0.225
+    ]
+  ],
+  "guideSideGap": 0.17499999999999982,
+  "headroom": 2.1999999999999993,
+  "unoccupiedStayedAtBottomTicks": 480,
+  "row": {
+    "id": "w6a-station5-lift",
+    "entity": 2373,
+    "execution": "native",
+    "kind": "platform",
+    "at": {
+      "x": -157,
+      "y": 6,
+      "z": -103
+    },
+    "euler": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "enabled": true,
+    "boxes": [
+      {
+        "x": 0,
+        "y": -0.2,
+        "z": 0,
+        "hx": 2.75,
+        "hy": 0.2,
+        "hz": 3.1,
+        "rot": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      }
+    ],
+    "track": {
+      "clip": "W6aStandLift",
+      "duration": 5,
+      "loop": "once",
+      "speed": 1,
+      "times": [
+        0,
+        0.5,
+        2.5,
+        4.5,
+        5
+      ],
+      "position": [
+        [
+          -157,
+          6,
+          -103
+        ],
+        [
+          -157,
+          6.3,
+          -103
+        ],
+        [
+          -157,
+          12,
+          -103
+        ],
+        [
+          -157,
+          17.7,
+          -103
+        ],
+        [
+          -157,
+          18,
+          -103
+        ]
+      ]
+    },
+    "trigger": {
+      "kind": "stand",
+      "delay": 1.25
+    },
+    "driver": {
+      "kind": "track"
+    },
+    "module": "871aef47d9b0dd009d46ad41e5cb3c793625bc20325bdaca00134a8677b0c6f1",
+    "input": [
+      0,
+      5,
+      1,
+      0,
+      2,
+      1.25,
+      0,
+      0,
+      1,
+      -157,
+      6,
+      -103,
+      0,
+      0,
+      0,
+      5,
+      0,
+      -157,
+      6,
+      -103,
+      0,
+      0,
+      0,
+      1,
+      0.5,
+      -157,
+      6.3,
+      -103,
+      0,
+      0,
+      0,
+      1,
+      2.5,
+      -157,
+      12,
+      -103,
+      0,
+      0,
+      0,
+      1,
+      4.5,
+      -157,
+      17.7,
+      -103,
+      0,
+      0,
+      0,
+      1,
+      5,
+      -157,
+      18,
+      -103,
+      0,
+      0,
+      0,
+      1
+    ]
+  },
+  "cases": [
+    {
+      "dz": -0.75,
+      "hold": 24,
+      "raised": true,
+      "firstLift": 356,
+      "boarded": {
+        "feet": [
+          -156.26027815556574,
+          6.019986524164676,
+          -101.68574790111897
+        ],
+        "tick": 384,
+        "yaw": -1.256637061435931,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": true,
+        "cageY": 6
+      },
+      "topTick": 730,
+      "atTop": {
+        "feet": [
+          -156.4928023877925,
+          18.00999801009915,
+          -101.72268381872918
+        ],
+        "tick": 730,
+        "yaw": -3.0106929596902434,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": true,
+        "cageY": 17.99999999999999
+      },
+      "maxRideDrift": 0.02750267654633376,
+      "offLift": 0,
+      "rideAir": 0,
+      "exited": true,
+      "exitAir": 0,
+      "final": {
+        "feet": [
+          -162.70728602701786,
+          18.01987142224051,
+          -101.70033344552421
+        ],
+        "tick": 820,
+        "yaw": -1.8325957145940754,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": false,
+        "cageY": 18
+      }
+    },
+    {
+      "dz": -0.75,
+      "hold": 72,
+      "raised": true,
+      "firstLift": 424,
+      "boarded": {
+        "feet": [
+          -156.2724218073407,
+          6.019985794007778,
+          -101.68943540109215
+        ],
+        "tick": 452,
+        "yaw": -0.3665191429188262,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": true,
+        "cageY": 6
+      },
+      "topTick": 798,
+      "atTop": {
+        "feet": [
+          -156.50570814680654,
+          18.00995448875427,
+          -101.72120434025236
+        ],
+        "tick": 798,
+        "yaw": -2.1205750411731383,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": true,
+        "cageY": 17.99999999999999
+      },
+      "maxRideDrift": 0.027546197891211932,
+      "offLift": 0,
+      "rideAir": 0,
+      "exited": true,
+      "exitAir": 0,
+      "final": {
+        "feet": [
+          -162.72019674811858,
+          18.019867988454177,
+          -101.70026884290381
+        ],
+        "tick": 888,
+        "yaw": -0.9424777960769701,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": false,
+        "cageY": 18
+      }
+    },
+    {
+      "dz": 0,
+      "hold": 24,
+      "raised": true,
+      "firstLift": 343,
+      "boarded": {
+        "feet": [
+          -156.23519906749587,
+          6.020000253722071,
+          -101.6810343156828
+        ],
+        "tick": 371,
+        "yaw": -1.4268066635053775,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": true,
+        "cageY": 6
+      },
+      "topTick": 717,
+      "atTop": {
+        "feet": [
+          -156.4674900338321,
+          18.009961408481,
+          -101.71940993729238
+        ],
+        "tick": 717,
+        "yaw": 3.102322745419896,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": true,
+        "cageY": 17.99999999999999
+      },
+      "maxRideDrift": 0.02753927816448254,
+      "offLift": 0,
+      "rideAir": 0,
+      "exited": true,
+      "exitAir": 0,
+      "final": {
+        "feet": [
+          -162.74778212944855,
+          18.01993080325145,
+          -101.70015968596142
+        ],
+        "tick": 808,
+        "yaw": -1.9896753472735644,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": false,
+        "cageY": 18
+      }
+    },
+    {
+      "dz": 0,
+      "hold": 72,
+      "raised": true,
+      "firstLift": 419,
+      "boarded": {
+        "feet": [
+          -156.26153210831956,
+          6.020000039517879,
+          -101.68577259581828
+        ],
+        "tick": 447,
+        "yaw": -0.4319689898686133,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": true,
+        "cageY": 6
+      },
+      "topTick": 793,
+      "atTop": {
+        "feet": [
+          -156.49398487335395,
+          18.00995708155632,
+          -101.72315565006484
+        ],
+        "tick": 793,
+        "yaw": -2.186024888122925,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": true,
+        "cageY": 17.99999999999999
+      },
+      "maxRideDrift": 0.027543605089164203,
+      "offLift": 0,
+      "rideAir": 0,
+      "exited": true,
+      "exitAir": 0,
+      "final": {
+        "feet": [
+          -162.70846675983023,
+          18.019929056555963,
+          -101.70033610947776
+        ],
+        "tick": 883,
+        "yaw": -1.0079276430267572,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": false,
+        "cageY": 18
+      }
+    },
+    {
+      "dz": 0.75,
+      "hold": 24,
+      "raised": true,
+      "firstLift": 330,
+      "boarded": {
+        "feet": [
+          -156.298481712713,
+          6.019982865929603,
+          -101.69136966093282
+        ],
+        "tick": 358,
+        "yaw": -1.5969762655748245,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": true,
+        "cageY": 6
+      },
+      "topTick": 704,
+      "atTop": {
+        "feet": [
+          -156.53068564504105,
+          18.009951366961,
+          -101.73026844990528
+        ],
+        "tick": 704,
+        "yaw": 2.9321531433504493,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": true,
+        "cageY": 17.99999999999999
+      },
+      "maxRideDrift": 0.027549319684482043,
+      "offLift": 0,
+      "rideAir": 0,
+      "exited": true,
+      "exitAir": 0,
+      "final": {
+        "feet": [
+          -162.73777434646803,
+          18.01986436264077,
+          -101.70029960004905
+        ],
+        "tick": 794,
+        "yaw": -2.172934918732968,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": false,
+        "cageY": 18
+      }
+    },
+    {
+      "dz": 0.75,
+      "hold": 72,
+      "raised": true,
+      "firstLift": 414,
+      "boarded": {
+        "feet": [
+          -156.2986113857575,
+          6.01998295161128,
+          -101.69094161055021
+        ],
+        "tick": 443,
+        "yaw": -0.484328867428443,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": true,
+        "cageY": 6
+      },
+      "topTick": 788,
+      "atTop": {
+        "feet": [
+          -156.53047624489653,
+          18.00999426232364,
+          -101.73181297245058
+        ],
+        "tick": 788,
+        "yaw": -2.251474735072713,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": true,
+        "cageY": 17.99999999999999
+      },
+      "maxRideDrift": 0.02750642432184236,
+      "offLift": 0,
+      "rideAir": 0,
+      "exited": true,
+      "exitAir": 0,
+      "final": {
+        "feet": [
+          -162.73765424339462,
+          18.020000327238346,
+          -101.70031556392381
+        ],
+        "tick": 878,
+        "yaw": -1.0733774899765445,
+        "grounded": true,
+        "onDeck": false,
+        "onLift": false,
+        "cageY": 18
+      }
+    }
+  ],
+  "control": {
+    "dz": 0,
+    "hold": 24,
+    "raised": false,
+    "firstLift": 343,
+    "boarded": {
+      "feet": [
+        -156.23519906749587,
+        6.020000253722071,
+        -101.6810343156828
+      ],
+      "tick": 371,
+      "yaw": -1.4268066635053775,
+      "grounded": true,
+      "onDeck": false,
+      "onLift": true,
+      "cageY": 6
+    },
+    "topTick": null,
+    "atTop": {
+      "feet": [
+        -156.46749082545722,
+        17.884483007071946,
+        -101.71941048562496
+      ],
+      "tick": 756,
+      "yaw": -2.6703537555513503,
+      "grounded": true,
+      "onDeck": false,
+      "onLift": false,
+      "cageY": 17.60499999999996
+    },
+    "maxRideDrift": 0.2799904738813268,
+    "offLift": 71,
+    "rideAir": 0,
+    "exited": false,
+    "exitAir": 2,
+    "final": {
+      "feet": [
+        -159.67881981997635,
+        17.85762288275681,
+        -101.70923298141898
+      ],
+      "tick": 871,
+      "yaw": -1.1650072757062464,
+      "grounded": true,
+      "onDeck": false,
+      "onLift": false,
+      "cageY": 17.60499999999996
+    }
+  }
+}

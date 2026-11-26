@@ -22,7 +22,7 @@ const {lowerMoverMotion}=await import(pathToFileURL(motion).href)
 const {loadRapier}=await at('src/shared/engine/physics/rapier.ts')
 const {loadCookedFolder}=await at('src/server/host/headlessFolder.ts')
 const {createNativeHeadlessResident}=await at('src/server/host/headlessRuntime.ts')
-const {MoverScriptDriver}=await at('src/server/game/plugin/mover.ts')
+const {MoverScriptDriver,playerGrounds}=await at('src/server/game/plugin/mover.ts')
 const {snapshotSimHostBytes}=await at('src/shared/engine/sim/snapshot.ts')
 const {tagOf}=await at('src/shared/engine/physics/surface.ts')
 const R=await loadRapier(readFileSync(join(dirname(req.resolve('@dimforge/rapier3d-simd/package.json')),'rapier_wasm3d_bg.wasm')))
@@ -68,7 +68,22 @@ const make=(speed)=>{
     ...lowerMoverMotion({track,trigger,driver},{at:atRest,euler})}
 }
 const navPath='server/w6a-rehearsal-nav',nativePath='server/native-assembly.json'
-const crossing=mode==='--handoff'
+const ride=mode==='--ride'
+const crossing=mode==='--handoff'||ride
+const low=6, high=18, cageX=-157, cageId='w6a-station5-lift'
+const archivedBeam=['lift-head-beam',-157,18.5,-103,3,.3,4]
+const raisedBeam=[archivedBeam[0],-157,20.5,-103,3,.3,4]
+const upper=['station6-top',-164,17.7,-103,4,.3,5]
+const guideExtensions=[-159.6,-154.4].flatMap(gx=>[-106.5,-99.5].map(gz=>
+  ['guide-extension',gx,19.2,gz,.225,1,.225]))
+const makeLift=(delay=1.25)=>{
+  const at={x:cageX,y:low,z}, track={clip:'W6aStandLift',duration:5,loop:'once',speed:1,
+    times:[0,.5,2.5,4.5,5],position:[low,low+.30,12,high-.30,high].map(h=>[cageX,h,z])}
+  const trigger={kind:'stand',delay},driver={kind:'track'}
+  return {id:cageId,entity:2373,execution:'native',kind:'platform',at,euler,enabled:true,
+    boxes:[{x:0,y:-.2,z:0,hx:2.75,hy:.2,hz:3.1,rot}],track,trigger,driver,
+    ...lowerMoverMotion({track,trigger,driver},{at,euler})}
+}
 const block=([id,x,y,z,hx,hy,hz])=>({id,name:id,file:'w6a-rehearsal-only',active:true,surface:'metal',
   colliders:[{kind:'box',x,y,z,hx,hy,hz,rot}]})
 const lip=['optional-lip',-152.995,5.85,-103,1.245,.15,3.0]
@@ -76,23 +91,23 @@ const solids=[
   ['arrival',-141,5.75,-103,1,.25,4],
   ['base',-147,-.15,-103,10,.15,8],
   ['axle',-147,6.45,-103,.226,.6,.226],
-  ...(crossing?[['cage',-157,5.8,-103,2.75,.2,3.1]]:[]),
+  ...(crossing&&!ride?[['cage',-157,5.8,-103,2.75,.2,3.1]]:[]),
 ].map(block)
-const native=addLip=>new TextEncoder().encode(JSON.stringify({kind:'native-assembly',
+const native=(addLip,head)=>new TextEncoder().encode(JSON.stringify({kind:'native-assembly',
   level:{speed:4.3,ground:{size:500,height:0}},terrain:{kind:'flat'},navigation:{file:navPath},
-  entries:{proven:{lanes:0,steps:0,portalTransfers:0}},features:[{host:'collision.pieces',rows:{value:addLip?[...solids,block(lip)]:solids}}]}))
+  entries:{proven:{lanes:0,steps:0,portalTransfers:0}},features:[{host:'collision.pieces',rows:{value:[...solids,...(addLip?[block(lip)]:[]),...(ride?[block(upper),block(head)]:[])]}}]}))
 const p=base.product
-const input=addLip=>({...base,product:{...p,hasFile:n=>n===nativePath||n===navPath||p.hasFile(n),
-  file:n=>n===nativePath?Promise.resolve(native(addLip)):n===navPath?Promise.resolve(nav()):p.file(n)}})
-async function open(speed,snapshot,addLip=false){
+const input=(addLip,head)=>({...base,product:{...p,hasFile:n=>n===nativePath||n===navPath||p.hasFile(n),
+  file:n=>n===nativePath?Promise.resolve(native(addLip,head)):n===navPath?Promise.resolve(nav()):p.file(n)}})
+async function open(speed,snapshot,addLip=false,head=raisedBeam){
   let runtime
   const row=make(speed)
-  const resident=await createNativeHeadlessResident(input(addLip),snapshot,{room:true,install:host=>{
+  const resident=await createNativeHeadlessResident(input(addLip,head),snapshot,{room:true,install:host=>{
     const s=p.shardfile
-    runtime=new MoverScriptDriver(parseMovers([row]),host).install(host,
+    runtime=new MoverScriptDriver(parseMovers(ride?[row,makeLift()]:[row]),host).install(host,
       {content:{identity:s.identity,sim:{...s.sim,bindings:[]},state:s.state},
         assets:new Map(),rules:{fields:{},archetypes:[],events:[],maxEntities:32}},
-      {id:'w6a.rehearsal.spinner',restoring:!!snapshot,joined:true,drive:true})
+      {id:'w6a.rehearsal.spinner',restoring:!!snapshot,joined:true,drive:true,...(ride?{activation:{ground:()=>playerGrounds(host)}}:{})})
   }})
   return {resident,runtime,host:resident.host,row}
 }
@@ -114,6 +129,94 @@ function set(run,xx,yy,zz){
 }
 const dist=(a,b)=>Math.hypot(...a.map((v,i)=>v-b[i]))
 const rate=Math.PI/4
+if(ride){
+  const source=new URL('../../scripts/blender/west-movers-roof/movers.py',import.meta.url)
+  const sourceSha=createHash('sha256').update(readFileSync(source)).digest('hex')
+  assert.equal(sourceSha,'2b5a6983fde90b9374414559fe51603aa939eaa46df42de913d012eda9e2df15')
+  const lipSha=createHash('sha256').update(readFileSync(new URL('../../public/assets/wildshard-art/w6a-spinner-lift-lip.glb',import.meta.url))).digest('hex')
+  assert.equal(lipSha,'2e0d5e768d1f6b6dce24d6d27bceaf6ff223f4eae5b77c3f503f13e6d1ce3dda')
+  async function course(dz,hold,raised,trace=false){
+    const run=await open(rate,undefined,true,raised?raisedBeam:archivedBeam)
+    const player=run.host.players.get('actor.player')
+    try{
+      set(run,-141.3,6.04,z+dz)
+      step(run,24)
+      const pose=()=>{
+        const q=describe(run), h=player.motor.result.groundCollider
+        const owner=h?tagOf(h)?.owner:null
+        return {feet:q.feet,tick:q.tick,yaw:q.yaw,grounded:q.grounded,onDeck:q.onDeck,
+          onLift:owner===cageId||owner?.id===cageId,cageY:run.runtime.pose(cageId).position.y}
+      }
+      let q=pose(), air=0, firstLift=null, maxRideDrift=0, offLift=0, topTick=null
+      const frames=[]
+      const one=cmd=>{
+        step(run,1,cmd)
+        q=pose()
+        if(!q.grounded)air++
+        if(q.onLift&&firstLift===null)firstLift=q.tick
+        if(trace&&(q.tick%4===0))frames.push(q)
+      }
+      for(let i=0;i<60&&!q.onDeck;i++)one({...idle,moveX:-1})
+      assert(q.onDeck)
+      for(let i=0;i<hold;i++)one(idle)
+      function go(tx,tz,count=235){
+        for(let i=0;i<count;i++){
+          const dx=tx-q.feet[0],dz=tz-q.feet[2],d=Math.hypot(dx,dz)
+          if(d<.12)return true
+          if(q.feet[1]<5.50)return false
+          one({...idle,moveX:dx/d,moveZ:dz/d})
+        }
+        return false
+      }
+      for(const [xx,zz] of [[x+2.8,z+1.3],[x-2.8,z+1.3],[-156.35,z+1.3]])assert(go(xx,zz))
+      const boarded=q
+      assert(q.onLift&&q.cageY===low&&air===0&&firstLift!==null)
+      const beforeAir=air
+      for(let k=0;k<385;k++){
+        one(idle)
+        maxRideDrift=Math.max(maxRideDrift,Math.abs(q.feet[1]-q.cageY))
+        offLift+=Number(!q.onLift)
+        if(q.cageY>=high-1e-5){topTick=q.tick;break}
+      }
+      const atTop=q,rideAir=air-beforeAir
+      const exited=go(-162.8,z+1.3,115),final=q
+      return {dz,hold,raised,firstLift,boarded,topTick,atTop,maxRideDrift,offLift,rideAir,
+        exited,exitAir:air-beforeAir-rideAir,final,...(trace?{frames}:{})}
+    }finally{run.resident.dispose()}
+  }
+  // The native stand trigger must not mistake either the approach or the
+  // spinner for a rider before the first true cage-ground contact.
+  const unattended=await open(rate,undefined,true,raisedBeam)
+  try{
+    set(unattended,-141.30,6.04,z)
+    step(unattended,480)
+    assert.equal(unattended.runtime.pose(cageId).position.y,low)
+  }finally{unattended.resident.dispose()}
+  const cases=[]
+  for(const dz of [-.75,0,.75])for(const h of [24,72]){
+    const q=await course(dz,h,true)
+    console.log(dz,h,q.topTick-q.firstLift,q.exited,q.maxRideDrift)
+    cases.push(q)
+  }
+  const show=await course(0,24,true,true),control=await course(0,24,false,true)
+  assert.deepEqual(show,await course(0,24,true,true))
+  assert(cases.every(q=>q.topTick!==null&&q.exited&&q.final.grounded&&!q.final.onLift
+    &&q.rideAir===0&&q.exitAir===0&&q.offLift===0&&q.maxRideDrift<.08),JSON.stringify(cases))
+  assert(!control.exited&&control.topTick===null&&control.offLift>0&&control.final.feet[0]>-160)
+  assert(cases.every(q=>q.topTick-q.firstLift===374))
+  const carriageHalfWidth=makeLift().boxes[0].hz
+  const guideSideGap=Math.min(...guideExtensions.map(g=>Math.abs(g[3]-z)-g[6]-carriageHalfWidth))
+  assert(guideSideGap>.1749)
+  const headroom=raisedBeam[2]-raisedBeam[5]-high
+  assert(Math.abs(headroom-2.2)<1e-6)
+  const {frames:_,...controlCompact}=control
+  const summary={scope:'Stock grounded stand-trigger position track, not an interact winch. Same cage and receiver dimensions; head-beam collider A/B. Rails, arm sweep, return cycle, phone and native installation are not tested.',
+    engine:'0.1.44',format:'0.43.0',sha,lipSha,sourceSha,origin:[x,y,z],lip,upper,archivedBeam,raisedBeam,
+    guideExtensions,guideSideGap,headroom,unoccupiedStayedAtBottomTicks:480,row:makeLift(),cases,control:controlCompact}
+  writeFileSync(out,JSON.stringify(summary,null,2)+'\n')
+  if(process.argv[5])writeFileSync(process.argv[5],JSON.stringify({...summary,show,control})+'\n')
+  process.exit(0)
+}
 if(crossing){
   const approach=async(addLip,dz,hold)=>{
     const run=await open(rate,undefined,addLip)
