@@ -1,0 +1,312 @@
+{
+  "status": "static_visual_overlay",
+  "donor_matched_signature": [
+    "f372ebaa43777a1dae8f7f77e167045179425c5e5b176633ccfa8829cb133374",
+    2797
+  ],
+  "models": {
+    "w6c-bridge-post-sleeve": {
+      "bytes": 24232,
+      "triangles": 504,
+      "primitives": 3,
+      "sha256": "270ccfbdeddcc2f2332715be85b443bdd1078fdc62821e617f9deb0500d8102a"
+    },
+    "w6c-bridge-rope-ferrule": {
+      "bytes": 14048,
+      "triangles": 288,
+      "primitives": 2,
+      "sha256": "89b62284f9ae0add219dae149fb74145e4ec9a653b2c3ffe2607f7694b2a9479"
+    }
+  },
+  "terminal_count": 12,
+  "placements": [
+    {
+      "bridge": "AB",
+      "endpoint": 0,
+      "side": -1,
+      "sleeve_xyz_blender": [
+        -163.528442,
+        -30.616516,
+        7.05
+      ],
+      "sleeve_yaw_rad": -0.708626,
+      "ferrule_xyz_blender": [
+        -163.424667,
+        -30.65015,
+        7.041975
+      ],
+      "ferrule_axis_blender": [
+        0.756851,
+        -0.648739,
+        -0.079458
+      ],
+      "tread_envelope_margin_m": 0.003,
+      "post_sample_radius_m": 0.07706,
+      "rope_sample_radius_m": 0.03153
+    },
+    {
+      "bridge": "AB",
+      "endpoint": 0,
+      "side": 1,
+      "sleeve_xyz_blender": [
+        -162.471558,
+        -29.383484,
+        7.05
+      ],
+      "sleeve_yaw_rad": -0.708626,
+      "ferrule_xyz_blender": [
+        -162.42244,
+        -29.480896,
+        7.041975
+      ],
+      "ferrule_axis_blender": [
+        0.756851,
+        -0.648739,
+        -0.079458
+      ],
+      "tread_envelope_margin_m": 0.003,
+      "post_sample_radius_m": 0.07831,
+      "rope_sample_radius_m": 0.03153
+    },
+    {
+      "bridge": "AB",
+      "endpoint": 1,
+      "side": -1,
+      "sleeve_xyz_blender": [
+        -149.528442,
+        -42.616516,
+        11.05
+      ],
+      "sleeve_yaw_rad": -0.708626,
+      "ferrule_xyz_blender": [
+        -149.569336,
+        -42.526157,
+        11.003859
+      ],
+      "ferrule_axis_blender": [
+        -0.67539,
+        0.57891,
+        -0.456849
+      ],
+      "tread_envelope_margin_m": 0.003,
+      "post_sample_radius_m": 0.07706,
+      "rope_sample_radius_m": 0.035
+    },
+    {
+      "bridge": "AB",
+      "endpoint": 1,
+      "side": 1,
+      "sleeve_xyz_blender": [
+        -148.471558,
+        -41.383484,
+        11.05
+      ],
+      "sleeve_yaw_rad": -0.708626,
+      "ferrule_xyz_blender": [
+        -148.567108,
+        -41.356899,
+        11.003859
+      ],
+      "ferrule_axis_blender": [
+        -0.67539,
+        0.57891,
+        -0.456849
+      ],
+      "tread_envelope_margin_m": 0.003,
+      "post_sample_radius_m": 0.07831,
+      "rope_sample_radius_m": 0.035
+    },
+    {
+      "bridge": "BC",
+      "endpoint": 0,
+      "side": -1,
+      "sleeve_xyz_blender": [
+        -149.475418,
+        -45.341728,
+        11.05
+      ],
+      "sleeve_yaw_rad": -2.516108,
+      "ferrule_xyz_blender": [
+        -149.532516,
+        -45.43478,
+        11.043227
+      ],
+      "ferrule_axis_blender": [
+        -0.80886,
+        -0.584165,
+        -0.067057
+      ],
+      "tread_envelope_margin_m": 0.003,
+      "post_sample_radius_m": 0.07688,
+      "rope_sample_radius_m": 0.03153
+    },
+    {
+      "bridge": "BC",
+      "endpoint": 0,
+      "side": 1,
+      "sleeve_xyz_blender": [
+        -148.524582,
+        -46.658272,
+        11.05
+      ],
+      "sleeve_yaw_rad": -2.516108,
+      "ferrule_xyz_blender": [
+        -148.630875,
+        -46.683224,
+        11.043227
+      ],
+      "ferrule_axis_blender": [
+        -0.80886,
+        -0.584165,
+        -0.067057
+      ],
+      "tread_envelope_margin_m": 0.003,
+      "post_sample_radius_m": 0.07857,
+      "rope_sample_radius_m": 0.03153
+    },
+    {
+      "bridge": "BC",
+      "endpoint": 1,
+      "side": -1,
+      "sleeve_xyz_blender": [
+        -167.475418,
+        -58.341728,
+        15.05
+      ],
+      "sleeve_yaw_rad": -2.516108,
+      "ferrule_xyz_blender": [
+        -167.375534,
+        -58.321404,
+        15.010298
+      ],
+      "ferrule_axis_blender": [
+        0.745424,
+        0.538351,
+        -0.393092
+      ],
+      "tread_envelope_margin_m": 0.003,
+      "post_sample_radius_m": 0.07688,
+      "rope_sample_radius_m": 0.035
+    },
+    {
+      "bridge": "BC",
+      "endpoint": 1,
+      "side": 1,
+      "sleeve_xyz_blender": [
+        -166.524582,
+        -59.658272,
+        15.05
+      ],
+      "sleeve_yaw_rad": -2.516108,
+      "ferrule_xyz_blender": [
+        -166.473892,
+        -59.569847,
+        15.010298
+      ],
+      "ferrule_axis_blender": [
+        0.745424,
+        0.538351,
+        -0.393092
+      ],
+      "tread_envelope_margin_m": 0.003,
+      "post_sample_radius_m": 0.07857,
+      "rope_sample_radius_m": 0.035
+    },
+    {
+      "bridge": "C Rock",
+      "endpoint": 0,
+      "side": -1,
+      "sleeve_xyz_blender": [
+        -172.646378,
+        -58.017715,
+        15.05
+      ],
+      "sleeve_yaw_rad": 2.796037,
+      "ferrule_xyz_blender": [
+        -172.758011,
+        -58.03492,
+        15.03102
+      ],
+      "ferrule_axis_blender": [
+        -0.924125,
+        0.332681,
+        -0.187924
+      ],
+      "tread_envelope_margin_m": 0.033,
+      "post_sample_radius_m": 0.07608,
+      "rope_sample_radius_m": 0.03153
+    },
+    {
+      "bridge": "C Rock",
+      "endpoint": 0,
+      "side": 1,
+      "sleeve_xyz_blender": [
+        -173.353622,
+        -59.982285,
+        15.05
+      ],
+      "sleeve_yaw_rad": 2.796037,
+      "ferrule_xyz_blender": [
+        -173.428665,
+        -59.897881,
+        15.03102
+      ],
+      "ferrule_axis_blender": [
+        -0.924125,
+        0.332681,
+        -0.187924
+      ],
+      "tread_envelope_margin_m": 0.033,
+      "post_sample_radius_m": 0.08043,
+      "rope_sample_radius_m": 0.03153
+    },
+    {
+      "bridge": "C Rock",
+      "endpoint": 1,
+      "side": -1,
+      "sleeve_xyz_blender": [
+        -197.646378,
+        -49.017715,
+        17.049999
+      ],
+      "sleeve_yaw_rad": 2.796037,
+      "ferrule_xyz_blender": [
+        -197.569656,
+        -49.102726,
+        17.051373
+      ],
+      "ferrule_axis_blender": [
+        0.940802,
+        -0.338685,
+        0.013591
+      ],
+      "tread_envelope_margin_m": 0.033,
+      "post_sample_radius_m": 0.07608,
+      "rope_sample_radius_m": 0.035
+    },
+    {
+      "bridge": "C Rock",
+      "endpoint": 1,
+      "side": 1,
+      "sleeve_xyz_blender": [
+        -198.353622,
+        -50.982285,
+        17.049999
+      ],
+      "sleeve_yaw_rad": 2.796037,
+      "ferrule_xyz_blender": [
+        -198.240311,
+        -50.965687,
+        17.051373
+      ],
+      "ferrule_axis_blender": [
+        0.940802,
+        -0.338685,
+        0.013591
+      ],
+      "tread_envelope_margin_m": 0.033,
+      "post_sample_radius_m": 0.08043,
+      "rope_sample_radius_m": 0.035
+    }
+  ]
+}
