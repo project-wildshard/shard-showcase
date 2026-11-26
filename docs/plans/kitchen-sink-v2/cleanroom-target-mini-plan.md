@@ -2,8 +2,9 @@
 
 > Written by: Claude
 
-> **State:** ready for review, 2026-11-26. Ask: A18 (the prompt
-> itself was A16). Nothing here is built until Jake says go.
+> **State:** ready for review, 2026-11-26: Jake's picks are in
+> (below); the rows hold until he says go. Ask: A18 (the prompt itself
+> was A16).
 
 Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md). Surveyed 2026-11-26
 against this repo at `a601dfb` and the clean room
@@ -88,41 +89,66 @@ times, and the clean room's `docs/AAA-PLAN.md`):
 Each row is one lane. The clean room is read only from here: Cratefall
 stays its own game (Jake), so no row writes there.
 
-- [ ] **CR1 Pick the target frames.** From Cratefall's 25 golden frames
-  (`docs/media/golden/README.md`; each has a scripted camera in
-  `tools/golden/scenes.js`), choose the ones whose place exists in
-  this plan's map (town square, Crate Fields, the Vault, the Titan
-  arena, …). Write `cleanroom-targets.md` beside this file with one
-  row per frame: the source path at a pinned SHA, the place, and the
-  matching spot (P, facing f) on round 5 of the map layout. Done when
-  every chosen frame has a spot, frames with no place in the map are
+**Mix and match** (Jake, 2026-11-26): *"we are going to mix & match
+the look, we are going to mix & match the design, some of the
+original kitchen sink design needs to come back, some of the
+cratefall design will overwrite."* On the look: *"I appreciate and
+like the 'quality of the work' but not the art direction"*. That means
+Cratefall's geometry, world detail, assets and density are the target,
+and its art direction, concept art, neon lights and parts of its
+palette and style are not.
+
+- [ ] **CR1 Pick the quality targets.** From Cratefall's 25 golden
+  frames (`docs/media/golden/README.md`; each has a scripted camera
+  in `tools/golden/scenes.js`) and its zone stills, choose the ones
+  whose place exists in this plan's map (town square, Crate Fields,
+  the Vault, the Titan arena, …). Write `cleanroom-targets.md` beside
+  this file with one row per frame:
+  - the source path in the clean room (the latest build; Jake: *"its
+    not going to drift"*);
+  - the place, and the matching spot (P, facing f) on round 5 of the
+    map layout;
+  - what the frame is the bar for (geometry, detail, density, light),
+    and what in it is not (neon, palette, style), so a look loop
+    doesn't copy Cratefall's art direction.
+
+  Copy the most important frames into `cleanroom-targets/` beside it.
+  Link the rest. The shard's own art direction (the polished
+  orange-and-grey look, ruling 19ab, the round-11 remaster mockups)
+  stays the style target. Done when every chosen frame has a spot and
+  a quality-versus-style note, frames with no place in the map are
   listed as dropped with a reason, and Jake has approved the list.
-- [ ] **CR2 Compare the design.** Read Cratefall's state page,
-  `docs/AAA-PLAN.md`, `docs/COMBAT.md` and `docs/HUD.md` against
-  §2 of this plan and its mini plans. List what Fable invented that
-  the plan lacks (dodge roll, third person with first-person aim for
-  ranged weapons, Overdrive, the Tally Book, simulated adventurers and
-  zone chat, …). Also list what the plan has that Cratefall dropped or
-  solved differently. Each line gets adopt, leave or ask, and each ask
-  becomes a row in [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) with a
-  recommendation. Done when the list is in this file and every ask is
-  in OPEN-QUESTIONS. The calls Jake has already made (above) are
-  recorded as decided, not asked again.
+- [ ] **CR2 Mix and match the design.** Read Cratefall's state page,
+  `docs/AAA-PLAN.md`, `docs/COMBAT.md` and `docs/HUD.md` against §2 of
+  this plan and its mini plans. List each place where the two differ:
+  what Fable invented (dodge roll, third person with first-person aim
+  for ranged weapons, Overdrive, the Tally Book, simulated adventurers
+  and zone chat, …) and what the plan has that Cratefall dropped or
+  solved differently. Each line gets one of three calls:
+  - **Cratefall overwrites:** the plan changes to match.
+  - **Kitchen Sink comes back:** the plan's design stays.
+  - **Ask:** it becomes a row in [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md)
+    with a recommendation.
+
+  The calls Jake has already made are recorded as decided: third
+  person, the dodge roll, names don't matter, and status effects are
+  still to settle. Done when the list is in this file and every ask is
+  in OPEN-QUESTIONS.
 - [ ] **CR3 Wire it into the parent.** Add a row for this plan to
   KITCHEN-SINK.md §5. Add Cratefall live and its state page to §6. Add
-  one line to STATE.md saying the shard's look is measured against the
-  CR1 frames. Done when the three links resolve.
+  one line to STATE.md: the shard's quality bar is the CR1 frames, and
+  its style stays its own. Done when the three links resolve.
 
 ## Seams
 
-- **Owns:** this file and `cleanroom-targets.md`. It edits one row in
-  KITCHEN-SINK.md §5 and §6, one line in STATE.md, and appends rows to
-  OPEN-QUESTIONS.md.
+- **Owns:** this file, `cleanroom-targets.md` and `cleanroom-targets/`.
+  It edits one row in KITCHEN-SINK.md §5 and §6, one line in STATE.md,
+  and appends rows to OPEN-QUESTIONS.md.
 - **Other agents:** `t14` is working on plan archiving on `main`.
   That touches `docs/plans/` but not the Kitchen Sink files. Work is on
   `main` only (D29).
-- **Clean room:** a separate repo with its own session. Cite it by SHA
-  so the targets don't drift when it moves on.
+- **Clean room:** a separate repo with its own session. It is read
+  only from here.
 
 ## Verification
 
@@ -136,16 +162,14 @@ by `pnpm check` (the asks and plan gates) and by Jake reading the list.
 - `docs/prd.md`: none, because it already points at the Kitchen Sink.
   A target is a tool for that plan, not a new product.
 - Living docs: KITCHEN-SINK.md and STATE.md, in CR3.
-- `docs/decisions.md`: none until Jake answers the questions below.
+- `docs/decisions.md`: none. CR2 changes go into the plan and its
+  OPEN-QUESTIONS.
 - `AGENTS.md`: none.
 
-## Open decisions for Jake
+## Decided (Jake, 2026-11-26)
 
-1. **Target for what?** The look (CR1), the design (CR2), or both.
-   Recommend both, starting with the look.
-2. **Which Cratefall?** The one-shot at `81c7fdd`, or the latest
-   build, pinned per round. Recommend the latest build: the one-shot
-   is the baseline, and the AAA push and its painted targets are what
-   we would want the shard to match.
-3. **Copy the media here, or link it?** Recommend linking by SHA.
-   Cratefall's `docs/media` is 97 MB and this repo stays lean.
+1. **Target for what:** both the look and the design, mixed and
+   matched. Take the quality of the look, not its art direction.
+2. **Which Cratefall:** the latest build.
+3. **Media:** link it, and copy the important frames.
+4. **Build:** hold. Rows wait for Jake's go.

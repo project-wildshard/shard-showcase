@@ -18,3 +18,15 @@ Ask A18.
   because Jake wants it free as its own game.
 - Left for Jake: target the look, the design or both; which Cratefall
   SHA; link the media or copy it (I recommend linking).
+
+## Jake's picks
+
+Jake answered all three: mix and match both the look and the design.
+Some of the Kitchen Sink design comes back and some of Cratefall's
+overwrites it. From the look we take its quality (geometry, detail,
+assets, density) and not its art direction: no neon, and not its
+palette or concept art. The shard keeps its own style. So CR1 now notes
+for each frame what it is the bar for and what it isn't, and CR2 gives
+each difference one of three calls (Cratefall overwrites, Kitchen Sink
+comes back, or ask). Latest build, link the media plus copy the key
+frames, and the rows hold.
