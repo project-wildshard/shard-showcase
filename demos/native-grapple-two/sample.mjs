@@ -30,7 +30,16 @@ const read=(file)=>{const raw=readFileSync(join(dir,file));return {value:JSON.pa
 const corridor=read('corridor.json')
 const oneDress=read('perch-dressing.json')
 assert.equal(oneDress.sha,'18c875d3ed3ab629202d52dd07f72363176560173f39a8b1371a3d4f479f2ac6')
-const tank=process.argv.includes('--tank')
+const mast=process.argv.includes('--mast')
+const tank=mast||process.argv.includes('--tank')
+const mastHook=[-200,28,-68]
+const mastGeo=mast?read('mast.json'):null, receiver=mast?read('mast-receiver-dressing.json'):null
+const deckFour=mast?read('mast-receiver-export.json').value.deck:null
+if(mast){
+  assert.equal(mastGeo.sha,'1b55eadb19d0a8829c8dd747fb14bcc31e1d04a5e615cf6cede4c9eedf1378b4')
+  assert.equal(receiver.sha,'fbc84a42b30c3445dca6f038a669dd399819498d716b0972e7e21837cb37cad7')
+  assert.deepEqual(deckFour,{x:-202.6,z:-63.55,y:25.6,w:3.4,d:2.8,h:.22})
+}
 const rim=[-193.2,21.35,-91.2], roofCentre=[-206,18,-104]
 const extra=tank?read('tank.json'):null, saddle=tank?read('saddle.json'):null
 if(tank)assert.equal(extra.sha,'682a9dfdc85cb5ec2f95149da9c76b2d7a935a5af72e9f603d29f3c079d5fec5')
@@ -47,8 +56,9 @@ const looks=Object.fromEntries(['muzzle','bite','dock','sparks','ribbon'].map(x=
 const profile=parseGrappleProfile({id:'w7a-two',course:{name:'West opening poles'},cues,looks,
   headless:{step:'w7a-step',lock:'w7a-lock',aim:'w7a-aim',eye:1.7,aspect:402/874,portraitFov:80}})
 
-function simulate(dx,dz,{installed=true,keepFrames=false,named=false,roofHook=rim,bracket=true}={}) {
+function simulate(dx,dz,{installed=true,keepFrames=false,named=false,roofHook=rim,bracket=true,installedMast=true,crossRoof=true}={}) {
   const route=tank?[...hooks,new Vector3(...roofHook)]:hooks
+  if(mast)route.push(new Vector3(...mastHook))
   const [x,z]=[start[0]+dx,start[1]+dz]
   const host=new SimHost({version:SIM_API_VERSION,id:'w7a-two',seed:25,ground:{size:500,height:.1},
     player:{at:{x,y:.07,z},yaw:Math.atan2(x-hooks[0].x,z-hooks[0].z),speed:4.3},entities:[],quests:[],
@@ -67,6 +77,13 @@ function simulate(dx,dz,{installed=true,keepFrames=false,named=false,roofHook=ri
       }
       assert(colliders[2])
       if(bracket)for(const g of saddle.value)mesh(g)
+      if(mast){
+        for(const g of mastGeo.value)mesh(g)
+        if(installedMast){
+          colliders[3]=box(deckFour)
+          for(const g of receiver.value)mesh(g)
+        }
+      }
     }
     if(installed&&dress)for(const g of dress.value)mesh(g)
     const claw=installGrapple(host,{commands:()=>[],emit:()=>{}},profile,DEFAULT_GRAPPLE_MODE,route,[])
@@ -74,6 +91,22 @@ function simulate(dx,dz,{installed=true,keepFrames=false,named=false,roofHook=ri
     assert(p.hasMotor&&p.motor.opts.radius===.38&&p.fall.grounded)
     const hops=[]
     for(const [i,hook] of route.entries()){
+      let roofWalk
+      if(i===3&&crossRoof){
+        const x=-197.12,z=-93.35,begin=p.position.clone()
+        let walkTicks=0,airTicks=0
+        const frames=[]
+        for(;walkTicks<120;walkTicks++){
+          const dx=x-p.position.x,dz=z-p.position.z,left=Math.hypot(dx,dz)
+          if(left<.085)break
+          const magnitude=Math.min(1,left*60/4.3)
+          host.step(new Map([[p.id,{moveX:magnitude*dx/left,moveZ:magnitude*dz/left,yaw:Math.atan2(-dx,-dz)}]]))
+          if(!p.fall.grounded)airTicks++
+          if(keepFrames)frames.push(p.position.toArray())
+        }
+        assert(walkTicks<120&&airTicks===0&&Math.abs(p.position.y-begin.y)<.03)
+        roofWalk={target:[x,z],start:begin.toArray(),end:p.position.toArray(),walkTicks,airTicks,distance:begin.distanceTo(p.position),frames}
+      }
       const feet=p.position.clone(),eye=feet.clone().add(new Vector3(0,profile.headless.eye,0))
       const ports={physics:host.physics,body:{position:feet,motor:p.motor}}
       const visible=hookVisible(ports,claw.sim.course,eye,hook)
@@ -87,6 +120,7 @@ function simulate(dx,dz,{installed=true,keepFrames=false,named=false,roofHook=ri
       const r={start:feet.toArray(),reach,visible,side,locked:selected?.equals(hook)??false,
         landing:side?landing.toArray():null,approach:claw.sim.target?.approach.toArray()??null,
         settled:false,phases:[],frames:[]}
+      if(roofWalk)r.roofWalk=roofWalk
       hops.push(r)
       if(!r.locked)break
       claw.press(p.id,{fire:true,pitch})
@@ -106,7 +140,7 @@ function simulate(dx,dz,{installed=true,keepFrames=false,named=false,roofHook=ri
             // Conservative inscribed 96-gon radius, then capsule radius.
             r.bodyMargin=16*Math.cos(Math.PI/96)-Math.hypot(p.position.x+206,p.position.z+104)-.38
           }else{
-            const d=i?second:first
+            const d=i===3?deckFour:i?second:first
             r.bodyMargin=Math.min(d.w/2-Math.abs(p.position.x-d.x),d.d/2-Math.abs(p.position.z-d.z))-.38
           }
           break
@@ -121,6 +155,40 @@ const centre=simulate(0,0,{keepFrames:true})
 const noSecond=simulate(0,0,{installed:false})
 if(s2){console.log(JSON.stringify({second,centre:centre.map(({frames,...r})=>r),noSecond}));process.exit(0)}
 assert.equal(corridor.sha,'60098a20322fb4dbc908ce9e22c53a5966e7f400a0275b5f829eb25af0deb2a6')
+if(mast){
+  const trim=hops=>hops.map(({frames,...r})=>{
+    if(r.roofWalk){const {frames,...walk}=r.roofWalk;r.roofWalk=walk}
+    return r
+  })
+  const misses=simulate(0,0,{installedMast:false})
+  const rawLock=simulate(-1,-1,{crossRoof:false})
+  assert(rawLock.length===4&&!rawLock[3].visible&&!rawLock[3].locked)
+  assert(centre.length===4&&centre.every(r=>r.settled&&r.bodyMargin>.09),JSON.stringify(trim(centre)))
+  assert.deepEqual(centre,simulate(0,0,{keepFrames:true,named:true}))
+  assert.deepEqual(centre,simulate(0,0,{keepFrames:true}))
+  assert.deepEqual(trim(centre.slice(0,3)),trim(misses.slice(0,3)))
+  assert(misses.length===4&&misses[3].visible&&misses[3].reach<38&&!misses[3].locked)
+  const handbook=new Vector3(-212,45,-34)
+  const visibleTowerProxy=new Vector3(-214.5,45.8,-34)
+  const cases=[]
+  for(const dx of [-1,-.5,0,.5,1])for(const dz of [-1,-.5,0,.5,1]){
+    const hops=simulate(dx,dz),r=hops[3]
+    assert(hops.length===4&&hops.every(h=>h.settled&&h.bodyMargin>.09),JSON.stringify({dx,dz,hops:trim(hops)}))
+    const eye=new Vector3(...r.end).add(new Vector3(0,1.7,0))
+    const nextPlanM=eye.distanceTo(handbook),nextProxyM=eye.distanceTo(visibleTowerProxy)
+    assert(nextPlanM<38&&nextProxyM<38)
+    cases.push({offset:[dx,dz],hops:trim(hops),nextPlanM,nextProxyM})
+  }
+  const proof={scope:'Four native server hops. Exact W08 mast with optional fourth deck; no fifth lock, timer, course install or phone test.',
+    engine:'0.1.44',format:'0.43.0',frequencyHz:60,meshSha:corridor.sha,tankMeshSha:extra.sha,mastMeshSha:mastGeo.sha,
+    mastTriangles:mastGeo.value.reduce((n,g)=>n+g.triangles.length/3,0),firstDressingSha:oneDress.sha,
+    secondDressingSha:dress.sha,saddleSha:saddle.sha,receiverSha:receiver.sha,deck:deckFour,
+    hooks:[...hooks.map(h=>h.toArray()),rim,mastHook],nextPlan:handbook.toArray(),nextProxy:visibleTowerProxy.toArray(),
+    centre,cases,withoutReceiver:trim(misses),noWalk:trim(rawLock)}
+  writeFileSync(output,JSON.stringify(proof)+'\n')
+  console.log(JSON.stringify({hops:trim(centre),cases:cases.length,nextPlanM:cases[12].nextPlanM,nextProxyM:cases[12].nextProxyM}))
+  process.exit(0)
+}
 if(tank) {
   const trim=hops=>hops.map(({frames,...r})=>r)
   const centreControl=simulate(0,0,{roofHook:roofCentre,bracket:false})
