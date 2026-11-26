@@ -1,0 +1,39 @@
+{
+  "scope": "Optional unlit presentation shell. No actor, cutscene, collision, native placement, lighting or runtime sky changes.",
+  "donor_sha256": "cd4b20016133bab16940d85f0b3319aecd19708626a5fe9cdb35f68f83a92021",
+  "shell_sha256": "a18d14cb35ee4dc1eac30e75882b6b877cbd768cedf99c1bedb64852f6b249fe",
+  "shell_bytes": 123176,
+  "triangles": 6016,
+  "primitives": 1,
+  "top_m": 70,
+  "shots": {
+    "north-portrait": {
+      "rays": 7200,
+      "empty_on_bowl_alone": 2125,
+      "filled_by_sky": 2125,
+      "foreground_rays_replaced": 0,
+      "min_donor_to_sky_separation_m": 32.494
+    },
+    "angled-portrait": {
+      "rays": 7200,
+      "empty_on_bowl_alone": 2210,
+      "filled_by_sky": 2210,
+      "foreground_rays_replaced": 0,
+      "min_donor_to_sky_separation_m": 32.159
+    },
+    "north-wide": {
+      "rays": 7200,
+      "empty_on_bowl_alone": 1924,
+      "filled_by_sky": 1924,
+      "foreground_rays_replaced": 0,
+      "min_donor_to_sky_separation_m": 32.499
+    },
+    "floor-first-portrait": {
+      "rays": 7200,
+      "empty_on_bowl_alone": 571,
+      "filled_by_sky": 571,
+      "foreground_rays_replaced": 0,
+      "min_donor_to_sky_separation_m": 30.905
+    }
+  }
+}
