@@ -12,7 +12,8 @@
 //   .agents/hooks.json        kit-owned hook spec: [{ event, tools?, script,
 //                             args?, status?, timeout? }]; tools is "shell"
 //                             (Claude and Codex Bash) or "edit" (Claude
-//                             Edit|Write|MultiEdit, Codex apply_patch)
+//                             Edit|Write|MultiEdit|NotebookEdit, Codex
+//                             apply_patch)
 //   .agents/hooks.local.json  optional, the repo's own hooks, same shape
 //   .agents/hooks/            the scripts both tools run (lib/payload.mjs
 //                             reads either tool's stdin)
@@ -50,7 +51,8 @@ export const CLAUDE_SKILLS = '.claude/skills';
 /** What a spec's `tools` becomes in each tool's matcher (recorded payloads: .agents/hooks/test/fixtures/). */
 export const MATCHERS = {
   shell: { claude: 'Bash', codex: 'Bash' },
-  edit: { claude: 'Edit|Write|MultiEdit', codex: 'apply_patch' },
+  // NotebookEdit too (meta QA 11-25 rows 106 and 108): an edit guard must see every Claude tool that writes a file.
+  edit: { claude: 'Edit|Write|MultiEdit|NotebookEdit', codex: 'apply_patch' },
 };
 const TOOL_EVENTS = new Set(['PreToolUse', 'PostToolUse']);
 const RUNNERS = { '.sh': 'bash', '.mjs': 'node', '.js': 'node', '.py': 'python3' };
@@ -65,6 +67,8 @@ const HANDLER_FIELDS = {
 };
 /** The kit's own hook scripts before MA2, removed by --from. */
 const LEGACY_HOOKS = ['session-brief.sh', 'guard-git-add.sh', 'md-prose-width.sh', 'herdr-peers.sh', 'guard-herdr-prompt.sh', 'peers.sh', 'guard-hc-send.sh'];
+/** Kit hooks in .agents/hooks/ that hc replaced (e012de3): --from drops their registrations and removes them. */
+const RETIRED_HOOKS = new Set(['.agents/hooks/guard-herdr-prompt.sh', '.agents/hooks/herdr-peers.sh']);
 
 const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
 const lexists = (path) => {
@@ -108,8 +112,9 @@ function readSpec(root, path, required) {
     if (!EVENTS.claude.has(event) || !EVENTS.codex.has(event)) problems.push(`${at} event ${JSON.stringify(event)} is not one both tools fire`);
     if (TOOL_EVENTS.has(event) && !Object.hasOwn(MATCHERS, tools)) problems.push(`${at} needs "tools": "shell" or "edit"`);
     if (!TOOL_EVENTS.has(event) && tools !== undefined) problems.push(`${at} ${event} takes no "tools"`);
-    if (typeof script !== 'string' || isAbsolute(script) || script.split('/').includes('..') || !/^(?:\.agents\/hooks|scripts)\/[\w./-]+$/.test(script)) {
-      problems.push(`${at} script must be a path under .agents/hooks/ or scripts/`);
+    if (typeof script !== 'string' || isAbsolute(script) || script.split('/').includes('..') || !/^(?:\.agents\/hooks|(?:src\/)?scripts)\/[\w./-]+$/.test(script)) {
+      // a lean repo's scripts live in src/scripts/ (D31), the old layout's in the root folder
+      problems.push(`${at} script must be a path under .agents/hooks/ or the repo's scripts folder`);
     } else if (!RUNNERS[script.slice(script.lastIndexOf('.'))]) {
       problems.push(`${at} script must end in ${Object.keys(RUNNERS).join(', ')}`);
     } else if (!existsSync(join(root, script)) || !statSync(join(root, script)).isFile()) {
@@ -345,7 +350,7 @@ function dropped(old, fresh, tool) {
   const out = [];
   for (const { key, shown } of registrations(old, tool)) {
     if (left.get(key)) left.set(key, left.get(key) - 1);
-    else out.push(shown);
+    else if (!RETIRED_HOOKS.has(JSON.parse(key)[3])) out.push(shown);
   }
   return out;
 }
@@ -427,7 +432,7 @@ export function stamp(kitDir, rootDir) {
     else if (lexists(full) && !isLink(full) && !isRealDir(full)) problems.push(`${path} is a file where the stamp writes a skill link: move it first`);
   }
   const stale = isRealDir(claudeSkills) ? readdirSync(claudeSkills).filter((name) => isLink(join(claudeSkills, name)) && !linked.includes(name)).map((name) => `${CLAUDE_SKILLS}/${name}`) : [];
-  const legacy = LEGACY_HOOKS.map((name) => `.claude/hooks/${name}`).filter((path) => lexists(join(root, path)));
+  const legacy = [...LEGACY_HOOKS.map((name) => `.claude/hooks/${name}`), ...RETIRED_HOOKS].filter((path) => lexists(join(root, path)));
   // No write or removal may go through a symlink.
   const writes = [...files.map(at), CLAUDE_SETTINGS, CODEX_HOOKS, ...own.map((name) => `${SKILLS}/${name}`)];
   const links = linked.map((name) => `${CLAUDE_SKILLS}/${name}`);
@@ -452,6 +457,12 @@ export function stamp(kitDir, rootDir) {
     (kitBlobs(kit, [...new Set([kitPath, path])]).has(blobId(readFileSync(join(root, path)))) ? older : replaced).push(path);
   };
   for (const path of legacy) {
+    if (RETIRED_HOOKS.has(path)) {
+      differs(path, path);
+      rmSync(join(root, path));
+      changed.add(path);
+      continue;
+    }
     const want = join(kit, '.agents/hooks', path.slice('.claude/hooks/'.length));
     if (!existsSync(want) || !readFileSync(join(root, path)).equals(readFileSync(want))) differs(path, `.agents/hooks/${path.slice('.claude/hooks/'.length)}`);
     rmSync(join(root, path));

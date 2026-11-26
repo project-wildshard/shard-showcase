@@ -27,7 +27,7 @@
 // per repo once its layout is fixed). Exit 2 is a usage error.
 //
 // Where each tool reads from (codex-cli 0.167.1, Claude Code, 2026-11-10):
-//   rules     Claude: CLAUDE.md (here always `@AGENTS.md`, J241). Codex: AGENTS.md.
+//   rules     AGENTS.md, which Claude Code and Codex both read; a CLAUDE.md, if kept, is `@AGENTS.md` (J241).
 //   skills    Claude: .claude/skills/<name>/SKILL.md. Codex: .agents/skills/<name>/SKILL.md.
 //   hooks     Claude: .claude/settings.json "hooks". Codex: .codex/hooks.json.
 //   settings  Claude: .claude/settings.json other keys. Codex: .codex/config.toml.
@@ -637,14 +637,15 @@ export const scriptOf = (command) => invocation(command).script;
 
 /**
  * A matcher as the set of tools it covers, in one vocabulary per tool pair: Claude's `Edit` and `Write`
- * together (with or without MultiEdit) equal Codex's `apply_patch`; either alone, or NotebookEdit, does not.
+ * together (with or without MultiEdit and NotebookEdit) equal Codex's `apply_patch`; either alone, or NotebookEdit
+ * alone, does not.
  */
 export function normalizeMatcher(matcher, tool = 'claude', event = '') {
   if (matcher === undefined || matcher === null || matcher === '' || matcher === '*' || matcher === '.*') return '*';
   const tools = new Set(String(matcher).replace(/^\^\(?|\)?\$$/g, '').split('|').map((name) => name.replace(/^\^|\$$/g, '').trim()).filter(Boolean));
   if (tool === 'codex' && tools.delete('apply_patch')) tools.add('edit');
   if (tool === 'claude' && tools.has('Edit') && tools.has('Write')) {
-    for (const name of ['Edit', 'Write', 'MultiEdit']) tools.delete(name);
+    for (const name of ['Edit', 'Write', 'MultiEdit', 'NotebookEdit']) tools.delete(name);
     tools.add('edit');
   }
   const names = [...tools].sort();
@@ -701,7 +702,7 @@ function auditRules(root, docLimit) {
   const sides = { claude: claude === null ? null : 'CLAUDE.md', codex: agents === null ? null : 'AGENTS.md' };
   if (agents === null && claude === null) items.push(item('rules', 'AGENTS.md', 'missing', { note: 'no AGENTS.md or CLAUDE.md' }));
   else if (agents === null) items.push(item('rules', 'AGENTS.md', 'claude-only', { ...sides, note: 'Codex reads AGENTS.md, not CLAUDE.md' }));
-  else if (claude === null) items.push(item('rules', 'AGENTS.md', 'codex-only', { ...sides, note: 'Claude Code reads CLAUDE.md; make it `@AGENTS.md`' }));
+  else if (claude === null) items.push(item('rules', 'AGENTS.md', 'same', { claude: 'AGENTS.md', codex: 'AGENTS.md', note: 'Claude Code reads AGENTS.md itself' }));
   else if (linked || pointer) items.push(item('rules', 'AGENTS.md', 'same', { ...sides, note: linked ? 'CLAUDE.md links to AGENTS.md' : 'CLAUDE.md is `@AGENTS.md`' }));
   else if (claude === agents) items.push(item('rules', 'AGENTS.md', 'copy', { ...sides, note: 'CLAUDE.md copies AGENTS.md; make it `@AGENTS.md`' }));
   else items.push(item('rules', 'AGENTS.md', 'drift', { ...sides, note: 'CLAUDE.md holds rules Codex never sees; move them into AGENTS.md' }));

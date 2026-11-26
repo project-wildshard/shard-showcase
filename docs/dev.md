@@ -1,42 +1,51 @@
 # Developing shard-showcase
 
 Living doc: commands, layout, code rules and git hooks. AGENTS.md links
-here; what the repo does is `docs/prd.md`, how it is built `docs/design.md`.
+here; what the repo does is `docs/prd.md`, how it is built
+`docs/design.md`.
 
 ## Commands
 
 Run from the repo root.
 
-- `pnpm install`: installs deps and points `core.hooksPath` at `.githooks/`.
-- `pnpm dev` / `pnpm build`: `wildshard dev .` / `wildshard build .` on the shard
-  source in `src/`. `build` writes a draft `.shardfile` (sdk 0.2) in
-  `public/shardfiles/` (gitignored), which upload refuses.
+- `pnpm install`: installs deps and points `core.hooksPath` at
+  `.githooks/`.
+- `pnpm dev` / `pnpm build`: `wildshard dev .` / `wildshard build .` on
+  the shard source in `src/`. `build` writes a draft
+  `out/shard-showcase/` and `out/shard-showcase.shardfile` (gitignored),
+  which upload refuses.
 - `pnpm run pack` (not bare `pnpm pack`, pnpm's tarball command):
   `build`, then `wildshard prepare` (records it in phone WebKit; the
   first run fetches ~310 MB of engine client into
   `~/.cache/wildshard`), then `build` of the prepared folder: the
   uploadable shard file (sdk 0.3).
-- `pnpm lint`: the shard source with `.oxlintrc.author.json` (root, where
-  `wildshard check` reads it): every category an error, type-aware.
-- `pnpm typecheck`: `tsc` with the root `tsconfig.json` (strictest flags) over
-  `src/**/*.ts`; passes with a note while there is none.
-- `pnpm check`: the one gate (pre-push and CI): lint, typecheck, format:check,
-  test, then the kit and agent checks.
+- `pnpm lint`: the shard source with `.oxlintrc.author.json` (root,
+  where `wildshard check` reads it): every category an error,
+  type-aware.
+- `pnpm typecheck`: `tsc` with the root `tsconfig.json` (strictest
+  flags) over `src/**/*.ts`; passes with a note while there is none.
+- `pnpm check`: the one gate (pre-push and CI): lint, typecheck,
+  format:check, test, then the kit and agent checks.
 - `pnpm test`: every `node:test` file (`src/test/.kit/`, `.githooks/`,
   `.agents/hooks/test/`).
 - `pnpm fix`: the hooks only check; this fixes lint and format.
-- `node src/scripts/.kit/md-wrap.mjs <file>`: rewraps Markdown prose to ~72 columns.
-- `src/scripts/.kit/ask-new.sh "<Jake's words>"`: opens an ask (`docs/tasks/asks/README.md`).
+- `node src/scripts/.kit/md-wrap.mjs <file>`: rewraps Markdown prose to
+  ~72 columns.
+- `src/scripts/.kit/ask-new.sh "<Jake's words>"`: opens an ask
+  (`docs/tasks/asks/README.md`).
 
 ## Layout
 
-The root stays thin: README.md and AGENTS.md (humans only), CLAUDE.md
-(`@AGENTS.md`), package.json, pnpm-lock.yaml, .npmrc, .gitignore,
-.editorconfig, `docs/`, `project/`, `src/` and the dot dirs. Scratch
-goes in `tmp/<task>/` and is deleted when done.
+The root stays thin: README.md and AGENTS.md (humans only; Claude Code
+reads AGENTS.md itself, so there is no CLAUDE.md), package.json,
+pnpm-lock.yaml, .npmrc, .gitignore, .editorconfig, `docs/`, `project/`,
+`src/` and the dot dirs. Scratch goes in `tmp/<task>/` and is deleted
+when done.
 
-- `src/scripts/.kit/`: repo-kit's tooling (asks, lint, md-wrap), plain JS.
-- `src/test/.kit/`: tests of repo-kit's scripts (hidden, beside the shard source).
+- `src/scripts/.kit/`: repo-kit's tooling (asks, lint, md-wrap), plain
+  JS.
+- `src/test/.kit/`: tests of repo-kit's scripts (hidden, beside the
+  shard source).
 - `src/`: the shard source, like shard-brasscap's (not yet imported).
 - `docs/`: living docs. `docs/plans/` is the queue, `docs/tasks/asks/`
   the receipts.
@@ -46,17 +55,18 @@ goes in `tmp/<task>/` and is deleted when done.
 ## Code rules
 
 - TypeScript only, imports with explicit `.ts`/`.tsx` extensions.
-- Every function has an explicit return type. `.oxlintrc.author.json` makes
-  every category an error, nursery too (D28, A9); disable a rule only with a
-  one-line reason beside it. `tsconfig.json` has the strictest flags.
-- `.oxfmtrc.json` formats `src/` (no semicolons, single quotes, 80 columns);
-  `pnpm fix` applies it.
+- Every function has an explicit return type. `.oxlintrc.author.json`
+  makes every category an error, nursery too (D28, A9); disable a rule
+  only with a one-line reason beside it. `tsconfig.json` has the
+  strictest flags.
+- `.oxfmtrc.json` formats `src/` (no semicolons, single quotes, 80
+  columns); `pnpm fix` applies it.
 - Pin dependencies exactly (`.npmrc` has `save-exact=true`).
 - Other Wildshard repos are git dependencies pinned by tag
-  (`github:project-wildshard/<repo>#vX.Y.Z`). They are private, so CI reads
-  them with the org GitHub App token.
-- Tests use real things (git in temp dirs, real files and processes); never
-  mock git. No LLM, `claude`, real `hc` / `herdr-app` (fake them
+  (`github:project-wildshard/<repo>#vX.Y.Z`). They are private, so CI
+  reads them with the org GitHub App token.
+- Tests use real things (git in temp dirs, real files and processes);
+  never mock git. No LLM, `claude`, real `hc` / `herdr-app` (fake them
   on PATH) or network in tests.
 
 ## Git hooks
