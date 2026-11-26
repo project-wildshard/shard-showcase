@@ -1,0 +1,129 @@
+{
+  "archive": "Raynos/project-wildshard-singleplayer@ce1cf050b3:art/showcase-template/round-5-blockout/layout.js",
+  "archiveBlob": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+  "at": [
+    -233,
+    0,
+    -150
+  ],
+  "oval": {
+    "x": -122,
+    "z": -186,
+    "r": 44,
+    "halfLen": 60,
+    "runRadius": 38
+  },
+  "scope": "Local flat witness only; clearances and concealment are sampled, no level install.",
+  "screen": {
+    "file": "w9-oval-cache-screen.glb",
+    "sha256": "d5571332e563d90ed1dc0c44c341aa2b31b5b79f6cb18dcc49dc18731c3c0ba1",
+    "bytes": 176412,
+    "triangles": 2240
+  },
+  "chest": {
+    "file": "wsc-prop-049-cache-chest-opening.glb",
+    "sha256": "57ceefd1b18329532ba060cc84e9ec74067f17b76ee02da0a9c90a61e591f278",
+    "yawDegrees": 0
+  },
+  "clipSamplesWithoutScreenContact": 57,
+  "closedLidSightRaysBlocked": 78,
+  "approachSightRaysClear": 27,
+  "minScreenClearanceFrom38mRunningLineM": 19.1061,
+  "promptLocalXYZ": [
+    0,
+    0.88,
+    0.64
+  ],
+  "engine": "0.1.44",
+  "geometrySha256": "e8c8ec912062d5055a060f655e9ae15a6e8cfee8f2b885aff443280013838af2",
+  "promptRadius": 2.5,
+  "stockPlayer": {
+    "approaches": [
+      {
+        "screen": true,
+        "start": [
+          -0.6,
+          4.9
+        ],
+        "ticks": 46,
+        "promptBefore": false,
+        "promptAfter": true,
+        "withinRange": true,
+        "airborne": 0,
+        "feet": [
+          -0.599999,
+          0.019968,
+          1.838809
+        ]
+      },
+      {
+        "screen": true,
+        "start": [
+          0,
+          4.9
+        ],
+        "ticks": 46,
+        "promptBefore": false,
+        "promptAfter": true,
+        "withinRange": true,
+        "airborne": 0,
+        "feet": [
+          -0.000001,
+          0.02,
+          1.838808
+        ]
+      },
+      {
+        "screen": true,
+        "start": [
+          0.6,
+          4.9
+        ],
+        "ticks": 46,
+        "promptBefore": false,
+        "promptAfter": true,
+        "withinRange": true,
+        "airborne": 0,
+        "feet": [
+          0.599999,
+          0.019981,
+          1.838809
+        ]
+      }
+    ],
+    "screened": {
+      "screen": true,
+      "start": [
+        2.08,
+        -0.38
+      ],
+      "ticks": 0,
+      "promptBefore": false,
+      "promptAfter": false,
+      "withinRange": true,
+      "airborne": 0,
+      "feet": [
+        2.082453,
+        0.020086,
+        -0.379908
+      ]
+    },
+    "clear": {
+      "screen": false,
+      "start": [
+        2.08,
+        -0.38
+      ],
+      "ticks": 0,
+      "promptBefore": true,
+      "promptAfter": true,
+      "withinRange": true,
+      "airborne": 0,
+      "feet": [
+        2.080001,
+        0.020048,
+        -0.38
+      ]
+    }
+  }
+}
