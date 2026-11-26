@@ -2,8 +2,9 @@
 
 > Written by: Claude
 
-> **State:** in progress, 2026-11-26: ZC1 and ZC2 are building (Opus
-> agents). Every row after ZC3 waits on Jake: he approves each zone's
+> **State:** in progress, 2026-11-26: ZC1 done (packs in
+> `support/zones/`); ZC2 is generating. Every row after ZC3 waits on
+> Jake: he approves each zone's
 > art and description and runs its Fable session himself (D34). Ask:
 > A19.
 
@@ -20,7 +21,7 @@ cleanrooms + the art refresh of brashwick"*.
 
 ## Rows
 
-- [ ] **ZC1 Starter packs for all eight.** Each zone gets a folder,
+- [x] **ZC1 Starter packs for all eight.** Each zone gets a folder,
   `~/projects/game-demos/<slug>-clean-room`, after `git init` and
   with no GitHub. It holds:
   - `README.md`, the shared brief;
