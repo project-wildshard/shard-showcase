@@ -64,7 +64,17 @@
 <p><a href="#nov25-e0f-character-tab">Character and Gear layout</a> · <a href="https://github.com/project-wildshard/shard-showcase/blob/eafe803444029c27aaffb3738e4c89af4384b8ef/art/showcase-ui/finds-tab/README.md">Editable source and checks</a>. These are two illustrative save states, not live progress, records or a change to the Bag.</p>
 </section>
 <section id="nov23-activity-slot"><p><a href="#nov25-e10b-shrine-complete">See the separate shrine completion and portal study</a>.</p><p><a href="#nov24-level-up-portrait">See the portrait level-up pair</a>.</p><p class="eyebrow">Interface art · UI 20 / 29 A / 31 · One shared slot</p><h2>The quest chip gives way to one activity</h2><p>Switch from the tracked quest to the Vault, riding clock, or trick score. Each takes the same spot under the minimap. End the activity and the quest returns. The art uses existing renders as backdrops. Controls and numbers are illustrative, not a connected game HUD.</p><p><a href="activity-slot/">Try the illustrated prototype</a> · <a href="activity-slot/phone.html">390 × 844 phone review</a> · <a href="https://github.com/project-wildshard/shard-showcase/blob/a37823c6fdb9719a6d4a2627df2d12abc3deec25/docs/plans/kitchen-sink-v2/UI-PICKS.md">Approved slot decisions</a></p></section>
-<section id="nov26-vault-bridge-boarding">
+<section id="nov26-vault-moving-lift">
+<p class="eyebrow">East · E10c · Training Vault Room 3</p>
+<h2>Ride the lift and step out onto the upper landing</h2>
+<p>Five native headless runs walked across the original bridge, boarded at the lower stop, rode up 4 m in 2.5 seconds, and reached the upper landing without leaving the ground. The frame stays fixed. The box collider matches the moving deck's 6 × 6 m footprint.</p>
+<div class="compare">
+<figure><a href="media/nov26-vault-lift-boarding.webp"><img src="media/nov26-vault-lift-boarding.webp" width="1260" height="865" alt="Measured turquoise path across the Vault bridge to the lift in its lowered pose" loading="lazy" decoding="async"></a><figcaption>Lower stop at −44.50 m. The player walks straight onto the deck.</figcaption></figure>
+<figure><a href="media/nov26-vault-lift-top.webp"><img src="media/nov26-vault-lift-top.webp" width="1260" height="865" alt="Raised winch deck flush with the landing below the last door, with the measured path highlighted" loading="lazy" decoding="async"></a><figcaption>Upper stop at −40.50 m. Blue shows the ride; turquoise shows the walk to the landing.</figcaption></figure>
+</div>
+<p>With no signal the lift remained at the bottom and the control walk fell short of the upper landing. The trigger is a test input; no live lift call, descent, rail safety, checkpoint restore, door interaction or phone playtest. <a href="https://github.com/project-wildshard/shard-showcase/blob/68dc0e502e365e0736526ede5e23b55d49c39df8/demos/native-vault-crossing/README.md#moving-lift-and-upper-landing">Rebuild the scene and replay the test</a>.</p>
+</section>
+<section id="nov26-vault-bridge-boarding"><p><a href="#nov26-vault-moving-lift">See the moving lift and upper-landing test.</a></p>
 <p class="eyebrow">East · E10c · Training Vault Room 3</p>
 <h2>The original rope bridge reaches the lower lift deck</h2>
 <p>The stock headless player walked from the last scramble apron across the actual timber bridge and onto the lift at its bottom pose. All five start offsets passed in both directions without a stall or an airborne tick. Without the bridge, the same input fell into the chamber before boarding.</p>

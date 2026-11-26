@@ -289,3 +289,9 @@ for(const name of ["nov26-avenue-cover-context.webp","nov26-avenue-cover-detail.
   assert.ok(markup.includes(`media/${name}`));
   assert.ok(readFileSync(new URL(`media/${name}`,dist)).byteLength>1000);
 }
+
+assert.ok(ids.has("nov26-vault-moving-lift"));
+for(const name of ["nov26-vault-lift-boarding.webp","nov26-vault-lift-top.webp"]){
+  assert.ok(markup.includes(`media/${name}`));
+  assert.ok(readFileSync(new URL(`media/${name}`,dist)).byteLength>1000);
+}
