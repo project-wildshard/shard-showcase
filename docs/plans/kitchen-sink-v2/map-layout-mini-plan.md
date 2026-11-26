@@ -2,7 +2,7 @@
 
 > Moved from singleplayer `docs/plans/kitchen-sink-v2/map-layout-mini-plan.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
 
-Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md) §3. Jake, 2026-11-02 (E523): *"500 by 500 is the limit … we just need to
+Parent: [2026-10-20-opus-kitchen-sink-PLAN.md](../2026-10-20-opus-kitchen-sink-PLAN.md) §3. Jake, 2026-11-02 (E523): *"500 by 500 is the limit … we just need to
 figure out how to slam as much of this into a 500 by 500 as we can … block it out in the gray."* Then: *"split this
 shard into the left half and the right half … the east half is combat only … the west half is all the other stuff."*
 

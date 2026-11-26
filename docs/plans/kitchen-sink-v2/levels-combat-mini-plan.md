@@ -2,7 +2,7 @@
 
 > Moved from singleplayer `docs/plans/kitchen-sink-v2/levels-combat-mini-plan.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
 
-Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md); joins [wave-1-hosts-mini-plan.md](wave-1-hosts-mini-plan.md) after W6
+Parent: [2026-10-20-opus-kitchen-sink-PLAN.md](../2026-10-20-opus-kitchen-sink-PLAN.md); joins [wave-1-hosts-mini-plan.md](wave-1-hosts-mini-plan.md) after W6
 and W11. Source: `art/showcase-template/round-3-levels/index.html` (ab3614ea5e); Jake's rulings win over it. Nothing is
 built until Jake says "build it".
 

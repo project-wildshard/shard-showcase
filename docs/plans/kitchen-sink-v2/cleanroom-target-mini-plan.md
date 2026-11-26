@@ -6,7 +6,7 @@
 > (below); the rows hold until he says go. Ask: A18 (the prompt itself
 > was A16).
 
-Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md). Surveyed 2026-11-26
+Parent: [2026-10-20-opus-kitchen-sink-PLAN.md](../2026-10-20-opus-kitchen-sink-PLAN.md). Surveyed 2026-11-26
 against this repo at `a601dfb` and the clean room
 (`~/projects/game-demos/showcase-zone-clean-room`) at `3afcd88`.
 
@@ -135,14 +135,14 @@ palette and style are not.
   still to settle. Done when the list is in this file and every ask is
   in OPEN-QUESTIONS.
 - [ ] **CR3 Wire it into the parent.** Add a row for this plan to
-  KITCHEN-SINK.md §5. Add Cratefall live and its state page to §6. Add
+  2026-10-20-opus-kitchen-sink-PLAN.md §5. Add Cratefall live and its state page to §6. Add
   one line to STATE.md: the shard's quality bar is the CR1 frames, and
   its style stays its own. Done when the three links resolve.
 
 ## Seams
 
 - **Owns:** this file, `cleanroom-targets.md` and `cleanroom-targets/`.
-  It edits one row in KITCHEN-SINK.md §5 and §6, one line in STATE.md,
+  It edits one row in 2026-10-20-opus-kitchen-sink-PLAN.md §5 and §6, one line in STATE.md,
   and appends rows to OPEN-QUESTIONS.md.
 - **Other agents:** `t14` is working on plan archiving on `main`.
   That touches `docs/plans/` but not the Kitchen Sink files. Work is on
@@ -161,7 +161,7 @@ by `pnpm check` (the asks and plan gates) and by Jake reading the list.
 
 - `docs/prd.md`: none, because it already points at the Kitchen Sink.
   A target is a tool for that plan, not a new product.
-- Living docs: KITCHEN-SINK.md and STATE.md, in CR3.
+- Living docs: 2026-10-20-opus-kitchen-sink-PLAN.md and STATE.md, in CR3.
 - `docs/decisions.md`: none. CR2 changes go into the plan and its
   OPEN-QUESTIONS.
 - `AGENTS.md`: none.

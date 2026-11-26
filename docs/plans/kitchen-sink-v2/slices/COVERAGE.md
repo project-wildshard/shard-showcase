@@ -2,7 +2,7 @@
 
 > Moved from singleplayer `docs/plans/kitchen-sink-v2/slices/COVERAGE.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
 
-Every row id from the two-wave plan (KITCHEN-SINK.md §4–§5 and the kitchen-sink-v2 mini plans), mapped to the one
+Every row id from the two-wave plan (2026-10-20-opus-kitchen-sink-PLAN.md §4–§5 and the kitchen-sink-v2 mini plans), mapped to the one
 slice that carries it ([README.md](README.md)'s slice rule). Where a row is split, **Slice** is the slice that owns it
 and **Also** names the slices that do a part. West ids are from [INDEX-west.md](INDEX-west.md) and the W slice files.
 East ids: the slice files that existed when this was written (E0a–E0i, E1a–E1i) are named; the rest are **provisional** (prov.)
@@ -221,7 +221,7 @@ and run by another plan; no slice), **dropped** (no longer needed, reason given)
 | ML2 layout → skeleton data | W0a | | mapped |
 | ML3 night-elite lair names | E-elites (prov.) | | mapped |
 
-## 6. Wave 2 rows (KITCHEN-SINK.md's old §5, K1–K12): umbrellas over the slices
+## 6. Wave 2 rows (2026-10-20-opus-kitchen-sink-PLAN.md's old §5, K1–K12): umbrellas over the slices
 
 | Old | Slice | Also |
 |---|---|---|

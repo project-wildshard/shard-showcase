@@ -2,7 +2,7 @@
 
 > Moved from singleplayer `docs/plans/kitchen-sink-v2/audio-mini-plan.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
 
-Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md) §2.13. Jake, 2026-11-02: *"It's a kitchen sink, so it needs a music plan,
+Parent: [2026-10-20-opus-kitchen-sink-PLAN.md](../2026-10-20-opus-kitchen-sink-PLAN.md) §2.13. Jake, 2026-11-02: *"It's a kitchen sink, so it needs a music plan,
 a sound effect plan, mini-boss music, boss music, all the good stuff."* The score is **orchestral**, made with MiniMax
 Music 3; every SFX is made with MOSS-SoundEffect v2 and Stable Audio 3 Medium and the better take ships
 ([LOCAL-MODELS.md](https://github.com/Raynos/project-wildshard-singleplayer/blob/ce1cf050b36fa236155ac26d43e721b9012c49df/docs/process/LOCAL-MODELS.md)). Enemies and bosses: [enemies-bosses-mini-plan.md](enemies-bosses-mini-plan.md).

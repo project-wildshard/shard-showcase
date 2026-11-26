@@ -5,7 +5,7 @@ A15); Jake: "its the whole purpose of the repo".
 
 Living doc: **what** this repo is for and **why**. How it is built is
 `docs/design.md`; decisions are `docs/decisions.md`; the plan is
-`docs/plans/KITCHEN-SINK.md`. Requirement ids (`R-1`) are stable: cite
+`docs/plans/2026-10-20-opus-kitchen-sink-PLAN.md`. Requirement ids (`R-1`) are stable: cite
 them from plans, commits and tests.
 
 ## One line

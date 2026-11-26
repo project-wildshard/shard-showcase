@@ -2,7 +2,7 @@
 
 > Moved from singleplayer `docs/plans/kitchen-sink-v2/mini-dungeon-mini-plan.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
 
-Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md). Page for Jake: [Mini Dungeon / Shrine
+Parent: [2026-10-20-opus-kitchen-sink-PLAN.md](../2026-10-20-opus-kitchen-sink-PLAN.md). Page for Jake: [Mini Dungeon / Shrine
 Room](https://claude.ai/artifact/QT7U953tYyBPBKHA7RrVDQ), mockups in `art/showcase-template/round-2-mini-dungeon/`
 (48e89d8d3e). The idea comes from GW2-ZONES §7.1 (a Zelda shrine or Destiny Lost Sector: one ~10 minute challenge).
 

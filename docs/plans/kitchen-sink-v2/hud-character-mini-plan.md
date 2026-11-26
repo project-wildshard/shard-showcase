@@ -2,7 +2,7 @@
 
 > Moved from singleplayer `docs/plans/kitchen-sink-v2/hud-character-mini-plan.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
 
-Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md). Ordered by Jake 2026-11-02 (E523). The shared HUD is coordinated over
+Parent: [2026-10-20-opus-kitchen-sink-PLAN.md](../2026-10-20-opus-kitchen-sink-PLAN.md). Ordered by Jake 2026-11-02 (E523). The shared HUD is coordinated over
 herdr (AGENTS.md E332): before a HUD row lands, `herdr agent list` and a notice to the HUD owners; after, the SHA.
 Levels rows LVH1–LVH5 live in [levels-combat-mini-plan.md](levels-combat-mini-plan.md); this plan is their design.
 

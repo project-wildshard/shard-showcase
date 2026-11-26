@@ -2,7 +2,7 @@
 
 > Moved from singleplayer `docs/plans/kitchen-sink-v2/quests-contracts-mini-plan.md` at ce1cf050b3 (SINGLEPLAYER-DOCS SD8).
 
-Parent: [KITCHEN-SINK.md](../KITCHEN-SINK.md). Ordered by Jake 2026-11-02 (E523). Levels and XP rules:
+Parent: [2026-10-20-opus-kitchen-sink-PLAN.md](../2026-10-20-opus-kitchen-sink-PLAN.md). Ordered by Jake 2026-11-02 (E523). Levels and XP rules:
 [levels-combat-mini-plan.md](levels-combat-mini-plan.md); rewards: [loot-economy-mini-plan.md](loot-economy-mini-plan.md).
 
 ## Decisions (Jake, 2026-11-02)
