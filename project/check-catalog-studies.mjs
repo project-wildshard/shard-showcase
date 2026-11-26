@@ -333,3 +333,10 @@ for (const name of ["nov26-titan-haul-stack-opening.webp","nov26-titan-haul-stac
   assert.ok(markup.includes(path));
   assert.ok(readFileSync(new URL(path,dist)).byteLength>1000);
 }
+
+assert.ok(ids.has("nov26-hover-ease-off"));
+assert.equal(data.assets.find(a=>a.id==="WSC-KIT-003").related_study.href,"#nov26-hover-ease-off");
+for(const name of ["nov26-hover-ease-off-rider.webp","nov26-hover-ease-off-deck.webp","w5a-high-receiver-ease-off.glb"]){
+  assert.ok(markup.includes(`media/${name}`));
+  assert.ok(readFileSync(new URL(`media/${name}`,dist)).byteLength>1000);
+}
