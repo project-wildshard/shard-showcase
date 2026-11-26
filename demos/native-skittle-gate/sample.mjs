@@ -21,8 +21,8 @@ const {DeclaredBodyOps}=await at('src/server/game/quest/bodyOps.ts')
 const {SCRIPT_V1_COMMANDS: C,SCRIPT_V1_READS: Reads}=await import('@wildshard/format/scriptAbiV1')
 const R=await loadRapier(readFileSync(join(dirname(req.resolve('@dimforge/rapier3d-simd/package.json')), 'rapier_wasm3d_bg.wasm')))
 const [geometryFile,proofFile,traceFile,mode]=process.argv.slice(2)
-assert(mode===undefined||mode==='--lever','Unknown fixture mode')
-const bench=mode==='--lever'?await import('./lever.mjs'):null
+assert(mode===undefined||mode==='--lever'||mode==='--reset','Unknown fixture mode')
+const bench=mode?await import('./lever.mjs'):null
 assert(geometryFile&&proofFile&&traceFile,'Need ramp triangles, proof, replay paths')
 const input=readFileSync(geometryFile)
 const geometrySHA256=createHash('sha256').update(input).digest('hex')
@@ -30,7 +30,7 @@ assert.equal(geometrySHA256,'7cab1ab062d1e498457d701eeccfc06704ff88f1c3d7e15c4fc
 const geometry=JSON.parse(input)
 const laneZ=196, floor=.04, slope=.25, toe=-42
 const gate={x:-26.14,baseY:4.72,z:laneZ,half:[.088,.49,1.83],lift:1.78,ticks:36}
-const dt=1/60
+const dt=1/60, roundTicks=1200, resultWindowTicks=60, settleTicks=240
 const p=(x,y,z)=>({x,y,z})
 const tilt=q=>Math.acos(Math.max(-1,Math.min(1,1-2*(q.x*q.x+q.z*q.z))))*180/Math.PI
 
@@ -69,33 +69,82 @@ function trial(offset,release,exercise){
     const bodies=rows.map(row=>ops.body(row.id)), balls=bodies.slice(0,4)
     session?.setup(W)
     function step(input){ops.pre(dt);if(session===null)phy.step();else session.sim.step(input);ops.post(dt)}
-    for(let i=0;i<240;i++)step()
+    for(let i=0;i<settleTicks;i++)step()
     const held=balls.map(b=>({...b.curr}))
     assert(held.every(v=>v.x>gate.x+.49&&v.x<-19&&Math.abs(v.z-laneZ)<1.05),JSON.stringify(held))
     const activated=session?.approach(step)
-    const frames=[]
-    const toes=Array(4).fill(null), gatePasses=Array(4).fill(null)
-    let firstTip=null
-    function save(tick){frames.push({tick,bar:{...bar.translation()},bodies:bodies.map((b,i)=>({id:rows[i].id,p:{...b.curr},q:{...b.currRot}}))})}
-    save(0)
-    for(let i=1;i<=1200;i++){
-      if((session===null?release:session.on()) && i<=gate.ticks){
-        const q=i/gate.ticks
-        bar.setNextKinematicTranslation(p(gate.x,gate.baseY+gate.lift*(3*q*q-2*q*q*q),gate.z))
+    const frame=tick=>({tick,bar:{...bar.translation()},bodies:bodies.map((b,i)=>({id:rows[i].id,p:{...b.curr},q:{...b.currRot}}))})
+    function roll(){
+      const frames=[]
+      const toes=Array(4).fill(null), gatePasses=Array(4).fill(null)
+      let firstTip=null
+      const endCounts=[]
+      frames.push(frame(0))
+      for(let i=1;i<=roundTicks;i++){
+        if((session===null?release:session.on()) && i<=gate.ticks){
+          const q=i/gate.ticks
+          bar.setNextKinematicTranslation(p(gate.x,gate.baseY+gate.lift*(3*q*q-2*q*q*q),gate.z))
+        }
+        step()
+        for(let j=0;j<4;j++){
+          if(gatePasses[j]===null&&balls[j].curr.x<gate.x)gatePasses[j]=i
+          if(toes[j]===null&&balls[j].curr.x<toe)toes[j]=i
+        }
+        if(firstTip===null&&bodies.slice(4).some(b=>tilt(b.currRot)>60))firstTip=i
+        if(exercise==='replay'&&i>roundTicks-resultWindowTicks)endCounts.push(bodies.slice(4).filter(b=>tilt(b.currRot)>60).length)
+        if(i%6===0)frames.push(frame(i))
       }
-      step()
-      for(let j=0;j<4;j++){
-        if(gatePasses[j]===null&&balls[j].curr.x<gate.x)gatePasses[j]=i
-        if(toes[j]===null&&balls[j].curr.x<toe)toes[j]=i
-      }
-      if(firstTip===null&&bodies.slice(4).some(b=>tilt(b.currRot)>60))firstTip=i
-      if(i%6===0)save(i)
+      const angles=bodies.slice(4).map(b=>tilt(b.currRot))
+      const fallen=angles.filter(a=>a>60).length
+      assert(bodies.every(b=>[b.curr.x,b.curr.y,b.curr.z].every(Number.isFinite)))
+      return {toes,gatePasses,firstTip,fallen,angles,frames,...(exercise==='replay'?{endCounts}:{})}
     }
-    const angles=bodies.slice(4).map(b=>tilt(b.currRot))
-    const fallen=angles.filter(a=>a>60).length
-    assert(bodies.every(b=>[b.curr.x,b.curr.y,b.curr.z].every(Number.isFinite)))
-    return {offset,release,held,toes,gatePasses,firstTip,fallen,angles,frames,
+    if(exercise==='replay')session.earlyReset(step)
+    const first=roll()
+    if(exercise!=='replay')return {offset,release,held,...first,
       ...(session===null?{}:{exercise,activation:activated,transitions:session.transitions()})}
+    let current=0, best=0
+    const score=entry=>{
+      assert(entry.toes.every(Number.isInteger))
+      assert(entry.endCounts.length===resultWindowTicks&&entry.endCounts.every(n=>n===entry.fallen))
+      assert(entry.fallen>0&&entry.fallen<=10)
+      current=entry.fallen
+      best=Math.max(best,current)
+      return current
+    }
+    const scores=[score(first)], bestAfterFirst=best
+    session.result()
+    // No unprompted reset as the finished player waits at the handle.
+    for(let i=0;i<60;i++)step()
+    assert(balls.every(b=>b.curr.x<toe))
+    session.reset(step)
+    current=0
+    session.duringReset(step)
+    const clear=()=>bodies.every(b=>[b.curr.x,b.curr.y,b.curr.z].every(Number.isFinite))
+    // All four balls have left the bar before this reset can be requested.
+    for(let i=1;i<=gate.ticks;i++){
+      const q=i/gate.ticks
+      bar.setNextKinematicTranslation(p(gate.x,gate.baseY+gate.lift*(1-3*q*q+2*q*q*q),gate.z))
+      step()
+    }
+    const resetBar={...bar.translation()}
+    assert(Math.abs(resetBar.y-gate.baseY)<1e-5)
+    ops.prepare(rows.map(row=>[C['body.teleport'],id(row),row.at.x,row.at.y,row.at.z])).commit()
+    for(let i=0;i<settleTicks;i++)step()
+    assert(clear())
+    assert(rows.every((row,i)=>ops.body(row.id)===bodies[i]))
+    const resetHeld=balls.map(b=>({...b.curr}))
+    assert(resetHeld.every(v=>v.x>gate.x+.49&&v.x<-19&&Math.abs(v.z-laneZ)<1.05))
+    assert(bodies.slice(4).every(b=>tilt(b.currRot)<2))
+    assert.equal(best,bestAfterFirst)
+    const scoreAfterReset={current,best}
+    const resetFrame=frame(0)
+    session.rearm()
+    session.replay(step)
+    const second=roll()
+    scores.push(score(second))
+    assert.equal(session.transitions(),3)
+    return {activation:activated,earlyResetRejected:true,unpromptedResetRejected:true,releaseDuringResetRejected:true,first,second,resetFrame,resetHeld,resetBar,scores,scoreAfterReset,best,transitions:3}
   }finally{
     if(session)session.sim.dispose()
     else {scope.dispose();phy.dispose()}
@@ -126,11 +175,26 @@ if(bench!==null){
     'wsc-plan-004-rolling-ball.glb':'c04881c87359049db80b6f17772628543628688dd6fee3c58e1bf6f7f3ebe171',
     'wsc-plan-005-skittle-pin.glb':'6863ee9338d4859d2a7ef68dd556e16cdeb2949c6cb33a9ca90c808531fe1d43',
   })
-  const summary={scope:'Authored prompt and stock player in the isolated native ramp bench; physical lift bridge belongs to the fixture.',engine:'0.1.44',format:formatVersion,
-    hz:60,geometrySHA256,donors,stand:bench.stand,spot:bench.spot,gate,runs:runs.slice(0,3).map(({frames,...row})=>row),freshReplayMatched:true}
-  writeFileSync(proofFile,JSON.stringify(summary,null,2)+'\n')
-  writeFileSync(traceFile,JSON.stringify({gate,geometrySHA256,blocked:idle,released:pressed,stand:bench.stand,spot:bench.spot,donors})+'\n')
-  console.table(summary.runs.map(({exercise,activation,transitions,toes,fallen})=>({exercise,activation:JSON.stringify(activation),transitions,toes,fallen})))
+  if(mode==='--reset'){
+    const r=trial(0,true,'replay'), repeat=trial(0,true,'replay')
+    assert.deepEqual(r,repeat)
+    const brief=({frames,endCounts,...entry})=>entry
+    const {first,second,resetFrame,...evidence}=r
+    const summary={scope:'Isolated native player, prompt and physical prop bench; in-memory score only.',engine:'0.1.44',format:formatVersion,
+      hz:60,geometrySHA256,donors,stand:bench.stand,spot:bench.spot,gate,roundTicks,scoreWindowTicks:resultWindowTicks,
+      resetGateTicks:gate.ticks,resetSettleTicks:settleTicks,samePlayerSession:true,independentReplayMatched:true,
+      ...evidence,first:brief(first),second:brief(second)}
+    writeFileSync(proofFile,JSON.stringify(summary,null,2)+'\n')
+    writeFileSync(traceFile,JSON.stringify({gate,geometrySHA256,blocked:idle,released:pressed,stand:bench.stand,
+      spot:bench.spot,donors,replay:{activation:r.activation,first,resetFrame,second}})+'\n')
+    console.log(JSON.stringify({scores:r.scores,scoreAfterReset:r.scoreAfterReset,toes:[first.toes,second.toes]}))
+  }else{
+    const summary={scope:'Authored prompt and stock player in the isolated native ramp bench; physical lift bridge belongs to the fixture.',engine:'0.1.44',format:formatVersion,
+      hz:60,geometrySHA256,donors,stand:bench.stand,spot:bench.spot,gate,runs:runs.slice(0,3).map(({frames,...row})=>row),freshReplayMatched:true}
+    writeFileSync(proofFile,JSON.stringify(summary,null,2)+'\n')
+    writeFileSync(traceFile,JSON.stringify({gate,geometrySHA256,blocked:idle,released:pressed,stand:bench.stand,spot:bench.spot,donors})+'\n')
+    console.table(summary.runs.map(({exercise,activation,transitions,toes,fallen})=>({exercise,activation:JSON.stringify(activation),transitions,toes,fallen})))
+  }
 } else {
   const runs=[]
   for(const o of [-.12,0,.12]){

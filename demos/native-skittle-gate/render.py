@@ -96,7 +96,17 @@ def render(n,eye,target,lens,res):
     scene.render.filepath=str(out/(n+'.webp'))
     bpy.ops.render.render(write_still=True)
 
-if lever:
+if 'replay' in r:
+    roll=r['replay']
+    eye=(-45.1,-190.8,4.05)
+    aim=(-52.08,-196.05,.62)
+    for key,frame in (
+        ('result',roll['first']['frames'][-1]),
+        ('reset',roll['resetFrame']),
+        ('replay',roll['second']['frames'][-1])):
+        pose(frame)
+        render('nov26-w4b-score-'+key,eye,aim,42,(1240,840))
+elif lever:
     feet=r['released']['activation']['arrived']
     pose(r['blocked']['frames'][0])
     render('nov26-w4b-player-lever', (feet[0],-feet[2],feet[1]+1.68),(-29.65,-200.0,1.62),25,(960,1280))

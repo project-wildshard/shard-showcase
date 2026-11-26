@@ -62,3 +62,25 @@ cmp "$d/lever-proof.json" project/layouts/w4b-player-lever-proof.json
 blender -b -t 6 "$d/yard/physics-yard-editable.blend" --python-exit-code 1 \
   --python demos/native-skittle-gate/render.py -- "$d/lever-trace.json" "$d"
 ```
+
+## Score, reset and play a second round
+
+The same headless player can stay at the stand after releasing the balls. The
+bench counts pins visibly tilted more than 60° at the end of a 20-second
+round, checking that the count was stable in the final second. A new native
+prompt appears at the grip only after a result is available. Pressing it
+closes the bar over 36 ticks, returns the same 14 declared bodies to their
+authored starting poses, then waits four seconds for them to settle. The
+release prompt reappears only when the four balls are held again and the ten
+pins are upright. Reset clears the round count but keeps the best in memory.
+
+This is a bench, not a shipped course: it has no physical scoreboard display,
+persisted personal best, other-player/occupancy guard, phone test or map install.
+
+```sh
+node --experimental-transform-types demos/native-skittle-gate/sample.mjs \
+  "$d/ramp.json" "$d/reset-proof.json" "$d/reset-trace.json" --reset
+cmp "$d/reset-proof.json" project/layouts/w4b-skittle-reset-proof.json
+blender -b -t 6 "$d/yard/physics-yard-editable.blend" --python-exit-code 1 \
+  --python demos/native-skittle-gate/render.py -- "$d/reset-trace.json" "$d"
+```
