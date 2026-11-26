@@ -1,0 +1,145 @@
+{
+  "originThree": [
+    146,
+    0,
+    186
+  ],
+  "floorY": 0.05,
+  "outerRadiusM": 28,
+  "flatProbes": {
+    "both": 0,
+    "old": 104,
+    "new": 786,
+    "none": 0
+  },
+  "bytes": 18232,
+  "triangles": 525,
+  "sha256": "45d1b496abc771448ff93ee20b2a4f7d21d6431cf122c1010841b9aef0c4b926",
+  "meshSha": "d646f3123ff33da48c0f56eef87db157d9ebefdf087fb70df578d3e363751692",
+  "donors": [
+    {
+      "asset": "g2",
+      "sha256": "777bed81fd7369c604faf6e666cd33d0c5c826c93e02d136a58e672ea2b5d101"
+    },
+    {
+      "asset": "office",
+      "sha256": "631f39353d7eed6d4bba196f71a30342f7a5aac1fb1d3579560807c8db971f31"
+    }
+  ],
+  "scope": "Exact static floor inlay, two donor sectors unchanged; not full arena",
+  "motor": {
+    "engine": "0.1.44",
+    "radiusM": 0.38,
+    "motion": "Two exact C3 floor joints under ordinary movement; no combat, full walls, G3 or phone.",
+    "samples": [
+      {
+        "offset": -1.3,
+        "completed": true,
+        "distanceM": 128.8145475382672,
+        "tick": 1806,
+        "air": 0,
+        "longestStall": 0,
+        "groundTicks": {
+          "g2": 646,
+          "office": 158,
+          "infill": 1002
+        },
+        "end": [
+          112.47786649575986,
+          0.04479866184364073,
+          212.6600643278825
+        ]
+      },
+      {
+        "offset": -0.65,
+        "completed": true,
+        "distanceM": 128.81430412113076,
+        "tick": 1806,
+        "air": 0,
+        "longestStall": 0,
+        "groundTicks": {
+          "g2": 658,
+          "office": 144,
+          "infill": 1004
+        },
+        "end": [
+          112.47854123193204,
+          0.04480407041218132,
+          213.3100037236588
+        ]
+      },
+      {
+        "offset": 0,
+        "completed": true,
+        "distanceM": 128.81474192050607,
+        "tick": 1806,
+        "air": 0,
+        "longestStall": 0,
+        "groundTicks": {
+          "g2": 670,
+          "office": 131,
+          "infill": 1005
+        },
+        "end": [
+          112.47763618256798,
+          0.04477520727040246,
+          213.96045478247618
+        ]
+      },
+      {
+        "offset": 0.65,
+        "completed": true,
+        "distanceM": 128.81486315824142,
+        "tick": 1806,
+        "air": 0,
+        "longestStall": 0,
+        "groundTicks": {
+          "g2": 682,
+          "office": 119,
+          "infill": 1005
+        },
+        "end": [
+          112.4772992661922,
+          0.04445093936909689,
+          214.6103263300318
+        ]
+      },
+      {
+        "offset": 1.3,
+        "completed": true,
+        "distanceM": 128.8150005676216,
+        "tick": 1806,
+        "air": 0,
+        "longestStall": 0,
+        "groundTicks": {
+          "g2": 694,
+          "office": 106,
+          "infill": 1006
+        },
+        "end": [
+          112.47761473312718,
+          0.04478719912539236,
+          215.260160239697
+        ]
+      }
+    ],
+    "noInfill": {
+      "offset": 0,
+      "completed": false,
+      "distanceM": 24.840459812613336,
+      "tick": 350,
+      "air": 8,
+      "longestStall": 0,
+      "groundTicks": {
+        "g2": 337,
+        "office": 0,
+        "infill": 0
+      },
+      "end": [
+        131.9032132172761,
+        -0.3316167123503983,
+        198.87169153523212
+      ]
+    }
+  }
+}
