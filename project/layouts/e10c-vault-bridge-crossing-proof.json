@@ -1,0 +1,596 @@
+{
+  "scope": "Static exact Room 3 bridge geometry and lower lift boarding only. No rope dynamics, motion, ladder, scramble, door or phone.",
+  "engine": "0.1.44",
+  "collisionHash": "8019e9b2badeaad6cbac43940b8deb4ef07662ed492a6e1ac4489c4a2e609f73",
+  "colliders": 19,
+  "triangles": 34825,
+  "compact": {
+    "colliders": 12,
+    "triangles": 8112,
+    "proof": [
+      {
+        "totalTicks": 0,
+        "endpointDelta": 0.00899741782800817,
+        "sagDelta": -2.6702880859375e-05
+      },
+      {
+        "totalTicks": 0,
+        "endpointDelta": 0.006931774326018584,
+        "sagDelta": 1.9073486328125e-05
+      },
+      {
+        "totalTicks": 0,
+        "endpointDelta": 0.003128429031049796,
+        "sagDelta": 5.957926623523235e-05
+      },
+      {
+        "totalTicks": 0,
+        "endpointDelta": 0.010535461274243587,
+        "sagDelta": 1.3464363291859627e-05
+      },
+      {
+        "totalTicks": 0,
+        "endpointDelta": 0.0005453001753902394,
+        "sagDelta": 0
+      },
+      {
+        "totalTicks": 0,
+        "endpointDelta": 0,
+        "sagDelta": 0
+      },
+      {
+        "totalTicks": 0,
+        "endpointDelta": 0.004403458332706101,
+        "sagDelta": 8.813862223178148e-06
+      },
+      {
+        "totalTicks": 0,
+        "endpointDelta": 0.0013469948553100353,
+        "sagDelta": -1.3735610991716385e-05
+      },
+      {
+        "totalTicks": 0,
+        "endpointDelta": 0.009388734790078531,
+        "sagDelta": -6.866455078125e-05
+      },
+      {
+        "totalTicks": 0,
+        "endpointDelta": 0.007665687614286273,
+        "sagDelta": -2.288818359375e-05
+      }
+    ],
+    "paths": [
+      {
+        "offset": -0.45,
+        "reverse": false,
+        "omitted": null,
+        "tick": 209,
+        "complete": true,
+        "air": 0,
+        "longestStall": 0,
+        "minY": -44.97666568037867,
+        "ticks": {
+          "west": 15,
+          "bridge": 108,
+          "east": 34,
+          "frame": 6,
+          "deck": 36,
+          "bottom": 0
+        },
+        "end": [
+          195.52477328406954,
+          -44.47999972578883,
+          -64.20865631112763
+        ]
+      },
+      {
+        "offset": -0.45,
+        "reverse": true,
+        "omitted": null,
+        "tick": 209,
+        "complete": true,
+        "air": 0,
+        "longestStall": 0,
+        "minY": -44.976646606892345,
+        "ticks": {
+          "west": 8,
+          "bridge": 108,
+          "east": 38,
+          "frame": 6,
+          "deck": 39,
+          "bottom": 0
+        },
+        "end": [
+          181.3835819461535,
+          -44.480011169880626,
+          -64.21401759543448
+        ]
+      },
+      {
+        "offset": -0.225,
+        "reverse": false,
+        "omitted": null,
+        "tick": 206,
+        "complete": true,
+        "air": 0,
+        "longestStall": 0,
+        "minY": -44.9766213599015,
+        "ticks": {
+          "west": 12,
+          "bridge": 110,
+          "east": 34,
+          "frame": 6,
+          "deck": 36,
+          "bottom": 0
+        },
+        "end": [
+          195.55486690426807,
+          -44.47999972578883,
+          -64.20917299829432
+        ]
+      },
+      {
+        "offset": -0.225,
+        "reverse": true,
+        "omitted": null,
+        "tick": 206,
+        "complete": true,
+        "air": 0,
+        "longestStall": 0,
+        "minY": -44.976621698437256,
+        "ticks": {
+          "west": 9,
+          "bridge": 108,
+          "east": 34,
+          "frame": 6,
+          "deck": 39,
+          "bottom": 0
+        },
+        "end": [
+          181.35545248762136,
+          -44.47999972578883,
+          -64.20687463441976
+        ]
+      },
+      {
+        "offset": 0,
+        "reverse": false,
+        "omitted": null,
+        "tick": 206,
+        "complete": true,
+        "air": 0,
+        "longestStall": 0,
+        "minY": -44.97662753340602,
+        "ticks": {
+          "west": 12,
+          "bridge": 109,
+          "east": 34,
+          "frame": 6,
+          "deck": 36,
+          "bottom": 0
+        },
+        "end": [
+          195.55789884788402,
+          -44.47999972578883,
+          -63.9999425620563
+        ]
+      },
+      {
+        "offset": 0,
+        "reverse": true,
+        "omitted": null,
+        "tick": 206,
+        "complete": true,
+        "air": 0,
+        "longestStall": 0,
+        "minY": -44.976619904011486,
+        "ticks": {
+          "west": 9,
+          "bridge": 108,
+          "east": 34,
+          "frame": 6,
+          "deck": 39,
+          "bottom": 0
+        },
+        "end": [
+          181.35428342971326,
+          -44.479995911091564,
+          -63.99946979835066
+        ]
+      },
+      {
+        "offset": 0.225,
+        "reverse": false,
+        "omitted": null,
+        "tick": 206,
+        "complete": true,
+        "air": 0,
+        "longestStall": 0,
+        "minY": -44.976619904011486,
+        "ticks": {
+          "west": 12,
+          "bridge": 110,
+          "east": 34,
+          "frame": 6,
+          "deck": 36,
+          "bottom": 0
+        },
+        "end": [
+          195.5564684867091,
+          -44.47999972578883,
+          -63.788614904590474
+        ]
+      },
+      {
+        "offset": 0.225,
+        "reverse": true,
+        "omitted": null,
+        "tick": 206,
+        "complete": true,
+        "air": 0,
+        "longestStall": 0,
+        "minY": -44.97663516280055,
+        "ticks": {
+          "west": 9,
+          "bridge": 108,
+          "east": 34,
+          "frame": 6,
+          "deck": 39,
+          "bottom": 0
+        },
+        "end": [
+          181.35792058283172,
+          -44.480011169880626,
+          -63.79097814361632
+        ]
+      },
+      {
+        "offset": 0.45,
+        "reverse": false,
+        "omitted": null,
+        "tick": 209,
+        "complete": true,
+        "air": 0,
+        "longestStall": 0,
+        "minY": -44.97668856856227,
+        "ticks": {
+          "west": 15,
+          "bridge": 108,
+          "east": 34,
+          "frame": 6,
+          "deck": 36,
+          "bottom": 0
+        },
+        "end": [
+          195.5246548438819,
+          -44.47999972578883,
+          -63.78683801212939
+        ]
+      },
+      {
+        "offset": 0.45,
+        "reverse": true,
+        "omitted": null,
+        "tick": 209,
+        "complete": true,
+        "air": 0,
+        "longestStall": 0,
+        "minY": -44.97670382735133,
+        "ticks": {
+          "west": 8,
+          "bridge": 108,
+          "east": 38,
+          "frame": 6,
+          "deck": 39,
+          "bottom": 0
+        },
+        "end": [
+          181.3867423766948,
+          -44.480003540486095,
+          -63.78601526817865
+        ]
+      }
+    ]
+  },
+  "paths": [
+    {
+      "offset": -0.45,
+      "reverse": false,
+      "omitted": null,
+      "tick": 209,
+      "complete": true,
+      "air": 0,
+      "longestStall": 0,
+      "minY": -44.976638977497814,
+      "ticks": {
+        "west": 15,
+        "bridge": 108,
+        "east": 34,
+        "frame": 6,
+        "deck": 36,
+        "bottom": 0
+      },
+      "end": [
+        195.52409118714118,
+        -44.47999972578883,
+        -64.19968478554097
+      ]
+    },
+    {
+      "offset": -0.45,
+      "reverse": true,
+      "omitted": null,
+      "tick": 209,
+      "complete": true,
+      "air": 0,
+      "longestStall": 0,
+      "minY": -44.97666568037867,
+      "ticks": {
+        "west": 8,
+        "bridge": 110,
+        "east": 38,
+        "frame": 6,
+        "deck": 39,
+        "bottom": 0
+      },
+      "end": [
+        181.38550721343265,
+        -44.47999972578883,
+        -64.20735856320424
+      ]
+    },
+    {
+      "offset": -0.225,
+      "reverse": false,
+      "omitted": null,
+      "tick": 206,
+      "complete": true,
+      "air": 0,
+      "longestStall": 0,
+      "minY": -44.976680939167736,
+      "ticks": {
+        "west": 12,
+        "bridge": 110,
+        "east": 34,
+        "frame": 6,
+        "deck": 36,
+        "bottom": 0
+      },
+      "end": [
+        195.55521403799395,
+        -44.480003540486095,
+        -64.20606389041154
+      ]
+    },
+    {
+      "offset": -0.225,
+      "reverse": true,
+      "omitted": null,
+      "tick": 206,
+      "complete": true,
+      "air": 0,
+      "longestStall": 0,
+      "minY": -44.97663516280055,
+      "ticks": {
+        "west": 9,
+        "bridge": 107,
+        "east": 34,
+        "frame": 6,
+        "deck": 39,
+        "bottom": 0
+      },
+      "end": [
+        181.34527067318922,
+        -44.48001498457789,
+        -64.2041679082977
+      ]
+    },
+    {
+      "offset": 0,
+      "reverse": false,
+      "omitted": null,
+      "tick": 206,
+      "complete": true,
+      "air": 0,
+      "longestStall": 0,
+      "minY": -44.97662753340602,
+      "ticks": {
+        "west": 12,
+        "bridge": 117,
+        "east": 34,
+        "frame": 6,
+        "deck": 36,
+        "bottom": 0
+      },
+      "end": [
+        195.55773947996505,
+        -44.47999972578883,
+        -63.999421069824635
+      ]
+    },
+    {
+      "offset": 0,
+      "reverse": true,
+      "omitted": null,
+      "tick": 206,
+      "complete": true,
+      "air": 0,
+      "longestStall": 0,
+      "minY": -44.976619904011486,
+      "ticks": {
+        "west": 9,
+        "bridge": 117,
+        "east": 34,
+        "frame": 6,
+        "deck": 39,
+        "bottom": 0
+      },
+      "end": [
+        181.35428342971326,
+        -44.479995911091564,
+        -63.99946979835066
+      ]
+    },
+    {
+      "offset": 0.225,
+      "reverse": false,
+      "omitted": null,
+      "tick": 206,
+      "complete": true,
+      "air": 0,
+      "longestStall": 0,
+      "minY": -44.97662871787371,
+      "ticks": {
+        "west": 12,
+        "bridge": 110,
+        "east": 34,
+        "frame": 6,
+        "deck": 36,
+        "bottom": 0
+      },
+      "end": [
+        195.55581272758315,
+        -44.47999972578883,
+        -63.792969261633324
+      ]
+    },
+    {
+      "offset": 0.225,
+      "reverse": true,
+      "omitted": null,
+      "tick": 206,
+      "complete": true,
+      "air": 0,
+      "longestStall": 0,
+      "minY": -44.976621427189556,
+      "ticks": {
+        "west": 9,
+        "bridge": 108,
+        "east": 34,
+        "frame": 6,
+        "deck": 39,
+        "bottom": 0
+      },
+      "end": [
+        181.35817792216025,
+        -44.48000735518336,
+        -63.79230032252188
+      ]
+    },
+    {
+      "offset": 0.45,
+      "reverse": false,
+      "omitted": null,
+      "tick": 209,
+      "complete": true,
+      "air": 0,
+      "longestStall": 0,
+      "minY": -44.976619904011486,
+      "ticks": {
+        "west": 15,
+        "bridge": 108,
+        "east": 34,
+        "frame": 6,
+        "deck": 36,
+        "bottom": 0
+      },
+      "end": [
+        195.52330848671514,
+        -44.480003540486095,
+        -63.79612970997133
+      ]
+    },
+    {
+      "offset": 0.45,
+      "reverse": true,
+      "omitted": null,
+      "tick": 209,
+      "complete": true,
+      "air": 0,
+      "longestStall": 0,
+      "minY": -44.976680939167736,
+      "ticks": {
+        "west": 8,
+        "bridge": 107,
+        "east": 38,
+        "frame": 6,
+        "deck": 39,
+        "bottom": 0
+      },
+      "end": [
+        181.3887198837198,
+        -44.48000735518336,
+        -63.79342149650446
+      ]
+    }
+  ],
+  "center": {
+    "offset": 0,
+    "reverse": false,
+    "omitted": null,
+    "tick": 206,
+    "complete": true,
+    "air": 0,
+    "longestStall": 0,
+    "minY": -44.97662753340602,
+    "ticks": {
+      "west": 12,
+      "bridge": 117,
+      "east": 34,
+      "frame": 6,
+      "deck": 36,
+      "bottom": 0
+    },
+    "end": [
+      195.55773947996505,
+      -44.47999972578883,
+      -63.999421069824635
+    ]
+  },
+  "centerCompact": {
+    "offset": 0,
+    "reverse": false,
+    "omitted": null,
+    "tick": 206,
+    "complete": true,
+    "air": 0,
+    "longestStall": 0,
+    "minY": -44.97662753340602,
+    "ticks": {
+      "west": 12,
+      "bridge": 109,
+      "east": 34,
+      "frame": 6,
+      "deck": 36,
+      "bottom": 0
+    },
+    "end": [
+      195.55789884788402,
+      -44.47999972578883,
+      -63.9999425620563
+    ]
+  },
+  "control": {
+    "offset": 0,
+    "reverse": false,
+    "omitted": "bridge",
+    "tick": 45,
+    "complete": false,
+    "air": 27,
+    "longestStall": 0,
+    "minY": -47.06031990199163,
+    "ticks": {
+      "west": 12,
+      "bridge": 0,
+      "east": 0,
+      "frame": 0,
+      "deck": 0,
+      "bottom": 0
+    },
+    "end": [
+      184.284597630179,
+      -47.06031990199163,
+      -63.999999796349584
+    ]
+  }
+}
