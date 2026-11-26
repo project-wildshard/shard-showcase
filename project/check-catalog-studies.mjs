@@ -217,3 +217,9 @@ const ropeWalkway=data.assets.find(a=>a.id==="WSC-PROP-048");
 assert.equal(ropeWalkway.model_preview,"#lookout-reuse-models");
 assert.equal(ropeWalkway.related_study?.href,"#nov26-w6c-climb-terminals");
 assert.ok(ids.has(ropeWalkway.related_study.href.slice(1)));
+
+const rangeTimer=data.assets.find(a=>a.id==="WSC-PROP-027");
+assert.equal(rangeTimer.model_preview,"#course-gantry-and-trophy");
+assert.equal(rangeTimer.related_study?.href,"#nov26-w3a-range-record-face");
+assert.ok(ids.has(rangeTimer.related_study.href.slice(1)));
+assert.ok(ids.has("nov24-w11a-record-light"));
