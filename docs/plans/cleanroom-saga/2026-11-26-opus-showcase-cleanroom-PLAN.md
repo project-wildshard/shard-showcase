@@ -1,4 +1,4 @@
-# Mini plan: a clean-room one-shot as the target (CR)
+# The Showcase clean room as the target (CR)
 
 > Written by: Claude
 
@@ -6,8 +6,11 @@
 > (below); the rows hold until he says go. Ask: A18 (the prompt itself
 > was A16).
 
-Parent: [2026-10-20-opus-kitchen-sink-PLAN.md](../2026-10-20-opus-kitchen-sink-PLAN.md). Surveyed 2026-11-26
-against this repo at `a601dfb` and the clean room
+Saga: [cleanroom saga](2026-11-26-opus-cleanroom-saga-master-PLAN.md),
+phase 0. It serves the
+[Kitchen Sink](../2026-10-20-opus-kitchen-sink-PLAN.md). Research:
+[cleanroom-research.md](support/cleanroom-research.md).
+Surveyed 2026-11-26 against this repo at `a601dfb` and the clean room
 (`~/projects/game-demos/showcase-zone-clean-room`) at `3afcd88`.
 
 ## Why
@@ -102,8 +105,8 @@ palette and style are not.
   frames (`docs/media/golden/README.md`; each has a scripted camera
   in `tools/golden/scenes.js`) and its zone stills, choose the ones
   whose place exists in this plan's map (town square, Crate Fields,
-  the Vault, the Titan arena, …). Write `cleanroom-targets.md` beside
-  this file with one row per frame:
+  the Vault, the Titan arena, …). Write
+  `support/cleanroom-targets.md` with one row per frame:
   - the source path in the clean room (the latest build; Jake: *"its
     not going to drift"*);
   - the place, and the matching spot (P, facing f) on round 5 of the
@@ -112,7 +115,7 @@ palette and style are not.
     and what in it is not (neon, palette, style), so a look loop
     doesn't copy Cratefall's art direction.
 
-  Copy the most important frames into `cleanroom-targets/` beside it.
+  Copy the most important frames into `support/cleanroom-targets/`.
   Link the rest. The shard's own art direction (the polished
   orange-and-grey look, ruling 19ab, the round-11 remaster mockups)
   stays the style target. Done when every chosen frame has a spot and
@@ -127,23 +130,25 @@ palette and style are not.
   solved differently. Each line gets one of three calls:
   - **Cratefall overwrites:** the plan changes to match.
   - **Kitchen Sink comes back:** the plan's design stays.
-  - **Ask:** it becomes a row in [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md)
-    with a recommendation.
+  - **Ask:** it becomes a row with a recommendation in
+    [OPEN-QUESTIONS](../kitchen-sink-v2/OPEN-QUESTIONS.md).
 
   The calls Jake has already made are recorded as decided: third
   person, the dodge roll, names don't matter, and status effects are
   still to settle. Done when the list is in this file and every ask is
   in OPEN-QUESTIONS.
 - [ ] **CR3 Wire it into the parent.** Add a row for this plan to
-  2026-10-20-opus-kitchen-sink-PLAN.md §5. Add Cratefall live and its state page to §6. Add
-  one line to STATE.md: the shard's quality bar is the CR1 frames, and
-  its style stays its own. Done when the three links resolve.
+  the Kitchen Sink plan's §5. Add Cratefall live and its state page to
+  §6. Add one line to `kitchen-sink-v2/STATE.md`: the shard's quality
+  bar is the CR1 frames, and its style stays its own. Done when the
+  three links resolve.
 
 ## Seams
 
-- **Owns:** this file, `cleanroom-targets.md` and `cleanroom-targets/`.
-  It edits one row in 2026-10-20-opus-kitchen-sink-PLAN.md §5 and §6, one line in STATE.md,
-  and appends rows to OPEN-QUESTIONS.md.
+- **Owns:** this file, `support/cleanroom-targets.md` and
+  `support/cleanroom-targets/`. It edits one row in the Kitchen Sink
+  plan's §5 and §6, one line in its STATE.md, and appends rows to
+  its OPEN-QUESTIONS.md.
 - **Other agents:** `t14` is working on plan archiving on `main`.
   That touches `docs/plans/` but not the Kitchen Sink files. Work is on
   `main` only (D29).
@@ -161,7 +166,7 @@ by `pnpm check` (the asks and plan gates) and by Jake reading the list.
 
 - `docs/prd.md`: none, because it already points at the Kitchen Sink.
   A target is a tool for that plan, not a new product.
-- Living docs: 2026-10-20-opus-kitchen-sink-PLAN.md and STATE.md, in CR3.
+- Living docs: the Kitchen Sink plan and its STATE.md, in CR3.
 - `docs/decisions.md`: none. CR2 changes go into the plan and its
   OPEN-QUESTIONS.
 - `AGENTS.md`: none.
