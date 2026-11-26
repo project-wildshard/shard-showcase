@@ -1,0 +1,233 @@
+{
+  "scope": "Exact render meshes; scripted local approach and round trip; no pickup, stealth, patrol, unlock, install or phone test.",
+  "geometry": {
+    "scope": "Optional replacement for the original static shed at the same origin; desk and keycard remain separately reusable.",
+    "source_sha256": {
+      "wsc-prop-065-keycard-shed": "1702aa6968159d7b35b319bcbae4112c89b123fb885113c4e3cfb94aab39c966",
+      "wsc-kit-006-foreman-desk": "bcaa8a98a7c2522f7d8553fcd60d70d14582d440ad79855cfedd63ce50ff7ff7",
+      "wsc-kit-006-vault-keycard": "53258729cc9e8ec16ea0d7bb08a14c80d9696be1f91374c4fa51e6e9062382cc"
+    },
+    "bytes": 579400,
+    "triangles": 8420,
+    "sha256": "d45a05124a2ee29d575b884bb76fa37d645580252868ffb6d9ba2974240beb05",
+    "doorway_rays_blocked_before_and_clear_after": 195,
+    "cut_blender_m": [
+      [
+        0.12,
+        1.38
+      ],
+      [
+        -1.42,
+        -0.91
+      ],
+      [
+        0.215,
+        2.24
+      ]
+    ],
+    "model_axis": "glTF X right, Y up, Z faces door",
+    "desk_gltf_translation_m": [
+      -0.7,
+      0.2145,
+      -0.46
+    ],
+    "card_gltf_translation_m": [
+      -0.38,
+      1.128,
+      -0.36
+    ],
+    "sill_m": 0.2145,
+    "walkable_clear_width_m": 1.25
+  },
+  "cases": [
+    {
+      "offset": -0.145,
+      "speed": 0.62,
+      "useOpen": true,
+      "crossed": true,
+      "threshold": [
+        0.605035,
+        0.2345,
+        0.578881
+      ],
+      "approached": true,
+      "atDesk": [
+        0.646092,
+        0.2345,
+        -0.353139
+      ],
+      "cardRayM": 1.235696,
+      "cardVisible": true,
+      "airIn": 0,
+      "back": true,
+      "airOut": 0,
+      "last": [
+        0.60487,
+        0.019971,
+        2.908143
+      ]
+    },
+    {
+      "offset": -0.145,
+      "speed": 1,
+      "useOpen": true,
+      "crossed": true,
+      "threshold": [
+        0.605134,
+        0.2345,
+        0.58893
+      ],
+      "approached": true,
+      "atDesk": [
+        0.643645,
+        0.2345,
+        -0.341641
+      ],
+      "cardRayM": 1.233782,
+      "cardVisible": true,
+      "airIn": 0,
+      "back": true,
+      "airOut": 0,
+      "last": [
+        0.604665,
+        0.019971,
+        2.912388
+      ]
+    },
+    {
+      "offset": 0,
+      "speed": 0.62,
+      "useOpen": true,
+      "crossed": true,
+      "threshold": [
+        0.751046,
+        0.2345,
+        0.584871
+      ],
+      "approached": true,
+      "atDesk": [
+        0.659612,
+        0.2345,
+        -0.343113
+      ],
+      "cardRayM": 1.247041,
+      "cardVisible": true,
+      "airIn": 0,
+      "back": true,
+      "airOut": 0,
+      "last": [
+        0.750292,
+        0.019992,
+        2.914202
+      ]
+    },
+    {
+      "offset": 0,
+      "speed": 1,
+      "useOpen": true,
+      "crossed": true,
+      "threshold": [
+        0.751983,
+        0.2345,
+        0.595108
+      ],
+      "approached": true,
+      "atDesk": [
+        0.664355,
+        0.2345,
+        -0.331469
+      ],
+      "cardRayM": 1.251209,
+      "cardVisible": true,
+      "airIn": 0,
+      "back": true,
+      "airOut": 0,
+      "last": [
+        0.750717,
+        0.019993,
+        2.918649
+      ]
+    },
+    {
+      "offset": 0.145,
+      "speed": 0.62,
+      "useOpen": true,
+      "crossed": true,
+      "threshold": [
+        0.895042,
+        0.2345,
+        0.579197
+      ],
+      "approached": true,
+      "atDesk": [
+        0.667031,
+        0.2345,
+        -0.366396
+      ],
+      "cardRayM": 1.253135,
+      "cardVisible": true,
+      "airIn": 0,
+      "back": true,
+      "airOut": 0,
+      "last": [
+        0.895707,
+        0.019972,
+        2.909347
+      ]
+    },
+    {
+      "offset": 0.145,
+      "speed": 1,
+      "useOpen": true,
+      "crossed": true,
+      "threshold": [
+        0.895173,
+        0.2345,
+        0.588318
+      ],
+      "approached": true,
+      "atDesk": [
+        0.669819,
+        0.2345,
+        -0.381081
+      ],
+      "cardRayM": 1.255626,
+      "cardVisible": true,
+      "airIn": 0,
+      "back": true,
+      "airOut": 0,
+      "last": [
+        0.896844,
+        0.019972,
+        2.913727
+      ]
+    }
+  ],
+  "control": {
+    "offset": 0,
+    "speed": 1,
+    "useOpen": false,
+    "crossed": false,
+    "threshold": [
+      0.716942,
+      0.019982,
+      1.6431
+    ],
+    "approached": false,
+    "atDesk": [
+      0.716942,
+      0.019982,
+      1.6431
+    ],
+    "cardRayM": 2.332456,
+    "cardVisible": false,
+    "airIn": 0,
+    "back": false,
+    "airOut": 0,
+    "last": [
+      0.716942,
+      0.019982,
+      1.6431
+    ]
+  }
+}
