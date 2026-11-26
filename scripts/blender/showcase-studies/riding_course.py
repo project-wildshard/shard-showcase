@@ -266,6 +266,11 @@ S.render.resolution_x, S.render.resolution_y = 1400, 820
 S.render.resolution_percentage = 100
 S.render.image_settings.file_format = 'JPEG'
 S.render.image_settings.quality = 88
+if lap_review := os.environ.get("WSC_RIDING_LAP_RAIL_REVIEW"):
+    import runpy
+    helpers=Path(__file__).resolve().parents[3]/"demos/native-riding-lap-rails/review.py"
+    runpy.run_path(str(helpers))["review"](lap_review)
+    sys.exit(0)
 if rail_review := os.environ.get("WSC_RIDING_RAIL_REVIEW"):
     import runpy
     helpers=Path(__file__).resolve().parents[3]/"demos/native-riding-rail/review.py"

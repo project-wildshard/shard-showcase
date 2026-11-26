@@ -93,7 +93,7 @@ function score(trace){
   return {events,startTick:begin.tick,finishTick:end.tick,elapsed:sec(end.tick-begin.tick),
     misses,penalty:misses.length*5,total:sec(end.tick-begin.tick+hz*5*misses.length)};
 }
-function drive(offset,skip){
+export function drive(offset,skip,options={}){
   const yaw=-Math.PI/2, p={x:lineX+10,y:.025,z:lineZ+offset};
   const sim=new SimHost({version:SIM_API_VERSION,id:'w10b-lap-bench',seed:27,
     ground:{size:500,height:.025},player:{at:{...p,z:p.z+1},yaw,speed:4.3},
@@ -101,6 +101,7 @@ function drive(offset,skip){
     weapon:{id:'disabled-calibration-strike',damage:0}}, {rapier:R,ground:false});
   try{
     sim.physics.world.createCollider(R.ColliderDesc.cuboid(250,1,250).setTranslation(0,-.975,0).setCollisionGroups(groups('WORLD')));
+    options.install?.(sim,R,groups);
     const h=sim.entities.get('horse.lap'), r=sim.players.get('actor.player');
     h.species='w10b-calibration-horse';
     const ride=installDeclaredRiding(sim,{rows:{species:[{id:h.species,mount:{gaits}}]}});
@@ -121,7 +122,7 @@ function drive(offset,skip){
       const delta=Math.atan2(Math.sin(angle-h.yaw),Math.cos(angle-h.yaw));
       const steer=clamp(-4.5*delta,-1,1);
       assert(r.ridden===h.entityId);
-      trace.push({tick,x,y,z,s});
+      trace.push({tick,x,y,z,s,...(options.withHp?{hp:h.hp}:{})});
       if(s>lap+1.6)break;
       sim.step(new Map([[r.id,{commandVersion:1,moveX:0,moveZ:0,yaw:h.yaw,sprint:true,
         steer:{keyX:0,keyY:0,stickX:steer,stickY:1}}]]));
@@ -129,6 +130,7 @@ function drive(offset,skip){
     return {offset,skip,trace,result:score(trace),maxError};
   } finally {sim.dispose()}
 }
+if(process.argv[1] && pathToFileURL(resolve(process.argv[1])).href===import.meta.url){
 const runs=[];
 for(const off of [-.5,0,.5])for(const skip of [false,true])runs.push(drive(off,skip));
 console.table(runs.map(r=>({offset:r.offset,skip:r.skip,lap:r.trace.at(-1).s,maxError:r.maxError,
@@ -149,3 +151,4 @@ assert.deepEqual(drive(0,false),runs[2]);
 const compact=r=>({offset:r.offset,skip:r.skip,maxError:+r.maxError.toFixed(3),yRange:[Math.min(...r.trace.map(f=>f.y)),Math.max(...r.trace.map(f=>f.y))],result:r.result});
 writeFileSync(proof,JSON.stringify({engine:'0.1.44',hz,layoutSHA256:hash,lap,halfWidth:2,gantry:line,rings,runs:runs.map(compact)},null,2)+'\n');
 writeFileSync(trace,JSON.stringify({gantry:line,rings,clean:runs[2],bypass:runs[3]})+'\n');
+}
