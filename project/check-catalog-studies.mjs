@@ -256,3 +256,7 @@ for (const side of ["yard", "return"]) {
   assert.ok(markup.includes(`href="media/w0a-east-direction-${side}.glb"`));
   assert.ok(markup.includes(`src="media/nov26-east-threshold-${side}.webp"`));
 }
+assert.ok(ids.has("nov26-w4b-player-lever"));
+assert.ok(markup.includes('href="#nov26-w4b-player-lever"'));
+for (const state of ["lever", "release", "settled"])
+  assert.ok(markup.includes(`src="media/nov26-w4b-player-${state}.webp"`));
