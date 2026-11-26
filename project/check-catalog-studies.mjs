@@ -201,6 +201,13 @@ assert.ok(ids.has("nov25-w8b-rock-three-pitches"));
 assert.ok(ids.has("nov24-w8b-scramble-deck-a"));
 assert.ok(ids.has("west-climb-rock-wip"));
 assert.ok(ids.has("nov25-w3a-native-six-targets"));
+assert.ok(ids.has("nov26-w3a-range-entry"));
+for (const name of ["gate-to-yard","gate-eye"]) {
+  const path = `media/nov26-w3a-${name}.webp`;
+  assert.ok(markup.includes(`src="${path}"`));
+  assert.ok(readFileSync(new URL(path, dist)).byteLength > 1000);
+}
+
 assert.ok(ids.has("nov24-west-melee-targets"));
 assert.ok(ids.has("nov25-w12-range-gate-walk"));
 assert.ok(ids.has("nov25-e6-arc-charge"));
