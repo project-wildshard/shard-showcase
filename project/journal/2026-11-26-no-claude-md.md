@@ -16,3 +16,9 @@ never re-stamps those two scripts in a lean repo (it looks for them at
 the lean path inside the kit); the kit's own
 `node ../repo-kit/scripts/agent-sync.mjs --from ../repo-kit --root .`
 does. dev.md also loses U1's stale `public/shardfiles/` line.
+
+Last, the plan itself: every row is built, so it moves to
+project/archive/ under the new `<date>-<model>-<title>-PLAN.md` name.
+U1 and U2 were done in the 0.5.1 roll already (pack re-checked today:
+a prepared, valid 3.0 MB shard file in out/); design.md loses the same
+stale `public/shardfiles/` path dev.md had.

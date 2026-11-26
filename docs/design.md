@@ -23,10 +23,9 @@ configs tools look for at the root.
 
 ## Build
 
-`wildshard build .` bakes `src/` into a draft shard file in
-`public/shardfiles/` (gitignored). `pnpm run pack` then prepares it in
-phone WebKit and builds again: the sdk 0.3 file upload accepts. SDK
-0.5.0 moves that output (plan `opus-2026-11-25-sdk-0-5-and-kit.md`).
+`wildshard build .` bakes `src/` into a draft shard file in `out/`
+(gitignored). `pnpm run pack` then prepares it in phone WebKit and
+builds again: the sdk 0.3 file upload accepts.
 
 ## Dependencies
 
