@@ -196,7 +196,7 @@
 <figure><a href="media/nov24-e5b-sweep-marked.jpg"><img src="media/nov24-e5b-sweep-marked.jpg" alt="The same container yard with a translucent amber fan on the floor between the barriers" width="1320" height="870" loading="lazy"></a><figcaption>Same camera and light, with the static sweep.</figcaption></figure>
 </div>
 <p><a href="media/wsc-kit-006-patrol-floor-sweep.glb">Download the unlit sweep GLB</a> · 9,008 B / 312 triangles. <a href="https://github.com/project-wildshard/shard-showcase/blob/d81e47ad605385b70a1e28dc87eec6ac50b9238f/project/journal/2026-11-24-e5b-patrol-floor-sweep.md">Rebuild and import checks</a>. This is normal alpha blending, not a light source, animated patrol or vision volume.</p><p><a href="#nov25-e5b-alarm-gates">Follow-up: the yard’s alarm gates and status signal</a>.</p></section>
-<section id="nov25-e5b-alarm-gates">
+<section id="nov25-e5b-alarm-gates"><p><a href="#nov26-e5b-gate-motion">See the two leaves in motion.</a></p>
 <p class="eyebrow">East Stealth Yard · E5b · WSC-KIT-006</p>
 <h2>Yard gates: clear and alarm</h2>
 <p>Two instances of one sliding leaf span each original 16 m opening. Both retract into side pockets to clear the approach. The post signal uses a round cyan lens for clear and a square red lens for alarm, with separate material controls.</p>
@@ -206,6 +206,16 @@
 </div>
 <p><a href="media/e5b-alarm-gate-leaf.glb">Gate leaf GLB</a> · <a href="media/e5b-alarm-signal.glb">Status signal GLB</a> · <a href="https://github.com/project-wildshard/shard-showcase/blob/5a46c2841668b54c453b5b79f1a81f03287f5f46/project/journal/2026-11-25-e5b-alarm-gates.md">Source and fit</a> · <a href="#asset-WSC-KIT-006">Catalogue entry</a>.</p>
 <p>All 318 geometry sample lines cross the open pose and hit the closed leaves. This checks the endpoint visuals, not player collision, detection, the lock timer or Keycard behavior. <a href="#nov25-e5a-riveter-slam-vfx">See the separate Band 5 slam effects</a>.</p>
+</section>
+<section id="nov26-e5b-gate-motion">
+<p class="eyebrow">East Stealth Yard · E5b · WSC-KIT-006</p>
+<h2>The alarm doors close together</h2>
+<p>The same two leaves now glide inward in 2.4 seconds and retract in 2.8 seconds, using a single shared mesh set. Three.js sampled both clips at the original north and west openings, 626 samples per gate. The moving gap stays centered and closes without crossing leaves.</p>
+<div class="compare">
+<figure><a href="media/nov26-e5b-gate-motion-mid.webp"><img src="media/nov26-e5b-gate-motion-mid.webp" width="1280" height="820" alt="The two dark metal gate leaves moving in with an eight metre opening between them" loading="lazy" decoding="async"></a><figcaption>1.2 s · 8.12 m between the moving leaves.</figcaption></figure>
+<figure><a href="media/nov26-e5b-gate-motion-last.webp"><img src="media/nov26-e5b-gate-motion-last.webp" width="1280" height="820" alt="The amber edges of two nearly closed gate leaves with a narrow gap between them" loading="lazy" decoding="async"></a><figcaption>2.1 s · About 70 cm left before closure.</figcaption></figure>
+</div>
+<p><a href="media/e5b-alarm-gate-pair-motion.glb">Animated pair GLB</a> (60,876 B) · <a href="https://github.com/project-wildshard/shard-showcase/blob/513c5ad1dbd89dc04d02110e87f4789749dbdf7b/project/journal/2026-11-26-e5b-alarm-gate-motion.md">Editable source and fit checks</a> · <a href="#nov25-e5b-alarm-gates">Original leaves and post signal</a>. These are art timings, not an installed alarm, lock timer, or collision proof.</p>
 </section>
 <section id="nov25-e5a-riveter-slam-vfx">
 <p class="eyebrow">East · E5a · Reusable effect geometry</p>
