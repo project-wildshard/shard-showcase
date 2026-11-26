@@ -2,9 +2,12 @@
 // either agent tool; muted, headless and read-only commands pass.
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { makesSound } from '../no-sound-guard.mjs';
+import { makesSound, staleSilence } from '../no-sound-guard.mjs';
 
 const HOOK = fileURLToPath(new URL('../no-sound-guard.mjs', import.meta.url));
 const run = (payload) => spawnSync(process.execPath, [HOOK], { input: JSON.stringify(payload), encoding: 'utf8' });
@@ -83,4 +86,34 @@ test('the hook exits 2 with the way through and the escape hatch; other commands
     assert.equal(passed.stderr, '');
   }
   assert.equal(spawnSync(process.execPath, [HOOK], { input: 'not json', encoding: 'utf8' }).status, 0);
+});
+
+// Meta QA 11-25 row 140: a shard's browser-playwright.mjs launches through its kit marker; a stamp from before silencePage
+// let headless WebKit play game audio, so a script run in that repo is refused until the kit is restamped.
+test('a script run in a repo whose kit browser marker does not silence pages is refused', () => {
+  const root = mkdtempSync(join(tmpdir(), 'no-sound-stamp-'));
+  try {
+    const shard = join(root, 'shard-x'), engine = join(root, 'engine');
+    for (const [repo, marker, launcher] of [
+      [shard, 'export function installBrowserActorMarker() {}', "import './.kit/wildshard-browser-marker.mjs';"],
+      [engine, 'export function installBrowserActorMarker() {}', "import './browser-actor-marker.mjs';"],
+    ]) {
+      mkdirSync(join(repo, '.git'), { recursive: true });
+      mkdirSync(join(repo, 'src/scripts/.kit'), { recursive: true });
+      writeFileSync(join(repo, 'src/scripts/.kit/wildshard-browser-marker.mjs'), marker);
+      writeFileSync(join(repo, 'src/scripts/browser-playwright.mjs'), launcher);
+    }
+    for (const [command, cwd] of [['node src/scripts/test-gpu.mjs', shard], ['bash src/scripts/run.sh', shard],
+      [`cd ${shard} && node src/scripts/test-gpu.mjs`, root], [`node ${shard}/src/scripts/test-gpu.mjs`, root]]) {
+      assert.match(staleSilence(command, cwd) ?? '', /does not silence pages/u, command);
+    }
+    for (const [command, cwd] of [['git status', shard], ['ALLOW_AGENT_SOUND=1 node x.mjs', shard],
+      ['node src/scripts/test-gpu.mjs', engine], ['node x.mjs', root]]) {
+      assert.equal(staleSilence(command, cwd), null, command);
+    }
+    writeFileSync(join(shard, 'src/scripts/.kit/wildshard-browser-marker.mjs'), 'export function silencePage() {}');
+    assert.equal(staleSilence('node src/scripts/test-gpu.mjs', shard), null, 'a restamped marker passes');
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
 });

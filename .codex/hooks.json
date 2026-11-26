@@ -54,6 +54,16 @@
           },
           {
             "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.agents/hooks/prod-title-guard.mjs\"",
+            "statusMessage": "Checking for agent-browser past production's title"
+          },
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.agents/hooks/agent-browser-marker-guard.mjs\"",
+            "statusMessage": "Checking that agent-browser carries the agent marker"
+          },
+          {
+            "type": "command",
             "command": "node \"$(git rev-parse --show-toplevel)/.agents/hooks/active-hours.mjs\" mark",
             "statusMessage": "Recording active agent time"
           }

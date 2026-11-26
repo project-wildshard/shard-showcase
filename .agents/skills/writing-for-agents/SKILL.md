@@ -40,8 +40,8 @@ good document makes the agent take the same **process** every run.
   also says `Owns:` and `Must not touch:`, and carries its stop caps:
   one row, under 1 hour and 300 turns (Jake, 2026-11-11).
 - **`README.md` and `AGENTS.md` above its marker are Jake's.**
-  Agents write steering below the marker (J241). Leave `CLAUDE.md` as
-  `@AGENTS.md`.
+  Agents write steering below the marker (J241). There is no
+  `CLAUDE.md`: Claude Code reads `AGENTS.md` itself.
 - **MMO facts stay in their docs.** Point at them; a copied budget or
   a copied rate goes stale.
 - **Wrap** markdown at 72 (`src/scripts/.kit/md-wrap.mjs`).

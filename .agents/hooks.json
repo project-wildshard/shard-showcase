@@ -38,6 +38,18 @@
     {
       "event": "PreToolUse",
       "tools": "shell",
+      "script": ".agents/hooks/prod-title-guard.mjs",
+      "status": "Checking for agent-browser past production's title"
+    },
+    {
+      "event": "PreToolUse",
+      "tools": "shell",
+      "script": ".agents/hooks/agent-browser-marker-guard.mjs",
+      "status": "Checking that agent-browser carries the agent marker"
+    },
+    {
+      "event": "PreToolUse",
+      "tools": "shell",
       "script": ".agents/hooks/active-hours.mjs",
       "args": [
         "mark"
