@@ -1,0 +1,80 @@
+{
+  "scope": "Optional art at four Round 5 corner pedestal proxies. No trigger, quest, hold, payout or live behavior.",
+  "archive_layout_blob": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+  "archive_lab_blob": "51a3b4bef1f2d4891172164d10893d98d450a3b9",
+  "pins": {
+    "wsc-kit-007-storm-beacon.glb": "3a525f2637d5150a1e5a85c04640d6a57772c842731f063aa429142810239833",
+    "wsc-kit-007-storm-beacon-seat.glb": "4a63489abed860eabd4a736b6c9732d0e75233953b523b7705ea5b9f1b8af2b3",
+    "wsc-kit-007-storm-beacon-charged-lamp.glb": "ab7445a6977c9af5cea7a31618a9c660f539e1026e23e61b1bbc2b3426b77a5d"
+  },
+  "sha256": "e58bbc6b7dddc85c5d0b8512925b20d701a8eb37a6602280f719075d478cceb5",
+  "bytes": 56680,
+  "triangles": 725,
+  "texture_count": 0,
+  "clip": "BeaconControlEngage",
+  "seconds": 0.32,
+  "degrees": 110,
+  "checked_poses_per_anchor": 65,
+  "handle_top_offset_m": 0.153107,
+  "handle_bottom_offset_m": -0.203107,
+  "max_protrusion_m": 0.431987,
+  "approach_width_m": 1,
+  "placements": [
+    {
+      "corner": 1,
+      "three_xyz": [
+        127,
+        1.32,
+        16
+      ],
+      "yaw_deg": 0.0,
+      "min_air_gap_from_pedestal_m": 0.002001,
+      "outward_approach_three_z": [
+        16.5,
+        19.65
+      ]
+    },
+    {
+      "corner": 2,
+      "three_xyz": [
+        231,
+        1.32,
+        16
+      ],
+      "yaw_deg": 0.0,
+      "min_air_gap_from_pedestal_m": 0.002001,
+      "outward_approach_three_z": [
+        16.5,
+        19.65
+      ]
+    },
+    {
+      "corner": 3,
+      "three_xyz": [
+        231,
+        1.32,
+        116
+      ],
+      "yaw_deg": 180.0,
+      "min_air_gap_from_pedestal_m": 0.001999,
+      "outward_approach_three_z": [
+        115.5,
+        112.35
+      ]
+    },
+    {
+      "corner": 4,
+      "three_xyz": [
+        127,
+        1.32,
+        116
+      ],
+      "yaw_deg": 180.0,
+      "min_air_gap_from_pedestal_m": 0.001999,
+      "outward_approach_three_z": [
+        115.5,
+        112.35
+      ]
+    }
+  ]
+}
