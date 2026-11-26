@@ -340,3 +340,11 @@ for(const name of ["nov26-hover-ease-off-rider.webp","nov26-hover-ease-off-deck.
   assert.ok(markup.includes(`media/${name}`));
   assert.ok(readFileSync(new URL(`media/${name}`,dist)).byteLength>1000);
 }
+
+assert.ok(ids.has("nov26-e10c-square-crate"));
+assert.equal(data.assets.find(a=>a.id==="WSC-PROP-064").related_study.href,"#nov26-e10c-square-crate");
+for (const state of ["free","fixed"]) {
+  const path=`media/nov26-vault-full-push-${state}.webp`;
+  assert.ok(markup.includes(path));
+  assert.ok(readFileSync(new URL(path,dist)).byteLength>1000);
+}
