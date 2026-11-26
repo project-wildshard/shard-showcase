@@ -1,0 +1,47 @@
+{
+  "scope": "Optional lightweight replacement and finite breeze clip. No weather or street install.",
+  "source_sha256": "eddeb06d8d0a2f62925aba6c288fb801671b3555c2d4f42bfd1cec320a9d3825",
+  "source_bytes": 387620,
+  "source_triangles": 19811,
+  "replacement_sha256": "b9f86ec622e26233a290e7479bcc2092554adf1f6b34c1a807a53db39df6453e",
+  "replacement_bytes": 238180,
+  "replacement_triangles": 6256,
+  "root_vertices": 341,
+  "max_root_shift_m": 0.0,
+  "max_tip_motion_m": 0.18186795657863664,
+  "loop_seconds": 3,
+  "clip": "Avenue pennants - breeze",
+  "silhouette_views": [
+    {
+      "angle_deg": -40,
+      "samples": 19600,
+      "silhouette_iou": 0.9899413243922883
+    },
+    {
+      "angle_deg": -25,
+      "samples": 19600,
+      "silhouette_iou": 0.9907441688263606
+    },
+    {
+      "angle_deg": 0,
+      "samples": 19600,
+      "silhouette_iou": 0.9911293074036165
+    },
+    {
+      "angle_deg": 25,
+      "samples": 19600,
+      "silhouette_iou": 0.9887005649717514
+    },
+    {
+      "angle_deg": 40,
+      "samples": 19600,
+      "silhouette_iou": 0.990990990990991
+    }
+  ],
+  "three_mixer": {
+    "duration": 3,
+    "staticMeshes": 1,
+    "movingMeshes": 4,
+    "halfCyclePeakM": 0.34731722290021316
+  }
+}
