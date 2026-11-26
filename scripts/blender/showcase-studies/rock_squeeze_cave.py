@@ -210,6 +210,43 @@ scene.collection.objects.link(camera); scene.camera=camera
 scene.render.engine="CYCLES"; scene.cycles.samples=38; scene.cycles.use_denoising=False
 scene.view_settings.view_transform="AgX"; scene.render.resolution_percentage=100
 scene.render.image_settings.file_format="JPEG"; scene.render.image_settings.quality=89
+# Optional replay overlay on the unchanged sectional art. The lines are
+# measured feet lifted 8 cm for contrast, not swimming, camera or live UI.
+replay_path = os.getenv("WILDSHARD_CAVE_REPLAY")
+if replay_path:
+    replay = json.loads(Path(replay_path).read_text())
+    assert len(replay)==3 and replay[0]["height"]==1.8 and replay[1]["height"]==1.02
+    liners[1].hide_render=True
+    for o in (cave_bounce,edge):o.hide_render=True
+    data.type="ORTHO";data.ortho_scale=66
+    camera.location=(-141,-43,11)
+    camera.rotation_euler=(Vector((-200,-44,3.0))-camera.location).to_track_quat("-Z","Y").to_euler()
+    scene.render.resolution_x,scene.render.resolution_y=1500,740
+    scene.cycles.samples=28
+    scene.cycles.use_adaptive_sampling=True
+    scene.cycles.adaptive_threshold=.085
+    for result,slug,c in [(replay[0],"stock",(.95,.27,.065)),(replay[1],"candidate",(.045,.72,.58))]:
+        material=bpy.data.materials.new("Measured foot route"); material.use_nodes=True
+        n=material.node_tree.nodes["Principled BSDF"]
+        n.inputs["Base Color"].default_value=n.inputs["Emission Color"].default_value=(*c,1)
+        n.inputs["Emission Strength"].default_value=1.1
+        curve=bpy.data.curves.new("Measured foot route","CURVE");curve.dimensions="3D"
+        curve.bevel_depth=.092;curve.bevel_resolution=2
+        line=curve.splines.new("POLY")
+        raw=result["frames"]+[result["last"]]
+        line.points.add(len(raw)-1)
+        for pt,(x,y,z) in zip(line.points,raw,strict=True):
+            pt.co=(x,-z,y+.08,1)
+        ob=bpy.data.objects.new(curve.name,curve);scene.collection.objects.link(ob)
+        curve.materials.append(material)
+        x,y,z=result["last"]
+        bpy.ops.mesh.primitive_uv_sphere_add(segments=16,ring_count=8,radius=.19,location=(x,-z,y+.10))
+        endpoint=bpy.context.object;endpoint.data.materials.append(material)
+        scene.render.filepath=str(out/f"w9a-squeeze-{slug}.jpg")
+        bpy.ops.render.render(write_still=True)
+        for o in (ob,endpoint):bpy.data.objects.remove(o,do_unlink=True)
+    sys.exit(0)
+
 for name,p,target,res,lens in ([] if os.getenv("WILDSHARD_CAVE_SKIP_RENDER") == "1" else [
     ("section",(-140,-44,19),(-202,-44,4.9),(1450,710),74),
     ("interior",(-198.6,-35.75,-4.37),(-200.2,-44.7,-4.9),(1000,1080),25)]):

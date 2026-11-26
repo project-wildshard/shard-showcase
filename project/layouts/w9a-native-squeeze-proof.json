@@ -1,0 +1,332 @@
+{
+  "scope": "Rapier on the pinned static 60 m cave liner. Existing crouch uses the 1.80 m stock capsule. The 1.02 m candidate replaces the capsule before the first tick; no stance transitions or live terrain holes.",
+  "engine": "0.1.44",
+  "sourceSha256": "e0f7aefe417cb554be390bb1fa8044648a939b821014e0f68c385533d296a508",
+  "triangles": 316,
+  "trials": [
+    {
+      "side": 1,
+      "offset": -0.15,
+      "crouch": false,
+      "height": 1.8,
+      "cleared": false,
+      "last": [
+        -200.149956,
+        -5.98002,
+        41.494989
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 0,
+      "maxAbsX": 0.149999,
+      "ticks": 468
+    },
+    {
+      "side": 1,
+      "offset": -0.15,
+      "crouch": true,
+      "height": 1.8,
+      "cleared": false,
+      "last": [
+        -200.149968,
+        -5.98002,
+        41.494499
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 0,
+      "maxAbsX": 0.149999,
+      "ticks": 868
+    },
+    {
+      "side": 1,
+      "offset": -0.15,
+      "crouch": true,
+      "height": 1.02,
+      "cleared": true,
+      "last": [
+        -200.150808,
+        0.019772,
+        75.534538
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 109,
+      "maxAbsX": 0.150824,
+      "ticks": 1825
+    },
+    {
+      "side": 1,
+      "offset": 0,
+      "crouch": false,
+      "height": 1.8,
+      "cleared": false,
+      "last": [
+        -199.913602,
+        -5.980016,
+        41.501489
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 0,
+      "maxAbsX": 0.086402,
+      "ticks": 469
+    },
+    {
+      "side": 1,
+      "offset": 0,
+      "crouch": true,
+      "height": 1.8,
+      "cleared": false,
+      "last": [
+        -199.922198,
+        -5.98,
+        41.501473
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 0,
+      "maxAbsX": 0.077802,
+      "ticks": 883
+    },
+    {
+      "side": 1,
+      "offset": 0,
+      "crouch": true,
+      "height": 1.02,
+      "cleared": true,
+      "last": [
+        -199.965525,
+        0.019757,
+        75.500956
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 109,
+      "maxAbsX": 0.035619,
+      "ticks": 1825
+    },
+    {
+      "side": 1,
+      "offset": 0.15,
+      "crouch": false,
+      "height": 1.8,
+      "cleared": false,
+      "last": [
+        -199.849998,
+        -5.980014,
+        41.494751
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 0,
+      "maxAbsX": 0.150005,
+      "ticks": 468
+    },
+    {
+      "side": 1,
+      "offset": 0.15,
+      "crouch": true,
+      "height": 1.8,
+      "cleared": false,
+      "last": [
+        -199.849983,
+        -5.979999,
+        41.494186
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 0,
+      "maxAbsX": 0.150021,
+      "ticks": 868
+    },
+    {
+      "side": 1,
+      "offset": 0.15,
+      "crouch": true,
+      "height": 1.02,
+      "cleared": true,
+      "last": [
+        -199.851181,
+        0.019752,
+        75.536139
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 109,
+      "maxAbsX": 0.150001,
+      "ticks": 1825
+    },
+    {
+      "side": -1,
+      "offset": -0.15,
+      "crouch": false,
+      "height": 1.8,
+      "cleared": false,
+      "last": [
+        -200.149384,
+        -5.980004,
+        46.722112
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 0,
+      "maxAbsX": 0.149999,
+      "ticks": 465
+    },
+    {
+      "side": -1,
+      "offset": -0.15,
+      "crouch": true,
+      "height": 1.8,
+      "cleared": false,
+      "last": [
+        -200.149595,
+        -5.980034,
+        46.724189
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 0,
+      "maxAbsX": 0.150004,
+      "ticks": 862
+    },
+    {
+      "side": -1,
+      "offset": -0.15,
+      "crouch": true,
+      "height": 1.02,
+      "cleared": true,
+      "last": [
+        -200.148964,
+        0.02,
+        12.465251
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 109,
+      "maxAbsX": 0.150015,
+      "ticks": 1825
+    },
+    {
+      "side": -1,
+      "offset": 0,
+      "crouch": false,
+      "height": 1.8,
+      "cleared": false,
+      "last": [
+        -200.012028,
+        -5.980001,
+        46.708561
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 0,
+      "maxAbsX": 0.012029,
+      "ticks": 466
+    },
+    {
+      "side": -1,
+      "offset": 0,
+      "crouch": true,
+      "height": 1.8,
+      "cleared": false,
+      "last": [
+        -199.999396,
+        -5.980003,
+        46.724672
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 0,
+      "maxAbsX": 0.000604,
+      "ticks": 862
+    },
+    {
+      "side": -1,
+      "offset": 0,
+      "crouch": true,
+      "height": 1.02,
+      "cleared": true,
+      "last": [
+        -200.018014,
+        0.019821,
+        12.465778
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 109,
+      "maxAbsX": 0.018026,
+      "ticks": 1826
+    },
+    {
+      "side": -1,
+      "offset": 0.15,
+      "crouch": false,
+      "height": 1.8,
+      "cleared": false,
+      "last": [
+        -199.850184,
+        -5.980085,
+        46.721852
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 0,
+      "maxAbsX": 0.150002,
+      "ticks": 465
+    },
+    {
+      "side": -1,
+      "offset": 0.15,
+      "crouch": true,
+      "height": 1.8,
+      "cleared": false,
+      "last": [
+        -199.850024,
+        -5.980001,
+        46.723652
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 0,
+      "maxAbsX": 0.150002,
+      "ticks": 862
+    },
+    {
+      "side": -1,
+      "offset": 0.15,
+      "crouch": true,
+      "height": 1.02,
+      "cleared": true,
+      "last": [
+        -199.849325,
+        0.019661,
+        12.467062
+      ],
+      "air": 0,
+      "low": 0,
+      "kinks": 0,
+      "narrowSamples": 109,
+      "maxAbsX": 0.150835,
+      "ticks": 1825
+    }
+  ]
+}
