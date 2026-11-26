@@ -212,3 +212,8 @@ assert.equal(seesaw.model_preview,"#nov23-seesaw-fit");
 assert.equal(seesaw.status,"static-study-available");
 assert.equal(seesaw.related_study?.href,"#nov26-w4b-seesaw-launch");
 assert.ok(ids.has(seesaw.related_study.href.slice(1)));
+
+const ropeWalkway=data.assets.find(a=>a.id==="WSC-PROP-048");
+assert.equal(ropeWalkway.model_preview,"#lookout-reuse-models");
+assert.equal(ropeWalkway.related_study?.href,"#nov26-w6c-climb-terminals");
+assert.ok(ids.has(ropeWalkway.related_study.href.slice(1)));
