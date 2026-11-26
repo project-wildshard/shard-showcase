@@ -354,3 +354,13 @@ for (const file of ["nov26-spinner-lift-gap.webp","nov26-spinner-lift-lip.webp",
   assert.ok(markup.includes(`media/${file}`));
   assert.ok(readFileSync(new URL(`media/${file}`,dist)).byteLength>1000);
 }
+
+assert.ok(ids.has("nov26-e8d-wall-fit"));
+assert.equal(data.assets.find(a=>a.id==="WSC-MODULE-017").related_study.href,"#nov26-e8d-wall-fit");
+for (const state of ["locked","earned"]) {
+  const path=`media/nov26-trophy-wall-${state}.webp`;
+  assert.ok(markup.includes(path));
+  const bytes=readFileSync(new URL(path,dist));
+  assert.ok(bytes.byteLength>1000);
+  assert.equal(bytes.subarray(8,12).toString(),"WEBP");
+}
