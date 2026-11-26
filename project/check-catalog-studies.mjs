@@ -247,3 +247,6 @@ for(const [id,original,type] of [
   assert.ok(ids.has(a.related_study.href.slice(1)));
   assert.ok(get('asset-'+id).children.flatMap(x=>x.children).some(c=>c.href===a.related_study.href));
 }
+assert.ok(ids.has("nov26-e2-charge-stop"));
+assert.ok(markup.includes('href="#nov26-e2-charge-stop"'));
+assert.equal(data.assets.find(a=>a.id==="WSC-ACTOR-002").model_preview,"#nov22-pallet-jack");
