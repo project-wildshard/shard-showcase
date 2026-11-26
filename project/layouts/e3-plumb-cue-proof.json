@@ -1,0 +1,228 @@
+{
+  "duration_s": 0.7,
+  "frequency_hz": 60,
+  "root_axis": "local +X",
+  "version": "optional 0.7 s warning art only",
+  "beam": {
+    "sha256": "3317e37ff66f08b90249d0ea1c618143738502f38c25eaa17cfce5a40e25c214",
+    "bytes": 22740,
+    "triangles": 180,
+    "primitives": 3
+  },
+  "lane": {
+    "sha256": "606671c5bad29ab19e637e28ee8215f5a1b1af7885eb3874cc379970da197b2a",
+    "bytes": 13220,
+    "triangles": 96,
+    "primitives": 3
+  },
+  "lane_floor_bias_m": 0.006,
+  "beam_max_radius_m": 0.061,
+  "lane_max_width_m": 1.23,
+  "no_combat_or_runtime": true,
+  "verification": {
+    "frames": [
+      0,
+      14,
+      26,
+      35,
+      41,
+      42.1
+    ],
+    "beamRadii": [
+      0.03293999986112117,
+      0.03293999986112117,
+      0.05184999984333912,
+      0.061000000685453415,
+      0.061000000685453415,
+      0
+    ],
+    "laneHalfWidths": [
+      0.5043000034213065,
+      0.5043000034213065,
+      0.5227500040739774,
+      0.6150000095367432,
+      0.6150000095367432,
+      0.0012499999720603228
+    ],
+    "finalFolded": true,
+    "viewport": [
+      402,
+      874
+    ],
+    "threePlayback": true,
+    "placementCases": [
+      {
+        "heightM": 3,
+        "flatSpanM": 12,
+        "bothEndpointErrorsLT1um": true,
+        "threeViewWidthsPx": [
+          [
+            6.35,
+            109.63
+          ],
+          [
+            4.27,
+            77.65
+          ],
+          [
+            5.05,
+            87.68
+          ]
+        ]
+      },
+      {
+        "heightM": 3,
+        "flatSpanM": 15,
+        "bothEndpointErrorsLT1um": true,
+        "threeViewWidthsPx": [
+          [
+            5.47,
+            94.91
+          ],
+          [
+            4.6,
+            81.35
+          ],
+          [
+            4.48,
+            78.04
+          ]
+        ]
+      },
+      {
+        "heightM": 3,
+        "flatSpanM": 18,
+        "bothEndpointErrorsLT1um": true,
+        "threeViewWidthsPx": [
+          [
+            4.8,
+            83.44
+          ],
+          [
+            4.56,
+            79.89
+          ],
+          [
+            4.02,
+            70.16
+          ]
+        ]
+      },
+      {
+        "heightM": 4,
+        "flatSpanM": 12,
+        "bothEndpointErrorsLT1um": true,
+        "threeViewWidthsPx": [
+          [
+            6.37,
+            109.99
+          ],
+          [
+            4.29,
+            78.03
+          ],
+          [
+            5.05,
+            87.86
+          ]
+        ]
+      },
+      {
+        "heightM": 4,
+        "flatSpanM": 15,
+        "bothEndpointErrorsLT1um": true,
+        "threeViewWidthsPx": [
+          [
+            5.48,
+            95.14
+          ],
+          [
+            4.61,
+            81.65
+          ],
+          [
+            4.49,
+            78.17
+          ]
+        ]
+      },
+      {
+        "heightM": 4,
+        "flatSpanM": 18,
+        "bothEndpointErrorsLT1um": true,
+        "threeViewWidthsPx": [
+          [
+            4.8,
+            83.59
+          ],
+          [
+            4.57,
+            80.12
+          ],
+          [
+            4.03,
+            70.25
+          ]
+        ]
+      },
+      {
+        "heightM": 5,
+        "flatSpanM": 12,
+        "bothEndpointErrorsLT1um": true,
+        "threeViewWidthsPx": [
+          [
+            6.37,
+            110.47
+          ],
+          [
+            4.34,
+            78.53
+          ],
+          [
+            5.06,
+            88.1
+          ]
+        ]
+      },
+      {
+        "heightM": 5,
+        "flatSpanM": 15,
+        "bothEndpointErrorsLT1um": true,
+        "threeViewWidthsPx": [
+          [
+            5.49,
+            95.44
+          ],
+          [
+            4.64,
+            82.04
+          ],
+          [
+            4.49,
+            78.34
+          ]
+        ]
+      },
+      {
+        "heightM": 5,
+        "flatSpanM": 18,
+        "bothEndpointErrorsLT1um": true,
+        "threeViewWidthsPx": [
+          [
+            4.81,
+            83.79
+          ],
+          [
+            4.58,
+            80.41
+          ],
+          [
+            4.03,
+            70.37
+          ]
+        ]
+      }
+    ]
+  },
+  "exactExistingScreenAndPerch": true
+}
