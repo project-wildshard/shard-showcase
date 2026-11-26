@@ -2,6 +2,7 @@
 import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import struct
 import sys
@@ -231,6 +232,38 @@ s.render.engine='CYCLES';s.cycles.samples=52;s.cycles.adaptive_threshold=.050;s.
 s.view_settings.view_transform='AgX';s.view_settings.look='AgX - Medium High Contrast'
 s.render.resolution_x=1380;s.render.resolution_y=880;s.render.resolution_percentage=100
 s.render.image_settings.file_format='JPEG';s.render.image_settings.quality=92
+motion_path=os.environ.get('WSC_E5B_MOTION_GLB')
+if motion_path:
+    # Reuse the published North cutaway but evaluate the exported clip itself.
+    for root in (src,other):
+        for obj in list(root.children_recursive)[::-1]:
+            bpy.data.objects.remove(obj,do_unlink=True)
+        bpy.data.objects.remove(root,do_unlink=True)
+    prior=set(s.objects)
+    bpy.ops.import_scene.gltf(filepath=str(Path(motion_path).resolve()))
+    slides=sorted((o for o in set(s.objects)-prior if o.parent is None),key=lambda x:x.name)
+    assert [o.name for o in slides]==['AlarmLeafLeft','AlarmLeafRight']
+    for root in slides:
+        action=root.animation_data.action
+        assert action.name.startswith('Alarm_gate_close_')
+    for obj in reds+blues:
+        for slot in obj.material_slots:
+            slot.material=alarm if obj in reds else dim
+    s.camera.location=(1.6,-24.0,4.8)
+    aim(s.camera,(0,0,2.2))
+    s.render.resolution_x,s.render.resolution_y=1280,820
+    for label,sec in [('mid',1.2),('last',2.1)]:
+        frame=24*sec
+        s.frame_set(int(frame),subframe=frame-int(frame))
+        bpy.context.view_layer.update()
+        u=sec/2.4
+        expected=12.11-pocket*(u*u*(3-2*u))
+        assert abs(slides[0].location.x+expected)<.003
+        assert abs(slides[1].location.x-expected)<.003
+        s.render.filepath=str(out/('nov26-e5b-gate-motion-'+label+'.jpg'))
+        bpy.ops.render.render(write_still=True)
+    sys.exit(0)
+
 for state,closed in [('clear',False),('alarm',True)]:
     pose(closed)
     for o in reds+blues:

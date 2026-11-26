@@ -1,0 +1,78 @@
+{
+  "scope": "Animated visual gate pair only; no collision, trigger, hold time, signal switch, or phone test",
+  "slice": "E5b",
+  "catalogId": "WSC-KIT-006",
+  "asset": {
+    "file": "e5b-alarm-gate-pair-motion.glb",
+    "bytes": 60876,
+    "sha256": "f79ae9baf004cc550db96aa6568a1a5194f04c32e8cac9a1557d07235a184d06",
+    "sourceSha256": "0c041d5f6c4ff47171820aed4c07449bf70818a81dc84675e217b7c6769ada71",
+    "trianglesUnique": 736,
+    "trianglesVisiblePair": 1472
+  },
+  "travelPerLeafM": 8.12,
+  "samplesHz": 120,
+  "checks": {
+    "north": {
+      "pose": [
+        148,
+        0,
+        14
+      ],
+      "yawDegrees": 180,
+      "close": {
+        "seconds": 2.4,
+        "sampledPoses": 289,
+        "apertureStartMidEndM": [
+          16.24,
+          8.12,
+          0
+        ],
+        "faceRays": 352,
+        "maxCurveErrorMm": 2.317
+      },
+      "open": {
+        "seconds": 2.8,
+        "sampledPoses": 337,
+        "apertureStartMidEndM": [
+          0,
+          8.12,
+          16.24
+        ],
+        "faceRays": 416,
+        "maxCurveErrorMm": 1.706
+      }
+    },
+    "west": {
+      "pose": [
+        126,
+        0,
+        66
+      ],
+      "yawDegrees": -90,
+      "close": {
+        "seconds": 2.4,
+        "sampledPoses": 289,
+        "apertureStartMidEndM": [
+          16.24,
+          8.12,
+          0
+        ],
+        "faceRays": 352,
+        "maxCurveErrorMm": 2.317
+      },
+      "open": {
+        "seconds": 2.8,
+        "sampledPoses": 337,
+        "apertureStartMidEndM": [
+          0,
+          8.12,
+          16.24
+        ],
+        "faceRays": 416,
+        "maxCurveErrorMm": 1.706
+      }
+    }
+  },
+  "pocket": "Original authored pocket requirement only; no new world collision or pockets"
+}
