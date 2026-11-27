@@ -15,7 +15,12 @@ expected = json.loads((root/'scripts/blender/west-movers-roof/expected.json').re
 assert list(sign(source)) == expected
 data = json.loads(trace.read_text())
 links = data['summary']['N']
-assert links in (18, 27) and data['summary']['legacyRebuiltBodies'] == links
+round_trip = 'cases' in data
+assert links in (18, 27)
+if round_trip:
+    assert links == 18 and len(data['cases']) == 10
+else:
+    assert data['summary']['legacyRebuiltBodies'] == links
 # Format/Three Y-up to Blender Z-up; same basis used by Blender GLB reimport.
 F = Matrix(((1,0,0),(0,0,-1),(0,1,0)))
 def xyz(p):
@@ -41,7 +46,8 @@ for o in s.objects:
         o.hide_render = (not(o.name.startswith('JUNCTION |') or 'Station6' in o.name)
                          or any(k in o.name for k in ('continuous hand rope','rope hanger')))
 row = data['rows']['stages'][0]['site']['spans'][0]['segments']
-mid = min((f for f in data['frames'] if 8 < f['travel'] < 15),key=lambda f:f['feet'][1])
+mid = min((f for f in data['frames'] if f['ground'] and 8 < f['travel'] < 15
+           and (not round_trip or (f['reverse'] and f['waiting']))),key=lambda f:f['feet'][1])
 assert mid['ground']
 for i, obj in enumerate(boards):
     before, after = row[i//boards_per_link], mid['poses'][i//boards_per_link]
@@ -64,6 +70,7 @@ def mat(name, rgb, emission=0):
 rope = mat('Review hemp cords', (.37,.229,.097))
 track = mat('Review tick marker', (.023,.68,.77),1.6)
 feet = mat('Review midpoint feet', (1,.32,.029),1.2)
+return_track = mat('Review return samples',(.98,.45,.085),1.2)
 
 def cable(n, vertices, radius):
     c=bpy.data.curves.new(n,'CURVE')
@@ -88,10 +95,11 @@ for d in (-1,1):
         cable('Reconstructed hanger',[at(k,0,.03),at(k,0,1.155)],.022)
 
 for f in data['frames'][::3]:
+    # Markers are actual sampled feet; return markers stay smaller.
     if -1 < f['travel'] < data['summary']['len']+.8:
         p=xyz(dict(zip('xyz',f['feet'])))
-        bpy.ops.mesh.primitive_uv_sphere_add(segments=10,ring_count=6,radius=.054,location=p+Vector((0,0,.16)))
-        bpy.context.object.data.materials.append(track)
+        bpy.ops.mesh.primitive_uv_sphere_add(segments=10,ring_count=6,radius=(.048 if f.get('reverse') else .065) if round_trip else .054,location=p+Vector((0,0,.16)))
+        bpy.context.object.data.materials.append(return_track if f.get('reverse') else track)
 p=xyz(dict(zip('xyz',mid['feet'])))
 bpy.ops.mesh.primitive_uv_sphere_add(segments=16,ring_count=8,radius=.106,location=p+Vector((0,0,.16)))
 bpy.context.object.data.materials.append(feet)

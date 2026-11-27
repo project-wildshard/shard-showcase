@@ -87,9 +87,9 @@ const plan={...basePlan,features:[...basePlan.features,{kind:'world.assembly',ro
 const input={...source,product:{...product,
   has:n=>n==='client/plan'||product.has(n),
   section:n=>n==='client/plan'?plan:product.section(n)}}
-const setup=room=>{
+const setup=(room,offset=0)=>{
   const p=room.host.players.get('actor.player')
-  p.position.copy(a.clone().addScaledVector(direction,-1.3).add(new Vector3(0,.045,0)))
+  p.position.copy(a.clone().addScaledVector(direction,-1.3).addScaledVector(side,offset).add(new Vector3(0,.045,0)))
   p.motor.resetAt(p.position)
 }
 const owned=(host)=>{
@@ -114,6 +114,67 @@ const describe=room=>{
 }
 const walk={kind:'player',moveX:direction.x,moveZ:direction.z,yaw:Math.atan2(-direction.x,-direction.z)}
 const idle={...walk,moveX:0,moveZ:0}
+// Round trips exercise the same live chain on the return leg, not a reset
+// at the second platform. The center proof below remains the default.
+if(process.argv.includes('--round-trips')){
+  assert.equal(N,18)
+  const rev={...walk,moveX:-direction.x,moveZ:-direction.z,yaw:Math.atan2(direction.x,direction.z)}
+  const traces=[]
+  async function run(offset,stops){
+    const room=await openWorldAdapter(input)
+    try{
+      assert(installedKeys(room.host).has('ropeDecks'))
+      assert.equal(owned(room.host).length,N)
+      assert.equal(joints(room.host),N+1)
+      setup(room,offset)
+      for(let i=0;i<360;i++)room.step([idle])
+      const legs=[]
+      for(const reverse of [false,true]){
+        const initial=describe(room),frames=[]
+        let minY=Infinity,maxLateral=0,deckTicks=0,spanLost=0,longestTagLoss=0,lost=0,air=0,maxStall=0,stall=0,end
+        const pauses=[]
+        for(let i=0;i<760;i++){
+          const prev=describe(room)
+          const middle=prev.travel>len*.46&&prev.travel<len*.54
+          if(stops&&middle&&pauses.length<45)pauses.push(prev.tick)
+          const waiting=pauses.at(-1)===prev.tick
+          room.step([waiting?idle:reverse?rev:walk])
+          const f=describe(room),step=Math.hypot(f.feet[0]-prev.feet[0],f.feet[2]-prev.feet[2])
+          if(i%5===0)frames.push({...f,reverse,waiting})
+          minY=Math.min(minY,f.feet[1]);maxLateral=Math.max(maxLateral,Math.abs(f.lateral))
+          if(!f.onFloor)air++
+          if(f.ground)deckTicks++
+          if(f.travel>1&&f.travel<len-1&&!f.ground){
+            spanLost++;longestTagLoss=Math.max(longestTagLoss,++lost)
+          }else lost=0
+          stall=!waiting&&step<.004?stall+1:0
+          maxStall=Math.max(maxStall,stall)
+          if(reverse?f.travel<-.8:f.travel>len+.8){end=f;break}
+          if(f.feet[1]<15||stall>=30)break
+        }
+        const f=end??describe(room)
+        legs.push({reverse,complete:Boolean(end),deckTicks,spanLost,longestTagLoss,air,minY,maxLateral,
+          maxStall,ticks:f.tick-initial.tick,pauseTicks:pauses.length,initialAwake:initial.awake,
+          endTravel:f.travel,endFeet:f.feet})
+        if(offset===.32&&stops)traces.push(...frames,{...f,reverse,waiting:false})
+        if(!end)break
+        if(!reverse)for(let i=0;i<12;i++)room.step([idle])
+      }
+      return {offset,stops,legs}
+    }finally{room.dispose()}
+  }
+  const cases=[]
+  for(const offset of [-.32,-.16,0,.16,.32])for(const stops of [false,true])cases.push(await run(offset,stops))
+  writeFileSync(out,JSON.stringify({summary:{N,len,width,sag,a:point(a),b:point(b),
+    engine:'0.1.44',format:'0.43.0',clockHz:60},rows,cases,frames:traces})+'\n')
+  const legs=cases.flatMap(c=>c.legs)
+  console.log(JSON.stringify(legs.map(l=>[l.complete,l.minY,l.air,l.spanLost,l.maxStall,l.pauseTicks,l.maxLateral])))
+  assert.equal(legs.length,20)
+  assert(legs.every(l=>l.complete&&l.deckTicks>250&&l.spanLost<=1&&l.longestTagLoss<=1&&l.air===0&&
+    l.minY>16.8&&l.maxStall===0&&l.maxLateral<width/2-.38))
+  assert(cases.filter(c=>!c.stops).every(c=>c.legs.every(l=>l.spanLost===0)))
+  assert(cases.filter(c=>c.stops).every(c=>c.legs.every(l=>l.pauseTicks===45)))
+}else{
 const live=await openWorldAdapter(input)
 let restored,legacy,upgraded
 try{
@@ -195,3 +256,4 @@ try{
     assert(i<799,'Old save upgraded but player did not cross')
   }
 }finally{upgraded?.dispose();legacy?.dispose();restored?.dispose();live.dispose()}
+}

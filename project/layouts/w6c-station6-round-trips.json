@@ -1,0 +1,487 @@
+{
+  "summary": {
+    "N": 18,
+    "len": 22.02271554554524,
+    "width": 1.6,
+    "sag": 0.65,
+    "a": {
+      "x": -168,
+      "y": 18,
+      "z": -103
+    },
+    "b": {
+      "x": -190,
+      "y": 18,
+      "z": -104
+    },
+    "engine": "0.1.44",
+    "format": "0.43.0",
+    "clockHz": 60,
+    "measuredFeetTraceSamples": 157,
+    "minimumConservativeEdgeMarginMeters": 0.07295
+  },
+  "cases": [
+    {
+      "offset": -0.32,
+      "stops": false,
+      "legs": [
+        {
+          "reverse": false,
+          "complete": true,
+          "deckTicks": 308,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.193049074684673,
+          "maxLateral": 0.3436107572876822,
+          "maxStall": 0,
+          "ticks": 341,
+          "pauseTicks": 0,
+          "initialAwake": 18,
+          "endTravel": 22.84547926059826,
+          "endFeet": [
+            -190.80712053548578,
+            18.020000244408845,
+            -104.36283947712145
+          ]
+        },
+        {
+          "reverse": true,
+          "complete": true,
+          "deckTicks": 308,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.19309126830352,
+          "maxLateral": 0.3455606635700399,
+          "maxStall": 0,
+          "ticks": 338,
+          "pauseTicks": 0,
+          "initialAwake": 18,
+          "endTravel": -0.8557481163428375,
+          "endFeet": [
+            -167.13035047455702,
+            18.01978587630391,
+            -103.28639221489111
+          ]
+        }
+      ]
+    },
+    {
+      "offset": -0.32,
+      "stops": true,
+      "legs": [
+        {
+          "reverse": false,
+          "complete": true,
+          "deckTicks": 352,
+          "spanLost": 1,
+          "longestTagLoss": 1,
+          "air": 0,
+          "minY": 17.17265190868973,
+          "maxLateral": 0.3402724983226443,
+          "maxStall": 0,
+          "ticks": 386,
+          "pauseTicks": 45,
+          "initialAwake": 18,
+          "endTravel": 22.842895070242186,
+          "endFeet": [
+            -190.8045998629905,
+            18.020000244408845,
+            -104.36138338289027
+          ]
+        },
+        {
+          "reverse": true,
+          "complete": true,
+          "deckTicks": 354,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.156522246608795,
+          "maxLateral": 0.34548039897981797,
+          "maxStall": 0,
+          "ticks": 383,
+          "pauseTicks": 45,
+          "initialAwake": 18,
+          "endTravel": -0.8486589293251455,
+          "endFeet": [
+            -167.1373856148545,
+            18.020000244408845,
+            -103.28774227748615
+          ]
+        }
+      ]
+    },
+    {
+      "offset": -0.16,
+      "stops": false,
+      "legs": [
+        {
+          "reverse": false,
+          "complete": true,
+          "deckTicks": 308,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.183914697359327,
+          "maxLateral": 0.17204086868918023,
+          "maxStall": 0,
+          "ticks": 341,
+          "pauseTicks": 0,
+          "initialAwake": 18,
+          "endTravel": 22.843938670607578,
+          "endFeet": [
+            -190.81306811712008,
+            18.020000244408845,
+            -104.19806470602977
+          ]
+        },
+        {
+          "reverse": true,
+          "complete": true,
+          "deckTicks": 308,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.192867399929195,
+          "maxLateral": 0.1703441342017447,
+          "maxStall": 0,
+          "ticks": 338,
+          "pauseTicks": 0,
+          "initialAwake": 18,
+          "endTravel": -0.8521616488089884,
+          "endFeet": [
+            -167.14134232664603,
+            18.020000244408845,
+            -103.12355522324427
+          ]
+        }
+      ]
+    },
+    {
+      "offset": -0.16,
+      "stops": true,
+      "legs": [
+        {
+          "reverse": false,
+          "complete": true,
+          "deckTicks": 353,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.17899181905781,
+          "maxLateral": 0.170393085500831,
+          "maxStall": 0,
+          "ticks": 386,
+          "pauseTicks": 45,
+          "initialAwake": 18,
+          "endTravel": 22.84558844062332,
+          "endFeet": [
+            -190.81468537097248,
+            18.02000024429243,
+            -104.19881753704911
+          ]
+        },
+        {
+          "reverse": true,
+          "complete": true,
+          "deckTicks": 353,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.159953732915476,
+          "maxLateral": 0.1727839380219527,
+          "maxStall": 0,
+          "ticks": 383,
+          "pauseTicks": 45,
+          "initialAwake": 18,
+          "endTravel": -0.8507131953638207,
+          "endFeet": [
+            -167.14274100362928,
+            18.020000244408845,
+            -103.1246832078165
+          ]
+        }
+      ]
+    },
+    {
+      "offset": 0,
+      "stops": false,
+      "legs": [
+        {
+          "reverse": false,
+          "complete": true,
+          "deckTicks": 308,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.182772015524343,
+          "maxLateral": 0.00021478015161591202,
+          "maxStall": 0,
+          "ticks": 341,
+          "pauseTicks": 0,
+          "initialAwake": 18,
+          "endTravel": 22.85145238664587,
+          "endFeet": [
+            -190.82788341823615,
+            18.020000244408845,
+            -104.03760051247748
+          ]
+        },
+        {
+          "reverse": true,
+          "complete": true,
+          "deckTicks": 308,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.192643571392534,
+          "maxLateral": 0.0002899955928775677,
+          "maxStall": 0,
+          "ticks": 338,
+          "pauseTicks": 0,
+          "initialAwake": 18,
+          "endTravel": -0.8513905067941682,
+          "endFeet": [
+            -167.14949116687032,
+            18.019620831042527,
+            -102.9612633795474
+          ]
+        }
+      ]
+    },
+    {
+      "offset": 0,
+      "stops": true,
+      "legs": [
+        {
+          "reverse": false,
+          "complete": true,
+          "deckTicks": 353,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.18056178698991,
+          "maxLateral": 0.00026378231015933284,
+          "maxStall": 0,
+          "ticks": 386,
+          "pauseTicks": 45,
+          "initialAwake": 18,
+          "endTravel": 22.8476050138662,
+          "endFeet": [
+            -190.82404202506913,
+            18.020000244408845,
+            -104.03738156582757
+          ]
+        },
+        {
+          "reverse": true,
+          "complete": true,
+          "deckTicks": 353,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.167196275808113,
+          "maxLateral": 0.00018180127606559626,
+          "maxStall": 0,
+          "ticks": 383,
+          "pauseTicks": 45,
+          "initialAwake": 18,
+          "endTravel": -0.8509490927079457,
+          "endFeet": [
+            -167.14992922641355,
+            18.01975115659833,
+            -102.96134720645506
+          ]
+        }
+      ]
+    },
+    {
+      "offset": 0.16,
+      "stops": false,
+      "legs": [
+        {
+          "reverse": false,
+          "complete": true,
+          "deckTicks": 308,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.195616271882052,
+          "maxLateral": 0.1713266022836828,
+          "maxStall": 0,
+          "ticks": 341,
+          "pauseTicks": 0,
+          "initialAwake": 18,
+          "endTravel": 22.849123339054135,
+          "endFeet": [
+            -190.83292801326323,
+            18.020000274211167,
+            -103.87532746927698
+          ]
+        },
+        {
+          "reverse": true,
+          "complete": true,
+          "deckTicks": 308,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.194892488834164,
+          "maxLateral": 0.17582922212793772,
+          "maxStall": 0,
+          "ticks": 338,
+          "pauseTicks": 0,
+          "initialAwake": 18,
+          "endTravel": -0.8522050052258322,
+          "endFeet": [
+            -167.1561816811981,
+            18.020606991461943,
+            -102.79613459706358
+          ]
+        }
+      ]
+    },
+    {
+      "offset": 0.16,
+      "stops": true,
+      "legs": [
+        {
+          "reverse": false,
+          "complete": true,
+          "deckTicks": 353,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.190345338620393,
+          "maxLateral": 0.17006424730777836,
+          "maxStall": 0,
+          "ticks": 386,
+          "pauseTicks": 45,
+          "initialAwake": 18,
+          "endTravel": 22.845308154040872,
+          "endFeet": [
+            -190.82916466626884,
+            18.020000214606522,
+            -103.87410036885284
+          ]
+        },
+        {
+          "reverse": true,
+          "complete": true,
+          "deckTicks": 353,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.159309600968246,
+          "maxLateral": 0.17421429965277468,
+          "maxStall": 0,
+          "ticks": 383,
+          "pauseTicks": 45,
+          "initialAwake": 18,
+          "endTravel": -0.8054552113431955,
+          "endFeet": [
+            -167.20289318652644,
+            18.01972969892621,
+            -102.79803889233014
+          ]
+        }
+      ]
+    },
+    {
+      "offset": 0.32,
+      "stops": false,
+      "legs": [
+        {
+          "reverse": false,
+          "complete": true,
+          "deckTicks": 308,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.192234529659792,
+          "maxLateral": 0.3416764017089752,
+          "maxStall": 0,
+          "ticks": 341,
+          "pauseTicks": 0,
+          "initialAwake": 18,
+          "endTravel": 22.85327203452572,
+          "endFeet": [
+            -190.84444588489112,
+            18.020000244408845,
+            -103.71329983371928
+          ]
+        },
+        {
+          "reverse": true,
+          "complete": true,
+          "deckTicks": 308,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.173671774035427,
+          "maxLateral": 0.34705200886420023,
+          "maxStall": 0,
+          "ticks": 338,
+          "pauseTicks": 0,
+          "initialAwake": 18,
+          "endTravel": -0.8429730543039946,
+          "endFeet": [
+            -167.17269963232715,
+            18.020000244408845,
+            -102.63605230130632
+          ]
+        }
+      ]
+    },
+    {
+      "offset": 0.32,
+      "stops": true,
+      "legs": [
+        {
+          "reverse": false,
+          "complete": true,
+          "deckTicks": 352,
+          "spanLost": 1,
+          "longestTagLoss": 1,
+          "air": 0,
+          "minY": 17.16756190019019,
+          "maxLateral": 0.33906688108977884,
+          "maxStall": 0,
+          "ticks": 386,
+          "pauseTicks": 45,
+          "initialAwake": 18,
+          "endTravel": 22.8439660843345,
+          "endFeet": [
+            -190.83520825666773,
+            18.020000244408845,
+            -103.7115853606916
+          ]
+        },
+        {
+          "reverse": true,
+          "complete": true,
+          "deckTicks": 353,
+          "spanLost": 0,
+          "longestTagLoss": 0,
+          "air": 0,
+          "minY": 17.16033913852584,
+          "maxLateral": 0.34501261500725006,
+          "maxStall": 0,
+          "ticks": 383,
+          "pauseTicks": 45,
+          "initialAwake": 18,
+          "endTravel": -0.84428811527367,
+          "endFeet": [
+            -167.17144945939924,
+            18.019610549241303,
+            -102.63459489206015
+          ]
+        }
+      ]
+    }
+  ],
+  "nativeRowsSha256": "7ccf0639165e2a6f7e4bbfd041197d895e010e7cc041dd9665d4317e1dc4c76a",
+  "scope": "Same native room adapter and 18-link chain; variants use held directions and at most 0.32 m start offset. No client binding, multi-user collision, full course or phone test."
+}

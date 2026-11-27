@@ -61,3 +61,18 @@ reverse and off-center walks, multiplayer/prediction under lag,
 camera sway, the five-span aggregate, or frame time on phones.
 `project/layouts/w6c-room-bridge-proof.json` is the compact receipt;
 no generated traces or duplicate scenery go into Git.
+
+## Round trips and stop/restart
+
+Pass `--round-trips` after the output filename to replay the extra
+benchmark on the chosen 18-link chain. Five offsets, ±0.32 m at most,
+each walk out and back without a reset. Repeat them with a 45-tick stop
+near midspan in both directions. The 20 legs complete without an
+airborne or unintended stalled tick. Two paused edge approaches lose
+the rope-deck collider tag for one tick each while the player is still
+grounded; both regain the tag on the following tick. Do not read this
+as uninterrupted deck tagging in every case.
+
+The same Blender command accepts the round-trip output. Cyan marks the
+outbound samples, smaller amber dots the return; the marker and bridge
+pose use a measured return-leg pause. See the [compact receipt](../../project/layouts/w6c-station6-round-trips.json).
