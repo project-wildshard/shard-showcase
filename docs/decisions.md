@@ -47,7 +47,7 @@ the shard itself.
   (no GitHub), holding:
   - the brief (`README.md`);
   - `ZONE-DESCRIPTION.md`, drafted by Opus and reviewed by Jake;
-  - `concept/`.
+  - `concept/` (superseded by D40: no concept images).
 
   The brief names TypeScript, three.js and Rapier, and says *"to save
   costs and tokens, delegate non-visual work to opus"*.
@@ -61,7 +61,8 @@ the shard itself.
 - **D36**: 2026-11-26: art direction. Each zone description names
   the zone's own look in plain words, and each clean room gets three
   concept images Jake approves. They are picked from about nine
-  candidates made with Codex's default `image_gen`.
+  candidates made with Codex's default `image_gen`. (The concept
+  images are superseded by D40.)
   The Showcase's new concept art is painted in the Kitchen Sink's
   orange-and-grey style (ruling 19ab). It is the target for both a
   Cratefall restyle and the Kitchen Sink. Jake runs the Cratefall
@@ -80,3 +81,11 @@ the shard itself.
 - **D39**: 2026-11-26: plans are named
   `<date>-<model>-<title>-PLAN.md`, with the date and model of the
   plan's first commit, as in meta's `a80a03d8`.
+- **D40**: 2026-11-26: no concept images for the clean-room
+  one-shots. Jake, on the 81 candidates: *"they just dont look like
+  real game screenshots, its all that openai sloppy vibe"*, and *"I
+  dont think we need any concept images for the fable one shots"*.
+  Fable sets each zone's art itself; the brief gives it high-level
+  direction in the zone's existing vibe: *"We want each zone to have
+  their own vibe and they already have their own vibes."* Signal Dunes
+  goes first. Supersedes D36's concept images and D34's `concept/`.

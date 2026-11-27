@@ -73,7 +73,8 @@ burnt-orange crests, cool violet hollows, a tall afterglow band and
 the first stars. Weathered wood, rope, canvas, iron and sandstone.
 Nothing glows on its own except fire, and the signal fire is the
 brightest thing in the zone. No glass, crystals, neon or magic glow.
-The art direction is shown in the three images in `concept/`.
+The strongest edge in any frame is a crest line, a lit slip face
+against its shaded side.
 
 ## Weapons
 
