@@ -1,4 +1,5 @@
 // Screen shipped Pallet Docks colliders, then run matched native ram replays.
+import {captureShoulder} from './corner-shoulder.mjs';
 import {captureReadability} from './corner-readability.mjs';
 import {touchRiposte} from './touch-riposte.mjs';
 import assert from 'node:assert/strict';
@@ -9,7 +10,7 @@ import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
 const [root,dep,arg='3',only,side,study]=process.argv.slice(2);
-if(!root||!dep||(study&&(!side||study!=='readability'))||(only&&!['inside','outside'].includes(only))||(side&&(!['left','right'].includes(side)||only!=='inside')))throw Error('Usage: node native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [PAIR_INDEX|-1] [inside|outside] [left|right touch route] [readability]');
+if(!root||!dep||(study&&(!side||!['readability','shoulder'].includes(study)))||(only&&!['inside','outside'].includes(only))||(side&&(!['left','right'].includes(side)||only!=='inside')))throw Error('Usage: node native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [PAIR_INDEX|-1] [inside|outside] [left|right touch route] [readability|shoulder]');
 const index=Number(arg);
 const pin='3afcd880b397e9703e906a7e66b42e8447e59519';
 assert.equal(execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim(),pin);
@@ -98,8 +99,9 @@ try{
    const began=h.frame;
    const fixture=window.cornerFixture={phase:null,trace:[],collisions:[],sounds:[],chosen};
    if(side)window.coverFixture=fixture;
-   const read=study?(await import(URL.createObjectURL(new Blob([moduleSource],{type:'text/javascript'}))))
-    .installReadability(g,p,mob,fixture,h,draw,began):null;
+   const hook=study?await import(URL.createObjectURL(new Blob([moduleSource],{type:'text/javascript'}))):null;
+   const read=study==='readability'?hook.installReadability(g,p,mob,fixture,h,draw,began):null;
+   if(study==='shoulder')hook.installShoulder(g,p,mob,fixture,h,draw,began);
    const at=side==='right'?1:-1;
    const forward=[Math.sin(bearing),Math.cos(bearing)], lateral=[forward[1]*at,-forward[0]*at];
    const points=[[-2,1.5],[-.3,1.5],[1.25,1.4]].map(([a,b])=>[
@@ -178,9 +180,15 @@ try{
     if(movement===null){movement=r.frame;fixture.moveStart=r;}
     if(attack!==null){
      if(r.frame===attack+2){touchStep('release');return;}
+     if(study==='shoulder'&&!fixture.contact&&r.frame===attack+9){
+      fixture.phase='evidence';h.freeze();return;
+     }
      if(mob.hp<fixture.enemyHp&&!fixture.contact){
       fixture.contact=r;
-      if(read){fixture.phase='evidence';h.freeze();return;}
+      if(study){fixture.phase='evidence';h.freeze();return;}
+     }
+     if(fixture.contact&&r.frame===fixture.contact.frame+2&&study==='shoulder'){
+      fixture.phase='evidence';h.freeze();return;
      }
      if(fixture.contact&&r.frame>=fixture.contact.frame+2){fixture.phase='end';h.freeze();}
     }
@@ -205,13 +213,13 @@ try{
    const start={hp:g.state.d.hp,enemyHp:mob.hp,eye,chosen, ...(side?{side,points}:{} ),matchedCandidates:candidates.length};
    h.thaw();
    return {start};
-  },{setup,index,side,study,moduleSource:study?readFileSync(new URL('./corner-readability.mjs',import.meta.url),'utf8'):''});
+  },{setup,index,side,study,moduleSource:study?readFileSync(new URL(study==='shoulder'?'./corner-shoulder.mjs':'./corner-readability.mjs',import.meta.url),'utf8'):''});
   if(setup==='scan'){
    console.log(JSON.stringify(candidates.slice(0,14)));
    await ctx.close();continue;
   }
   if(side){
-   await touchRiposte(page,ctx,study?()=>captureReadability(page,out):null);
+   await touchRiposte(page,ctx,study==='shoulder'?()=>captureShoulder(page,out):study?()=>captureReadability(page,out):null);
    await page.screenshot({path:join(out,side+'-result.jpg'),type:'jpeg',quality:91});
    result[side]={start,...await page.evaluate(()=>cornerFixture)};
    writeFileSync(join(out,'proof.json'),JSON.stringify(result,null,2)+'\n');
