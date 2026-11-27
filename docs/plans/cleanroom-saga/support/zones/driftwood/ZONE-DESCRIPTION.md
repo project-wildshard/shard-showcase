@@ -47,15 +47,14 @@ mini dungeons sit inside the cube too.
 To get a feeling for what to build, here are some ideas for the zone
 that you can start with:
 
-- **Your own sailboat, sailed anywhere.** A real vehicle you steer
-  yourself: catch the wind, crest the swells, slide into the shallows,
-  beach it on any shore and dive off the bow. Whistle and it sails to
-  you. Fit it out as you level: a bigger sail, cannons, a lantern.
+- **Your own small sailboat, sailed anywhere.** A real vehicle you
+  steer yourself: catch the wind, crest the swells, slide into the
+  shallows, beach it on any shore and dive off the bow. Whistle and it
+  sails to you. Fit it out as you level: a bigger sail, a lantern, a
+  diving bell.
 - **The open sea is a show:** wind you can see on the water, big
   rolling swells, dolphins and flying fish racing the bow, and storms
   you watch come in from far off, with waterspouts and lightning.
-- **Fight at sea, like Black Flag:** broadsides, ramming, then board
-  and fight deck to deck. Pirate ships hunt the open water.
 - **An undersea world as big as the one above.** At first you can only
   hold your breath for short dives. A quest wins you an underwater
   breather, and then the whole sea floor opens up, as deep as it goes.
@@ -113,13 +112,13 @@ The story, the steps and the boss are yours to design.
 - Melee: the driftwood sword you wash up with, which grows with you,
   level by level, into a great living blade, barnacled and edged with
   coral, whose full swing throws a breaking wave down the line; a
-  ship's anchor on a chain, swung in wide arcs, that bites into a hull
-  and hauls you aboard; a stormglass trident that charges with every
+  ship's anchor on a chain, swung in wide arcs that sweep a crowd off
+  its feet; a stormglass trident that charges with every
   hit, then lets it out in one thrust that arcs lightning through every
   foe in the water; and more.
 - Ranged: a harpoon gun on a long rope that reels a foe in, or you to
-  it; a twin-barrel flintlock whose second barrel fires a flare that
-  brings your own boat's cannons down on the mark; a lighthouse lens
+  it; a twin-barrel flintlock, one barrel for the air and one that
+  fires a spinning bolt straight through the water; a lighthouse lens
   on a brass stock that gathers sunlight into a beam that burns hotter
   the longer you hold it; and more.
 - The harpoon works under water too, and it moves you: fire it into a
