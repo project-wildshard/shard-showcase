@@ -1,0 +1,67 @@
+{
+  "reference": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "viewport": [
+    402,
+    874
+  ],
+  "pairIndex": 3,
+  "setupLateralSeparationM": 0.68,
+  "crateCenter": [
+    35.84560775756836,
+    0.2285158485174179,
+    142.8822784423828
+  ],
+  "crateHalfExtents": [
+    0.4295406639575958,
+    0.4295406639575958,
+    0.4295406639575958
+  ],
+  "nativeCandidatePairsScreened": 76,
+  "outsideSameFrameJpegsIdentical": true,
+  "inside": {
+    "hp": [
+      204,
+      204
+    ],
+    "lockFrame": 113,
+    "recoveryFrame": 135,
+    "headToChestBlocked": false,
+    "cameraSocketBlocked": {
+      "head": false,
+      "core": false,
+      "muzzle": true
+    },
+    "lockedRamFirstHitsSelectedCrate": true,
+    "nativeRamHitSelectedCrate": true,
+    "crashCues": 1,
+    "warningLengthM": [
+      14,
+      2.3088
+    ],
+    "widthM": 2.2,
+    "pulse": 0.7192982456140342
+  },
+  "outside": {
+    "hp": [
+      204,
+      168
+    ],
+    "lockFrame": 113,
+    "recoveryFrame": 192,
+    "headToChestBlocked": false,
+    "cameraSocketBlocked": {
+      "head": false,
+      "core": false,
+      "muzzle": true
+    },
+    "lockedRamFirstHitsSelectedCrate": false,
+    "nativeRamHitSelectedCrate": false,
+    "crashCues": 0,
+    "warningLengthM": [
+      14,
+      14
+    ],
+    "widthM": 2.2,
+    "pulse": 0.7192982456140347
+  }
+}

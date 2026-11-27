@@ -1,0 +1,9 @@
+# Check the existing Pallet Docks crate corner
+
+The fixed fixture showed that a ram can stop while the red lane paints through cover. This test uses a shipped crate stack around [35.85, 0.23, 142.88] in Pallet Docks. It adds no geometry or collider. The scanner finds a low box, checks the actors have room and similar floor heights, and picks parallel setup lanes 0.68 m apart. It checks both the high chest sightline and low ram ray. These preflight rays are only a screen: Jack can move before its aim locks.
+
+In a native replay the inside lane hit the selected collider and triggered a crash, leaving Rook at 204 HP. The outside lane passed the crate and took Rook from 204 to 168 HP. The matched warning stayed 14 m outside and shortened from 14 m to 2.31 m inside. The near-camera ray to Jack's head and core was clear in these two replays; the ray to its low muzzle socket was obstructed. That is an obstruction check, not a claim that every projected pixel is readable. A different dense crate lane was rejected because the enemy drifted and hit another collider. The cue must follow the actual locked heading, not the initial positions or a convenient camera ray.
+
+On the same locked frames, a presentation-only variant shortens the warning only when the native ram ray first hits the selected crate. Preserve the red width, color, pulse phase and the full lane on the adjacent side. Restore immediately before gameplay resumes. Do not infer universal cover, alter damage, replace props or deploy the change to Fable.
+
+Run `node demos/mite-yard/jack-warning/native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT` against the pinned checkout's local loopback build. Pass `-1` in place of the pair index to list screened arrangements. Default pair is 3. The fixture uses disposable level-4 portrait Chromium sessions with no rolls, forced attack or damage tuning. It is a staged QA test, not a real iPhone playtest, natural quest progression or game update.
