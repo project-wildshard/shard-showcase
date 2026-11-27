@@ -1,0 +1,178 @@
+{
+  "source": "Raynos/showcase-zone-clean-room@3afcd880b397e9703e906a7e66b42e8447e59519",
+  "viewportCssPx": [
+    402,
+    874
+  ],
+  "unit": "posed geometry vertices outside frustum or behind near plane",
+  "cameraOnly": true,
+  "stockAndLiveUseSameFrameState": true,
+  "contact": {
+    "framesAfterAttackInput": 22,
+    "hp": [
+      204,
+      83
+    ],
+    "views": {
+      "stock": {
+        "rook": 0,
+        "jack": 577
+      },
+      "live": {
+        "rook": 0,
+        "jack": 0
+      }
+    }
+  },
+  "samples": [
+    {
+      "framesAfterAttackInput": 9,
+      "hp": [
+        204,
+        132
+      ],
+      "views": {
+        "stock": {
+          "rook": 0,
+          "jack": 0
+        },
+        "live": {
+          "rook": 0,
+          "jack": 0
+        }
+      }
+    },
+    {
+      "framesAfterAttackInput": 15,
+      "hp": [
+        204,
+        132
+      ],
+      "views": {
+        "stock": {
+          "rook": 0,
+          "jack": 53
+        },
+        "live": {
+          "rook": 0,
+          "jack": 0
+        }
+      }
+    },
+    {
+      "framesAfterAttackInput": 20,
+      "hp": [
+        204,
+        132
+      ],
+      "views": {
+        "stock": {
+          "rook": 0,
+          "jack": 342
+        },
+        "live": {
+          "rook": 0,
+          "jack": 0
+        }
+      }
+    },
+    {
+      "framesAfterAttackInput": 24,
+      "hp": [
+        204,
+        83
+      ],
+      "views": {
+        "stock": {
+          "rook": 0,
+          "jack": 873
+        },
+        "live": {
+          "rook": 0,
+          "jack": 0
+        }
+      }
+    },
+    {
+      "framesAfterAttackInput": 29,
+      "hp": [
+        204,
+        83
+      ],
+      "views": {
+        "stock": {
+          "rook": 0,
+          "jack": 640
+        },
+        "live": {
+          "rook": 0,
+          "jack": 0
+        }
+      }
+    },
+    {
+      "framesAfterAttackInput": 35,
+      "hp": [
+        204,
+        83
+      ],
+      "views": {
+        "stock": {
+          "rook": 0,
+          "jack": 166
+        },
+        "live": {
+          "rook": 0,
+          "jack": 0
+        }
+      }
+    },
+    {
+      "framesAfterAttackInput": 44,
+      "hp": [
+        204,
+        83
+      ],
+      "views": {
+        "stock": {
+          "rook": 0,
+          "jack": 0
+        },
+        "live": {
+          "rook": 0,
+          "jack": 0
+        }
+      }
+    },
+    {
+      "framesAfterAttackInput": 53,
+      "hp": [
+        204,
+        83
+      ],
+      "views": {
+        "stock": {
+          "rook": 0,
+          "jack": 0
+        },
+        "live": {
+          "rook": 0,
+          "jack": 0
+        }
+      }
+    }
+  ],
+  "maxDegrees": {
+    "turn": 12,
+    "verticalFov": 8
+  },
+  "onsetFramesBeforeHit": 8,
+  "lookOverrideFrames": 6,
+  "sprintIntentOverrideFrames": 15,
+  "firstLookDegrees": 1.370515,
+  "clearedAtFirstLook": {
+    "turn": 10.5,
+    "verticalFov": 5.333333
+  },
+  "actualSprintingInSprintIntentTest": false
+}

@@ -1,3 +1,4 @@
+import {counterLens} from './counter-lens.mjs';
 // Read-only reference playtest. Run against a loopback build of the pinned
 // source. The fresh browser context will have a disposable dev game save.
 import {createRequire} from 'node:module';
@@ -6,10 +7,10 @@ import {execFileSync} from 'node:child_process';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
-const [root,dep,mode='counter'] = process.argv.slice(2);
+const [root,dep,mode='counter',control='none'] = process.argv.slice(2);
 const ref='3afcd880b397e9703e906a7e66b42e8447e59519';
-if(!root||!dep||!['sidestep','counter','wash','gauge','framing'].includes(mode))
-  throw Error('Usage: node native-probe.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [sidestep|counter|wash|gauge|framing]');
+if(!root||!dep||!['sidestep','counter','wash','gauge','framing','live-framing'].includes(mode)||!['none','look','sprint'].includes(control))
+  throw Error('Usage: node native-probe.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [sidestep|counter|wash|gauge|framing|live-framing] [none|look|sprint]');
 if(execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim()!==ref)
   throw Error('Wrong reference checkout');
 const load=createRequire(join(dep,'package.json'));
@@ -22,11 +23,12 @@ const browser=await chromium.launch({executablePath:await shell.executablePath()
 try {
  const ctx=await browser.newContext({viewport:{width:402,height:874},deviceScaleFactor:1,hasTouch:true,isMobile:true,serviceWorkers:'block'});
  await ctx.addInitScript({content:readFileSync(join(root,'tools/golden/init.js'),'utf8')});
+ await ctx.addInitScript({content:'window.makeCounterLens='+counterLens.toString()+';'});
  const page=await ctx.newPage();
  page.on('pageerror',e=>console.log('pageerror',String(e).slice(0,400)));
- await page.goto('http://127.0.0.1:5174/?golden&dev&q=medium',{waitUntil:'domcontentloaded'});
+ await page.goto(`http://127.0.0.1:${Number(process.env.FABLE_PROBE_PORT??5174)}/?golden&dev&q=medium`,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.game?.started&&game?.mobs?.list&&game.renderer.gl.info.render.frame>0,null,{timeout:90000,polling:250});
- const setup=await page.evaluate(({onlySide,mode})=>{
+ const setup=await page.evaluate(({onlySide,mode,control})=>{
   const g=game,p=g.player,h=__golden;
   const pos=(x,y,z)=>p.pos.clone().set(x,y,z);
   const ground=(x,z)=>g.groundY(x,z,40);
@@ -123,7 +125,54 @@ try {
          hp:[g.state.d.hp,mark.hp],yaw:g.cameraRig.yaw,camera:g.camera.position.toArray()};
     };
   }
-  if(mode==='framing'){
+  if(mode==='live-framing'){
+    const rig=g.cameraRig,cam=g.camera,step=window.makeCounterLens();
+    const update=rig.update.bind(rig),rad=Math.PI/180;
+    let prior=null,hold=0;
+    fixture.lensTrace=[];
+    if(control==='look')h.pre=()=>{
+      const since=h.frame-(fixture.counterFrame??Infinity);
+      if(since>=20&&since<26)g.input.dragLook(-4.6,0);
+    };
+    rig.update=(dt,focus,options)=>{
+      if(prior){
+        cam.quaternion.copy(prior.q);cam.fov=prior.fov;
+        cam.updateProjectionMatrix();cam.updateMatrixWorld(true);
+      }
+      const since=h.frame-(fixture.counterFrame??Infinity);
+      const testLook=control==='look'&&since>=20&&since<26;
+      update(dt,focus,options);
+      prior={q:cam.quaternion.clone(),fov:cam.fov};
+      fixture.stockCamera=prior;
+      const sprintIntent=g.input.down('sprint');
+      const override=p.sprinting||sprintIntent||!!options.flee||g.combat.target!==mob||
+        Math.abs(options.lookX??0)+Math.abs(options.lookY??0)>.0005||
+        !!g.input.lookIds?.size||rig.autoFollow===false||rig.view!=='third';
+      if(p.action==='swordRise')hold=.12; else hold=Math.max(0,hold-dt);
+      const engaged=g.combat.target===mob&&hold>0&&mob.alive;
+      const anchors=[];
+      if(engaged){
+        const put=(w,hero,r=0)=>{
+          w.applyMatrix4(cam.matrixWorldInverse);
+          anchors.push([w.x-r,w.y,w.z,hero],[w.x+r,w.y,w.z,hero]);
+        };
+        const v=p.pos.clone();
+        for(const k of ['head','chest','hips'])put(p.rig.sockets[k].getWorldPosition(v),true,.24);
+        put(v.copy(p.pos),true,.25);
+        if(p.rig.weapon?.tip)put(p.rig.weapon.tip.getWorldPosition(v),true);
+        for(const k of ['head','core','muzzle','weak'])put(mob.rig.sockets[k].getWorldPosition(v),false,k==='muzzle'?.44:.32);
+      }
+      const adj=step({anchors,fov:cam.fov,aspect:cam.aspect,dt,engaged,override});
+      if(adj.turn||adj.widen){
+        cam.rotateY(adj.turn*rad);cam.fov+=adj.widen;
+        cam.updateProjectionMatrix();cam.updateMatrixWorld(true);
+      }
+      if(engaged||Number.isFinite(since)&&since<64)
+        fixture.lensTrace.push({frame:h.frame,dt,since,...adj,engaged,
+          override,testLook,lookX:options.lookX,sprintIntent,sprinting:p.sprinting,rigYaw:rig.yaw});
+    };
+  }
+  if(mode==='framing'||mode==='live-framing'){
     const render=g.renderer.render.bind(g.renderer);
     const rigPoints=(rig)=>{
       const pts=[],v=p.pos.clone();
@@ -145,6 +194,11 @@ try {
     fixture.framing=(draw=null)=>{
       const m=fixture.mob,cam=g.camera,probe=cam.clone(),v=p.pos.clone();
       const bases=[['rook',p.rig,['head','chest']],['jack',m.rig,['head','core','muzzle']]];
+      const buttons=mode==='live-framing'?[...document.querySelectorAll('button.abtn')].flatMap(e=>{
+        const r=e.getBoundingClientRect(),style=getComputedStyle(e);
+        if(!r.width||!r.height||style.visibility!=='visible'||+style.opacity===0)return [];
+        return [{id:e.dataset.act,cx:r.x+r.width/2,cy:r.y+r.height/2,rx:r.width/2,ry:r.height/2}];
+      }):[];
       const actors=bases.map(([name,rig,labels])=>({name,pts:rigPoints(rig),sockets:Object.fromEntries(labels.map(k=>[k,rig.sockets[k].getWorldPosition(v).clone()]))}));
       // A measurement control, not a controller: stage a bounded taper on
       // these exact contact-relative samples. No input, collision or HUD changes.
@@ -153,9 +207,10 @@ try {
         left4:{yaw:4},right4:{yaw:-4},left8:{yaw:8},right8:{yaw:-8},left12:{yaw:12},right12:{yaw:-12}}[name]??{})});
       const measure=(name)=>{
         const {plus,yaw}=original(name);
-        probe.quaternion.copy(cam.quaternion);
+        const base=name==='live' ? null : fixture.stockCamera;
+        probe.quaternion.copy(base?.q??cam.quaternion);
         probe.rotateY(yaw*Math.PI/180);
-        probe.fov=cam.fov+plus;probe.updateProjectionMatrix();probe.updateMatrixWorld(true);
+        probe.fov=(base?.fov??cam.fov)+plus;probe.updateProjectionMatrix();probe.updateMatrixWorld(true);
         const proj=(w)=>{
           v.copy(w).applyMatrix4(probe.matrixWorldInverse);
           if(v.z>=-probe.near)return null;
@@ -164,18 +219,21 @@ try {
         return {name,fov:probe.fov,yaw,actors:Object.fromEntries(actors.map(({name,pts,sockets})=>{
           const bounds=[Infinity,Infinity,-Infinity,-Infinity];
           let outside=0,behind=0;
+          const hud={};
           for(const w of pts){
             const xy=proj(w);
             if(!xy){behind++;continue}
             const [x,y]=xy;
             if(x<0||x>402||y<0||y>874)outside++;
+            for(const b of buttons)
+              if(((x-b.cx)/b.rx)**2+((y-b.cy)/b.ry)**2<1)hud[b.id]=(hud[b.id]??0)+1;
             bounds[0]=Math.min(bounds[0],x);bounds[1]=Math.min(bounds[1],y);
             bounds[2]=Math.max(bounds[2],x);bounds[3]=Math.max(bounds[3],y);
           }
-          return [name,{bounds,vertices:pts.length,outside,behind,sockets:Object.fromEntries(Object.entries(sockets).map(([k,w])=>[k,proj(w)]))}];
+          return [name,{bounds,vertices:pts.length,outside,behind,hud,sockets:Object.fromEntries(Object.entries(sockets).map(([k,w])=>[k,proj(w)]))}];
         }))};
       };
-      const results=['stock','wide6','wide12','left4','right4','left8','right8','left12','right12','taper'].map(measure);
+      const results=(mode==='live-framing'?['stock','live']:['stock','wide6','wide12','left4','right4','left8','right8','left12','right12','taper']).map(measure);
       if(draw){
         const {plus,yaw}=original(draw);
         const f=cam.fov,q=cam.quaternion.clone();
@@ -191,7 +249,8 @@ try {
   const draw=g.renderer.render.bind(g.renderer);
   g.renderer.render=(...args)=>{
    const x=window.fixture,m=x.mob;
-   if((x.mode==='ramp'&&m.state==='windup'&&m.atk?.id==='charge'&&m.stT>.45)||
+   if((mode==='live-framing'&&x.counterPressed&&([9,15,20,24,29,35,44,53].includes(h.frame-x.counterFrame)))||
+      (x.mode==='ramp'&&m.state==='windup'&&m.atk?.id==='charge'&&m.stT>.45)||
       (x.mode==='run'&&m.state==='recover')||(x.counterPressed&&m.hp<x.startEnemyHp))draw(...args);
   };
   h.post=()=>{
@@ -215,7 +274,17 @@ try {
     if(x.dodgePressed&&!x.counterPressed&&g.combat.counterT>0){
       x.counterPressed=true;x.counterFrame=h.frame;g.input.press('attack');
     } else if(x.counterPressed&&h.frame===x.counterFrame+1)g.input.release('attack');
-    if(x.counterPressed&&m.hp<x.startEnemyHp){
+    if(mode==='live-framing'&&x.counterPressed){
+      const since=h.frame-x.counterFrame;
+      if(control==='sprint'&&since===18){g.input.keys.add('KeyS');g.input.press('sprint');}
+      if(control==='sprint'&&since===33){g.input.release('sprint');g.input.keys.delete('KeyS');}
+      if(m.hp<x.startEnemyHp&&!x.contact)
+        x.contact={since,...x.framing()};
+      if([9,15,20,24,29,35,44,53].includes(since)){
+        x.mode='framing-frozen';h.freeze();
+      }
+    }
+    if(mode!=='live-framing'&&x.counterPressed&&m.hp<x.startEnemyHp){
       if(mode==='framing'){
         x.hitFrame??=h.frame;
         if([0,6,12,18,30].includes(h.frame-x.hitFrame)){
@@ -226,7 +295,7 @@ try {
     if(h.frame>590){x.mode='ended';h.freeze();}
   };
   return {site,hp:g.state.d.hp,enabled:g.combat.enabled,god:g.state.god,touch:g.input.isTouch,view:g.cameraRig.view};
- },{onlySide,mode});
+ },{onlySide,mode,control});
  console.log('setup',JSON.stringify(setup));
  if(onlySide){
    await page.waitForFunction(()=>window.fixture?.mode==='windup-frozen',null,{timeout:90000,polling:200});
@@ -236,6 +305,22 @@ try {
    await page.waitForFunction(()=>window.fixture?.mode==='recover-frozen',null,{timeout:90000,polling:200});
    await page.keyboard.up('a');
    await page.screenshot({path:join(out,'recover.jpg'),type:'jpeg',quality:89});
+ }else if(mode==='live-framing'){
+   const samples=[];
+   for(const since of [9,15,20,24,29,35,44,53]){
+     await page.waitForFunction(()=>['framing-frozen','ended'].includes(window.fixture?.mode),null,{timeout:90000,polling:100});
+     const row=await page.evaluate(()=>({since:__golden.frame-fixture.counterFrame,...fixture.framing()}));
+     if(row.since!==since)throw Error('Wrong live sample');
+     samples.push(row);
+     if(control==='none'&&[20,24,29].includes(since))
+       await page.screenshot({path:join(out,'live-'+since+'.jpg'),type:'jpeg',quality:90});
+     if(since!==53)await page.evaluate(()=>{fixture.mode='counter';__golden.thaw()});
+   }
+   const {lens,contact}=await page.evaluate(()=>({lens:fixture.lensTrace,contact:fixture.contact??null}));
+   if(control==='none'&&!lens.some(r=>r.widen>0&&r.turn!==0))throw Error('Lens did not engage');
+   if(control!=='none'&&!lens.some(r=>(control==='look'?r.testLook&&r.lookX>0:r.sprintIntent)&&r.override))throw Error('No live override');
+   if(lens.some(r=>r.override&&(r.turn!==0||r.widen!==0)))throw Error('Manual input did not take precedence');
+   writeFileSync(join(out,'live-framing.json'),JSON.stringify({control,samples,lens,contact},null,2)+'\n');
  }else if(mode==='framing'){
    const evidence=[];
    for(const offset of [0,6,12,18,30]){
