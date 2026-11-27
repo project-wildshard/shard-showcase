@@ -75,6 +75,9 @@ are yours to design.
 
 ## Enemies
 
+The enemies should include reef crabs, charging boars, coconut monkeys
+in the palms, bears, and drowned sailors, and more.
+
 - Many enemies, each with a rare variant. Elites are scattered around.
   At night the drowned come ashore, glowing cyan.
 - A final boss at the end of the main quest, at level 10.

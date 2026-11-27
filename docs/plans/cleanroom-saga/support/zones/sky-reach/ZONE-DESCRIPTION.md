@@ -75,9 +75,11 @@ story, the steps and the boss are yours to design.
 
 ## Enemies
 
-- Many enemies, each with a rare variant, from sky goats to drift
-  rays. Elites are scattered around. Anything can be knocked off an
-  edge, and so can you.
+The enemies should include wild sky goats that ram, drift rays that
+circle and dive, and gale wisps that push you toward the edge, and more.
+
+- Many enemies, each with a rare variant. Elites are scattered around.
+  Anything can be knocked off an edge, and so can you.
 - A final boss at the end of the main quest, at level 12.
 
 ## Quests

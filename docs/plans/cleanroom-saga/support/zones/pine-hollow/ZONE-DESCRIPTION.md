@@ -71,6 +71,9 @@ worth the journey. The story, steps and boss are yours to design.
 
 ## Enemies
 
+The enemies should include red deer, wild boar, elk, lynx on the crags
+and brown bears, and more.
+
 - Many beasts, each with a rare coat, and no wolves. Elites, the
   valley's legends, are scattered around. By night, the folk things.
 - A final boss at the end of the main quest, at level 15.

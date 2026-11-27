@@ -76,6 +76,10 @@ The story, the steps and the boss are yours to design.
 
 ## Enemies
 
+The enemies should include dust wyrmlings that burrow and ram, outlaws
+in hammered tin who draw before they fire, and sand drakes on the flats,
+and more.
+
 - Many enemies, each with a rare variant. Elites are scattered around.
 - A final boss at the end of the main quest, at level 12.
 

@@ -50,6 +50,12 @@ that you can start with:
 - Levels 1 to 15, levelled by fighting.
 - A mini dungeon.
 
+## Features
+
+- Horse racing.
+- Mounted combat.
+- Enemies worthy of mounted combat.
+
 ## Main quest
 
 An epic quest line in many steps, from the herders' camp across the
@@ -76,8 +82,10 @@ worth the journey. The story, steps and boss are yours to design.
 
 ## Enemies
 
+The enemies should include wolf packs, leopards on the crags, stone
+warriors and the restless dead, and more.
+
 - Many enemies, each with a rare variant. Elites are scattered around.
-- Wolf packs, leopards on the crags, stone warriors, restless dead.
 - A final boss at the end of the main quest, at level 15.
 
 ## Quests

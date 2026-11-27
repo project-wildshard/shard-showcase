@@ -74,8 +74,10 @@ The story, the steps and the boss are yours to design.
 
 ## Enemies
 
-- Many enemies, each with a rare variant, from mosslings to barrow
-  crawlers. Elites are scattered around.
+The enemies should include mosslings in packs, ramming boars, bog wisps,
+grey blobs in the quarry and barrow crawlers, and more.
+
+- Many enemies, each with a rare variant. Elites are scattered around.
 - A final boss at the end of the main quest, at level 10.
 
 ## Quests

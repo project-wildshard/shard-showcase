@@ -68,6 +68,10 @@ the boss are yours to design.
 
 ## Enemies
 
+The enemies should include burrowing sand skitterers, dune rays that
+swoop from the crests, horned striders that charge, and desert raiders,
+and more.
+
 - Many enemies, each with a rare variant. Elites are scattered around.
 - A final boss at the end of the main quest, at level 15.
 

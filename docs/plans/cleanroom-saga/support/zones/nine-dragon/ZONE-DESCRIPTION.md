@@ -72,8 +72,10 @@ the journey. The story, the steps and the boss are yours to design.
 
 ## Enemies
 
+The enemies should include neon-visored gangs, paper-crane drones and
+cyborg hopping vampires, and more.
+
 - Many enemies, each with a rare variant. Elites are scattered around.
-- Neon-visored gangs, paper-crane drones, cyborg hopping vampires.
 - A final boss at the end of the main quest, at level 20.
 
 ## Quests
