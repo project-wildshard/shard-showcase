@@ -414,3 +414,14 @@ for (const name of ["discover","open"]) {
   assert.ok(markup.includes(`src="${imagePath}"`));
   assert.equal(readFileSync(new URL(imagePath,dist)).subarray(8,12).toString(),"WEBP");
 }
+
+const screenGrid=data.assets.find(a=>a.id==="WSC-SCENE-005");
+assert.equal(screenGrid.related_study?.href,"#nov27-e3-screen-grid");
+assert.ok(ids.has("nov27-e3-screen-grid"));
+assert.ok(markup.includes('href="#nov27-e3-screen-grid"'));
+assert.ok(markup.includes('href="#nov24-e03-pillar-frame">Earlier entrance framing'));
+for(const name of ["walk","field"]){
+ const path=`media/nov27-e3-screen-grid-${name}.webp`;
+ assert.ok(markup.includes(`src="${path}"`));
+ assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
+}
