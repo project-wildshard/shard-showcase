@@ -1,35 +1,37 @@
 # Driftwood Isle
 
-A single hand-made MMO zone, played alone: a tropical island and its
-crowd of islets, reefs and sea stacks in a turquoise sea, under a huge
-ringed planet. Think The Legend of Zelda: The Wind Waker, Moana and
-Sea of Thieves. You come ashore by sailboat with nothing but a
-driftwood sword, to jungle, cliffs, reefs and a wreck on the rocks. It
-should feel sunny, cute and adventurous, a little spooky at night,
-like the best day of summer from the first step to the last.
+A single hand-made MMO zone, played alone: open ocean and cool islands
+of every shape and size, with islets, reefs and sea stacks, under a
+huge ringed planet. Think The Legend of Zelda: The Wind Waker and
+Assassin's Creed IV: Black Flag, with Moana and Sea of Thieves. You
+arrive by sailboat with nothing but a driftwood sword. It should feel
+sunny, cute and adventurous, a little spooky at night, like the best
+day of summer from the first step to the last.
 
 ## Shape
 
 It is one zone of a bigger MMO world, joined to its neighbours by
 roads, so it fits inside one 500 × 500 × 500 m cube and never grows.
-Four jetties sit at the middle of the cube's four sides, halfway up
-at the sea's surface, each with a road running off the edge to the
-rest of the world; nothing beyond needs to exist yet. Both mini
+Four edge islands sit at the middle of the cube's four sides, with
+the sea's surface halfway up, each with a road running off the edge to
+the rest of the world; nothing beyond needs to exist yet. Both mini
 dungeons sit inside the cube too.
 
-- **Use the whole cube, every corner of it.** Land and reef fill the
-  full 500 × 500 m footprint: one big island climbing to a jungle
-  peak, crowded round by islets, sea stacks, sandbars and lagoons. It
-  fills the full height too, from trenches and sea caves on the
-  cube's floor to cliffs, canopy and the peak at its top. The open
-  water is narrow; empty sea is never most of the view.
+- **Use the whole cube, every corner of it.** Ocean and islands of
+  every shape and size fill the full 500 × 500 m footprint: islets,
+  reefs, sea stacks and sandbars between them. It fills the full
+  height too, from the deep sea floor at the cube's bottom to the
+  highest island peak at its top. Open sea runs between them, but it
+  is never empty.
+- **Shallow and deep:** warm, clear shallows over sand and reef, and
+  deep blue water that drops away beneath you.
 - **Every way across:** swimming and diving, the sailboat, ziplines
   and rope bridges through the canopy, cliff dives, sandbars bared at
   low tide, and a harpoon that hauls you along.
 - **One open zone**, no fixed sides: go anywhere, see anything you can
   reach.
-- **Filled with places**: beaches, jungle, cliffs, coves, reef and
-  deep water, each with its own look, life and danger.
+- **Filled with places**, above and below the sea, each with its own
+  look, life and danger.
 - **Five or more epic set pieces**: moments a player remembers and
   wants to show someone.
 - Each set piece must work as a ten-second clip, filmed on a phone in
@@ -42,6 +44,9 @@ that you can start with:
 
 - A pier with your sailboat, a castaway's camp and a trader's stall.
 - Swim anywhere, dive as deep as the sea goes, and never drown.
+- **Under the sea is half the zone:** reefs, kelp forests, sunken
+  ruins, wrecks, sea caves and trenches, all worth exploring, with
+  their own secrets, creatures and treasure.
 - **The planet moves the sea.** As it swings low the tide drains away,
   baring the reef, the wreck and paths you could never walk; as it
   climbs again the sea pours back in, fast.
@@ -57,6 +62,7 @@ that you can start with:
 ## Features
 
 - Swimming and diving.
+- Underwater exploration.
 - Sailing.
 - Tides.
 - Ziplines.
