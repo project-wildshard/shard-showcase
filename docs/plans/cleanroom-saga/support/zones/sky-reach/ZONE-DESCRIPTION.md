@@ -55,6 +55,13 @@ that you can start with:
 - Levels 1 to 12, levelled by fighting.
 - A mini dungeon in the keel of an island.
 
+## Features
+
+- Hoverboard racing.
+- Combat on the board and in the air.
+- Enemies worthy of fighting in the air.
+- Sky ships you can board and fly.
+
 ## Main quest
 
 An epic quest line in many steps that takes you across the whole sky
@@ -72,7 +79,9 @@ boss are yours to design.
 ## Weapons
 
 - Melee: the war fan, a glaive and more.
-- Ranged: a bow, a crossbow whose bolts knock foes back, and more.
+- Ranged: a bellows crossbow you pump to charge, whose full-pump bolt
+  knocks a foe clean off an edge; a hawk-kite launcher whose paper
+  hawks circle on the wind, then dive at the nearest foe; and more.
 - The war fan's gust blows anything near an edge clean off it, and it
   moves you too: a burst of speed, or a softer fall.
 
