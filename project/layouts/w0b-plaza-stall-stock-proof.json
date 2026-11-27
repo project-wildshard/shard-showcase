@@ -1,0 +1,78 @@
+{
+  "scope": "Three interchangeable decorative counter trays on the unchanged stall donor; no inventory, vendor, collision or placement in the map.",
+  "catalogueId": "WSC-PROP-005",
+  "stallSha256": "b240fd8056db68d9b1caeaefc61459de4171f1345782726b0da40d0a1c614f04",
+  "sameOriginThree": [
+    0,
+    1.109,
+    0
+  ],
+  "assets": [
+    {
+      "file": "w0b-plaza-stock-orchard.glb",
+      "sha256": "24a45f470603fb791aa48ad6c2e42d95a418772a7091181c5d3d6fe94db737d0",
+      "bytes": 77236,
+      "triangles": 1992,
+      "materials": 1,
+      "textures": 0,
+      "projectedCounterHits": 1625,
+      "verticalRays": 1780,
+      "footContacts": [
+        715,
+        715
+      ],
+      "footSamplesPerSide": 819,
+      "counterIntersectionWith2mmOffset": false,
+      "minFootGapM": -0.0,
+      "dimensionsM": [
+        1.401,
+        0.720288,
+        0.265
+      ]
+    },
+    {
+      "file": "w0b-plaza-stock-bread.glb",
+      "sha256": "e7027d5117eeaac2aee2b9bd6ae4a5914c47affd9fa7ddf0808485e48fd5a55b",
+      "bytes": 39356,
+      "triangles": 924,
+      "materials": 1,
+      "textures": 0,
+      "projectedCounterHits": 751,
+      "verticalRays": 906,
+      "footContacts": [
+        715,
+        715
+      ],
+      "footSamplesPerSide": 819,
+      "counterIntersectionWith2mmOffset": false,
+      "minFootGapM": -0.0,
+      "dimensionsM": [
+        1.401,
+        0.720288,
+        0.249
+      ]
+    },
+    {
+      "file": "w0b-plaza-stock-herbs.glb",
+      "sha256": "78501de86188126ef7dd64201cb620a5540a4e9d53f0f80d16dbb8906ada9521",
+      "bytes": 73680,
+      "triangles": 1664,
+      "materials": 1,
+      "textures": 0,
+      "projectedCounterHits": 1574,
+      "verticalRays": 1736,
+      "footContacts": [
+        715,
+        715
+      ],
+      "footSamplesPerSide": 819,
+      "counterIntersectionWith2mmOffset": false,
+      "minFootGapM": -0.0,
+      "dimensionsM": [
+        1.401,
+        0.720288,
+        0.332761
+      ]
+    }
+  ]
+}
