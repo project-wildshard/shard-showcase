@@ -14,6 +14,7 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--donor", type=Path, required=True)
 parser.add_argument("--ride", type=Path, required=True)
 parser.add_argument("--output", type=Path, required=True)
+parser.add_argument("--proof-only", action="store_true")
 args = parser.parse_args(sys.argv[sys.argv.index("--")+1:])
 out = args.output.resolve()
 out.mkdir(parents=True, exist_ok=True)
@@ -85,6 +86,8 @@ receipt={"scope":"Engine driver and art clearance sample only; no physics capsul
  "midpoint_restore_exact":ride["restoredExactly"]}
 (out/"fit.json").write_text(json.dumps(receipt,indent=2)+"\n")
 print("W08 ride fit",json.dumps(receipt),flush=True)
+if args.proof_only:
+    raise SystemExit(0)
 
 
 def mat(name,c,m=.0,r=.4, glow=0):

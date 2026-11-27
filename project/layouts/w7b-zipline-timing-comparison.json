@@ -1,0 +1,96 @@
+{
+  "scope": "Three local stock-driver calibrations and separate swept handoffs on original W08 art. Not a product or a continuous native carry, clock or phone test.",
+  "engine": "0.1.44",
+  "donorSha256": "ccbef47fe8fd968b4fad81c81307b3b66d5c4bdc11e479ca78e5c2cfabf6f756",
+  "terminalSha256": "a8b955c7f7baa9e95c2b8bcdfdb0e3b7b6a6d5f1b3a3847500b338f46130be55",
+  "unchangedGeometry": {
+    "kind": "zipline",
+    "id": "showcase.zipline.calibration",
+    "top": {
+      "x": -212,
+      "y": 45,
+      "z": -34
+    },
+    "bottom": {
+      "x": -115,
+      "y": 14,
+      "z": -16.5
+    },
+    "sag": 1.1613734102790827,
+    "hang": 1.55,
+    "profile": {
+      "anchors": "direct",
+      "start": 1.05,
+      "release": 1.86,
+      "landing": {
+        "back": 0.66,
+        "deck": 0.035,
+        "velocity": 2.5
+      }
+    },
+    "landing": {
+      "x": -115,
+      "y": 12.746,
+      "z": -16.5
+    }
+  },
+  "profiles": [
+    {
+      "profile": "baseline",
+      "gravity": 9.8,
+      "quadraticDrag": 0.012,
+      "speedCapMps": 22,
+      "rideTicks": 562,
+      "cableSeconds": 9.3667,
+      "releaseVelocityMps": 2.5,
+      "peakMps": 13.8028,
+      "peakDriveAccelerationMps2": 2.9706,
+      "visualSamples": 5058,
+      "minimumSampledClearanceM": 0.0626,
+      "wallSampledClearanceM": 10.6552,
+      "stockReleaseJumpM": 1.254,
+      "handoffMaximumStepM": 0.1569,
+      "handoffStepCount": 20,
+      "successfulMotorStarts": 15,
+      "blockedControlMissM": 1.0004
+    },
+    {
+      "profile": "short",
+      "gravity": 48,
+      "quadraticDrag": 0.012,
+      "speedCapMps": 26,
+      "rideTicks": 282,
+      "cableSeconds": 4.7,
+      "releaseVelocityMps": 2.5,
+      "peakMps": 26,
+      "peakDriveAccelerationMps2": 14.8423,
+      "visualSamples": 2538,
+      "minimumSampledClearanceM": 0.0932,
+      "wallSampledClearanceM": 10.6436,
+      "stockReleaseJumpM": 1.2188,
+      "handoffMaximumStepM": 0.1527,
+      "handoffStepCount": 20,
+      "successfulMotorStarts": 15,
+      "blockedControlMissM": 0.9846
+    },
+    {
+      "profile": "capped",
+      "gravity": 64,
+      "quadraticDrag": 0.012,
+      "speedCapMps": 22,
+      "rideTicks": 302,
+      "cableSeconds": 5.0333,
+      "releaseVelocityMps": 2.5,
+      "peakMps": 22,
+      "peakDriveAccelerationMps2": 19.8147,
+      "visualSamples": 2718,
+      "minimumSampledClearanceM": 0.1309,
+      "wallSampledClearanceM": 10.6917,
+      "stockReleaseJumpM": 1.2944,
+      "handoffMaximumStepM": 0.1621,
+      "handoffStepCount": 20,
+      "successfulMotorStarts": 15,
+      "blockedControlMissM": 1.0166
+    }
+  ]
+}

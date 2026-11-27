@@ -24,7 +24,11 @@ const geo=JSON.parse(meshRaw)
 assert.equal(digest(meshRaw),'a8b955c7f7baa9e95c2b8bcdfdb0e3b7b6a6d5f1b3a3847500b338f46130be55')
 const ride=JSON.parse(readFileSync(join(dir,'ride.json')))
 assert.equal(ride.engine,'0.1.44')
-assert.equal(ride.final.tick,562)
+const variant=process.argv[3] ?? 'baseline'
+const expected={baseline:[562,9.8,22],short:[282,48,26],capped:[302,64,22]}[variant]
+assert(expected, 'Choose baseline, short or capped')
+assert.deepEqual([ride.final.tick,ride.row.gravity,ride.row.maxSpeed],expected)
+assert.equal(ride.row.drag,.012)
 const start=new Vector3(...ride.frames.at(-2).rider), end=new Vector3(...ride.final.rider)
 const axis=end.clone().sub(start).setY(0).normalize(), side=new Vector3(-axis.z,0,axis.x)
 const approachTicks=8, groundTicks=12, dt=1/60

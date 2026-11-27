@@ -23,6 +23,10 @@ export const row = {
   profile: { anchors: 'direct', start: 1.05, release: 1.86, landing: { back: .66, deck: .035, velocity: 2.5 } },
   landing: { x: -115, y: 12.746, z: -16.5 },
 }
+const profileName = process.argv[3] ?? 'baseline'
+assert(['baseline','short','capped'].includes(profileName), 'Choose baseline, short or capped')
+if (profileName === 'short') Object.assign(row, { gravity:48, maxSpeed:26 })
+if (profileName === 'capped') Object.assign(row, { gravity:64 })
 const driver = new ZiplineDriver(row)
 const player = { position: new Vector3(), velocity: new Vector3() }
 const t = new Object3D()
@@ -60,6 +64,7 @@ for (let tick=1; tick<=1800 && driver.isRiding; tick++) {
 assert(!driver.isRiding && clone, 'Ride must complete after restoring')
 assert.equal(parked.prompt.radius, 2)
 const final = sample.at(-1)
+assert.equal(final.tick, { baseline:562, short:282, capped:302 }[profileName])
 assert.equal(final.carried, false)
 const landing = new Vector3(row.landing.x, row.landing.y, row.landing.z)
 assert(Math.hypot(player.position.x-landing.x,player.position.z-landing.z) < row.profile.landing.back + .001)
