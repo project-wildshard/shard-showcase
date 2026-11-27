@@ -28,3 +28,12 @@ the undersea world, rideable sea creatures and treasure maps;
 ziplines and cliff dives shrink to one optional line. Levels go to
 20. Three mini dungeons now: the tidal wreck, a whirlpool you sail
 your own boat down into, and a sunken palace in the deepest trench.
+
+Then Jake's own Features list (the sailboat you drive, underwater
+combat, and a completely dry hidden world under the sea as large as
+the surface). Enemies stop naming kinds: Fable fills the world, in
+MMO level bands 1–3 up to 16–18, with level 20 as the endgame. An
+Opus agent redesigned the weapons after Jake binned the conch
+blunderbuss and urchin sling: a coral-grown driftwood sword, an
+anchor on a chain, a stormglass trident; a harpoon gun, a flintlock
+that calls your boat's cannons, a lighthouse-lens beam.

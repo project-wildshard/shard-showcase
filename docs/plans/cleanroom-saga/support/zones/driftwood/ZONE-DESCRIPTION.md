@@ -24,9 +24,10 @@ mini dungeons sit inside the cube too.
   highest island peak at its top. Open sea runs between them, but it
   is never empty.
 - **Two worlds, equal in size:** there is just as much under the sea
-  as above it. The sea floor is a whole second zone, as dense, varied
-  and worth exploring as the islands, with its own places, people,
-  creatures, quests, secrets and set pieces.
+  as above it. Below the water lies a completely dry, hidden world you
+  can enter, as large as the surface world, as dense, varied and worth
+  exploring, with its own places, people, quests, secrets and set
+  pieces.
 - **Shallow and deep:** warm, clear shallows over sand and reef, and
   deep blue water that drops away beneath you into the dark.
 - **Every way across:** your own sailboat, swimming and diving,
@@ -85,13 +86,12 @@ that you can start with:
 
 ## Features
 
-- Your own sailboat.
-- An undersea world.
+- Underwater exploration.
+- A sailboat that you can drive.
 - Swimming and diving.
-- Ship combat.
-- Rideable sea creatures.
-- Treasure hunting.
-- Tides.
+- Underwater combat.
+- A zone under the sea: a completely dry, hidden world under the
+  water that you can enter, as large as the surface world.
 
 ## Main quest
 
@@ -110,25 +110,30 @@ The story, the steps and the boss are yours to design.
 
 ## Weapons
 
-- Melee: the driftwood sword you wash up with, which sprouts a new
-  branch, and a new move, as you level; a boat-hook spear that hooks
-  a foe and drags it into the water; and more.
-- Ranged: a harpoon gun on a long rope; a conch blunderbuss whose
-  blast of shell and foam bowls a foe off its feet; an urchin sling
-  whose spiny shot sticks and stings; and more.
+- Melee: the driftwood sword you wash up with, which grows with you,
+  level by level, into a great living blade, barnacled and edged with
+  coral, whose full swing throws a breaking wave down the line; a
+  ship's anchor on a chain, swung in wide arcs, that bites into a hull
+  and hauls you aboard; a stormglass trident that charges with every
+  hit, then lets it out in one thrust that arcs lightning through every
+  foe in the water; and more.
+- Ranged: a harpoon gun on a long rope that reels a foe in, or you to
+  it; a twin-barrel flintlock whose second barrel fires a flare that
+  brings your own boat's cannons down on the mark; a lighthouse lens
+  on a brass stock that gathers sunlight into a beam that burns hotter
+  the longer you hold it; and more.
 - The harpoon works under water too, and it moves you: fire it into a
   cliff, a mast or a big fish and get hauled along.
 
 ## Enemies
 
-The enemies should include coconut monkeys that pelt you from the
-palms, reef crabs with one huge claw, wreckers who lure boats onto
-the rocks with false lights, pirate ships, drowned sailors, and under
-the sea sharks, moray eels, jellyfish swarms and things in the
-trenches, and more.
-
+- Fill the islands, the sea and the world below with enemies as you
+  see fit: on land, at sea and under the water.
+- Like an MMO, they come in level bands, each with its own part of
+  the world: 1–3, 4–6, 7–9, 10–12, 13–15 and 16–18.
+- Level 20 is the endgame: bosses and endgame content worth coming
+  back for.
 - Many enemies, each with a rare variant. Elites are scattered around.
-  At night the drowned come ashore, glowing cyan.
 - A final boss at the end of the main quest, at level 20.
 
 ## Quests
