@@ -11,10 +11,12 @@ zone and plays like a AAA PS5 MMORPG. The zone is described in
   and satisfying, with real weight, impact and feedback.
 - **World:** alive and dense, with something worth finding around every
   corner. Never empty, never grey, never placeholder.
-- **Camera:** third person. Drawing a ranged weapon switches to first
-  person, like a shooter; holstering goes back to third person. Melee
-  is third person only. On horseback it is third person, and
-  horseback archery is first person.
+- **Camera:** third person, except while a ranged weapon is drawn:
+  then it is first person, like a shooter, on foot or on horseback.
+  Holstering goes back to third person; melee is always third person.
+  Every switch should feel smooth and deliberate, and first-person
+  aiming must feel as good with a thumb on a portrait phone as it
+  does with a mouse.
 - **Mobile first.** It must play great on a phone held in portrait,
   with touch controls, and still look stunning there. Desktop should
   work too.
