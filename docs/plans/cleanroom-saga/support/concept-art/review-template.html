@@ -1,0 +1,221 @@
+<title>Clean Room Concept Picks</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,600..800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: a light table. Sticky zone strip on top; each zone is a sheet of 3 subjects x 3 takes; picks get a grease-pencil number. */
+:root {
+  --bg: #e9ecea; --surface: #f9faf9; --ink: #1a1e1c; --muted: #58615c; --line: #cfd5d1;
+  --pencil: #cf2f2a; --on-pencil: #ffffff; --ok: #2f7d4f; --shade: rgba(10, 12, 11, 0.86);
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121514; --surface: #1b1f1d; --ink: #e5eae7; --muted: #99a39d; --line: #2d3430;
+    --pencil: #ff5b52; --on-pencil: #160605; --ok: #6cc890; --shade: rgba(0, 0, 0, 0.9);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121514; --surface: #1b1f1d; --ink: #e5eae7; --muted: #99a39d; --line: #2d3430;
+  --pencil: #ff5b52; --on-pencil: #160605; --ok: #6cc890; --shade: rgba(0, 0, 0, 0.9);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font: 15px/1.55 var(--body); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface); }
+.gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 1240px; margin: 0 auto; }
+h1, h2, h3, h4 { font-family: var(--display); font-stretch: 85%; margin: 0; line-height: 1.1; text-wrap: balance; }
+code { font-family: var(--mono); font-size: 0.85em; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--pencil); outline-offset: 2px; }
+
+.intro { padding-block: 2rem 1.25rem; }
+.intro .wrap { display: grid; gap: 0.6rem; }
+.eyebrow { font: 500 0.72rem/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+h1 { font-size: clamp(2rem, 5.5vw, 3.2rem); font-weight: 800; letter-spacing: -0.01em; }
+.intro p { max-width: 68ch; margin: 0; color: var(--muted); }
+.banner { max-width: 68ch; border: 1px dashed var(--pencil); color: var(--ink); padding: 0.55rem 0.8rem; border-radius: 6px; font-size: 0.9rem; }
+
+.strip { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-block: 1px solid var(--line); }
+.strip .wrap { display: flex; gap: 0.35rem; overflow-x: auto; padding-block: 0.5rem; scrollbar-width: thin; }
+.strip a { flex: none; display: inline-flex; align-items: center; gap: 0.45rem; text-decoration: none; font-size: 0.85rem; padding: 0.3rem 0.6rem; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); }
+.strip a b { font: 500 0.72rem/1 var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.strip a.done { border-color: var(--ok); }
+.strip a.done b { color: var(--ok); }
+.strip .total { margin-left: auto; flex: none; align-self: center; font: 500 0.75rem/1 var(--mono); color: var(--muted); padding-left: 0.6rem; }
+
+main { padding-block: 1.5rem 4rem; }
+main .wrap { display: grid; gap: 3.5rem; }
+.zone { display: grid; gap: 1.4rem; scroll-margin-top: 4.5rem; }
+.zhead { display: grid; gap: 0.75rem; }
+.ztitle { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1rem; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); font-weight: 800; }
+.status { margin: 0; font: 500 0.78rem/1 var(--mono); color: var(--muted); }
+.status.done { color: var(--ok); }
+.lede { margin: 0; max-width: 70ch; font-size: 1.02rem; }
+.flags { max-width: 70ch; border-left: 3px solid var(--pencil); padding: 0.1rem 0 0.1rem 0.9rem; }
+.flags h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+.flags ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.2rem; font-size: 0.92rem; }
+.desc { max-width: 70ch; }
+.desc summary { cursor: pointer; font-weight: 600; font-size: 0.92rem; width: fit-content; }
+.desc-body { padding-top: 0.6rem; font-size: 0.92rem; display: grid; gap: 0.6rem; }
+.desc-body h4 { font-size: 1.05rem; margin-top: 0.6rem; }
+.desc-body p, .desc-body ul { margin: 0; }
+.desc-body ul { padding-left: 1.1rem; display: grid; gap: 0.2rem; }
+
+.subject { display: grid; gap: 0.6rem; }
+.subject h3 { font-size: 1.05rem; font-weight: 700; color: var(--muted); }
+.takes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; }
+.cand { margin: 0; display: grid; gap: 0.4rem; min-width: 0; }
+.pick { position: relative; display: block; padding: 0; border: 0; background: var(--line); border-radius: 6px; cursor: pointer; overflow: visible; }
+.pick img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 6px; outline: 0 solid var(--pencil); outline-offset: 0; transition: outline-width 0.12s, opacity 0.12s; }
+.pick:hover img { opacity: 0.92; }
+.pick[aria-pressed="true"] img { outline-width: 4px; }
+.mark { position: absolute; top: -0.6rem; left: -0.6rem; width: 2.3rem; height: 2.3rem; border-radius: 50%; display: none; place-items: center; background: var(--pencil); color: var(--on-pencil); font: 800 1.15rem/1 var(--display); box-shadow: 0 1px 3px rgba(0,0,0,0.3); transform: rotate(-8deg); }
+.pick[aria-pressed="true"] .mark { display: grid; }
+figcaption { display: flex; align-items: baseline; gap: 0.45rem; font-size: 0.82rem; color: var(--muted); min-width: 0; }
+figcaption .take { font: 500 0.72rem/1 var(--mono); color: var(--ink); flex: none; }
+figcaption .how { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.zoom { margin-left: auto; flex: none; font: 500 0.72rem/1 var(--mono); color: var(--ink); background: none; border: 1px solid var(--line); border-radius: 4px; padding: 0.3rem 0.45rem; cursor: pointer; }
+.zoom:hover { border-color: var(--ink); }
+
+.note { display: grid; gap: 0.35rem; max-width: 70ch; font-size: 0.88rem; color: var(--muted); }
+.note textarea { font: 0.92rem/1.5 var(--body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 0.55rem 0.7rem; resize: vertical; width: 100%; }
+.saved { font: 500 0.72rem/1 var(--mono); color: var(--ok); }
+
+.light { position: fixed; inset: 0; z-index: 20; background: var(--shade); display: grid; place-items: center; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); cursor: zoom-out; }
+.light img { max-width: 100%; max-height: 100%; border-radius: 6px; }
+.light button { position: absolute; top: calc(env(safe-area-inset-top, 0px) + 12px); right: calc(env(safe-area-inset-right, 0px) + 12px); font: 500 0.8rem/1 var(--mono); padding: 0.5rem 0.7rem; border-radius: 4px; border: 0; background: #ffffff; color: #111111; cursor: pointer; }
+
+@media (max-width: 760px) { .takes { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+
+<div class="intro gutter"><div class="wrap">
+  <div class="eyebrow">Cleanroom saga · ZC3 and CR4 · 2026-11-26</div>
+  <h1>Pick three per zone</h1>
+  <p>Nine concept candidates for each clean room: three subjects, three takes each. Tap an image to pick it; tap again to drop it. The order you pick in becomes <code>concept-1</code> to <code>concept-3</code> in that zone's starter pack. Each zone also lists the choices the description writers made on their own, and the full description is one click away.</p>
+  <p class="banner" id="banner" hidden></p>
+</div></div>
+
+<nav class="strip gutter" aria-label="Zones"><div class="wrap">%%NAV%%<span class="total" id="total">0 of 27 picked</span></div></nav>
+
+<main class="gutter"><div class="wrap">%%SECTIONS%%</div></main>
+
+<div class="light" id="light" hidden><img id="light-img" alt=""><button type="button" id="light-close">Close</button></div>
+
+<script>
+(function () {
+  var ZONES = %%ZONES%%;
+  var state = {};
+  ZONES.forEach(function (z) { state[z] = { picks: [], note: '' }; });
+  var db = null, store = null, mode = 'loading';
+  var banner = document.getElementById('banner');
+  document.getElementById('total').textContent = '0 of ' + (ZONES.length * 3) + ' picked';
+
+  function local(save) {
+    try {
+      if (save) localStorage.setItem('cr-picks', JSON.stringify(state));
+      else { var s = JSON.parse(localStorage.getItem('cr-picks') || 'null'); if (s) ZONES.forEach(function (z) { if (s[z]) state[z] = s[z]; }); }
+    } catch (e) {}
+  }
+
+  function render() {
+    var total = 0;
+    ZONES.forEach(function (z) {
+      var picks = state[z].picks || [];
+      total += Math.min(picks.length, 3);
+      document.querySelectorAll('.cand[data-zone="' + z + '"]').forEach(function (fig) {
+        var i = picks.indexOf(fig.dataset.job);
+        var btn = fig.querySelector('.pick');
+        btn.setAttribute('aria-pressed', i >= 0 ? 'true' : 'false');
+        btn.querySelector('.mark').textContent = i >= 0 ? String(i + 1) : '';
+      });
+      var st = document.querySelector('[data-status="' + z + '"]');
+      st.textContent = picks.length === 0 ? 'No picks yet' : picks.length + ' of 3 picked';
+      st.classList.toggle('done', picks.length === 3);
+      var nc = document.querySelector('[data-count="' + z + '"]');
+      nc.textContent = picks.length + '/3';
+      nc.parentElement.classList.toggle('done', picks.length === 3);
+      var ta = document.getElementById('note-' + z);
+      if (document.activeElement !== ta && ta.value !== (state[z].note || '')) ta.value = state[z].note || '';
+    });
+    document.getElementById('total').textContent = total + ' of ' + (ZONES.length * 3) + ' picked';
+  }
+
+  var pending = {}, writing = {};
+  function save(z) {
+    if (mode !== 'db') { local(true); return; }
+    pending[z] = true;
+    if (writing[z]) return;
+    writing[z] = true; pending[z] = false;
+    store.doc(z).set({ picks: state[z].picks, note: state[z].note || '', updatedAt: new Date().toISOString() })
+      .catch(function (e) {
+        banner.hidden = false;
+        banner.textContent = 'Could not save (' + (e && e.code || 'error') + '). Your picks are kept in this browser for now.';
+        local(true);
+      })
+      .then(function () { writing[z] = false; if (pending[z]) save(z); });
+  }
+
+  document.querySelectorAll('.pick').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var fig = btn.closest('.cand'), z = fig.dataset.zone, job = fig.dataset.job;
+      var picks = state[z].picks.slice(), i = picks.indexOf(job);
+      if (i >= 0) picks.splice(i, 1);
+      else if (picks.length >= 3) {
+        banner.hidden = false;
+        banner.textContent = 'Three already picked for this zone. Tap one of them to drop it first.';
+        return;
+      } else picks.push(job);
+      state[z].picks = picks; render(); save(z);
+    });
+  });
+  document.querySelectorAll('textarea[data-note]').forEach(function (ta) {
+    var t = null;
+    ta.addEventListener('input', function () {
+      clearTimeout(t);
+      t = setTimeout(function () { var z = ta.dataset.note; if (state[z].note !== ta.value) { state[z].note = ta.value; save(z); } }, 800);
+    });
+  });
+
+  var light = document.getElementById('light'), limg = document.getElementById('light-img');
+  function closeLight() { light.hidden = true; limg.removeAttribute('src'); }
+  document.querySelectorAll('.zoom').forEach(function (b) {
+    b.addEventListener('click', function () { limg.src = b.dataset.src; limg.alt = b.closest('.cand').querySelector('img').alt; light.hidden = false; document.getElementById('light-close').focus(); });
+  });
+  light.addEventListener('click', closeLight);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !light.hidden) closeLight(); });
+
+  local(false); render();
+
+  var timer = setTimeout(function () {
+    if (mode === 'loading') { mode = 'local'; banner.hidden = false; banner.textContent = 'Shared saving is not available here, so picks stay in this browser. Tell Claude your picks, or open the page signed in.'; }
+  }, 10000);
+  if (!(window.claude && typeof window.claude.use === 'function')) return;
+  window.claude.use('db').then(function (d) {
+    if (!d) { clearTimeout(timer); mode = 'local'; banner.hidden = false; banner.textContent = 'Shared saving is not available here, so picks stay in this browser. Tell Claude your picks, or open the page signed in.'; return; }
+    db = d; store = db.collection('picks');
+    store.onSnapshot(function (snap) {
+      clearTimeout(timer);
+      if (mode !== 'db') { mode = 'db'; }
+      snap.docs.forEach(function (doc) {
+        var data = doc.data() || {};
+        if (!state[doc.id]) return;
+        if (writing[doc.id]) return;
+        var p = Array.isArray(data.picks) ? data.picks.filter(function (x) { return typeof x === 'string'; }).slice(0, 3) : [];
+        state[doc.id] = { picks: p, note: typeof data.note === 'string' ? data.note : '' };
+      });
+      render();
+    }, function (e) {
+      clearTimeout(timer); mode = 'local'; banner.hidden = false;
+      banner.textContent = 'Could not load saved picks (' + (e && e.code || 'error') + '). Picks stay in this browser for now.';
+    });
+  });
+})();
+</script>

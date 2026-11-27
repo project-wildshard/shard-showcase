@@ -2,8 +2,9 @@
 
 > Written by: Claude
 
-> **State:** in progress, 2026-11-26: CR4 (Brasswick concept
-> candidates) is building; the rest hold for Jake's go. Ask: A18 (the
+> **State:** in progress, 2026-11-26: CR4's nine candidates are made
+> and wait on Jake's picks (on the ZC3 review page); the rest hold for
+> Jake's go. Ask: A18 (the
 > prompt itself was A16).
 > The re-look came out of the saga grill (D36).
 

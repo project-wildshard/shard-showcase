@@ -3,7 +3,9 @@
 > Written by: Claude
 
 > **State:** in progress, 2026-11-26: ZC1 done (packs in
-> `support/zones/`); ZC2 is generating. Every row after ZC3 waits on
+> `support/zones/`), ZC2 done, ZC3's page is up and waits on Jake's
+> picks: https://claude.ai/artifact/MZy8tCyogYCyDbGXJHc8hB. Every row
+> after ZC3 waits on
 > Jake: he approves each zone's
 > art and description and runs its Fable session himself (D34). Ask:
 > A19.
@@ -35,7 +37,7 @@ cleanrooms + the art refresh of brashwick"*.
   `nalati` and `nine-dragon`. Done when all eight folders and copies
   exist, and each description has a main-quest boss, a level range
   and elites.
-- [ ] **ZC2 Concept candidates.** Nine images per zone from Codex's
+- [x] **ZC2 Concept candidates.** Nine images per zone from Codex's
   default `image_gen` (D36): three subjects (a hero vista, a landmark
   or hub, a combat moment), three takes each. They go in
   `support/zones/<slug>/candidates/` with each prompt and the model
@@ -44,7 +46,10 @@ cleanrooms + the art refresh of brashwick"*.
   description beside its nine candidates. Jake picks three per zone
   and comments on the description. Done when his picks are copied to
   each folder's `concept/concept-{1,2,3}.png` and his notes are
-  folded into the descriptions.
+  folded into the descriptions. The page saves picks and notes to its
+  own store (collection `picks`, a document per zone); the full PNGs
+  wait in `tmp/concept-art/<zone>/<job>/concept.png`. Page source:
+  `support/concept-art/review-*`.
 - [ ] **ZC4 Signal Dunes one-shot (pilot).** Jake runs Fable in the
   folder. Done when D33 holds: it plays on a phone to the Dune
   Matriarch (or whichever main boss the description names), an Opus
