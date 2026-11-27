@@ -1,0 +1,43 @@
+{
+  "scope": "Two static proposed Overtime zones. No movement modifier, triggers, entity, damage, collider or game deployment.",
+  "dimensions_m": [
+    7.6,
+    2.8
+  ],
+  "placement": [
+    {
+      "origin_three": [
+        157,
+        0.05,
+        178.5
+      ],
+      "yaw_three": -0.2792526803190927,
+      "floor_samples": 377,
+      "deck_height_m": 0.05,
+      "nonoverlap": true,
+      "clearance_lower_bound_to_tested_corridor_m": 3.3868
+    },
+    {
+      "origin_three": [
+        155.2,
+        0.05,
+        193.1
+      ],
+      "yaw_three": 0.33161255787892263,
+      "floor_samples": 377,
+      "deck_height_m": 0.05,
+      "nonoverlap": true,
+      "clearance_lower_bound_to_tested_corridor_m": 2.8191
+    }
+  ],
+  "source_donors": {
+    "e11c-g2-c3-threshold.glb": "777bed81fd7369c604faf6e666cd33d0c5c826c93e02d136a58e672ea2b5d101",
+    "c3-office-sector.glb": "631f39353d7eed6d4bba196f71a30342f7a5aac1fb1d3579560807c8db971f31",
+    "e11c-c3-fitted-floor.glb": "45d1b496abc771448ff93ee20b2a4f7d21d6431cf122c1010841b9aef0c4b926"
+  },
+  "unlit_palette_contrast_lower_bound": 5.275,
+  "texture_count": 0,
+  "bytes": 8712,
+  "triangles": 100,
+  "mesh_sha256": "a9a755baf36762c84f359e04898d2d64bf5121d22c573137582f8ba13521eea4"
+}
