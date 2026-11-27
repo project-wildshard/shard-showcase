@@ -1,0 +1,102 @@
+{
+  "archive": "Raynos/project-wildshard-singleplayer@ce1cf050b3",
+  "source": "art/showcase-template/round-5-blockout",
+  "pins": {
+    "layout.js": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+    "placement.js": "6a067ec22a8e07f1d99a9d495d23063d2863ab10"
+  },
+  "lab_blob": "51a3b4bef1f2d4891172164d10893d98d450a3b9",
+  "note": "Round 5 geometry context; cover, crate and creature proxies are not final game geometry.",
+  "anchors": [
+    {
+      "index": 1,
+      "three_xz": [
+        27.4956081800608,
+        -202.05212260226352
+      ],
+      "cover": [
+        {
+          "band": 2,
+          "x": 28.626933041053576,
+          "z": -193.5,
+          "kind": "sightwall",
+          "ry": 4.188790204786391,
+          "h": 1
+        },
+        {
+          "band": 2,
+          "x": 29.75482907227931,
+          "z": -217.4423839205142,
+          "kind": "walls",
+          "ry": 3.1320139658644006,
+          "h": 0.8699846644280407
+        },
+        {
+          "band": 2,
+          "x": 24.4956081800608,
+          "z": -205.05212260226352,
+          "kind": "crates",
+          "ry": 4.824432214840109,
+          "h": 0.5354716407765968
+        }
+      ],
+      "crates": [],
+      "packs": [
+        {
+          "band": 2,
+          "x": 16.502577388071437,
+          "z": -200.5,
+          "tier": 1,
+          "lv": 5,
+          "size": 2,
+          "spacing": 28,
+          "enemy": "Pallet Jack",
+          "night": false,
+          "rare": false,
+          "inYard": false
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "three_xz": [
+        110.75825571350671,
+        -218.89241387643497
+      ],
+      "cover": [
+        {
+          "band": 2,
+          "x": 114.90461383802099,
+          "z": -210.94914159222932,
+          "kind": "walls",
+          "ry": -0.034817487087481426,
+          "h": 0.9083150689994521
+        },
+        {
+          "band": 2,
+          "x": 107.75825571350671,
+          "z": -221.89241387643497,
+          "kind": "crates",
+          "ry": -0.1357172804352442,
+          "h": 0.16555908283477605
+        }
+      ],
+      "crates": [],
+      "packs": [
+        {
+          "band": 2,
+          "x": 113.49742261192856,
+          "z": -228.5,
+          "tier": 2,
+          "lv": 6,
+          "size": 2,
+          "spacing": 28,
+          "enemy": "Pallet Jack",
+          "night": true,
+          "rare": false,
+          "inYard": false
+        }
+      ]
+    }
+  ]
+}

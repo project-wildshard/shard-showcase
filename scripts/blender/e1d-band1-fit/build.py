@@ -1,4 +1,4 @@
-"""Reimport one tracked GLB at both exact Band 1 Round 5 chest anchors."""
+"""Reimport one tracked GLB at an exact Round 5 pair of East chest anchors."""
 import hashlib
 import json
 import math
@@ -10,11 +10,13 @@ from mathutils import Matrix, Vector
 from mathutils.bvhtree import BVHTree
 
 root = Path(__file__).resolve().parents[3]
-layout = json.loads((root / 'project/layouts/e1d-band1-scrip-anchors.json').read_text())
+args = sys.argv[sys.argv.index('--') + 1:]
+band2 = '--band2' in args
+layout_name = 'e13-band2-scrip-anchors' if band2 else 'e1d-band1-scrip-anchors'
+layout = json.loads((root / f'project/layouts/{layout_name}.json').read_text())
 glb = root / 'public/assets/wildshard-art/e1d-band1-scrip-opening.glb'
 pin = '33ffea4a64ab2caf50f6b89b37f6996d152f313c6b7247f69f9768db70add144'
 assert hashlib.sha256(glb.read_bytes()).hexdigest() == pin
-args = sys.argv[sys.argv.index('--') + 1:]
 out = Path(args[0]).resolve()
 out.mkdir(parents=True, exist_ok=True)
 
@@ -92,10 +94,11 @@ for anchor in layout['anchors']:
     bump.inputs['Distance'].default_value = .024
     rock.node_tree.links.new(noise.outputs['Fac'],bump.inputs['Height'])
     rock.node_tree.links.new(bump.outputs['Normal'],mat_floor.inputs['Normal'])
+    concrete = material('Weathered concrete',(.25,.27,.255),.04,.83) if band2 else crate
     blockers = []
-    def cover(c,dims,center,i,styled=True):
+    def cover(c,dims,center,i,styled=True,finish=None):
         t = pose(c)
-        ob = box('Archive cover volume',dims,center,crate if i%2==0 else crate2,t,.042)
+        ob = box('Archive cover volume',dims,center,finish or (crate if i%2==0 else crate2),t,.042)
         blockers.append(ob)
         if styled:
             # Inset panels stay inside the cover's exact bounding footprint.
@@ -115,6 +118,11 @@ for anchor in layout['anchors']:
         elif c['kind']=='half':
             cover(c,(5,.8,1.1),(0,0,.55),0,False)
             cover(c,(.8,3,1.1),(2.9,-1.1,.55),1,False)
+        elif band2 and c['kind']=='walls':
+            cover(c,(8,.6,3),(0,0,1.5),0,False,concrete)
+            cover(c,(2.4,2.4,1.1),(5.5,-1.5,.55),1)
+        elif band2 and c['kind']=='sightwall':
+            cover(c,(12,.6,3),(0,0,1.5),0,False,concrete)
         else:
             raise ValueError(c['kind'])
     # Round 5 shows breakable crate proxies as 1 m cubes (see lab.js).
@@ -123,13 +131,30 @@ for anchor in layout['anchors']:
         cover(c,(1.02,1.02,.2),(0,0,.5),0,False)
     # Creature envelopes are conservative 1.04 m squares, not rig/aggro proof.
     for pack in anchor['packs']:
+        if band2:
+            t = pose(pack)
+            # Pack marker radius 2 m, plus all Jack forks/night-eye depth.
+            b = box('Round 5 pack marker envelope',(4,4,1.2),(0,0,.6),metal,t)
+            b.hide_render=True
+            blockers.append(b)
         for k in range(pack['size']):
             a=k*2.4+1
             p=local(pack['x']+3.2*math.cos(a),pack['z']+3.2*math.sin(a))
-            ob=box('Archived Mite spawn envelope', (1.04,1.04,1.07),(p[0],p[1],.535),metal,None,0)
+            if band2:
+                assert pack['enemy']=='Pallet Jack'
+                ob=box('Round 5 Jack body and fork envelope',(1.4,3.1,1.3),
+                       (p[0],p[1]-.65,.65),metal)
+            else:
+                ob=box('Archived Mite spawn envelope',(1.04,1.04,1.07),
+                       (p[0],p[1],.535),metal)
             ob.hide_render=True
             blockers.append(ob)
     bpy.context.view_layer.update()
+    if band2:
+        for ob in blockers:
+            for mod in list(ob.modifiers):
+                ob.modifiers.remove(mod)
+        bpy.context.view_layer.update()
     block_vertices = [mesh_view([ob])[0] for ob in blockers]
     block_tree = mesh_view(blockers)[1]
     # Constant-width sampled section is backed by a continuous AABB at the front.
@@ -159,6 +184,13 @@ for anchor in layout['anchors']:
     print(results[-1],flush=True)
     if '--proof-only' in args:
         continue
+    if band2:
+        # Re-add bevels after validating conservative rectangular envelopes.
+        for ob in blockers:
+            if not ob.hide_render:
+                b = ob.modifiers.new('Review edge wear','BEVEL')
+                b.width,b.segments=.042,2
+                ob.modifiers.new('Review normals','WEIGHTED_NORMAL')
     box('Review screed', (76,76,.24),(0,0,-.12),rock)
     world = bpy.data.worlds.new('Muted blue sky')
     world.use_nodes=True
@@ -192,4 +224,5 @@ for anchor in layout['anchors']:
     s.render.filepath=str(out / f'anchor-{anchor["index"]}.png')
     bpy.ops.render.render(write_still=True)
 (out/'proof.json').write_text(json.dumps(dict(glb_sha256=pin,sites=results,
-    scope='Round 5 blockout only; no runtime geometry, enemies, currency, claim state, or touch validation.'),indent=2)+'\n')
+    scope=('Round 5 Band 2 local proxy fit only; no payout, live enemies, traversal or claim state.' if band2 else
+           'Round 5 blockout only; no runtime geometry, enemies, currency, claim state, or touch validation.')),indent=2)+'\n')
