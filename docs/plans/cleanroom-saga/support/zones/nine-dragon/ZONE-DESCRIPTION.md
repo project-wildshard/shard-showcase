@@ -9,15 +9,21 @@ Crouching Tiger, Hidden Dragon. Nine street levels, nine dragons.
 
 ## Shape
 
-- It is a real zone of a bigger MMO world: a grid of 500 × 500 m zones
-  joined by roads. So it is exactly 500 × 500 m, with four road
-  entrances, one at the middle of each edge. Here the roads just lead
-  off the edge; nothing beyond needs to exist.
-- **Everything lives inside one 500 × 500 × 500 m cube**, with the
-  road level at its middle height. The city fills it, half below the
-  road and half above; fit more in by going up and down its levels,
-  never by making it bigger. The mini dungeon sits physically inside
-  the cube and overlaps nothing else.
+It is one zone of a bigger MMO world, joined to its neighbours by
+roads, so it fits inside one 500 × 500 × 500 m cube and never grows.
+Four streets enter at the middle of the cube's four sides, on the
+city's middle level halfway up, each crossing a bridge off the edge to
+the rest of the world; nothing beyond needs to exist yet. Both mini
+dungeons sit inside the cube too.
+
+- **Use the whole cube, every corner of it.** The city fills the full
+  500 × 500 m footprint and its full height, from the black water on
+  the cube's floor to the antenna crown at its top: towers on towers,
+  streets on roofs, half below the road and half above. The only gaps
+  are the wells; open sky is never most of the view.
+- **Every way across:** stairs and alleys, bridges over the wells, the
+  wrist grapple, lifts, cable cars, the monorail, rooftop runs, an
+  umbrella glide, and a rubbish chute to the bottom.
 - **One open zone**, no fixed sides: go anywhere, up or down.
 - **Nine street levels, sump to crown**, each with its own look, life
   and danger, and each feels like the ground: a real street, a sky
@@ -38,23 +44,29 @@ that you can start with:
 - **The freefall**: dive the whole well through nine levels of neon
   mist, pop an oil-paper umbrella at the last second, glide out.
 - **The monorail** runs through a tower: ride in it, or fight on its
-  roof. Lifts, cable cars and a rubbish chute to the bottom.
+  roof.
 - **Typhoon**: shutters slam, signs swing, the wind takes your glide.
 - You wake on a peaceful square halfway up the sky. It gets worse the
   deeper you go, then the higher.
 - Teahouses, mahjong, a stray cat; secrets and caches on every level.
 - Levels 1 to 20, levelled by fighting.
-- A mini dungeon.
+- Two mini dungeons: a flooded gambling den in the sump, fought room
+  by room as the water rises, and a pagoda of humming servers hung
+  under the crown, fought floor by floor from its roof to its root.
+
+## Features
+
+- A wrist grapple.
+- The well and the freefall.
+- An umbrella glide.
+- The monorail.
+- Typhoons.
 
 ## Main quest
 
-An epic quest line in many steps, down through all nine levels to the
-black water and back up to the roof, ending in a final boss fight worth
-the journey. The story, the steps and the boss are yours to design.
-
-- **The final boss is the city's own spine.** From the first step you
-  glimpse something vast and neon moving in the well. The fight climbs
-  it bottom to top, riding it, and ends under the real sky.
+An epic quest line in many steps across all nine levels that ends in
+an epic final boss fight. The story, the steps and the boss are yours
+to design.
 
 ## Look
 
@@ -66,14 +78,18 @@ the journey. The story, the steps and the boss are yours to design.
 
 ## Weapons
 
-- Melee: a glowing neon straight sword, a guandao and more.
-- Ranged: a repeating crossbow, a firework launcher and more.
+- Melee: a neon jian that cuts through shutters and leaves its strokes
+  glowing in the mist; a hooked guandao that catches a foe and throws
+  them down the well; and more.
+- Ranged: a repeating crossbow whose charged bolts jump between foes
+  on wet stone; a firework launcher whose rockets weave down a crowded
+  alley, then burst in gold and cinnabar; and more.
 - The grapple also fights: yank foes off ledges, rip vampire talismans.
 
 ## Enemies
 
-The enemies should include neon-visored gangs, paper-crane drones and
-cyborg hopping vampires, and more.
+The enemies should include neon-visored triads who own the stairwells,
+paper-crane drones that flock, and cyborg hopping vampires, and more.
 
 - Many enemies, each with a rare variant. Elites are scattered around.
 - A final boss at the end of the main quest, at level 20.

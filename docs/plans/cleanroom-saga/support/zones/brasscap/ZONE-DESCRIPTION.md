@@ -4,21 +4,28 @@ A single hand-made MMO zone, played alone: a railroad town on a mesa
 above a deep red canyon, at the end of a long sunset. Think Red Dead
 Redemption 2, The Good, the Bad and the Ugly, Back to the Future Part
 III and Tremors. A train that never stops, outlaws in hammered tin,
-and something under the canyon floor that swallowed the 4:15 to
-Brasscap, carriages and all. It should feel like the greatest Western
-never filmed, from the first step to the last.
+dust storms rolling up the canyon and a long, long drop under every
+rim. It should feel like the greatest Western never filmed, from the
+first step to the last.
 
 ## Shape
 
-- It is a real zone of a bigger MMO world: a grid of 500 × 500 m zones
-  joined by roads. So it is exactly 500 × 500 m, with four road
-  entrances, one at the middle of each edge. Here the roads just lead
-  off the edge; nothing beyond needs to exist.
-- **Everything lives inside one 500 × 500 × 500 m cube**, with the
-  road level at its middle height: the mesa tops at road level, the
-  canyon cut deep below. Fit more in by going down into the canyon and
-  the rock, never by making it bigger. The mini dungeon and the
-  train's tunnels sit physically inside the cube and overlap nothing.
+It is one zone of a bigger MMO world, joined to its neighbours by
+roads, so it fits inside one 500 × 500 × 500 m cube and never grows.
+Four trail heads sit at the middle of the cube's four sides, halfway
+up on the mesa tops, each with a road running off the edge to the
+rest of the world; nothing beyond needs to exist yet. Both mini
+dungeons and the train's tunnels sit inside the cube too.
+
+- **Use the whole cube, every corner of it.** Mesas, buttes and rock
+  spires fill the full 500 × 500 m footprint and its full height: the
+  canyon cuts between them down to the cube's floor, and the spires,
+  the water tower and the high rim climb to its top. Ledges, side
+  canyons and old mine shafts in every wall; flat, empty desert is
+  never most of the view.
+- **Every way across:** horses, the train, trestles and rope bridges
+  over the canyon, mine lifts down the walls, a handcar on the rails
+  and ziplines on old telegraph wire.
 - **One open zone**, no fixed sides: go anywhere, see anything you can
   reach.
 - **Filled with country**, each part with its own look, life and
@@ -45,18 +52,22 @@ that you can start with:
 - Horses to ride the rim and the canyon, and to shoot from at a gallop.
 - Secrets, vistas, caches and collectibles all over.
 - Levels 1 to 12, levelled by fighting.
-- A mini dungeon in the mesa's rock, with a runaway ore-cart ride.
+- Two mini dungeons: a silver mine in the mesa's rock that ends in a
+  runaway ore-cart ride, and a bandit hideout in a cliff dwelling,
+  fought through ladder by ladder from the rim down to the river.
+
+## Features
+
+- A looping train.
+- Horses.
+- Fights on a moving train.
+- Quick-draw duels.
 
 ## Main quest
 
-An epic quest line in many steps that takes you down the canyon to
-the bandits' train and ends in a final boss fight worth the journey.
-The story, the steps and the boss are yours to design.
-
-- The final boss swallows trains whole, and it hears this one coming.
-  The fight is a chase on the looping train at full speed: it breaches
-  alongside, dives under the rails and bursts up ahead, jaws open. Its
-  gullet glows gold after each strike: shoot it then.
+An epic quest line in many steps that takes you across the whole zone
+and ends in an epic final boss fight. The story, the steps and the
+boss are yours to design.
 
 ## Look
 
@@ -68,17 +79,22 @@ The story, the steps and the boss are yours to design.
 
 ## Weapons
 
-- Ranged: a lever-action rifle, a six-shooter, a double-barrel
-  shotgun, a scoped long rifle and more.
-- Melee: a Bowie knife, a miner's pick and more.
+- Ranged: a brass lever-action whose last round in the tube always
+  ricochets on to the next foe; a sawn-off coach gun whose double
+  blast throws a rider from the saddle or a bandit off the train; a
+  buffalo gun that punches through a carriage wall to the man behind
+  it; and more.
+- Melee: a miner's pick that bites into rock, so you can climb the
+  canyon walls with it; a lariat that ropes a rider off a horse, or
+  you onto a passing train; and more.
 - The lever-action is the zone's signature, as deadly from a galloping
   saddle or a swaying train roof as from solid ground.
 
 ## Enemies
 
-The enemies should include dust wyrmlings that burrow and ram, outlaws
-in hammered tin who draw before they fire, and sand drakes on the flats,
-and more.
+The enemies should include dust wyrmlings that burrow and ram,
+cougars that drop from the canyon ledges, outlaws in hammered tin who
+draw before they fire, and other outlaws, and more.
 
 - Many enemies, each with a rare variant. Elites are scattered around.
 - A final boss at the end of the main quest, at level 12.

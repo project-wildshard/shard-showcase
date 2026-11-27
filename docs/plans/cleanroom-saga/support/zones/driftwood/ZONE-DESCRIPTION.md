@@ -1,24 +1,31 @@
 # Driftwood Isle
 
-A single hand-made MMO zone, played alone: a small tropical island in
-open turquoise sea, under a huge ringed planet. Think The Legend of
-Zelda: The Wind Waker, Moana and Sea of Thieves. You come ashore by
-sailboat with nothing but a driftwood sword, to jungle, reefs, a wreck
-on the rocks and an old stone ring that is sealed for a reason. It
+A single hand-made MMO zone, played alone: a tropical island and its
+crowd of islets, reefs and sea stacks in a turquoise sea, under a huge
+ringed planet. Think The Legend of Zelda: The Wind Waker, Moana and
+Sea of Thieves. You come ashore by sailboat with nothing but a
+driftwood sword, to jungle, cliffs, reefs and a wreck on the rocks. It
 should feel sunny, cute and adventurous, a little spooky at night,
 like the best day of summer from the first step to the last.
 
 ## Shape
 
-- It is a real zone of a bigger MMO world: a grid of 500 × 500 m zones
-  joined by roads. So it is exactly 500 × 500 m, with four road
-  entrances, one at the middle of each edge. Here the roads are
-  jetties that just lead off the edge; nothing beyond needs to exist.
-- **Everything lives inside one 500 × 500 × 500 m cube**, with the
-  road level, the sea surface, at its middle height. Fit more in by
-  going down under the sea and up the cliffs into the jungle canopy,
-  never by making it bigger. The mini dungeon sits physically inside
-  the cube and overlaps nothing else.
+It is one zone of a bigger MMO world, joined to its neighbours by
+roads, so it fits inside one 500 × 500 × 500 m cube and never grows.
+Four jetties sit at the middle of the cube's four sides, halfway up
+at the sea's surface, each with a road running off the edge to the
+rest of the world; nothing beyond needs to exist yet. Both mini
+dungeons sit inside the cube too.
+
+- **Use the whole cube, every corner of it.** Land and reef fill the
+  full 500 × 500 m footprint: one big island climbing to a jungle
+  peak, crowded round by islets, sea stacks, sandbars and lagoons. It
+  fills the full height too, from trenches and sea caves on the
+  cube's floor to cliffs, canopy and the peak at its top. The open
+  water is narrow; empty sea is never most of the view.
+- **Every way across:** swimming and diving, the sailboat, ziplines
+  and rope bridges through the canopy, cliff dives, sandbars bared at
+  low tide, and a harpoon that hauls you along.
 - **One open zone**, no fixed sides: go anywhere, see anything you can
   reach.
 - **Filled with places**: beaches, jungle, cliffs, coves, reef and
@@ -38,24 +45,28 @@ that you can start with:
 - **The planet moves the sea.** As it swings low the tide drains away,
   baring the reef, the wreck and paths you could never walk; as it
   climbs again the sea pours back in, fast.
-- Sail the boat round the island and beach it anywhere.
+- Sail the boat between the islands and beach it anywhere.
 - Ziplines and rope bridges through the canopy, and cliffs to dive
   from: the higher the dive, the bigger the splash.
 - Secrets, vistas, caches and collectibles all over.
 - Levels 1 to 10, levelled by fighting.
-- A mini dungeon.
+- Two mini dungeons: one in the wreck on the rocks, walked dry at low
+  tide and swum when the sea pours back in, and one high in the
+  canopy, a temple held in a giant banyan, climbed root to crown.
+
+## Features
+
+- Swimming and diving.
+- Sailing.
+- Tides.
+- Ziplines.
+- Cliff diving.
 
 ## Main quest
 
-An epic quest line in many steps that takes you round the island,
-above and below the sea, to open the sealed stone ring, and ends in a
-final boss fight worth the journey. The story, the steps and the boss
-are yours to design.
-
-- Open the ring and the sea answers: the final boss rises out of it
-  with its whole drowned ship and crew, and the fight runs from the
-  beach to its deck to the sea floor. It ends at golden hour, with the
-  ringed planet framed in the stone ring.
+An epic quest line in many steps that takes you across the whole
+zone, above and below the sea, and ends in an epic final boss fight.
+The story, the steps and the boss are yours to design.
 
 ## Look
 
@@ -68,15 +79,20 @@ are yours to design.
 
 ## Weapons
 
-- Melee: the driftwood sword, an iron sword, a boat-hook spear and more.
-- Ranged: a sling, a flintlock pistol, a harpoon gun and more.
+- Melee: the driftwood sword you wash up with, which sprouts a new
+  branch, and a new move, as you level; a boat-hook spear that hooks
+  a foe and drags it into the water; and more.
+- Ranged: a harpoon gun on a long rope; a conch blunderbuss whose
+  blast of shell and foam bowls a foe off its feet; an urchin sling
+  whose spiny shot sticks and stings; and more.
 - The harpoon works under water too, and it moves you: fire it into a
   cliff, a mast or a big fish and get hauled along.
 
 ## Enemies
 
-The enemies should include reef crabs, charging boars, coconut monkeys
-in the palms, bears, and drowned sailors, and more.
+The enemies should include coconut monkeys that pelt you from the
+palms, reef crabs with one huge claw, wreckers who lure boats onto
+the rocks with false lights, and drowned sailors, and more.
 
 - Many enemies, each with a rare variant. Elites are scattered around.
   At night the drowned come ashore, glowing cyan.
