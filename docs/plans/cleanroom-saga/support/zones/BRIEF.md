@@ -26,8 +26,8 @@ the zone; read all of it before you start.
   fine-tuned for iOS Safari. Landscape takes its lead from Genshin
   Impact, with Where Winds Meet on iOS and Honkai Impact 3rd as the
   other references.
-- **Desktop:** a full HUD and UI built for a desktop app, like modern
-  MMOs such as Guild Wars 2, Black Desert Online and Crimson Desert.
+- **Desktop:** a full HUD and UI built for desktop, like modern MMOs
+  such as Guild Wars 2, Black Desert Online and Crimson Desert.
 
 ## How to build
 
@@ -37,6 +37,7 @@ the zone; read all of it before you start.
   fix what falls short before you start the next slice.
 - Delegate non-visual work to Opus subagents to save cost.
 - Commit early and often.
+- Close every browser after each look, and reuse one browser session.
 
 Done when you can play it on a phone from level 1 to beating the main
 quest's final boss, and it looks and feels like a AAA game the whole
