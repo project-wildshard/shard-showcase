@@ -396,3 +396,9 @@ for (const state of ["stock","candidate"]) {
   assert.ok(bytes.byteLength>1000);
   assert.equal(bytes.subarray(8,12).toString(),"WEBP");
 }
+
+const halfCover=data.assets.find(a=>a.id==="WSC-PROP-066");
+assert.equal(halfCover.related_study?.href,"#nov27-e1c-half-cover");
+assert.ok(ids.has(halfCover.related_study.href.slice(1)));
+assert.ok(markup.includes('href="media/e1-half-cover.glb"'));
+assert.ok(markup.includes('href="#nov26-e1-first-cover">Earlier roadside crate stacks'));
