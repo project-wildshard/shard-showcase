@@ -1,0 +1,288 @@
+{
+  "scope": "Exact art on a flat stock walk fixture; no actor, stun, native level, or encounter install.",
+  "center": [
+    96,
+    0,
+    -206
+  ],
+  "pitSha256": "37816bad3b38f8b8d72b8fe87af478488ee1243c9f6cfed9b92f5d7336ce799f",
+  "lantern": {
+    "name": "e8b-pit-shoulder-lantern.glb",
+    "sha256": "687d40bf813a923400695aec3a0ed7af68fb6090ce69063abd81d9fbe5476f76",
+    "bytes": 45704,
+    "triangles": 728
+  },
+  "placements": [
+    {
+      "local": [
+        -3.55,
+        0,
+        -15.6
+      ],
+      "radiusToPitM": 15.483395
+    },
+    {
+      "local": [
+        3.55,
+        0,
+        -15.6
+      ],
+      "radiusToPitM": 15.483395
+    },
+    {
+      "local": [
+        -3.55,
+        0,
+        15.6
+      ],
+      "radiusToPitM": 15.483395
+    },
+    {
+      "local": [
+        3.55,
+        0,
+        15.6
+      ],
+      "radiusToPitM": 15.483395
+    }
+  ],
+  "engine": "0.1.44",
+  "passages": [
+    {
+      "x": -2.15,
+      "side": -1,
+      "ok": true,
+      "ticks": 561,
+      "air": 0,
+      "maxStall": 0,
+      "floor": 315,
+      "end": [
+        -2.15,
+        19.943832
+      ]
+    },
+    {
+      "x": -2.15,
+      "side": 1,
+      "ok": true,
+      "ticks": 561,
+      "air": 0,
+      "maxStall": 0,
+      "floor": 315,
+      "end": [
+        -2.15,
+        -19.943292
+      ]
+    },
+    {
+      "x": -1.07,
+      "side": -1,
+      "ok": true,
+      "ticks": 561,
+      "air": 0,
+      "maxStall": 0,
+      "floor": 320,
+      "end": [
+        -1.07,
+        19.943428
+      ]
+    },
+    {
+      "x": -1.07,
+      "side": 1,
+      "ok": true,
+      "ticks": 561,
+      "air": 0,
+      "maxStall": 0,
+      "floor": 320,
+      "end": [
+        -1.07,
+        -19.942618
+      ]
+    },
+    {
+      "x": 0,
+      "side": -1,
+      "ok": true,
+      "ticks": 561,
+      "air": 0,
+      "maxStall": 0,
+      "floor": 321,
+      "end": [
+        0,
+        19.942572
+      ]
+    },
+    {
+      "x": 0,
+      "side": 1,
+      "ok": true,
+      "ticks": 561,
+      "air": 0,
+      "maxStall": 0,
+      "floor": 321,
+      "end": [
+        0,
+        -19.94214
+      ]
+    },
+    {
+      "x": 1.07,
+      "side": -1,
+      "ok": true,
+      "ticks": 561,
+      "air": 0,
+      "maxStall": 0,
+      "floor": 320,
+      "end": [
+        1.069999,
+        19.943065
+      ]
+    },
+    {
+      "x": 1.07,
+      "side": 1,
+      "ok": true,
+      "ticks": 561,
+      "air": 0,
+      "maxStall": 0,
+      "floor": 320,
+      "end": [
+        1.07,
+        -19.943317
+      ]
+    },
+    {
+      "x": 2.15,
+      "side": -1,
+      "ok": true,
+      "ticks": 561,
+      "air": 0,
+      "maxStall": 0,
+      "floor": 315,
+      "end": [
+        2.149998,
+        19.943495
+      ]
+    },
+    {
+      "x": 2.15,
+      "side": 1,
+      "ok": true,
+      "ticks": 561,
+      "air": 0,
+      "maxStall": 0,
+      "floor": 315,
+      "end": [
+        2.149998,
+        -19.94365
+      ]
+    }
+  ],
+  "shoulders": [
+    {
+      "x": -3.55,
+      "z": -15.6,
+      "after": {
+        "ok": false,
+        "ticks": 62,
+        "air": 0,
+        "maxStall": 24,
+        "floor": 0,
+        "end": [
+          -3.550001,
+          -16.31225
+        ]
+      },
+      "before": {
+        "ok": true,
+        "ticks": 61,
+        "air": 0,
+        "maxStall": 0,
+        "floor": 0,
+        "end": [
+          -3.55,
+          -14.663809
+        ]
+      }
+    },
+    {
+      "x": 3.55,
+      "z": -15.6,
+      "after": {
+        "ok": false,
+        "ticks": 62,
+        "air": 0,
+        "maxStall": 24,
+        "floor": 0,
+        "end": [
+          3.550004,
+          -16.312254
+        ]
+      },
+      "before": {
+        "ok": true,
+        "ticks": 61,
+        "air": 0,
+        "maxStall": 0,
+        "floor": 0,
+        "end": [
+          3.55,
+          -14.663809
+        ]
+      }
+    },
+    {
+      "x": -3.55,
+      "z": 15.6,
+      "after": {
+        "ok": false,
+        "ticks": 62,
+        "air": 0,
+        "maxStall": 24,
+        "floor": 0,
+        "end": [
+          -3.549999,
+          16.312278
+        ]
+      },
+      "before": {
+        "ok": true,
+        "ticks": 61,
+        "air": 0,
+        "maxStall": 0,
+        "floor": 0,
+        "end": [
+          -3.55,
+          14.663809
+        ]
+      }
+    },
+    {
+      "x": 3.55,
+      "z": 15.6,
+      "after": {
+        "ok": false,
+        "ticks": 62,
+        "air": 0,
+        "maxStall": 24,
+        "floor": 0,
+        "end": [
+          3.550002,
+          16.312245
+        ]
+      },
+      "before": {
+        "ok": true,
+        "ticks": 61,
+        "air": 0,
+        "maxStall": 0,
+        "floor": 0,
+        "end": [
+          3.55,
+          14.663809
+        ]
+      }
+    }
+  ]
+}
