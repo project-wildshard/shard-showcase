@@ -1,0 +1,92 @@
+{
+  "scope": "Static phone-distance art option; no runtime LOD, interaction, scoring or device benchmark.",
+  "original": {
+    "file": "wsc-prop-025-bullseye-target.glb",
+    "bytes": 516872,
+    "sha256": "a55a951a51dd6ab46f9f0e9cc4b879d1df74d5609cb02e25ae8095a6bcc36c0a",
+    "triangles": 7688,
+    "parts": {
+      "Quarter-sawn oak": 540,
+      "Chalk and brick pigment over wood": 108,
+      "Honey-orange edge stain": 648,
+      "Rubbed pewter": 4724,
+      "Graphite hardware": 1668
+    },
+    "images": 2,
+    "face_textures": {
+      "Quarter-sawn oak": "52c8b487c0b838259164aa909f725bb24c898889413ef8f82e5511a503e03237",
+      "Chalk and brick pigment over wood": "37f8bddb251c7002b7c0cccc5d688aaf339448b68dfcf6366c5c4ea40d172513"
+    }
+  },
+  "distance": {
+    "file": "wsc-prop-025-bullseye-distance.glb",
+    "bytes": 343408,
+    "sha256": "6bc93f79a626e04fd486a26dd8f5d513c9d23fae0929621e251df37b79a46db0",
+    "triangles": 3212,
+    "parts": {
+      "Quarter-sawn oak": 540,
+      "Chalk and brick pigment over wood": 108,
+      "Honey-orange edge stain": 648,
+      "Rubbed pewter": 1416,
+      "Graphite hardware": 500
+    },
+    "images": 2,
+    "face_textures": {
+      "Quarter-sawn oak": "52c8b487c0b838259164aa909f725bb24c898889413ef8f82e5511a503e03237",
+      "Chalk and brick pigment over wood": "37f8bddb251c7002b7c0cccc5d688aaf339448b68dfcf6366c5c4ea40d172513"
+    }
+  },
+  "original_bounds_blender_m": [
+    [
+      -0.596,
+      -0.116,
+      0.0
+    ],
+    [
+      0.596,
+      0.286,
+      1.9035
+    ]
+  ],
+  "distance_bounds_blender_m": [
+    [
+      -0.596,
+      -0.114491,
+      0.001143
+    ],
+    [
+      0.596,
+      0.284491,
+      1.9035
+    ]
+  ],
+  "max_bound_delta_m": 0.001509,
+  "paint_rim_triangles_uv_match": 1296,
+  "rays_per_view": 23040,
+  "views": [
+    {
+      "yaw_deg": 0,
+      "intersection_over_union": 0.991373
+    },
+    {
+      "yaw_deg": 30,
+      "intersection_over_union": 0.99497
+    },
+    {
+      "yaw_deg": 60,
+      "intersection_over_union": 0.985625
+    },
+    {
+      "yaw_deg": 90,
+      "intersection_over_union": 0.99457
+    },
+    {
+      "yaw_deg": 135,
+      "intersection_over_union": 1.0
+    },
+    {
+      "yaw_deg": 180,
+      "intersection_over_union": 0.991373
+    }
+  ]
+}
