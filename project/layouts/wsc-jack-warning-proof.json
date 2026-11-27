@@ -1,0 +1,956 @@
+{
+  "source": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "pins": {
+    "src/entities/robots/common.ts": "c97ff8bfb5bb69dc294fe483f6b5d6b2b5423bb0",
+    "src/entities/robots/pallet.ts": "435541419aaa801b9d81b23742eb4ab60093ac44",
+    "src/entities/robots/types.ts": "568bc35a85e59872aedb1da7c51f1dc9a15b04df",
+    "src/core/util.ts": "1737fa575a6bb8c6c684ce2cde5b8541402d27f3",
+    "src/systems/warn.ts": "c5d0edf8e6a6d3cf77a010d62b7f2a1b5de1af02",
+    "src/data/enemies.ts": "345d524891aa9d022a8c51bddc8c802ad05cc251",
+    "public/models/pallet.glb": "9603f6c37b94a49904f017c7ee1cd917cab36cf3"
+  },
+  "viewport": [
+    402,
+    874
+  ],
+  "hz": 60,
+  "scope": "Actual Jack rig/socket animation and native edge warning logic; scripted state, fixed portrait camera, geometric ray boxes, no rendered HUD, collision authority or game.",
+  "cases": [
+    {
+      "id": "12m-open",
+      "dist": 12,
+      "fixtureReaches": true,
+      "summary": {
+        "bodyFrames": 57,
+        "laneFrames": 57,
+        "nativeArrowFrames": 0,
+        "supplementalFrames": 0
+      },
+      "poses": {
+        "move": [
+          0,
+          0.3218,
+          -10.4944
+        ],
+        "windup0": {
+          "head": [
+            0,
+            1.5865,
+            -12.3527
+          ],
+          "fork": [
+            0,
+            0.2398,
+            -10.4927
+          ],
+          "emit": 1
+        },
+        "windup12": {
+          "head": [
+            0.0141,
+            1.6153,
+            -12.2509
+          ],
+          "fork": [
+            0.0141,
+            -0.0028,
+            -10.5001
+          ],
+          "emit": 1.4632
+        },
+        "windup40": {
+          "head": [
+            -0.0044,
+            1.6335,
+            -12.2242
+          ],
+          "fork": [
+            -0.0044,
+            -0.0173,
+            -10.5006
+          ],
+          "emit": 2.5439
+        },
+        "windup56": {
+          "head": [
+            -0.0072,
+            1.6411,
+            -12.2102
+          ],
+          "fork": [
+            -0.0072,
+            -0.0242,
+            -10.5006
+          ],
+          "emit": 3.1614
+        },
+        "attack2": {
+          "head": [
+            -0.0028,
+            1.5346,
+            -12.6343
+          ],
+          "fork": [
+            -0.0028,
+            1.5097,
+            -10.7293
+          ],
+          "emit": 2.0756
+        },
+        "recover": {
+          "head": [
+            0.002,
+            1.4834,
+            -12.3117
+          ],
+          "fork": [
+            0.002,
+            -0.0158,
+            -10.5033
+          ],
+          "emit": 1
+        },
+        "stagger": {
+          "head": [
+            -0.001,
+            1.5894,
+            -12.3361
+          ],
+          "fork": [
+            -0.001,
+            0.3701,
+            -10.4895
+          ],
+          "emit": 1
+        },
+        "death": {
+          "head": [
+            -2.1082,
+            1.2642,
+            -12.3884
+          ],
+          "fork": [
+            -0.8712,
+            0.9395,
+            -10.5087
+          ],
+          "emit": 0.6261
+        }
+      },
+      "samples": [
+        {
+          "ms": 0,
+          "laneSamples": 18,
+          "bodyVisible": true,
+          "laneVisible": true,
+          "nativeArrow": false,
+          "proposed": null
+        },
+        {
+          "ms": 200,
+          "laneSamples": 18,
+          "bodyVisible": true,
+          "laneVisible": true,
+          "nativeArrow": false,
+          "proposed": null
+        },
+        {
+          "ms": 666.6667,
+          "laneSamples": 18,
+          "bodyVisible": true,
+          "laneVisible": true,
+          "nativeArrow": false,
+          "proposed": null
+        },
+        {
+          "ms": 933.3333,
+          "laneSamples": 18,
+          "bodyVisible": true,
+          "laneVisible": true,
+          "nativeArrow": false,
+          "proposed": null
+        }
+      ]
+    },
+    {
+      "id": "12m-crate-corner",
+      "dist": 12,
+      "fixtureReaches": true,
+      "summary": {
+        "bodyFrames": 0,
+        "laneFrames": 57,
+        "nativeArrowFrames": 0,
+        "supplementalFrames": 0
+      },
+      "poses": {
+        "move": [
+          0,
+          0.3218,
+          -10.4944
+        ],
+        "windup0": {
+          "head": [
+            0,
+            1.5865,
+            -12.3527
+          ],
+          "fork": [
+            0,
+            0.2398,
+            -10.4927
+          ],
+          "emit": 1
+        },
+        "windup12": {
+          "head": [
+            0.0141,
+            1.6153,
+            -12.2509
+          ],
+          "fork": [
+            0.0141,
+            -0.0028,
+            -10.5001
+          ],
+          "emit": 1.4632
+        },
+        "windup40": {
+          "head": [
+            -0.0044,
+            1.6335,
+            -12.2242
+          ],
+          "fork": [
+            -0.0044,
+            -0.0173,
+            -10.5006
+          ],
+          "emit": 2.5439
+        },
+        "windup56": {
+          "head": [
+            -0.0072,
+            1.6411,
+            -12.2102
+          ],
+          "fork": [
+            -0.0072,
+            -0.0242,
+            -10.5006
+          ],
+          "emit": 3.1614
+        },
+        "attack2": {
+          "head": [
+            -0.0028,
+            1.5346,
+            -12.6343
+          ],
+          "fork": [
+            -0.0028,
+            1.5097,
+            -10.7293
+          ],
+          "emit": 2.0756
+        },
+        "recover": {
+          "head": [
+            0.002,
+            1.4834,
+            -12.3117
+          ],
+          "fork": [
+            0.002,
+            -0.0158,
+            -10.5033
+          ],
+          "emit": 1
+        },
+        "stagger": {
+          "head": [
+            -0.001,
+            1.5894,
+            -12.3361
+          ],
+          "fork": [
+            -0.001,
+            0.3701,
+            -10.4895
+          ],
+          "emit": 1
+        },
+        "death": {
+          "head": [
+            -2.1082,
+            1.2642,
+            -12.3884
+          ],
+          "fork": [
+            -0.8712,
+            0.9395,
+            -10.5087
+          ],
+          "emit": 0.6261
+        }
+      },
+      "samples": [
+        {
+          "ms": 0,
+          "laneSamples": 14,
+          "bodyVisible": false,
+          "laneVisible": true,
+          "nativeArrow": false,
+          "proposed": null
+        },
+        {
+          "ms": 200,
+          "laneSamples": 14,
+          "bodyVisible": false,
+          "laneVisible": true,
+          "nativeArrow": false,
+          "proposed": null
+        },
+        {
+          "ms": 666.6667,
+          "laneSamples": 14,
+          "bodyVisible": false,
+          "laneVisible": true,
+          "nativeArrow": false,
+          "proposed": null
+        },
+        {
+          "ms": 933.3333,
+          "laneSamples": 14,
+          "bodyVisible": false,
+          "laneVisible": true,
+          "nativeArrow": false,
+          "proposed": null
+        }
+      ]
+    },
+    {
+      "id": "12m-bordered-no-sight-clear-hazard",
+      "dist": 12,
+      "fixtureReaches": true,
+      "summary": {
+        "bodyFrames": 0,
+        "laneFrames": 0,
+        "nativeArrowFrames": 0,
+        "supplementalFrames": 57
+      },
+      "poses": {
+        "move": [
+          0,
+          0.3218,
+          -10.4944
+        ],
+        "windup0": {
+          "head": [
+            0,
+            1.5865,
+            -12.3527
+          ],
+          "fork": [
+            0,
+            0.2398,
+            -10.4927
+          ],
+          "emit": 1
+        },
+        "windup12": {
+          "head": [
+            0.0141,
+            1.6153,
+            -12.2509
+          ],
+          "fork": [
+            0.0141,
+            -0.0028,
+            -10.5001
+          ],
+          "emit": 1.4632
+        },
+        "windup40": {
+          "head": [
+            -0.0044,
+            1.6335,
+            -12.2242
+          ],
+          "fork": [
+            -0.0044,
+            -0.0173,
+            -10.5006
+          ],
+          "emit": 2.5439
+        },
+        "windup56": {
+          "head": [
+            -0.0072,
+            1.6411,
+            -12.2102
+          ],
+          "fork": [
+            -0.0072,
+            -0.0242,
+            -10.5006
+          ],
+          "emit": 3.1614
+        },
+        "attack2": {
+          "head": [
+            -0.0028,
+            1.5346,
+            -12.6343
+          ],
+          "fork": [
+            -0.0028,
+            1.5097,
+            -10.7293
+          ],
+          "emit": 2.0756
+        },
+        "recover": {
+          "head": [
+            0.002,
+            1.4834,
+            -12.3117
+          ],
+          "fork": [
+            0.002,
+            -0.0158,
+            -10.5033
+          ],
+          "emit": 1
+        },
+        "stagger": {
+          "head": [
+            -0.001,
+            1.5894,
+            -12.3361
+          ],
+          "fork": [
+            -0.001,
+            0.3701,
+            -10.4895
+          ],
+          "emit": 1
+        },
+        "death": {
+          "head": [
+            -2.1082,
+            1.2642,
+            -12.3884
+          ],
+          "fork": [
+            -0.8712,
+            0.9395,
+            -10.5087
+          ],
+          "emit": 0.6261
+        }
+      },
+      "samples": [
+        {
+          "ms": 0,
+          "laneSamples": 0,
+          "bodyVisible": false,
+          "laneVisible": false,
+          "nativeArrow": false,
+          "proposed": "hidden-charge"
+        },
+        {
+          "ms": 200,
+          "laneSamples": 0,
+          "bodyVisible": false,
+          "laneVisible": false,
+          "nativeArrow": false,
+          "proposed": "hidden-charge"
+        },
+        {
+          "ms": 666.6667,
+          "laneSamples": 0,
+          "bodyVisible": false,
+          "laneVisible": false,
+          "nativeArrow": false,
+          "proposed": "hidden-charge"
+        },
+        {
+          "ms": 933.3333,
+          "laneSamples": 0,
+          "bodyVisible": false,
+          "laneVisible": false,
+          "nativeArrow": false,
+          "proposed": "hidden-charge"
+        }
+      ]
+    },
+    {
+      "id": "12m-full-cover-blocked-lane",
+      "dist": 12,
+      "fixtureReaches": false,
+      "summary": {
+        "bodyFrames": 0,
+        "laneFrames": 0,
+        "nativeArrowFrames": 0,
+        "supplementalFrames": 0
+      },
+      "poses": {
+        "move": [
+          0,
+          0.3218,
+          -10.4944
+        ],
+        "windup0": {
+          "head": [
+            0,
+            1.5865,
+            -12.3527
+          ],
+          "fork": [
+            0,
+            0.2398,
+            -10.4927
+          ],
+          "emit": 1
+        },
+        "windup12": {
+          "head": [
+            0.0141,
+            1.6153,
+            -12.2509
+          ],
+          "fork": [
+            0.0141,
+            -0.0028,
+            -10.5001
+          ],
+          "emit": 1.4632
+        },
+        "windup40": {
+          "head": [
+            -0.0044,
+            1.6335,
+            -12.2242
+          ],
+          "fork": [
+            -0.0044,
+            -0.0173,
+            -10.5006
+          ],
+          "emit": 2.5439
+        },
+        "windup56": {
+          "head": [
+            -0.0072,
+            1.6411,
+            -12.2102
+          ],
+          "fork": [
+            -0.0072,
+            -0.0242,
+            -10.5006
+          ],
+          "emit": 3.1614
+        },
+        "attack2": {
+          "head": [
+            -0.0028,
+            1.5346,
+            -12.6343
+          ],
+          "fork": [
+            -0.0028,
+            1.5097,
+            -10.7293
+          ],
+          "emit": 2.0756
+        },
+        "recover": {
+          "head": [
+            0.002,
+            1.4834,
+            -12.3117
+          ],
+          "fork": [
+            0.002,
+            -0.0158,
+            -10.5033
+          ],
+          "emit": 1
+        },
+        "stagger": {
+          "head": [
+            -0.001,
+            1.5894,
+            -12.3361
+          ],
+          "fork": [
+            -0.001,
+            0.3701,
+            -10.4895
+          ],
+          "emit": 1
+        },
+        "death": {
+          "head": [
+            -2.1082,
+            1.2642,
+            -12.3884
+          ],
+          "fork": [
+            -0.8712,
+            0.9395,
+            -10.5087
+          ],
+          "emit": 0.6261
+        }
+      },
+      "samples": [
+        {
+          "ms": 0,
+          "laneSamples": 0,
+          "bodyVisible": false,
+          "laneVisible": false,
+          "nativeArrow": false,
+          "proposed": null
+        },
+        {
+          "ms": 200,
+          "laneSamples": 0,
+          "bodyVisible": false,
+          "laneVisible": false,
+          "nativeArrow": false,
+          "proposed": null
+        },
+        {
+          "ms": 666.6667,
+          "laneSamples": 0,
+          "bodyVisible": false,
+          "laneVisible": false,
+          "nativeArrow": false,
+          "proposed": null
+        },
+        {
+          "ms": 933.3333,
+          "laneSamples": 0,
+          "bodyVisible": false,
+          "laneVisible": false,
+          "nativeArrow": false,
+          "proposed": null
+        }
+      ]
+    },
+    {
+      "id": "12m-turned-away",
+      "dist": 12,
+      "fixtureReaches": true,
+      "summary": {
+        "bodyFrames": 0,
+        "laneFrames": 0,
+        "nativeArrowFrames": 57,
+        "supplementalFrames": 0
+      },
+      "poses": {
+        "move": [
+          0,
+          0.3218,
+          -10.4944
+        ],
+        "windup0": {
+          "head": [
+            0,
+            1.5865,
+            -12.3527
+          ],
+          "fork": [
+            0,
+            0.2398,
+            -10.4927
+          ],
+          "emit": 1
+        },
+        "windup12": {
+          "head": [
+            0.0141,
+            1.6153,
+            -12.2509
+          ],
+          "fork": [
+            0.0141,
+            -0.0028,
+            -10.5001
+          ],
+          "emit": 1.4632
+        },
+        "windup40": {
+          "head": [
+            -0.0044,
+            1.6335,
+            -12.2242
+          ],
+          "fork": [
+            -0.0044,
+            -0.0173,
+            -10.5006
+          ],
+          "emit": 2.5439
+        },
+        "windup56": {
+          "head": [
+            -0.0072,
+            1.6411,
+            -12.2102
+          ],
+          "fork": [
+            -0.0072,
+            -0.0242,
+            -10.5006
+          ],
+          "emit": 3.1614
+        },
+        "attack2": {
+          "head": [
+            -0.0028,
+            1.5346,
+            -12.6343
+          ],
+          "fork": [
+            -0.0028,
+            1.5097,
+            -10.7293
+          ],
+          "emit": 2.0756
+        },
+        "recover": {
+          "head": [
+            0.002,
+            1.4834,
+            -12.3117
+          ],
+          "fork": [
+            0.002,
+            -0.0158,
+            -10.5033
+          ],
+          "emit": 1
+        },
+        "stagger": {
+          "head": [
+            -0.001,
+            1.5894,
+            -12.3361
+          ],
+          "fork": [
+            -0.001,
+            0.3701,
+            -10.4895
+          ],
+          "emit": 1
+        },
+        "death": {
+          "head": [
+            -2.1082,
+            1.2642,
+            -12.3884
+          ],
+          "fork": [
+            -0.8712,
+            0.9395,
+            -10.5087
+          ],
+          "emit": 0.6261
+        }
+      },
+      "samples": [
+        {
+          "ms": 0,
+          "laneSamples": 0,
+          "bodyVisible": false,
+          "laneVisible": false,
+          "nativeArrow": true,
+          "proposed": "native-edge"
+        },
+        {
+          "ms": 200,
+          "laneSamples": 0,
+          "bodyVisible": false,
+          "laneVisible": false,
+          "nativeArrow": true,
+          "proposed": "native-edge"
+        },
+        {
+          "ms": 666.6667,
+          "laneSamples": 0,
+          "bodyVisible": false,
+          "laneVisible": false,
+          "nativeArrow": true,
+          "proposed": "native-edge"
+        },
+        {
+          "ms": 933.3333,
+          "laneSamples": 0,
+          "bodyVisible": false,
+          "laneVisible": false,
+          "nativeArrow": true,
+          "proposed": "native-edge"
+        }
+      ]
+    },
+    {
+      "id": "7m-open",
+      "dist": 7,
+      "fixtureReaches": true,
+      "summary": {
+        "bodyFrames": 57,
+        "laneFrames": 57,
+        "nativeArrowFrames": 0,
+        "supplementalFrames": 0
+      },
+      "poses": {
+        "move": [
+          0,
+          0.3218,
+          -5.4944
+        ],
+        "windup0": {
+          "head": [
+            0,
+            1.5865,
+            -7.3527
+          ],
+          "fork": [
+            0,
+            0.2398,
+            -5.4927
+          ],
+          "emit": 1
+        },
+        "windup12": {
+          "head": [
+            0.0141,
+            1.6153,
+            -7.2509
+          ],
+          "fork": [
+            0.0141,
+            -0.0028,
+            -5.5001
+          ],
+          "emit": 1.4632
+        },
+        "windup40": {
+          "head": [
+            -0.0044,
+            1.6335,
+            -7.2242
+          ],
+          "fork": [
+            -0.0044,
+            -0.0173,
+            -5.5006
+          ],
+          "emit": 2.5439
+        },
+        "windup56": {
+          "head": [
+            -0.0072,
+            1.6411,
+            -7.2102
+          ],
+          "fork": [
+            -0.0072,
+            -0.0242,
+            -5.5006
+          ],
+          "emit": 3.1614
+        },
+        "attack2": {
+          "head": [
+            -0.0028,
+            1.5346,
+            -7.6343
+          ],
+          "fork": [
+            -0.0028,
+            1.5097,
+            -5.7293
+          ],
+          "emit": 2.0756
+        },
+        "recover": {
+          "head": [
+            0.002,
+            1.4834,
+            -7.3117
+          ],
+          "fork": [
+            0.002,
+            -0.0158,
+            -5.5033
+          ],
+          "emit": 1
+        },
+        "stagger": {
+          "head": [
+            -0.001,
+            1.5894,
+            -7.3361
+          ],
+          "fork": [
+            -0.001,
+            0.3701,
+            -5.4895
+          ],
+          "emit": 1
+        },
+        "death": {
+          "head": [
+            -2.1082,
+            1.2642,
+            -7.3884
+          ],
+          "fork": [
+            -0.8712,
+            0.9395,
+            -5.5087
+          ],
+          "emit": 0.6261
+        }
+      },
+      "samples": [
+        {
+          "ms": 0,
+          "laneSamples": 12,
+          "bodyVisible": true,
+          "laneVisible": true,
+          "nativeArrow": false,
+          "proposed": null
+        },
+        {
+          "ms": 200,
+          "laneSamples": 12,
+          "bodyVisible": true,
+          "laneVisible": true,
+          "nativeArrow": false,
+          "proposed": null
+        },
+        {
+          "ms": 666.6667,
+          "laneSamples": 12,
+          "bodyVisible": true,
+          "laneVisible": true,
+          "nativeArrow": false,
+          "proposed": null
+        },
+        {
+          "ms": 933.3333,
+          "laneSamples": 12,
+          "bodyVisible": true,
+          "laneVisible": true,
+          "nativeArrow": false,
+          "proposed": null
+        }
+      ]
+    }
+  ]
+}
