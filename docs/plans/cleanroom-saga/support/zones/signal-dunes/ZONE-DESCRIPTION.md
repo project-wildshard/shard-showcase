@@ -22,12 +22,18 @@ the planet. It should feel epic from the first step to the last.
 - **Filled with biomes**, each with its own look, life and danger.
 - **Five or more epic set pieces**: moments a player remembers and
   wants to show someone.
+- Each set piece must work as a ten-second clip, filmed on a phone in
+  portrait, that makes someone ask "what game is that?"
 
 ## In the zone
 
 - Caravans.
 - A whip-maker and a weapon shop.
 - Rideable camels.
+- Every big dune face is a slide: surf it, faster the steeper it gets,
+  and launch off the crest.
+- Something huge lives in the sand, and it can be ridden: hook it,
+  climb it and steer it across the zone, if you dare.
 - Secrets, vistas, caches and collectibles all over.
 - Levels 1 to 15, levelled by fighting.
 - A mini dungeon.
@@ -38,16 +44,24 @@ An epic quest line in many steps that takes you across the zone and
 ends in a final boss fight worth the journey. The story, the steps and
 the boss are yours to design.
 
+- The final boss is in view from the first step: something on the
+  skyline that every player takes for a mountain, and isn't. The fight
+  ranges across the zone, not an arena. It still fits the cube.
+
 ## Look
 
 - Epic dunes.
 - Oases.
+- The sand is never still: it streams off dune crests, slides under
+  your feet and fills your tracks in behind you.
 - Dune: Part Two as the inspiration.
 
 ## Weapons
 
 - Melee: whips, a scimitar, a spear and more.
 - Ranged: a horn bow, a long desert rifle and more.
+- Whips also move you: crack one at a rock lip to pull yourself up, or
+  at a rider to pull them off their camel.
 
 ## Enemies
 
