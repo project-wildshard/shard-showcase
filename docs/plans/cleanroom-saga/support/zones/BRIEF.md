@@ -1,41 +1,42 @@
 Make an absolutely amazing single-player game that feels like an MMO
-zone and plays like a AAA PS5 MMORPG. The zone is described in
-`ZONE-DESCRIPTION.md`. Read all of it first.
+zone and plays like a AAA PS5 MMORPG. `ZONE-DESCRIPTION.md` describes
+the zone; read all of it before you start.
 
-- **Graphics:** amazing. It should feel like a polished AAA game and
-  have a big wow impact from the very first frame.
-- **Art direction:** yours to set, inside the zone's own vibe, which
-  the Look section of the description gives. It must look like a real
-  shipped game, never like AI concept art.
-- **Feel:** every swing, shot, jump, ride and kill should feel juicy
-  and satisfying, with real weight, impact and feedback.
-- **World:** alive and dense, with something worth finding around every
-  corner. Never empty, never grey, never placeholder.
-- **Camera:** third-person action, except while a ranged weapon is in
-  hand: then the game goes first person, like PUBG Mobile, on foot or
-  on horseback. Holstering goes back to third person; melee is always
-  third person. Every switch should feel smooth and deliberate, and
-  first-person aiming must feel as good with a thumb on a portrait
-  phone as it does with a mouse.
-- **Mobile first.** It must play great on a phone held in portrait,
-  with touch controls, and still look stunning there. The test phone
-  is an iPhone 17 Pro.
-- **HUD:** works in portrait and in landscape, each layout fine-tuned
-  and perfectly chiselled for iOS Safari. The landscape HUD is
-  inspired by Genshin Impact; Where Winds Meet on iOS and Honkai
-  Impact 3rd are the other references.
-- **Desktop:** a full HUD and UI designed for a desktop app, like
-  modern MMOs such as Guild Wars 2, Black Desert Online and Crimson
-  Desert.
-- TypeScript, three.js and Rapier. Single-player; no multiplayer or
-  server needed.
-- To save costs and tokens, delegate non-visual work to Opus
-  subagents.
-- Commit and push early and often.
+## The bar
 
-Build it slice by slice. After each slice, play it yourself on a
-phone-sized screen, judge it harshly against a shipped PS5 game, and
-fix what falls short before you start the next slice.
+- **Look:** polished like a shipped PS5 game, with a big wow from the
+  very first frame, never like AI concept art. The art direction is
+  yours to set, inside the vibe the description's Look section gives.
+- **World:** alive and dense, with something worth finding around
+  every corner. Never empty, grey or placeholder.
+- **Feel:** every swing, shot, jump, ride and kill is juicy, with real
+  weight, impact and feedback.
+- **Camera:** third-person action. With a ranged weapon in hand the
+  game goes first person, like PUBG Mobile, on foot or on horseback;
+  holstering returns to third person, and melee is always third
+  person. Every switch is smooth and deliberate, and first-person
+  aiming with a thumb on a portrait phone feels as good as a mouse.
+
+## Platforms
+
+- **Phone first:** it plays great and looks stunning on a phone held
+  in portrait, with touch controls. The test phone is an iPhone 17
+  Pro.
+- **Phone HUD:** a portrait layout and a landscape layout, each
+  fine-tuned for iOS Safari. Landscape takes its lead from Genshin
+  Impact, with Where Winds Meet on iOS and Honkai Impact 3rd as the
+  other references.
+- **Desktop:** a full HUD and UI built for a desktop app, like modern
+  MMOs such as Guild Wars 2, Black Desert Online and Crimson Desert.
+
+## How to build
+
+- TypeScript, three.js and Rapier. Single-player; no server.
+- Build it slice by slice. After each slice, play it yourself on a
+  phone-sized screen, judge it harshly against a shipped PS5 game, and
+  fix what falls short before you start the next slice.
+- Delegate non-visual work to Opus subagents to save cost.
+- Commit early and often.
 
 Done when you can play it on a phone from level 1 to beating the main
 quest's final boss, and it looks and feels like a AAA game the whole
