@@ -474,3 +474,13 @@ for(const position of [1,2]){
  assert.ok(markup.includes(`src="${path}"`));
  assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
 }
+
+assert.ok(ids.has("nov27-rook-parts-drawer"));
+assert.ok(markup.includes('href="#nov27-rook-parts-drawer"'));
+assert.ok(markup.includes('href="media/w2b-rook-counter-drawer.glb"'));
+assert.equal(readFileSync(new URL("media/w2b-rook-counter-drawer.glb",dist)).subarray(0,4).toString(),"glTF");
+for(const view of ["context","detail"]){
+ const path=`media/nov27-rook-parts-${view}.webp`;
+ assert.ok(markup.includes(`src="${path}"`));
+ assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
+}
