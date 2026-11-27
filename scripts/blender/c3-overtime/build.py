@@ -170,7 +170,7 @@ S.view_settings.view_transform='AgX';S.render.resolution_percentage=100
 S.render.image_settings.file_format='JPEG';S.render.image_settings.quality=93
 for file,p,target,lens,w,h in [
     ('overtime-eye',(5.2,1.15,1.75),(14.2,8.6,1.0),26,1350,940),
-    ('overtime-court',(-8,-16,22),(15,7,1.1),33,1350,940),
+    ('overtime-court',(-11,-17,26),(16,4,1.4),27,1350,940),
 ]:
     ob.location=p;ob.rotation_euler=(Vector(target)-ob.location).to_track_quat('-Z','Y').to_euler()
     camera.lens=lens;S.render.resolution_x=w;S.render.resolution_y=h
