@@ -1,0 +1,63 @@
+{
+  "scope": "Static Gold placement on the exact authored W08 tower deck tier and roof, not a pickup or traversal test.",
+  "gold_sha256": "3dfd3a95e261b340911f5b93ffce91a8840a91a0464b915336567aa2f3b6bce0",
+  "w08_semantic_signature": [
+    "6e6b1692565a314162d3861223ab3454e9475e23bb1a2e01a88a14e76be6722f",
+    2580
+  ],
+  "round5_ref": "ce1cf050b3:art/showcase-template/round-5-blockout/layout.js",
+  "placements": [
+    {
+      "id": "tower-deck-4",
+      "archive_xyz": [
+        -212,
+        36.6,
+        -34
+      ],
+      "fit_xyz": [
+        -213.0,
+        36.6,
+        -34.75
+      ],
+      "offset_m": 1.25,
+      "roof_y": 36.05,
+      "hover_m": 0.55,
+      "sampled_floor_points": 49,
+      "floor_spread_mm": 0.0,
+      "exact_GLB_intersects_W08": false,
+      "camera_eye_xyz": [
+        -213.0,
+        37.75,
+        -36.6
+      ],
+      "visible_from_sampled_eye": true,
+      "archive_center_surface_y": null
+    },
+    {
+      "id": "zip-house-roof",
+      "archive_xyz": [
+        -110,
+        12.5,
+        -12
+      ],
+      "fit_xyz": [
+        -110.0,
+        12.5,
+        -12.0
+      ],
+      "offset_m": 0.0,
+      "roof_y": 12.0,
+      "hover_m": 0.5,
+      "sampled_floor_points": 49,
+      "floor_spread_mm": 0.0,
+      "exact_GLB_intersects_W08": false,
+      "camera_eye_xyz": [
+        -108.15,
+        13.7,
+        -12.0
+      ],
+      "visible_from_sampled_eye": true,
+      "archive_center_surface_y": 12.0
+    }
+  ]
+}
