@@ -24,10 +24,27 @@ assert any(s["since"] < contact["since"] and s["turn"] > 0 for s in normal["lens
 for before, after in zip(normal["lens"], normal["lens"][1:]):
     assert abs(after["turn"] - before["turn"]) <= 105 * after["dt"] + 1e-8
     assert abs(after["widen"] - before["widen"]) <= 80 * after["dt"] + 1e-8
-look_rows = [s for s in look["lens"] if s["testLook"]]
-sprint_rows = [s for s in sprint["lens"] if s["sprintIntent"]]
-for rows in (look_rows, sprint_rows):
-    assert rows and all(s["override"] and not s["turn"] and not s["widen"] for s in rows)
-assert all(s["lookX"] > 0 for s in look_rows)
+def delta(after, before):
+    return (after - before + 180) % 360 - 180
+
+look_rows = [(a,b) for a,b in zip(look["lens"], look["lens"][1:]) if b["testLook"]]
+sprint_rows = [(a,b) for a,b in zip(sprint["lens"], sprint["lens"][1:]) if b["sprintIntent"]]
+assert len(look_rows) == 6 and len(sprint_rows) == 15
+directions = []
+for a,b in look_rows:
+    requested = b["lookX"] * 180 / 3.141592653589793
+    shown = delta(b["shown"], a["shown"])
+    directions.append(requested > 0)
+    assert abs(b["turn"] - a["turn"]) <= .25 * abs(requested) + 1e-8
+    assert shown * requested > 0
+    assert abs(shown) >= .65 * abs(requested)
+    print(f"look {b['since']:2d}: request {requested:+.2f}°, screen {shown:+.2f}°, immediate clear {b['immediateClearDelta']:+.2f}°")
+assert set(directions) == {True, False}
+for a,b in look_rows+sprint_rows:
+    assert b["override"]
+    assert abs(b["turn"]) <= abs(a["turn"]) + 1e-8
+    assert abs(b["turn"]-a["turn"]) <= 48 * b["dt"] + 1e-8
+    assert 0 <= a["widen"] - b["widen"] <= 36 * b["dt"] + 1e-8
+assert not sprint_rows[-1][1]["turn"] and not sprint_rows[-1][1]["widen"]
 print(f"Clipped samples, stock/live: {stock_bad}/{live_bad}. Contact out-of-frame counts: {clipped(contact)}.")
-print(f"Look override frames: {len(look_rows)}; sprint-intent override frames: {len(sprint_rows)}.")
+print(f"Look handoff frames: {len(look_rows)}; sprint-intent handoff frames: {len(sprint_rows)}.")

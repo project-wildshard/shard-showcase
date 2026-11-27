@@ -16,8 +16,19 @@ for(const sign of [1,-1]) {
   }
   assert.equal(Math.sign(a.turn),sign);
   assert(a.widen>0);
-  assert.deepEqual(step({...x,override:true}),{turn:0,widen:0});
-  for(let i=0;i<10;i++)assert.deepEqual(step(x),{turn:0,widen:0});
+  const held=step({...x,override:true,lookDeg:0});
+  assert.equal(held.turn,a.turn);
+  assert(held.widen<a.widen);
+  const drag=step({...x,override:true,lookDeg:sign*.4});
+  assert(Math.abs(drag.turn-held.turn)<=.1+1e-8);
+  assert(Math.sign(sign*.4+drag.turn-held.turn)===sign);
+  let prev=drag;
+  for(let i=0;i<10;i++){
+    const next=step(x);
+    assert(Math.abs(next.turn)<=Math.abs(prev.turn)&&next.widen<=prev.widen);
+    prev=next;
+  }
+  assert.deepEqual(step({...x,hardStop:true}),{turn:0,widen:0});
 }
 const step=counterLens();
 assert.deepEqual(step({...scene,anchors:[...scene.anchors,[0,0,.5,false]]}),{turn:0,widen:0});

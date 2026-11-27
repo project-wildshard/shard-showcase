@@ -128,11 +128,16 @@ try {
   if(mode==='live-framing'){
     const rig=g.cameraRig,cam=g.camera,step=window.makeCounterLens();
     const update=rig.update.bind(rig),rad=Math.PI/180;
-    let prior=null,hold=0;
+    let prior=null,hold=0,last=null;
+    const heading=q=>{
+      const v=p.pos.clone().set(0,0,-1).applyQuaternion(q);
+      return Math.atan2(-v.x,-v.z)/rad;
+    };
     fixture.lensTrace=[];
     if(control==='look')h.pre=()=>{
       const since=h.frame-(fixture.counterFrame??Infinity);
-      if(since>=20&&since<26)g.input.dragLook(-4.6,0);
+      const dx=[-2,-2,-12,12,2,12][since-20];
+      if(dx)g.input.dragLook(dx,0);
     };
     rig.update=(dt,focus,options)=>{
       if(prior){
@@ -145,9 +150,9 @@ try {
       prior={q:cam.quaternion.clone(),fov:cam.fov};
       fixture.stockCamera=prior;
       const sprintIntent=g.input.down('sprint');
-      const override=p.sprinting||sprintIntent||!!options.flee||g.combat.target!==mob||
-        Math.abs(options.lookX??0)+Math.abs(options.lookY??0)>.0005||
-        !!g.input.lookIds?.size||rig.autoFollow===false||rig.view!=='third';
+      const looking=Math.abs(options.lookX??0)+Math.abs(options.lookY??0)>.0005||!!g.input.lookIds?.size;
+      const hardStop=rig.autoFollow===false||rig.view!=='third';
+      const override=p.sprinting||sprintIntent||!!options.flee||g.combat.target!==mob||looking||hardStop;
       if(p.action==='swordRise')hold=.12; else hold=Math.max(0,hold-dt);
       const engaged=g.combat.target===mob&&hold>0&&mob.alive;
       const anchors=[];
@@ -162,14 +167,22 @@ try {
         if(p.rig.weapon?.tip)put(p.rig.weapon.tip.getWorldPosition(v),true);
         for(const k of ['head','core','muzzle','weak'])put(mob.rig.sockets[k].getWorldPosition(v),false,k==='muzzle'?.44:.32);
       }
-      const adj=step({anchors,fov:cam.fov,aspect:cam.aspect,dt,engaged,override});
+      const adj=step({anchors,fov:cam.fov,aspect:cam.aspect,dt,engaged,override,hardStop,lookDeg:looking?(options.lookX??0)/rad:null});
       if(adj.turn||adj.widen){
         cam.rotateY(adj.turn*rad);cam.fov+=adj.widen;
         cam.updateProjectionMatrix();cam.updateMatrixWorld(true);
       }
+      const shown=heading(cam.quaternion),stock=heading(prior.q);
+      let immediateClearDelta=null;
+      if(last){
+        const d=stock-last.shown;
+        immediateClearDelta=((d+540)%360)-180;
+      }
       if(engaged||Number.isFinite(since)&&since<64)
         fixture.lensTrace.push({frame:h.frame,dt,since,...adj,engaged,
-          override,testLook,lookX:options.lookX,sprintIntent,sprinting:p.sprinting,rigYaw:rig.yaw});
+          override,testLook,lookX:options.lookX,sprintIntent,sprinting:p.sprinting,rigYaw:rig.yaw,
+          stock,shown,immediateClearDelta,stockFov:prior.fov,shownFov:cam.fov});
+      last={shown};
     };
   }
   if(mode==='framing'||mode==='live-framing'){
@@ -312,14 +325,19 @@ try {
      const row=await page.evaluate(()=>({since:__golden.frame-fixture.counterFrame,...fixture.framing()}));
      if(row.since!==since)throw Error('Wrong live sample');
      samples.push(row);
-     if(control==='none'&&[20,24,29].includes(since))
+     if((control==='none'&&[20,24].includes(since))||(control==='look'&&[20,24].includes(since)))
        await page.screenshot({path:join(out,'live-'+since+'.jpg'),type:'jpeg',quality:90});
      if(since!==53)await page.evaluate(()=>{fixture.mode='counter';__golden.thaw()});
    }
    const {lens,contact}=await page.evaluate(()=>({lens:fixture.lensTrace,contact:fixture.contact??null}));
    if(control==='none'&&!lens.some(r=>r.widen>0&&r.turn!==0))throw Error('Lens did not engage');
-   if(control!=='none'&&!lens.some(r=>(control==='look'?r.testLook&&r.lookX>0:r.sprintIntent)&&r.override))throw Error('No live override');
-   if(lens.some(r=>r.override&&(r.turn!==0||r.widen!==0)))throw Error('Manual input did not take precedence');
+   if(control!=='none'&&!lens.some(r=>(control==='look'?r.testLook&&r.lookX!==0:r.sprintIntent)&&r.override))throw Error('No live override');
+   for(let i=1;i<lens.length;i++){
+     const a=lens[i-1],b=lens[i];
+     if(!b.override)continue;
+     if(Math.abs(b.turn)>Math.abs(a.turn)+1e-8||b.widen>a.widen+1e-8)
+       throw Error('Override increased automatic assist');
+   }
    writeFileSync(join(out,'live-framing.json'),JSON.stringify({control,samples,lens,contact},null,2)+'\n');
  }else if(mode==='framing'){
    const evidence=[];

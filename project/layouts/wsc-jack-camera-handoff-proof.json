@@ -1,0 +1,67 @@
+{
+  "reference": "Raynos/showcase-zone-clean-room@3afcd880b397e9703e906a7e66b42e8447e59519",
+  "viewportCssPx": [
+    402,
+    874
+  ],
+  "testOnly": true,
+  "normalCounter": {
+    "contactClippedVertices": {
+      "stock": 572,
+      "live": 0
+    },
+    "samples": 8,
+    "stockClippedSamples": 5,
+    "appliedClippedSamples": 0
+  },
+  "lookFrames": [
+    {
+      "frameAfterAttack": 20,
+      "requestedDegrees": 0.596,
+      "displayedDegrees": 0.444,
+      "immediateClearDegrees": -10.113,
+      "residualTurnDegrees": 10.351,
+      "residualFovDegrees": 4.733
+    },
+    {
+      "frameAfterAttack": 21,
+      "requestedDegrees": 0.596,
+      "displayedDegrees": 0.444,
+      "immediateClearDegrees": -9.961,
+      "residualTurnDegrees": 10.202,
+      "residualFovDegrees": 4.133
+    },
+    {
+      "frameAfterAttack": 22,
+      "requestedDegrees": 3.575,
+      "displayedDegrees": 2.582,
+      "immediateClearDegrees": -7.003,
+      "residualTurnDegrees": 9.402,
+      "residualFovDegrees": 3.533
+    },
+    {
+      "frameAfterAttack": 23,
+      "requestedDegrees": -3.575,
+      "displayedDegrees": -4.022,
+      "immediateClearDegrees": -12.801,
+      "residualTurnDegrees": 8.602,
+      "residualFovDegrees": 2.933
+    },
+    {
+      "frameAfterAttack": 24,
+      "requestedDegrees": -0.596,
+      "displayedDegrees": -1.024,
+      "immediateClearDegrees": -9.645,
+      "residualTurnDegrees": 8.453,
+      "residualFovDegrees": 2.333
+    },
+    {
+      "frameAfterAttack": 25,
+      "requestedDegrees": -3.575,
+      "displayedDegrees": -4.457,
+      "immediateClearDegrees": -12.261,
+      "residualTurnDegrees": 7.653,
+      "residualFovDegrees": 1.733
+    }
+  ]
+}

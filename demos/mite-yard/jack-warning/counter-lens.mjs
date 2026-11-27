@@ -4,16 +4,25 @@ export function counterLens() {
   const D = Math.PI / 180;
   let turn = 0, widen = 0, quiet = 0;
   const approach = (a, b, step) => a + Math.max(-step, Math.min(step, b - a));
-  return function step({anchors, fov, aspect, dt, engaged, override}) {
-    if (override) {
-      // Deliberate handoff: never hold the camera against intentional movement.
-      quiet = 0.18;
-      turn = widen = 0;
+  return function step({anchors, fov, aspect, dt, engaged, override, lookDeg=null, hardStop=false}) {
+    if (hardStop || override) {
+      // Stop targeting immediately, not the already-applied view offset.
+      // While a look pointer owns the view, never remove more than one
+      // quarter of the user's input: tiny drags cannot be reversed by decay.
+      quiet = .18;
+      turn = hardStop ? 0 : approach(turn, 0, Math.min(48 * dt,
+        lookDeg === null ? Infinity : .25 * Math.abs(lookDeg)));
+      widen = hardStop ? 0 : approach(widen, 0, 36 * dt);
       return {turn, widen};
     }
     quiet = Math.max(0, quiet - dt);
+    if (quiet) {
+      turn = approach(turn, 0, 48 * dt);
+      widen = approach(widen, 0, 36 * dt);
+      return {turn, widen};
+    }
     let wishTurn = 0, wishWiden = 0;
-    if (!quiet && engaged && anchors.length && anchors.every(([,,z]) => z < -.32)) {
+    if (engaged && anchors.length && anchors.every(([,,z]) => z < -.32)) {
       let loss = Infinity;
       for (const yaw of [0, 2, -2, 4, -4, 6, -6, 8, -8, 10, -10, 12, -12]) {
         const c = Math.cos(yaw * D), s = Math.sin(yaw * D);
