@@ -1,0 +1,48 @@
+{
+  "scope": "Art and placement envelope only. No authored move, collider, attack, telegraph, timing or encounters.",
+  "catalogue_id": "WSC-SCENE-008",
+  "arena_sha256": "cd4b20016133bab16940d85f0b3319aecd19708626a5fe9cdb35f68f83a92021",
+  "bytes": 138200,
+  "triangles": 2124,
+  "material_primitives": 6,
+  "sha256": "0c1ad99f01656c400ad5291d046734306756bbb04e5ddc1fa59be739968cce86",
+  "dimensions_m": [
+    8,
+    4,
+    3.2
+  ],
+  "dimensions_semantics": "8 across lane, 4 along lane, 3.2 tall proposed art; centered local X axle",
+  "preview_centre_travel_radius_m": [
+    14,
+    44
+  ],
+  "axle_section_bounding_radius_m": 2.56125,
+  "lane_edge_margin_per_side_m": 1,
+  "rim_horizontal_lower_bound_m": 5.267249,
+  "tests": [
+    {
+      "heading_deg": 45,
+      "projected_cover_gap_m": 14.0865,
+      "floor_samples": 1309,
+      "max_sampled_surface_relief_m": 0.075
+    },
+    {
+      "heading_deg": 135,
+      "projected_cover_gap_m": 13.8772,
+      "floor_samples": 1309,
+      "max_sampled_surface_relief_m": 0.075
+    },
+    {
+      "heading_deg": 225,
+      "projected_cover_gap_m": 14.0795,
+      "floor_samples": 1309,
+      "max_sampled_surface_relief_m": 0.075
+    },
+    {
+      "heading_deg": 315,
+      "projected_cover_gap_m": 13.867,
+      "floor_samples": 1309,
+      "max_sampled_surface_relief_m": 0.075
+    }
+  ]
+}
