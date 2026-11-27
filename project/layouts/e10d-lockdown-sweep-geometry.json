@@ -1,0 +1,12 @@
+{
+  "reimport_pad_vertices": 4176,
+  "min_pad_gap_m": 0.005999984685331583,
+  "max_pad_gap_m": 0.01450001448392868,
+  "same_plates": 29,
+  "camera_eye_blender_m": [
+    0.0,
+    -10.9,
+    1.7
+  ],
+  "timebase": 30
+}

@@ -270,7 +270,8 @@ scene.render.resolution_x,scene.render.resolution_y=1420,930
 scene.render.resolution_percentage=100
 scene.render.image_settings.file_format="JPEG"
 scene.render.image_settings.quality=91
-for state in ("idle","warning"):
+sweep_path=os.environ.get("WSC_VAULT_SWEEP")
+for state in (() if sweep_path else ("idle","warning")):
     for slot,original in on_mats:
         slot.material=low if state=="idle" else original
     scene.render.filepath=str(out/f"nov24-vault-r4-{state}.jpg")
@@ -283,3 +284,56 @@ for state in ("idle","warning"):
     "pad_surface_rays":len(gap),"pad_gap_m":[min(gap),max(gap)],
     "assets":pinned,"donor_sha256":{k:v[1] for k,v in donors.items()},
     "runtime":False,"native_placement":False},indent=2)+"\n")
+
+
+if sweep_path:
+    # Use the timing fixture's 30-Hz states on exact authored donor plates.
+    # Keep the old five-insert comparison intact when this option is absent.
+    sweep=json.loads(Path(sweep_path).read_text())
+    assert sweep["tile_sha256"] == pinned["tile"]["sha256"]
+    assert sorted((q["col"],q["row"]) for q in sweep["slots"]) == sorted(coords)
+    assert all(abs(x-y)<1e-6 for x,y in zip((sweep["pitch"],sweep["hz"],sweep["warningFrames"]),(pitch,30,30)))
+    for o in stripe:
+        bpy.data.objects.remove(o,do_unlink=True)
+    active=mat("Sweep active · vermilion ceramic",(1,.035,.007),.28,.44,1.65)
+    active_edge=mat("Sweep active · hot center",(1,.086,.013),.25,.42,3.7)
+    strike_slots={}
+    sweep_gaps=[]
+    for q in sweep["slots"]:
+        x,y,z=q["xyz"]
+        key=(q["col"],q["row"])
+        assert abs(x-key[0]*pitch)<1e-6 and abs(-z-key[1]*pitch)<1e-6
+        assert abs(y-.006)<1e-6
+        objects=place("tile",f"Sweep slot {key}",(x,-z,y))
+        bpy.context.view_layer.update()
+        slots=[]
+        for o in objects:
+            for v in o.data.vertices:
+                p=o.matrix_world@v.co
+                t=slab.ray_cast(Vector((p.x,p.y,.15)),Vector((0,0,-1)),.32)[0]
+                assert t is not None and p.z-t.z>.003, (key,p,t)
+                sweep_gaps.append(p.z-t.z)
+            for slot in o.material_slots:
+                original=slot.material
+                hot=(low if "ceramic strips" in o.name else active_edge
+                     if "bright" in original.name else active)
+                slot.link="OBJECT"
+                slots.append((slot,original,hot))
+        strike_slots[key]=slots
+    proof={"reimport_pad_vertices":len(sweep_gaps),"min_pad_gap_m":min(sweep_gaps),
+           "max_pad_gap_m":max(sweep_gaps),"same_plates":len(coords),
+           "camera_eye_blender_m":[.0,-10.9,1.70],"timebase":30}
+    cam.location=(0,-10.9,1.70)
+    cam.data.lens=22
+    cam.rotation_euler=(Vector((0,1.8,-.8))-cam.location).to_track_quat("-Z","Y").to_euler()
+    scene.render.resolution_x,scene.render.resolution_y=740,1000
+    scene.cycles.samples=32
+    scene.cycles.adaptive_threshold=.065
+    for case in sweep["preview"]:
+        for q in case["states"]:
+            for slot,warn,hot in strike_slots[(q["col"],q["row"])]:
+                slot.material={"idle":low,"warning":warn,"active":hot}[q["state"]]
+        scene.render.filepath=str(out/f"vault-r4-sweep-{case['frame']}.jpg")
+        if not os.environ.get("WILDSHARD_VALIDATE_ONLY"):
+            bpy.ops.render.render(write_still=True)
+    (out/"vault-r4-sweep-geometry.json").write_text(json.dumps(proof,indent=2)+"\n")
