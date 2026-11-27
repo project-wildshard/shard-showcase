@@ -25,3 +25,9 @@ with crossbows, rifles and pistols. So the bow, the arrows and every
 melee weapon went, and the agent's "two forests" idea came out.
 Ranged only means you always hold a gun, so under the brief's camera
 rule this zone plays almost entirely in first person.
+
+Last, Jake added a second zone above the first: a vast, fantastical
+elven tree city in the crowns of the giant trees (the Guild Wars 2
+tree-city vibe), and faded out the night, lantern and folklore
+content. That retires "the final boss walks only at night", the one
+boss hint we'd kept, and the night-only dungeon.
