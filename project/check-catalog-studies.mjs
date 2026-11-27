@@ -512,3 +512,11 @@ for(const distance of [15,32]){
  assert.ok(markup.includes(`src="${path}"`));
  assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
 }
+
+assert.ok(ids.has("nov27-portrait-sword-contact"));
+assert.ok(markup.includes('href="#nov27-portrait-sword-contact"'));
+for(const frame of ["contact","recovery"]){
+ const path=`media/nov27-sword-${frame}.webp`;
+ assert.ok(markup.includes(`src="${path}"`));
+ assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
+}
