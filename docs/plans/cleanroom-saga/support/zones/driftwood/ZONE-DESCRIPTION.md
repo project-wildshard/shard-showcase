@@ -60,20 +60,14 @@ that you can start with:
 - **An undersea world as big as the one above.** At first you can only
   hold your breath for short dives. A quest wins you an underwater
   breather, and then the whole sea floor opens up, as deep as it goes.
-- Under the sea: coral cities, kelp forests, drowned towns, wreck
-  graveyards, glowing sea caves, trenches that drop into the dark, and
-  an undersea town with its own traders, quest givers and secrets.
-- Dry places under the sea: air pockets, domed halls, caves and sunken
-  structures to walk, breathe and fight in.
-- Ride the big things of the sea, a manta, a sea turtle, a whale, and
-  glimpse the things bigger still that move through the deep.
+- Dry places under the sea, for example air pockets, domed halls,
+  caves, sunken structures and more.
 - Above the sea: islands of every kind, from a pirate port and a
   lighthouse rock to a smoking volcano, jungle isles, sea-stack
   villages and sandbars that come and go.
 - **The planet moves the sea.** As it swings low the tide drains away,
   baring the reef, the wreck and paths you could never walk; as it
   climbs again the sea pours back in, fast.
-- Treasure maps whose X can be on an island or on the sea floor.
 - Optional extras: ziplines, rope bridges, cliffs and cliff dives.
 - Secrets, vistas, caches and collectibles all over, above and below
   the sea.
