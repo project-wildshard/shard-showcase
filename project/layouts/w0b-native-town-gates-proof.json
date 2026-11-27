@@ -1,0 +1,272 @@
+{
+  "scope": "Input-driven stock player on reconstructed art collision. No new traversal geometry, native install, production spawn, touch or draw-call measurement.",
+  "engine": "0.1.44",
+  "hz": 60,
+  "testStartXZ": [
+    -120,
+    0
+  ],
+  "mouthOffsetsM": [
+    -0.42,
+    0,
+    0.42
+  ],
+  "shell": {
+    "geometrySha256": "01692459007fb2d0b13c45359b4e7d46a3e00f6156e48ea1b8687319893d0a06",
+    "meshes": 165,
+    "triangles": 20624,
+    "gates": {
+      "West": {
+        "gateXZ": [
+          -128,
+          0
+        ],
+        "outsideGoalXZ": [
+          -132,
+          0
+        ],
+        "complete": 3,
+        "grounded": 3,
+        "centerWalkM": 11.941,
+        "maxAirTicks": 0,
+        "centerEndXYZ": [
+          -131.941,
+          0.076,
+          0
+        ]
+      },
+      "East": {
+        "gateXZ": [
+          -8,
+          0
+        ],
+        "outsideGoalXZ": [
+          -5,
+          0
+        ],
+        "complete": 3,
+        "grounded": 3,
+        "centerWalkM": 117.834,
+        "maxAirTicks": 0,
+        "centerEndXYZ": [
+          -5.07,
+          0.02,
+          0
+        ]
+      },
+      "Stable": {
+        "gateXZ": [
+          -36,
+          -60
+        ],
+        "outsideGoalXZ": [
+          -36,
+          -63
+        ],
+        "complete": 3,
+        "grounded": 3,
+        "centerWalkM": 150.235,
+        "maxAirTicks": 0,
+        "centerEndXYZ": [
+          -36,
+          0.08,
+          -62.899
+        ]
+      },
+      "Movers": {
+        "gateXZ": [
+          -95,
+          -60
+        ],
+        "outsideGoalXZ": [
+          -95,
+          -63
+        ],
+        "complete": 3,
+        "grounded": 3,
+        "centerWalkM": 87.955,
+        "maxAirTicks": 0,
+        "centerEndXYZ": [
+          -95,
+          0.11,
+          -62.909
+        ]
+      },
+      "Park": {
+        "gateXZ": [
+          -95,
+          60
+        ],
+        "outsideGoalXZ": [
+          -95,
+          63
+        ],
+        "complete": 0,
+        "grounded": 0,
+        "centerWalkM": 85.928,
+        "maxAirTicks": 7,
+        "centerEndXYZ": [
+          -95,
+          -0.405,
+          60.882
+        ]
+      },
+      "Range": {
+        "gateXZ": [
+          -36,
+          60
+        ],
+        "outsideGoalXZ": [
+          -36,
+          63
+        ],
+        "complete": 0,
+        "grounded": 0,
+        "centerWalkM": 142.825,
+        "maxAirTicks": 9,
+        "centerEndXYZ": [
+          -36,
+          -0.415,
+          60.975
+        ]
+      }
+    },
+    "blockedWest": {
+      "stalledTicks": 30,
+      "endXYZ": [
+        -127.42,
+        0.076,
+        0
+      ]
+    }
+  },
+  "joined": {
+    "geometrySha256": "17e792d5e22dcbaea709cbb5712d4b773c35f3584b3d4dfb04143b86e6544ebb",
+    "meshes": 169,
+    "triangles": 20670,
+    "gates": {
+      "West": {
+        "gateXZ": [
+          -128,
+          0
+        ],
+        "outsideGoalXZ": [
+          -132,
+          0
+        ],
+        "complete": 3,
+        "grounded": 3,
+        "centerWalkM": 11.941,
+        "maxAirTicks": 0,
+        "centerEndXYZ": [
+          -131.941,
+          0.076,
+          0
+        ]
+      },
+      "East": {
+        "gateXZ": [
+          -8,
+          0
+        ],
+        "outsideGoalXZ": [
+          -5,
+          0
+        ],
+        "complete": 3,
+        "grounded": 3,
+        "centerWalkM": 117.834,
+        "maxAirTicks": 0,
+        "centerEndXYZ": [
+          -5.07,
+          0.02,
+          0
+        ]
+      },
+      "Stable": {
+        "gateXZ": [
+          -36,
+          -60
+        ],
+        "outsideGoalXZ": [
+          -36,
+          -63
+        ],
+        "complete": 3,
+        "grounded": 3,
+        "centerWalkM": 150.235,
+        "maxAirTicks": 0,
+        "centerEndXYZ": [
+          -36,
+          0.08,
+          -62.899
+        ]
+      },
+      "Movers": {
+        "gateXZ": [
+          -95,
+          -60
+        ],
+        "outsideGoalXZ": [
+          -95,
+          -63
+        ],
+        "complete": 3,
+        "grounded": 3,
+        "centerWalkM": 87.955,
+        "maxAirTicks": 0,
+        "centerEndXYZ": [
+          -95,
+          0.11,
+          -62.909
+        ]
+      },
+      "Park": {
+        "gateXZ": [
+          -95,
+          60
+        ],
+        "outsideGoalXZ": [
+          -95,
+          63
+        ],
+        "complete": 3,
+        "grounded": 3,
+        "centerWalkM": 87.998,
+        "maxAirTicks": 0,
+        "centerEndXYZ": [
+          -95,
+          0.05,
+          62.953
+        ]
+      },
+      "Range": {
+        "gateXZ": [
+          -36,
+          60
+        ],
+        "outsideGoalXZ": [
+          -36,
+          63
+        ],
+        "complete": 3,
+        "grounded": 3,
+        "centerWalkM": 144.816,
+        "maxAirTicks": 0,
+        "centerEndXYZ": [
+          -36,
+          0.061,
+          62.966
+        ]
+      }
+    },
+    "blockedWest": {
+      "stalledTicks": 30,
+      "endXYZ": [
+        -127.42,
+        0.076,
+        0
+      ]
+    }
+  }
+}
