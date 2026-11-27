@@ -14,8 +14,8 @@ It is one zone of a bigger MMO world, joined to its neighbours by
 roads, so it fits inside one 500 × 500 × 500 m cube and never grows.
 Four edge islands sit at the middle of the cube's four sides, halfway
 up, each with a road running off the edge to the rest of the world;
-nothing beyond needs to exist yet. The mini dungeon sits inside the
-cube too.
+nothing beyond needs to exist yet. Both mini dungeons sit inside
+the cube too.
 
 - **Use the whole cube, every corner of it.** It is filled with
   floating islands of every size, from a rock you can stand on to one
@@ -53,8 +53,9 @@ that you can start with:
   Catch it on your board, land on it and ride it across the zone.
 - Secrets, vistas, caches and collectibles all over.
 - Levels 1 to 12, levelled by fighting.
-- A mini dungeon that flies: a pirate sky ship you board and fight
-  through, deck by deck, from the rigging down to the hold.
+- Two mini dungeons: one in the keel of an island, and one that
+  flies, a pirate sky ship you board and fight through, deck by deck,
+  from the rigging down to the hold.
 
 ## Features
 
