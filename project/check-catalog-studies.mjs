@@ -447,3 +447,12 @@ for(const name of ["floor","overview"]){
  assert.ok(markup.includes(`src="${p}"`));
  assert.equal(readFileSync(new URL(p,dist)).subarray(8,12).toString(),"WEBP");
 }
+
+assert.ok(ids.has("nov27-e8b-pit-threshold"));
+assert.ok(markup.includes('href="#nov27-e8b-pit-threshold"'));
+assert.ok(markup.includes('href="media/e8b-pit-shoulder-lantern.glb"'));
+for(const a of ["entry","pit"]){
+ const path=`media/nov27-pallet-pit-${a}.webp`;
+ assert.ok(markup.includes(`src="${path}"`));
+ assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
+}
