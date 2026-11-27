@@ -4,9 +4,9 @@ import {readFileSync,mkdtempSync,writeFileSync,rmSync} from 'node:fs';
 import {createRequire} from 'node:module';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-export async function readRigs(root,load,THREE,threeDir){
-  const [{GLTFLoader},{clone},{NodeIO},{KHRDracoMeshCompression}]=await Promise.all(
-    ['three/addons/loaders/GLTFLoader.js','three/addons/utils/SkeletonUtils.js',
+export async function readDecodedScenes(files,load,threeDir){
+  const [{GLTFLoader},{NodeIO},{KHRDracoMeshCompression}]=await Promise.all(
+    ['three/addons/loaders/GLTFLoader.js',
       '@gltf-transform/core','@gltf-transform/extensions'].map(load)
   );
   const d=join(threeDir,'examples/jsm/libs/draco/gltf'), scratch=mkdtempSync(join(tmpdir(),'wsc-draco-'));
@@ -17,13 +17,19 @@ export async function readRigs(root,load,THREE,threeDir){
     decoder=await createRequire(import.meta.url)(wrapper)({wasmBinary:readFileSync(join(d,'draco_decoder.wasm'))});
   } finally { rmSync(scratch,{recursive:true,force:true}); }
   const io=new NodeIO().registerExtensions([KHRDracoMeshCompression]).registerDependencies({'draco3d.decoder':decoder});
-  const unpack=async n=>{
-    const doc=await io.read(join(root,'public/models',n+'.glb'));
+  const unpack=async file=>{
+    const doc=await io.read(file);
     doc.getRoot().listExtensionsUsed().filter(e=>e.extensionName==='KHR_draco_mesh_compression').forEach(e=>e.dispose());
     const b=await io.writeBinary(doc);
     return (await new GLTFLoader().parseAsync(b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),'')).scene;
   };
-  const assets=Object.fromEntries(await Promise.all(['rook','swords'].map(async n=>[n,await unpack(n)])));
+  return Object.fromEntries(await Promise.all(Object.entries(files).map(async ([n,file])=>[n,await unpack(file)])));
+}
+export async function readRigs(root,load,THREE,threeDir){
+  const {clone}=await load('three/addons/utils/SkeletonUtils.js');
+  const assets=await readDecodedScenes(Object.fromEntries(['rook','swords'].map(n=>[
+    n, join(root,'public/models',n+'.glb')
+  ])),load,threeDir);
   const modelSource=readFileSync(join(root,'src/gfx/models.ts'),'utf8');
   const slots=/export const SLOTS = \[([\s\S]*?)\] as const/.exec(modelSource);
   if(!slots)throw new Error('Missing palette slot names');
