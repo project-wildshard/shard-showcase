@@ -60,6 +60,8 @@ that you can start with:
 - **An undersea world as big as the one above.** At first you can only
   hold your breath for short dives. A quest wins you an underwater
   breather, and then the whole sea floor opens up, as deep as it goes.
+- **Fast under water:** a way to cover the sea floor at speed, a
+  vehicle, a current, a creature or something else; yours to design.
 - Dry places under the sea, for example air pockets, domed halls,
   caves, sunken structures and more.
 - Above the sea: islands of every kind, from a pirate port and a
@@ -85,6 +87,7 @@ that you can start with:
 - A sailboat that you can drive.
 - Swimming and diving.
 - Underwater combat.
+- Fast underwater traversal.
 - A zone under the sea: a completely dry, hidden world under the
   water that you can enter, as large as the surface world.
 
@@ -113,9 +116,7 @@ The story, the steps and the boss are yours to design.
   more.
 - Ranged: a harpoon gun on a long rope that reels a foe in, or you to
   it; a twin-barrel flintlock, one barrel for the air and one that
-  fires a spinning bolt straight through the water; a lighthouse lens
-  on a brass stock that gathers sunlight into a beam that burns hotter
-  the longer you hold it; and more.
+  fires a spinning bolt straight through the water; and more.
 - The harpoon works under water too, and it moves you: fire it into a
   cliff, a mast or a big fish and get hauled along.
 
