@@ -1,0 +1,53 @@
+{
+  "scope": "Far static art only. Source/near model, placement, collision, shadow pools and runtime unchanged.",
+  "catalogue_id": "WSC-PROP-058",
+  "source": {
+    "bytes": 637956,
+    "triangles": 10849,
+    "primitives": 11,
+    "sha256": "8bd1c2bca075256315a8bf5a76b5da489b3e42fca0def63d06088031695232af"
+  },
+  "far": {
+    "bytes": 68712,
+    "triangles": 1188,
+    "primitives": 6,
+    "sha256": "f2d163313ebc85e80d139f310b9595253a56b82c4579d7e80e56708b581d851b"
+  },
+  "max_bound_delta_m": 0.0,
+  "source_bounds_m": [
+    [
+      -1.222000002861023,
+      1.222000002861023
+    ],
+    [
+      -2.4144999980926514,
+      2.2864999771118164
+    ],
+    [
+      0.0024999999441206455,
+      2.547499895095825
+    ]
+  ],
+  "far_bounds_m": [
+    [
+      -1.222000002861023,
+      1.222000002861023
+    ],
+    [
+      -2.4144999980926514,
+      2.2864999771118164
+    ],
+    [
+      0.0024999999441206455,
+      2.547499895095825
+    ]
+  ],
+  "orthographic_silhouette_iou_by_axis": {
+    "X": 0.98386,
+    "Y": 0.98695,
+    "Z": 0.97455
+  },
+  "rays_per_axis": 6561,
+  "placement_reference": "project/layouts/e5b-shadow-study.json",
+  "existing_container_placements": 3
+}
