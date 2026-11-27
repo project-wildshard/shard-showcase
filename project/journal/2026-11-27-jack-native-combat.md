@@ -1,0 +1,10 @@
+# First native-runtime check: normal Pallet Jack ram and counter
+
+Built the unmodified Fable reference revision `3afcd88` and ran the actual game locally in 402 × 874 Chromium. The native AI, collisions, third-person camera, weapon animation and damage remained in place. Both runs staged one ordinary level-four Jack 12 m from a dev-seeded level-four hero in Pallet Docks. Natural attack decisions, no forced ram, no God mode, no prior player save. This is an isolated test scene, not normal quest progression, physical touch or an iPhone measurement.
+
+- **Open sidestep:** Jack closed from 12 m and began the ram tell unselected at 9.47 m. The lane locked at 0.667 s and the ram began around 0.95 s. The sidestep kept Rook at 204 HP through recovery. This is an open charge control, not a crate crash.
+- **Timed dodge and counter:** Rook rolled forward into the attack window (different input from the sidestep). The stock game granted the 0.60 s counter, the original rising sword attack dealt 48, and Jack went Broken. Rook remained at 204 HP. The original impact frame shows Jack partly cropped and strongly washed by gold and body-white effects. An A/B is still needed to separate them. None of the Art Catalog candidates were applied to this build.
+
+The reproducible harness uses the reference build locally with a disposable browser, suppresses only rendering between capture frames, and saves captures outside both repositories. It uses simulated controls and seeded game time. No screenshot or Fable source is committed. No game deployment or patch.
+
+Reproduce with the verified source built via `npm ci --ignore-scripts; npm run build`. Serve its `dist` only on `127.0.0.1:5174` and install Playwright plus `@sparticuz/chromium` in a separate dependency project. Then run `node demos/mite-yard/jack-warning/native-probe.mjs /absolute/reference /absolute/deps sidestep` or `counter`. For a sandbox lacking a home cache, give npm a writable `--cache`. Review console and the temporary trace; damage rolls may differ if engine startup timing changes. An iPhone run and real collision-blocked crate control remain unverified.

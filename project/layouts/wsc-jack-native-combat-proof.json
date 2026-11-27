@@ -1,0 +1,58 @@
+{
+  "reference": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "viewport": [
+    402,
+    874
+  ],
+  "method": "Native Fable reference game with isolated staged level-four hero/one Jack. Original AI/collision/damage/camera and renderer on capture ticks. Fixed 60 Hz simulation inputs; not measured FPS or actual phone input.",
+  "openSideStep": {
+    "site": [
+      33,
+      108
+    ],
+    "spawnDistanceM": 12,
+    "startDistanceM": 9.46991,
+    "startHadTarget": false,
+    "lockSeconds": 0.66667,
+    "windupSeconds": 0.96667,
+    "allGodOff": true,
+    "heroHP": [
+      204,
+      204
+    ],
+    "jackHP": [
+      132,
+      132
+    ],
+    "endState": "recover",
+    "attackUsed": null,
+    "counterWindowS": null,
+    "chargeMovementM": 14.0,
+    "frames": 202
+  },
+  "timedForwardDodgeCounter": {
+    "site": [
+      33,
+      108
+    ],
+    "spawnDistanceM": 12,
+    "startDistanceM": 9.46991,
+    "startHadTarget": false,
+    "lockSeconds": 0.66667,
+    "windupSeconds": 0.96667,
+    "allGodOff": true,
+    "heroHP": [
+      204,
+      204
+    ],
+    "jackHP": [
+      132,
+      84
+    ],
+    "endState": "broken",
+    "attackUsed": "swordRise",
+    "counterWindowS": 0.6,
+    "chargeMovementM": 9.16491,
+    "frames": 200
+  }
+}
