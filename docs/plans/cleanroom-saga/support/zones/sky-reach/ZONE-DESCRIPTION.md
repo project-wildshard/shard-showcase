@@ -53,7 +53,8 @@ that you can start with:
   Catch it on your board, land on it and ride it across the zone.
 - Secrets, vistas, caches and collectibles all over.
 - Levels 1 to 12, levelled by fighting.
-- A mini dungeon in the keel of an island.
+- A mini dungeon that flies: a pirate sky ship you board and fight
+  through, deck by deck, from the rigging down to the hold.
 
 ## Features
 
@@ -88,7 +89,8 @@ boss are yours to design.
 
 ## Enemies
 
-The enemies should include wild sky goats that ram, and more.
+The enemies should include wild sky goats that ram, pirates who glide
+in on kites, and other pirates, and more.
 
 - Many enemies, each with a rare variant. Elites are scattered around.
   Anything can be knocked off an edge, and so can you.
