@@ -46,9 +46,9 @@ inside the cube too.
 To get a feeling for what to build, here are some ideas for the zone
 that you can start with:
 
-- **On the ground, the human forest:** for example a watermill, a
-  sawmill, a hunting lodge, rangers' cabins, ponds, beaver dams,
-  rivers, hills and hunters' camps, and more.
+- **On the ground, the human forest, a Red Dead Redemption 2 forest:**
+  for example a watermill, a sawmill, a hunting lodge, rangers' cabins,
+  ponds, beaver dams, rivers, hills and hunters' camps, and more.
 - **In the trees and above them, the elven realm:** mystical halls,
   homes and markets built into the crowns of giant trees and strung
   between them, with their own people, quests and secrets. Reaching
@@ -113,4 +113,4 @@ story, the steps and the boss are yours to design.
 
 - Side quests.
 - Happenings.
-- A contract board at the lodge.
+- Hunting quests and a hunting board from the human hunters.
