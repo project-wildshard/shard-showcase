@@ -1,0 +1,13 @@
+{
+  "file": "w5a-channel-release-inlays.glb",
+  "bytes": 15964,
+  "triangles": 260,
+  "sha256": "91549928d870f206301010e85f05477fee24ab6386ca2d4dcfe7fd6390c844e7",
+  "max_above_floor_m": 0.0009,
+  "mount": [
+    -220,
+    0,
+    142.5
+  ],
+  "collider": false
+}
