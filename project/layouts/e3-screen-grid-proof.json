@@ -1,0 +1,1813 @@
+{
+  "archive": "Raynos/project-wildshard-singleplayer@ce1cf050b3:art/showcase-template/round-5-blockout",
+  "proofs": {
+    "layout.js": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+    "placement.js": "6a067ec22a8e07f1d99a9d495d23063d2863ab10",
+    "lab.js": "51a3b4bef1f2d4891172164d10893d98d450a3b9"
+  },
+  "entry": {
+    "x": 122,
+    "z": -224,
+    "ry": 1.5707963267948966,
+    "band": 3
+  },
+  "zone": {
+    "id": "B3",
+    "name": "BAND 3 · L7–9",
+    "kind": "band",
+    "band": 3,
+    "shape": "rect",
+    "x0": 122,
+    "x1": 237,
+    "z0": -237,
+    "z1": -122,
+    "why": "",
+    "stack": ""
+  },
+  "dayPacks": [
+    {
+      "x": 146.5,
+      "z": -225.94061227794052,
+      "lv": 7,
+      "size": 2
+    },
+    {
+      "x": 163,
+      "z": -197.36177395305404,
+      "lv": 7,
+      "size": 2
+    },
+    {
+      "x": 179.5,
+      "z": -225.94061227794052,
+      "lv": 7,
+      "size": 2
+    },
+    {
+      "x": 196,
+      "z": -197.36177395305404,
+      "lv": 8,
+      "size": 2
+    },
+    {
+      "x": 179.5,
+      "z": -168.78293562816756,
+      "lv": 8,
+      "size": 2
+    },
+    {
+      "x": 163,
+      "z": -140.20409730328112,
+      "lv": 8,
+      "size": 2
+    },
+    {
+      "x": 212.5,
+      "z": -168.78293562816756,
+      "lv": 9,
+      "size": 2
+    },
+    {
+      "x": 196,
+      "z": -140.20409730328112,
+      "lv": 9,
+      "size": 2
+    },
+    {
+      "x": 229,
+      "z": -140.20409730328112,
+      "lv": 9,
+      "size": 2
+    }
+  ],
+  "rows": [
+    {
+      "ordinal": 1,
+      "x": 220.98688100324335,
+      "z": -228.4909784893929,
+      "ry": 3.1663922600149217,
+      "footprintToPack": 36.346126,
+      "groundPostToPack": 36.346126,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 2,
+      "x": 126.7371198189152,
+      "z": -149.227203492181,
+      "ry": 0.023345713351548524,
+      "footprintToPack": 32.531504,
+      "groundPostToPack": 32.531504,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 3,
+      "x": 201.4233286084716,
+      "z": -222.1160774180275,
+      "ry": 1.6567703135155507,
+      "footprintToPack": 20.531167,
+      "groundPostToPack": 20.531167,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 4,
+      "x": 138.63795941026785,
+      "z": -221.81619162802406,
+      "ry": 3.286559247670684,
+      "footprintToPack": 4.169673,
+      "groundPostToPack": 4.169673,
+      "installedInFixture": false
+    },
+    {
+      "ordinal": 5,
+      "x": 212.52733181162148,
+      "z": -205.13424207788626,
+      "ry": 3.220148414880766,
+      "footprintToPack": 13.523793,
+      "groundPostToPack": 13.523793,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 6,
+      "x": 151.34798779308238,
+      "z": -176.36916166468018,
+      "ry": 3.198670856406953,
+      "footprintToPack": 21.083059,
+      "groundPostToPack": 21.083059,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 7,
+      "x": 203.40231826966738,
+      "z": -131.23684170061574,
+      "ry": 1.6456740944438533,
+      "footprintToPack": 7.549061,
+      "groundPostToPack": 7.549061,
+      "installedInFixture": false
+    },
+    {
+      "ordinal": 8,
+      "x": 199.9089860119433,
+      "z": -207.67209726882732,
+      "ry": 3.186941083081233,
+      "footprintToPack": 9.322518,
+      "groundPostToPack": 9.322518,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 9,
+      "x": 141.41707834434558,
+      "z": -165.16426658358625,
+      "ry": 0.043885048243163624,
+      "footprintToPack": 29.573898,
+      "groundPostToPack": 29.573898,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 10,
+      "x": 154.34541175763374,
+      "z": -195.66458944960712,
+      "ry": 0.09695325030337705,
+      "footprintToPack": 3.978566,
+      "groundPostToPack": 3.978566,
+      "installedInFixture": false
+    },
+    {
+      "ordinal": 11,
+      "x": 187.10466233273254,
+      "z": -232.9401737642196,
+      "ry": 3.024834896435147,
+      "footprintToPack": 7.299616,
+      "groundPostToPack": 7.299616,
+      "installedInFixture": false
+    },
+    {
+      "ordinal": 12,
+      "x": 228.36615290835786,
+      "z": -218.0680692293998,
+      "ry": 0.020874763080326254,
+      "footprintToPack": 33.95821,
+      "groundPostToPack": 33.95821,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 13,
+      "x": 224.9168019466646,
+      "z": -197.30968240802628,
+      "ry": 3.249562806272404,
+      "footprintToPack": 24.059606,
+      "groundPostToPack": 24.059606,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 14,
+      "x": 162.17754952664373,
+      "z": -170.92510569883748,
+      "ry": 3.2109813735263413,
+      "footprintToPack": 12.590703,
+      "groundPostToPack": 12.590703,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 15,
+      "x": 231.40546533763666,
+      "z": -175.3440703411326,
+      "ry": 1.5437235109291187,
+      "footprintToPack": 18.064188,
+      "groundPostToPack": 18.064188,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 16,
+      "x": 232.5396218069548,
+      "z": -159.5762905108632,
+      "ry": 4.706721558717939,
+      "footprintToPack": 14.827019,
+      "groundPostToPack": 14.827019,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 17,
+      "x": 130.54546984962442,
+      "z": -128.28823736230294,
+      "ry": 4.7923454017012705,
+      "footprintToPack": 32.810643,
+      "groundPostToPack": 32.810643,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 18,
+      "x": 127.07369420773988,
+      "z": -163.4214505159396,
+      "ry": -0.13165030851105708,
+      "footprintToPack": 38.117947,
+      "groundPostToPack": 38.117947,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 19,
+      "x": 162.6448633156926,
+      "z": -127.78225315491774,
+      "ry": 4.854169126499116,
+      "footprintToPack": 7.560818,
+      "groundPostToPack": 7.560818,
+      "installedInFixture": false
+    },
+    {
+      "ordinal": 20,
+      "x": 190.4465841774114,
+      "z": -133.259730246039,
+      "ry": 1.4524912936436942,
+      "footprintToPack": 4.768681,
+      "groundPostToPack": 4.768681,
+      "installedInFixture": false
+    },
+    {
+      "ordinal": 21,
+      "x": 214.73571482707547,
+      "z": -217.84090134261217,
+      "ry": 1.454510014813495,
+      "footprintToPack": 23.494433,
+      "groundPostToPack": 23.494433,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 22,
+      "x": 207.107888076039,
+      "z": -232.72510601287945,
+      "ry": 4.7594032256810594,
+      "footprintToPack": 27.104752,
+      "groundPostToPack": 27.104752,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 23,
+      "x": 220.8631644937504,
+      "z": -167.7943535371657,
+      "ry": 1.4514418286556146,
+      "footprintToPack": 7.621378,
+      "groundPostToPack": 8.260407,
+      "installedInFixture": false
+    },
+    {
+      "ordinal": 24,
+      "x": 144.83454540503888,
+      "z": -186.79537751143585,
+      "ry": 4.702592977849635,
+      "footprintToPack": 18.255792,
+      "groundPostToPack": 18.255792,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 25,
+      "x": 213.50210405257627,
+      "z": -193.13718835038003,
+      "ry": 4.596709850535651,
+      "footprintToPack": 17.072738,
+      "groundPostToPack": 17.103406,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 26,
+      "x": 127.00188806606545,
+      "z": -193.26727363805625,
+      "ry": 1.6358347724869582,
+      "footprintToPack": 33.705182,
+      "groundPostToPack": 33.705182,
+      "installedInFixture": true
+    },
+    {
+      "ordinal": 27,
+      "x": 155.11920502833985,
+      "z": -137.52108869213663,
+      "ry": 1.5684553336716087,
+      "footprintToPack": 7.074492,
+      "groundPostToPack": 7.092037,
+      "installedInFixture": false
+    }
+  ],
+  "model": {
+    "name": "e3-suspended-pillar-screen.glb",
+    "sha256": "b97aac0a7b80e50f2c2d066e51e89cbf32c1ccbed65b83cfd776c9b03c65f69e"
+  },
+  "colliders": [
+    {
+      "part": "westPost",
+      "center": [
+        -4,
+        3.5,
+        0
+      ],
+      "half": [
+        0.8,
+        3.5,
+        0.8
+      ]
+    },
+    {
+      "part": "eastPost",
+      "center": [
+        4,
+        3.5,
+        0
+      ],
+      "half": [
+        0.8,
+        3.5,
+        0.8
+      ]
+    },
+    {
+      "part": "screen",
+      "center": [
+        0,
+        4.2,
+        0
+      ],
+      "half": [
+        3.8,
+        2,
+        0.16
+      ]
+    },
+    {
+      "part": "beam",
+      "center": [
+        0,
+        6.7,
+        0
+      ],
+      "half": [
+        4.8,
+        0.3,
+        0.4
+      ]
+    }
+  ],
+  "scope": "Flat movement fixture for 19 unchanged Round 5 screen positions. Each instance has four matching proxy boxes; not installed terrain, flight, encounter or projectile rules.",
+  "sim": "Engine 0.1.44",
+  "extractionSHA256": "60592c23b007821bd48af9758c93f58d7ad2a2c741f03baa6156a0f2de7f9553",
+  "passages": [
+    {
+      "ordinal": 1,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800329,
+            "end": [
+              224.95609,
+              -229.789901
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.8002,
+            "end": [
+              216.958407,
+              -229.59151
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 2,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800049,
+            "end": [
+              122.766269,
+              -147.934062
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800131,
+            "end": [
+              130.764081,
+              -148.120804
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 3,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800186,
+            "end": [
+              202.962456,
+              -218.234041
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800215,
+            "end": [
+              202.275527,
+              -226.204227
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 5,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800139,
+            "end": [
+              216.42084,
+              -206.644532
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800026,
+            "end": [
+              208.445494,
+              -206.016735
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 6,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800301,
+            "end": [
+              155.27291,
+              -177.795482
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.80013,
+            "end": [
+              147.285979,
+              -177.339116
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 8,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800098,
+            "end": [
+              203.85056,
+              -209.052287
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800482,
+            "end": [
+              195.858467,
+              -208.689625
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 9,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800019,
+            "end": [
+              137.473543,
+              -163.78984
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.799924,
+            "end": [
+              145.465879,
+              -164.140813
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 12,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800313,
+            "end": [
+              224.392171,
+              -216.784731
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800309,
+            "end": [
+              232.390476,
+              -216.951736
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 13,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800172,
+            "end": [
+              228.764363,
+              -198.933856
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.80023,
+            "end": [
+              220.810693,
+              -198.071758
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 14,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800233,
+            "end": [
+              166.084736,
+              -172.399647
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800415,
+            "end": [
+              158.104065,
+              -171.844989
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 15,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800138,
+            "end": [
+              232.496838,
+              -171.313202
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800511,
+            "end": [
+              232.713404,
+              -179.310068
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 16,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800209,
+            "end": [
+              231.362215,
+              -163.58309
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800318,
+            "end": [
+              231.316872,
+              -155.58293
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 17,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800239,
+            "end": [
+              129.029722,
+              -132.179539
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800077,
+            "end": [
+              129.668689,
+              -124.205146
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 18,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800019,
+            "end": [
+              122.950776,
+              -162.756814
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800035,
+            "end": [
+              130.881601,
+              -161.706633
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 21,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800136,
+            "end": [
+              215.463624,
+              -213.728739
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800082,
+            "end": [
+              216.391804,
+              -221.674647
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 22,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800055,
+            "end": [
+              205.721132,
+              -236.664357
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800239,
+            "end": [
+              206.09712,
+              -228.672981
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 24,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800324,
+            "end": [
+              143.673691,
+              -190.807002
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800158,
+            "end": [
+              143.595326,
+              -182.8072
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 25,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.799937,
+            "end": [
+              212.771718,
+              -197.248975
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800378,
+            "end": [
+              211.848367,
+              -189.302662
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    },
+    {
+      "ordinal": 26,
+      "crosses": [
+        {
+          "x": -2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": -2.6,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 0,
+          "side": 1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": -1,
+          "ticks": 86
+        },
+        {
+          "x": 2.6,
+          "side": 1,
+          "ticks": 86
+        }
+      ],
+      "posts": [
+        {
+          "x": -4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800089,
+            "end": [
+              128.459408,
+              -189.353775
+            ]
+          },
+          "controlTicks": 86
+        },
+        {
+          "x": 4,
+          "hit": {
+            "done": false,
+            "air": 0,
+            "ticks": 53,
+            "maxStall": 24,
+            "distance": 1.800194,
+            "end": [
+              127.939488,
+              -197.336731
+            ]
+          },
+          "controlTicks": 86
+        }
+      ]
+    }
+  ],
+  "approaches": [
+    {
+      "path": [
+        [
+          121.54,
+          -224
+        ],
+        [
+          123.29,
+          -214
+        ],
+        [
+          122.79,
+          -199.5
+        ],
+        [
+          124.1128689201943,
+          -191.46569977756928
+        ],
+        [
+          130.10018339453327,
+          -191.85565539731465
+        ],
+        [
+          124.1128689201943,
+          -191.46569977756928
+        ],
+        [
+          122.79,
+          -199.5
+        ],
+        [
+          123.29,
+          -214
+        ],
+        [
+          121.54,
+          -224
+        ]
+      ],
+      "done": true,
+      "air": 0,
+      "ticks": 1095,
+      "maxStall": 0,
+      "distance": 77.594029,
+      "end": [
+        121.550915,
+        -223.938949
+      ]
+    },
+    {
+      "path": [
+        [
+          122,
+          -224
+        ],
+        [
+          123.75,
+          -214
+        ],
+        [
+          123.25,
+          -199.5
+        ],
+        [
+          124.08297232268049,
+          -191.92472722060194
+        ],
+        [
+          130.07028679701946,
+          -192.3146828403473
+        ],
+        [
+          124.08297232268049,
+          -191.92472722060194
+        ],
+        [
+          123.25,
+          -199.5
+        ],
+        [
+          123.75,
+          -214
+        ],
+        [
+          122,
+          -224
+        ]
+      ],
+      "done": true,
+      "air": 0,
+      "ticks": 1080,
+      "maxStall": 0,
+      "distance": 76.504034,
+      "end": [
+        122.009423,
+        -223.947248
+      ]
+    },
+    {
+      "path": [
+        [
+          122.46,
+          -224
+        ],
+        [
+          124.21,
+          -214
+        ],
+        [
+          123.71,
+          -199.5
+        ],
+        [
+          124.05307572516668,
+          -192.3837546636346
+        ],
+        [
+          130.04039019950565,
+          -192.77371028337996
+        ],
+        [
+          124.05307572516668,
+          -192.3837546636346
+        ],
+        [
+          123.71,
+          -199.5
+        ],
+        [
+          124.21,
+          -214
+        ],
+        [
+          122.46,
+          -224
+        ]
+      ],
+      "done": true,
+      "air": 0,
+      "ticks": 1066,
+      "maxStall": 0,
+      "distance": 75.482046,
+      "end": [
+        122.471577,
+        -223.935114
+      ]
+    }
+  ]
+}
