@@ -42,3 +42,10 @@ Then a third realm: a large cave network and dwarves in the mines
 below, so three stacked zones (humans, elves, dwarves), one mini
 dungeon each (the mana tree, a lost deep mine, the fire lookout), and
 combat zones 1–3 to 13–15 with level 15 endgame content.
+
+Jake then pulled hunting back from the centre: no tracking, trophy
+wall, skinning or slow bow play, and levels come from fighting. It
+stays ranged only, no melee, but the armoury widened to a bow,
+crossbow, lever rifle, AR-15, pistols and revolvers, plus elven and
+dwarven weapons, with no bow movement or trick arrows. The barter
+economy went with the hunting.

@@ -1,14 +1,13 @@
 # Pine Hollow
 
 A single hand-made MMO zone, played alone: a deep, tall, dense boreal
-forest so real you can smell the pine, and high above it, in the
-crowns of the giant trees, a mystical elven realm, and deep below it,
-a dwarven realm of mines and caves. Think Red Dead Redemption 2's
-hunting and forests, the old forests of Princess Mononoke, the great
-tree cities of Guild Wars 2, and the Great Deku Tree of The Legend of
-Zelda: Ocarina of Time. Photorealistic from top to bottom. You are a
-hunter. Quiet, beautiful and wild, never gory, and epic from the
-first step to the last.
+forest so real you can smell the pine, and high above it, in the crowns
+of the giant trees, a mystical elven realm, and deep below it, a dwarven
+realm of mines and caves. Think Red Dead Redemption 2's forests, the old
+forests of Princess Mononoke, the great tree cities of Guild Wars 2, and
+the Great Deku Tree of The Legend of Zelda: Ocarina of Time.
+Photorealistic from top to bottom. Quiet, beautiful and wild, never
+gory, and epic from the first step to the last.
 
 ## Shape
 
@@ -47,10 +46,6 @@ inside the cube too.
 To get a feeling for what to build, here are some ideas for the zone
 that you can start with:
 
-- **The hunt is the heart.** Read tracks and blood, mind the wind,
-  call the beast in, take the shot, kneel to skin it. Everything you
-  find goes into a journal of pencil sketches, and the best of it goes
-  on your trophy wall.
 - **On the ground, the human forest:** for example a watermill, a
   sawmill, a hunting lodge, rangers' cabins, ponds, beaver dams,
   rivers, hills and hunters' camps, and more.
@@ -63,7 +58,7 @@ that you can start with:
   people, quests and secrets.
 - Secrets, vistas, caches and collectibles all over, on the ground and
   in the trees.
-- Levels 1 to 15, levelled by hunting.
+- Levels 1 to 15, levelled by fighting.
 - Three mini dungeons, one for each realm: inside the mana tree, like
   the Great Deku Tree; a lost dwarven deep mine, far below the halls;
   and on the forest floor, an old fire lookout on the high crag,
@@ -71,10 +66,8 @@ that you can start with:
 
 ## Features
 
-- Hunting and tracking.
-- Ranged only: crossbows, rifles and pistols.
-- Trophies and a trophy wall.
-- Contracts and barter, no money.
+- Ranged only: bows, crossbows, rifles, pistols and revolvers, plus
+  elven and dwarven weapons.
 - A human forest, an elven realm in the trees above it and a dwarven
   realm in the mines below.
 - A large cave network to explore.
@@ -100,21 +93,21 @@ story, the steps and the boss are yours to design.
 
 ## Weapons
 
-- **Ranged only; there is no melee.** A crossbow, a scoped hunting
-  rifle, a lever rifle, a pistol, and more: every one real, heavy and
-  loud.
+- **Ranged only; there is no melee.** A bow, a crossbow, a lever
+  rifle, an AR-15 rifle, pistols and revolvers, elven and dwarven
+  weapons, and more: every one heavy, loud and a joy to fire.
 
 ## Enemies
 
 - Fill all three realms with enemies as you see fit: on the ground,
-  in the trees and in the caves and mines. Great brown bears
-  define it. No wolves.
+  in the trees and in the caves and mines. Great brown bears define
+  it. No wolves.
 - Like an MMO, they come in combat zones by level, each with its own
   part of the forest: 1–3, 4–6, 7–9, 10–12 and 13–15.
 - Then level 15 endgame content: bosses and more worth coming back
   for.
-- Many enemies, each with a rare variant. Game to hunt too, not only
-  foes. Elites, the forest's legends, are scattered around.
+- Many enemies, each with a rare variant. Elites, the forest's legends,
+  are scattered around.
 - A final boss at the end of the main quest, at level 15.
 
 ## Quests
@@ -122,4 +115,3 @@ story, the steps and the boss are yours to design.
 - Side quests.
 - Happenings.
 - A contract board at the lodge.
-- No money: you barter hides, antlers and amber resin.
