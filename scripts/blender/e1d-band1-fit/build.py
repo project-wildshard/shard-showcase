@@ -12,7 +12,10 @@ from mathutils.bvhtree import BVHTree
 root = Path(__file__).resolve().parents[3]
 args = sys.argv[sys.argv.index('--') + 1:]
 band2 = '--band2' in args
-layout_name = 'e13-band2-scrip-anchors' if band2 else 'e1d-band1-scrip-anchors'
+band3 = '--band3' in args
+assert not (band2 and band3)
+layout_name = ('e13-band3-scrip-anchors' if band3 else
+               'e13-band2-scrip-anchors' if band2 else 'e1d-band1-scrip-anchors')
 layout = json.loads((root / f'project/layouts/{layout_name}.json').read_text())
 glb = root / 'public/assets/wildshard-art/e1d-band1-scrip-opening.glb'
 pin = '33ffea4a64ab2caf50f6b89b37f6996d152f313c6b7247f69f9768db70add144'
@@ -66,6 +69,29 @@ def minimum_horizontal_separation(chest_vertices, blockers):
         return max(0, *(max(b[0]-a[1], a[0]-b[1]) for a,b in zip(ax,bx)))
     return min(map(gap, blockers))
 
+def box_projection(ob, verts):
+    # The proxy is rectangular. Along either rotated box axis its exact
+    # projection can separate it even when its world-axis AABB overlaps.
+    axes = [(1.,0.),(0.,1.)]
+    for i in range(2):
+        v=ob.matrix_world.to_3x3().col[i].normalized()
+        axes.append((v.x,v.y))
+    bounds=[]
+    for ax,ay in axes:
+        values=[v.x*ax+v.y*ay for v in verts]
+        bounds.append((ax,ay,min(values),max(values)))
+    return bounds
+
+def minimum_oriented_gap(vertices, projections):
+    gaps=[]
+    for bounds in projections:
+        best=0
+        for ax,ay,b0,b1 in bounds:
+            values=[v.x*ax+v.y*ay for v in vertices]
+            best=max(best,b0-max(values),min(values)-b1)
+        gaps.append(best)
+    return min(gaps)
+
 results = []
 for anchor in layout['anchors']:
     bpy.ops.wm.read_factory_settings(use_empty=True)
@@ -94,7 +120,7 @@ for anchor in layout['anchors']:
     bump.inputs['Distance'].default_value = .024
     rock.node_tree.links.new(noise.outputs['Fac'],bump.inputs['Height'])
     rock.node_tree.links.new(bump.outputs['Normal'],mat_floor.inputs['Normal'])
-    concrete = material('Weathered concrete',(.25,.27,.255),.04,.83) if band2 else crate
+    concrete = material('Weathered concrete',(.25,.27,.255),.04,.83) if band2 or band3 else crate
     blockers = []
     def cover(c,dims,center,i,styled=True,finish=None):
         t = pose(c)
@@ -121,8 +147,14 @@ for anchor in layout['anchors']:
         elif band2 and c['kind']=='walls':
             cover(c,(8,.6,3),(0,0,1.5),0,False,concrete)
             cover(c,(2.4,2.4,1.1),(5.5,-1.5,.55),1)
-        elif band2 and c['kind']=='sightwall':
+        elif (band2 or band3) and c['kind']=='sightwall':
             cover(c,(12,.6,3),(0,0,1.5),0,False,concrete)
+        elif band3 and c['kind']=='pillars':
+            # Round 5 raised screen: two feet, overhead crown and a hung panel.
+            for dx in (-4,4):
+                cover(c,(1.6,1.6,7),(dx,0,3.5),0,False,concrete)
+            cover(c,(9.6,.8,.6),(0,0,6.7),0,False,crate2)
+            cover(c,(7.6,.2,4),(0,0,4.2),0,False,metal)
         else:
             raise ValueError(c['kind'])
     # Round 5 shows breakable crate proxies as 1 m cubes (see lab.js).
@@ -131,9 +163,9 @@ for anchor in layout['anchors']:
         cover(c,(1.02,1.02,.2),(0,0,.5),0,False)
     # Creature envelopes are conservative 1.04 m squares, not rig/aggro proof.
     for pack in anchor['packs']:
-        if band2:
+        if band2 or band3:
             t = pose(pack)
-            # Pack marker radius 2 m, plus all Jack forks/night-eye depth.
+            # Square enclosing the Round 5 pack marker.
             b = box('Round 5 pack marker envelope',(4,4,1.2),(0,0,.6),metal,t)
             b.hide_render=True
             blockers.append(b)
@@ -144,24 +176,33 @@ for anchor in layout['anchors']:
                 assert pack['enemy']=='Pallet Jack'
                 ob=box('Round 5 Jack body and fork envelope',(1.4,3.1,1.3),
                        (p[0],p[1]-.65,.65),metal)
+            elif band3:
+                assert pack['enemy']=='Plumb Drone'
+                ob=box('Round 5 Plumb Drone proxy envelope',(1.86,1.86,1.1),
+                       (p[0],p[1],3),metal)
             else:
                 ob=box('Archived Mite spawn envelope',(1.04,1.04,1.07),
                        (p[0],p[1],.535),metal)
             ob.hide_render=True
             blockers.append(ob)
     bpy.context.view_layer.update()
-    if band2:
+    if band2 or band3:
         for ob in blockers:
             for mod in list(ob.modifiers):
                 ob.modifiers.remove(mod)
         bpy.context.view_layer.update()
     block_vertices = [mesh_view([ob])[0] for ob in blockers]
     block_tree = mesh_view(blockers)[1]
+    projections = [box_projection(o, v) for o,v in zip(blockers,block_vertices)] if band3 else None
+    def separation(vertices):
+        if projections is not None:
+            return minimum_oriented_gap(vertices,projections)
+        return minimum_horizontal_separation(vertices,block_vertices)
     # Constant-width sampled section is backed by a continuous AABB at the front.
     corridor = box('Front approach, 0.9 m clear width',(.9,2.02,1.7),(0,-1.99,.85),metal)
     cv,ct = mesh_view([corridor])
     assert not ct.overlap(block_tree)
-    corridor_sep = minimum_horizontal_separation(cv,block_vertices)
+    corridor_sep = separation(cv)
     assert corridor_sep > 0
     bpy.data.objects.remove(corridor,do_unlink=True)
     gaps=[]
@@ -172,8 +213,8 @@ for anchor in layout['anchors']:
         assert not bt.overlap(block_tree), (anchor['index'],k)
         assert .0001 > abs(min(v.z for v in vv)), (anchor['index'],k)
         assert not bt.overlap(ct), (anchor['index'],k)
-        gaps.append(minimum_horizontal_separation(vv,block_vertices))
-    assert min(gaps)>0
+        gaps.append(separation(vv))
+    assert min(gaps)>0, (anchor['index'], min(gaps))
     results.append(dict(anchor=anchor['index'],three_xz=anchor['three_xz'],yaw_degrees=0,
                         continuous_approach_clear_width_m=.9,
                         approach_front_z_offsets_m=[.98,3.0],
@@ -181,16 +222,33 @@ for anchor in layout['anchors']:
                         minimum_lid_horizontal_aabb_gap_m=round(min(gaps),6),
                         minimum_approach_horizontal_aabb_gap_m=round(corridor_sep,6),
                         intersecting_sample_count=0))
+    if band3:
+        for part in ('lid','approach'):
+            row=results[-1]
+            row[f'minimum_{part}_separating_axis_gap_m']=row.pop(f'minimum_{part}_horizontal_aabb_gap_m')
     print(results[-1],flush=True)
     if '--proof-only' in args:
         continue
-    if band2:
+    if band2 or band3:
         # Re-add bevels after validating conservative rectangular envelopes.
         for ob in blockers:
             if not ob.hide_render:
                 b = ob.modifiers.new('Review edge wear','BEVEL')
                 b.width,b.segments=.042,2
                 ob.modifiers.new('Review normals','WEIGHTED_NORMAL')
+    if band3:
+        # Surface dressing in the stills only. The checked blocker boxes
+        # remain the pinned Round 5 cover envelope, not a new art export.
+        coat = material('Weathered oxide enamel',(.25,.14,.095),.42,.58)
+        for c in anchor['cover']:
+            if c['kind'] != 'sightwall':
+                continue
+            t = pose(c)
+            for side in (-1,1):
+                for dx in (-5.5,-3.65,-1.82,0,1.82,3.65,5.5):
+                    box('Pressed screen rib',(.09,.07,2.82),(dx,side*.301,1.5),metal,t,.016)
+                for dz in (.18,2.84):
+                    box('Rolled oxide rail',(11.86,.075,.115),(0,side*.302,dz),coat,t,.025)
     box('Review screed', (76,76,.24),(0,0,-.12),rock)
     world = bpy.data.worlds.new('Muted blue sky')
     world.use_nodes=True
@@ -208,6 +266,9 @@ for anchor in layout['anchors']:
     bpy.ops.object.camera_add(location=(1.68,-3.25,1.70))
     cam=bpy.context.object
     cam.data.lens=34
+    if band3 and anchor['index']==2:
+        cam.location=(-1.54,-3.20,2.17)
+        cam.data.lens=36
     cam.rotation_euler=(Vector((-.30,.18,.72))-cam.location).to_track_quat('-Z','Y').to_euler()
     s.camera=cam
     s.render.engine='CYCLES'
@@ -224,5 +285,6 @@ for anchor in layout['anchors']:
     s.render.filepath=str(out / f'anchor-{anchor["index"]}.png')
     bpy.ops.render.render(write_still=True)
 (out/'proof.json').write_text(json.dumps(dict(glb_sha256=pin,sites=results,
-    scope=('Round 5 Band 2 local proxy fit only; no payout, live enemies, traversal or claim state.' if band2 else
+    scope=('Round 5 Band 3 local proxy fit only; no payout, live enemies, traversal or claim state.' if band3 else
+           'Round 5 Band 2 local proxy fit only; no payout, live enemies, traversal or claim state.' if band2 else
            'Round 5 blockout only; no runtime geometry, enemies, currency, claim state, or touch validation.')),indent=2)+'\n')

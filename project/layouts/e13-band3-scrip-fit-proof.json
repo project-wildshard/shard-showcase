@@ -1,0 +1,42 @@
+{
+  "glb_sha256": "33ffea4a64ab2caf50f6b89b37f6996d152f313c6b7247f69f9768db70add144",
+  "sites": [
+    {
+      "anchor": 1,
+      "three_xz": [
+        174.25,
+        -180.0723547906108
+      ],
+      "yaw_degrees": 0,
+      "continuous_approach_clear_width_m": 0.9,
+      "approach_front_z_offsets_m": [
+        0.98,
+        3.0
+      ],
+      "nearby_blocker_count": 11,
+      "lid_samples": 109,
+      "intersecting_sample_count": 0,
+      "minimum_lid_separating_axis_gap_m": 2.662758,
+      "minimum_approach_separating_axis_gap_m": 4.421781
+    },
+    {
+      "anchor": 2,
+      "three_xz": [
+        223.75,
+        -151.49351646572433
+      ],
+      "yaw_degrees": 0,
+      "continuous_approach_clear_width_m": 0.9,
+      "approach_front_z_offsets_m": [
+        0.98,
+        3.0
+      ],
+      "nearby_blocker_count": 11,
+      "lid_samples": 109,
+      "intersecting_sample_count": 0,
+      "minimum_lid_separating_axis_gap_m": 2.662758,
+      "minimum_approach_separating_axis_gap_m": 4.421781
+    }
+  ],
+  "scope": "Round 5 Band 3 local proxy fit only; no payout, live enemies, traversal or claim state."
+}

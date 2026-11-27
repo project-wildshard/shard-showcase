@@ -5,7 +5,7 @@ import { resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 const root = resolve(process.argv[2])
 const band = Number(process.argv[3] ?? 1)
-if (![1, 2].includes(band)) throw new Error('supported bands: 1, 2')
+if (![1, 2, 3].includes(band)) throw new Error('supported bands: 1, 2, 3')
 const pins = {
   'layout.js': '5d019a020361c47187ec889f2bc947f82cd9f98a',
   'placement.js': '6a067ec22a8e07f1d99a9d495d23063d2863ab10',

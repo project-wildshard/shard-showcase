@@ -1,0 +1,122 @@
+{
+  "archive": "Raynos/project-wildshard-singleplayer@ce1cf050b3",
+  "source": "art/showcase-template/round-5-blockout",
+  "pins": {
+    "layout.js": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+    "placement.js": "6a067ec22a8e07f1d99a9d495d23063d2863ab10"
+  },
+  "lab_blob": "51a3b4bef1f2d4891172164d10893d98d450a3b9",
+  "note": "Round 5 geometry context; cover, crate and creature proxies are not final game geometry.",
+  "anchors": [
+    {
+      "index": 1,
+      "three_xz": [
+        174.25,
+        -180.0723547906108
+      ],
+      "cover": [
+        {
+          "band": 3,
+          "x": 171.25,
+          "z": -183.0723547906108,
+          "kind": "sightwall",
+          "ry": 0.5235987755982987,
+          "h": 1
+        },
+        {
+          "band": 3,
+          "x": 187.75,
+          "z": -183.0723547906108,
+          "kind": "sightwall",
+          "ry": -0.5235987755982991,
+          "h": 1
+        },
+        {
+          "band": 3,
+          "x": 162.17754952664373,
+          "z": -170.92510569883748,
+          "kind": "pillars",
+          "ry": 3.2109813735263413,
+          "h": 0.887386578548414
+        }
+      ],
+      "crates": [
+        {
+          "band": 3,
+          "x": 168.25,
+          "z": -180.5723547906108
+        }
+      ],
+      "packs": [
+        {
+          "band": 3,
+          "x": 179.5,
+          "z": -168.78293562816756,
+          "tier": 1,
+          "lv": 8,
+          "size": 2,
+          "spacing": 33,
+          "enemy": "Plumb Drone",
+          "night": false,
+          "rare": false,
+          "inYard": false
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "three_xz": [
+        223.75,
+        -151.49351646572433
+      ],
+      "cover": [
+        {
+          "band": 3,
+          "x": 220.75,
+          "z": -154.49351646572433,
+          "kind": "sightwall",
+          "ry": 0.5235987755982991,
+          "h": 1
+        },
+        {
+          "band": 3,
+          "x": 212.5,
+          "z": -140.20409730328112,
+          "kind": "sightwall",
+          "ry": 1.5707963267948966,
+          "h": 1
+        },
+        {
+          "band": 3,
+          "x": 232.5396218069548,
+          "z": -159.5762905108632,
+          "kind": "pillars",
+          "ry": 4.706721558717939,
+          "h": 0.9921468230859128
+        }
+      ],
+      "crates": [
+        {
+          "band": 3,
+          "x": 217.75,
+          "z": -151.99351646572433
+        }
+      ],
+      "packs": [
+        {
+          "band": 3,
+          "x": 229,
+          "z": -140.20409730328112,
+          "tier": 2,
+          "lv": 9,
+          "size": 2,
+          "spacing": 33,
+          "enemy": "Plumb Drone",
+          "night": true,
+          "rare": false,
+          "inYard": false
+        }
+      ]
+    }
+  ]
+}
