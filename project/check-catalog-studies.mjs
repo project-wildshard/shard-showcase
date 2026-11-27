@@ -466,3 +466,11 @@ for(const n of ["feed","pair"]){
  assert.ok(markup.includes(`src="${path}"`));
  assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
 }
+
+assert.ok(ids.has("nov27-e13-band3-scrip-fit"));
+assert.ok(markup.includes('href="#nov27-e13-band3-scrip-fit"'));
+for(const position of [1,2]){
+ const path=`media/nov27-e13-band3-chest-${position}.webp`;
+ assert.ok(markup.includes(`src="${path}"`));
+ assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
+}
