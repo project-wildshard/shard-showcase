@@ -1,0 +1,370 @@
+{
+  "scope": "W11a light-row candidate and local consumer test only; no installed client plan, weather or production look.",
+  "provenance": {
+    "w11a-gate-lanterns-proof": "85c2e92fac32e025716e2c87da02897b0c644ac7e56965e28ebc384193437f10",
+    "w11a-obelisk-lighting": "2f97f9bf1425b9223dcddb6e18b8ffd21576d231daf5906f9f4e40f6ed7fa46d",
+    "w11a-record-board-light-proof": "14a3264590b2b64e148cd87204ff011f508a7af86ea9080f0235dfd33b937ba4",
+    "w6d-movers-start": "187e524fa1593424074c729b0cc00fb5d4b274f679486f162bb5bee22c7a2971"
+  },
+  "clock": {
+    "units": "phase",
+    "dayFraction": 0.8333333333333334,
+    "start": 0,
+    "sun": {
+      "maxElevation": 72,
+      "azimuthOffset": 0
+    },
+    "schedule": [
+      {
+        "phase": "day",
+        "from": 6,
+        "to": 18,
+        "minutes": 20
+      },
+      {
+        "phase": "night",
+        "from": 18,
+        "to": 30,
+        "minutes": 4
+      }
+    ],
+    "fixed": {
+      "midday": 0.416667,
+      "golden": 0.763889,
+      "sunset": 0.8333333333333334,
+      "night": 0.916667
+    },
+    "presets": {
+      "dawn": 0,
+      "noon": 0.416667,
+      "dusk": 0.8333333333333334,
+      "night": 0.916667
+    }
+  },
+  "scenePoints": {
+    "west.gate.stable.1.point": [
+      -29.2,
+      2.905,
+      -58.411
+    ],
+    "west.gate.west.1.point": [
+      -126.261,
+      2.905,
+      6.8
+    ],
+    "west.gate.west.2.point": [
+      -126.261,
+      2.905,
+      -6.8
+    ],
+    "west.obelisk.1.point": [
+      -37.373223,
+      0.303,
+      3.373223
+    ],
+    "west.obelisk.2.point": [
+      -37.373223,
+      0.303,
+      -3.373223
+    ],
+    "west.obelisk.3.point": [
+      -30.626777,
+      0.303,
+      -3.373223
+    ],
+    "west.obelisk.4.point": [
+      -30.626777,
+      0.303,
+      3.373223
+    ],
+    "west.movers.record.point": [
+      -66.4104,
+      2.87,
+      -95.6922
+    ]
+  },
+  "emitterGroups": {
+    "west.gate.stable.1.lens": "west.gate.stable.1",
+    "west.gate.west.1.lens": "west.gate.west.1",
+    "west.gate.west.2.lens": "west.gate.west.2",
+    "west.obelisk.1.lens": "west.obelisk.1",
+    "west.obelisk.2.lens": "west.obelisk.2",
+    "west.obelisk.3.lens": "west.obelisk.3",
+    "west.obelisk.4.lens": "west.obelisk.4",
+    "west.movers.record.lens": "west.movers.record"
+  },
+  "artMounts": {
+    "west.gate.stable.1": {
+      "kind": "gate",
+      "at": [
+        -29.2,
+        2.95,
+        -59.001
+      ],
+      "yaw": 0
+    },
+    "west.gate.west.1": {
+      "kind": "gate",
+      "at": [
+        -126.851,
+        2.95,
+        6.8
+      ],
+      "yaw": 1.5707963267948966
+    },
+    "west.gate.west.2": {
+      "kind": "gate",
+      "at": [
+        -126.851,
+        2.95,
+        -6.8
+      ],
+      "yaw": 1.5707963267948966
+    },
+    "west.obelisk.1": {
+      "kind": "obelisk",
+      "at": [
+        -37.55,
+        0,
+        3.55
+      ],
+      "yaw": 2.356194490192345
+    },
+    "west.obelisk.2": {
+      "kind": "obelisk",
+      "at": [
+        -37.55,
+        0,
+        -3.55
+      ],
+      "yaw": 0.7853981633974483
+    },
+    "west.obelisk.3": {
+      "kind": "obelisk",
+      "at": [
+        -30.45,
+        0,
+        -3.55
+      ],
+      "yaw": -0.7853981633974483
+    },
+    "west.obelisk.4": {
+      "kind": "obelisk",
+      "at": [
+        -30.45,
+        0,
+        3.55
+      ],
+      "yaw": -2.356194490192345
+    },
+    "west.movers.record": {
+      "kind": "movers",
+      "board": [
+        -66,
+        0,
+        -96
+      ],
+      "at": [
+        -66.096,
+        2.835,
+        -95.928
+      ],
+      "yaw": -0.9272952180016123
+    }
+  },
+  "nightGate": {
+    "from": 18,
+    "to": 6
+  },
+  "emitters": {
+    "version": 1,
+    "input": "west.night.pool",
+    "clock": "west.night.seconds",
+    "rows": [
+      {
+        "id": "west.gate.stable.1",
+        "parent": "west.gate.stable.1.lens",
+        "initially": false,
+        "draws": [],
+        "light": {
+          "at": {
+            "point": "west.gate.stable.1.point"
+          },
+          "colour": 16760182,
+          "gain": 46,
+          "distance": 9,
+          "decay": 2,
+          "shared": true,
+          "waves": [
+            [
+              0.82,
+              0.17,
+              0.013
+            ]
+          ]
+        }
+      },
+      {
+        "id": "west.gate.west.1",
+        "parent": "west.gate.west.1.lens",
+        "initially": false,
+        "draws": [],
+        "light": {
+          "at": {
+            "point": "west.gate.west.1.point"
+          },
+          "colour": 16760182,
+          "gain": 46,
+          "distance": 9,
+          "decay": 2,
+          "shared": true,
+          "waves": [
+            [
+              0.82,
+              0.17,
+              0.013
+            ]
+          ]
+        }
+      },
+      {
+        "id": "west.gate.west.2",
+        "parent": "west.gate.west.2.lens",
+        "initially": false,
+        "draws": [],
+        "light": {
+          "at": {
+            "point": "west.gate.west.2.point"
+          },
+          "colour": 16760182,
+          "gain": 46,
+          "distance": 9,
+          "decay": 2,
+          "shared": true,
+          "waves": [
+            [
+              1.05,
+              0.17,
+              0.013
+            ]
+          ]
+        }
+      },
+      {
+        "id": "west.obelisk.1",
+        "parent": "west.obelisk.1.lens",
+        "initially": false,
+        "draws": [],
+        "light": {
+          "at": {
+            "point": "west.obelisk.1.point"
+          },
+          "colour": 16758378,
+          "gain": 65,
+          "distance": 13,
+          "decay": 2,
+          "shared": true,
+          "waves": [
+            [
+              1.28,
+              0.17,
+              0.013
+            ]
+          ]
+        }
+      },
+      {
+        "id": "west.obelisk.2",
+        "parent": "west.obelisk.2.lens",
+        "initially": false,
+        "draws": [],
+        "light": {
+          "at": {
+            "point": "west.obelisk.2.point"
+          },
+          "colour": 16758378,
+          "gain": 65,
+          "distance": 13,
+          "decay": 2,
+          "shared": true,
+          "waves": [
+            [
+              1.51,
+              0.17,
+              0.013
+            ]
+          ]
+        }
+      },
+      {
+        "id": "west.obelisk.3",
+        "parent": "west.obelisk.3.lens",
+        "initially": false,
+        "draws": [],
+        "light": {
+          "at": {
+            "point": "west.obelisk.3.point"
+          },
+          "colour": 16758378,
+          "gain": 65,
+          "distance": 13,
+          "decay": 2,
+          "shared": true,
+          "waves": [
+            [
+              1.28,
+              0.17,
+              0.013
+            ]
+          ]
+        }
+      },
+      {
+        "id": "west.obelisk.4",
+        "parent": "west.obelisk.4.lens",
+        "initially": false,
+        "draws": [],
+        "light": {
+          "at": {
+            "point": "west.obelisk.4.point"
+          },
+          "colour": 16758378,
+          "gain": 65,
+          "distance": 13,
+          "decay": 2,
+          "shared": true,
+          "waves": [
+            [
+              1.51,
+              0.17,
+              0.013
+            ]
+          ]
+        }
+      },
+      {
+        "id": "west.movers.record",
+        "parent": "west.movers.record.lens",
+        "initially": false,
+        "draws": [],
+        "light": {
+          "at": {
+            "point": "west.movers.record.point"
+          },
+          "colour": 16759928,
+          "gain": 16,
+          "distance": 4,
+          "decay": 2,
+          "shared": true,
+          "waves": [
+            [
+              1.05,
+              0.17,
+              0.013
+            ]
+          ]
+        }
+      }
+    ]
+  }
+}

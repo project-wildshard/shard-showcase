@@ -1,0 +1,206 @@
+{
+  "engine": "0.1.44",
+  "format": "0.43.0",
+  "fixtureSHA256": "8ba1a1695d51d77449e3459640fc7b2ddf30f732c27ab4988c692994f379a97d",
+  "anchors": 8,
+  "stablePointLights": 4,
+  "gateTransitions": [
+    {
+      "second": 1200,
+      "lit": true,
+      "hour": 18
+    },
+    {
+      "second": 1440,
+      "lit": false,
+      "hour": 6
+    }
+  ],
+  "quarterSecondSteps": 5760,
+  "restoreHour": 23,
+  "allAnchorsVisited": true,
+  "review": {
+    "obelisk": {
+      "eye": [
+        -45,
+        1.72,
+        8
+      ],
+      "night": [
+        {
+          "position": [
+            -29.2,
+            2.905,
+            -58.411
+          ],
+          "intensity": 46.443933,
+          "distance": 9,
+          "colour": 16760182
+        },
+        {
+          "position": [
+            -126.261,
+            2.905,
+            -6.8
+          ],
+          "intensity": 45.934446,
+          "distance": 9,
+          "colour": 16760182
+        },
+        {
+          "position": [
+            -37.373223,
+            0.303,
+            3.373223
+          ],
+          "intensity": 65.211748,
+          "distance": 13,
+          "colour": 16758378
+        },
+        {
+          "position": [
+            -37.373223,
+            0.303,
+            -3.373223
+          ],
+          "intensity": 65.246005,
+          "distance": 13,
+          "colour": 16758378
+        }
+      ],
+      "day": [
+        {
+          "position": [
+            -29.2,
+            2.905,
+            -58.411
+          ],
+          "intensity": 0,
+          "distance": 9,
+          "colour": 16760182
+        },
+        {
+          "position": [
+            -126.261,
+            2.905,
+            -6.8
+          ],
+          "intensity": 0,
+          "distance": 9,
+          "colour": 16760182
+        },
+        {
+          "position": [
+            -37.373223,
+            0.303,
+            3.373223
+          ],
+          "intensity": 0,
+          "distance": 13,
+          "colour": 16758378
+        },
+        {
+          "position": [
+            -37.373223,
+            0.303,
+            -3.373223
+          ],
+          "intensity": 0,
+          "distance": 13,
+          "colour": 16758378
+        }
+      ]
+    },
+    "movers": {
+      "eye": [
+        -70.8,
+        1.72,
+        -92.4
+      ],
+      "night": [
+        {
+          "position": [
+            -29.2,
+            2.905,
+            -58.411
+          ],
+          "intensity": 46.443933,
+          "distance": 9,
+          "colour": 16760182
+        },
+        {
+          "position": [
+            -66.4104,
+            2.87,
+            -95.6922
+          ],
+          "intensity": 15.897885,
+          "distance": 4,
+          "colour": 16759928
+        },
+        {
+          "position": [
+            -30.626777,
+            0.303,
+            -3.373223
+          ],
+          "intensity": 64.856157,
+          "distance": 13,
+          "colour": 16758378
+        },
+        {
+          "position": [
+            -37.373223,
+            0.303,
+            -3.373223
+          ],
+          "intensity": 65.246005,
+          "distance": 13,
+          "colour": 16758378
+        }
+      ],
+      "day": [
+        {
+          "position": [
+            -29.2,
+            2.905,
+            -58.411
+          ],
+          "intensity": 0,
+          "distance": 9,
+          "colour": 16760182
+        },
+        {
+          "position": [
+            -66.4104,
+            2.87,
+            -95.6922
+          ],
+          "intensity": 0,
+          "distance": 4,
+          "colour": 16759928
+        },
+        {
+          "position": [
+            -30.626777,
+            0.303,
+            -3.373223
+          ],
+          "intensity": 0,
+          "distance": 13,
+          "colour": 16758378
+        },
+        {
+          "position": [
+            -37.373223,
+            0.303,
+            -3.373223
+          ],
+          "intensity": 0,
+          "distance": 13,
+          "colour": 16758378
+        }
+      ]
+    }
+  }
+}
