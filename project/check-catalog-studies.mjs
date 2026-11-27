@@ -402,3 +402,15 @@ assert.equal(halfCover.related_study?.href,"#nov27-e1c-half-cover");
 assert.ok(ids.has(halfCover.related_study.href.slice(1)));
 assert.ok(markup.includes('href="media/e1-half-cover.glb"'));
 assert.ok(markup.includes('href="#nov26-e1-first-cover">Earlier roadside crate stacks'));
+
+const rockCache=data.assets.find(a=>a.id==="WSC-PROP-049");
+assert.equal(rockCache.model_preview,"#nov23-cache-opening");
+assert.equal(rockCache.related_study?.href,"#nov27-w9-rock-cache");
+assert.ok(ids.has("nov27-w9-rock-cache"));
+assert.ok(markup.includes('href="#nov27-w9-rock-cache"'));
+assert.ok(markup.includes('href="media/w9-rock-cache-outcrop.glb"'));
+for (const name of ["discover","open"]) {
+  const imagePath=`media/nov27-w9-rock-cache-${name}.webp`;
+  assert.ok(markup.includes(`src="${imagePath}"`));
+  assert.equal(readFileSync(new URL(imagePath,dist)).subarray(8,12).toString(),"WEBP");
+}
