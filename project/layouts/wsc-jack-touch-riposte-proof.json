@@ -1,0 +1,47 @@
+{
+  "reference": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "viewport": [
+    402,
+    874
+  ],
+  "keyboardInput": false,
+  "lateDelayFrames": 46,
+  "early": {
+    "moveStartFrame": 136,
+    "crashFrame": 166,
+    "firstNativeSprintFrame": 185,
+    "stickTrustedMoveCount": 14,
+    "attackTrustedPressCount": 1,
+    "attackTrustedReleaseCount": 1,
+    "finalHeroHp": 204,
+    "finalJackHp": 118,
+    "swordContact": {
+      "frame": 200,
+      "secondsAfterCrash": 0.567,
+      "jackState": "recover",
+      "animation": "sword1",
+      "stickReleased": true
+    }
+  },
+  "late": {
+    "moveStartFrame": 212,
+    "crashFrame": 166,
+    "firstNativeSprintFrame": 261,
+    "stickTrustedMoveCount": 24,
+    "attackTrustedPressCount": 0,
+    "attackTrustedReleaseCount": 0,
+    "finalHeroHp": 185,
+    "finalJackHp": 132,
+    "recoveryExit": {
+      "frame": 233,
+      "rookHp": 204,
+      "jackHp": 132
+    },
+    "nativePlayerHit": {
+      "frame": 308,
+      "attack": "jab",
+      "rookHp": 185,
+      "jackHp": 132
+    }
+  }
+}

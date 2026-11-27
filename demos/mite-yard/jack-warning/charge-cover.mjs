@@ -1,6 +1,7 @@
 // Read-only control/cover replay in Fable's native Pallet Docks.
 // Run with a loopback server rooted at the built checkout's dist directory.
 import assert from 'node:assert/strict';
+import {touchRiposte} from './touch-riposte.mjs';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,writeFileSync,mkdtempSync} from 'node:fs';
 import {createRequire} from 'node:module';
@@ -10,8 +11,8 @@ import {pathToFileURL} from 'node:url';
 
 const pin='3afcd880b397e9703e906a7e66b42e8447e59519';
 const [root,dep,mode='cover']=process.argv.slice(2);
-if(!['cover','riposte'].includes(mode))throw Error('Expected cover or riposte');
-if(!root||!dep)throw Error('Usage: node charge-cover.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [cover|riposte]');
+if(!['cover','riposte','touch'].includes(mode))throw Error('Expected cover, riposte or touch');
+if(!root||!dep)throw Error('Usage: node charge-cover.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [cover|riposte|touch]');
 assert.equal(execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim(),pin);
 const load=createRequire(join(dep,'package.json'));
 const pw=await import(pathToFileURL(load.resolve('playwright')).href);
@@ -22,7 +23,7 @@ console.log('Private scratch:',out);
 const browser=await chromium.launch({executablePath:await shell.executablePath(),headless:true,args:shell.args});
 try {
  const receipt={pin};
- for(const kind of mode==='riposte'?['early','late']:['open','cover']){
+ for(const kind of mode!=='cover'?['early','late']:['open','cover']){
   const ctx=await browser.newContext({viewport:{width:402,height:874},deviceScaleFactor:1,hasTouch:true,isMobile:true,serviceWorkers:'block'});
   await ctx.addInitScript({content:readFileSync(join(root,'tools/golden/init.js'),'utf8')});
   await ctx.route('**/__charge_cover_three__/*',async route=>{
@@ -34,7 +35,7 @@ try {
   page.on('pageerror',error=>console.error(error));
   await page.goto(`http://127.0.0.1:${Number(process.env.FABLE_PROBE_PORT??5174)}/?golden&dev&q=medium`,{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>window.game?.started&&game?.mobs?.list&&game.renderer.gl.info.render.frame>0,null,{timeout:90000});
-  const start=await page.evaluate(async kind=>{
+  const start=await page.evaluate(async ({kind,touch})=>{
    // Same local import for both runs; this module only draws the test box.
    __golden.freeze();
    const three=await import('/__charge_cover_three__/three.module.js');
@@ -87,12 +88,26 @@ try {
     if(id==='enemy_crash')f.sounds.push({id,frame:h.frame});
     return baseSfx(id,...args);
    };
-   const began=h.frame;
+   const began=h.frame, heroStartHp=g.state.d.hp;
+   if(touch){
+    f.pointerEvents=[];
+    for(const type of ['pointerdown','pointerup','pointercancel','gotpointercapture','lostpointercapture','pointermove'])
+     document.addEventListener(type,e=>{
+      if(e.pointerType==='touch')f.pointerEvents.push({type,frame:h.frame-began,id:e.pointerId,x:e.clientX,y:e.clientY,
+       trusted:e.isTrusted,act:e.target?.closest('button')?.dataset?.act??null,element:e.target?.tagName??null});
+     },true);
+   }
    const isRiposte=kind==='early'||kind==='late';
    let recovery=null,moveStart=null,attack=null,contact=null,route=0;
    const keys=['KeyW','KeyA','KeyS','KeyD'];
    const fwd=p.pos.clone();
    const move=(dx,dz)=>{
+    if(touch){
+     const m=Math.hypot(dx,dz);
+     g.cameraRig.forward(fwd);
+     f.wish=m<.001?[0,0]:[(-fwd.z*dx+fwd.x*dz)/m,-(fwd.x*dx+fwd.z*dz)/m];
+     return;
+    }
     for(const k of keys)g.input.keys.delete(k);
     g.input.release('sprint');
     if(Math.hypot(dx,dz)<.001)return;
@@ -110,7 +125,7 @@ try {
     return dist<3.55&&!baseRay(a,d,Math.max(0,dist-.65));
    };
    g.renderer.render=(...args)=>{
-    if(isRiposte ? (f.windup&&((!f.recover&&jack.state==='recover')||(jack.hp<f.startHp&&contact===null)||contact===h.frame-2)) :
+    if(isRiposte ? (f.windup&&((!f.recover&&jack.state==='recover')||(jack.hp<f.startHp&&contact===null)||contact===h.frame-2||(touch&&kind==='late'&&g.state.d.hp<heroStartHp&&!f.playerHit))) :
       (jack.atk?.id==='charge'&&((jack.state==='windup'&&jack.locked&&!f.windup)||(jack.state==='recover'&&!f.recover))))draw(...args);
    };
    f.startHp=jack.hp;
@@ -118,7 +133,9 @@ try {
     const row={frame:h.frame-began,sim:g.simTime,st:jack.state,t:jack.stT,atk:jack.atk?.id??null,locked:jack.locked,
      fired:jack.fired,pose:jack.pose.action,p:p.pos.toArray(),jack:jack.pos.toArray(),hp:g.state.d.hp,enemyHp:jack.hp,
      rolling:p.rolling,invuln:p.invuln,god:g.state.god,
-     playerAction:p.action,sprint:p.sprinting,target:g.combat.target?.kind??null,route};
+     playerAction:p.action,sprint:p.sprinting,target:g.combat.target?.kind??null,route,
+     ...(touch?{stick:g.input.stick.active,axes:[g.input.moveX,g.input.moveY],keyboard:g.input.keys.size,
+      attackHeld:g.hud.acts.attack?.ptr!==-1,heldSteer:g.hud.acts.attack?.root.classList.contains('steer')}:{} )};
     f.trace.push(row);
     if(jack.state==='windup'&&jack.atk?.id==='charge'&&jack.locked&&!f.windup){
      const o=jack.pos.clone();o.y+=jack.lift+jack.fly+Math.max(.6,jack.height*.8);
@@ -169,14 +186,21 @@ try {
        // The waypoints route around the right edge of the fixture. No actor
        // transform or velocity is overwritten after the start.
        if(clearMelee()&&p.pos.z>z+4.0){
-        move(0,0);g.input.press('attack');attack=h.frame;f.attack=row;
+        move(0,0);attack=h.frame;f.attack=row;
+        if(touch){f.command='attack';f.phase='touch-step';h.freeze();}
+        else g.input.press('attack');
        }else{
         while(route<points.length&&Math.hypot(points[route][0]-p.pos.x,points[route][1]-p.pos.z)<.42)route++;
         const [tx,tz]=points[route]??[jack.pos.x,jack.pos.z];
         move(tx-p.pos.x,tz-p.pos.z);
+        if(touch&&(h.frame-moveStart)%4===0){f.command='move';f.phase='touch-step';h.freeze();}
        }
-      }else if(h.frame===attack+1)g.input.release('attack');
+      }else if(h.frame===attack+2&&touch){f.command='release';f.phase='touch-step';h.freeze();}
+      else if(h.frame===attack+1&&!touch)g.input.release('attack');
       if(jack.hp<f.startHp&&contact===null){contact=h.frame;f.contact=row;}
+      if(touch&&kind==='late'&&g.state.d.hp<heroStartHp&&!f.playerHit){
+       f.playerHit=row;f.phase='player-hit';h.freeze();
+      }
       if(contact!==null&&h.frame>=contact+2){f.phase='end';h.freeze();}
       if(moveStart!==null&&h.frame-moveStart>125){f.phase='miss';h.freeze();}
      }
@@ -184,13 +208,14 @@ try {
    };
    h.thaw();
    return {kind,center,dims,hp:g.state.d.hp,firstMobHp:jack.hp};
-  },kind);
-  if(mode==='riposte'){
-   await page.waitForFunction(()=>['timeout','end','miss'].includes(window.coverFixture?.phase),null,{timeout:90000,polling:100});
+  },{kind,touch:mode==='touch'});
+  if(mode!=='cover'){
+   if(mode==='touch')await touchRiposte(page,ctx);
+   await page.waitForFunction(()=>['timeout','end','miss','player-hit'].includes(window.coverFixture?.phase),null,{timeout:90000,polling:100});
    await page.screenshot({path:join(out,kind+'-sword.jpg'),type:'jpeg',quality:91});
    receipt[kind]={start,...await page.evaluate(()=>coverFixture)};
-   const {phase,moveStart,attack,contact,recover,recoveryExit,sounds}=receipt[kind];
-   console.log(JSON.stringify({kind,phase,moveStart,attack,contact,recover,recoveryExit,sounds}));
+   const {phase,moveStart,attack,contact,recover,recoveryExit,playerHit,sounds}=receipt[kind];
+   console.log(JSON.stringify({kind,phase,moveStart,attack,contact,recover,recoveryExit,playerHit,sounds}));
    writeFileSync(join(out,'proof.json'),JSON.stringify(receipt,null,2)+'\n');
    await ctx.close();
    continue;
@@ -217,13 +242,23 @@ try {
   writeFileSync(join(out,'proof.json'),JSON.stringify(receipt,null,2)+'\n');
   await ctx.close();
  }
- if(mode==='riposte'){
+ if(mode!=='cover'){
   for(const r of [receipt.early,receipt.late]){
    assert(r.windup&&r.recover&&r.moveStart);
    assert(r.contacts.some(c=>c.cover),'No native charge collision with fixture');
    assert.equal(r.sounds.length,1);
    assert.equal(r.recover.hp,r.start.hp);
    assert(r.trace.every(t=>!t.god&&!t.rolling));
+   if(mode==='touch'){
+    assert(r.trace.some(t=>t.stick&&Math.hypot(...t.axes)>.9));
+    assert(r.trace.every(t=>!t.keyboard&&!t.heldSteer));
+    assert(r.pointerEvents.some(t=>t.type==='pointermove'&&t.element==='CANVAS'&&t.trusted));
+    if(r.attack){
+     assert(r.pointerEvents.some(t=>t.type==='pointerdown'&&t.act==='attack'&&t.trusted));
+     assert(r.pointerEvents.some(t=>t.type==='pointerup'&&t.act==='attack'&&t.trusted));
+     assert(r.trace.some(t=>t.attackHeld));
+    }else assert(r===receipt.late,'Early run must actually tap the sword');
+   }
   }
   assert(receipt.early.contact?.st==='recover','Early light swing did not hit during recovery');
   assert(receipt.early.contact?.playerAction==='sword1');
