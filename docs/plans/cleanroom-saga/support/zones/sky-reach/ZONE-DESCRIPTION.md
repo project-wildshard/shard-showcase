@@ -19,12 +19,16 @@ feel like flying from the first step to the last.
   through the cloud banks and hollowing out their keels, never by
   making it bigger. The mini dungeon sits physically inside the cube
   and overlaps nothing else.
-- **Use the whole cube, every corner of it.** Islands fill the full
-  500 × 500 m footprint and climb its full height, from the cloud sea
-  on the cube's floor to the storm at its top: big islands, small
-  ones, islands under islands. From any island the next is a jump, a
-  glide or a short board ride away. The gaps are narrow and deep;
+- **Use the whole cube, every corner of it.** It is filled with
+  floating islands of every size, from a rock you can stand on to one
+  that carries a town: think Breath of the Wild, Tears of the Kingdom
+  and Skies of Arcadia. They fill the full 500 × 500 m footprint and
+  its full height, from the cloud sea on the cube's floor to the storm
+  at its top, islands under islands. The gaps are narrow and deep;
   empty sky is never most of the view.
+- **Every way across:** rope bridges, glowing bridges, vehicles, sky
+  ships, ferries, moving platforms and gusts of wind. Getting from one
+  island to the next is half the fun.
 - **One open zone**, no fixed sides: go anywhere, see anything you can
   reach.
 - **Filled with islands**, each with its own look, life and danger:
