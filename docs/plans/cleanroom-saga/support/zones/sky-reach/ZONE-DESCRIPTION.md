@@ -78,8 +78,7 @@ boss are yours to design.
 
 ## Enemies
 
-The enemies should include wild sky goats that ram, drift rays that
-circle and dive, and gale wisps that push you toward the edge, and more.
+The enemies should include wild sky goats that ram, and more.
 
 - Many enemies, each with a rare variant. Elites are scattered around.
   Anything can be knocked off an edge, and so can you.
