@@ -28,6 +28,9 @@ Quiet, beautiful and unsettling, never gory, and epic all the way.
 
 ## In the zone
 
+To get a feeling for what to build, here are some ideas for the zone
+that you can start with:
+
 - A watermill hamlet, a hunting lodge, and a ranger's cabin whose back
   wall is the trophy wall.
 - **The hunt**: read tracks and blood, mind the wind, call the beast

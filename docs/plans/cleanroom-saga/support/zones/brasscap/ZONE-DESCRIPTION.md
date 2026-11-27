@@ -30,6 +30,9 @@ never filmed, from the first step to the last.
 
 ## In the zone
 
+To get a feeling for what to build, here are some ideas for the zone
+that you can start with:
+
 - **The train never stops.** The line sweeps in a long curve across
   the canyon floor between two tunnels in the canyon walls. The train
   runs into one and comes straight out of the other, round and round,

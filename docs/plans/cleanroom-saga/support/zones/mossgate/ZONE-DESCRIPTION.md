@@ -31,6 +31,9 @@ feel like a storybook come to life, from the first step to the last.
 
 ## In the zone
 
+To get a feeling for what to build, here are some ideas for the zone
+that you can start with:
+
 - The Hollow: a walled yard, a pond, a lamplighter, a pedlar who sells
   weapons, and no enemies.
 - **Light wakes the land.** Every brazier, lantern and beacon you

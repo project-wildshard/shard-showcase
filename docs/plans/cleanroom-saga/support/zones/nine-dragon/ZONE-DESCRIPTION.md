@@ -29,6 +29,9 @@ Crouching Tiger, Hidden Dragon. Nine street levels, nine dragons.
 
 ## In the zone
 
+To get a feeling for what to build, here are some ideas for the zone
+that you can start with:
+
 - A great well drops through the middle of every level, crossed by
   bridges, with nets to catch a fall.
 - **The wrist grapple**: hook any sign, mast or balcony; swing and zip.

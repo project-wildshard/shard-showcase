@@ -30,6 +30,9 @@ feel like flying from the first step to the last.
 
 ## In the zone
 
+To get a feeling for what to build, here are some ideas for the zone
+that you can start with:
+
 - A village isle with a sky dock, a fan-maker and a board-wright.
 - A hoverboard. Glowing bridges carry only the board; on foot you fall
   straight through them.

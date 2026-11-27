@@ -27,6 +27,9 @@ the planet. It should feel epic from the first step to the last.
 
 ## In the zone
 
+To get a feeling for what to build, here are some ideas for the zone
+that you can start with:
+
 - Caravans.
 - A whip-maker and a weapon shop.
 - Rideable camels.

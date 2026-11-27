@@ -30,6 +30,9 @@ like the best day of summer from the first step to the last.
 
 ## In the zone
 
+To get a feeling for what to build, here are some ideas for the zone
+that you can start with:
+
 - A pier with your sailboat, a castaway's camp and a trader's stall.
 - Swim anywhere, dive as deep as the sea goes, and never drown.
 - **The planet moves the sea.** As it swings low the tide drains away,

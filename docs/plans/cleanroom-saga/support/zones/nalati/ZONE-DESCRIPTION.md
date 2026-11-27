@@ -32,6 +32,9 @@ Valley. Study them, and make anyone who has been there recognise them.
 
 ## In the zone
 
+To get a feeling for what to build, here are some ideas for the zone
+that you can start with:
+
 - A nomad camp of white felt yurts, a corral and a ribbon pole.
 - **Horses are the heart**: break a wild stallion and name him; whistle
   and he comes at a gallop. Kokpar, races and a courier ride.
