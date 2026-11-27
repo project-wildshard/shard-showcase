@@ -484,3 +484,13 @@ for(const view of ["context","detail"]){
  assert.ok(markup.includes(`src="${path}"`));
  assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
 }
+
+assert.ok(ids.has("nov27-titan-overflow-block"));
+assert.ok(markup.includes('href="#nov27-titan-overflow-block"'));
+assert.ok(markup.includes('href="media/e12g-overflow-cargo-block.glb"'));
+assert.equal(readFileSync(new URL("media/e12g-overflow-cargo-block.glb",dist)).subarray(0,4).toString(),"glTF");
+for(const view of ["approach","lane"]){
+ const path=`media/nov27-titan-overflow-${view}.webp`;
+ assert.ok(markup.includes(`src="${path}"`));
+ assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
+}
