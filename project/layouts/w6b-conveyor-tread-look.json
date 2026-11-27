@@ -1,0 +1,31 @@
+{
+  "scope": "Three.js visual only; no gameplay, collision, crate motion, native integration or phone performance.",
+  "donorSha256": "1d0d5e0ac6fb0fd201daef538ed3e277824a2a0f6b9677968fe2f8dbb18debdb",
+  "threeRevision": "186",
+  "periodM": 1.32,
+  "proceduralTileBytes": 512,
+  "addedTriangles": 0,
+  "moved": [
+    {
+      "worldSpeedMps": -3,
+      "localSpeedMps": -3,
+      "phaseAfterOneTick": 0.03787878787878788,
+      "uvVerticesChecked": 4712,
+      "untouchedPrimitives": 7
+    },
+    {
+      "worldSpeedMps": 4,
+      "localSpeedMps": -4,
+      "phaseAfterOneTick": 0.050505050505050504,
+      "uvVerticesChecked": 4712,
+      "untouchedPrimitives": 7
+    },
+    {
+      "worldSpeedMps": -5,
+      "localSpeedMps": -5,
+      "phaseAfterOneTick": 0.06313131313131312,
+      "uvVerticesChecked": 4712,
+      "untouchedPrimitives": 7
+    }
+  ]
+}

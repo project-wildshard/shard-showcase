@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Station 1 | Moving tread review</title>
+<style>
+  *{box-sizing:border-box}html,body {margin:0;background:#17282f;color:#e6eeee;height:100%;overflow:hidden;font:16px system-ui,sans-serif}
+  canvas {display:block}header{position:absolute;top:3.2vh;left:3.2vw;pointer-events:none}
+  header span{letter-spacing:.15em;font-weight:700;color:#85c7bc;font-size:14px}
+  h1{font-size:clamp(24px,4.6vw,54px);margin:5px 0}
+  #status{position:absolute;left:3.2vw;bottom:4vh;letter-spacing:.045em;color:#dcdfcf}
+  body:not(.ready) #status::after{content:' · loading'}.legend{position:absolute;right:3.2vw;bottom:4vh;color:#a7bfbe}
+</style>
+<script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js","three/addons/":"./vendor/three/examples/jsm/"}}</script>
+<body>
+<header><span>WILDSHARD · W6b / STATION 1</span><h1>Three belts. Opposite middle.</h1></header>
+<div id="status"></div><div class="legend">TREAD MATERIAL TEST · NO PHYSICS</div>
+<script type="module">
+  import * as THREE from 'three'
+  import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js'
+  import {attachTread,placements} from './tread.mjs'
+  const q=new URLSearchParams(location.search)
+  const close=q.get('view')==='close'
+  const still=q.has('t')?Number(q.get('t')):null
+  document.querySelector('#status').textContent=still===null?'Live material preview':`Sample t = ${still.toFixed(3)} s`
+  const r=new THREE.WebGLRenderer({antialias:true,preserveDrawingBuffer:true})
+  r.setSize(innerWidth,innerHeight);r.setPixelRatio(1)
+  r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.38
+  document.body.prepend(r.domElement)
+  const s=new THREE.Scene()
+  s.background=new THREE.Color('#203139')
+  const camera=new THREE.PerspectiveCamera(close?37:40,innerWidth/innerHeight,.05,250)
+  if(close){camera.position.set(-83.8,4.12,-98.5);camera.lookAt(-85.55,.40,-103)}
+  else{camera.position.set(-84.55,9.3,-91.4);camera.lookAt(-89.6,.32,-102.4)}
+  s.add(new THREE.HemisphereLight(0xcddde1,0x596b62,2.9))
+  const sun=new THREE.DirectionalLight(0xffe1b0,2.6);sun.position.set(-81,12,-95);s.add(sun)
+  const loader=new GLTFLoader()
+  const [belt,arrows]=await Promise.all([
+    loader.loadAsync('./fixtures/wsc-prop-037-conveyor-module.glb'),
+    loader.loadAsync('./fixtures/wsc-prop-037-conveyor-direction.glb'),
+  ])
+  if(THREE.REVISION!=='186')throw new Error('Use Three r186')
+  const handles=placements.map(p=>{
+    const b=belt.scene.clone(true),a=arrows.scene.clone(true)
+    for(const o of [a,b]){o.position.set(p.x,p.y,p.z);o.rotation.y=p.yaw;s.add(o)}
+    return [attachTread(THREE,b),p.worldSpeed*Math.cos(p.yaw)]
+  })
+  const box=(w,h,d,p,color)=>{
+    const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshStandardMaterial({color,roughness:.92}))
+    m.position.set(...p);s.add(m)
+  }
+  box(20, .09,5,[-90,.045,-103],0x505455)
+  box(85,.2,60,[-90,-.11,-103],0x263033)
+  for(const z of [-101.05,-104.95])for(let x=-99;x<-81;x+=1.7)box(.87,.003,.043,[x,.091,z],0xad803d)
+  function show(t){
+    for(const [h,v] of handles)h.setTime(t,v)
+    r.render(s,camera)
+  }
+  const started=performance.now()
+  show(still??0)
+  window.reviewReady=true
+  document.body.classList.add('ready')
+  if(still===null)r.setAnimationLoop(()=>show((performance.now()-started)/1000))
+</script>
+</body>
+</html>
