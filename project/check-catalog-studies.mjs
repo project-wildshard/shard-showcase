@@ -494,3 +494,11 @@ for(const view of ["approach","lane"]){
  assert.ok(markup.includes(`src="${path}"`));
  assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
 }
+
+assert.ok(ids.has("nov27-w7b-zipline-timing"));
+assert.ok(markup.includes('href="#nov27-w7b-zipline-timing"'));
+for(const view of ["launch","landing"]){
+ const path=`media/nov27-w7b-short-${view}.webp`;
+ assert.ok(markup.includes(`src="${path}"`));
+ assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
+}
