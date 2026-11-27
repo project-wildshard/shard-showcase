@@ -1,4 +1,5 @@
 // Screen shipped Pallet Docks colliders, then run matched native ram replays.
+import {captureLive} from './corner-shoulder-live.mjs';
 import {captureShoulder} from './corner-shoulder.mjs';
 import {captureReadability} from './corner-readability.mjs';
 import {touchRiposte} from './touch-riposte.mjs';
@@ -10,7 +11,7 @@ import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
 const [root,dep,arg='3',only,side,study]=process.argv.slice(2);
-if(!root||!dep||(study&&(!side||!['readability','shoulder'].includes(study)))||(only&&!['inside','outside'].includes(only))||(side&&(!['left','right'].includes(side)||only!=='inside')))throw Error('Usage: node native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [PAIR_INDEX|-1] [inside|outside] [left|right touch route] [readability|shoulder]');
+if(!root||!dep||(study&&(!side||!['readability','shoulder','shoulder-live','shoulder-look'].includes(study)))||(only&&!['inside','outside'].includes(only))||(side&&(!['left','right'].includes(side)||only!=='inside')))throw Error('Usage: node native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [PAIR_INDEX|-1] [inside|outside] [left|right touch route] [readability|shoulder|shoulder-live|shoulder-look]');
 const index=Number(arg);
 const pin='3afcd880b397e9703e906a7e66b42e8447e59519';
 assert.equal(execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim(),pin);
@@ -99,8 +100,10 @@ try{
    const began=h.frame;
    const fixture=window.cornerFixture={phase:null,trace:[],collisions:[],sounds:[],chosen};
    if(side)window.coverFixture=fixture;
+   const live=study?.startsWith('shoulder-');
    const hook=study?await import(URL.createObjectURL(new Blob([moduleSource],{type:'text/javascript'}))):null;
    const read=study==='readability'?hook.installReadability(g,p,mob,fixture,h,draw,began):null;
+   if(live)hook.installLiveShoulder(g,p,mob,fixture,h,draw,began);
    if(study==='shoulder')hook.installShoulder(g,p,mob,fixture,h,draw,began);
    const at=side==='right'?1:-1;
    const forward=[Math.sin(bearing),Math.cos(bearing)], lateral=[forward[1]*at,-forward[0]*at];
@@ -131,6 +134,7 @@ try{
     return sfx(id,...args);
    };
    g.renderer.render=(...args)=>{
+    if(live&&attack!==null){fixture.nativeDraw(...args);return;}
     if((side&&((mob.hp<fixture.enemyHp&&!fixture.contact)||(fixture.contact&&h.frame-began===fixture.contact.frame+2)))||mob.atk?.id==='charge'&&((mob.state==='windup'&&mob.locked&&!fixture.lock)||(mob.state==='recover'&&!fixture.recovery)))draw(...args);
    };
    h.post=()=>{
@@ -180,17 +184,22 @@ try{
     if(movement===null){movement=r.frame;fixture.moveStart=r;}
     if(attack!==null){
      if(r.frame===attack+2){touchStep('release');return;}
+     if(study==='shoulder-look'&&r.frame===attack+12){touchStep('look-start');return;}
+     if(study==='shoulder-look'&&r.frame===attack+19){touchStep('look-end');return;}
+     if(live&&[6,19,36].includes(r.frame-attack)&&study==='shoulder-live'){
+      fixture.phase='evidence';h.freeze();return;
+     }
      if(study==='shoulder'&&!fixture.contact&&r.frame===attack+9){
       fixture.phase='evidence';h.freeze();return;
      }
      if(mob.hp<fixture.enemyHp&&!fixture.contact){
       fixture.contact=r;
-      if(study){fixture.phase='evidence';h.freeze();return;}
+      if(study&&study!=='shoulder-look'){fixture.phase='evidence';h.freeze();return;}
      }
      if(fixture.contact&&r.frame===fixture.contact.frame+2&&study==='shoulder'){
       fixture.phase='evidence';h.freeze();return;
      }
-     if(fixture.contact&&r.frame>=fixture.contact.frame+2){fixture.phase='end';h.freeze();}
+     if(fixture.contact&&(live?r.frame>=attack+39:r.frame>=fixture.contact.frame+2)){fixture.phase='end';h.freeze();}
     }
     if(r.frame-movement>130){fixture.phase='miss';h.freeze();return;}
     if(attack!==null)return;
@@ -213,13 +222,15 @@ try{
    const start={hp:g.state.d.hp,enemyHp:mob.hp,eye,chosen, ...(side?{side,points}:{} ),matchedCandidates:candidates.length};
    h.thaw();
    return {start};
-  },{setup,index,side,study,moduleSource:study?readFileSync(new URL(study==='shoulder'?'./corner-shoulder.mjs':'./corner-readability.mjs',import.meta.url),'utf8'):''});
+  },{setup,index,side,study,moduleSource:study?.startsWith('shoulder-')?['shoulder-envelope.mjs','corner-shoulder-live.mjs']
+   .map(f=>readFileSync(new URL('./'+f,import.meta.url),'utf8')).join('\n'):study?readFileSync(new URL(study==='shoulder'?'./corner-shoulder.mjs':'./corner-readability.mjs',import.meta.url),'utf8'):''});
   if(setup==='scan'){
    console.log(JSON.stringify(candidates.slice(0,14)));
    await ctx.close();continue;
   }
   if(side){
-   await touchRiposte(page,ctx,study==='shoulder'?()=>captureShoulder(page,out):study?()=>captureReadability(page,out):null);
+   await touchRiposte(page,ctx,study==='shoulder-live'?()=>captureLive(page,out):study==='shoulder'?()=>captureShoulder(page,out):
+    study==='readability'?()=>captureReadability(page,out):null);
    await page.screenshot({path:join(out,side+'-result.jpg'),type:'jpeg',quality:91});
    result[side]={start,...await page.evaluate(()=>cornerFixture)};
    writeFileSync(join(out,'proof.json'),JSON.stringify(result,null,2)+'\n');

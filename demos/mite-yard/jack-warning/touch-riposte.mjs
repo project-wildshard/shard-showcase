@@ -8,7 +8,7 @@ export async function touchRiposte(page,ctx,onEvidence=null){
  const send=(type,...touchPoints)=>cdp.send('Input.dispatchTouchEvent',{type,touchPoints});
  const point=(id,x,y)=>({id,x,y,radiusX:4,radiusY:4,force:.5});
  const stick=point(1,82,740);
- let moving=false,tapping=false;
+ let moving=false,tapping=false,looking=false;
  try{
   for(let steps=0;steps<40;steps++){
    await page.waitForFunction(()=>['touch-step','end','miss','timeout','player-hit','evidence'].includes(window.coverFixture?.phase),null,{timeout:90000,polling:35});
@@ -38,6 +38,14 @@ export async function touchRiposte(page,ctx,onEvidence=null){
    }else if(command==='attack'){
     if(moving){await send('touchEnd');moving=false;}
     await send('touchStart',point(2,...aim));tapping=true;
+   }else if(command==='look-start'){
+    assert(!moving&&!tapping&&!looking);
+    assert(await page.evaluate(()=>document.elementFromPoint(308,346)?.tagName==='CANVAS'));
+    await send('touchStart',point(3,308,346));looking=true;
+    await send('touchMove',point(3,326,346));
+   }else if(command==='look-end'){
+    assert(looking);
+    await send('touchEnd');looking=false;
    }else if(command==='release'){
     assert(tapping);
     await send('touchEnd');tapping=false;
@@ -46,7 +54,7 @@ export async function touchRiposte(page,ctx,onEvidence=null){
   }
   throw Error('Too many touch steps');
  }finally{
-  if(moving||tapping)await send('touchCancel');
+  if(moving||tapping||looking)await send('touchCancel');
   await cdp.detach();
  }
 }

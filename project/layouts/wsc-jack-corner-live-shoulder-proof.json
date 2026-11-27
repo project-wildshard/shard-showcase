@@ -1,0 +1,55 @@
+{
+  "referenceCommit": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "viewport": [
+    402,
+    874
+  ],
+  "simHz": 60,
+  "tap": 154,
+  "damage": 165,
+  "contactHeroHp": 204,
+  "contactJackHp": [
+    132,
+    119
+  ],
+  "drawSampleCount": 39,
+  "returnToStockFrame": 184,
+  "maxAddedStepMeters": 0.06651023313078303,
+  "contactWeight": 1,
+  "images": [
+    {
+      "frame": 160,
+      "stockSpanPx": 29.177061832583757,
+      "composedSpanPx": 27.829117878389265,
+      "positionDelta": 0.3379861582495506,
+      "coreDeltaPx": 1.4779288903810084e-12
+    },
+    {
+      "frame": 165,
+      "stockSpanPx": 25.419492200752437,
+      "composedSpanPx": 30.41139125862728,
+      "positionDelta": 0.5700877125495695,
+      "coreDeltaPx": 1.449228509952941e-12
+    },
+    {
+      "frame": 173,
+      "stockSpanPx": 97.18099982039148,
+      "composedSpanPx": 95.78644869293605,
+      "positionDelta": 0.4421299630052025,
+      "coreDeltaPx": 7.122459968594323e-13
+    },
+    {
+      "frame": 190,
+      "stockSpanPx": 20.910129693238353,
+      "composedSpanPx": 20.910129693238353,
+      "positionDelta": 0,
+      "coreDeltaPx": 0
+    }
+  ],
+  "manualLook": {
+    "start": 167,
+    "lastHeld": 173,
+    "stockBy": 175,
+    "staysReleased": true
+  }
+}
