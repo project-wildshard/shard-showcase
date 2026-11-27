@@ -100,8 +100,7 @@ story, the steps and the boss are yours to design.
 ## Enemies
 
 - Fill all three realms with enemies as you see fit: on the ground,
-  in the trees and in the caves and mines. Great brown bears define
-  it. No wolves.
+  in the trees and in the caves and mines.
 - Like an MMO, they come in combat zones by level, each with its own
   part of the forest: 1–3, 4–6, 7–9, 10–12 and 13–15.
 - Then level 15 endgame content: bosses and more worth coming back
