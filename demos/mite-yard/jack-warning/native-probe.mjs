@@ -1,3 +1,4 @@
+import {touchCounter, touchMarks} from './touch-counter.mjs';
 import {counterLens} from './counter-lens.mjs';
 // Read-only reference playtest. Run against a loopback build of the pinned
 // source. The fresh browser context will have a disposable dev game save.
@@ -9,8 +10,8 @@ import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
 const [root,dep,mode='counter',control='none'] = process.argv.slice(2);
 const ref='3afcd880b397e9703e906a7e66b42e8447e59519';
-if(!root||!dep||!['sidestep','counter','wash','gauge','framing','live-framing'].includes(mode)||!['none','look','sprint'].includes(control))
-  throw Error('Usage: node native-probe.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [sidestep|counter|wash|gauge|framing|live-framing] [none|look|sprint]');
+if(!root||!dep||!['sidestep','counter','wash','gauge','framing','live-framing'].includes(mode)||!['none','look','sprint','hud-drag','hud-tap','hud-cancel','canvas-drag'].includes(control))
+  throw Error('Usage: node native-probe.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [sidestep|counter|wash|gauge|framing|live-framing] [none|look|sprint|hud-drag|hud-tap|hud-cancel|canvas-drag]');
 if(execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim()!==ref)
   throw Error('Wrong reference checkout');
 const load=createRequire(join(dep,'package.json'));
@@ -19,6 +20,8 @@ const chromium=pw.chromium??pw.default?.chromium;
 const {default:shell}=await import(pathToFileURL(load.resolve('@sparticuz/chromium')).href);
 const out=mkdtempSync(join(tmpdir(),'jack-native-'));
 const onlySide=mode==='sidestep';
+const touchCase=control.startsWith('hud-')||control==='canvas-drag';
+if(touchCase&&mode!=='live-framing')throw Error('Touch control requires live-framing');
 const browser=await chromium.launch({executablePath:await shell.executablePath(),headless:true,args:shell.args});
 try {
  const ctx=await browser.newContext({viewport:{width:402,height:874},deviceScaleFactor:1,hasTouch:true,isMobile:true,serviceWorkers:'block'});
@@ -28,7 +31,7 @@ try {
  page.on('pageerror',e=>console.log('pageerror',String(e).slice(0,400)));
  await page.goto(`http://127.0.0.1:${Number(process.env.FABLE_PROBE_PORT??5174)}/?golden&dev&q=medium`,{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.game?.started&&game?.mobs?.list&&game.renderer.gl.info.render.frame>0,null,{timeout:90000,polling:250});
- const setup=await page.evaluate(({onlySide,mode,control})=>{
+ const setup=await page.evaluate(({onlySide,mode,control,touchCase,touchMarks})=>{
   const g=game,p=g.player,h=__golden;
   const pos=(x,y,z)=>p.pos.clone().set(x,y,z);
   const ground=(x,z)=>g.groundY(x,z,40);
@@ -134,6 +137,13 @@ try {
       return Math.atan2(-v.x,-v.z)/rad;
     };
     fixture.lensTrace=[];
+    fixture.pointerEvents=[];
+    if(touchCase)for(const kind of ['pointerdown','pointermove','pointerup','pointercancel','gotpointercapture','lostpointercapture'])
+      document.addEventListener(kind,e=>{
+        if(e.pointerType!=='touch')return;
+        fixture.pointerEvents.push({kind,id:e.pointerId,frame:h.frame,
+          trusted:e.isTrusted,x:e.clientX,y:e.clientY,act:e.target?.closest?.('[data-act]')?.dataset.act??null});
+      },true);
     if(control==='look')h.pre=()=>{
       const since=h.frame-(fixture.counterFrame??Infinity);
       const dx=[-2,-2,-12,12,2,12][since-20];
@@ -150,7 +160,11 @@ try {
       prior={q:cam.quaternion.clone(),fov:cam.fov};
       fixture.stockCamera=prior;
       const sprintIntent=g.input.down('sprint');
-      const looking=Math.abs(options.lookX??0)+Math.abs(options.lookY??0)>.0005||!!g.input.lookIds?.size;
+      const canvasLook=!!g.input.lookIds?.size;
+      const nativeDelta=Math.abs(options.lookX??0)+Math.abs(options.lookY??0)>.0005;
+      const hudSteer=Object.values(g.hud.acts).some(a=>a.ptr!==-1&&a.root.classList.contains('steer'));
+      const legacyLook=nativeDelta||canvasLook;
+      const looking=legacyLook||hudSteer;
       const hardStop=rig.autoFollow===false||rig.view!=='third';
       const override=p.sprinting||sprintIntent||!!options.flee||g.combat.target!==mob||looking||hardStop;
       if(p.action==='swordRise')hold=.12; else hold=Math.max(0,hold-dt);
@@ -180,7 +194,7 @@ try {
       }
       if(engaged||Number.isFinite(since)&&since<64)
         fixture.lensTrace.push({frame:h.frame,dt,since,...adj,engaged,
-          override,testLook,lookX:options.lookX,sprintIntent,sprinting:p.sprinting,rigYaw:rig.yaw,
+          override,testLook,lookX:options.lookX,lookY:options.lookY,canvasLook,hudSteer,legacyLook,holdingMove:g.input.holdingMove,sprintIntent,sprinting:p.sprinting,rigYaw:rig.yaw,
           stock,shown,immediateClearDelta,stockFov:prior.fov,shownFov:cam.fov});
       last={shown};
     };
@@ -262,7 +276,7 @@ try {
   const draw=g.renderer.render.bind(g.renderer);
   g.renderer.render=(...args)=>{
    const x=window.fixture,m=x.mob;
-   if((mode==='live-framing'&&x.counterPressed&&([9,15,20,24,29,35,44,53].includes(h.frame-x.counterFrame)))||
+   if((mode==='live-framing'&&x.counterPressed&&(touchCase?touchMarks:[9,15,20,24,29,35,44,53]).includes(h.frame-x.counterFrame))||
       (x.mode==='ramp'&&m.state==='windup'&&m.atk?.id==='charge'&&m.stT>.45)||
       (x.mode==='run'&&m.state==='recover')||(x.counterPressed&&m.hp<x.startEnemyHp))draw(...args);
   };
@@ -285,15 +299,16 @@ try {
       g.input.release('dodge');g.input.keys.delete('KeyW');
     }
     if(x.dodgePressed&&!x.counterPressed&&g.combat.counterT>0){
-      x.counterPressed=true;x.counterFrame=h.frame;g.input.press('attack');
-    } else if(x.counterPressed&&h.frame===x.counterFrame+1)g.input.release('attack');
+      x.counterPressed=true;x.counterFrame=h.frame;
+      if(touchCase){x.mode='touch-start';h.freeze();}else g.input.press('attack');
+    } else if(!touchCase&&x.counterPressed&&h.frame===x.counterFrame+1)g.input.release('attack');
     if(mode==='live-framing'&&x.counterPressed){
       const since=h.frame-x.counterFrame;
       if(control==='sprint'&&since===18){g.input.keys.add('KeyS');g.input.press('sprint');}
       if(control==='sprint'&&since===33){g.input.release('sprint');g.input.keys.delete('KeyS');}
       if(m.hp<x.startEnemyHp&&!x.contact)
         x.contact={since,...x.framing()};
-      if([9,15,20,24,29,35,44,53].includes(since)){
+      if((touchCase?touchMarks:[9,15,20,24,29,35,44,53]).includes(since)){
         x.mode='framing-frozen';h.freeze();
       }
     }
@@ -308,7 +323,7 @@ try {
     if(h.frame>590){x.mode='ended';h.freeze();}
   };
   return {site,hp:g.state.d.hp,enabled:g.combat.enabled,god:g.state.god,touch:g.input.isTouch,view:g.cameraRig.view};
- },{onlySide,mode,control});
+ },{onlySide,mode,control,touchCase,touchMarks});
  console.log('setup',JSON.stringify(setup));
  if(onlySide){
    await page.waitForFunction(()=>window.fixture?.mode==='windup-frozen',null,{timeout:90000,polling:200});
@@ -318,6 +333,9 @@ try {
    await page.waitForFunction(()=>window.fixture?.mode==='recover-frozen',null,{timeout:90000,polling:200});
    await page.keyboard.up('a');
    await page.screenshot({path:join(out,'recover.jpg'),type:'jpeg',quality:89});
+ }else if(touchCase){
+   const evidence=await touchCounter(page,ctx,control,out);
+   writeFileSync(join(out,'touch-counter.json'),JSON.stringify(evidence,null,2)+'\n');
  }else if(mode==='live-framing'){
    const samples=[];
    for(const since of [9,15,20,24,29,35,44,53]){
