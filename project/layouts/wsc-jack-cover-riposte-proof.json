@@ -1,0 +1,46 @@
+{
+  "reference": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "viewport": [
+    402,
+    874
+  ],
+  "startDelayLateFrames": 46,
+  "early": {
+    "moveStartFrame": 136,
+    "crashFrame": 166,
+    "swordInputFrame": 175,
+    "swordContactFrame": 186,
+    "swordContactAfterCrashSeconds": 0.333,
+    "jackStateAtContact": "recover",
+    "rookHp": [
+      204,
+      204
+    ],
+    "jackHp": [
+      132,
+      119
+    ],
+    "fixtureRayHits": 1
+  },
+  "late": {
+    "moveStartFrame": 212,
+    "crashFrame": 166,
+    "swordInputFrame": 253,
+    "swordContactFrame": 264,
+    "swordContactAfterCrashSeconds": 1.633,
+    "jackStateAtContact": "chase",
+    "rookHp": [
+      204,
+      204
+    ],
+    "jackHp": [
+      132,
+      117
+    ],
+    "fixtureRayHits": 1,
+    "recoveryExit": {
+      "frame": 233,
+      "jackHp": 132
+    }
+  }
+}

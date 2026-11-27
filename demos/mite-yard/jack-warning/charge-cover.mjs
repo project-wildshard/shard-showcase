@@ -9,8 +9,9 @@ import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
 
 const pin='3afcd880b397e9703e906a7e66b42e8447e59519';
-const [root,dep]=process.argv.slice(2);
-if(!root||!dep)throw Error('Usage: node charge-cover.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT');
+const [root,dep,mode='cover']=process.argv.slice(2);
+if(!['cover','riposte'].includes(mode))throw Error('Expected cover or riposte');
+if(!root||!dep)throw Error('Usage: node charge-cover.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [cover|riposte]');
 assert.equal(execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim(),pin);
 const load=createRequire(join(dep,'package.json'));
 const pw=await import(pathToFileURL(load.resolve('playwright')).href);
@@ -21,7 +22,7 @@ console.log('Private scratch:',out);
 const browser=await chromium.launch({executablePath:await shell.executablePath(),headless:true,args:shell.args});
 try {
  const receipt={pin};
- for(const kind of ['open','cover']){
+ for(const kind of mode==='riposte'?['early','late']:['open','cover']){
   const ctx=await browser.newContext({viewport:{width:402,height:874},deviceScaleFactor:1,hasTouch:true,isMobile:true,serviceWorkers:'block'});
   await ctx.addInitScript({content:readFileSync(join(root,'tools/golden/init.js'),'utf8')});
   await ctx.route('**/__charge_cover_three__/*',async route=>{
@@ -58,7 +59,7 @@ try {
    // Height is intentionally below the attack-choice sightline but across the ram ray.
    const dims=[2.4,1.0,1.1],center=[x,boxY+.5,z+4.8];
    let block=null;
-   if(kind==='cover'){
+   if(kind!=='open'){
     block=g.physics.addBox(...center,...dims.map(d=>d/2));
     const group=new three.Group();
     group.position.set(...center);
@@ -87,13 +88,37 @@ try {
     return baseSfx(id,...args);
    };
    const began=h.frame;
-   g.renderer.render=(...args)=>{
-    if(jack.atk?.id==='charge'&&((jack.state==='windup'&&jack.locked&&!f.windup)||(jack.state==='recover'&&!f.recover)))draw(...args);
+   const isRiposte=kind==='early'||kind==='late';
+   let recovery=null,moveStart=null,attack=null,contact=null,route=0;
+   const keys=['KeyW','KeyA','KeyS','KeyD'];
+   const fwd=p.pos.clone();
+   const move=(dx,dz)=>{
+    for(const k of keys)g.input.keys.delete(k);
+    g.input.release('sprint');
+    if(Math.hypot(dx,dz)<.001)return;
+    g.cameraRig.forward(fwd);
+    const turn=Math.atan2(-fwd.z*dx+fwd.x*dz,fwd.x*dx+fwd.z*dz);
+    const k=(Math.round(turn/(Math.PI/4))+8)%8;
+    for(const key of [[keys[0]],[keys[0],keys[3]],[keys[3]],[keys[2],keys[3]],[keys[2]],
+       [keys[2],keys[1]],[keys[1]],[keys[0],keys[1]]][k])g.input.keys.add(key);
+    g.input.press('sprint');
    };
+   const points=[[x+1.95,z+1.55],[x+2.15,z+4.2],[x+1.96,z+5.45]];
+   const clearMelee=()=>{
+    const a=p.pos.clone();a.y+=.8;
+    const d=jack.pos.clone();d.y+=.8;d.sub(a);const dist=d.length();d.multiplyScalar(1/dist);
+    return dist<3.55&&!baseRay(a,d,Math.max(0,dist-.65));
+   };
+   g.renderer.render=(...args)=>{
+    if(isRiposte ? (f.windup&&((!f.recover&&jack.state==='recover')||(jack.hp<f.startHp&&contact===null)||contact===h.frame-2)) :
+      (jack.atk?.id==='charge'&&((jack.state==='windup'&&jack.locked&&!f.windup)||(jack.state==='recover'&&!f.recover))))draw(...args);
+   };
+   f.startHp=jack.hp;
    h.post=()=>{
     const row={frame:h.frame-began,sim:g.simTime,st:jack.state,t:jack.stT,atk:jack.atk?.id??null,locked:jack.locked,
      fired:jack.fired,pose:jack.pose.action,p:p.pos.toArray(),jack:jack.pos.toArray(),hp:g.state.d.hp,enemyHp:jack.hp,
-     rolling:p.rolling,invuln:p.invuln,god:g.state.god};
+     rolling:p.rolling,invuln:p.invuln,god:g.state.god,
+     playerAction:p.action,sprint:p.sprinting,target:g.combat.target?.kind??null,route};
     f.trace.push(row);
     if(jack.state==='windup'&&jack.atk?.id==='charge'&&jack.locked&&!f.windup){
      const o=jack.pos.clone();o.y+=jack.lift+jack.fly+Math.max(.6,jack.height*.8);
@@ -124,18 +149,52 @@ try {
        jack:jack.pos.toArray(),camera:g.camera.position.toArray(),angle:g.camera.quaternion.toArray(),
        clock:tele.u.uT.value};
      };
-     f.phase='windup';f.windup=row;h.freeze();
+     f.windup=row;
+     if(!isRiposte){f.phase='windup';h.freeze();}
     }else if(jack.state==='recover'&&jack.atk?.id==='charge'&&!f.recover){
-     f.phase='recover';f.recover=row;h.freeze();
-    }else if(f.recover&&jack.state!=='recover'){
+     f.recover=row;recovery=h.frame;
+     if(!isRiposte){f.phase='recover';h.freeze();}
+    }else if(!isRiposte&&f.recover&&jack.state!=='recover'){
      f.phase='end';h.freeze();
     }else if(row.frame>480){
      f.phase='timeout';h.freeze();
+    }
+    if(isRiposte&&f.windup){
+     if(recovery!==null&&!f.recoveryExit&&jack.state!=='recover')f.recoveryExit=row;
+     if(moveStart===null&&(kind==='early'||(recovery!==null&&h.frame-recovery>=46))){
+      moveStart=h.frame;f.moveStart=row;
+     }
+     if(moveStart!==null){
+      if(attack===null){
+       // The waypoints route around the right edge of the fixture. No actor
+       // transform or velocity is overwritten after the start.
+       if(clearMelee()&&p.pos.z>z+4.0){
+        move(0,0);g.input.press('attack');attack=h.frame;f.attack=row;
+       }else{
+        while(route<points.length&&Math.hypot(points[route][0]-p.pos.x,points[route][1]-p.pos.z)<.42)route++;
+        const [tx,tz]=points[route]??[jack.pos.x,jack.pos.z];
+        move(tx-p.pos.x,tz-p.pos.z);
+       }
+      }else if(h.frame===attack+1)g.input.release('attack');
+      if(jack.hp<f.startHp&&contact===null){contact=h.frame;f.contact=row;}
+      if(contact!==null&&h.frame>=contact+2){f.phase='end';h.freeze();}
+      if(moveStart!==null&&h.frame-moveStart>125){f.phase='miss';h.freeze();}
+     }
     }
    };
    h.thaw();
    return {kind,center,dims,hp:g.state.d.hp,firstMobHp:jack.hp};
   },kind);
+  if(mode==='riposte'){
+   await page.waitForFunction(()=>['timeout','end','miss'].includes(window.coverFixture?.phase),null,{timeout:90000,polling:100});
+   await page.screenshot({path:join(out,kind+'-sword.jpg'),type:'jpeg',quality:91});
+   receipt[kind]={start,...await page.evaluate(()=>coverFixture)};
+   const {phase,moveStart,attack,contact,recover,recoveryExit,sounds}=receipt[kind];
+   console.log(JSON.stringify({kind,phase,moveStart,attack,contact,recover,recoveryExit,sounds}));
+   writeFileSync(join(out,'proof.json'),JSON.stringify(receipt,null,2)+'\n');
+   await ctx.close();
+   continue;
+  }
   for(const phase of ['windup','recover','end']){
    await page.waitForFunction(()=>['timeout','windup','recover','end'].includes(window.coverFixture?.phase),null,{timeout:90000,polling:100});
    const reached=await page.evaluate(()=>coverFixture.phase);
@@ -158,6 +217,18 @@ try {
   writeFileSync(join(out,'proof.json'),JSON.stringify(receipt,null,2)+'\n');
   await ctx.close();
  }
+ if(mode==='riposte'){
+  for(const r of [receipt.early,receipt.late]){
+   assert(r.windup&&r.recover&&r.moveStart);
+   assert(r.contacts.some(c=>c.cover),'No native charge collision with fixture');
+   assert.equal(r.sounds.length,1);
+   assert.equal(r.recover.hp,r.start.hp);
+   assert(r.trace.every(t=>!t.god&&!t.rolling));
+  }
+  assert(receipt.early.contact?.st==='recover','Early light swing did not hit during recovery');
+  assert(receipt.early.contact?.playerAction==='sword1');
+  assert(receipt.late.recoveryExit&&receipt.late.recoveryExit.enemyHp===receipt.late.start.firstMobHp,'Late move damaged Jack before recovery finished');
+ }else{
  for(const run of [receipt.open,receipt.cover]){
   assert.equal(run.seen.highBlocked,false,'Stock high line of sight was blocked');
   assert(run.trace.some(r=>r.st==='active'&&r.atk==='charge'));
@@ -174,4 +245,5 @@ try {
  assert.equal(receipt.cover.recover.fired,2);
  for(const {start,windup,recover,contacts,trace} of [receipt.open,receipt.cover])
   console.log(JSON.stringify({case:start.kind,hp:[start.hp,recover.hp],windup:windup.frame,recover:recover.frame,firstHit:contacts.find(c=>c.hit),active:trace.filter(r=>r.st==='active').length,recoverFrames:trace.filter(r=>r.st==='recover').length}));
+ }
 }finally{await browser.close();}
