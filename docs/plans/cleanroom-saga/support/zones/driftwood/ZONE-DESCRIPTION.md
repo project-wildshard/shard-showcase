@@ -52,6 +52,8 @@ that you can start with:
   shallows, beach it on any shore and dive off the bow. Whistle and it
   sails to you. Fit it out as you level: a bigger sail, a lantern, a
   diving bell.
+- **One pirate ship roams the ocean.** Sail alongside, jump and climb
+  aboard, and fight the pirates on her decks.
 - **The open sea is a show:** wind you can see on the water, big
   rolling swells, dolphins and flying fish racing the bow, and storms
   you watch come in from far off, with waterspouts and lightning.
