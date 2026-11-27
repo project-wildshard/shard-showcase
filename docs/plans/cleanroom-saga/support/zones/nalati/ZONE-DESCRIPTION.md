@@ -7,6 +7,10 @@ Colossus, and the films Mongol and Nomad: The Warrior. Grass in wind
 waves to the horizon, white felt yurts, a wild herd thundering past,
 storms you watch coming from anywhere. A land lived on horseback.
 
+**It must look and feel strongly inspired by the real places:** the
+Nalati Grasslands, the Sky Grasslands, Snow Lotus Valley and Panlong
+Valley. Study them, and make anyone who has been there recognise them.
+
 ## Shape
 
 - It is a real zone of a bigger MMO world: a grid of 500 × 500 m zones
