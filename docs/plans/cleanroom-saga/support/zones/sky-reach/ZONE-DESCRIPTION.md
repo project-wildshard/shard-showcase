@@ -4,9 +4,9 @@ A single hand-made MMO zone, played alone: grassy islands drifting
 over an endless sea of cloud, at a golden hour that never ends. Think
 Hayao Miyazaki's Castle in the Sky, Skies of Arcadia, the sky islands
 of The Legend of Zelda: Tears of the Kingdom, and Sky: Children of the
-Light. Rope bridges and glowing bridges between the islands, a storm
-crowning the top of the sky, and a long, long fall under every edge.
-It should feel like flying from the first step to the last.
+Light. Rope bridges and glowing bridges between the islands, and a
+long, long fall under every edge. It should feel like flying from the
+first step to the last.
 
 ## Shape
 
@@ -21,8 +21,8 @@ cube too.
   floating islands of every size, from a rock you can stand on to one
   that carries a town: think Breath of the Wild, Tears of the Kingdom
   and Skies of Arcadia. They fill the full 500 × 500 m footprint and
-  its full height, from the cloud sea on the cube's floor to the storm
-  at its top, islands under islands. The gaps are narrow and deep;
+  its full height, from the cloud sea on the cube's floor to its top,
+  islands under islands. The gaps are narrow and deep;
   empty sky is never most of the view.
 - **Every way across:** rope bridges, glowing bridges, vehicles, sky
   ships, ferries, moving platforms and gusts of wind. Getting from one
@@ -30,7 +30,7 @@ cube too.
 - **One open zone**, no fixed sides: go anywhere, see anything you can
   reach.
 - **Filled with islands**, each with its own look, life and danger:
-  calm around road level, wilder and stormier the higher you climb.
+  calm around road level, wilder the higher you climb.
 - **Five or more epic set pieces**: moments a player remembers and
   wants to show someone.
 - Each set piece must work as a ten-second clip, filmed on a phone in
@@ -57,14 +57,9 @@ that you can start with:
 
 ## Main quest
 
-An epic quest line in many steps that climbs the whole sky to the top
-of the storm and ends in a final boss fight worth the journey. The
-story, the steps and the boss are yours to design.
-
-- The final boss lives in the storm that crowns the sky, in view from
-  the first step. It throws you off the top, and the fight goes on in
-  free fall down the sky and back up on the updrafts. It still fits
-  the cube.
+An epic quest line in many steps that takes you across the whole sky
+and ends in an epic final boss fight. The story, the steps and the
+boss are yours to design.
 
 ## Look
 
