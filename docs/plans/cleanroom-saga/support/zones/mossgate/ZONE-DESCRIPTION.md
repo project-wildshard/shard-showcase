@@ -1,11 +1,12 @@
 # Mossgate Hollow
 
-A single hand-made MMO zone, played alone. A green, mossy hollow in
-the hills at first light, with a little walled yard at its heart. The
-braziers of the Hollow have gone cold, and out on the Barrow Downs the
-Warden stirs in its ring of stones. Relight the Hollow, learn the old
-rite that put the Warden down, and carry it across the meadow, the
-thicket, the bog and the quarry to the barrow.
+A single hand-made MMO zone, played alone: a green, mossy hollow in
+the hills at first light, and the wild country all around it. Think
+Kena: Bridge of Spirits, Ni no Kuni and My Neighbor Totoro. Mist in
+the low ground, flowers in the long grass, standing stones on the
+downs, and cold braziers waiting to be lit. Every flame you light
+brings the morning on, and the land wakes up around you. It should
+feel like a storybook come to life, from the first step to the last.
 
 ## Shape
 
@@ -14,106 +15,68 @@ thicket, the bog and the quarry to the barrow.
   entrances, one at the middle of each edge. Here the roads just lead
   off the edge; nothing beyond needs to exist.
 - **Everything lives inside one 500 × 500 × 500 m cube**, with the
-  road level at its middle height. Fit more in with hills, ridges,
-  the quarry pit and places underground, never by making it bigger.
-- The mini dungeon and the Warden's barrow are interiors reached by
-  stairs or a doorway of stones, but each one physically sits inside
-  the cube, under the land, and no two spaces overlap.
-- **The Hollow is peaceful**: no enemies. Six regions spread out
-  around it, each its own place with its own creatures, getting
-  tougher the further you go. Fingerposts at every fork name the way.
-- **The zone wakes as you play.** It starts at first light, with mist
-  lying in the low ground, and each brazier you light brings the
-  morning on. Later, days turn, soft rain comes and goes, and the
-  wisps shine brighter at night.
+  road level at its middle height. Fit more in by going down into
+  barrows, the quarry pit and drowned places under the bog, and up
+  onto the ridge, never by making it bigger. The mini dungeon sits
+  physically inside the cube and overlaps nothing else.
+- **One open zone**, no fixed sides: go anywhere, see anything you can
+  reach.
+- **Filled with wild places** around a peaceful hollow: meadow,
+  thicket, bog, quarry, ridge and barrow downs, each with its own
+  look, life and danger.
+- **Five or more epic set pieces**: moments a player remembers and
+  wants to show someone.
+- Each set piece must work as a ten-second clip, filmed on a phone in
+  portrait, that makes someone ask "what game is that?"
 
-## The Hollow
+## In the zone
 
-- **The yard**: a walled yard with the Lamplighter's hut, three cold
-  braziers, a training ground with dummies, a garden, and the north
-  gate, barred since the Warden woke. Beside it, a pond with stepping
-  stones, reeds and a hut. Its people include **the Lamplighter**, who
-  starts the main quest; **the Pond Hermit**, who was there when the
-  Warden was put down the last time; and a pedlar who sells weapons.
-- **Twelve panes** of old lamp-glass, two hidden in every region, and
-  **old words**, four lore signs that tell the story: sets to finish.
-- Secrets, vistas, chests (an old chest, a ledge cache, the cairn's
-  chest) and collectibles all over.
+- The Hollow: a walled yard, a pond, a lamplighter, a pedlar who sells
+  weapons, and no enemies.
+- **Light wakes the land.** Every brazier, lantern and beacon you
+  light stays lit, and the mist rolls back from it, flowers open and
+  the morning spreads out from it across the land.
+- Thistledown as big as a parasol grows on the hilltops: grab a seed
+  head, jump, and drift off on the wind across the whole hollow.
+- Win a boar over and it's yours to ride: a headlong, snorting charge
+  through hedges and over the old stone walls.
+- Secrets, vistas, caches and collectibles all over.
+- Levels 1 to 10, levelled by fighting.
+- A mini dungeon.
 
-## The wilds
+## Main quest
 
-- **Levels 1 to 10**, levelled by fighting, one region at a time,
-  with an elite guarding the way on.
-- **Mossling Meadow**: flowers and long grass, the Mossling Den, and
-  the Standing Stones where the rite is cut.
-- **Greyback's Thicket**: dense woods, a clearing, and the Sow Wallow.
-- **The Bog**: reeds and black water, Wisp Mere, and below it **the
-  Sunken Shrine**, the mini dungeon: flooded steps, a rising-water
-  puzzle, a drowned chest, and the Drowned Lantern at the bottom.
-- **The Old Quarry**: a pit of cut stone, the Spoil Cut and a timber
-  bridge over it, and the crew's camp, lost to grey blobs. **The
-  Quarrymaster**, whose crew fled, waits at its rim.
-- **Lookout Ridge**: the high ground, and an old beacon.
-- **The Barrow Downs**: pale grass, mounds, the Old Cairn, and on the
-  crown of the Downs the ring of stones that opens into **the
-  Warden's barrow**, the boss arena.
+An epic quest line in many steps that carries the light out to the
+barrows on the downs and ends in a final boss fight worth the journey.
+The story, the steps and the boss are yours to design.
 
-## Main quest: Relight the Hollow
-
-At least these steps:
-
-1. Talk to the Lamplighter: light the three braziers of the Hollow.
-2. Ask the Pond Hermit how the Warden was put down before.
-3. Open the north gate and read the rite at the Standing Stones.
-4. Pass Greyback's Thicket, then go down into the Bog's Sunken Shrine.
-5. Light the beacon on Lookout Ridge.
-6. Find the Quarrymaster, put Gritmaw down and take back the quarry.
-7. Walk the ring on the Barrow Downs and go down into the barrow.
-8. Beat the Barrow Warden, then tell the Lamplighter.
+- The final boss fights the light. Every blow snuffs out flames you
+  lit across the zone and the morning drains away while you fight.
+  Win, and the sun comes up over the whole zone at once.
 
 ## Look
 
-The art direction is stylised low-poly toon in an early-morning
-palette: soft greens and mossy stone, dew and mist in the hollows,
-warm first light on the hilltops, pale skies turning gold, and fire
-that really burns in the braziers. Clean shapes, friendly and
-storybook, cosy rather than grim, with water you can see.
+- Stylised low-poly toon, friendly and storybook: cosy, never grim.
+- Soft greens and mossy stone, dew and mist in the hollows, warm first
+  light on the hilltops, and fire that really burns.
+- Days turn, soft rain comes and goes, and wisps glow at night.
+- Ni no Kuni as the inspiration.
 
 ## Weapons
 
-At least these:
-
-- Melee: the moss blade, a woodsman's axe, a quarterstaff.
-- Ranged: a shortbow, a sling.
+- Melee: a moss blade, a woodsman's axe, a quarterstaff and more.
+- Ranged: a shortbow, a sling and more.
+- Any weapon can take a flame from a brazier: it burns back brambles,
+  lights dark places and sends wisps and crawlers scattering.
 
 ## Enemies
 
-At least these:
+- Many enemies, each with a rare variant, from mosslings to barrow
+  crawlers. Elites are scattered around.
+- A final boss at the end of the main quest, at level 10.
 
-- One common kind per region: mosslings (L1–3), small mossy creatures
-  in packs; boars and sows (L3–5) that ram; bog wisps and mere wisps
-  (L5–7) that orbit and dive; grey blobs (L6–8) that crowd the quarry;
-  barrow crawlers (L8–10) that boil out of the mounds.
-- Rare variants among the commons.
-- Elites: **Greyback** (L5), a great boar who charges out of the
-  thicket; the Drowned Lantern (L7), a great wisp in the shrine; and
-  **Gritmaw** (L8), a stone golem who raises a ring of grit before
-  each strike.
-- The final boss: **the Barrow Warden** (L10), keeper of the hollow,
-  a stone giant of the barrow. It fights in three phases, calls up
-  crawlers, and has an intro cutscene.
+## Quests
 
-## Quests and economy
-
-- Side quests, at least: the mossling den, the Sow Wallow, the lights
-  on the mere, the Sunken Shrine's chest, the quarry camp, the Pond
-  Hermit's pests, the old chest and the ledge cache.
-- Happenings, each signalled first: a mossling raid on the garden, a
-  boar stampede, wisps rising from the mere at dusk.
-- Coins, and hide, tusks and meat from boars. The pedlar sells
-  weapons and upgrades unlocked by level. Loot, chests and a pack.
-
-## HUD
-
-Mobile friendly, built for a phone held in portrait, with all the
-normal MMO features.
+- Side quests.
+- Happenings.
+- A bounty board by the Hollow's gate.

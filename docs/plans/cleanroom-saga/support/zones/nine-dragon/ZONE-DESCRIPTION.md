@@ -1,119 +1,80 @@
 # Nine Dragon Stack (九龍疊城)
 
-A single hand-made MMO zone, played alone. One impossibly dense
-megablock fills the whole zone, from a flooded sump at the bottom to an
-antenna crown at the top: built like the Kowloon Walled City, climbing
-like Chongqing, where a monorail runs through a tower. Chinese,
-cyberpunk, futuristic. Its nine street levels are the nine dragons, and
-every one feels like the ground. You wake on Lantern Square, halfway
-up the sky.
+A single hand-made MMO zone, played alone: one impossibly dense
+megablock filling the zone from black water to an antenna crown in the
+clouds. Built like the Kowloon Walled City, climbing like Chongqing,
+where a monorail runs through a tower. Chinese, cyberpunk, futuristic.
+Think Ghost in the Shell, Cyberpunk 2077, Sekiro's grapple and
+Crouching Tiger, Hidden Dragon. Nine street levels, nine dragons.
 
 ## Shape
 
 - It is a real zone of a bigger MMO world: a grid of 500 × 500 m zones
   joined by roads. So it is exactly 500 × 500 m, with four road
-  entrances, one at the middle of each edge, opening onto Old Street.
-  Here the roads just lead off the edge; nothing beyond needs to exist.
+  entrances, one at the middle of each edge. Here the roads just lead
+  off the edge; nothing beyond needs to exist.
 - **Everything lives inside one 500 × 500 × 500 m cube**, with the
-  road level (Old Street) at its middle height. The city fills the
-  cube, half below the road and half above. Never bigger.
-- **The Yamen Well** drops down the centre through every level, crossed
-  by bridges. Four smaller light wells hold lift towers. Nets catch a
-  fall one level down; nobody dies from falling out of the zone.
-- **Every level feels like the ground**: a real street slab, LED "sky
-  screens" under the level above playing a painted mountain scroll,
-  and fog at every edge. Only the wells and overlooks show the drop.
-- Interiors (teahouses, flats, hotpot halls) each sit physically
-  inside the cube; no two overlap, and no portal leads outside it.
-- **Lantern Square and Terrace Row are peaceful**, under the gangs'
-  truce. It gets worse the deeper you go, then the higher.
-- Blue hour into night, drizzle on wet stone; only the Crown sees the
-  real dawn. Typhoon signal No. 8 blows through in sheets of rain.
-  Some enemies only come out at night.
+  road level at its middle height. The city fills it, half below the
+  road and half above; fit more in by going up and down its levels,
+  never by making it bigger. The mini dungeon sits physically inside
+  the cube and overlaps nothing else.
+- **One open zone**, no fixed sides: go anywhere, up or down.
+- **Nine street levels, sump to crown**, each with its own look, life
+  and danger, and each feels like the ground: a real street, a sky
+  screen overhead, mist at the edges. Only the wells show the drop.
+- **Five or more epic set pieces**: moments a player remembers and
+  wants to show someone.
+- Each set piece must work as a ten-second clip, filmed on a phone in
+  portrait, that makes someone ask "what game is that?"
 
-## The nine levels, bottom to top
+## In the zone
 
-1. **The Sump**: walkways over black water, pump halls, sampans, eels.
-2. **Shelter Market**: air-raid tunnels turned hotpot halls.
-3. **Rail Cut**: the monorail bored through rock and through a tower.
-4. **Old Street**: black alleys, dentists, the old magistrate's yamen.
-5. **Terrace Row**: stepped terraces, endless stair-streets, teahouses.
-6. **Lantern Square**, the hub: a paifang gate, mahjong, a shrine.
-7. **Cable Deck**: skybridges and gondolas between towers.
-8. **Antenna Forest**: rooftop shanties, laundry lines, pigeon coops.
-9. **The Crown**: rooftop gardens, a VTOL pad, cargo drones.
+- A great well drops through the middle of every level, crossed by
+  bridges, with nets to catch a fall.
+- **The wrist grapple**: hook any sign, mast or balcony; swing and zip.
+- **The freefall**: dive the whole well through nine levels of neon
+  mist, pop an oil-paper umbrella at the last second, glide out.
+- **The monorail** runs through a tower: ride in it, or fight on its
+  roof. Lifts, cable cars and a rubbish chute to the bottom.
+- **Typhoon**: shutters slam, signs swing, the wind takes your glide.
+- You wake on a peaceful square halfway up the sky. It gets worse the
+  deeper you go, then the higher.
+- Teahouses, mahjong, a stray cat; secrets and caches on every level.
+- Levels 1 to 20, levelled by fighting.
+- A mini dungeon.
 
-## Getting around
+## Main quest
 
-Stair-streets, bridges, public lifts, zip lines on laundry cables, an
-oil-paper umbrella to glide down a well, cable cars, the monorail, and
-a rubbish chute to the Sump. Above all, the **Fei Zhua**, a wrist
-grapple: hook brass dragon hooks on signs, masts and balconies to swing
-and zip, and in a fight, yank an enemy toward you or off a ledge.
-Peaceful things: mahjong, noodles, tea, a stray cat, pigeon racing,
-grapple and glide time trials, and secrets on every level.
+An epic quest line in many steps, down through all nine levels to the
+black water and back up to the roof, ending in a final boss fight worth
+the journey. The story, the steps and the boss are yours to design.
 
-## Main quest: Nine Red Envelopes
-
-Deliver a red envelope to the shrine on every level; each one opens
-that level's lift stop. At least these steps, each marked on the map:
-
-1. Grandma Hui at the Square's shrine hands you the first envelope.
-2. Down through Terrace Row, Old Street (where the Dentist rules the
-   alleys), Rail Cut and Shelter Market (the Hotpot King's kitchen).
-3. Down to the Sump, where the jiangshi sleep.
-4. Back up past the Square to the Cable Deck (the Sky-Screen Warden)
-   and the Antenna Forest.
-5. The ninth envelope, on the Crown, wakes the Well Dragon.
-6. Beat **the Well Dragon**, the cableway gone rogue: a vast serpent of
-   gondolas and neon coiling up the Yamen Well. Hook on, ride it up
-   level by level, and finish it on the Crown's VTOL pad.
-
-## Weapons
-
-At least these, plus the Fei Zhua:
-
-- Melee: the **Neon Jian**, a glowing straight sword; a guandao.
-- Ranged: a repeating crossbow, a firework launcher.
-
-## Enemies
-
-**Levels 1 to 20**, one band per level of the city: down from the
-Square to the Sump, then up to the Crown. At least these:
-
-- Common kinds: Lantern Tong runners (L1–3); Tong enforcers in
-  lacquered armour and neon visors (L4–6); paper-crane drones that
-  call the Tong (L7–9); Tong heavies (L10–12); jiangshi, cyborg
-  hopping vampires in Qing robes, with a glowing talisman you can hook
-  off to stun them (L13–15, and the lower levels at night); sky-screen
-  wardens and their drones (L16–19).
-- Rare variants among the commons, and night variants of each.
-- Elites: the Dentist (L6), the Hotpot King (L12), the Hopping
-  Magistrate, an ancient jiangshi (L15), the Sky-Screen Warden (L18).
-- The final boss: **the Well Dragon** (L20), a raid-style fight in
-  phases up the Well, with an intro cutscene.
-
-## Quests and economy
-
-- People on every level, with side quests, at least: Uncle Bao's
-  noodle deliveries, the teahouse master's lost mahjong set, the
-  pigeon keeper's race, the Sump ferryman, a home for the stray cat.
-- A bounty wall on the Square pays for each enemy kind, elite and the
-  boss, with a joke title the first time.
-- The currency is Stack dollars. A weaponsmith in the Old Street alleys
-  sells weapons unlocked by level; a herbalist and a tailor on the
-  Square. Loot, chests and a pack to carry it in.
+- **The final boss is the city's own spine.** From the first step you
+  glimpse something vast and neon moving in the well. The fight climbs
+  it bottom to top, riding it, and ends under the real sky.
 
 ## Look
 
-A Song-dynasty ruled-line ink painting come alive at blue hour:
-ruler-straight ink lines on every built edge, cool blue-grey washes,
-blue-green minerals, cinnabar and gold leaf on roofs and lanterns, silk
-mist between the levels. Neon is the only saturated light; it bleeds
-into the mist and streaks across wet stone. Chinese signs everywhere.
-Pale silk at the Crown, gold ink on indigo at the bottom.
+- A Song-dynasty ruled-line ink painting come alive at blue hour: ink
+  on every edge, blue-grey washes, cinnabar and gold leaf, silk mist.
+- Neon is the only saturated light; it bleeds into the mist and
+  streaks across wet stone. Drizzle, and Chinese signs everywhere.
+- Ghost in the Shell's Hong Kong, painted in ink, as the inspiration.
 
-## HUD
+## Weapons
 
-Mobile friendly, built for a phone held in portrait, with all the
-normal MMO features.
+- Melee: a glowing neon straight sword, a guandao and more.
+- Ranged: a repeating crossbow, a firework launcher and more.
+- The grapple also fights: yank foes off ledges, rip vampire talismans.
+
+## Enemies
+
+- Many enemies, each with a rare variant. Elites are scattered around.
+- Neon-visored gangs, paper-crane drones, cyborg hopping vampires.
+- A final boss at the end of the main quest, at level 20.
+
+## Quests
+
+- Side quests from people on every level.
+- Happenings: a blackout that kills the neon, a lantern dragon dance.
+- A bounty wall on the square.
