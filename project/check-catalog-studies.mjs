@@ -456,3 +456,13 @@ for(const a of ["entry","pit"]){
  assert.ok(markup.includes(`src="${path}"`));
  assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
 }
+
+const feedBin=data.assets.find(a=>a.id==="WSC-PROP-079");
+assert.equal(feedBin.related_study?.href,"#nov27-w10a-paddock-feed");
+assert.ok(ids.has("nov27-w10a-paddock-feed"));
+assert.ok(markup.includes('href="media/w10a-paddock-feed-bin.glb"'));
+for(const n of ["feed","pair"]){
+ const path=`media/nov27-w10a-paddock-${n}.webp`;
+ assert.ok(markup.includes(`src="${path}"`));
+ assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
+}
