@@ -190,7 +190,34 @@ for y in (-.60,0,.60):
         assert ray is None,(y,h,ray)
         clear_aperture.append([y,h])
 place('closed','R2 west end static round bulkhead',(-7.63,0,SILL),90)
-place('plate','Exact R3 tread for joining proof',(11.9,0,PLATE))
+r3_floor=place('plate','Exact R3 tread for joining proof',(11.9,0,PLATE))
+# The opt-in fixture uses the existing central floor pieces and the exact donor meshes.
+# It does not export, duplicate or change any shipped GLB.
+if os.environ.get('WSC_ROOM2_BENCH') == '1':
+    # The sealed branch swaps the round donor over the same centerline at the documented sill.
+    seal=place('closed','East closed bulkhead control',(7.43,0,SILL),-90)
+    dg=bpy.context.evaluated_depsgraph_get()
+    collision=[]
+    for group,objects in [
+        ('floor',[o for o in grid if ':3 |' in o.name]),
+        ('threshold',threshold),('landing',r3_floor),('open',doors),('sealed',seal),
+    ]:
+        vertices,indices=[],[]
+        for obj in sorted(objects,key=lambda o:o.name):
+            e=obj.evaluated_get(dg)
+            m=e.to_mesh()
+            m.calc_loop_triangles()
+            n=len(vertices)//3
+            for v in m.vertices:
+                q=e.matrix_world@v.co
+                vertices.extend(round(x,6) for x in (160.5+q.x,q.z-50,-64-q.y))
+            for face in m.loop_triangles:
+                indices.extend(n+i for i in face.vertices)
+            e.to_mesh_clear()
+        assert indices, group
+        collision.append(dict(role=group,vertices=vertices,triangles=indices))
+    (out/'room2-collision.json').write_text(json.dumps(collision,separators=(',',':'))+'\n')
+    raise SystemExit(0)
 for n,d,T in room3_backdrop:
     o=bpy.data.objects.new("Actual Room 3 reference | "+n,d)
     scene.collection.objects.link(o)
@@ -263,6 +290,25 @@ def render(n,pos,target,ortho,lens):
     scene.render.filepath=str(out/(n+'.jpg'))
     bpy.ops.render.render(write_still=True)
 
+
+walk=out/'room2-walk.json'
+if walk.is_file():
+    proof=json.loads(walk.read_text())
+    scene.cycles.samples=38
+    # Dots are verification overlays, not a proposed floor treatment.
+    for sample in proof['review_paths']:
+        state=sample['mode']
+        entries=[]
+        for i,(x,h,z) in enumerate(sample['trace']):
+            if i%3:continue
+            entries.append(box('Native feet sample',(x-160.5,-64-z,h+50+.03),
+                (.095,.09,.035),cyan if state=='open' else orange,.008))
+        if state=='sealed':
+            for o in doors:o.hide_render=True
+            place('closed','East closed bulkhead control',(7.43,0,SILL),-90)
+        render('room2-native-'+state,(2.6,-.67,SILL+1.70),(8.24,.1,SILL+1.48),False,29)
+        for o in entries:o.hide_render=True
+    raise SystemExit(0)
 
 render('room-eye',(-5.90,-.50,SILL+1.70),(7.43,.1,2.5),False,28)
 for o in ceiling:o.hide_render=True
