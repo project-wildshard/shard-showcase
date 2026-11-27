@@ -1,0 +1,137 @@
+{
+  "archive": "Raynos/project-wildshard-singleplayer@ce1cf050b3:art/showcase-template/round-5-blockout/layout.js",
+  "archiveBlob": "5d019a020361c47187ec889f2bc947f82cd9f98a",
+  "at": [
+    -233,
+    0,
+    90
+  ],
+  "rock": {
+    "x": -206,
+    "z": 44,
+    "h": 16,
+    "rx": 23,
+    "rz": 29.4,
+    "caveN": [
+      -200,
+      14
+    ],
+    "caveS": [
+      -200,
+      74
+    ],
+    "ladder": [
+      -216,
+      15.5
+    ]
+  },
+  "scope": "Local flat witness only; clearances and concealment are sampled, no level install.",
+  "screen": {
+    "file": "w9-rock-cache-outcrop.glb",
+    "sha256": "cc2695c5147a1902cba2c05495902ffedad0f0027b256f083681181d3d5563c5",
+    "bytes": 77936,
+    "triangles": 1400
+  },
+  "chest": {
+    "file": "wsc-prop-049-cache-chest-opening.glb",
+    "sha256": "57ceefd1b18329532ba060cc84e9ec74067f17b76ee02da0a9c90a61e591f278",
+    "yawDegrees": 0
+  },
+  "clipSamplesWithoutScreenContact": 57,
+  "closedLidSightRaysBlocked": 78,
+  "approachSightRaysClear": 27,
+  "minOutcropVertexDistanceFromSouthCaveMouthM": 30.632,
+  "promptLocalXYZ": [
+    0,
+    0.88,
+    0.64
+  ],
+  "engine": "0.1.44",
+  "geometrySha256": "1fea42683928c7fdf6994890848094ed9021a7542254edfbe741e951e56a683d",
+  "promptRadius": 2.5,
+  "stockPlayer": {
+    "approaches": [
+      {
+        "screen": true,
+        "start": [
+          -0.6,
+          4.9
+        ],
+        "ticks": 46,
+        "promptBefore": false,
+        "promptAfter": true,
+        "withinRange": true,
+        "airborne": 0,
+        "feet": [
+          -0.599999,
+          0.019968,
+          1.838809
+        ],
+        "retreat": {
+          "ticks": 60,
+          "promptAfter": false,
+          "airborne": 0,
+          "feet": [
+            -0.599999,
+            0.019977,
+            5.667857
+          ]
+        }
+      },
+      {
+        "screen": true,
+        "start": [
+          0,
+          4.9
+        ],
+        "ticks": 46,
+        "promptBefore": false,
+        "promptAfter": true,
+        "withinRange": true,
+        "airborne": 0,
+        "feet": [
+          -0.000001,
+          0.02,
+          1.838808
+        ],
+        "retreat": {
+          "ticks": 60,
+          "promptAfter": false,
+          "airborne": 0,
+          "feet": [
+            -0.000001,
+            0.019947,
+            5.667857
+          ]
+        }
+      },
+      {
+        "screen": true,
+        "start": [
+          0.6,
+          4.9
+        ],
+        "ticks": 46,
+        "promptBefore": false,
+        "promptAfter": true,
+        "withinRange": true,
+        "airborne": 0,
+        "feet": [
+          0.599999,
+          0.019981,
+          1.838809
+        ],
+        "retreat": {
+          "ticks": 60,
+          "promptAfter": false,
+          "airborne": 0,
+          "feet": [
+            0.599999,
+            0.02,
+            5.667857
+          ]
+        }
+      }
+    ]
+  }
+}

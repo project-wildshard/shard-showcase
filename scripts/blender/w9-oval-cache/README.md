@@ -32,3 +32,12 @@ WSC_NODE_PROJECT=/path/to/pinned-engine-deps node --experimental-transform-types
   scripts/blender/w9-oval-cache/check.mjs "$d/art.json" "$d/geo.json" "$d/proof.json"
 cmp "$d/proof.json" project/layouts/w9-oval-cache-screen-proof.json
 ```
+
+## Behind the Rock variant
+
+Run the same recipe with `--rock` after the layout path in the extractor.
+Compare the new proof to `project/layouts/w9-rock-cache-outcrop-proof.json`
+and the new GLB to the tracked `w9-rock-cache-outcrop.glb`. The fractured
+shale shelves tuck the same chest into its Round 5 position west of the
+Rock. The south lane stays open. These are local, flat-ground tests; the
+render's distant ridge, path and grass are not exported.
