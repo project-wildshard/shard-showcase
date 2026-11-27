@@ -23,4 +23,6 @@ The manual drag can move the tell off screen. That is intentional: the filter do
 - `project/layouts/wsc-jack-retreat-camera-proof.json`: measured results and camera transforms.
 - `blender -b -t 6 --factory-startup --python-exit-code 1 --python demos/mite-yard/retreat-camera/render.py -- /tmp/jack-camera`: two original comparison stills at 750 ms. Existing Wildshard Jack model with a minimal stage and player marker. Not game captures.
 
+- `python demos/mite-yard/retreat-camera/contact-sheet.py /tmp/jack-camera /tmp/jack-camera-proof.jpg`: labeled comparison, with both full portrait frames.
+
 No Fable or Wildshard runtime changes, new actor, gameplay or deployment.

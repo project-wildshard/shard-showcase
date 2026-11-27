@@ -19,7 +19,7 @@ for name,x,title,by,count,color in [
 ]:
     d.rounded_rectangle((x-2,157,x+403,1085),radius=10,fill='#1c2b37',outline='#415461',width=1)
     word((x+13,171),title,17,color,True)
-    im.paste(Image.open(p/f'{name}.png').convert('RGB'),(x,204))
+    im.paste(Image.open(p/f'{name}.png').convert('RGB').resize((348,757),Image.Resampling.LANCZOS),(x+27,204))
     # Put the readout over a clean caption band, above the footer.
     d.rectangle((x,961,x+401,1084),fill='#182530')
     word((x+13,976),count,30,color,True)
