@@ -2,11 +2,11 @@
 
 A single hand-made MMO zone, played alone: grassy islands drifting
 over an endless sea of cloud, at a golden hour that never ends. Think
-Hayao Miyazaki's Castle in the Sky, the sky islands of The Legend of
-Zelda: Tears of the Kingdom, and Sky: Children of the Light. Rope
-bridges and glowing bridges between the islands, a storm crowning the
-top of the sky, and a long, long fall under every edge. It should
-feel like flying from the first step to the last.
+Hayao Miyazaki's Castle in the Sky, Skies of Arcadia, the sky islands
+of The Legend of Zelda: Tears of the Kingdom, and Sky: Children of the
+Light. Rope bridges and glowing bridges between the islands, a storm
+crowning the top of the sky, and a long, long fall under every edge.
+It should feel like flying from the first step to the last.
 
 ## Shape
 
