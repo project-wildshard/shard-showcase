@@ -1,0 +1,40 @@
+{
+  "scope": "Optional print on unchanged C2 cloth and room GLB; original chevron node hidden only to show alternate print.",
+  "donorSha256": "90cff3a5ab2706987585417d898fe8fe0b42823f9be01c9dd34196cb9f8dfbd5",
+  "sha256": "6d9ebe8b3dfdcc12ca120e06f8e03166b0f6eae1fee652b13af6276a69ee4900",
+  "bytes": 74032,
+  "triangles": 3347,
+  "materials": 3,
+  "textures": 0,
+  "hideNode": "13 Cloth banner.002",
+  "heightMinM": 9.19,
+  "riseM": 4,
+  "minVerticalDeckSeparationM": 5.19,
+  "clearanceFromClothM": [
+    0.038239,
+    0.080729
+  ],
+  "cameraLocalBlender": [
+    [
+      -8.2,
+      -2.5,
+      1.7
+    ],
+    [
+      0,
+      -2.1,
+      1.7
+    ],
+    [
+      8.2,
+      -2.5,
+      1.7
+    ]
+  ],
+  "visibleGeometrySamples": [
+    3347,
+    3347,
+    3347
+  ],
+  "samplesPerCamera": 3347
+}
