@@ -1003,6 +1003,13 @@
 </div>
 <p><a href="media/e2-pack-divider-crown.glb">Crown and seam GLB</a> (146,616 B, 1,896 tris) · <a href="https://github.com/project-wildshard/shard-showcase/blob/f766bb7a1c001ff20d3ec38ef760dfbcef743bfd/scripts/blender/e2-pack-divider/README.md">Editable source and ray checks</a>. No live collision, perception, charge behavior, or map placement.</p>
 </section>
+<section id="nov27-jack-retreat-camera">
+<p class="eyebrow">Combat · Third-person portrait · Camera study</p>
+<h2>Keep the charge tell in view while stepping back</h2>
+<p>On a straight backstep, the original camera turned far enough to lose the Pallet Jack’s tell anchor in 583 ms, before its 950 ms wind-up ended. A bounded camera rule kept that anchor in the frame for all 57 sampled frames in both straight and diagonal tests. Sprinting away and manual camera drag still worked.</p>
+<div class="grid compare"><figure><a href="media/nov27-jack-retreat-camera.webp"><img src="media/nov27-jack-retreat-camera.webp" width="900" height="1160" alt="Two staged portrait views at 750 milliseconds: original camera without Jack in frame, candidate camera with Jack and the lane facing the player" loading="lazy" decoding="async" style="height:auto"></a><figcaption>750 ms · The same scripted backstep through two measured camera transforms. The cyan disc marks the player; this is not a game capture.</figcaption></figure></div>
+<p><a href="https://github.com/project-wildshard/shard-showcase/blob/255ff07080f2d3302c4d2ab714da83e416f2a4c7/project/journal/2026-11-27-jack-retreat-camera.md">Candidate source and test results</a> · <a href="#nov22-pallet-jack">Existing Jack study</a>. Open-space test only, not integrated or tested on a phone.</p>
+</section>
 <section id="nov27-portrait-sword-contact">
 <p class="eyebrow">Combat · Third-person portrait · Contact cue</p>
 <h2>A sword hit that leaves the target visible</h2>
@@ -1013,7 +1020,7 @@
 </div>
 <p><a href="https://github.com/project-wildshard/shard-showcase/blob/8ae89dd5fbb736ace820a436aaea4a887b69aa09/project/journal/2026-11-27-portrait-sword-contact.md">Effect source and checks</a> · <a href="#nov22-pallet-jack">Existing Jack study</a>. Staged Blender stills. No new actor, attack animation or playable build.</p>
 </section>
-<section id="nov22-pallet-jack"><p><a href="#nov27-portrait-sword-contact">See the portrait sword-contact cue.</a></p><p><a href="#nov26-e2-charge-stop">See the separate lane-end cover.</a></p><p><a href="#nov26-e2-pack-divider">See the 3 m pack divider fixture</a>.</p><p><a href="#nov24-e2-lane-warning">See the separate static ground warning proposal</a>.</p><p class="eyebrow">WSC-ACTOR-002 · Static study</p><h2>Pallet Jack</h2><p><a href="#asset-WSC-ACTOR-002">Catalogue entry</a> · <a href="media/wsc-actor-002-pallet-jack-study.glb">Model GLB</a></p><div class="grid compare"><figure><a href="media/nov22-pallet-jack-proof.webp"><img src="media/nov22-pallet-jack-proof.webp" width="1397" height="755" alt="Pallet Jack studio and Band 2 scene views" loading="lazy" decoding="async" style="height:auto"></a><figcaption><strong>Pallet Jack studio and Band 2 scene views</strong> · 864 triangles, beneath the 900-triangle target. No rig or behavior.</figcaption></figure></div></section>
+<section id="nov22-pallet-jack"><p><a href="#nov27-jack-retreat-camera">See the retreat camera comparison.</a></p><p><a href="#nov27-portrait-sword-contact">See the portrait sword-contact cue.</a></p><p><a href="#nov26-e2-charge-stop">See the separate lane-end cover.</a></p><p><a href="#nov26-e2-pack-divider">See the 3 m pack divider fixture</a>.</p><p><a href="#nov24-e2-lane-warning">See the separate static ground warning proposal</a>.</p><p class="eyebrow">WSC-ACTOR-002 · Static study</p><h2>Pallet Jack</h2><p><a href="#asset-WSC-ACTOR-002">Catalogue entry</a> · <a href="media/wsc-actor-002-pallet-jack-study.glb">Model GLB</a></p><div class="grid compare"><figure><a href="media/nov22-pallet-jack-proof.webp"><img src="media/nov22-pallet-jack-proof.webp" width="1397" height="755" alt="Pallet Jack studio and Band 2 scene views" loading="lazy" decoding="async" style="height:auto"></a><figcaption><strong>Pallet Jack studio and Band 2 scene views</strong> · 864 triangles, beneath the 900-triangle target. No rig or behavior.</figcaption></figure></div></section>
 <section id="nov26-east-threshold-direction">
 <p class="eyebrow">West to East · W0a · Route signage</p>
 <h2>Into the yard, back to Brasswick</h2>
