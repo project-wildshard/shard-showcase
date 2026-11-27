@@ -3,9 +3,10 @@
 A single hand-made MMO zone, played alone: a deep boreal forest valley
 so real you can smell the pine, and a folk tale after dark. Think Red
 Dead Redemption 2's hunting, The Witcher 3's monsters and the old
-forests of Princess Mononoke. You are a hunter. By night come fog and
-lanterns, and folk things walk the old trees. Quiet, beautiful and
-unsettling, never gory, and epic from the first step to the last.
+forests of Princess Mononoke. Photorealistic from top to bottom. You
+are a hunter. By night come fog and lanterns, and folk things walk the
+old trees. Quiet, beautiful and unsettling, never gory, and epic from
+the first step to the last.
 
 ## Shape
 
@@ -22,17 +23,14 @@ the cube too.
   the tallest trees at its top, trees above trees on every slope.
   Clearings are small and the forest closes in; open sky is never most
   of the view.
-- **Two forests, equal in size:** night is another forest. When the
-  sun goes down the same valley turns into a different place, just as
-  large, dense, varied and worth exploring as the day, with its own
-  places, people, quests, secrets and set pieces.
-- **Every way across:** game trails, the river by canoe, rope arrows
-  up the tall trunks, runs along the canopy and the root caves
-  underneath, with ziplines and rope bridges as extras.
+- **Every way across:** game trails, the rivers by canoe, climbs
+  along the canopy and the root caves underneath, with ziplines and
+  rope bridges as extras.
 - **One open zone**, no fixed sides: go anywhere, see anything you can
   reach.
-- **Filled with places**, by day and by night, each with its own look,
-  game and danger.
+- **A real forest, full of forest things:** ponds, beaver dams,
+  rivers, hills, forest houses, mills, hunters' camps and more, each
+  with its own look, game and danger, by day and by night.
 - **Five or more epic set pieces**: moments a player remembers and
   wants to show someone.
 - Each set piece must work as a ten-second clip, filmed on a phone in
@@ -52,8 +50,6 @@ that you can start with:
 - **Light is your weapon at night.** Fog rolls in, the paths move and
   the folk things walk; every lantern you relight pushes the night
   back.
-- Places to find, for example a watermill hamlet, a hunting lodge, a
-  ranger's cabin and more.
 - Secrets, vistas, caches and collectibles all over, by day and by
   night.
 - Levels 1 to 15, levelled by hunting.
@@ -64,12 +60,10 @@ that you can start with:
 ## Features
 
 - Hunting and tracking.
-- A real bow: draw, drop and wind.
+- Ranged only: crossbows, rifles and pistols.
 - Trophies and a trophy wall.
 - Contracts and barter, no money.
 - Climbing the trees and running the canopy.
-- Night as a second forest: the same valley turned into another
-  world after dark, as large as the day one.
 
 ## Main quest
 
@@ -79,6 +73,8 @@ only at night. The story, the steps and the boss are yours to design.
 
 ## Look
 
+- Photorealistic graphics, first and last: this zone should look
+  like a real forest.
 - Photoreal boreal forest: Scots pine, birch, giant firs, granite
   crags, a still pond. Natural colour by day, eerie folklore by night.
 - Real light: low sun through the trunks, dawn fog, soft rain, blue
@@ -87,15 +83,9 @@ only at night. The story, the steps and the boss are yours to design.
 
 ## Weapons
 
-- Ranged: a horn-backed hunting bow, the heart of it all, whose held
-  full draw slows the world so you can read the wind on the arrow; a
-  lever rifle loaded with cast silver for what walks at night; and
-  more.
-- Melee: a bearded axe, swung or thrown; a boar spear whose crossbar
-  stops a charge dead on its point; and more, for when it gets too
-  close.
-- The bow moves you too: a rope arrow into a tall trunk and you climb
-  it, a lantern arrow into the fog and it holds the dark back.
+- **Ranged only; there is no melee.** A crossbow, a scoped hunting
+  rifle, a lever rifle loaded with silver for what walks at night, a
+  pistol, and more: every one real, heavy and loud.
 
 ## Enemies
 
