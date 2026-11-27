@@ -31,3 +31,14 @@ elven tree city in the crowns of the giant trees (the Guild Wars 2
 tree-city vibe), and faded out the night, lantern and folklore
 content. That retires "the final boss walks only at night", the one
 boss hint we'd kept, and the night-only dungeon.
+
+(The commit before this one carried only the journal note: the
+rewrite itself failed to save. This one carries it.) Jake added that
+the ground floor is the human forest (watermill, sawmill, hunting
+lodge, rangers' cabins) and the trees above are the elven realm, and
+asked for a colossal mana tree with a dungeon inside it, like
+Ocarina of Time's Great Deku Tree.
+Then a third realm: a large cave network and dwarves in the mines
+below, so three stacked zones (humans, elves, dwarves), one mini
+dungeon each (the mana tree, a lost deep mine, the fire lookout), and
+combat zones 1–3 to 13–15 with level 15 endgame content.
