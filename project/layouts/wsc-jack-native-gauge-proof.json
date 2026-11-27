@@ -1,0 +1,139 @@
+{
+  "reference": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "viewport": [
+    402,
+    874
+  ],
+  "scope": "Same frozen original Fable gameplay frame, local renderer controls only. Matched camera, state and HP. All variants use body mix capped to .22; world point lights, spark heads, state timers, FX/exposure and simulation unchanged. Not a screen-luminance or phone test.",
+  "hp": [
+    204,
+    85
+  ],
+  "roi": [
+    0,
+    267,
+    176,
+    693
+  ],
+  "bright": "R at least 235 and G at least 196 in the fixed ROI",
+  "nearWhite": "R, G and B at least 220 in the fixed ROI",
+  "compact": {
+    "worldScale": 0.58,
+    "goldAlphaScale": 0.65,
+    "darkTrackRetained": true
+  },
+  "cases": [
+    {
+      "mode": "base",
+      "bright": 12003,
+      "nearWhite": 1674,
+      "tagCounts": {
+        "other": 23,
+        "robot.break": 34,
+        "hit.blade": 34,
+        "break-ring": 2,
+        "counter-ring": 0
+      },
+      "ribbonRow": 8,
+      "ribbonVertices": 116
+    },
+    {
+      "mode": "break",
+      "bright": 11951,
+      "nearWhite": 1674,
+      "tagCounts": {
+        "other": 23,
+        "robot.break": 34,
+        "hit.blade": 34,
+        "break-ring": 2,
+        "counter-ring": 0
+      },
+      "ribbonRow": 8,
+      "ribbonVertices": 116
+    },
+    {
+      "mode": "blade",
+      "bright": 10739,
+      "nearWhite": 1568,
+      "tagCounts": {
+        "other": 23,
+        "robot.break": 34,
+        "hit.blade": 34,
+        "break-ring": 2,
+        "counter-ring": 0
+      },
+      "ribbonRow": 8,
+      "ribbonVertices": 116
+    },
+    {
+      "mode": "ring",
+      "bright": 12003,
+      "nearWhite": 1674,
+      "tagCounts": {
+        "other": 23,
+        "robot.break": 34,
+        "hit.blade": 34,
+        "break-ring": 2,
+        "counter-ring": 0
+      },
+      "ribbonRow": 8,
+      "ribbonVertices": 116
+    },
+    {
+      "mode": "all",
+      "bright": 10737,
+      "nearWhite": 1568,
+      "tagCounts": {
+        "other": 23,
+        "robot.break": 34,
+        "hit.blade": 34,
+        "break-ring": 2,
+        "counter-ring": 0
+      },
+      "ribbonRow": 8,
+      "ribbonVertices": 116
+    },
+    {
+      "mode": "gauge",
+      "bright": 6802,
+      "nearWhite": 158,
+      "tagCounts": {
+        "other": 23,
+        "robot.break": 34,
+        "hit.blade": 34,
+        "break-ring": 2,
+        "counter-ring": 0
+      },
+      "ribbonRow": 8,
+      "ribbonVertices": 116
+    },
+    {
+      "mode": "trail",
+      "bright": 9228,
+      "nearWhite": 1673,
+      "tagCounts": {
+        "other": 23,
+        "robot.break": 34,
+        "hit.blade": 34,
+        "break-ring": 2,
+        "counter-ring": 0
+      },
+      "ribbonRow": 2,
+      "ribbonVertices": 148
+    },
+    {
+      "mode": "compact",
+      "bright": 7974,
+      "nearWhite": 158,
+      "tagCounts": {
+        "other": 23,
+        "robot.break": 34,
+        "hit.blade": 34,
+        "break-ring": 2,
+        "counter-ring": 0
+      },
+      "ribbonRow": 8,
+      "ribbonVertices": 116
+    }
+  ]
+}

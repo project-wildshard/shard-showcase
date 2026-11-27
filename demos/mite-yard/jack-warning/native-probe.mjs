@@ -8,8 +8,8 @@ import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
 const [root,dep,mode='counter'] = process.argv.slice(2);
 const ref='3afcd880b397e9703e906a7e66b42e8447e59519';
-if(!root||!dep||!['sidestep','counter','wash'].includes(mode))
-  throw Error('Usage: node native-probe.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [sidestep|counter|wash]');
+if(!root||!dep||!['sidestep','counter','wash','gauge'].includes(mode))
+  throw Error('Usage: node native-probe.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [sidestep|counter|wash|gauge]');
 if(execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim()!==ref)
   throw Error('Wrong reference checkout');
 const load=createRequire(join(dep,'package.json'));
@@ -26,7 +26,7 @@ try {
  page.on('pageerror',e=>console.log('pageerror',String(e).slice(0,400)));
  await page.goto('http://127.0.0.1:5174/?golden&dev&q=medium',{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.game?.started&&game?.mobs?.list&&game.renderer.gl.info.render.frame>0,null,{timeout:90000,polling:250});
- const setup=await page.evaluate(onlySide=>{
+ const setup=await page.evaluate(({onlySide,mode})=>{
   const g=game,p=g.player,h=__golden;
   const pos=(x,y,z)=>p.pos.clone().set(x,y,z);
   const ground=(x,z)=>g.groundY(x,z,40);
@@ -57,6 +57,72 @@ try {
   if(!mob)throw new Error('No real Pallet Jack');
   window.fixture={mob,trace:[],mode:onlySide?'ramp':'counter',dodgePressed:false,counterPressed:false,startEnemyHp:mob.hp};
   document.querySelector('#dev')?.style.setProperty('display','none');
+  if(mode==='gauge'){
+    const fx=g.fx, labels=['other','robot.break','hit.blade','break-ring','counter-ring'];
+    const pools=[fx.add,fx.alpha].map(pool=>{
+      const mask=new Uint8Array(pool.life.length);
+      if(!Array.isArray(pool.all))throw Error('Effect pool is not compactable');
+      pool.all.push(mask);
+      return {pool,mask};
+    });
+    let tag=0;
+    function scope(id,fun){const prior=tag;tag=id;try{return fun()}finally{tag=prior}}
+    const play=fx.play.bind(fx);
+    fx.play=(name,...args)=>scope(Math.max(0,labels.indexOf(name)),()=>play(name,...args));
+    const ring=fx.ring.bind(fx);
+    fx.ring=(p,r,c,life,...rest)=>{
+      const id=c===0xffd27a&&life===.45?3:c===0xffffff&&r===3&&life===.25?4:tag;
+      return scope(id,()=>ring(p,r,c,life,...rest));
+    };
+    const emit=fx.emit.bind(fx);
+    fx.emit=(...args)=>{
+      const start=pools.map(({pool})=>pool.n);
+      const result=emit(...args);
+      pools.forEach(({pool,mask},i)=>mask.fill(tag,start[i],pool.n));
+      return result;
+    };
+    let original=null;
+    const rb=fx.ribbons;
+    let baseRibbon=null;
+    const rbRows={gauge:8,trail:2};
+    const render=g.renderer.render.bind(g.renderer);
+    const modes={base:[],break:[1,3],blade:[2],ring:[4],all:[1,2,3,4],gauge:[],trail:[],compact:[]};
+    window.fixture.snap=(mode)=>{
+      const mark=fixture.mob;
+      for(const m of mark.rig.materials)m.flash.value.w=Math.min(m.flash.value.w,.22);
+      if(!original)original=pools.map(({pool})=>pool.aCol.slice());
+      const counts=[0,0,0,0,0];
+      pools.forEach(({pool,mask},j)=>{
+        pool.aCol.set(original[j]);
+        for(let i=0;i<pool.n;i++){
+          counts[mask[i]]++;
+          if(modes[mode].includes(mask[i]))
+            pool.aCol[i*4+3]=0;
+        }
+        pool.mesh.geometry.getAttribute('iCol').needsUpdate=true;
+      });
+      if(!baseRibbon)baseRibbon={p:rb.P.slice(),c:rb.C.slice()};
+      rb.P.set(baseRibbon.p);rb.C.set(baseRibbon.c);
+      const n=rb.w*2,selected=[];
+      const row=mode==='trail'?rbRows.trail:rbRows.gauge;
+      for(let q=0;q<n;q++)if(rb.S[q*4]===row&&rb.C[q*4+3]>0)selected.push(q);
+      if((mode==='gauge'||mode==='trail')&&selected.length){
+        for(const q of selected)rb.C[q*4+3]=0;
+      }
+      if(mode==='compact'&&selected.length){
+        const c=[0,0,0];
+        for(const q of selected)for(let k=0;k<3;k++)c[k]+=rb.P[q*3+k]/selected.length;
+        for(const q of selected){
+          for(let k=0;k<3;k++)rb.P[q*3+k]=c[k]+.58*(rb.P[q*3+k]-c[k]);
+          if(rb.S[q*4+3]>0)rb.C[q*4+3]*=.65;
+        }
+      }
+      for(const k of ['position','aCol'])rb.mesh.geometry.getAttribute(k).needsUpdate=true;
+      render(g.scene,g.camera,0);
+      return {labels,counts,mode,ribbonSelected:selected.length,ribbonRow:row,frame:h.frame,gameTime:g.time,simTime:g.simTime,
+         hp:[g.state.d.hp,mark.hp],yaw:g.cameraRig.yaw,camera:g.camera.position.toArray()};
+    };
+  }
   const draw=g.renderer.render.bind(g.renderer);
   g.renderer.render=(...args)=>{
    const x=window.fixture,m=x.mob;
@@ -88,7 +154,7 @@ try {
     if(h.frame>590){x.mode='ended';h.freeze();}
   };
   return {site,hp:g.state.d.hp,enabled:g.combat.enabled,god:g.state.god,touch:g.input.isTouch,view:g.cameraRig.view};
- },onlySide);
+ },{onlySide,mode});
  console.log('setup',JSON.stringify(setup));
  if(onlySide){
    await page.waitForFunction(()=>window.fixture?.mode==='windup-frozen',null,{timeout:90000,polling:200});
@@ -102,6 +168,18 @@ try {
    await page.waitForFunction(()=>['counter-frozen','ended'].includes(window.fixture?.mode),null,{timeout:90000,polling:200});
    if(await page.evaluate(()=>fixture.mode==='counter-frozen')){
      await page.screenshot({path:join(out,'counter.jpg'),type:'jpeg',quality:90});
+     if(mode==='gauge'){
+       const rows=[];
+       for(const pick of ['base','break','blade','ring','all','gauge','trail','compact']){
+         rows.push(await page.evaluate(pick=>fixture.snap(pick),pick));
+         await page.screenshot({path:join(out,'frozen-'+pick+'.png'),timeout:30000});
+       }
+       const [first,...rest]=rows;
+       for(const n of rest)for(const k of ['frame','gameTime','simTime','hp','yaw','camera'])
+         if(JSON.stringify(first[k])!==JSON.stringify(n[k]))throw Error('Comparison moved '+k);
+       if(!rows.find(n=>n.mode==='gauge')?.ribbonSelected)throw Error('No gauge ribbon detected');
+       writeFileSync(join(out,'frozen-receipt.json'),JSON.stringify(rows,null,2)+'\n');
+     }
      if(mode==='wash'){
        const original=await page.evaluate(()=>{
          const g=game,m=fixture.mob;
