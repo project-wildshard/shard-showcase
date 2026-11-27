@@ -10,15 +10,13 @@ It should feel like flying from the first step to the last.
 
 ## Shape
 
-- It is a real zone of a bigger MMO world: a grid of 500 × 500 m zones
-  joined by roads. So it is exactly 500 × 500 m, with four road
-  entrances, one at the middle of each edge. Here the roads are stone
-  causeways that just lead off the edge; nothing beyond needs to exist.
-- **Everything lives inside one 500 × 500 × 500 m cube**, with the
-  road level at its middle height. Fit more in by stacking islands up
-  through the cloud banks and hollowing out their keels, never by
-  making it bigger. The mini dungeon sits physically inside the cube
-  and overlaps nothing else.
+It is one zone of a bigger MMO world, joined to its neighbours by
+roads, so it fits inside one 500 × 500 × 500 m cube and never grows.
+Four edge islands sit at the middle of the cube's four sides, halfway
+up, each with a road running off the edge to the rest of the world;
+nothing beyond needs to exist yet. The mini dungeon sits inside the
+cube too.
+
 - **Use the whole cube, every corner of it.** It is filled with
   floating islands of every size, from a rock you can stand on to one
   that carries a town: think Breath of the Wild, Tears of the Kingdom
