@@ -1,0 +1,120 @@
+{
+  "referenceCommit": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "viewport": [
+    402,
+    874
+  ],
+  "fixture": "same native dock crate with enemy at 8 HP at setup",
+  "simHz": 60,
+  "chargeBlockedFrame": 135,
+  "tapFrame": 154,
+  "preLethalHp": 8.769999999999992,
+  "die": {
+    "frame": 165,
+    "hp": 0,
+    "heroHp": 204,
+    "xp": 22,
+    "kills": 1,
+    "level": 4,
+    "alive": false,
+    "targetable": false,
+    "target": false,
+    "inList": true,
+    "inScene": true,
+    "attack": "charge",
+    "state": "dead",
+    "action": "death",
+    "poseT": 0.03030303030303085,
+    "sword": "sword1",
+    "hero": [
+      34.90641933052735,
+      -0.15610968462478342,
+      142.6266085775834
+    ],
+    "eye": [
+      38.04734998086781,
+      0.40679869640066507,
+      141.0214840713131
+    ]
+  },
+  "collapse": {
+    "frame": 186,
+    "hp": 0,
+    "heroHp": 204,
+    "xp": 22,
+    "kills": 1,
+    "level": 4,
+    "alive": false,
+    "targetable": false,
+    "target": false,
+    "inList": true,
+    "inScene": true,
+    "attack": "charge",
+    "state": "dead",
+    "action": "death",
+    "poseT": 0.4921212121212118,
+    "sword": null,
+    "hero": [
+      34.90644699150358,
+      -0.156045034721859,
+      142.62662901907743
+    ],
+    "eye": [
+      37.61635310528133,
+      0.8788367031497073,
+      140.06109660775903
+    ]
+  },
+  "remove": {
+    "frame": 203,
+    "hp": 0,
+    "heroHp": 204,
+    "xp": 22,
+    "kills": 1,
+    "level": 4,
+    "alive": false,
+    "targetable": false,
+    "target": false,
+    "inList": false,
+    "inScene": false,
+    "attack": "charge",
+    "state": "dead",
+    "action": "death",
+    "poseT": 1,
+    "sword": null,
+    "hero": [
+      34.90646952138457,
+      -0.15611080121506676,
+      142.62664562769942
+    ],
+    "eye": null
+  },
+  "targetClearedFrame": 165,
+  "followedThroughFrame": 225,
+  "events": [
+    {
+      "kind": "kill-xp",
+      "frame": 165,
+      "amount": 22
+    },
+    {
+      "kind": "scrip-drop",
+      "frame": 165,
+      "amount": 8
+    },
+    {
+      "kind": "kill",
+      "frame": 165,
+      "level": 4,
+      "variant": "normal"
+    },
+    {
+      "kind": "breakup",
+      "frame": 203
+    },
+    {
+      "kind": "remove",
+      "frame": 203
+    }
+  ]
+}

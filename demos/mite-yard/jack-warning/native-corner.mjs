@@ -1,4 +1,5 @@
 // Screen shipped Pallet Docks colliders, then run matched native ram replays.
+import {captureFinish} from './corner-finish.mjs';
 import {captureLive} from './corner-shoulder-live.mjs';
 import {captureShoulder} from './corner-shoulder.mjs';
 import {captureReadability} from './corner-readability.mjs';
@@ -11,7 +12,7 @@ import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
 const [root,dep,arg='3',only,side,study]=process.argv.slice(2);
-if(!root||!dep||(study&&(!side||!['readability','shoulder','shoulder-live','shoulder-look'].includes(study)))||(only&&!['inside','outside'].includes(only))||(side&&(!['left','right'].includes(side)||only!=='inside')))throw Error('Usage: node native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [PAIR_INDEX|-1] [inside|outside] [left|right touch route] [readability|shoulder|shoulder-live|shoulder-look]');
+if(!root||!dep||(study&&(!side||!['readability','shoulder','shoulder-live','shoulder-look','finish'].includes(study)))||(only&&!['inside','outside'].includes(only))||(side&&(!['left','right'].includes(side)||only!=='inside')))throw Error('Usage: node native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [PAIR_INDEX|-1] [inside|outside] [left|right touch route] [readability|shoulder|shoulder-live|shoulder-look|finish]');
 const index=Number(arg);
 const pin='3afcd880b397e9703e906a7e66b42e8447e59519';
 assert.equal(execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim(),pin);
@@ -89,6 +90,7 @@ try{
    h.seed(0x628d);
    const mob=g.mobs.spawn('pallet',{x:m[0],z:m[1],level:4,variant:'normal'});
    if(!mob)throw Error('Jack setup failed');
+   if(study==='finish')mob.hp=8; // Initial state only; all later damage is native.
    mob.yaw=bearing; // Initial orientation only; no post-start AI overrides.
    g.state.d.level=4;g.state.d.hp=g.state.maxHp;g.state.d.energy=g.state.maxEnergy;
    if(g.state.god)throw Error('God must be off');
@@ -103,6 +105,7 @@ try{
    const live=study?.startsWith('shoulder-');
    const hook=study?await import(URL.createObjectURL(new Blob([moduleSource],{type:'text/javascript'}))):null;
    const read=study==='readability'?hook.installReadability(g,p,mob,fixture,h,draw,began):null;
+   const finish=study==='finish'?hook.installFinish(g,p,mob,fixture,h,began):null;
    if(live)hook.installLiveShoulder(g,p,mob,fixture,h,draw,began);
    if(study==='shoulder')hook.installShoulder(g,p,mob,fixture,h,draw,began);
    const at=side==='right'?1:-1;
@@ -134,6 +137,7 @@ try{
     return sfx(id,...args);
    };
    g.renderer.render=(...args)=>{
+    if(finish&&attack!==null&&(h.frame-began>=attack+8&&h.frame-began<=attack+56)){draw(...args);return;}
     if(live&&attack!==null){fixture.nativeDraw(...args);return;}
     if((side&&((mob.hp<fixture.enemyHp&&!fixture.contact)||(fixture.contact&&h.frame-began===fixture.contact.frame+2)))||mob.atk?.id==='charge'&&((mob.state==='windup'&&mob.locked&&!fixture.lock)||(mob.state==='recover'&&!fixture.recovery)))draw(...args);
    };
@@ -142,6 +146,7 @@ try{
       m:mob.pos.toArray(),p:p.pos.toArray(),rolling:p.rolling,god:g.state.god,enemyHp:mob.hp,action:p.action,sprint:p.sprinting,
       ...(side?{route,keyboard:g.input.keys.size,stick:g.input.stick.active}:{} )};
     fixture.trace.push(r);
+    const lifecycle=finish&&attack!==null?finish.sample():null;
     if(read&&attack!==null)read.sample(r);
     const sight=(o,w,trim)=>{
      const dir=w.clone().sub(o),len=dir.length();
@@ -184,6 +189,8 @@ try{
     if(movement===null){movement=r.frame;fixture.moveStart=r;}
     if(attack!==null){
      if(r.frame===attack+2){touchStep('release');return;}
+     const freezeFinish=phase=>{fixture.finish.capture=phase;fixture.phase='evidence';h.freeze();};
+     if(finish&&!fixture.contact&&r.frame===attack+9){freezeFinish('before');return;}
      if(study==='shoulder-look'&&r.frame===attack+12){touchStep('look-start');return;}
      if(study==='shoulder-look'&&r.frame===attack+19){touchStep('look-end');return;}
      if(live&&[6,19,36].includes(r.frame-attack)&&study==='shoulder-live'){
@@ -194,12 +201,18 @@ try{
      }
      if(mob.hp<fixture.enemyHp&&!fixture.contact){
       fixture.contact=r;
+      if(finish){freezeFinish('strike');return;}
       if(study&&study!=='shoulder-look'){fixture.phase='evidence';h.freeze();return;}
      }
      if(fixture.contact&&r.frame===fixture.contact.frame+2&&study==='shoulder'){
       fixture.phase='evidence';h.freeze();return;
      }
-     if(fixture.contact&&(live?r.frame>=attack+39:r.frame>=fixture.contact.frame+2)){fixture.phase='end';h.freeze();}
+     if(finish&&fixture.contact){
+      const prev=fixture.finish.samples.at(-2);
+      if(lifecycle.action==='death'&&lifecycle.poseT>=.48&&prev.poseT<.48){freezeFinish('collapse');return;}
+      if(!lifecycle.inList&&prev.inList){freezeFinish('breakup');return;}
+     }
+     if(fixture.contact&&(finish?r.frame>=fixture.contact.frame+60:live?r.frame>=attack+39:r.frame>=fixture.contact.frame+2)){fixture.phase='end';h.freeze();}
     }
     if(r.frame-movement>130){fixture.phase='miss';h.freeze();return;}
     if(attack!==null)return;
@@ -223,13 +236,13 @@ try{
    h.thaw();
    return {start};
   },{setup,index,side,study,moduleSource:study?.startsWith('shoulder-')?['shoulder-envelope.mjs','corner-shoulder-live.mjs']
-   .map(f=>readFileSync(new URL('./'+f,import.meta.url),'utf8')).join('\n'):study?readFileSync(new URL(study==='shoulder'?'./corner-shoulder.mjs':'./corner-readability.mjs',import.meta.url),'utf8'):''});
+   .map(f=>readFileSync(new URL('./'+f,import.meta.url),'utf8')).join('\n'):study?readFileSync(new URL(study==='finish'?'./corner-finish.mjs':study==='shoulder'?'./corner-shoulder.mjs':'./corner-readability.mjs',import.meta.url),'utf8'):''});
   if(setup==='scan'){
    console.log(JSON.stringify(candidates.slice(0,14)));
    await ctx.close();continue;
   }
   if(side){
-   await touchRiposte(page,ctx,study==='shoulder-live'?()=>captureLive(page,out):study==='shoulder'?()=>captureShoulder(page,out):
+   await touchRiposte(page,ctx,study==='finish'?()=>captureFinish(page,out):study==='shoulder-live'?()=>captureLive(page,out):study==='shoulder'?()=>captureShoulder(page,out):
     study==='readability'?()=>captureReadability(page,out):null);
    await page.screenshot({path:join(out,side+'-result.jpg'),type:'jpeg',quality:91});
    result[side]={start,...await page.evaluate(()=>cornerFixture)};
