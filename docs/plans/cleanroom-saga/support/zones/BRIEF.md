@@ -12,10 +12,10 @@ the zone; read all of it before you start.
 - **Feel:** every swing, shot, jump, ride and kill is juicy, with real
   weight, impact and feedback.
 - **Camera:** third-person action. With a ranged weapon in hand the
-  game goes first person, like PUBG Mobile, on foot or on horseback;
-  holstering returns to third person, and melee is always third
-  person. Every switch is smooth and deliberate, and first-person
-  aiming with a thumb on a portrait phone feels as good as a mouse.
+  game goes first person, like PUBG Mobile. Holstering returns to
+  third person, and melee is always third person. Every switch is
+  smooth and deliberate, and first-person aiming with a thumb on a
+  portrait phone feels as good as a mouse.
 
 ## Platforms
 
