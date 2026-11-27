@@ -1,5 +1,5 @@
 // Screen shipped Pallet Docks colliders, then run matched native ram replays.
-import {captureFinish} from './corner-finish.mjs';
+import {captureFinish,verifyPayoutSave} from './corner-finish.mjs';
 import {captureLive} from './corner-shoulder-live.mjs';
 import {captureShoulder} from './corner-shoulder.mjs';
 import {captureReadability} from './corner-readability.mjs';
@@ -12,7 +12,7 @@ import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
 const [root,dep,arg='3',only,side,study]=process.argv.slice(2);
-if(!root||!dep||(study&&(!side||!['readability','shoulder','shoulder-live','shoulder-look','finish'].includes(study)))||(only&&!['inside','outside'].includes(only))||(side&&(!['left','right'].includes(side)||only!=='inside')))throw Error('Usage: node native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [PAIR_INDEX|-1] [inside|outside] [left|right touch route] [readability|shoulder|shoulder-live|shoulder-look|finish]');
+if(!root||!dep||(study&&(!side||!['readability','shoulder','shoulder-live','shoulder-look','finish','payout'].includes(study)))||(only&&!['inside','outside'].includes(only))||(side&&(!['left','right'].includes(side)||only!=='inside')))throw Error('Usage: node native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [PAIR_INDEX|-1] [inside|outside] [left|right touch route] [readability|shoulder|shoulder-live|shoulder-look|finish|payout]');
 const index=Number(arg);
 const pin='3afcd880b397e9703e906a7e66b42e8447e59519';
 assert.equal(execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim(),pin);
@@ -90,7 +90,8 @@ try{
    h.seed(0x628d);
    const mob=g.mobs.spawn('pallet',{x:m[0],z:m[1],level:4,variant:'normal'});
    if(!mob)throw Error('Jack setup failed');
-   if(study==='finish')mob.hp=8; // Initial state only; all later damage is native.
+   const payout=study==='payout',finishMode=study==='finish'||payout;
+   if(finishMode)mob.hp=8; // Initial state only; all later damage is native.
    mob.yaw=bearing; // Initial orientation only; no post-start AI overrides.
    g.state.d.level=4;g.state.d.hp=g.state.maxHp;g.state.d.energy=g.state.maxEnergy;
    if(g.state.god)throw Error('God must be off');
@@ -105,7 +106,7 @@ try{
    const live=study?.startsWith('shoulder-');
    const hook=study?await import(URL.createObjectURL(new Blob([moduleSource],{type:'text/javascript'}))):null;
    const read=study==='readability'?hook.installReadability(g,p,mob,fixture,h,draw,began):null;
-   const finish=study==='finish'?hook.installFinish(g,p,mob,fixture,h,began):null;
+   const finish=finishMode?hook.installFinish(g,p,mob,fixture,h,began):null;
    if(live)hook.installLiveShoulder(g,p,mob,fixture,h,draw,began);
    if(study==='shoulder')hook.installShoulder(g,p,mob,fixture,h,draw,began);
    const at=side==='right'?1:-1;
@@ -137,7 +138,7 @@ try{
     return sfx(id,...args);
    };
    g.renderer.render=(...args)=>{
-    if(finish&&attack!==null&&(h.frame-began>=attack+8&&h.frame-began<=attack+56)){draw(...args);return;}
+    if(finish&&attack!==null&&(h.frame-began>=attack+8&&h.frame-began<=attack+(payout?86:56))){draw(...args);return;}
     if(live&&attack!==null){fixture.nativeDraw(...args);return;}
     if((side&&((mob.hp<fixture.enemyHp&&!fixture.contact)||(fixture.contact&&h.frame-began===fixture.contact.frame+2)))||mob.atk?.id==='charge'&&((mob.state==='windup'&&mob.locked&&!fixture.lock)||(mob.state==='recover'&&!fixture.recovery)))draw(...args);
    };
@@ -184,7 +185,7 @@ try{
     }else if(mob.state==='recover'&&mob.atk?.id==='charge'&&fixture.lock&&!fixture.recovery){
      fixture.recovery={...r,fired:mob.fired};
      if(!side){fixture.phase='recover';h.freeze();}
-    }else if(r.frame>430){fixture.phase='timeout';h.freeze();return;}
+    }else if(r.frame>(payout?680:430)){fixture.phase='timeout';h.freeze();return;}
     if(!side||!fixture.lock)return;
     if(movement===null){movement=r.frame;fixture.moveStart=r;}
     if(attack!==null){
@@ -211,10 +212,19 @@ try{
       const prev=fixture.finish.samples.at(-2);
       if(lifecycle.action==='death'&&lifecycle.poseT>=.48&&prev.poseT<.48){freezeFinish('collapse');return;}
       if(!lifecycle.inList&&prev.inList){freezeFinish('breakup');return;}
+      if(payout&&lifecycle.scrip>prev.scrip&&!lifecycle.scripOrbs.length){freezeFinish('pickup');return;}
+      if(payout&&lifecycle.frame>fixture.contact.frame+80){
+       const saved=JSON.parse(localStorage.getItem('cratefall.save.v1')??'null');
+       if(saved?.playTime>5&&saved.scrip===lifecycle.scrip&&saved.kills.pallet===lifecycle.kills){
+        fixture.finish.saved={frame:r.frame,scrip:saved.scrip,xp:saved.xp,palletKills:saved.kills.pallet,
+         level:saved.level,playTime:saved.playTime};
+        fixture.phase='end';h.freeze();return;
+       }
+      }
      }
-     if(fixture.contact&&(finish?r.frame>=fixture.contact.frame+60:live?r.frame>=attack+39:r.frame>=fixture.contact.frame+2)){fixture.phase='end';h.freeze();}
+     if(!payout&&fixture.contact&&(finish?r.frame>=fixture.contact.frame+60:live?r.frame>=attack+39:r.frame>=fixture.contact.frame+2)){fixture.phase='end';h.freeze();}
     }
-    if(r.frame-movement>130){fixture.phase='miss';h.freeze();return;}
+    if(!(payout&&fixture.contact)&&r.frame-movement>130){fixture.phase='miss';h.freeze();return;}
     if(attack!==null)return;
     const origin=p.pos.clone();origin.y+=.8;
     const direction=mob.pos.clone();direction.y+=.8;direction.sub(origin);
@@ -236,17 +246,22 @@ try{
    h.thaw();
    return {start};
   },{setup,index,side,study,moduleSource:study?.startsWith('shoulder-')?['shoulder-envelope.mjs','corner-shoulder-live.mjs']
-   .map(f=>readFileSync(new URL('./'+f,import.meta.url),'utf8')).join('\n'):study?readFileSync(new URL(study==='finish'?'./corner-finish.mjs':study==='shoulder'?'./corner-shoulder.mjs':'./corner-readability.mjs',import.meta.url),'utf8'):''});
+   .map(f=>readFileSync(new URL('./'+f,import.meta.url),'utf8')).join('\n'):study?readFileSync(new URL(['finish','payout'].includes(study)?'./corner-finish.mjs':study==='shoulder'?'./corner-shoulder.mjs':'./corner-readability.mjs',import.meta.url),'utf8'):''});
   if(setup==='scan'){
    console.log(JSON.stringify(candidates.slice(0,14)));
    await ctx.close();continue;
   }
   if(side){
-   await touchRiposte(page,ctx,study==='finish'?()=>captureFinish(page,out):study==='shoulder-live'?()=>captureLive(page,out):study==='shoulder'?()=>captureShoulder(page,out):
+   await touchRiposte(page,ctx,['finish','payout'].includes(study)?()=>captureFinish(page,out):study==='shoulder-live'?()=>captureLive(page,out):study==='shoulder'?()=>captureShoulder(page,out):
     study==='readability'?()=>captureReadability(page,out):null);
    await page.screenshot({path:join(out,side+'-result.jpg'),type:'jpeg',quality:91});
    result[side]={start,...await page.evaluate(()=>cornerFixture)};
    writeFileSync(join(out,'proof.json'),JSON.stringify(result,null,2)+'\n');
+   if(study==='payout'&&result[side].phase==='end'){
+    await page.close();
+    result[side].reopened=await verifyPayoutSave(ctx,`http://127.0.0.1:${Number(process.env.FABLE_PROBE_PORT??5174)}/?q=medium`);
+    writeFileSync(join(out,'proof.json'),JSON.stringify(result,null,2)+'\n');
+   }
    const {phase,lock,recovery,attack,contact,collisions,sounds}=result[side];
    console.log(JSON.stringify({side,phase,lock,recovery,attack,contact,collisions,sounds,points:start.points}));
    assert.equal(phase,'end');

@@ -1,0 +1,61 @@
+{
+  "referenceCommit": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "viewport": [
+    402,
+    874
+  ],
+  "simHz": 60,
+  "fixture": "native dock crate replay, enemy staged at 8 HP",
+  "nativeDamageFrame": 165,
+  "orbValues": [
+    4,
+    4
+  ],
+  "drop": {
+    "kind": "scrip-drop",
+    "frame": 165,
+    "amount": 8
+  },
+  "credits": [
+    {
+      "kind": "scrip-credit",
+      "frame": 206,
+      "amount": 4
+    },
+    {
+      "kind": "scrip-credit",
+      "frame": 207,
+      "amount": 4
+    }
+  ],
+  "zeroDuplicateCreditUntil": 359,
+  "wallet": [
+    25,
+    33
+  ],
+  "heroMovedAfterHit": 0.00007405868659894373,
+  "saved": {
+    "frame": 359,
+    "scrip": 33,
+    "xp": 22,
+    "palletKills": 1,
+    "level": 4,
+    "playTime": 6.000999999999973
+  },
+  "continue": {
+    "before": {
+      "scrip": 33,
+      "xp": 22,
+      "palletKills": 1,
+      "level": 4,
+      "golden": false
+    },
+    "after": {
+      "scrip": 33,
+      "xp": 22,
+      "palletKills": 1,
+      "level": 4,
+      "golden": false
+    }
+  }
+}
