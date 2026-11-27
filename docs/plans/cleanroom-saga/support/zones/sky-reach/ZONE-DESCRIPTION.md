@@ -57,10 +57,11 @@ that you can start with:
 
 ## Features
 
-- Hoverboard racing.
-- Combat on the board and in the air.
-- Enemies worthy of fighting in the air.
-- Sky ships you can board and fly.
+- Bridges.
+- Gusts.
+- Ferries and sky ships.
+- Controllable vehicles.
+- A hoverboard.
 
 ## Main quest
 
