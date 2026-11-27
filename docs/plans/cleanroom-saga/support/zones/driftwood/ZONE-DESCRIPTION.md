@@ -14,8 +14,8 @@ It is one zone of a bigger MMO world, joined to its neighbours by
 roads, so it fits inside one 500 × 500 × 500 m cube and never grows.
 Four edge islands sit at the middle of the cube's four sides, with
 the sea's surface halfway up, each with a road running off the edge to
-the rest of the world; nothing beyond needs to exist yet. Both mini
-dungeons sit inside the cube too.
+the rest of the world; nothing beyond needs to exist yet. All three
+mini dungeons sit inside the cube too.
 
 - **Use the whole cube, every corner of it.** Ocean and islands of
   every shape and size fill the full 500 × 500 m footprint: islets,
@@ -29,9 +29,9 @@ dungeons sit inside the cube too.
   creatures, quests, secrets and set pieces.
 - **Shallow and deep:** warm, clear shallows over sand and reef, and
   deep blue water that drops away beneath you into the dark.
-- **Every way across:** swimming and diving, the sailboat, ziplines
-  and rope bridges through the canopy, cliff dives, sandbars bared at
-  low tide, and a harpoon that hauls you along.
+- **Every way across:** your own sailboat, swimming and diving,
+  sandbars bared at low tide and a harpoon that hauls you along, with
+  ziplines, rope bridges and cliff dives as extras.
 - **One open zone**, no fixed sides: go anywhere, see anything you can
   reach.
 - **Filled with places**, above and below the sea, each with its own
@@ -46,47 +46,52 @@ dungeons sit inside the cube too.
 To get a feeling for what to build, here are some ideas for the zone
 that you can start with:
 
+- **Your own sailboat, sailed anywhere.** A real vehicle you steer
+  yourself: catch the wind, crest the swells, slide into the shallows,
+  beach it on any shore and dive off the bow. Whistle and it sails to
+  you. Fit it out as you level: a bigger sail, cannons, a lantern.
+- **The open sea is a show:** wind you can see on the water, big
+  rolling swells, dolphins and flying fish racing the bow, and storms
+  you watch come in from far off, with waterspouts and lightning.
+- **Fight at sea, like Black Flag:** broadsides, ramming, then board
+  and fight deck to deck. Pirate ships hunt the open water.
+- **An undersea world as big as the one above.** At first you can only
+  hold your breath for short dives. A quest wins you an underwater
+  breather, and then the whole sea floor opens up, as deep as it goes.
+- Under the sea: coral cities, kelp forests, drowned towns, wreck
+  graveyards, glowing sea caves, trenches that drop into the dark, and
+  an undersea town with its own traders, quest givers and secrets.
+- Dry places under the sea: air pockets, domed halls, caves and sunken
+  structures to walk, breathe and fight in.
+- Ride the big things of the sea, a manta, a sea turtle, a whale, and
+  glimpse the things bigger still that move through the deep.
 - Above the sea: islands of every kind, from a pirate port and a
   lighthouse rock to a smoking volcano, jungle isles, sea-stack
-  villages strung with rope bridges, and sandbars that come and go.
-- Under the sea: coral cities, kelp forests, sunken ruins and whole
-  drowned towns, wreck graveyards, glowing sea caves, and trenches
-  that drop into the dark.
-- People live down there too: an undersea village with its own
-  traders, quest givers and secrets.
-- **An undersea world.** At first you can only hold your breath for
-  short dives. A quest wins you an underwater breather, and then the
-  whole sea floor opens up, as deep as it goes.
-- Dry places under the sea to explore: air pockets, domed halls,
-  flooded-then-drained caves and sunken structures you can walk
-  through, catch your breath in and fight in.
-- Ride the big things of the sea: a manta, a sea turtle, a whale.
+  villages and sandbars that come and go.
 - **The planet moves the sea.** As it swings low the tide drains away,
   baring the reef, the wreck and paths you could never walk; as it
   climbs again the sea pours back in, fast.
-- Sail between the islands, beach your boat anywhere, and fight other
-  ships at sea: broadsides, ramming and boarding, like Black Flag.
 - Treasure maps whose X can be on an island or on the sea floor.
-- Ziplines and rope bridges through the canopy, and cliffs to dive
-  from: the higher the dive, the bigger the splash.
-- Secrets, vistas, caches and collectibles all over.
-- Levels 1 to 10, levelled by fighting.
-- Mini dungeons above and below: a wreck on the rocks, walked dry at
-  low tide and swum when the sea pours back in; a temple held in a
-  giant banyan, climbed root to crown; and a sunken temple on the
-  sea floor, fought through entirely under water.
+- Optional extras: ziplines, rope bridges, cliffs and cliff dives.
+- Secrets, vistas, caches and collectibles all over, above and below
+  the sea.
+- Levels 1 to 20, levelled by fighting.
+- Three mini dungeons: a wreck on the rocks, walked dry at low tide
+  and swum when the sea pours back in; a whirlpool far out at sea,
+  which you sail your own boat into and ride down the spiral to a
+  fortress at the bottom, walled in by spinning water; and a sunken
+  palace in the deepest trench, swum through entirely under water by
+  the glow of the things that live there.
 
 ## Features
 
+- Your own sailboat.
+- An undersea world.
 - Swimming and diving.
-- Underwater exploration.
-- An undersea world as big as the one above.
-- Sailing and ship combat.
+- Ship combat.
 - Rideable sea creatures.
 - Treasure hunting.
 - Tides.
-- Ziplines.
-- Cliff diving.
 
 ## Main quest
 
@@ -124,7 +129,7 @@ trenches, and more.
 
 - Many enemies, each with a rare variant. Elites are scattered around.
   At night the drowned come ashore, glowing cyan.
-- A final boss at the end of the main quest, at level 10.
+- A final boss at the end of the main quest, at level 20.
 
 ## Quests
 

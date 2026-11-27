@@ -21,3 +21,10 @@ on land or sea floor. "Swim forever and never drown" is gone: you
 hold your breath for short dives until a quest wins you an underwater
 breather, and dry air pockets, domed halls and caves under the sea
 give you places to walk, breathe and fight.
+
+Last, "go big or go home": an Opus agent redid In the zone from
+scratch. Your own sailboat leads it (Jake: "GG"), then sea combat,
+the undersea world, rideable sea creatures and treasure maps;
+ziplines and cliff dives shrink to one optional line. Levels go to
+20. Three mini dungeons now: the tidal wreck, a whirlpool you sail
+your own boat down into, and a sunken palace in the deepest trench.
