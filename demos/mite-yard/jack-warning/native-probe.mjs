@@ -1,3 +1,4 @@
+import {brokenCycle} from './broken-cycle.mjs';
 import {touchCounter, touchMarks} from './touch-counter.mjs';
 import {counterLens} from './counter-lens.mjs';
 // Read-only reference playtest. Run against a loopback build of the pinned
@@ -10,8 +11,8 @@ import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
 const [root,dep,mode='counter',control='none'] = process.argv.slice(2);
 const ref='3afcd880b397e9703e906a7e66b42e8447e59519';
-if(!root||!dep||!['sidestep','counter','wash','gauge','framing','live-framing'].includes(mode)||!['none','look','sprint','hud-drag','hud-tap','hud-cancel','canvas-drag'].includes(control))
-  throw Error('Usage: node native-probe.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [sidestep|counter|wash|gauge|framing|live-framing] [none|look|sprint|hud-drag|hud-tap|hud-cancel|canvas-drag]');
+if(!root||!dep||!['sidestep','counter','wash','gauge','framing','live-framing','gauge-cycle'].includes(mode)||!['none','look','sprint','hud-drag','hud-tap','hud-cancel','canvas-drag','zero'].includes(control))
+  throw Error('Usage: node native-probe.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [sidestep|counter|wash|gauge|framing|live-framing|gauge-cycle] [none|look|sprint|hud-drag|hud-tap|hud-cancel|canvas-drag|zero]');
 if(execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim()!==ref)
   throw Error('Wrong reference checkout');
 const load=createRequire(join(dep,'package.json'));
@@ -26,7 +27,7 @@ const browser=await chromium.launch({executablePath:await shell.executablePath()
 try {
  const ctx=await browser.newContext({viewport:{width:402,height:874},deviceScaleFactor:1,hasTouch:true,isMobile:true,serviceWorkers:'block'});
  await ctx.addInitScript({content:readFileSync(join(root,'tools/golden/init.js'),'utf8')});
- await ctx.addInitScript({content:'window.makeCounterLens='+counterLens.toString()+';'});
+ await ctx.addInitScript({content:'window.makeCounterLens='+counterLens.toString()+';window.makeBrokenCycle='+brokenCycle.toString()+';'});
  const page=await ctx.newPage();
  page.on('pageerror',e=>console.log('pageerror',String(e).slice(0,400)));
  await page.goto(`http://127.0.0.1:${Number(process.env.FABLE_PROBE_PORT??5174)}/?golden&dev&q=medium`,{waitUntil:'domcontentloaded'});
@@ -62,6 +63,11 @@ try {
   if(!mob)throw new Error('No real Pallet Jack');
   window.fixture={mob,trace:[],mode:onlySide?'ramp':'counter',dodgePressed:false,counterPressed:false,startEnemyHp:mob.hp};
   document.querySelector('#dev')?.style.setProperty('display','none');
+  if(mode==='gauge-cycle'){
+    g.state.d.settings.flash=control==='zero'?0:1;
+    fixture.cycleSnap=window.makeBrokenCycle(g,fixture,h);
+    fixture.phases=[.99,.50,.25];
+  }
   if(mode==='gauge'){
     const fx=g.fx, labels=['other','robot.break','hit.blade','break-ring','counter-ring'];
     const pools=[fx.add,fx.alpha].map(pool=>{
@@ -278,7 +284,7 @@ try {
    const x=window.fixture,m=x.mob;
    if((mode==='live-framing'&&x.counterPressed&&(touchCase?touchMarks:[9,15,20,24,29,35,44,53]).includes(h.frame-x.counterFrame))||
       (x.mode==='ramp'&&m.state==='windup'&&m.atk?.id==='charge'&&m.stT>.45)||
-      (x.mode==='run'&&m.state==='recover')||(x.counterPressed&&m.hp<x.startEnemyHp))draw(...args);
+      (x.mode==='run'&&m.state==='recover')||(mode!=='gauge-cycle'&&x.counterPressed&&m.hp<x.startEnemyHp))draw(...args);
   };
   h.post=()=>{
     const x=window.fixture,m=x.mob;
@@ -312,7 +318,10 @@ try {
         x.mode='framing-frozen';h.freeze();
       }
     }
-    if(mode!=='live-framing'&&x.counterPressed&&m.hp<x.startEnemyHp){
+    if(mode==='gauge-cycle'&&m.state==='broken'&&x.phases.length&&1-m.stT/m.brokenDur<=x.phases[0]){
+      x.phase=x.phases.shift();x.mode='gauge-frozen';h.freeze();
+    }
+    if(mode!=='live-framing'&&mode!=='gauge-cycle'&&x.counterPressed&&m.hp<x.startEnemyHp){
       if(mode==='framing'){
         x.hitFrame??=h.frame;
         if([0,6,12,18,30].includes(h.frame-x.hitFrame)){
@@ -333,6 +342,23 @@ try {
    await page.waitForFunction(()=>window.fixture?.mode==='recover-frozen',null,{timeout:90000,polling:200});
    await page.keyboard.up('a');
    await page.screenshot({path:join(out,'recover.jpg'),type:'jpeg',quality:89});
+ }else if(mode==='gauge-cycle'){
+   const phases=[];
+   for(const value of [.99,.50,.25]){
+     await page.waitForFunction(()=>['gauge-frozen','ended'].includes(window.fixture?.mode),null,{timeout:90000,polling:100});
+     const reached=await page.evaluate(()=>fixture.phase);
+     if(reached!==value)throw Error('Wrong Broken phase');
+     const pair=[];
+     for(const compact of [false,true]){
+       pair.push(await page.evaluate(compact=>fixture.cycleSnap(compact),compact));
+       await page.screenshot({path:join(out,'cycle-'+value+'-'+(compact?'compact':'stock')+'.png')});
+     }
+     for(const k of ['frame','sim','time','hp','camera','q','strobe','remaining','trackVertices','goldVertices','center'])
+       if(JSON.stringify(pair[0][k])!==JSON.stringify(pair[1][k]))throw Error('Comparison moved '+k);
+     phases.push(pair);
+     if(value!==.25)await page.evaluate(()=>{fixture.mode='counter';__golden.thaw();});
+   }
+   writeFileSync(join(out,'broken-cycle.json'),JSON.stringify(phases,null,2)+'\n');
  }else if(touchCase){
    const evidence=await touchCounter(page,ctx,control,out);
    writeFileSync(join(out,'touch-counter.json'),JSON.stringify(evidence,null,2)+'\n');
