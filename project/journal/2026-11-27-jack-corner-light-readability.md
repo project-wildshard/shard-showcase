@@ -1,0 +1,9 @@
+# Rook's first-cut readability at the Pallet Docks crate
+
+Replay `node demos/mite-yard/jack-warning/native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT 3 inside left readability` against the pinned Fable build on loopback. Run `python demos/mite-yard/jack-warning/corner-readability-proof.py REPLAY_OUTPUT_DIR` for the receipt. Pillow reads the screenshots; no reference imagery is kept in this repo.
+
+The existing trusted-input route stops Jack's ram at the shipped crate and lands sword1 at tick 165. Freeze the same confirmed hit for all views. Steps are stock; body flash capped at 0.22; additionally compact the isolated contact crescent to 62% size and 68% alpha; additionally compact the central flash to 60% size / 65% alpha and halve only the active sword ribbon alpha. Restore all values, then repeat stock. These depict the same camera, pose, time, and HP; damage, particles other than the selected flash/crescent, and the ribbon path are unchanged. This is a render-only comparison, not a Fable change.
+
+In the fixed Jack-and-swing crop, threshold-pale pixels were 3,893 → 2,961 → 2,691 → 1,259 (68% below stock for the full treatment); a restored stock render reproduced all three brightness counts and had zero pixels differing by 12 or more levels. The narrower treatment leaves the eye and more of the machine visible while keeping the gold swing, but does not make the blade physically longer or fix its angle.
+
+The stock rendered blade spanned only 25 px at confirmed damage. Its tip moved 1.25 m from the prior tick. The native FX origin was 1.14 m from the prior rendered blade segment versus 0.24 m from the same-tick segment. The native FX origin is an approximation, not an armor surface or validation of blade-to-mesh contact. Keep the timing and test camera/weapon silhouette next, ideally on an actual phone.
