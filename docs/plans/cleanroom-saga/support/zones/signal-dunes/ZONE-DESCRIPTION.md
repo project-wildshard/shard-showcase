@@ -67,14 +67,14 @@ At least these steps:
 
 ## Look
 
-The art direction is dark orange dunes just after sunset under an
-indigo sky: one low warm light raking across big smooth sand forms,
-burnt-orange crests, cool violet hollows, a tall afterglow band and
-the first stars. Weathered wood, rope, canvas, iron and sandstone.
-Nothing glows on its own except fire, and the signal fire is the
-brightest thing in the zone. No glass, crystals, neon or magic glow.
-The strongest edge in any frame is a crest line, a lit slip face
-against its shaded side.
+The art direction is a sand sea ten minutes after sunset, like a
+photograph: dark orange dunes under an indigo sky, one low warm light
+raking across big smooth sand forms, burnt-orange crests, cool violet
+hollows, a tall afterglow band and the first stars. Weathered wood,
+rope, canvas, iron and sandstone. Nothing glows on its own except fire,
+and the signal fire is the brightest thing in the zone. No glass,
+crystals, neon or magic glow. The strongest edge in any frame is a crest
+line, a lit slip face against its shaded side.
 
 ## Weapons
 

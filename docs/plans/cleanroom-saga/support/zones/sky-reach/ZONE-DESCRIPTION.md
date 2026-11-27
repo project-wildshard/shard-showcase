@@ -75,8 +75,7 @@ hour: a storybook painting of an evening above the clouds. Spring
 green grass with gold tips, warm rock keels with hanging roots, white
 stone, cream sail cloth, a peach-and-gold sky, and the cyan glow of
 the hover bridges and the wind as the one cool accent. Every frame
-looks into a warm sun, and nothing in it goes black. The art direction
-is shown in the three images in `concept/`.
+looks into a warm sun, and nothing in it goes black.
 
 ## Weapons
 

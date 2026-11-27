@@ -111,8 +111,7 @@ ruler-straight ink lines on every built edge, cool blue-grey washes,
 blue-green minerals, cinnabar and gold leaf on roofs and lanterns, silk
 mist between the levels. Neon is the only saturated light; it bleeds
 into the mist and streaks across wet stone. Chinese signs everywhere.
-Pale silk at the Crown, gold ink on indigo at the bottom. The art
-direction is shown in the three images in `concept/`.
+Pale silk at the Crown, gold ink on indigo at the bottom.
 
 ## HUD
 

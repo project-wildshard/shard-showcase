@@ -77,8 +77,7 @@ The art direction is stylised low-poly toon in an early-morning
 palette: soft greens and mossy stone, dew and mist in the hollows,
 warm first light on the hilltops, pale skies turning gold, and fire
 that really burns in the braziers. Clean shapes, friendly and
-storybook, cosy rather than grim, with water you can see. The art
-direction is shown in the three images in `concept/`.
+storybook, cosy rather than grim, with water you can see.
 
 ## Weapons
 

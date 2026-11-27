@@ -112,7 +112,7 @@ cedars, granite crags, moss and needles underfoot, a still pond that
 mirrors the sky. Real light: low gold sun through the trunks, dawn
 ground fog, soft rain, blue moonlight, warm cabin windows and lanterns
 glowing in the fog. Natural colour, eerie folklore at night, never
-cartoon. The art direction is shown in the three images in `concept/`.
+cartoon.
 
 ## HUD
 

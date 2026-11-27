@@ -2,9 +2,8 @@
 
 > Written by: Claude
 
-> **State:** in progress, 2026-11-26: ZC1 done; concept art dropped
-> (D40). ZC2 (art direction in the brief) is done for Signal Dunes and
-> waits on Jake's review. Every row after ZC2 waits on Jake: he
+> **State:** in progress, 2026-11-26: ZC1 and ZC2 done (one shared
+> brief, no concept art, D40). Every row after ZC2 waits on Jake: he
 > approves each zone's brief and description and runs its Fable
 > session himself (D34). Ask: A19.
 
@@ -27,8 +26,7 @@ cleanrooms + the art refresh of brashwick"*.
   - `README.md`, the shared brief;
   - `ZONE-DESCRIPTION.md`, at the D32 bar, in the zone's own look and
     identity, naming nothing from Wildshard;
-  - `concept/`, dropped by D40 (Signal Dunes done; the other seven
-    lose theirs in ZC2).
+  - `concept/`, dropped by D40.
 
   Copies live in `support/zones/<slug>/` here, with a `SOURCES.md`
   that the clean room never sees. The slugs are `signal-dunes`,
@@ -42,12 +40,14 @@ cleanrooms + the art refresh of brashwick"*.
   screenshots, its all that openai sloppy vibe"*. The candidates were
   removed from the tree; the scripts stay in
   `support/concept-art/` as a record.
-- [ ] **ZC2 Art direction in the brief.** No concept images: each
-  brief carries a short art-direction bullet in the zone's own vibe,
-  taken from its existing style docs, and says Fable sets the art.
-  Signal Dunes first (done, waits on Jake's review); the other seven
-  follow once he approves its wording. Done when all eight briefs and
-  descriptions name no `concept/` and each has the bullet.
+- [x] **ZC2 One shared brief.** No concept images (D40). All eight
+  `README.md` files are the same brief, `support/zones/BRIEF.md`,
+  under a `# <zone name>` title, stamped by
+  `support/zones/stamp-briefs.py` (`--check` says if any drifted).
+  Anything zone-specific lives in `ZONE-DESCRIPTION.md`: the brief
+  says "the main quest's final boss" and points its art bullet at
+  the description's Look section. Jake, 2026-11-26: *"make the
+  README.md the same in all 8 repos ( minus the title line )"*.
 - [ ] **ZC4 Signal Dunes one-shot (pilot).** Jake runs Fable in the
   folder. Done when D33 holds: it plays on a phone to the Dune
   Matriarch (or whichever main boss the description names), an Opus

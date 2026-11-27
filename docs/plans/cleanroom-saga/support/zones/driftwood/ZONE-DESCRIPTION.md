@@ -111,8 +111,7 @@ coloured shadows and a rim of light on every edge, like a storybook
 cartoon adventure: turquoise shallows fading to deep blue, white foam,
 lush greens, warm sand, a painted gradient sky with chunky faceted
 clouds, and the ringed planet always hanging over the sea. Never
-photoreal, never grey. The art direction is shown in the three images
-in `concept/`.
+photoreal, never grey.
 
 ## HUD
 

@@ -76,8 +76,7 @@ At least these steps:
 
 The art direction is a low-poly sunset canyon: layered red and orange
 rock, flat-topped mesas, long purple shadows, a hot gold sky, dust in
-the light, weathered wood and brass; faceted, warm and cinematic. The
-art direction is shown in the three images in `concept/`.
+the light, weathered wood and brass; faceted, warm and cinematic.
 
 ## Weapons
 

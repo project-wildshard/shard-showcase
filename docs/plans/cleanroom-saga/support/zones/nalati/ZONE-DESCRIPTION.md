@@ -111,8 +111,7 @@ Painterly steppe, like a living gouache painting: a warm low sun and a
 cool sky, soft painted light, shadows that go blue and violet, never
 grey. Sky-blue haze layering the distant hills, sunlit clouds with
 their shadows sliding over the grass, wind waves, wildflower drifts,
-white felt yurts, the snow range pale on the horizon. The art
-direction is shown in the three images in `concept/`.
+white felt yurts, the snow range pale on the horizon.
 
 ## HUD
 
