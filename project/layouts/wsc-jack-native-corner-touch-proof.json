@@ -1,0 +1,59 @@
+{
+  "referenceCommit": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "fixture": "shipped Pallet Docks crate; pair 3 inside left, staged actors",
+  "viewport": [
+    402,
+    874
+  ],
+  "simulationHz": 60,
+  "crateCenter": [
+    35.84560775756836,
+    0.2285158485174179,
+    142.8822784423828
+  ],
+  "crateHalfExtents": [
+    0.4295406639575958,
+    0.4295406639575958,
+    0.4295406639575958
+  ],
+  "routeWaypoints": [
+    [
+      36.41942431434103,
+      140.44902248396545
+    ],
+    [
+      35.11449967642241,
+      141.53859657018126
+    ],
+    [
+      33.98880804103872,
+      142.60879203925558
+    ]
+  ],
+  "aimLockTick": 113,
+  "crashTick": 135,
+  "tapTick": 154,
+  "contactTick": 165,
+  "recoveryToContactSeconds": 0.5,
+  "action": "sword1",
+  "heroHp": [
+    204,
+    204
+  ],
+  "enemyHp": [
+    132,
+    118
+  ],
+  "selectedCrateStoppedCharge": true,
+  "trustedStickMoves": 11,
+  "trustedSwordDowns": 1,
+  "usedSprint": false,
+  "usedRoll": false,
+  "usedKeyboard": false,
+  "usedGodMode": false,
+  "phoneHardwareTest": false,
+  "repeatEnemyHp": [
+    132,
+    117
+  ]
+}

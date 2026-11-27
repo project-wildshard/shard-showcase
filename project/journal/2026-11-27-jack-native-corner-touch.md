@@ -1,0 +1,7 @@
+# Rook's sword opening at the existing Pallet Docks crate
+
+Run `node demos/mite-yard/jack-warning/native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT 3 inside left` against the pinned Fable build served on loopback at `FABLE_PROBE_PORT`. For the stationary blocked/open regression, use the same command with only `3`. The source pin, disposable stage, and CDP setup are the same as the earlier native-corner and touch studies.
+
+This stage uses the existing crate collider at [35.8456, 0.2285, 142.8823], not the staged box. After initial placement the runner changes only trusted portrait-Chromium touch input, choosing stick direction every four simulation ticks. Starting at aim lock (tick 113), it walks around the crate without sprint, roll, keys, god mode, or an injected movement/state override. Jack's native charge hits that exact collider on tick 135. The runner lifts the stick and taps the native sword button on tick 154 after the short waist-level sightline clears. The first light cut lands on tick 165 (0.50 s after crash, 0.18 s after tap): Jack 132 to 117–118 HP across two runs with identical timing; Rook remains at 204.
+
+This is a scripted feasibility check at one existing corner, not a player-reaction benchmark. The sword damage event confirms a native hit, not precise mesh-to-mesh contact. No Fable source, deployment, or live playable build changed. Reference screenshots are not in this repository.

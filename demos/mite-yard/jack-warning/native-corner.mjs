@@ -1,4 +1,5 @@
 // Screen shipped Pallet Docks colliders, then run matched native ram replays.
+import {touchRiposte} from './touch-riposte.mjs';
 import assert from 'node:assert/strict';
 import {execFileSync} from 'node:child_process';
 import {readFileSync,writeFileSync,mkdtempSync} from 'node:fs';
@@ -6,8 +7,8 @@ import {createRequire} from 'node:module';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
-const [root,dep,arg='3',only]=process.argv.slice(2);
-if(!root||!dep||only&&!['inside','outside'].includes(only))throw Error('Usage: node native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [PAIR_INDEX|-1] [inside|outside]');
+const [root,dep,arg='3',only,side]=process.argv.slice(2);
+if(!root||!dep||(only&&!['inside','outside'].includes(only))||(side&&(!['left','right'].includes(side)||only!=='inside')))throw Error('Usage: node native-corner.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [PAIR_INDEX|-1] [inside|outside] [left|right touch route]');
 const index=Number(arg);
 const pin='3afcd880b397e9703e906a7e66b42e8447e59519';
 assert.equal(execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim(),pin);
@@ -27,7 +28,7 @@ try{
   page.on('pageerror',error=>console.error(error));
   await page.goto(`http://127.0.0.1:${Number(process.env.FABLE_PROBE_PORT??5174)}/?golden&dev&q=medium`,{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>window.game?.started&&game.renderer.gl.info.render.frame>0,null,{timeout:90000});
-  const {start,candidates}=await page.evaluate(({setup,index})=>{
+  const {start,candidates}=await page.evaluate(({setup,index,side})=>{
    const g=game,p=g.player,h=__golden;
    h.freeze();
    g.mobs.manageCamps=()=>{};g.mobs.clear();g.mobs.spawnQueue.length=0;
@@ -95,6 +96,24 @@ try{
    const base=g.physics.raycast.bind(g.physics),draw=g.renderer.render.bind(g.renderer),sfx=g.sfx.bind(g);
    const began=h.frame;
    const fixture=window.cornerFixture={phase:null,trace:[],collisions:[],sounds:[],chosen};
+   if(side)window.coverFixture=fixture;
+   const at=side==='right'?1:-1;
+   const forward=[Math.sin(bearing),Math.cos(bearing)], lateral=[forward[1]*at,-forward[0]*at];
+   const points=[[-2,1.5],[-.3,1.5],[1.25,1.4]].map(([a,b])=>[
+    chosen.center[0]+a*forward[0]+b*lateral[0],chosen.center[2]+a*forward[1]+b*lateral[1]]);
+   let route=0, movement=null, attack=null;
+   const cameraForward=pos(0,0,0);
+   function touchStep(command){
+    fixture.command=command;fixture.phase='touch-step';h.freeze();
+   }
+   if(side){
+    fixture.pointerEvents=[];
+    for(const name of ['pointerdown','pointermove','pointerup','pointercancel'])
+     document.addEventListener(name,e=>{
+      if(e.pointerType==='touch')fixture.pointerEvents.push({name,frame:h.frame-began,trusted:e.isTrusted,
+       act:e.target?.closest('button')?.dataset?.act??null,element:e.target?.tagName??null});
+     },true);
+   }
    g.physics.raycast=(o,d,len,filter,...rest)=>{
     const hit=base(o,d,len,filter,...rest);
     if(hit&&filter===undefined&&mob.state==='active'&&mob.atk?.id==='charge'&&
@@ -107,11 +126,12 @@ try{
     return sfx(id,...args);
    };
    g.renderer.render=(...args)=>{
-    if(mob.atk?.id==='charge'&&((mob.state==='windup'&&mob.locked&&!fixture.lock)||(mob.state==='recover'&&!fixture.recovery)))draw(...args);
+    if((side&&((mob.hp<fixture.enemyHp&&!fixture.contact)||(fixture.contact&&h.frame-began===fixture.contact.frame+2)))||mob.atk?.id==='charge'&&((mob.state==='windup'&&mob.locked&&!fixture.lock)||(mob.state==='recover'&&!fixture.recovery)))draw(...args);
    };
    h.post=()=>{
     const r={frame:h.frame-began,state:mob.state,attack:mob.atk?.id??null,hp:g.state.d.hp,
-      m:mob.pos.toArray(),p:p.pos.toArray(),rolling:p.rolling,god:g.state.god};
+      m:mob.pos.toArray(),p:p.pos.toArray(),rolling:p.rolling,god:g.state.god,enemyHp:mob.hp,action:p.action,sprint:p.sprinting,
+      ...(side?{route,keyboard:g.input.keys.size,stick:g.input.stick.active}:{} )};
     fixture.trace.push(r);
     const sight=(o,w,trim)=>{
      const dir=w.clone().sub(o),len=dir.length();
@@ -145,17 +165,65 @@ try{
        rot:g.camera.quaternion.toArray(),camera:g.camera.position.toArray(),hp:g.state.d.hp};
      };
      fixture.lock={...r,topBlocked:top!==null,lowBlocked:low!==null,lowIsCandidate:low===chosen.handle,lowDistance,camHits};
-     fixture.phase='windup';h.freeze();
+     if(!side){fixture.phase='windup';h.freeze();}
     }else if(mob.state==='recover'&&mob.atk?.id==='charge'&&fixture.lock&&!fixture.recovery){
-     fixture.recovery={...r,fired:mob.fired};fixture.phase='recover';h.freeze();
-    }else if(r.frame>430){fixture.phase='timeout';h.freeze();}
+     fixture.recovery={...r,fired:mob.fired};
+     if(!side){fixture.phase='recover';h.freeze();}
+    }else if(r.frame>430){fixture.phase='timeout';h.freeze();return;}
+    if(!side||!fixture.lock)return;
+    if(movement===null){movement=r.frame;fixture.moveStart=r;}
+    if(attack!==null){
+     if(r.frame===attack+2){touchStep('release');return;}
+     if(mob.hp<fixture.enemyHp&&!fixture.contact)fixture.contact=r;
+     if(fixture.contact&&r.frame>=fixture.contact.frame+2){fixture.phase='end';h.freeze();}
+    }
+    if(r.frame-movement>130){fixture.phase='miss';h.freeze();return;}
+    if(attack!==null)return;
+    const origin=p.pos.clone();origin.y+=.8;
+    const direction=mob.pos.clone();direction.y+=.8;direction.sub(origin);
+    const distance=direction.length();
+    // Don't swing into the cover or while the locked charge is active.
+    if(fixture.recovery&&distance<3.55&&!base(origin,direction.multiplyScalar(1/distance),Math.max(.05,distance-.65))){
+     attack=r.frame;fixture.attack=r;touchStep('attack');return;
+    }
+    if((r.frame-movement)%4!==0)return;
+    while(route<points.length&&Math.hypot(points[route][0]-p.pos.x,points[route][1]-p.pos.z)<.44)route++;
+    const [x,z]=points[route]??[mob.pos.x,mob.pos.z];
+    const dx=x-p.pos.x,dz=z-p.pos.z,mag=Math.hypot(dx,dz);
+    g.cameraRig.forward(cameraForward);
+    fixture.wish=mag<.001?[0,0]:[(-cameraForward.z*dx+cameraForward.x*dz)/mag,-(cameraForward.x*dx+cameraForward.z*dz)/mag];
+    touchStep('move');
    };
-   const start={hp:g.state.d.hp,enemyHp:mob.hp,eye,chosen,matchedCandidates:candidates.length};
+   fixture.enemyHp=mob.hp;
+   const start={hp:g.state.d.hp,enemyHp:mob.hp,eye,chosen, ...(side?{side,points}:{} ),matchedCandidates:candidates.length};
    h.thaw();
    return {start};
-  },{setup,index});
+  },{setup,index,side});
   if(setup==='scan'){
    console.log(JSON.stringify(candidates.slice(0,14)));
+   await ctx.close();continue;
+  }
+  if(side){
+   await touchRiposte(page,ctx);
+   await page.screenshot({path:join(out,side+'-result.jpg'),type:'jpeg',quality:91});
+   result[side]={start,...await page.evaluate(()=>cornerFixture)};
+   writeFileSync(join(out,'proof.json'),JSON.stringify(result,null,2)+'\n');
+   const {phase,lock,recovery,attack,contact,collisions,sounds}=result[side];
+   console.log(JSON.stringify({side,phase,lock,recovery,attack,contact,collisions,sounds,points:start.points}));
+   assert.equal(phase,'end');
+   assert(lock.lowIsCandidate&&!lock.topBlocked);
+   assert(collisions.some(hit=>hit.candidate));
+   assert.equal(sounds.length,1);
+   assert.equal(contact.action,'sword1');
+   assert(contact.frame-recovery.frame<67);
+   assert.equal(contact.hp,start.hp);
+   assert(contact.enemyHp<start.enemyHp);
+   assert(attack.frame>=recovery.frame&&contact.frame>=attack.frame);
+   assert(result[side].trace.every(t=>t.hp===start.hp));
+   assert(result[side].trace.some(t=>t.stick));
+   assert(result[side].trace.every(t=>!t.god&&!t.rolling&&t.keyboard===0));
+   assert(result[side].pointerEvents.some(t=>t.name==='pointerdown'&&t.act==='attack'&&t.trusted));
+   assert(result[side].pointerEvents.some(t=>t.name==='pointermove'&&t.element==='CANVAS'&&t.trusted));
    await ctx.close();continue;
   }
   for(const phase of ['windup','recover']){
