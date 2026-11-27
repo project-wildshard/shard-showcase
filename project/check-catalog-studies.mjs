@@ -502,3 +502,13 @@ for(const view of ["launch","landing"]){
  assert.ok(markup.includes(`src="${path}"`));
  assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
 }
+
+assert.ok(ids.has("nov27-e5b-container-far"));
+assert.ok(markup.includes('href="#nov27-e5b-container-far"'));
+assert.ok(markup.includes('href="media/wsc-prop-058-shipping-container-far.glb"'));
+assert.equal(readFileSync(new URL("media/wsc-prop-058-shipping-container-far.glb",dist)).subarray(0,4).toString(),"glTF");
+for(const distance of [15,32]){
+ const path=`media/nov27-e5b-container-${distance}m.webp`;
+ assert.ok(markup.includes(`src="${path}"`));
+ assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
+}
