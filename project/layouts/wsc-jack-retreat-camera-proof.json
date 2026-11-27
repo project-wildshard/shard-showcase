@@ -1,0 +1,2083 @@
+{
+  "referenceRevision": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "sourceGitBlobs": {
+    "src/core/camera.ts": "89632998089f21d16314e3246cfc3944e959ff79",
+    "src/core/util.ts": "1737fa575a6bb8c6c684ce2cde5b8541402d27f3",
+    "src/core/physics.ts": "2efb28822086e54d6ed951b8a479e341fd09658f",
+    "src/systems/engage.ts": "9ba9403d3b4b0058ecc852d93464d81a1e15dfb5",
+    "src/data/enemies.ts": "345d524891aa9d022a8c51bddc8c802ad05cc251"
+  },
+  "threeRevision": "186",
+  "viewport": [
+    402,
+    874
+  ],
+  "hz": 60,
+  "windupMs": 950,
+  "scope": "Reference CameraRig and Engagement, open-space scripted input and static tell anchor; no mobs, movement physics, HUD, or device.",
+  "summary": [
+    {
+      "id": "backstep",
+      "baseline": {
+        "safe": 33,
+        "visible": 34,
+        "maxYaw": 135,
+        "off": 583,
+        "flee": 417,
+        "drop": null,
+        "dragYaw": -92
+      },
+      "candidate": {
+        "safe": 57,
+        "visible": 57,
+        "maxYaw": 0,
+        "off": null,
+        "flee": 967,
+        "drop": null,
+        "dragYaw": 0
+      }
+    },
+    {
+      "id": "side-backstep",
+      "baseline": {
+        "safe": 32,
+        "visible": 33,
+        "maxYaw": 115,
+        "off": 567,
+        "flee": 417,
+        "drop": null,
+        "dragYaw": -78
+      },
+      "candidate": {
+        "safe": 57,
+        "visible": 57,
+        "maxYaw": 0,
+        "off": null,
+        "flee": 967,
+        "drop": null,
+        "dragYaw": 0
+      }
+    },
+    {
+      "id": "short-backstep",
+      "baseline": {
+        "safe": 57,
+        "visible": 57,
+        "maxYaw": 0,
+        "off": null,
+        "flee": null,
+        "drop": null,
+        "dragYaw": 0
+      },
+      "candidate": {
+        "safe": 57,
+        "visible": 57,
+        "maxYaw": 0,
+        "off": null,
+        "flee": null,
+        "drop": null,
+        "dragYaw": 0
+      }
+    },
+    {
+      "id": "escape",
+      "baseline": {
+        "safe": 33,
+        "visible": 34,
+        "maxYaw": 135,
+        "off": 583,
+        "flee": 417,
+        "drop": 3017,
+        "dragYaw": -92
+      },
+      "candidate": {
+        "safe": 57,
+        "visible": 57,
+        "maxYaw": 0,
+        "off": 1000,
+        "flee": 967,
+        "drop": 3017,
+        "dragYaw": 0
+      }
+    },
+    {
+      "id": "sprint",
+      "baseline": {
+        "safe": 2,
+        "visible": 3,
+        "maxYaw": 174,
+        "off": 67,
+        "flee": 17,
+        "drop": null,
+        "dragYaw": -20
+      },
+      "candidate": {
+        "safe": 2,
+        "visible": 3,
+        "maxYaw": 174,
+        "off": 67,
+        "flee": 17,
+        "drop": null,
+        "dragYaw": -20
+      }
+    },
+    {
+      "id": "drag",
+      "baseline": {
+        "safe": 39,
+        "visible": 41,
+        "maxYaw": 51,
+        "off": 700,
+        "flee": 417,
+        "drop": null,
+        "dragYaw": 62
+      },
+      "candidate": {
+        "safe": 36,
+        "visible": 38,
+        "maxYaw": 62,
+        "off": 650,
+        "flee": 517,
+        "drop": null,
+        "dragYaw": 62
+      }
+    },
+    {
+      "id": "manual-clear",
+      "baseline": {
+        "safe": 33,
+        "visible": 34,
+        "maxYaw": 135,
+        "off": 583,
+        "flee": 417,
+        "drop": 317,
+        "dragYaw": -92
+      },
+      "candidate": {
+        "safe": 33,
+        "visible": 34,
+        "maxYaw": 135,
+        "off": 583,
+        "flee": 417,
+        "drop": 317,
+        "dragYaw": -92
+      }
+    },
+    {
+      "id": "no-tell",
+      "baseline": {
+        "safe": 33,
+        "visible": 34,
+        "maxYaw": 135,
+        "off": 583,
+        "flee": 417,
+        "drop": null,
+        "dragYaw": -92
+      },
+      "candidate": {
+        "safe": 33,
+        "visible": 34,
+        "maxYaw": 135,
+        "off": 583,
+        "flee": 417,
+        "drop": null,
+        "dragYaw": -92
+      }
+    },
+    {
+      "id": "third-person-follow-off",
+      "baseline": {
+        "safe": 57,
+        "visible": 57,
+        "maxYaw": 0,
+        "off": null,
+        "flee": 417,
+        "drop": null,
+        "dragYaw": 0
+      },
+      "candidate": {
+        "safe": 57,
+        "visible": 57,
+        "maxYaw": 0,
+        "off": null,
+        "flee": 417,
+        "drop": null,
+        "dragYaw": 0
+      }
+    }
+  ],
+  "samples": {
+    "backstep": {
+      "baseline": [
+        {
+          "ms": 17,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.0749
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            0,
+            3.0721,
+            5.7979
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            0.06
+          ]
+        },
+        {
+          "ms": 400,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.0982
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            0,
+            3.0721,
+            7.051
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            1.44
+          ]
+        },
+        {
+          "ms": 600,
+          "yaw": -0.6276,
+          "heading": 0,
+          "cue": [
+            -1.3198,
+            0.0838
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 0.5714,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -3.3954,
+            3.0721,
+            6.669
+          ],
+          "rotation": [
+            -0.095,
+            -0.3071,
+            -0.0308,
+            0.9464
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            2.16
+          ]
+        },
+        {
+          "ms": 750,
+          "yaw": -1.5179,
+          "heading": 0,
+          "cue": [
+            -4.5789,
+            -0.1354
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -5.7743,
+            3.0721,
+            2.8345
+          ],
+          "rotation": [
+            -0.0724,
+            -0.6847,
+            -0.0687,
+            0.7219
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            2.7
+          ]
+        },
+        {
+          "ms": 950,
+          "yaw": -2.3512,
+          "heading": 0,
+          "cue": [
+            65.647,
+            8.8664
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -4.109,
+            3.0721,
+            -0.8199
+          ],
+          "rotation": [
+            0.0384,
+            0.9183,
+            0.0921,
+            -0.383
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            3.42
+          ]
+        },
+        {
+          "ms": 967,
+          "yaw": -2.3512,
+          "heading": null,
+          "cue": [
+            60.6276,
+            8.1755
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -4.109,
+            3.0721,
+            -0.7755
+          ],
+          "rotation": [
+            0.0384,
+            0.9183,
+            0.0921,
+            -0.383
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            3.42
+          ]
+        },
+        {
+          "ms": 1017,
+          "yaw": -2.3512,
+          "heading": null,
+          "cue": [
+            53.7463,
+            7.2284
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -4.109,
+            3.0721,
+            -0.7001
+          ],
+          "rotation": [
+            0.0384,
+            0.9183,
+            0.0921,
+            -0.383
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            3.42
+          ]
+        }
+      ],
+      "candidate": [
+        {
+          "ms": 17,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.0749
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0,
+            3.0721,
+            5.7979
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            0.06
+          ]
+        },
+        {
+          "ms": 400,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.0982
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0,
+            3.0721,
+            7.051
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            1.44
+          ]
+        },
+        {
+          "ms": 600,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.1097
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0,
+            3.0721,
+            7.7709
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            2.16
+          ]
+        },
+        {
+          "ms": 750,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.1176
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0,
+            3.0721,
+            8.3109
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            2.7
+          ]
+        },
+        {
+          "ms": 950,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.1273
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0,
+            3.0721,
+            9.0309
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            3.42
+          ]
+        },
+        {
+          "ms": 967,
+          "yaw": 0,
+          "heading": null,
+          "cue": [
+            0,
+            0.1278
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            0,
+            3.0721,
+            9.0753
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            3.42
+          ]
+        },
+        {
+          "ms": 1017,
+          "yaw": 0,
+          "heading": null,
+          "cue": [
+            0,
+            0.1288
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            0,
+            3.0721,
+            9.1507
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            3.42
+          ]
+        }
+      ]
+    },
+    "side-backstep": {
+      "baseline": [
+        {
+          "ms": 17,
+          "yaw": 0,
+          "heading": 0.4556,
+          "cue": [
+            -0.002,
+            0.0749
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            0.0068,
+            3.0721,
+            5.7964
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0.0264,
+            0,
+            0.0539
+          ]
+        },
+        {
+          "ms": 400,
+          "yaw": 0,
+          "heading": 0.4556,
+          "cue": [
+            -0.1491,
+            0.096
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            0.5582,
+            3.0721,
+            6.9216
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0.6336,
+            0,
+            1.2931
+          ]
+        },
+        {
+          "ms": 600,
+          "yaw": -0.5366,
+          "heading": 0.4556,
+          "cue": [
+            -1.3552,
+            0.0795
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 0.5714,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -2.081,
+            3.0721,
+            6.7554
+          ],
+          "rotation": [
+            -0.0963,
+            -0.2638,
+            -0.0265,
+            0.9594
+          ],
+          "fov": 64,
+          "hero": [
+            0.9504,
+            0,
+            1.9397
+          ]
+        },
+        {
+          "ms": 750,
+          "yaw": -1.2977,
+          "heading": 0.4556,
+          "cue": [
+            -4.013,
+            -0.0909
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -4.4556,
+            3.0721,
+            3.83
+          ],
+          "rotation": [
+            -0.0795,
+            -0.6013,
+            -0.0603,
+            0.7928
+          ],
+          "fov": 64,
+          "hero": [
+            1.188,
+            0,
+            2.4246
+          ]
+        },
+        {
+          "ms": 950,
+          "yaw": -2.0103,
+          "heading": 0.4556,
+          "cue": [
+            -24.8865,
+            -2.5277
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -3.8036,
+            3.0721,
+            0.457
+          ],
+          "rotation": [
+            -0.0535,
+            -0.84,
+            -0.0843,
+            0.5333
+          ],
+          "fov": 64,
+          "hero": [
+            1.5048,
+            0,
+            3.0712
+          ]
+        },
+        {
+          "ms": 967,
+          "yaw": -2.0103,
+          "heading": null,
+          "cue": [
+            -25.8205,
+            -2.6238
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -3.7841,
+            3.0721,
+            0.4969
+          ],
+          "rotation": [
+            -0.0535,
+            -0.84,
+            -0.0843,
+            0.5333
+          ],
+          "fov": 64,
+          "hero": [
+            1.5048,
+            0,
+            3.0712
+          ]
+        },
+        {
+          "ms": 1017,
+          "yaw": -2.0103,
+          "heading": null,
+          "cue": [
+            -27.5573,
+            -2.8024
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -3.7509,
+            3.0721,
+            0.5646
+          ],
+          "rotation": [
+            -0.0535,
+            -0.84,
+            -0.0843,
+            0.5333
+          ],
+          "fov": 64,
+          "hero": [
+            1.5048,
+            0,
+            3.0712
+          ]
+        }
+      ],
+      "candidate": [
+        {
+          "ms": 17,
+          "yaw": 0,
+          "heading": 0.4556,
+          "cue": [
+            -0.002,
+            0.0749
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0.0068,
+            3.0721,
+            5.7964
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0.0264,
+            0,
+            0.0539
+          ]
+        },
+        {
+          "ms": 400,
+          "yaw": 0,
+          "heading": 0.4556,
+          "cue": [
+            -0.1491,
+            0.096
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0.5582,
+            3.0721,
+            6.9216
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0.6336,
+            0,
+            1.2931
+          ]
+        },
+        {
+          "ms": 600,
+          "yaw": 0,
+          "heading": 0.4556,
+          "cue": [
+            -0.2229,
+            0.1066
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0.8749,
+            3.0721,
+            7.5681
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0.9504,
+            0,
+            1.9397
+          ]
+        },
+        {
+          "ms": 750,
+          "yaw": 0,
+          "heading": 0.4556,
+          "cue": [
+            -0.2739,
+            0.1139
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            1.1125,
+            3.0721,
+            8.053
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            1.188,
+            0,
+            2.4246
+          ]
+        },
+        {
+          "ms": 950,
+          "yaw": 0,
+          "heading": 0.4556,
+          "cue": [
+            -0.3367,
+            0.1229
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            1.4293,
+            3.0721,
+            8.6995
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            1.5048,
+            0,
+            3.0712
+          ]
+        },
+        {
+          "ms": 967,
+          "yaw": 0,
+          "heading": null,
+          "cue": [
+            -0.3404,
+            0.1235
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            1.4489,
+            3.0721,
+            8.7395
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            1.5048,
+            0,
+            3.0712
+          ]
+        },
+        {
+          "ms": 1017,
+          "yaw": 0,
+          "heading": null,
+          "cue": [
+            -0.3467,
+            0.1244
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            1.4821,
+            3.0721,
+            8.8072
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            1.5048,
+            0,
+            3.0712
+          ]
+        }
+      ]
+    },
+    "drag": {
+      "baseline": [
+        {
+          "ms": 17,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.0749
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            0,
+            3.0721,
+            5.7979
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            0.06
+          ]
+        },
+        {
+          "ms": 400,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.0982
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            0,
+            3.0721,
+            7.051
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            1.44
+          ]
+        },
+        {
+          "ms": 600,
+          "yaw": 0.177,
+          "heading": 0.3,
+          "cue": [
+            0.3499,
+            0.1078
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": false,
+          "selected": true,
+          "flee": 0.5714,
+          "lookX": 0.06,
+          "hold": false,
+          "camera": [
+            1.0436,
+            3.0721,
+            7.6781
+          ],
+          "rotation": [
+            -0.0994,
+            0.088,
+            0.0088,
+            0.9911
+          ],
+          "fov": 64,
+          "hero": [
+            0.0535,
+            0,
+            2.1541
+          ]
+        },
+        {
+          "ms": 750,
+          "yaw": 0.717,
+          "heading": 0.84,
+          "cue": [
+            1.5026,
+            0.0853
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0.06,
+          "hold": false,
+          "camera": [
+            4.0497,
+            3.0721,
+            6.8211
+          ],
+          "rotation": [
+            -0.0935,
+            0.3491,
+            0.035,
+            0.9317
+          ],
+          "fov": 64,
+          "hero": [
+            0.3548,
+            0,
+            2.5944
+          ]
+        },
+        {
+          "ms": 950,
+          "yaw": 0.897,
+          "heading": 1.08,
+          "cue": [
+            1.8463,
+            0.0782
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            5.3476,
+            3.0721,
+            6.477
+          ],
+          "rotation": [
+            -0.09,
+            0.4315,
+            0.0433,
+            0.8966
+          ],
+          "fov": 64,
+          "hero": [
+            0.9783,
+            0,
+            2.9521
+          ]
+        },
+        {
+          "ms": 967,
+          "yaw": 0.897,
+          "heading": null,
+          "cue": [
+            1.8377,
+            0.0791
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            5.3864,
+            3.0721,
+            6.4984
+          ],
+          "rotation": [
+            -0.09,
+            0.4315,
+            0.0433,
+            0.8966
+          ],
+          "fov": 64,
+          "hero": [
+            0.9783,
+            0,
+            2.9521
+          ]
+        },
+        {
+          "ms": 1017,
+          "yaw": 0.897,
+          "heading": null,
+          "cue": [
+            1.8232,
+            0.0806
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            5.4521,
+            3.0721,
+            6.5349
+          ],
+          "rotation": [
+            -0.09,
+            0.4315,
+            0.0433,
+            0.8966
+          ],
+          "fov": 64,
+          "hero": [
+            0.9783,
+            0,
+            2.9521
+          ]
+        }
+      ],
+      "candidate": [
+        {
+          "ms": 17,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.0749
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0,
+            3.0721,
+            5.7979
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            0.06
+          ]
+        },
+        {
+          "ms": 400,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.0982
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0,
+            3.0721,
+            7.051
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            1.44
+          ]
+        },
+        {
+          "ms": 600,
+          "yaw": 0.36,
+          "heading": 0.3,
+          "cue": [
+            0.7264,
+            0.1017
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": false,
+          "selected": true,
+          "flee": 0.5714,
+          "lookX": 0.06,
+          "hold": false,
+          "camera": [
+            2.0622,
+            3.0721,
+            7.3978
+          ],
+          "rotation": [
+            -0.0982,
+            0.1781,
+            0.0179,
+            0.9789
+          ],
+          "fov": 64,
+          "hero": [
+            0.0535,
+            0,
+            2.1541
+          ]
+        },
+        {
+          "ms": 750,
+          "yaw": 0.9,
+          "heading": 0.84,
+          "cue": [
+            1.9799,
+            0.0629
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0.06,
+          "hold": false,
+          "camera": [
+            4.7793,
+            3.0721,
+            6.057
+          ],
+          "rotation": [
+            -0.0899,
+            0.4328,
+            0.0434,
+            0.8959
+          ],
+          "fov": 64,
+          "hero": [
+            0.3548,
+            0,
+            2.5944
+          ]
+        },
+        {
+          "ms": 950,
+          "yaw": 1.08,
+          "heading": 1.08,
+          "cue": [
+            2.3848,
+            0.05
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            5.9285,
+            3.0721,
+            5.5946
+          ],
+          "rotation": [
+            -0.0856,
+            0.5116,
+            0.0513,
+            0.8534
+          ],
+          "fov": 64,
+          "hero": [
+            0.9783,
+            0,
+            2.9521
+          ]
+        },
+        {
+          "ms": 967,
+          "yaw": 1.08,
+          "heading": null,
+          "cue": [
+            2.3755,
+            0.0511
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            5.9673,
+            3.0721,
+            5.6161
+          ],
+          "rotation": [
+            -0.0856,
+            0.5116,
+            0.0513,
+            0.8534
+          ],
+          "fov": 64,
+          "hero": [
+            0.9783,
+            0,
+            2.9521
+          ]
+        },
+        {
+          "ms": 1017,
+          "yaw": 1.08,
+          "heading": null,
+          "cue": [
+            2.3599,
+            0.0529
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            6.0331,
+            3.0721,
+            5.6525
+          ],
+          "rotation": [
+            -0.0856,
+            0.5116,
+            0.0513,
+            0.8534
+          ],
+          "fov": 64,
+          "hero": [
+            0.9783,
+            0,
+            2.9521
+          ]
+        }
+      ]
+    },
+    "escape": {
+      "baseline": [
+        {
+          "ms": 17,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.0749
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            0,
+            3.0721,
+            5.7979
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            0.06
+          ]
+        },
+        {
+          "ms": 400,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.0982
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            0,
+            3.0721,
+            7.051
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            1.44
+          ]
+        },
+        {
+          "ms": 600,
+          "yaw": -0.6276,
+          "heading": 0,
+          "cue": [
+            -1.3198,
+            0.0838
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 0.5714,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -3.3954,
+            3.0721,
+            6.669
+          ],
+          "rotation": [
+            -0.095,
+            -0.3071,
+            -0.0308,
+            0.9464
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            2.16
+          ]
+        },
+        {
+          "ms": 750,
+          "yaw": -1.5179,
+          "heading": 0,
+          "cue": [
+            -4.5789,
+            -0.1354
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -5.7743,
+            3.0721,
+            2.8345
+          ],
+          "rotation": [
+            -0.0724,
+            -0.6847,
+            -0.0687,
+            0.7219
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            2.7
+          ]
+        },
+        {
+          "ms": 950,
+          "yaw": -2.3512,
+          "heading": 0,
+          "cue": [
+            65.647,
+            8.8664
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -4.109,
+            3.0721,
+            -0.8199
+          ],
+          "rotation": [
+            0.0384,
+            0.9183,
+            0.0921,
+            -0.383
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            3.42
+          ]
+        },
+        {
+          "ms": 967,
+          "yaw": -2.3973,
+          "heading": 0,
+          "cue": [
+            32.2116,
+            4.6924
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -3.9175,
+            3.0721,
+            -0.9447
+          ],
+          "rotation": [
+            0.0363,
+            0.9269,
+            0.093,
+            -0.3618
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            3.48
+          ]
+        },
+        {
+          "ms": 1017,
+          "yaw": -2.5199,
+          "heading": 0,
+          "cue": [
+            12.5664,
+            2.2689
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -3.3678,
+            3.0721,
+            -1.2119
+          ],
+          "rotation": [
+            0.0305,
+            0.9473,
+            0.095,
+            -0.3043
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            3.66
+          ]
+        }
+      ],
+      "candidate": [
+        {
+          "ms": 17,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.0749
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0,
+            3.0721,
+            5.7979
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            0.06
+          ]
+        },
+        {
+          "ms": 400,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.0982
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0,
+            3.0721,
+            7.051
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            1.44
+          ]
+        },
+        {
+          "ms": 600,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.1097
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0,
+            3.0721,
+            7.7709
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            2.16
+          ]
+        },
+        {
+          "ms": 750,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.1176
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0,
+            3.0721,
+            8.3109
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            2.7
+          ]
+        },
+        {
+          "ms": 950,
+          "yaw": 0,
+          "heading": 0,
+          "cue": [
+            0,
+            0.1273
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": true,
+          "selected": true,
+          "flee": 0,
+          "lookX": 0,
+          "hold": true,
+          "camera": [
+            0,
+            3.0721,
+            9.0309
+          ],
+          "rotation": [
+            -0.0998,
+            0,
+            0,
+            0.995
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            3.42
+          ]
+        },
+        {
+          "ms": 967,
+          "yaw": -0.183,
+          "heading": 0,
+          "cue": [
+            -0.3928,
+            0.126
+          ],
+          "visible": true,
+          "safe": true,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -1.052,
+            3.0721,
+            8.9944
+          ],
+          "rotation": [
+            -0.0994,
+            -0.0909,
+            -0.0091,
+            0.9908
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            3.48
+          ]
+        },
+        {
+          "ms": 1017,
+          "yaw": -0.6703,
+          "heading": 0,
+          "cue": [
+            -1.5402,
+            0.101
+          ],
+          "visible": false,
+          "safe": false,
+          "framed": false,
+          "selected": true,
+          "flee": 1,
+          "lookX": 0,
+          "hold": false,
+          "camera": [
+            -3.5923,
+            3.0721,
+            8.0197
+          ],
+          "rotation": [
+            -0.0943,
+            -0.3273,
+            -0.0328,
+            0.9396
+          ],
+          "fov": 64,
+          "hero": [
+            0,
+            0,
+            3.66
+          ]
+        }
+      ]
+    }
+  }
+}
