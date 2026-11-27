@@ -108,10 +108,9 @@ The story, the steps and the boss are yours to design.
 - Melee: the driftwood sword you wash up with, which grows with you,
   level by level, into a great living blade, barnacled and edged with
   coral, whose full swing throws a breaking wave down the line; a
-  ship's anchor on a chain, swung in wide arcs that sweep a crowd off
-  its feet; a stormglass trident that charges with every
-  hit, then lets it out in one thrust that arcs lightning through every
-  foe in the water; and more.
+  stormglass trident that charges with every hit, then lets it out in
+  one thrust that arcs lightning through every foe in the water; and
+  more.
 - Ranged: a harpoon gun on a long rope that reels a foe in, or you to
   it; a twin-barrel flintlock, one barrel for the air and one that
   fires a spinning bolt straight through the water; a lighthouse lens
