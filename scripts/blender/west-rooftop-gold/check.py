@@ -125,7 +125,7 @@ print(json.dumps(receipt))
 if '--proof-only' in sys.argv:raise SystemExit(0)
 
 S.render.engine='CYCLES';S.cycles.samples=24
-S.cycles.use_denoising=True
+S.cycles.use_denoising=False;S.cycles.use_adaptive_sampling=True
 S.render.resolution_percentage=100
 S.render.image_settings.file_format='JPEG';S.render.image_settings.quality=94
 S.render.resolution_x,S.render.resolution_y=1200,840
@@ -134,16 +134,21 @@ for obj in S.objects:
     if obj.type=='LIGHT':obj.hide_render=True
 world=bpy.data.worlds.new('Clear west evening');world.use_nodes=True
 bg=world.node_tree.nodes['Background']
-bg.inputs[0].default_value=(.34,.48,.70,1);bg.inputs[1].default_value=.41
+bg.inputs[0].default_value=(.45,.59,.78,1);bg.inputs[1].default_value=.58
 S.world=world
 sun=bpy.data.lights.new('Late exterior key','SUN')
 sun.energy=2.25;sun.color=(1,.91,.75);sun.angle=.12
 lamp=bpy.data.objects.new('Late exterior key',sun);S.collection.objects.link(lamp)
 lamp.rotation_euler=(.47,-.83,-.60)
-cam=bpy.data.cameras.new('Rooftop Gold evidence');cam.lens=34;cam.clip_end=390
+cam=bpy.data.cameras.new('Rooftop Gold evidence');cam.lens=22;cam.clip_end=390
 o=bpy.data.objects.new(cam.name,cam);S.collection.objects.link(o);S.camera=o
+fill=bpy.data.lights.new('Review fill', 'AREA')
+fill.energy=155;fill.size=1.8
+key=bpy.data.objects.new(fill.name,fill);S.collection.objects.link(key)
 for name,p,eye,_ in placed:
     o.location=eye
+    key.location=eye+Vector((0,.35,1.02))
+    key.rotation_euler=(p+Vector((0,0,.62))-key.location).to_track_quat('-Z','Y').to_euler()
     o.rotation_euler=(p+Vector((0,0,.60))-eye).to_track_quat('-Z','Y').to_euler()
     S.render.filepath=str(OUT/f'{name}.jpg')
     bpy.ops.render.render(write_still=True)
