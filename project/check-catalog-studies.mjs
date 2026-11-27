@@ -435,3 +435,15 @@ for(const where of ["obelisk","movers"])for(const phase of ["off","on"]){
  assert.ok(markup.includes(`href="${path}"`));
  assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
 }
+
+const halfpipeSource=data.assets.find(row=>row.id==="WSC-PROP-030");
+assert.equal(halfpipeSource.status,"historical-reference");
+assert.equal(halfpipeSource.related_study?.href,"#nov27-hover-channel");
+assert.ok(!halfpipeSource.model_preview);
+assert.ok(ids.has("nov27-hover-channel"));
+assert.ok(markup.includes('href="media/w5a-channel-release-inlays.glb"'));
+for(const name of ["floor","overview"]){
+ const p=`media/nov27-hover-channel-${name}.webp`;
+ assert.ok(markup.includes(`src="${p}"`));
+ assert.equal(readFileSync(new URL(p,dist)).subarray(8,12).toString(),"WEBP");
+}
