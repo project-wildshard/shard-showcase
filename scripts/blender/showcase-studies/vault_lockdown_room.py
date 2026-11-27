@@ -191,8 +191,23 @@ for i in range(wall_n):
     radial=Vector((-math.sin(a),math.cos(a),0))
     def loc(r,z):
         return tuple(radial*r+Vector((0,0,z)))
-    box("Deep continuous wall shell",loc(12.15,2.83),(span+.05,.31,5.69),iron,0,a)
-    if i in (0,10):
+    if i == 0 and os.environ.get("WSC_VAULT_FINAL_DOOR") == "1":
+        # Bench only: preserve casing and the original wall line around MODULE-021.
+        opening = 2.78
+        side = (span+.05-opening)/2
+        for sign in (-1,1):
+            box("Test mouth wall side",(sign*(opening+side)/2,12.15,2.83),
+                (side,.31,5.69),iron)
+        box("Test mouth wall head",(0,12.15,4.20),(opening,.31,2.95),iron)
+    else:
+        box("Deep continuous wall shell",loc(12.15,2.83),(span+.05,.31,5.69),iron,0,a)
+    if i == 0 and os.environ.get("WSC_VAULT_FINAL_DOOR") == "1":
+        donors_open=assets/"wsc-module-021-open-circular-vault-door.glb"
+        assert hashlib.sha256(donors_open.read_bytes()).hexdigest() == "dcaca9e40d0e6421fdd62c1dedf537e7004ad0016b05144beed419377682cc68"
+        templates["open"]=read_glb(donors_open)
+        place("open","Test entrance MODULE-021",loc(12.01,-.99),a)
+        box("Bulkhead overhead casing",loc(11.54,3.75),(3.43,.69,1.07),copper,.10,a)
+    elif i in (0,10):
         place("door","Sealed Vault bulkhead",loc(11.77,0),a)
         box("Bulkhead overhead casing",loc(11.54,3.75),(3.43,.69,1.07),copper,.10,a)
     elif i in (2,19):

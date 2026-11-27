@@ -1,0 +1,439 @@
+{
+  "scope": "Proposed WSC-KIT-008 Room 3/4 turn, existing Room 3 landing + Room 4 floor and two reused open bulkheads. No dynamic door, hazard, spawn, install or phone claims.",
+  "layout": {
+    "room4_art_bounds": [
+      [
+        195.0924,
+        -41.49,
+        -56.185
+      ],
+      [
+        219.9076,
+        -34.825,
+        -31.1591
+      ]
+    ],
+    "room3_room4_gap_z_m": 2.965,
+    "room4_center": [
+      207.5,
+      -40.5,
+      -43.6
+    ],
+    "final_door": [
+      204,
+      -40.5,
+      -64
+    ],
+    "room4_door": [
+      207.5,
+      -40.5,
+      -55.61
+    ]
+  },
+  "engine": "0.1.44",
+  "collision_sha256": "44be033aa42f51ff79f376debb5f1a7ba9185cd9757753f66e55d5d6a5e6e01e",
+  "meshes": 54,
+  "triangles": 56951,
+  "open": [
+    {
+      "offset": -0.48,
+      "mode": "open",
+      "reverse": false,
+      "complete": true,
+      "ticks": 265,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.48507,
+      "end": [
+        207.0197,
+        -40.46825,
+        -50.34815
+      ],
+      "support": {
+        "room3-landing": 36,
+        "turn-deck": 59,
+        "throat-deck": 96,
+        "room4-floor": 74
+      }
+    },
+    {
+      "offset": -0.48,
+      "mode": "open",
+      "reverse": true,
+      "complete": true,
+      "ticks": 265,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.48534,
+      "end": [
+        202.69682,
+        -40.376,
+        -64.48184
+      ],
+      "support": {
+        "room4-floor": 77,
+        "throat-deck": 96,
+        "turn-deck": 58,
+        "room3-landing": 34
+      }
+    },
+    {
+      "offset": -0.24,
+      "mode": "open",
+      "reverse": false,
+      "complete": true,
+      "ticks": 265,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.4852,
+      "end": [
+        207.26061,
+        -40.47847,
+        -50.2913
+      ],
+      "support": {
+        "room3-landing": 37,
+        "turn-deck": 58,
+        "throat-deck": 96,
+        "room4-floor": 74
+      }
+    },
+    {
+      "offset": -0.24,
+      "mode": "open",
+      "reverse": true,
+      "complete": true,
+      "ticks": 265,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.48538,
+      "end": [
+        202.73428,
+        -40.37498,
+        -64.24376
+      ],
+      "support": {
+        "room4-floor": 77,
+        "throat-deck": 96,
+        "turn-deck": 59,
+        "room3-landing": 33
+      }
+    },
+    {
+      "offset": 0,
+      "mode": "open",
+      "reverse": false,
+      "complete": true,
+      "ticks": 265,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.48515,
+      "end": [
+        207.49984,
+        -40.47217,
+        -50.28699
+      ],
+      "support": {
+        "room3-landing": 37,
+        "turn-deck": 57,
+        "throat-deck": 97,
+        "room4-floor": 74
+      }
+    },
+    {
+      "offset": 0,
+      "mode": "open",
+      "reverse": true,
+      "complete": true,
+      "ticks": 266,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.48515,
+      "end": [
+        202.70974,
+        -40.376,
+        -64.00278
+      ],
+      "support": {
+        "room4-floor": 77,
+        "throat-deck": 96,
+        "turn-deck": 59,
+        "room3-landing": 34
+      }
+    },
+    {
+      "offset": 0.24,
+      "mode": "open",
+      "reverse": false,
+      "complete": true,
+      "ticks": 264,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.48512,
+      "end": [
+        207.74069,
+        -40.48,
+        -50.31334
+      ],
+      "support": {
+        "room3-landing": 36,
+        "turn-deck": 58,
+        "throat-deck": 96,
+        "room4-floor": 74
+      }
+    },
+    {
+      "offset": 0.24,
+      "mode": "open",
+      "reverse": true,
+      "complete": true,
+      "ticks": 265,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.48504,
+      "end": [
+        202.70142,
+        -40.37293,
+        -63.76186
+      ],
+      "support": {
+        "room4-floor": 77,
+        "throat-deck": 96,
+        "turn-deck": 58,
+        "room3-landing": 34
+      }
+    },
+    {
+      "offset": 0.48,
+      "mode": "open",
+      "reverse": false,
+      "complete": true,
+      "ticks": 265,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.48518,
+      "end": [
+        207.98434,
+        -40.47419,
+        -50.29439
+      ],
+      "support": {
+        "room3-landing": 37,
+        "turn-deck": 58,
+        "throat-deck": 96,
+        "room4-floor": 74
+      }
+    },
+    {
+      "offset": 0.48,
+      "mode": "open",
+      "reverse": true,
+      "complete": true,
+      "ticks": 265,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.48533,
+      "end": [
+        202.73826,
+        -40.376,
+        -63.52311
+      ],
+      "support": {
+        "room4-floor": 77,
+        "throat-deck": 96,
+        "turn-deck": 59,
+        "room3-landing": 33
+      }
+    }
+  ],
+  "closed": [
+    {
+      "offset": -0.48,
+      "mode": "sealed",
+      "reverse": false,
+      "complete": false,
+      "ticks": 360,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.44544,
+      "end": [
+        203.31037,
+        -40.376,
+        -64.5539
+      ],
+      "support": {
+        "room3-landing": 360
+      }
+    },
+    {
+      "offset": -0.24,
+      "mode": "sealed",
+      "reverse": false,
+      "complete": false,
+      "ticks": 360,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.3762,
+      "end": [
+        203.3096,
+        -40.376,
+        -64.55219
+      ],
+      "support": {
+        "room3-landing": 360
+      }
+    },
+    {
+      "offset": 0,
+      "mode": "sealed",
+      "reverse": false,
+      "complete": false,
+      "ticks": 35,
+      "air": 0,
+      "maxStall": 24,
+      "minY": -40.44519,
+      "end": [
+        203.17089,
+        -40.37563,
+        -64.00116
+      ],
+      "support": {
+        "room3-landing": 35
+      }
+    },
+    {
+      "offset": 0.24,
+      "mode": "sealed",
+      "reverse": false,
+      "complete": false,
+      "ticks": 360,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.37615,
+      "end": [
+        203.31791,
+        -40.376,
+        -63.42844
+      ],
+      "support": {
+        "room3-landing": 360
+      }
+    },
+    {
+      "offset": 0.48,
+      "mode": "sealed",
+      "reverse": false,
+      "complete": false,
+      "ticks": 360,
+      "air": 0,
+      "maxStall": 0,
+      "minY": -40.44584,
+      "end": [
+        203.31074,
+        -40.376,
+        -63.44553
+      ],
+      "support": {
+        "room3-landing": 360
+      }
+    }
+  ],
+  "noThroat": [
+    {
+      "offset": -0.48,
+      "mode": "no-throat",
+      "reverse": false,
+      "complete": false,
+      "ticks": 120,
+      "air": 20,
+      "maxStall": 0,
+      "minY": -42.06013,
+      "end": [
+        207.12637,
+        -42.06013,
+        -60.63033
+      ],
+      "support": {
+        "room3-landing": 36,
+        "turn-deck": 58
+      }
+    },
+    {
+      "offset": -0.24,
+      "mode": "no-throat",
+      "reverse": false,
+      "complete": false,
+      "ticks": 121,
+      "air": 21,
+      "maxStall": 0,
+      "minY": -42.07939,
+      "end": [
+        207.39517,
+        -42.07939,
+        -60.60619
+      ],
+      "support": {
+        "room3-landing": 36,
+        "turn-deck": 59
+      }
+    },
+    {
+      "offset": 0,
+      "mode": "no-throat",
+      "reverse": false,
+      "complete": false,
+      "ticks": 121,
+      "air": 21,
+      "maxStall": 0,
+      "minY": -42.1276,
+      "end": [
+        207.61064,
+        -42.1276,
+        -60.58048
+      ],
+      "support": {
+        "room3-landing": 37,
+        "turn-deck": 57
+      }
+    },
+    {
+      "offset": 0.24,
+      "mode": "no-throat",
+      "reverse": false,
+      "complete": false,
+      "ticks": 120,
+      "air": 20,
+      "maxStall": 0,
+      "minY": -42.07224,
+      "end": [
+        207.85323,
+        -42.07224,
+        -60.62763
+      ],
+      "support": {
+        "room3-landing": 36,
+        "turn-deck": 58
+      }
+    },
+    {
+      "offset": 0.48,
+      "mode": "no-throat",
+      "reverse": false,
+      "complete": false,
+      "ticks": 121,
+      "air": 21,
+      "maxStall": 0,
+      "minY": -42.08647,
+      "end": [
+        208.11074,
+        -42.08647,
+        -60.60335
+      ],
+      "support": {
+        "room3-landing": 37,
+        "turn-deck": 58
+      }
+    }
+  ],
+  "trace_samples": 133
+}
