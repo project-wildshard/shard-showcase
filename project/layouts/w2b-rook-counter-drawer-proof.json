@@ -1,0 +1,43 @@
+{
+  "scope": "Removable decorative counter stock. No ammo pickup, crafting, purchases or collision.",
+  "catalogue_id": "WSC-SCENE-002",
+  "counter_sha256": "e2266b8e5bdc43a5399b70baac0f8a53c702618b7c7606062c1483d008ea670a",
+  "actor_sha256": "41a9d103fba6aea871d9f499da8c57678181a1783635477fe3927e1796626cba",
+  "prior_fixture_hashes": {
+    "forge-tray": "aac5b540c25f59fc04867dcaaa4f7b2d2a437cbb9518407bcad224dcf30596e0",
+    "bench-placard": "6c287b8a2c9720c89b0e5061992fd563a0bcb2c02e585419182d442c1f9e46ff"
+  },
+  "drawer": {
+    "bytes": 69272,
+    "triangles": 1156,
+    "draws": 5,
+    "sha256": "8a26461d029e431cb9a612ecb8132c4102666ca022f9cee014bf39659b7369dc"
+  },
+  "raw_counter_xz": [
+    0.65,
+    1.223
+  ],
+  "proposed_placement_blender": [
+    2.066759,
+    -1.870478,
+    1.03
+  ],
+  "yaw_degrees": -7,
+  "footprint_ray_samples": 153,
+  "counter_contact_height_m": [
+    1.0295,
+    1.0295
+  ],
+  "local_footprint_m": [
+    [
+      0.468,
+      0.832
+    ],
+    [
+      -1.283,
+      -1.166
+    ]
+  ],
+  "bench_stand_gap_m": 0.018,
+  "front_edge_margin_m": 0.03
+}
