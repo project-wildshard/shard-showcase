@@ -1,0 +1,54 @@
+{
+  "reference": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "viewport": [
+    402,
+    874
+  ],
+  "fixture": [
+    2.4,
+    1,
+    1.1
+  ],
+  "crop": [
+    28,
+    510,
+    382,
+    775
+  ],
+  "threshold": "R >= 200 and R-G >= 38 and R-B >= 38",
+  "open_A_B_JPEG_identical": true,
+  "behind_cover_red_pixels": [
+    25318,
+    2041
+  ],
+  "open": {
+    "playerHp": [
+      204,
+      170
+    ],
+    "highSightBlocked": false,
+    "ramRayHitsFixture": false,
+    "nativeCrashCueCount": 0,
+    "laneLengthM": [
+      14,
+      14
+    ],
+    "nativeActiveFrames": 61,
+    "nativeRecoveryFrames": 67
+  },
+  "cover": {
+    "playerHp": [
+      204,
+      204
+    ],
+    "highSightBlocked": false,
+    "ramRayHitsFixture": true,
+    "nativeCrashCueCount": 1,
+    "laneLengthM": [
+      14,
+      3.529895544052124
+    ],
+    "nativeActiveFrames": 8,
+    "nativeRecoveryFrames": 67
+  }
+}
