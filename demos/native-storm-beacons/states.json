@@ -1,0 +1,10 @@
+{
+  "lens": "BeaconControlStatusLens",
+  "charged_insert": "wsc-kit-007-storm-beacon-charged-lamp.glb",
+  "reach_m": 1.7,
+  "eye_height_m": 1.59,
+  "states": {
+    "ready": {"base_linear": [0.57, 0.18, 0.027], "emission_linear": [0.94, 0.32, 0.055], "strength": 0.35},
+    "lit": {"base_linear": [0.027, 0.46, 0.32], "emission_linear": [0.045, 0.94, 0.60], "strength": 1.65}
+  }
+}

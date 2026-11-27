@@ -1,0 +1,53 @@
+{
+  "scope": "Stock motor on original Round 5 plinth and boundary proxies; synthetic taps, no quest or live install.",
+  "engine": "0.1.44",
+  "three": "0.186.0",
+  "fitSha256": "e58bbc6b7dddc85c5d0b8512925b20d701a8eb37a6602280f719075d478cceb5",
+  "insertSha256": "ab7445a6977c9af5cea7a31618a9c660f539e1026e23e61b1bbc2b3426b77a5d",
+  "entry": "north",
+  "exit": "west",
+  "corners": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "airborne": 0,
+  "farRejected": 4,
+  "throughWallRejected": 4,
+  "repeatsRejected": 4,
+  "config": {
+    "lens": "BeaconControlStatusLens",
+    "charged_insert": "wsc-kit-007-storm-beacon-charged-lamp.glb",
+    "reach_m": 1.7,
+    "eye_height_m": 1.59,
+    "states": {
+      "ready": {
+        "base_linear": [
+          0.57,
+          0.18,
+          0.027
+        ],
+        "emission_linear": [
+          0.94,
+          0.32,
+          0.055
+        ],
+        "strength": 0.35
+      },
+      "lit": {
+        "base_linear": [
+          0.027,
+          0.46,
+          0.32
+        ],
+        "emission_linear": [
+          0.045,
+          0.94,
+          0.6
+        ],
+        "strength": 1.65
+      }
+    }
+  }
+}
