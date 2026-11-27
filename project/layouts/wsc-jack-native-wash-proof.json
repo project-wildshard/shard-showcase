@@ -1,0 +1,18 @@
+{
+  "reference": "3afcd880b397e9703e906a7e66b42e8447e59519",
+  "viewport": [
+    402,
+    874
+  ],
+  "sameGameFrame": true,
+  "stockBodyWeight": 0.95917,
+  "cappedBodyWeight": 0.22,
+  "unchangedHP": [
+    204,
+    84
+  ],
+  "fixedCamera": true,
+  "changed": "one actor material flash uniform",
+  "unchanged": "game clock, camera, scene geometry, attack, effect settings and damage",
+  "readout": "Less white in exposed armor, but major gold effects and left-edge crop remain. Visual observation, not a measured brightness metric."
+}

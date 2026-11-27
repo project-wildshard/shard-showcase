@@ -8,12 +8,13 @@ import {tmpdir} from 'node:os';
 import {pathToFileURL} from 'node:url';
 const [root,dep,mode='counter'] = process.argv.slice(2);
 const ref='3afcd880b397e9703e906a7e66b42e8447e59519';
-if(!root||!dep||!['sidestep','counter'].includes(mode))
-  throw Error('Usage: node native-probe.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [sidestep|counter]');
+if(!root||!dep||!['sidestep','counter','wash'].includes(mode))
+  throw Error('Usage: node native-probe.mjs FABLE_CHECKOUT DEPENDENCY_PROJECT [sidestep|counter|wash]');
 if(execFileSync('git',['-C',root,'rev-parse','HEAD'],{encoding:'utf8'}).trim()!==ref)
   throw Error('Wrong reference checkout');
 const load=createRequire(join(dep,'package.json'));
-const {chromium}=await import(pathToFileURL(load.resolve('playwright')).href);
+const pw=await import(pathToFileURL(load.resolve('playwright')).href);
+const chromium=pw.chromium??pw.default?.chromium;
 const {default:shell}=await import(pathToFileURL(load.resolve('@sparticuz/chromium')).href);
 const out=mkdtempSync(join(tmpdir(),'jack-native-'));
 const onlySide=mode==='sidestep';
@@ -99,8 +100,29 @@ try {
    await page.screenshot({path:join(out,'recover.jpg'),type:'jpeg',quality:89});
  }else{
    await page.waitForFunction(()=>['counter-frozen','ended'].includes(window.fixture?.mode),null,{timeout:90000,polling:200});
-   if(await page.evaluate(()=>fixture.mode==='counter-frozen'))
+   if(await page.evaluate(()=>fixture.mode==='counter-frozen')){
      await page.screenshot({path:join(out,'counter.jpg'),type:'jpeg',quality:90});
+     if(mode==='wash'){
+       const original=await page.evaluate(()=>{
+         const g=game,m=fixture.mob;
+         return {frame:__golden.frame,sim:g.simTime,time:g.time,hp:[g.state.d.hp,m.hp],
+           pos:g.camera.position.toArray(),yaw:g.cameraRig.yaw,weights:m.rig.materials.map(a=>a.flash.value.w)};
+       });
+       if(!original.weights.some(w=>w>.8))throw Error('Stock material flash missing');
+       await page.screenshot({path:join(out,'stock.png')});
+       const capped=await page.evaluate(()=>{
+         const g=game,m=fixture.mob;
+         for(const a of m.rig.materials)a.flash.value.w=Math.min(a.flash.value.w,.22);
+         g.renderer.render(g.scene,g.camera,0);
+         return {frame:__golden.frame,sim:g.simTime,time:g.time,hp:[g.state.d.hp,m.hp],
+           pos:g.camera.position.toArray(),yaw:g.cameraRig.yaw,weights:m.rig.materials.map(a=>a.flash.value.w)};
+       });
+       for(const k of ['frame','sim','time','hp','pos','yaw'])
+         if(JSON.stringify(original[k])!==JSON.stringify(capped[k]))throw Error('Comparison moved '+k);
+       await page.screenshot({path:join(out,'capped.png')});
+       writeFileSync(join(out,'wash.json'),JSON.stringify({original,capped},null,2)+'\n');
+     }
+   }
  }
  const proof=await page.evaluate(()=>({trace:fixture.trace,mode:fixture.mode}));
  writeFileSync(join(out,'trace.json'),JSON.stringify({setup,...proof},null,2)+'\n');
