@@ -11,6 +11,7 @@ from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 
 args=sys.argv[sys.argv.index("--")+1:]
+body_comparison="--body-flash-ab" in args
 out=Path(args[0]); out.mkdir(parents=True,exist_ok=True)
 repo=Path(__file__).resolve().parents[3]
 donor=repo/"public/assets/wildshard-art/wsc-actor-002-pallet-jack-study.glb"
@@ -19,6 +20,7 @@ bpy.ops.wm.read_factory_settings(use_empty=True)
 bpy.ops.import_scene.gltf(filepath=str(donor))
 s=bpy.context.scene
 parts=[o for o in s.objects if o.type=="MESH"]
+actor_mats={m for o in parts for m in o.data.materials if m and m.use_nodes}
 
 def data(obs):
     pts=[]; faces=[]
@@ -138,12 +140,39 @@ cam.data.sensor_fit="VERTICAL";cam.data.lens=cam.data.sensor_height/(2*math.tan(
 s.render.engine="CYCLES";s.cycles.samples=48;s.cycles.use_denoising=False;s.cycles.adaptive_threshold=.062
 s.render.resolution_x=width*2;s.render.resolution_y=height*2
 s.render.image_settings.file_format="JPEG";s.render.image_settings.quality=95
+mix_weights=[]
+if body_comparison:
+    # Controlled Blender analogy of the outgoing-light blend. The original
+    # glint, camera, pose and lighting below stay identical within each pair.
+    for m in sorted(actor_mats,key=lambda x:x.name):
+        n=m.node_tree.nodes; links=m.node_tree.links
+        surf=next(node.inputs['Surface'] for node in n if node.type=='OUTPUT_MATERIAL' and node.is_active_output)
+        if not surf.is_linked: continue
+        src=surf.links[0].from_socket; links.remove(surf.links[0])
+        mix=n.new('ShaderNodeMixShader'); white=n.new('ShaderNodeEmission')
+        white.inputs['Color'].default_value=(1,1,1,1)
+        white.inputs['Strength'].default_value=1
+        links.new(src,mix.inputs[1]);links.new(white.outputs[0],mix.inputs[2]);links.new(mix.outputs[0],surf)
+        mix_weights.append(mix.inputs[0])
+    assert mix_weights
+    trace=json.loads((repo/'project/layouts/wsc-jack-body-flash-proof.json').read_text())
+    weights={r['frame']:r for c in trace['cases'] if c['stopMs']==110 for r in c['samples']}
+    s.render.resolution_x=width;s.render.resolution_y=height
+    s.cycles.samples=48
 for index,name in ((2,"contact"),(5,"recovery")):
     obs=[]
     for i,row in enumerate(items[index]):
         m=bpy.data.meshes.new(f"Contact facet {i}");m.from_pydata(spark_data(row),[],faces);m.update()
         o=bpy.data.objects.new(m.name,m);s.collection.objects.link(o);obs.append(o)
         m.materials.append(emission(m.name,row["color"],row["gain"]))
-    s.render.filepath=str(out/f"portrait-{name}.jpg")
-    bpy.ops.render.render(write_still=True)
+    if body_comparison:
+        frame=frames[index]
+        for label in ("original","candidate"):
+            k=weights[frame][label]
+            for w in mix_weights:w.default_value=k
+            s.render.filepath=str(out/f"wash-{frame}-{label}.jpg")
+            bpy.ops.render.render(write_still=True)
+    else:
+        s.render.filepath=str(out/f"portrait-{name}.jpg")
+        bpy.ops.render.render(write_still=True)
     for o in obs:bpy.data.objects.remove(o,do_unlink=True)

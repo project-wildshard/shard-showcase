@@ -1,0 +1,329 @@
+{
+  "reference": {
+    "commit": "3afcd880b397e9703e906a7e66b42e8447e59519",
+    "capture": "tools/golden/scenes.js (09)",
+    "ordinaryThirdSword": "src/data/moves.ts:66",
+    "bodySetterAndDecay": "src/systems/mobs.ts:266,313,630–639",
+    "outgoingMix": "src/gfx/material.ts:373",
+    "hitStopClock": "src/game.ts:451–456"
+  },
+  "scope": "Body-only linear white mix model, idealized timing, not Fable runtime or measured display luminance.",
+  "retention": "Difference between two actor radiance values is multiplied by 1 - wash before tone mapping.",
+  "hz": 60,
+  "hitStopScale": 0.04,
+  "simDecayPerSecond": 7,
+  "cases": [
+    {
+      "stopMs": 0,
+      "samples": [
+        {
+          "frame": 0,
+          "wallMs": 0,
+          "simMs": 0,
+          "original": 1,
+          "candidate": 0.22,
+          "retainedOriginal": 0,
+          "retainedCandidate": 0.78
+        },
+        {
+          "frame": 1,
+          "wallMs": 16.666667,
+          "simMs": 16.666667,
+          "original": 0.883333,
+          "candidate": 0.133086,
+          "retainedOriginal": 0.116667,
+          "retainedCandidate": 0.866914
+        },
+        {
+          "frame": 2,
+          "wallMs": 33.333333,
+          "simMs": 33.333333,
+          "original": 0.766667,
+          "candidate": 0.067901,
+          "retainedOriginal": 0.233333,
+          "retainedCandidate": 0.932099
+        },
+        {
+          "frame": 3,
+          "wallMs": 50,
+          "simMs": 50,
+          "original": 0.65,
+          "candidate": 0.024444,
+          "retainedOriginal": 0.35,
+          "retainedCandidate": 0.975556
+        },
+        {
+          "frame": 4,
+          "wallMs": 66.666667,
+          "simMs": 66.666667,
+          "original": 0.533333,
+          "candidate": 0.002716,
+          "retainedOriginal": 0.466667,
+          "retainedCandidate": 0.997284
+        },
+        {
+          "frame": 5,
+          "wallMs": 83.333333,
+          "simMs": 83.333333,
+          "original": 0.416667,
+          "candidate": 0,
+          "retainedOriginal": 0.583333,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 6,
+          "wallMs": 100,
+          "simMs": 100,
+          "original": 0.3,
+          "candidate": 0,
+          "retainedOriginal": 0.7,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 8,
+          "wallMs": 133.333333,
+          "simMs": 133.333333,
+          "original": 0.066667,
+          "candidate": 0,
+          "retainedOriginal": 0.933333,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 9,
+          "wallMs": 150,
+          "simMs": 150,
+          "original": 0,
+          "candidate": 0,
+          "retainedOriginal": 1,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 12,
+          "wallMs": 200,
+          "simMs": 200,
+          "original": 0,
+          "candidate": 0,
+          "retainedOriginal": 1,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 15,
+          "wallMs": 250,
+          "simMs": 250,
+          "original": 0,
+          "candidate": 0,
+          "retainedOriginal": 1,
+          "retainedCandidate": 1
+        }
+      ]
+    },
+    {
+      "stopMs": 55,
+      "samples": [
+        {
+          "frame": 0,
+          "wallMs": 0,
+          "simMs": 0,
+          "original": 1,
+          "candidate": 0.22,
+          "retainedOriginal": 0,
+          "retainedCandidate": 0.78
+        },
+        {
+          "frame": 1,
+          "wallMs": 16.666667,
+          "simMs": 0.666667,
+          "original": 0.995333,
+          "candidate": 0.133086,
+          "retainedOriginal": 0.004667,
+          "retainedCandidate": 0.866914
+        },
+        {
+          "frame": 2,
+          "wallMs": 33.333333,
+          "simMs": 1.333333,
+          "original": 0.990667,
+          "candidate": 0.067901,
+          "retainedOriginal": 0.009333,
+          "retainedCandidate": 0.932099
+        },
+        {
+          "frame": 3,
+          "wallMs": 50,
+          "simMs": 2,
+          "original": 0.986,
+          "candidate": 0.024444,
+          "retainedOriginal": 0.014,
+          "retainedCandidate": 0.975556
+        },
+        {
+          "frame": 4,
+          "wallMs": 66.666667,
+          "simMs": 13.866667,
+          "original": 0.902933,
+          "candidate": 0.002716,
+          "retainedOriginal": 0.097067,
+          "retainedCandidate": 0.997284
+        },
+        {
+          "frame": 5,
+          "wallMs": 83.333333,
+          "simMs": 30.533333,
+          "original": 0.786267,
+          "candidate": 0,
+          "retainedOriginal": 0.213733,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 6,
+          "wallMs": 100,
+          "simMs": 47.2,
+          "original": 0.6696,
+          "candidate": 0,
+          "retainedOriginal": 0.3304,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 8,
+          "wallMs": 133.333333,
+          "simMs": 80.533333,
+          "original": 0.436267,
+          "candidate": 0,
+          "retainedOriginal": 0.563733,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 9,
+          "wallMs": 150,
+          "simMs": 97.2,
+          "original": 0.3196,
+          "candidate": 0,
+          "retainedOriginal": 0.6804,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 12,
+          "wallMs": 200,
+          "simMs": 147.2,
+          "original": 0,
+          "candidate": 0,
+          "retainedOriginal": 1,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 15,
+          "wallMs": 250,
+          "simMs": 197.2,
+          "original": 0,
+          "candidate": 0,
+          "retainedOriginal": 1,
+          "retainedCandidate": 1
+        }
+      ]
+    },
+    {
+      "stopMs": 110,
+      "samples": [
+        {
+          "frame": 0,
+          "wallMs": 0,
+          "simMs": 0,
+          "original": 1,
+          "candidate": 0.22,
+          "retainedOriginal": 0,
+          "retainedCandidate": 0.78
+        },
+        {
+          "frame": 1,
+          "wallMs": 16.666667,
+          "simMs": 0.666667,
+          "original": 0.995333,
+          "candidate": 0.133086,
+          "retainedOriginal": 0.004667,
+          "retainedCandidate": 0.866914
+        },
+        {
+          "frame": 2,
+          "wallMs": 33.333333,
+          "simMs": 1.333333,
+          "original": 0.990667,
+          "candidate": 0.067901,
+          "retainedOriginal": 0.009333,
+          "retainedCandidate": 0.932099
+        },
+        {
+          "frame": 3,
+          "wallMs": 50,
+          "simMs": 2,
+          "original": 0.986,
+          "candidate": 0.024444,
+          "retainedOriginal": 0.014,
+          "retainedCandidate": 0.975556
+        },
+        {
+          "frame": 4,
+          "wallMs": 66.666667,
+          "simMs": 2.666667,
+          "original": 0.981333,
+          "candidate": 0.002716,
+          "retainedOriginal": 0.018667,
+          "retainedCandidate": 0.997284
+        },
+        {
+          "frame": 5,
+          "wallMs": 83.333333,
+          "simMs": 3.333333,
+          "original": 0.976667,
+          "candidate": 0,
+          "retainedOriginal": 0.023333,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 6,
+          "wallMs": 100,
+          "simMs": 4,
+          "original": 0.972,
+          "candidate": 0,
+          "retainedOriginal": 0.028,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 8,
+          "wallMs": 133.333333,
+          "simMs": 27.733333,
+          "original": 0.805867,
+          "candidate": 0,
+          "retainedOriginal": 0.194133,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 9,
+          "wallMs": 150,
+          "simMs": 44.4,
+          "original": 0.6892,
+          "candidate": 0,
+          "retainedOriginal": 0.3108,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 12,
+          "wallMs": 200,
+          "simMs": 94.4,
+          "original": 0.3392,
+          "candidate": 0,
+          "retainedOriginal": 0.6608,
+          "retainedCandidate": 1
+        },
+        {
+          "frame": 15,
+          "wallMs": 250,
+          "simMs": 144.4,
+          "original": 0,
+          "candidate": 0,
+          "retainedOriginal": 1,
+          "retainedCandidate": 1
+        }
+      ]
+    }
+  ]
+}
