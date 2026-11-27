@@ -425,3 +425,13 @@ for(const name of ["walk","field"]){
  assert.ok(markup.includes(`src="${path}"`));
  assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
 }
+
+const westClock=data.assets.find(a=>a.id==="WSC-ARCH-004");
+assert.equal(westClock.related_study?.href,"#nov27-west-clock-light");
+assert.ok(ids.has("nov27-west-clock-light"));
+assert.ok(markup.includes('href="#nov27-west-clock-light"'));
+for(const where of ["obelisk","movers"])for(const phase of ["off","on"]){
+ const path=`media/nov27-west-clock-${where}-${phase}.webp`;
+ assert.ok(markup.includes(`href="${path}"`));
+ assert.equal(readFileSync(new URL(path,dist)).subarray(8,12).toString(),"WEBP");
+}
