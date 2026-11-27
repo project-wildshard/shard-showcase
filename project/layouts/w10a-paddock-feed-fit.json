@@ -1,0 +1,50 @@
+{
+  "scope": "Static paddock dressing, no equine use or level install",
+  "threeWorldChuteOrigin": [
+    -40,
+    0,
+    -132
+  ],
+  "threeFeedOrigin": [
+    -57,
+    0,
+    -100
+  ],
+  "threeTroughOrigin": [
+    -52,
+    0,
+    -100
+  ],
+  "feedBoundsLocalBlender": [
+    [
+      -18.1625,
+      -32.559502,
+      0.0
+    ],
+    [
+      -15.8375,
+      -31.4405,
+      1.28
+    ]
+  ],
+  "troughBoundsLocalBlender": [
+    [
+      -13.75,
+      -32.636002,
+      0.0
+    ],
+    [
+      -10.25,
+      -31.245001,
+      1.055
+    ]
+  ],
+  "horizontalGapToTroughM": 2.0875,
+  "minLateralGapTo12mChuteAxisZoneM": 9.8375,
+  "glb": {
+    "file": "w10a-paddock-feed-bin.glb",
+    "sha256": "295a877bb9c49c15ccd9767b07e9e3fbe33d83c7f7f6043621d331a9e2548f80",
+    "bytes": 123252,
+    "triangles": 2008
+  }
+}
