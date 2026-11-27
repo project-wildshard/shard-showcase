@@ -50,7 +50,7 @@ for side in [-1,1]:
 for yy in range(6,-9,-2):
     for side in [-1,1]:
         o=box('Charge marking',(side*.25,yy,.014),(.055,.76,.023),line,.008)
-        o.rotation_euler.z=side*.78
+        o.rotation_euler.z=-side*.78
 bpy.ops.mesh.primitive_cylinder_add(vertices=48,radius=.41,depth=.026)
 hero=bpy.context.object;hero.name='Cyan scripted-player foot marker, not a character';hero.data.materials.append(marker)
 def aim(o,t):o.rotation_euler=(Vector(t)-o.location).to_track_quat('-Z','Y').to_euler()
