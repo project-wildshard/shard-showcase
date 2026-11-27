@@ -28,10 +28,8 @@ the planet. It should feel epic from the first step to the last.
 - Caravans.
 - A whip-maker and a weapon shop.
 - Rideable camels.
-- A bounty board.
 - Secrets, vistas, caches and collectibles all over.
-- Levels 1 to 15, levelled by fighting, with varied enemies and
-  elites.
+- Levels 1 to 15, levelled by fighting.
 - A mini dungeon.
 
 ## Main quest
@@ -53,5 +51,11 @@ the boss are yours to design.
 
 ## Enemies
 
-Varied enemies across the level range, with elites, and the main
-quest's final boss.
+- Many enemies, each with a rare variant. Elites are scattered around.
+- A final boss at the end of the main quest, at level 15.
+
+## Quests
+
+- Side quests.
+- Happenings.
+- A bounty board.
