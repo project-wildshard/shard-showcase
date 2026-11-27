@@ -209,6 +209,32 @@ s.view_settings.view_transform='AgX'
 s.render.resolution_percentage=100
 s.render.image_settings.file_format='JPEG'
 s.render.image_settings.quality=93
+replay=os.environ.get('WSC_RANGE_RECORD_REPLAY')
+if replay:
+    from re import fullmatch
+    run=json.loads(Path(replay).read_text())
+    assert run['faceSha256']==proof['insertSha256']
+    slots=run['snapshots']['restored']
+    assert run['snapshots']['initial']==['--']*3 and slots[1:]==['--','--']
+    assert fullmatch(r'[0-9]{1,3}\.[0-9]{2} s',slots[0])
+    blank=next(o for o in new if o.name==proof['unsetNode'])
+    digits=[text(value,x,z,.077,white if value=='--' else aqua,.34,'RIGHT')
+            for value,(x,_,z) in zip(slots,proof['valueSlotsBlender'])]
+    for o in digits:
+        points=pts([o])
+        assert min(p.x for p in points)>.326 and max(p.x for p in points)<.725
+    c.location=(0,-2.91,1.05)
+    aim(c,(0,-.34,.75))
+    cam.lens=50
+    s.render.resolution_x,s.render.resolution_y=1080,660
+    s.cycles.samples=28
+    for state in ('blank','restored'):
+        blank.hide_render=state=='restored'
+        for o in digits:o.hide_render=state=='blank'
+        s.render.filepath=str(out/f'range-record-{state}.jpg')
+        bpy.ops.render.render(write_still=True)
+    sys.exit(0)
+
 for name,pos,t,lens,width,height in [
     ('detail',(0,-2.91,1.05),(0,-.34,.75),50,1280,780),
     ('housing',(2.16,-4.25,2.07),(0,-.19,.47),46,1280,900),
