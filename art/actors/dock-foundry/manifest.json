@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "units": "meters",
+  "enemyTypes": [
+    {"id":"WSC-ENM-013","name":"Bellows Recycler","model":"recycler.glb","move":"tracked skid","attack":"vacuum","radius":0.67,"height":1.47,"pace":1.18,"hp":69,"reach":3.55,"windup":0.76,"recover":1.00},
+    {"id":"WSC-ENM-014","name":"Tidehook Stilt","model":"stilt.glb","move":"long articulated stride","attack":"stilt","radius":0.66,"height":2.21,"pace":1.72,"hp":63,"reach":2.60,"windup":0.75,"recover":0.87},
+    {"id":"WSC-ENM-015","name":"Lantern Relay","model":"relay.glb","move":"hover with orbiting fixtures","attack":"relay","radius":0.58,"height":1.65,"pace":1.39,"hp":63,"reach":4.00,"windup":0.74,"recover":1.08},
+    {"id":"WSC-ENM-016","name":"Indigo Winch","model":"winch.glb","move":"roller chassis","attack":"recoil","radius":0.63,"height":1.56,"pace":1.69,"hp":68,"reach":1.91,"windup":0.85,"recover":1.15}
+  ]
+}

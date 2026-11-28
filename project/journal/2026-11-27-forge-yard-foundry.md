@@ -1,0 +1,4 @@
+# Foundry line and portrait framing
+Add four original opponents with editable Blender source and nine clips each. Bellows Recycler draws into a locked cone before releasing, Tidehook Stilt hits two offset points in sequence, Lantern Relay leaves a gap between two pylon marks, and Indigo Winch fires a short-range jet and backs away. Different shapes and rules rather than cloned fights. Five existing behavior-and-hardware kits extend over all sixteen bases.
+
+The old pursuit view dropped the attacker behind Walker during charges and exposed the far edge on sideways movement. The new three-quarter view fits both actors with a soft midpoint and preserves world-relative input. The touch test records the projected body centres at each first swing. This measures framing only, not obstruction by scene props or checked behaviour on physical phones.

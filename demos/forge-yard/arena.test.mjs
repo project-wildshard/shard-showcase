@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {WEAPONS,create,spawn,press,select,tick} from './arena.mjs';
+import {WEAPONS,create,spawn,press,select,tick,splitMarks} from './arena.mjs';
 const spec=JSON.parse(readFileSync(new URL('../../art/actors/dock-enemies/manifest.json',import.meta.url))).enemyTypes;
 const advance=(s,d,dir)=>{for(let i=0;i<d*60;i++)tick(s,1/60,dir);};
 test('all twelve weapons equip and damage a reachable enemy once per swing',()=>{
@@ -85,11 +85,39 @@ test('ordnance follows four different telegraph and damage rules',()=>{
   assert.equal(back.player.hp,120,'stepping back exits the transverse strip');
  }
 });
-test('all 60 variant entries add a verified rule to their underlying enemy behavior',async()=>{
+const foundry=JSON.parse(readFileSync(new URL('../../art/actors/dock-foundry/manifest.json',import.meta.url))).enemyTypes;
+test('foundry types telegraph pull and release, alternating cuts, a safe seam and recoil',()=>{
+ const setup=(i,z)=>{const s=create(foundry);return [s,spawn(s,i,{x:0,z})];};
+ {
+  const [s,b]=setup(0,3.45);
+  advance(s,1.11);assert(s.player.z<5.35&&s.player.hp===120,'intake displaces before it deals damage');
+  advance(s,.25);assert(s.events.some(e=>e.type==='vacuum-release'));assert.equal(s.player.hp,102);
+  const [safe]=setup(0,3.45);advance(safe,.19);advance(safe,.32,[1,0]);advance(safe,1.0);
+  assert.equal(safe.player.hp,120,'leaving the fixed cone avoids the release');
+ }
+ {
+  const [s,b]=setup(1,3.95);
+  advance(s,1.17);
+  assert.deepEqual(s.events.filter(e=>e.type==='split-strike').map(e=>e.index),[0,1]);
+  assert(s.player.hp<=107);
+  assert(splitMarks(b,.54).every(m=>Math.abs(m.x)>.53));
+ }
+ {
+  const [s]=setup(2,2.65);advance(s,1.33);
+  assert.equal(s.player.hp,120,'the gap between pylons is safe');
+  const [left]=setup(2,2.65);advance(left,.18);advance(left,.265,[-1,0]);advance(left,.57);
+  assert.equal(left.player.hp,102,'a flank marker hits at its own timing');
+ }
+ {
+  const [s,b]=setup(3,4.25);advance(s,1.22);
+  assert.equal(s.player.hp,100);assert(b.z<3.26,'jet recoil moves winch away from the marked target');
+ }
+});
+test('all 80 variant entries add a verified rule to their underlying enemy behavior',async()=>{
  const {roster,VARIANTS}=await import('./variants.mjs');
- const base=[...spec,...extra,...ordnance],v=roster(base);
- assert.equal(v.length,60);
- assert.equal(new Set(v.map(x=>x.id)).size,60);
+ const base=[...spec,...extra,...ordnance,...foundry],v=roster(base);
+ assert.equal(v.length,80);
+ assert.equal(new Set(v.map(x=>x.id)).size,80);
  assert(v.every(x=>x.rule&&x.attack&&x.model));
  for(const type of base){
   function fresh(z,variant){const s=create([type]);return [s,spawn(s,0,{x:0,z},variant)];}
@@ -100,7 +128,7 @@ test('all 60 variant entries add a verified rule to their underlying enemy behav
   }
   {
    const [s,b]=fresh(4.3,'bulwark');
-   b.face=[0,1];b.state='active';select(s,6);press(s,'attack');advance(s,.17);
+   b.face=[0,1];b.state='active';b.mark={x:0,z:5.7};select(s,6);press(s,'attack');advance(s,.17);
    assert(s.events.some(e=>e.type==='shield'));assert.equal(b.life,b.maxHp-Math.ceil(WEAPONS[6].power*.22));
   }
   {

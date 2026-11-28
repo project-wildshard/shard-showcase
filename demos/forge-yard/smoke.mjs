@@ -20,8 +20,8 @@ try{
  const f=(type,...touchPoints)=>cdp.send('Input.dispatchTouchEvent',{type,touchPoints});
  await page.locator('#weapon').selectOption('017');
  await page.waitForFunction(()=>document.querySelector('#yard').dataset.equipped==='017');
- const victories=[];
- for(let n=0;n<12;n++){
+ const victories=[],framing=[];
+ for(let n=0;n<16;n++){
   if(n)await page.locator('#win-next').tap();
   const label=await page.locator('#enemy-name').textContent();
   const track=()=>yard.evaluate(e=>{
@@ -44,7 +44,12 @@ try{
     await f('touchEnd');moves++;
    }else{
     await page.locator('#attack').tap();taps++;
-    if(taps===1){await page.waitForTimeout(490);await page.screenshot({path:out+'/forge-yard-match-'+n+'.png'});await page.waitForTimeout(720);}
+    if(taps===1){
+     await page.waitForTimeout(490);
+     const shot=await yard.evaluate(e=>['playerViewX','playerViewY','enemyViewX','enemyViewY'].map(k=>+e.dataset[k]));
+     assert(shot.every(x=>Number.isFinite(x)&&Math.abs(x)<.93),label+' must keep both projected body centres in frame: '+shot);
+     framing.push({enemy:label,ndc:shot});
+     await page.screenshot({path:out+'/forge-yard-match-'+n+'.png'});await page.waitForTimeout(720);}
     else await page.waitForTimeout(1160);
    }
   }
@@ -76,7 +81,7 @@ try{
  }
  const inspectedVariants=[];
  const mode=['rusher','bulwark','feinter','echo','overload'];
- for(let n=0;n<12;n++){
+ for(let n=0;n<16;n++){
   if(n)await page.locator('#next').tap();
   const type='WSC-ENM-'+String(n+1).padStart(3,'0');
   for(const id of mode){
@@ -97,7 +102,7 @@ try{
   }
   await page.locator('#variant').selectOption('');
  }
- assert.equal(inspectedVariants.length,60);
+ assert.equal(inspectedVariants.length,80);
  assert.deepEqual(errors,[]);
- console.log(JSON.stringify({trustedTouch:true,victories,weaponModelsLoaded:12,weaponsHit,inspectedVariants,viewport:[402,874],errors},null,2));
+ console.log(JSON.stringify({trustedTouch:true,victories,weaponModelsLoaded:12,weaponsHit,inspectedVariants,viewport:[402,874],framing,errors},null,2));
 }finally{await browser.close();}

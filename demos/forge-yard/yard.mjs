@@ -1,7 +1,7 @@
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-import {ARENA,COVER,WEAPONS,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH} from './arena.mjs';
+import {ARENA,COVER,WEAPONS,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH,RELAY_RADIUS,STILT_RADIUS,splitMarks} from './arena.mjs';
 import {VARIANTS} from './variants.mjs';
 
 const $=n=>document.querySelector('#'+n);
@@ -10,6 +10,7 @@ const set=(el,text)=>{if(el.textContent!==String(text))el.textContent=text;};
 const enemyBase=new URL('../../art/actors/dock-enemies/',location.href);
 const specialistBase=new URL('../../art/actors/dock-specialists/',location.href);
 const ordnanceBase=new URL('../../art/actors/dock-ordnance/',location.href);
+const foundryBase=new URL('../../art/actors/dock-foundry/',location.href);
 const weaponBase=new URL('../../art/weapons/',location.href);
 const clipNames={idle:'Idle',move:'Move',feint:'Move',windup:'Windup',active:'Attack',recover:'Recover',hit:'Hit',defeat:'Defeat'};
 const mat=(c,metal=.45,rough=.46)=>new T.MeshStandardMaterial({color:c,metalness:metal,roughness:rough});
@@ -110,13 +111,22 @@ try{
  const pulseRing=mesh(new T.RingGeometry(.77,1,56),basic(0xffa241,.68));
  const attackRing=mesh(new T.RingGeometry(.76,1,40,1,-.8,1.6),basic(0x8de3d7,.65));
  for(const o of [warningPlane,warningRing,pulseRing,attackRing]){o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);}
+ const fan=(half,color)=>{
+  const g=new T.CircleGeometry(1,44,Math.PI*.5-half,half*2),o=mesh(g,basic(color,.32));
+  o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);return o;
+ };
+ const intakeFan=fan(Math.acos(.89),0xee744e),jetFan=fan(Math.acos(.84),0xee5a36);
+ const splitRings=[0,1].map(i=>{
+  const o=mesh(new T.RingGeometry(.88,1,56),basic(i?0xfcac43:0xf85d39,.77));
+  o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);return o;
+ });
  const flash=mesh(new T.IcosahedronGeometry(.27,1),basic(0x9dfdf0,.83));scene.add(flash);flash.visible=false;
  const shellShot=mesh(new T.IcosahedronGeometry(.13,1),basic(0xffad68,.99));
  const muzzleTrace=mesh(new T.BoxGeometry(.045,.045,1),basic(0xff996b,.88));
  scene.add(shellShot,muzzleTrace);shellShot.visible=muzzleTrace.visible=false;
  let impact=.0,noticeUntil=0,salvoFlash=0;
  function say(text,until=1){set(notice,text);noticeUntil=s.time+until;}
- const actorBases=[enemyBase,specialistBase,ordnanceBase];
+ const actorBases=[enemyBase,specialistBase,ordnanceBase,foundryBase];
  const manifests=await Promise.all(actorBases.map(path=>fetch(new URL('manifest.json',path)).then(r=>{if(!r.ok)throw Error('Enemy manifest missing');return r.json();})));
  const data={enemyTypes:manifests.flatMap((d,i)=>d.enemyTypes.map(a=>({...a,source:actorBases[i]})))};
  const artists=await Promise.all(data.enemyTypes.map(a=>loader.loadAsync(new URL(a.model,a.source).href)));
@@ -193,7 +203,7 @@ try{
  function action(bot,name){
   if(name===actor.mode)return;
   actor.mode=name;
-  const clip=actor.clips[(name==='active'&&bot.attack==='mortar'?'Special':clipNames[name])??'Idle'];
+  const clip=actor.clips[(name==='active'&&['mortar','relay'].includes(bot.attack)?'Special':clipNames[name])??'Idle'];
   if(!clip)return;
   if(actor.last){actor.last.fadeOut(.08);}
   const a=actor.mixer.clipAction(clip).reset().fadeIn(.10);
@@ -239,7 +249,7 @@ try{
  variants.addEventListener('change',()=>{variant=variants.value||null;start(i);});
  $('next').onclick=$('win-next').onclick=()=>start((i+1)%artists.length);$('reset').onclick=()=>start(i);
  start(0);await loadWeapon('014');
- const look=new T.Vector3(),goal=new T.Vector3();
+ const look=new T.Vector3(),goal=new T.Vector3(),point=new T.Vector3();
  let last=0,accum=0,walk=0;
  function resize(){const w=wrap.clientWidth,h=wrap.clientHeight;if(!w||!h)return;camera.aspect=w/h;camera.updateProjectionMatrix();render.setSize(w,h,false);}
  window.addEventListener('resize',resize);resize();
@@ -249,12 +259,12 @@ try{
   const vx=Number(keys.has('KeyD')||keys.has('ArrowRight'))-Number(keys.has('KeyA')||keys.has('ArrowLeft'));
   const vz=Number(keys.has('KeyS')||keys.has('ArrowDown'))-Number(keys.has('KeyW')||keys.has('ArrowUp'));
   const m=pointer!==-1?input:[vx,vz];const p=s.player;
-  if(who!==i){who=i;look.set(p.x,.72,p.z-1.65);camera.position.set(p.x,6.4,p.z+7.5);}
+  const cut=who!==i;if(cut)who=i;
   for(;accum>=1/60;accum-=1/60)tick(s,1/60,m);
   for(const e of s.events.splice(0)){
    if(e.type==='enemy-state'&&e.state==='windup'){
     const cue={windmill:'SWEEP · step back',beam:'BEAM · move sideways',pounce:'POUNCE · dodge',charge:'CHARGE · break the line',
-     hook:'HOOK · leave the lane',guard:'SHIELD · circle round',burrow:'SNARE · leave the mark',burst:'BURST · get out of the ring',salvo:'SALVO · step out of the line',lunge:'LUNGE · dodge sideways',mortar:'MORTAR · leave the landing zone',crosscut:'CROSSCUT · step forward or back'};
+     hook:'HOOK · leave the lane',guard:'SHIELD · circle round',burrow:'SNARE · leave the mark',burst:'BURST · get out of the ring',salvo:'SALVO · step out of the line',lunge:'LUNGE · dodge sideways',mortar:'MORTAR · leave the landing zone',crosscut:'CROSSCUT · step forward or back',vacuum:'INTAKE · leave the pull lane',stilt:'DOUBLE CUT · leave the marks',relay:'LANTERNS · stay in the gap',recoil:'RECOIL · step out of the jet'};
     say(cue[enemy.attack],enemy.windReady+.18);
    }
    if(e.type==='salvo-shot')salvoFlash=.11;
@@ -285,9 +295,17 @@ try{
   actor.group.position.set(enemy.x,0,enemy.z);actor.group.rotation.y=face(...enemy.face);
   action(enemy,enemy.state);actor.mixer.update(dt);
   const bomb=enemy.attack==='mortar',cross=enemy.attack==='crosscut';
+  const two=enemy.attack==='stilt'||enemy.attack==='relay';
   const warn=enemy.life>0&&(enemy.state==='windup'||(bomb&&enemy.state==='active'&&!enemy.dashHit));
   const radial=['windmill','pounce','burrow','burst','mortar'].includes(enemy.attack);
-  warningRing.visible=warn&&radial;warningPlane.visible=warn&&!radial;
+  const fanned=enemy.attack==='vacuum'||enemy.attack==='recoil';
+  warningRing.visible=warn&&radial;warningPlane.visible=warn&&!radial&&!two&&!fanned;
+  intakeFan.visible=enemy.life>0&&enemy.attack==='vacuum'&&(warn||enemy.state==='active'&&enemy.t<.42);
+  jetFan.visible=warn&&enemy.attack==='recoil';
+  for(const o of [intakeFan,jetFan])if(o.visible){
+   o.position.set(enemy.x,.045,enemy.z);o.rotation.z=face(...enemy.lock)+Math.PI;
+   o.scale.setScalar(enemy.reach+(o===intakeFan?.14:.10));
+  }
   if(warningRing.visible){
    const r=enemy.attack==='pounce'?.85:enemy.reach+.25,d=enemy.attack==='pounce'?Math.min(enemy.lockLength,enemy.reach):0;
    const marked=bomb||enemy.attack==='burrow';
@@ -300,6 +318,12 @@ try{
    warningPlane.rotation.z=face(...enemy.lock)+(cross?Math.PI/2:0);
    warningPlane.scale.set(cross?CROSS_HALF_WIDTH*2:enemy.attack==='beam'||enemy.attack==='salvo'?1.22:1.48,cross?3.44:d,1);
   }
+  const splitVisible=two&&enemy.life>0&&(enemy.state==='windup'||enemy.state==='active');
+  const twins=splitVisible?splitMarks(enemy,enemy.attack==='stilt'?.54:1.23):null;
+  splitRings.forEach((r,j)=>{
+   r.visible=splitVisible&&(enemy.state==='windup'||enemy.shots<=j);
+   if(r.visible){r.position.set(twins[j].x,.035+j*.005,twins[j].z);r.scale.setScalar(enemy.attack==='stilt'?STILT_RADIUS:RELAY_RADIUS);}
+  });
   shellShot.visible=bomb&&enemy.state==='active'&&!enemy.dashHit&&enemy.life>0;
   if(shellShot.visible){
    const v=clamp(enemy.t/.50,0,1);
@@ -317,9 +341,19 @@ try{
   impact=Math.max(0,impact-dt);flash.visible=impact>0;flash.scale.setScalar(1+(.26-impact)*2);flash.material.opacity=impact/.26*.8;
   attackRing.visible=!!p.slash&&Math.abs(p.slash.time-p.slash.weapon.wind)<.075;
   if(attackRing.visible){attackRing.position.set(p.x,.04,p.z);attackRing.rotation.z=-face(...p.face)+Math.PI/2;attackRing.scale.setScalar(p.slash.weapon.reach*.75);}
-  const a=1-Math.exp(-dt*8);
-  const z=p.z-1.70;look.lerp(goal.set(p.x,.74,z),a);
-  camera.position.lerp(goal.set(p.x+.15,5.2,p.z+6.8),a);
-  camera.lookAt(look);render.render(scene,camera);
+  // Fixed world-relative controls with a gently fitted, three-quarter two-shot.
+  // Moving the target between the actors is enough to retain a lunger without spinning the stick axes.
+  const a=cut?1:1-Math.exp(-dt*7.8),dx=enemy.x-p.x,dz=enemy.z-p.z;
+  const span=Math.hypot(dx,dz),x=p.x+dx*.46,z=p.z+dz*.46;
+  const side=Math.abs(dx*.91-dz*.41),fit=clamp((side-2.10)*.72+(span-4.1)*.15,0,5.0);
+  look.lerp(goal.set(x,.87,z),a);
+  camera.position.lerp(goal.set(x+3.35+fit*.40,5.5+fit*.49,z+7.15+fit*.90),a);
+  camera.lookAt(look);camera.updateMatrixWorld();
+  const viewport=(who,x,h,z)=>{
+   point.set(x,h,z).project(camera);
+   wrap.dataset[who+'ViewX']=point.x.toFixed(3);wrap.dataset[who+'ViewY']=point.y.toFixed(3);
+  };
+  viewport('player',p.x,1.02,p.z);viewport('enemy',enemy.x,Math.min(enemy.height*.60,1.10),enemy.z);
+  render.render(scene,camera);
  });
 }catch(e){wrap.dataset.state='error';set(notice,'Forge Yard could not load. WebGL and served assets are required.');console.error(e);}

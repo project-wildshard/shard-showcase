@@ -65,15 +65,19 @@ export function press(s,kind){
  }
  return false;
 }
-const DAM={windmill:18,pounce:14,beam:13,charge:26,hook:12,guard:15,burrow:16,burst:18,salvo:9,lunge:21,mortar:22,crosscut:17};
+const DAM={windmill:18,pounce:14,beam:13,charge:26,hook:12,guard:15,burrow:16,burst:18,salvo:9,lunge:21,mortar:22,crosscut:17,vacuum:18,stilt:13,relay:18,recoil:20};
 function strikePlayer(s,b,damage=DAM[b.attack],style=b.attack){
  const p=s.player;
  if(p.inv>0||p.hp<=0)return false;
  p.hp=Math.max(0,p.hp-damage);p.inv=.26;
  s.events.push({type:'player-hit',enemy:b.id,style,hp:p.hp});return true;
 }
-const ACTIVE={charge:.56,pounce:.39,salvo:.62,lunge:.32,mortar:.61,crosscut:.38};
-export const MORTAR_RADIUS=1.48,CROSS_HALF_WIDTH=.56;
+const ACTIVE={charge:.56,pounce:.39,salvo:.62,lunge:.32,mortar:.61,crosscut:.38,vacuum:.57,stilt:.62,relay:.66,recoil:.39};
+export const MORTAR_RADIUS=1.48,CROSS_HALF_WIDTH=.56,RELAY_RADIUS=.98,STILT_RADIUS=1.01;
+export function splitMarks(b,offset){
+ const {x,z}=b.mark;
+ return [{x:x-b.lock[1]*offset,z:z+b.lock[0]*offset},{x:x+b.lock[1]*offset,z:z-b.lock[0]*offset}];
+}
 function fireSalvo(s,b,p){
  const ax=p.x-b.x,az=p.z-b.z,along=ax*b.lock[0]+az*b.lock[1];
  const off=Math.abs(ax*b.lock[1]-az*b.lock[0]);
@@ -87,7 +91,7 @@ function state(s,b,next){
 }
 function beginWind(s,b,p,wind=b.windup){
  b.lock=norm(p.x-b.x,p.z-b.z);b.lockLength=Math.max(1.5,gap(b,p));
- b.dashHit=false;b.mark={x:p.x,z:p.z};b.windReady=wind;
+ b.dashHit=false;b.shots=0;b.mark={x:p.x,z:p.z};b.windReady=wind;
  state(s,b,'windup');
 }
 export function tick(s,seconds,input=[0,0]){
@@ -193,8 +197,28 @@ export function tick(s,seconds,input=[0,0]){
     if(Math.abs(x*b.lock[0]+z*b.lock[1])<CROSS_HALF_WIDTH&&
        Math.abs(x*b.lock[1]-z*b.lock[0])<1.72&&!reachBlocked(b,p))strikePlayer(s,b);
    }
+   if(b.attack==='recoil'&&d<=b.reach+.10&&dot(b.lock,aim)>.84&&!reachBlocked(b,p))strikePlayer(s,b);
    if(b.attack==='burst'&&d<b.reach+.16&&!reachBlocked(b,p))strikePlayer(s,b);
   }else if(b.state==='active'){
+   if(b.attack==='vacuum'){
+    const inSlot=d<=b.reach+.14&&dot(b.lock,aim)>.89&&!reachBlocked(b,p);
+    if(b.t<.42&&inSlot&&p.inv<=0&&d>1.14){
+     const q=Math.min(3.5*dt,d-1.14);place(p,p.x-aim[0]*q,p.z-aim[1]*q);
+    }
+    if(!b.dashHit&&b.t>=.42){
+     b.dashHit=true;s.events.push({type:'vacuum-release',enemy:b.id});
+     if(inSlot&&d<=1.67&&strikePlayer(s,b))place(p,p.x+aim[0]*.72,p.z+aim[1]*.72);
+    }
+   }
+   if(b.attack==='stilt'||b.attack==='relay'){
+    const stilt=b.attack==='stilt',at=b.shots===0?(stilt?.08:.22):(stilt?.38:.52);
+    if(b.shots<2&&b.t+1e-6>=at){
+     const index=b.shots++,mark=splitMarks(b,stilt?.54:1.23)[index],radius=stilt?STILT_RADIUS:RELAY_RADIUS;
+     if(gap(p,mark)<radius&&!reachBlocked(mark,p))strikePlayer(s,b);
+     s.events.push({type:'split-strike',enemy:b.id,index});
+    }
+   }
+   if(b.attack==='recoil'&&b.t<=.32)place(b,b.x-b.lock[0]*3.35*dt,b.z-b.lock[1]*3.35*dt);
    if(b.attack==='salvo'&&b.shots<3&&b.t+1e-6>=b.shots*.28){b.shots++;fireSalvo(s,b,p);}
    if(b.attack==='mortar'&&!b.dashHit&&b.t>=.50){
     b.dashHit=true;s.events.push({type:'mortar-impact',enemy:b.id});
