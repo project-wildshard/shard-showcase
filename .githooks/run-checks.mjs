@@ -2,6 +2,7 @@
 // on by themselves once the scaffold defines them.
 //   commit: like the scaffold's own pre-commit: `lint` and `format:check`
 //           on the staged code files only, plus the whole `typecheck`,
+//           in a clean copy of the staged index,
 //           in parallel under a budget (silent < 5 s, warn 5-8 s, BLOCK
 //           > 8 s; SKIP_BUDGET=1). Skipped when no code or JSON is staged.
 //   push:   the full `check` script (adds knip and the unit tests), run in
@@ -14,14 +15,17 @@
 // yet, `pnpm lint:fix` / `pnpm format`).
 // Bypass a lane: SKIP_CHECK=1 (last resort; CI still runs it).
 import { spawn, spawnSync } from 'node:child_process';
+import { gateTestEnvironment } from './gate-workers.mjs';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { gateTestEnvironment } from './gate-workers.mjs';
 import { copyReason, makeGateCopy, pushedCommit } from './push-gate-copy.mjs';
+import { restoreVerdict } from './branch-restore.mjs';
 import { git } from './lib.mjs';
-import { stagedCheckCommit, stagedCheckTree } from './staged-check-tree.mjs';
 import { guardPinnedLinks } from './pinned-links.mjs';
+import { failureReport } from './gate-report.mjs';
+import { landGate } from './land-gate.mjs';
+import { stagedCheckCommit, stagedCheckTree } from './staged-check-tree.mjs';
 
 const lane = process.argv[2];
 const root = git(['rev-parse', '--show-toplevel']).trim();
@@ -38,6 +42,14 @@ if (lane === 'push') {
   const lines = (process.env.WS_PUSH_REFS ?? '').split('\n').map((line) => line.trim().split(/\s+/u)).filter((row) => row[0] !== '');
   if (lines.length > 0 && lines.every(([, local = '', remote = '']) => /^0+$/u.test(local) && /^refs\/heads\/(?:plan\/[a-z0-9][a-z0-9._-]*|release\/v\d+\.\d+\.\d+)$/u.test(remote))) {
     console.error(`  - delete-only push of ${lines.map(([, , remote]) => remote).join(', ')}: no commit leaves this machine; push lane skipped`);
+    process.exit(0);
+  }
+  // Meta QA 11-25 row 113 (J381): re-creating deleted branches at a sha the destination's main holds or the
+  // deleted-branches log recorded sends no new code (.githooks/branch-restore.mjs); ALLOW_BRANCH_RESTORE=1 is its
+  // hatch. Never a main push.
+  const restore = restoreVerdict(root, process.env.WS_PUSH_REFS ?? '');
+  if (restore.ok) {
+    console.error(`  - ${restore.reason}; push lane skipped`);
     process.exit(0);
   }
 }
@@ -65,6 +77,11 @@ if (lane === 'push' && reuse) {
 }
 if (process.env.SKIP_CHECK === '1') {
   console.error(`  - SKIP_CHECK=1: ${lane} lane skipped (CI still runs it)`);
+  process.exit(0);
+}
+const land = lane === 'push' ? landGate(root) : null;
+if (land?.reusable()) {
+  console.error('  - land reused a completed push gate after a disjoint rebase; main CI checks the combined tree');
   process.exit(0);
 }
 // The push lane gates the pushed commit in a clean copy of it (M1).
@@ -120,7 +137,6 @@ if (copy === null && !existsSync(join(pkgDir, 'node_modules'))) {
   console.error(`\n  X ${lane} blocked: node_modules is missing. Run pnpm install, then pnpm exec npr install --frozen when binDependencies are declared.\n`);
   process.exit(1);
 }
-
 if (stagedTree !== null) {
   copy = makeGateCopy(root, stagedCheckCommit(root, stagedTree), {say: () => {}});
   pkgDir = copy.path;
@@ -130,6 +146,7 @@ if (stagedTree !== null) {
 // (knip, tests that build repos) must see a normal environment.
 const cleanEnv = Object.fromEntries(Object.entries(process.env).filter(([key]) => !key.startsWith('GIT_')));
 const env = lane === 'push' ? gateTestEnvironment(cleanEnv) : cleanEnv;
+Reflect.deleteProperty(env, 'WS_LAND_GATE_FILE');
 // Install a missing shared tool cache from its committed lock before checks.
 // Frozen mode refuses stale pins instead of silently rewriting the checkout.
 if (manifest.binDependencies !== undefined) {
@@ -152,6 +169,33 @@ if (lane === 'push' && existsSync(heroFresh) && process.env.SKIP_HERO !== '1') {
     process.exit(1);
   }
 }
+// meta CHUNK-PARAM-REMOVAL CP23 (J522): no new `chunk` address param beyond the repo's shrink-only baseline
+// (.githooks/chunk-param-guard.mjs; engine runs its own in lint:game). Bypass: SKIP_CHUNK_GUARD=1.
+const chunkGuard = join(root, '.githooks/chunk-param-guard.mjs');
+if (lane === 'push' && existsSync(chunkGuard) && process.env.SKIP_CHUNK_GUARD !== '1') {
+  const { chunkGuardVerdict, refusal } = await import(pathToFileURL(chunkGuard).href);
+  const { added, enforced } = chunkGuardVerdict(pkgDir);
+  if (added.length && !enforced) console.error(`  - chunk-param-guard, report only until the repo records its baseline: ${added.join(', ')}`);
+  if (added.length && enforced) {
+    console.error(`\n  X push blocked: ${refusal(added)}\n    SKIP_CHUNK_GUARD=1 is a last resort (J381).\n`);
+    copy?.remove();
+    process.exit(1);
+  }
+}
+// Meta QA 11-25 row 82 (J505): no new script pointing where nothing is (a relative import, an undeclared package, a ROOT
+// off the package root, a missing read path) beyond the repo's shrink-only baseline (.githooks/script-paths.mjs).
+// Bypass: SKIP_SCRIPT_PATHS=1.
+const scriptPaths = join(root, '.githooks/script-paths.mjs');
+if (lane === 'push' && existsSync(scriptPaths) && process.env.SKIP_SCRIPT_PATHS !== '1') {
+  const { scriptPathsVerdict, refusal: pathRefusal } = await import(pathToFileURL(scriptPaths).href);
+  const { added, enforced } = scriptPathsVerdict(pkgDir);
+  if (added.length && !enforced) console.error(`  - script-paths, report only until the repo records its baseline: ${added.length} finding(s) (node .githooks/script-paths.mjs)`);
+  if (added.length && enforced) {
+    console.error(`\n  X push blocked: ${pathRefusal(added)}\n    SKIP_SCRIPT_PATHS=1 is a last resort (J381).\n`);
+    copy?.remove();
+    process.exit(1);
+  }
+}
 const run = ({ name, args }) => new Promise((done) => {
   const child = spawn('pnpm', ['run', '--silent', ...args], { cwd: pkgDir, env });
   let output = '';
@@ -167,7 +211,9 @@ const seconds = (Date.now() - started) / 1000;
 copy?.remove();
 
 const failed = results.filter((result) => result.code !== 0);
-for (const { name, output } of failed) console.error(`\n  X pnpm ${name} failed:\n${output.trim().replace(/^/gm, '    ')}`);
+// Meta QA 11-25 row 75: a long output goes whole to tmp/push-gate/, and the report ends with the failing step.
+const logOf = (name) => join(root, 'tmp', 'push-gate', `${lane}-${name.replaceAll(/[^\w.-]/gu, '-')}.log`);
+for (const { name, output } of failed) console.error(`\n${failureReport({ name, output, logPath: logOf(name) })}`);
 if (failed.length) {
   const fixer = scripts.fix ? 'pnpm fix fixes' : 'pnpm lint:fix / pnpm format fix';
   const fix = lane === 'commit' ? ` (${fixer} most of it)` : '';
@@ -184,3 +230,4 @@ if (lane === 'commit') {
   if (seconds > SOFT) console.error(`  !! commit lane took ${seconds.toFixed(1)} s (soft ${SOFT} s, hard ${HARD} s)`);
 }
 console.error(`  - ${lane} lane green in ${seconds.toFixed(1)} s`);
+land?.record();

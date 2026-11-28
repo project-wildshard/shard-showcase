@@ -61,8 +61,9 @@ jobs:
     # ran on Linux. Such a repo sets its PREPARE_RUNNER variable to macos-15; the rest keep ubuntu-24.04, which never
     # queues (FR-A7: a 17-plot wave queued 4 to 65 min on hosted macOS).
     runs-on: ${{ vars.PREPARE_RUNNER || 'ubuntu-24.04' }}
-    # FR-A3: the gate waits up to 30 minutes for this commit's ci, then the slowest green build (open plots) is 43.
-    timeout-minutes: 80
+    # FR-A3, QA 11-26 row 64: the gate waits through the repo's ci budget (its ci.yml, plus 10 minutes of queue, at most
+    # 100: publish-shard.mjs GATE_MAX_MINUTES) for this commit's ci, then the slowest green build (open plots) is 43.
+    timeout-minutes: 150
     env:
       APP_CLIENT_ID: ${{ secrets.APP_CLIENT_ID }}
       CANDIDATE_ENGINE: ${{ inputs.engine }}
@@ -119,9 +120,9 @@ jobs:
       - name: Install the pinned, or the named candidate, sdk graph
         run: |
           if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
-            # The repo's own script: scripts/, or src/scripts/ in a lean repo (D31).
-            pick=scripts/select-candidate.mjs; [ -f "$pick" ] || pick=src/scripts/select-candidate.mjs
-            test -f "$pick" || { echo '::error::this repo has no scripts/select-candidate.mjs (src/scripts/ when lean): publish its pins'; exit 1; }
+            # The repo's own script, in src/scripts/ (every repo is lean since R2; meta QA 11-25 row 119).
+            pick=src/scripts/select-candidate.mjs
+            test -f "$pick" || { echo '::error::this repo has no src/scripts/select-candidate.mjs: publish its pins'; exit 1; }
             node "$pick"
             # FAST-RELEASE FR-A23: a sharddev candidate packs its commit and swaps every SDK package to it.
             node src/scripts/.kit/publish-candidate.mjs
@@ -279,7 +280,7 @@ jobs:
       - name: Install the same graph the build used
         run: |
           if [ -n "$CANDIDATE_ENGINE$CANDIDATE_SHARDDEV" ]; then
-            pick=scripts/select-candidate.mjs; [ -f "$pick" ] || pick=src/scripts/select-candidate.mjs
+            pick=src/scripts/select-candidate.mjs
             node "$pick"
             # FAST-RELEASE FR-A23: a sharddev candidate packs its commit and swaps every SDK package to it.
             node src/scripts/.kit/publish-candidate.mjs

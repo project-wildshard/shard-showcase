@@ -13,9 +13,15 @@
 //      was killed is swept by the next one (its pid is gone).
 // It copies in the canonical checkout always (other lanes may write while the gate runs), and in a linked worktree
 // only when that worktree is dirty or not at the pushed tree. CI never copies. WS_PUSH_GATE_COPY=0 gates in place.
+//
+// Meta QA 11-25 row 149: a gate red that a local run does not show is reproduced the gate's way, never skipped:
+//   node .githooks/push-gate-copy.mjs [<commit>] -- <command...>   e.g. -- pnpm check:watch-build
+// runs the command in a clean copy of the commit (HEAD by default) with the gate's environment, then removes the copy;
+// it exits with the command's status.
 import { execFileSync, spawn, spawnSync } from 'node:child_process';
-import { existsSync, mkdirSync, readdirSync, renameSync, rmSync } from 'node:fs';
+import { closeSync, existsSync, mkdirSync, openSync, readFileSync, readdirSync, renameSync, rmSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 /** Where copies live, under the checkout (gitignored tmp/; AGENTS.md: never the system tmp). */
 export const GATE_DIR = 'tmp/push-gate';
@@ -98,6 +104,13 @@ export function sweepDeadCopies(root) {
   return removed;
 }
 
+/** Meta QA 11-26 row 29: the copy's install limit in s, `WS_GATE_STEP_S` or 300 (a normal install takes seconds).
+ * @param {NodeJS.ProcessEnv} [env] */
+export function installLimit(env = process.env) {
+  const named = Number(env.WS_GATE_STEP_S);
+  return Number.isFinite(named) && named > 0 ? named : 300;
+}
+
 /** Make the clean copy of `sha`. Returns its path and a remover; on failure removes what it made and throws.
  * @param {string} root the pushing checkout @param {string} sha
  * @param {{say?:(line:string)=>void,env?:NodeJS.ProcessEnv}} [options] */
@@ -134,8 +147,17 @@ export function makeGateCopy(root, sha, { say = (line) => process.stderr.write(`
     timed('checkout', () => git(root, ['worktree', 'add', '--quiet', '--detach', path, sha]));
     if (existsSync(join(path, 'pnpm-lock.yaml'))) {
       timed('install', () => {
-        const child = spawnSync('pnpm', ['install', '--frozen-lockfile', '--prefer-offline'], { cwd: path, env: cleanEnv(env), stdio: ['ignore', 'pipe', 'pipe'], encoding: 'utf8', maxBuffer: 64 << 20 });
-        const said = `${child.stdout ?? ''}\n${child.stderr ?? ''}`.trim().split('\n').filter((line) => /ERR|error|Error/u.test(line)).slice(-3).join(' | ');
+        // Meta QA 11-26 row 29: a copy step never runs without a limit (an engine gate sat 44 minutes in one); past it the
+        // step is stopped and the gate fails with the step's name and its last output.
+        // Its output goes to a file, not a pipe, so a helper the install left running cannot hold the gate open.
+        const limit = installLimit(env), log = `${path}.install.log`, fd = openSync(log, 'w');
+        let child;
+        try { child = spawnSync('pnpm', ['install', '--frozen-lockfile', '--prefer-offline'], { cwd: path, env: cleanEnv(env), stdio: ['ignore', fd, fd], timeout: limit * 1000, killSignal: 'SIGKILL' }); }
+        finally { closeSync(fd); }
+        const output = readFileSync(log, 'utf8').trim().split('\n').map((line) => line.trim()).filter(Boolean);
+        rmSync(log, { force: true });
+        if (child.error !== undefined || child.signal !== null) throw new Error(`gate step install stuck: no exit after ${String(limit)} s, stopped (limit: WS_GATE_STEP_S); last output: ${output.slice(-3).join(' | ') || '(no output)'}`);
+        const said = output.filter((line) => /ERR|error|Error/u.test(line)).slice(-3).join(' | ');
         if (child.status !== 0) throw new Error(`pnpm install --frozen-lockfile --prefer-offline in the gate copy exited ${String(child.status)}: ${said || 'no error line; rerun it in the copy to see why'}`);
       });
     }
@@ -156,4 +178,29 @@ export function makeGateCopy(root, sha, { say = (line) => process.stderr.write(`
   }
   say(`  - push-gate copy (M1): ${sha.slice(0, 10)} at ${GATE_DIR}/${path.split('/').at(-1)} in ${((performance.now() - began) / 1000).toFixed(1)} s; ${steps.join(', ')}`);
   return { path, remove };
+}
+
+/** Run `command` in a clean copy of `commit`, as the push gate runs `pnpm check` (the gate's environment: no GIT_*, the
+ * watch parity's frames outside the copy). Returns the command's exit status. @param {string} root
+ * @param {string} commit @param {string[]} command @param {{env?:NodeJS.ProcessEnv,stdio?:import('node:child_process').StdioOptions}} [options] */
+export function runInGateCopy(root, commit, command, { env = process.env, stdio = 'inherit' } = {}) {
+  const sha = git(root, ['rev-parse', '--verify', `${commit}^{commit}`]);
+  const copy = makeGateCopy(root, sha, { env });
+  try {
+    const child = spawnSync(command[0], command.slice(1), { cwd: copy.path, stdio,
+      env: { ...cleanEnv(env), WS_PARITY_FRAMES: env.WS_PARITY_FRAMES ?? join(root, GATE_DIR, 'watch-parity') } });
+    return child.status ?? 1;
+  } finally {
+    copy.remove();
+  }
+}
+
+if (process.argv[1] !== undefined && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
+  const args = process.argv.slice(2), dash = args.indexOf('--');
+  if (dash === -1 || dash > 1 || dash === args.length - 1) {
+    console.error('usage: node .githooks/push-gate-copy.mjs [<commit>] -- <command...>');
+    process.exit(2);
+  }
+  const root = git(process.cwd(), ['rev-parse', '--show-toplevel']);
+  process.exit(runInGateCopy(root, dash === 1 ? args[0] : 'HEAD', args.slice(dash + 1)));
 }
