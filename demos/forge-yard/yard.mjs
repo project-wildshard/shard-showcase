@@ -129,7 +129,16 @@ try{
  const actorBases=[enemyBase,specialistBase,ordnanceBase,foundryBase];
  const manifests=await Promise.all(actorBases.map(path=>fetch(new URL('manifest.json',path)).then(r=>{if(!r.ok)throw Error('Enemy manifest missing');return r.json();})));
  const data={enemyTypes:manifests.flatMap((d,i)=>d.enemyTypes.map(a=>({...a,source:actorBases[i]})))};
- const artists=await Promise.all(data.enemyTypes.map(a=>loader.loadAsync(new URL(a.model,a.source).href)));
+ const artists=new Map(),loadingModels=new Map();
+ function loadRival(n){
+  if(artists.has(n))return Promise.resolve(artists.get(n));
+  if(loadingModels.has(n))return loadingModels.get(n);
+  const a=data.enemyTypes[n];
+  const result=loader.loadAsync(new URL(a.model,a.source).href)
+   .then(model=>{artists.set(n,model);return model;})
+   .finally(()=>loadingModels.delete(n));
+  loadingModels.set(n,result);return result;
+ }
  let s=create(data.enemyTypes),i=0,variant=null,enemy=null,actor=null,weapon=null,wmix=null,wa=null,sequence=0,who=-1;
  const opts=$('weapon');
  for(const w of WEAPONS){const o=document.createElement('option');o.value=w.id;o.textContent=w.name;opts.append(o);}
@@ -192,7 +201,7 @@ try{
   const old=s.weapon;
   s=create(data.enemyTypes);select(s,old);
   i=n;enemy=spawn(s,i,{x:0,z:-2.45},variant);
-  const g=artists[i];const group=joint(scene,enemy.x,0,enemy.z);group.add(g.scene);shadow(group,enemy.radius*.95);
+  const g=artists.get(i);const group=joint(scene,enemy.x,0,enemy.z);group.add(g.scene);shadow(group,enemy.radius*.95);
   const armor=kit(enemy,group);
   if(armor)g.scene.getObjectByName('body')?.attach(armor);
   const mixer=new T.AnimationMixer(g.scene);
@@ -228,7 +237,7 @@ try{
   if(e.pointerId===pointer){pointer=-1;input=[0,0];$('knob').style.transform='';}
  });
  const pass=k=>{
-  if(k==='attack'&&wrap.dataset.equipped!==WEAPONS[s.weapon].id)return;
+  if(rivalLoading||(k==='attack'&&wrap.dataset.equipped!==WEAPONS[s.weapon].id))return;
   if(!press(s,k))return;
   if(k==='attack'&&wmix&&wa){wmix.stopAllAction();const a=wmix.clipAction(wa).reset().setLoop(T.LoopOnce,1);a.clampWhenFinished=false;a.setDuration(WEAPONS[s.weapon].cycle);a.play();}
  };
@@ -246,9 +255,24 @@ try{
   const n=WEAPONS.findIndex(w=>w.id===opts.value);select(s,n);
   opts.value=WEAPONS[s.weapon].id;void loadWeapon(opts.value).catch(()=>say('Weapon load failed.',3));
  });
+ let rivalLoading=false;
+ const nav=[$('next'),$('win-next'),$('reset'),variants,opts];
+ async function nextRival(){
+  if(rivalLoading)return;
+  const n=(i+1)%data.enemyTypes.length;
+  if(artists.has(n)){start(n);return;}
+  rivalLoading=true;wrap.dataset.rivalLoading=String(n+1);
+  for(const b of nav)b.disabled=true;
+  say('Loading '+data.enemyTypes[n].name+'…',90);
+  try{await loadRival(n);start(n);}
+  catch(e){say('Rival could not load. Tap Next to retry.',3);}
+  finally{rivalLoading=false;delete wrap.dataset.rivalLoading;for(const b of nav)b.disabled=false;}
+ }
  variants.addEventListener('change',()=>{variant=variants.value||null;start(i);});
- $('next').onclick=$('win-next').onclick=()=>start((i+1)%artists.length);$('reset').onclick=()=>start(i);
- start(0);await loadWeapon('014');
+ $('next').onclick=$('win-next').onclick=nextRival;
+ $('reset').onclick=()=>start(i);
+ await Promise.all([loadRival(0),loadWeapon('014')]);
+ start(0);
  const look=new T.Vector3(),goal=new T.Vector3(),point=new T.Vector3();
  let last=0,accum=0,walk=0;
  function resize(){const w=wrap.clientWidth,h=wrap.clientHeight;if(!w||!h)return;camera.aspect=w/h;camera.updateProjectionMatrix();render.setSize(w,h,false);}
@@ -260,7 +284,7 @@ try{
   const vz=Number(keys.has('KeyS')||keys.has('ArrowDown'))-Number(keys.has('KeyW')||keys.has('ArrowUp'));
   const m=pointer!==-1?input:[vx,vz];const p=s.player;
   const cut=who!==i;if(cut)who=i;
-  for(;accum>=1/60;accum-=1/60)tick(s,1/60,m);
+  for(;accum>=1/60;accum-=1/60)if(!rivalLoading)tick(s,1/60,m);
   for(const e of s.events.splice(0)){
    if(e.type==='enemy-state'&&e.state==='windup'){
     const cue={windmill:'SWEEP · step back',beam:'BEAM · move sideways',pounce:'POUNCE · dodge',charge:'CHARGE · break the line',

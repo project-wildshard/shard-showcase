@@ -1,0 +1,125 @@
+{
+  "test": "Cache-disabled Chrome with SwiftShader, synthetic throttled loopback, not a physical phone test",
+  "baselineArt": "69c81ea2765cd07968b80ec9c139e228d49221ae",
+  "medianFirstMovementMs": {
+    "eager": 7953,
+    "lazy": 3750,
+    "reductionPct": 52.8
+  },
+  "eager": {
+    "mode": "eager",
+    "downloadBps": 450000,
+    "latencyMs": 80,
+    "viewport": [
+      402,
+      874
+    ],
+    "runs": [
+      {
+        "readyMs": 7672,
+        "moveMs": 7953,
+        "models": [
+          "buoy.glb",
+          "hook.glb",
+          "kiln.glb",
+          "mortar.glb",
+          "railblade.glb",
+          "ram.glb",
+          "rasp.glb",
+          "recycler.glb",
+          "relay.glb",
+          "sentry.glb",
+          "skitter.glb",
+          "snare.glb",
+          "spool.glb",
+          "stilt.glb",
+          "wasp.glb",
+          "winch.glb"
+        ]
+      },
+      {
+        "readyMs": 7761,
+        "moveMs": 8019,
+        "models": [
+          "buoy.glb",
+          "hook.glb",
+          "kiln.glb",
+          "mortar.glb",
+          "railblade.glb",
+          "ram.glb",
+          "rasp.glb",
+          "recycler.glb",
+          "relay.glb",
+          "sentry.glb",
+          "skitter.glb",
+          "snare.glb",
+          "spool.glb",
+          "stilt.glb",
+          "wasp.glb",
+          "winch.glb"
+        ]
+      },
+      {
+        "readyMs": 7648,
+        "moveMs": 7904,
+        "models": [
+          "buoy.glb",
+          "hook.glb",
+          "kiln.glb",
+          "mortar.glb",
+          "railblade.glb",
+          "ram.glb",
+          "rasp.glb",
+          "recycler.glb",
+          "relay.glb",
+          "sentry.glb",
+          "skitter.glb",
+          "snare.glb",
+          "spool.glb",
+          "stilt.glb",
+          "wasp.glb",
+          "winch.glb"
+        ]
+      }
+    ],
+    "retry": null
+  },
+  "lazy": {
+    "mode": "lazy",
+    "downloadBps": 450000,
+    "latencyMs": 80,
+    "viewport": [
+      402,
+      874
+    ],
+    "runs": [
+      {
+        "readyMs": 3392,
+        "moveMs": 3816,
+        "models": [
+          "sentry.glb"
+        ]
+      },
+      {
+        "readyMs": 3412,
+        "moveMs": 3750,
+        "models": [
+          "sentry.glb"
+        ]
+      },
+      {
+        "readyMs": 3356,
+        "moveMs": 3687,
+        "models": [
+          "sentry.glb"
+        ]
+      }
+    ],
+    "retry": {
+      "firstResponse": 503,
+      "thatRivalStayed": "WSC-ENM-001",
+      "recoveredRival": "WSC-ENM-002",
+      "requests": 2
+    }
+  }
+}

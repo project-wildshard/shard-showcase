@@ -1,5 +1,8 @@
 {
   "trustedTouch": true,
+  "modelsAtReady": [
+    "sentry.glb"
+  ],
   "victories": [
     {
       "enemy": "Gate Sentry",
@@ -9,45 +12,45 @@
     },
     {
       "enemy": "Rivet Skitter",
-      "taps": 7,
+      "taps": 4,
       "moves": 3,
       "heroHp": 78
     },
     {
       "enemy": "Beacon Wasp",
       "taps": 2,
-      "moves": 2,
+      "moves": 3,
       "heroHp": 94
     },
     {
       "enemy": "Ballast Ram",
-      "taps": 6,
-      "moves": 6,
-      "heroHp": 42
+      "taps": 10,
+      "moves": 9,
+      "heroHp": 16
     },
     {
       "enemy": "Hook Crane",
       "taps": 3,
       "moves": 3,
-      "heroHp": 96
+      "heroHp": 84
     },
     {
       "enemy": "Kiln Warden",
       "taps": 4,
-      "moves": 3,
+      "moves": 4,
       "heroHp": 90
     },
     {
       "enemy": "Breakwater Snare",
-      "taps": 3,
+      "taps": 4,
       "moves": 2,
       "heroHp": 88
     },
     {
       "enemy": "Spark Buoy",
       "taps": 2,
-      "moves": 2,
-      "heroHp": 102
+      "moves": 3,
+      "heroHp": 84
     },
     {
       "enemy": "Rasp Turret",
@@ -59,7 +62,7 @@
       "enemy": "Railblade Inspector",
       "taps": 3,
       "moves": 2,
-      "heroHp": 57
+      "heroHp": 78
     },
     {
       "enemy": "Salt Mortar",
@@ -88,14 +91,14 @@
     {
       "enemy": "Lantern Relay",
       "taps": 3,
-      "moves": 2,
+      "moves": 3,
       "heroHp": 120
     },
     {
       "enemy": "Indigo Winch",
       "taps": 3,
       "moves": 3,
-      "heroHp": 100
+      "heroHp": 80
     }
   ],
   "weaponModelsLoaded": 12,
@@ -203,37 +206,37 @@
     {
       "enemy": "Gate Sentry",
       "ndc": [
-        -0.137,
-        -0.033,
-        0.146,
-        0.122
+        -0.128,
+        -0.029,
+        0.138,
+        0.118
       ]
     },
     {
       "enemy": "Rivet Skitter",
       "ndc": [
-        0.141,
-        0.102,
-        -0.263,
-        -0.181
+        0.133,
+        0.098,
+        -0.204,
+        -0.151
       ]
     },
     {
       "enemy": "Beacon Wasp",
       "ndc": [
-        -0.231,
-        -0.079,
-        0.231,
-        0.142
+        -0.152,
+        -0.04,
+        0.16,
+        0.108
       ]
     },
     {
       "enemy": "Ballast Ram",
       "ndc": [
-        0.203,
-        0.132,
-        -0.638,
-        -0.364
+        0.304,
+        0.181,
+        -0.857,
+        -0.476
       ]
     },
     {
@@ -241,80 +244,80 @@
       "ndc": [
         -0.132,
         -0.03,
-        0.143,
+        0.142,
         0.12
       ]
     },
     {
       "enemy": "Kiln Warden",
       "ndc": [
-        -0.158,
-        -0.043,
-        0.168,
-        0.128
+        -0.187,
+        -0.057,
+        0.193,
+        0.14
       ]
     },
     {
       "enemy": "Breakwater Snare",
       "ndc": [
-        0.177,
-        0.119,
-        -0.248,
-        -0.223
+        0.142,
+        0.102,
+        -0.274,
+        -0.236
       ]
     },
     {
       "enemy": "Spark Buoy",
       "ndc": [
-        -0.212,
-        -0.069,
-        0.216,
-        0.146
+        -0.137,
+        -0.033,
+        0.146,
+        0.112
       ]
     },
     {
       "enemy": "Rasp Turret",
       "ndc": [
-        -0.143,
-        -0.036,
-        0.151,
-        0.078
+        -0.158,
+        -0.043,
+        0.165,
+        0.084
       ]
     },
     {
       "enemy": "Railblade Inspector",
       "ndc": [
-        -0.131,
-        -0.03,
-        0.034,
-        0.068
+        -0.205,
+        -0.066,
+        0.21,
+        0.152
       ]
     },
     {
       "enemy": "Salt Mortar",
       "ndc": [
-        -0.16,
-        -0.044,
-        0.168,
-        0.124
+        -0.184,
+        -0.055,
+        0.19,
+        0.134
       ]
     },
     {
       "enemy": "Turnstile Spool",
       "ndc": [
-        -0.227,
-        -0.077,
-        0.227,
-        0.14
+        -0.214,
+        -0.07,
+        0.217,
+        0.135
       ]
     },
     {
       "enemy": "Bellows Recycler",
       "ndc": [
-        -0.099,
-        -0.014,
-        0.165,
-        0.085
+        -0.118,
+        -0.024,
+        0.15,
+        0.077
       ]
     },
     {
@@ -329,19 +332,19 @@
     {
       "enemy": "Lantern Relay",
       "ndc": [
-        -0.226,
-        -0.076,
-        0.226,
-        0.137
+        -0.177,
+        -0.052,
+        0.183,
+        0.116
       ]
     },
     {
       "enemy": "Indigo Winch",
       "ndc": [
-        -0.174,
-        -0.05,
-        0.18,
-        0.103
+        -0.163,
+        -0.045,
+        0.17,
+        0.098
       ]
     }
   ],

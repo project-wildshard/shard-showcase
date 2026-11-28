@@ -15,6 +15,9 @@ try{
  await page.waitForFunction(()=>document.querySelector('#yard').dataset.state==='ready',null,{timeout:45000});
  assert.equal(await yard.getAttribute('data-equipped'),'014');
  assert.equal(await page.locator('#weapon option').count(),12);
+ const modelsAtReady=await page.evaluate(()=>performance.getEntriesByType('resource').filter(e=>/dock-(?:enemies|specialists|ordnance|foundry)\/.*\.glb$/.test(e.name)).map(e=>e.name.split('/').pop()));
+ assert.deepEqual(modelsAtReady,['sentry.glb'],'only the first rival should load at startup');
+ const waitRival=n=>page.waitForFunction(id=>document.querySelector('#yard').dataset.enemy===id,'WSC-ENM-'+String(n+1).padStart(3,'0'));
  const stick=await page.locator('#stick').boundingBox(),cdp=await page.context().newCDPSession(page);
  const x=stick.x+stick.width/2,y=stick.y+stick.height/2;
  const f=(type,...touchPoints)=>cdp.send('Input.dispatchTouchEvent',{type,touchPoints});
@@ -22,7 +25,7 @@ try{
  await page.waitForFunction(()=>document.querySelector('#yard').dataset.equipped==='017');
  const victories=[],framing=[];
  for(let n=0;n<16;n++){
-  if(n)await page.locator('#win-next').tap();
+  if(n){await page.locator('#win-next').tap();await waitRival(n);}
   const label=await page.locator('#enemy-name').textContent();
   const track=()=>yard.evaluate(e=>{
    const d=e.dataset;
@@ -59,7 +62,7 @@ try{
   victories.push({enemy:label,taps,moves,heroHp:+await page.locator('#hero-hp').textContent()});
  }
  await page.screenshot({path:out+'/forge-yard-last-win.png'});
- await page.locator('#win-next').tap();
+ await page.locator('#win-next').tap();await waitRival(0);
  await page.locator('#dodge').tap();
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  const weaponsHit=[];
@@ -82,7 +85,7 @@ try{
  const inspectedVariants=[];
  const mode=['rusher','bulwark','feinter','echo','overload'];
  for(let n=0;n<16;n++){
-  if(n)await page.locator('#next').tap();
+  if(n){await page.locator('#next').tap();await waitRival(n);}
   const type='WSC-ENM-'+String(n+1).padStart(3,'0');
   for(const id of mode){
    await page.locator('#variant').selectOption(id);
@@ -104,5 +107,5 @@ try{
  }
  assert.equal(inspectedVariants.length,80);
  assert.deepEqual(errors,[]);
- console.log(JSON.stringify({trustedTouch:true,victories,weaponModelsLoaded:12,weaponsHit,inspectedVariants,viewport:[402,874],framing,errors},null,2));
+ console.log(JSON.stringify({trustedTouch:true,modelsAtReady,victories,weaponModelsLoaded:12,weaponsHit,inspectedVariants,viewport:[402,874],framing,errors},null,2));
 }finally{await browser.close();}
