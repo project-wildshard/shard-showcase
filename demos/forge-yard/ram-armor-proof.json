@@ -1,0 +1,21 @@
+{
+  "portrait": [
+    402,
+    874
+  ],
+  "trustedTouch": true,
+  "report": [
+    {
+      "variant": "before",
+      "cue": "CHARGE · break the line",
+      "healthAfterSidestep": 120,
+      "errors": []
+    },
+    {
+      "variant": "after",
+      "cue": "CHARGE · break the line",
+      "healthAfterSidestep": 120,
+      "errors": []
+    }
+  ]
+}

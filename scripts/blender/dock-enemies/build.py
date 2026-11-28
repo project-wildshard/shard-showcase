@@ -90,15 +90,43 @@ for i,(slug,label,col,style) in enumerate(spec):
        wheel(c,'Rotor signal',(sign*.86,.08,1.49),.15,.034,eye,16,'Z'))
  elif style=='charge':
   joint('body',(0,0,.55),'root');joint('head',(0,-.65,.48))
-  put('body',box(c,'Ballast block',(0,0,.69),(.86,1.16,.68),paint,r=.10),
-      box(c,'Spine weight',(0,.2,1.042),(.59,.61,.16),silver,r=.041))
-  put('head',box(c,'Ram plow',(0,-.69,.45),(1.10,.29,.35),silver,r=.087),
-      box(c,'Ram eye',(0,-.85,.60),(.43,.034,.11),eye,r=.021))
+  coat=mat('Ram . aged safety oxide',(.32,.113,.041),.51,.40)
+  ivory=mat('Ram . heat-stained ceramic',(.51,.40,.24),.47,.42)
+  def hull(n,rings,m):
+   verts=[(math.cos(j*math.tau/8+math.pi/8)*w,y+math.sin(j*math.tau/8+math.pi/8)*d,z)
+          for y,z,w,d in rings for j in range(8)]
+   faces=[tuple(range(7,-1,-1)),tuple(range(len(verts)-8,len(verts)))]
+   for k in range(len(rings)-1):
+    for j in range(8):faces.append((k*8+j,k*8+(j+1)%8,(k+1)*8+(j+1)%8,(k+1)*8+j))
+   mesh=bpy.data.meshes.new(n);mesh.from_pydata(verts,[],faces);mesh.update()
+   mesh.materials.append(m);o=bpy.data.objects.new(n,mesh);c.objects.link(o);return polish(o,.025)
+  put('body',hull('Sloping segmented ballast hood',[(.01,.40,.46,.56),(.014,.76,.49,.65),(.092,1.01,.40,.51),(.139,1.103,.32,.363)],coat),
+      box(c,'Low chassis casting',(0,.067,.42),(.88,1.09,.27),iron,r=.055),
+      box(c,'Bronze corner hood panel',(0,.188,1.036),(.55,.59,.136),brass,r=.048),
+      box(c,'Recessed radiator slot',(0,.176,1.112),(.44,.35,.028),iron,r=.021),
+      box(c,'Rear counterweight bumper',(0,.61,.58),(.69,.135,.245),iron,r=.030))
+  for j in range(5):
+   put('body',box(c,'Radiator cross-vane',(0,.043+j*.059,1.135),(.369,.016,.021),silver,r=.005))
+  put('head',hull('Forged plow base',[(-.730,.24,.44,.145),(-.759,.34,.59,.142),(-.711,.515,.57,.162),(-.697,.59,.47,.133)],iron),
+      box(c,'Cold-struck plow edge',(0,-.844,.355),(.79,.13,.131),silver,r=.030),
+      box(c,'Recessed optical housing',(0,-.754,.593),(.51,.111,.153),iron,r=.030),
+      box(c,'Hot horizontal warning slit',(0,-.817,.616),(.404,.033,.043),eye,r=.010))
   for sign,name in [(-1,'L'),(1,'R')]:
    x=sign*.45;joint('roller_'+name,(x,0,.38))
-   put('roller_'+name,wheel(c,'Steel-bound roller',(x,0,.37),.37,.24,tire,18),
-       wheel(c,'Roller rim',(sign*.585,0,.37),.26,.055,brass,14),
-       wheel(c,'Rim plug',(sign*.617,0,.37),.10,.022,silver,10))
+   put('head',box(c,'Corner pushing shoe',(sign*.431,-.765,.448),(.22,.281,.197),ivory,r=.035,angle=sign*.15))
+   put('body',box(c,'Armored axle fender',(sign*.458,.008,.768),(.145,.683,.111),coat,r=.039,angle=sign*.015))
+   put('roller_'+name,wheel(c,'Graphite transport roller',(x,0,.37),.37,.235,tire,16),
+       wheel(c,'Inset cast bronze hub',(sign*.584,0,.37),.251,.064,brass,14),
+       wheel(c,'Outer dark hub',(sign*.626,0,.37),.177,.031,iron,14),
+       wheel(c,'Octagonal bearing cap',(sign*.648,0,.37),.092,.039,silver,8))
+   for j in range(6):
+    t=j*math.tau/6
+    put('roller_'+name,wheel(c,'Hub perimeter pin',(sign*.646,.132*math.cos(t),.37+.132*math.sin(t)),.020,.024,silver,6))
+   for j in range(10):
+    t=j*math.tau/10
+    shoe=box(c,'Forged traction shoe',(x,.361*math.sin(t),.37+.361*math.cos(t)),(.221,.116,.050),iron,r=.010)
+    shoe.rotation_euler.x=-t
+    put('roller_'+name,shoe)
  # The sentry's strike arms use a bigger right tool, not a recolored left arm.
  if style=='windmill':
   for sign,name in [(-1,'L'),(1,'R')]:
@@ -210,3 +238,11 @@ s.render.resolution_percentage=100;s.render.image_settings.file_format='PNG';s.r
 bpy.context.preferences.filepaths.save_version=0
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'dock-enemies.blend'),compress=True)
 bpy.ops.render.render(write_still=True)
+
+# Render an isolated studio portrait of the updated Ram from the same source.
+for slug,label,_,_ in spec:
+ if slug!='ram':bpy.data.collections[label].hide_render=True
+ bpy.data.objects[label+' label'].hide_render=True
+focus=(3.15,0,.57);o.location=(5.4,-5.3,2.65);aim(o,focus);d.ortho_scale=2.6
+s.render.resolution_x=800;s.render.resolution_y=660
+s.render.filepath=str(TMP/'ballast-ram.png');bpy.ops.render.render(write_still=True)

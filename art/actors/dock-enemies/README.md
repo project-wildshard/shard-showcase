@@ -7,3 +7,5 @@ The registry proposes different behavior and timing for the upcoming yard. It do
 blender -b -t 8 --factory-startup --python-exit-code 1 --python scripts/blender/dock-enemies/build.py -- /tmp/dock-enemies
 python scripts/blender/dock-enemies/verify.py art/actors/dock-enemies
 ```
+
+Ballast Ram’s revised B-series chassis has a sloped ballast hood, a recessed warning eye, a steel lower plow and clad traction rollers. The other three GLBs, Ram’s three sockets, nine clips and encounter tuning were retained. See the standalone Forge Yard test receipt for actual browser play.

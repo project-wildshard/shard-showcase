@@ -254,7 +254,7 @@
           ]
         }
       },
-      "status": "modeled and rigged; prototype yard integration pending"
+      "status": "model, rig, sockets, and clips verified; gameplay tested separately"
     },
     {
       "id": "WSC-ENM-002",
@@ -563,7 +563,7 @@
           ]
         }
       },
-      "status": "modeled and rigged; prototype yard integration pending"
+      "status": "model, rig, sockets, and clips verified; gameplay tested separately"
     },
     {
       "id": "WSC-ENM-003",
@@ -813,14 +813,14 @@
           ]
         }
       },
-      "status": "modeled and rigged; prototype yard integration pending"
+      "status": "model, rig, sockets, and clips verified; gameplay tested separately"
     },
     {
       "id": "WSC-ENM-004",
       "file": "ram.glb",
       "behavior": "charge",
-      "triangles": 904,
-      "bytes": 105924,
+      "triangles": 3604,
+      "bytes": 272016,
       "clips": {
         "Idle": {
           "duration": 1.6,
@@ -1027,7 +1027,7 @@
           ]
         }
       },
-      "status": "modeled and rigged; prototype yard integration pending"
+      "status": "model, rig, sockets, and clips verified; gameplay tested separately"
     }
   ],
   "variant_count": 0,
