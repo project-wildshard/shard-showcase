@@ -1,0 +1,35 @@
+{
+  "trustedTouch": true,
+  "victories": [
+    {
+      "enemy": "Gate Sentry",
+      "taps": 4,
+      "moves": 2,
+      "heroHp": 66
+    },
+    {
+      "enemy": "Rivet Skitter",
+      "taps": 5,
+      "moves": 3,
+      "heroHp": 64
+    },
+    {
+      "enemy": "Beacon Wasp",
+      "taps": 2,
+      "moves": 3,
+      "heroHp": 94
+    },
+    {
+      "enemy": "Ballast Ram",
+      "taps": 5,
+      "moves": 7,
+      "heroHp": 42
+    }
+  ],
+  "weaponModelsLoaded": 12,
+  "viewport": [
+    402,
+    874
+  ],
+  "errors": []
+}
