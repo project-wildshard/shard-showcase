@@ -37,6 +37,10 @@
       "bone": "chest"
     },
     {
+      "object": "Cuirass | compound curvature breastplate | raised hem 0",
+      "bone": "chest"
+    },
+    {
       "object": "Forged diagonal raised seam",
       "bone": "chest"
     },
@@ -69,6 +73,10 @@
       "bone": "upper_arm.R"
     },
     {
+      "object": "Right lower articulated lame | raised hem 0",
+      "bone": "upper_arm.R"
+    },
+    {
       "object": "Pauldron raised crest",
       "bone": "upper_arm.R"
     },
@@ -81,6 +89,10 @@
       "bone": "shin.R"
     },
     {
+      "object": "Shin | tapered sabaton guard R | raised hem 2",
+      "bone": "shin.R"
+    },
+    {
       "object": "Rounded knee cop R",
       "bone": "shin.R"
     },
@@ -90,6 +102,14 @@
     },
     {
       "object": "Boot R | toe and instep",
+      "bone": "foot.R"
+    },
+    {
+      "object": "Boot R | leather welt",
+      "bone": "foot.R"
+    },
+    {
+      "object": "Boot R | broken toe seam",
       "bone": "foot.R"
     },
     {
@@ -133,6 +153,10 @@
       "bone": "shin.L"
     },
     {
+      "object": "Shin | tapered sabaton guard L | raised hem 2",
+      "bone": "shin.L"
+    },
+    {
       "object": "Rounded knee cop L",
       "bone": "shin.L"
     },
@@ -142,6 +166,14 @@
     },
     {
       "object": "Boot L | toe and instep",
+      "bone": "foot.L"
+    },
+    {
+      "object": "Boot L | leather welt",
+      "bone": "foot.L"
+    },
+    {
+      "object": "Boot L | broken toe seam",
       "bone": "foot.L"
     },
     {
@@ -189,7 +221,15 @@
       "bone": "apron.L"
     },
     {
+      "object": "Front leather apron | overlapped left tail | stitched hem",
+      "bone": "apron.L"
+    },
+    {
       "object": "Front leather apron | longer right tail",
+      "bone": "apron.R"
+    },
+    {
+      "object": "Front leather apron | longer right tail | stitched hem",
       "bone": "apron.R"
     },
     {
@@ -207,6 +247,14 @@
     {
       "object": "Apron suspension strap right",
       "bone": "pelvis"
+    },
+    {
+      "object": "Waist belt | hand-wrought buckle",
+      "bone": "pelvis"
+    },
+    {
+      "object": "Waist belt | keeper pin",
+      "bone": "pelvis"
     }
   ],
   "rest": {
@@ -219,7 +267,7 @@
   "guard": {
     "frame": 25,
     "soleZ": {
-      "L": 0.065309,
+      "L": 0.070309,
       "R": 0.009
     }
   }

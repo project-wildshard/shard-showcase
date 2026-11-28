@@ -46,7 +46,7 @@ def grain(mat, strength, distance, scale, low, high):
 grain(fabric,.26,.002,315,(.009,.011,.012),(.072,.069,.055))
 grain(iron,.23,.0028,117,(.045,.054,.057),(.19,.205,.205))
 grain(bone,.23,.0021,121,(.25,.175,.113),(.72,.64,.49))
-grain(apron,.32,.004,214,(.042,.015,.009),(.24,.107,.058))
+grain(apron,.35,.0023,165,(.029,.012,.007),(.175,.071,.036))
 grain(leather,.25,.003,193,(.021,.012,.008),(.11,.066,.046))
 shale=material('07 · Set / graphite',(.038,.044,.046),.05,.8)
 clay=material('Silhouette check · neutral',(.34,.34,.34),0,.64)
@@ -87,7 +87,7 @@ def loft(name, rings, mat, a=None, b=None, count=24, sub=2, form=None):
 def limb(name,a,b,radii,mat=fabric,offset=0):
     return loft(name,[(z,x,y,0,offset) for (z,x,y) in radii],mat,a,b)
 
-def shell(name,a,b,rows,mat,span=1.6):
+def shell(name,a,b,rows,mat,span=1.6,hem=None):
     """Open, curved armor shell along the limb axis; weighted silhouette at each meridian."""
     a,b=Vector(a),Vector(b);axis=(b-a).normalized()
     u=Vector((0,1,0)).cross(axis).normalized();v=axis.cross(u)
@@ -102,7 +102,18 @@ def shell(name,a,b,rows,mat,span=1.6):
     for i in range(len(rows)-1):
         for j in range(n-1):
             k=i*n+j;faces.append((k,k+1,k+n+1,k+n))
-    return surface(name,verts,faces,mat,bevel=.0016,sub=1,thickness=.007)
+    obj=surface(name,verts,faces,mat,bevel=.0016,sub=1,thickness=.007)
+    if hem:
+        # Use the authored endpoints with a tiny relief in the shell normal.
+        for rid in hem:
+            pts=[]
+            for j in range(2,n-2,3):
+                point=Vector(verts[rid*n+j])
+                center=a+(b-a)*rows[rid][0]
+                radial=point-center;radial-=axis*radial.dot(axis)
+                pts.append(point+radial.normalized()*.001)
+            line(name+' | raised hem '+str(rid),pts,.0024,edge)
+    return obj
 
 def line(name, pts, radius, mat):
     c=bpy.data.curves.new(name,'CURVE');c.dimensions='3D';c.resolution_u=12
@@ -138,7 +149,7 @@ line('Kiln enamel fissure',[(.025,-.110,1.725),(.018,-.131,1.755),(.022,-.144,1.
 
 shell('Cuirass | compound curvature breastplate',(.006,.012,1.17),(.015,.015,1.575),[
     (.025,.131,.092,.03,.015),(.12,.143,.108,.025,.010),(.40,.170,.120,.018,.02),
-    (.68,.198,.134,.01,.023),(.84,.222,.130,0,-.02),(.98,.174,.110,-.035,-.12)],iron,1.46)
+    (.68,.198,.134,.01,.023),(.84,.222,.130,0,-.02),(.98,.174,.110,-.035,-.12)],iron,1.46,(0,))
 line('Forged diagonal raised seam',[(-.168,-.064,1.56),(-.097,-.113,1.525),
      (.010,-.123,1.451),(.072,-.095,1.373),(.127,-.054,1.30)],.003,edge)
 shell('Dorsal steel guard',(.006,.017,1.245),(.018,.017,1.585),[
@@ -179,10 +190,10 @@ lower=[(0,.047,.049),(.19,.068,.060),(.40,.071,.062),(.68,.053,.049),(.90,.036,.
 thigh=[(0,.095,.096),(.15,.114,.109),(.37,.106,.108),(.65,.080,.082),(.88,.060,.061),(1,.056,.057)]
 shin=[(0,.054,.055),(.16,.067,.064),(.38,.074,.068),(.69,.046,.050),(.91,.039,.044),(1,.040,.048)]
 for side, shoulder, elbow, wrist, hip, knee, ankle in [
-    ('R',(.205,.015,1.544),(.306,-.027,1.264),(.335,-.103,1.030),
-         (.095,.014,1.006),(.130,-.072,.555),(.160,-.104,.090)),
-    ('L',(-.186,.027,1.537),(-.293,.046,1.254),(-.326,-.009,1.016),
-         (-.097,.023,1.009),(-.137,.040,.550),(-.195,.104,.091))]:
+    ('R',(.205,.015,1.544),(.331,-.029,1.265),(.401,-.107,1.043),
+         (.095,.014,1.006),(.130,-.072,.555),(.192,-.104,.090)),
+    ('L',(-.186,.027,1.537),(-.322,.041,1.263),(-.394,-.016,1.027),
+         (-.097,.023,1.009),(-.137,.040,.550),(-.230,.102,.091))]:
     joined_limb('Continuous sleeve '+side,shoulder,elbow,wrist,upper,lower)
     joined_limb('Continuous trousers '+side,hip,knee,ankle,thigh,shin)
     if side=='R':
@@ -193,7 +204,7 @@ for side, shoulder, elbow, wrist, hip, knee, ankle in [
             (.42,.076,.070,.48,-.03),(.52,.093,.088,.48,-.05),(.73,.099,.092,.48,.00)],oxide,1.51)
         shell('Right lower articulated lame',elbow,shoulder,[
             (.44,.097,.084,.55,-.19),(.49,.111,.094,.54,-.10),
-            (.65,.121,.106,.54,.036),(.74,.108,.093,.54,.045)],iron,1.64)
+            (.65,.121,.106,.54,.036),(.74,.108,.093,.54,.045)],iron,1.64,(0,))
         shell('Pauldron raised crest',elbow,shoulder,[
             (.70,.130,.111,.52,-.10),(.82,.138,.123,.53,-.03),
             (1.05,.135,.125,.47,.13),(1.23,.072,.070,.43,.24)],iron,1.28)
@@ -205,7 +216,7 @@ for side, shoulder, elbow, wrist, hip, knee, ankle in [
        (.82,.075,.069,0,-.07),(.90,.061,.056,0,-.12)],iron,1.39)
     shell('Shin | tapered sabaton guard '+side,ankle,knee,[
        (.03,.048,.058,0,.046),(.16,.050,.059,0,.031),(.48,.069,.072,0,.02),
-       (.84,.075,.069,0,-.045),(.93,.067,.057,0,-.04)],iron,1.37)
+       (.84,.075,.069,0,-.045),(.93,.067,.057,0,-.04)],iron,1.37,(2,))
     shell('Rounded knee cop '+side,ankle,knee,[
        (.89,.067,.070,0,-.04),(.97,.082,.083,0,.00),(1.08,.077,.078,0,.05),
        (1.16,.052,.058,0,.06)],iron,1.49)
@@ -216,6 +227,12 @@ for side, shoulder, elbow, wrist, hip, knee, ankle in [
     loft('Boot '+side+' | toe and instep',[
       (.013,.063,.117,x,y-.056),(.025,.069,.122,x,y-.057),(.052,.068,.124,x,y-.056),
       (.078,.058,.099,x,y-.051),(.113,.049,.070,x,y-.016),(.151,.043,.044,x,y)],leather)
+    loft('Boot '+side+' | leather welt',[
+      (.009,.061,.117,x,y-.056),(.012,.069,.125,x,y-.058),
+      (.023,.071,.128,x,y-.057),(.030,.064,.122,x,y-.056)],fabric,sub=1)
+    line('Boot '+side+' | broken toe seam',[
+      (x-.044,y-.128,.057),(x-.020,y-.140,.070),(x+.010,y-.139,.073),
+      (x+.039,y-.128,.062)],.0019,edge)
     wx,wy,wz=wrist
     a=(wx,wy-.016,wz-.093)
     limb('Glove cuff '+side,(wx,wy,wz-.022),(wx,wy+.010,wz+.039),
@@ -249,12 +266,12 @@ def drape(name, side, inside, outside, hem, center, mat, back=False):
         v=i/(V-1)
         for j in range(U):
             u=j/(U-1)
-            x=side*((1-u)*inside+u*outside+(u-.28)*.047*v)
-            length=hem + .065*sin(u*pi) - .08*u + .020*sin(u*7.8+side)
+            x=side*((1-u)*inside+u*outside+(u-.32)*.042*v-.034*sin(v*pi)*u)
+            length=hem + .072*sin(u*pi) - .17*u + .018*sin(u*7.8+side)
             z=1.128-v*length+(x*side)*.042
             y=-center + .10*(abs(x)/.265)**2
             y-=.046*sin(pi*v*.86)
-            y+=(.008+.026*v)*sin(u*12.7+v*2.9+side*.8)
+            y+=(.008+.026*v)*sin(u*12.7+v*2.9+side*.8) + .006*sin(5*u+12*v)*sin(pi*v)
             if side==1 and not back:y-=.045*sin(pi*v*.82)*(u**.55)
             y+=.013*cos(v*15.5+u*4.3)*(1-v)
             if back:y=-y+.014
@@ -262,7 +279,12 @@ def drape(name, side, inside, outside, hem, center, mat, back=False):
     for i in range(V-1):
         for j in range(U-1):
             k=i*U+j;faces.append((k,k+1,k+1+U,k+U))
-    return surface(name,verts,faces,mat,sub=1,thickness=.004,bevel=.0008)
+    result=surface(name,verts,faces,mat,sub=1,thickness=.004,bevel=.0008)
+    # Hem seam is sampled from the same sheet, so it follows the actual wrinkles.
+    if not back:
+        indexes=[(V-2)*U+i for i in range(1,U-1,3)]
+        line(name+' | stitched hem',[(verts[k][0],verts[k][1]-.002,verts[k][2]+.001) for k in indexes],.00115,leather)
+    return result
 
 drape('Front leather apron | overlapped left tail',-1,.018,.218,.71,.153,apron)
 drape('Front leather apron | longer right tail',1,-.029,.197,.78,.163,apron)
@@ -271,6 +293,11 @@ drape('Rear split mantle | right',1,.018,.226,.66,.143,fabric,True)
 line('Apron suspension strap left',[(-.135,-.082,1.131),(-.109,-.123,1.056),(-.105,-.142,.961)],.009,leather)
 line('Apron suspension strap right',[(.119,-.093,1.131),(.117,-.132,1.056),(.117,-.147,.953)],.009,leather)
 
+# Fine hardware follows silhouette and hanging load, not decorative cubes.
+line('Waist belt | hand-wrought buckle',[
+  (-.052,-.116,1.142),(-.047,-.127,1.155),(-.015,-.127,1.157),
+  (-.011,-.127,1.126),(-.042,-.127,1.126),(-.052,-.116,1.142)],.0038,edge)
+line('Waist belt | keeper pin',[(-.045,-.129,1.143),(-.016,-.128,1.139)],.0022,oxide)
 def aim(o,point): o.rotation_euler=(Vector(point)-o.location).to_track_quat('-Z','Y').to_euler()
 def lamp(label,loc,watts,size,color):
     d=bpy.data.lights.new(label,'AREA');d.energy=watts;d.shape='DISK';d.size=size;d.color=color

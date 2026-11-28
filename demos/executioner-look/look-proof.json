@@ -1,0 +1,56 @@
+{
+  "visualReviewOnly": true,
+  "staticPose": true,
+  "cases": [
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "trustedTouch": false,
+      "meshHeightM": 1.967,
+      "triangles": 43570,
+      "distanceHeightPixels": 241.1,
+      "views": [
+        {
+          "name": "close",
+          "heightPixels": 547.8
+        },
+        {
+          "name": "profile",
+          "heightPixels": 615.3
+        },
+        {
+          "name": "rear",
+          "heightPixels": 547.7
+        }
+      ],
+      "errors": []
+    },
+    {
+      "viewport": [
+        402,
+        874
+      ],
+      "trustedTouch": true,
+      "meshHeightM": 1.967,
+      "triangles": 43570,
+      "distanceHeightPixels": 292.7,
+      "views": [
+        {
+          "name": "close",
+          "heightPixels": 599.1
+        },
+        {
+          "name": "profile",
+          "heightPixels": 672.9
+        },
+        {
+          "name": "rear",
+          "heightPixels": 599
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

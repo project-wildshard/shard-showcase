@@ -24,10 +24,10 @@ bone('chest',(.012,.012,1.37),(.01,.009,1.59),'spine')
 bone('neck',(.01,.009,1.59),(.013,-.022,1.71),'chest')
 bone('head',(.013,-.022,1.71),(.013,.006,1.94),'neck')
 for side, shoulder, elbow, wrist, hip, knee, ankle in [
- ('R',(.205,.015,1.544),(.306,-.027,1.264),(.335,-.103,1.030),
-  (.095,.014,1.006),(.130,-.072,.555),(.160,-.104,.090)),
- ('L',(-.186,.027,1.537),(-.293,.046,1.254),(-.326,-.009,1.016),
-  (-.097,.023,1.009),(-.137,.040,.550),(-.195,.104,.091))]:
+ ('R',(.205,.015,1.544),(.331,-.029,1.265),(.401,-.107,1.043),
+  (.095,.014,1.006),(.130,-.072,.555),(.192,-.104,.090)),
+ ('L',(-.186,.027,1.537),(-.322,.041,1.263),(-.394,-.016,1.027),
+  (-.097,.023,1.009),(-.137,.040,.550),(-.230,.102,.091))]:
     sign=1 if side=='R' else -1
     def short(n):return n+'.'+side
     bone(short('clavicle'),(.04*sign,.014,1.51),shoulder,'chest')
@@ -54,7 +54,7 @@ def rigid(name):
     if name.startswith(('Right pauldron','Right rerebrace','Right lower','Pauldron raised')):return 'upper_arm.R'
     if name.startswith('Left fireproof'):return 'upper_arm.L'
     if name.startswith('Hand-shaped'):return 'forearm.'+name[-1]
-    if name.startswith(('Shin','Rounded knee')):return 'shin.'+name[-1]
+    if name.startswith(('Shin','Rounded knee')):return 'shin.'+name.partition(' | raised hem')[0][-1]
     if name.startswith('Hanging curved'):return 'thigh.'+name[-1]
     if name.startswith('Boot'):return 'foot.'+name.split()[1]
     if name.startswith(('Glove cuff','Glove palm')):return 'hand.'+name[-1]
