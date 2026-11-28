@@ -1,0 +1,16 @@
+{
+  "viewport": [
+    402,
+    874
+  ],
+  "trustedTouch": true,
+  "weapon": "Beacon Lance",
+  "ordinaryDamage": 20,
+  "counterDamage": 27,
+  "naturalDegrees": 172.71,
+  "alignedDegrees": 0,
+  "gripSlipMeters": 0,
+  "health": 120,
+  "openingConsumed": true,
+  "errors": []
+}

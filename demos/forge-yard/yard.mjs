@@ -1,3 +1,4 @@
+import {beaconThrustWeight,createThrustAlignment} from './thrust-alignment.mjs';
 import {DUEL_CAMERA_AXIS,DUEL_CAMERA_FOV,duelDistance} from './duel-camera.mjs';
 import {createImpactEffects,surfaceCue} from './impact-effects.mjs';
 import {createFoundryDressing} from './foundry-dressing.mjs';
@@ -53,7 +54,9 @@ try{
   o.rotation.x=-Math.PI/2;o.position.y=.012;parent.add(o);return o;
  }
  shadow(alivePlayer,.49);
- const grip=new T.Group(),gripPoint=new T.Vector3();
+ const grip=new T.Group(),gripPoint=new T.Vector3(),aimMarker=new T.Vector3();
+ const aimThrust=createThrustAlignment();
+ let weaponBasis=null;
  let walker=null,heroHit=0,heroTurn=0,heroYaw=Math.PI;
  const heroClips=['Idle','Stride','Turn','Dodge','Hit','Defeat','Sweep','Chop','Thrust'];
  async function loadWalker(){
@@ -161,7 +164,7 @@ try{
   const g=await cache.get(id);
   if(t!==sequence)return;
   if(weapon)grip.remove(weapon);
-  weapon=new T.Group();weapon.rotation.x=Math.PI/2;weapon.rotation.z=-.22;
+  weapon=new T.Group();weapon.rotation.x=Math.PI/2;weapon.rotation.z=-.22;weaponBasis=weapon.quaternion.clone();
   weapon.add(g.scene);grip.add(weapon);
   fxTip=g.scene.getObjectByName('tip_socket');fxGrip=g.scene.getObjectByName('grip_socket');
   if(!fxTip||!fxGrip)throw Error('Weapon motion sockets missing');
@@ -190,7 +193,7 @@ try{
   // The yard owns heading. Keep the articulated motion but discard the baked root swivel.
   if(clips.Turn)clips.Turn=new T.AnimationClip('Turn',clips.Turn.duration,clips.Turn.tracks.filter(t=>!/^root\.(position|quaternion)$/.test(t.name)));
   actor={group,mixer,weak:g.scene.getObjectByName('weak_socket'),kit:armor,clips,mode:null,last:null,yaw:face(...enemy.face),turnFor:0,turnCooldown:0};
-  wrap.dataset.enemy=enemy.id;wrap.dataset.outcome='';wrap.dataset.variant=enemy.variant??'';wrap.dataset.variantParts=String(armor?.children.length??0);wrap.dataset.variantCue='';wrap.dataset.counterHit='';
+  wrap.dataset.enemy=enemy.id;wrap.dataset.outcome='';wrap.dataset.variant=enemy.variant??'';wrap.dataset.variantParts=String(armor?.children.length??0);wrap.dataset.variantCue='';wrap.dataset.counterHit='';delete wrap.dataset.thrustAxes;
   $('win').hidden=true;set($('enemy-name'),enemy.name);say(enemy.rule??('Fight: '+enemy.name),1.4);
  }
  function action(bot,name){
@@ -389,6 +392,14 @@ try{
   if(counterRing.visible){
    counterRing.position.set(enemy.x,.054,enemy.z);counterRing.scale.setScalar(enemy.r+.39);
    counterRing.material.opacity=.33+.58*Math.max(0,1-enemy.t/RAM_OPEN_SECONDS);
+  }
+  if(wrap.dataset.equipped==='021'&&weapon){
+   const active=strike?.id==='021'&&enemy.life>0&&actor.weak;
+   const weight=active?beaconThrustWeight(p.slash.time,strike.wind,strike.cycle):0;
+   const a=aimThrust(weapon,weaponBasis,grip,fxGrip,fxTip,active?actor.weak.getWorldPosition(aimMarker):null,weight);
+   if(impactEvent&&a){
+    wrap.dataset.thrustAxes=[a.before.toFixed(2),a.after.toFixed(2),a.gripSlip.toFixed(5)].join(',');
+   }
   }
   if(impactEvent){
    const a=actor.weak?.getWorldPosition(weakPoint);
