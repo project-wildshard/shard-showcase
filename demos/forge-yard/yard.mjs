@@ -2,6 +2,7 @@ import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
 import {ARENA,COVER,WEAPONS,create,spawn,press,select,tick} from './arena.mjs';
+import {VARIANTS} from './variants.mjs';
 
 const $=n=>document.querySelector('#'+n);
 const wrap=$('yard'),notice=$('notice'),human=$('hero'),rival=$('enemy');
@@ -9,7 +10,7 @@ const set=(el,text)=>{if(el.textContent!==String(text))el.textContent=text;};
 const enemyBase=new URL('../../art/actors/dock-enemies/',location.href);
 const specialistBase=new URL('../../art/actors/dock-specialists/',location.href);
 const weaponBase=new URL('../../art/weapons/',location.href);
-const clipNames={idle:'Idle',move:'Move',windup:'Windup',active:'Attack',recover:'Recover',hit:'Hit',defeat:'Defeat'};
+const clipNames={idle:'Idle',move:'Move',feint:'Move',windup:'Windup',active:'Attack',recover:'Recover',hit:'Hit',defeat:'Defeat'};
 const mat=(c,metal=.45,rough=.46)=>new T.MeshStandardMaterial({color:c,metalness:metal,roughness:rough});
 const basic=(c,opacity)=>new T.MeshBasicMaterial({color:c,transparent:true,opacity,depthWrite:false,side:T.DoubleSide});
 const mesh=(g,m)=>new T.Mesh(g,m);
@@ -105,17 +106,54 @@ try{
 
  const warningPlane=mesh(new T.PlaneGeometry(1,1),basic(0xff552f,.29));
  const warningRing=mesh(new T.RingGeometry(.88,1,64),basic(0xff552f,.74));
+ const pulseRing=mesh(new T.RingGeometry(.77,1,56),basic(0xffa241,.68));
  const attackRing=mesh(new T.RingGeometry(.76,1,40,1,-.8,1.6),basic(0x8de3d7,.65));
- for(const o of [warningPlane,warningRing,attackRing]){o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);}
+ for(const o of [warningPlane,warningRing,pulseRing,attackRing]){o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);}
  const flash=mesh(new T.IcosahedronGeometry(.27,1),basic(0x9dfdf0,.83));scene.add(flash);flash.visible=false;
  let impact=.0,noticeUntil=0;
  function say(text,until=1){set(notice,text);noticeUntil=s.time+until;}
  const manifests=await Promise.all([enemyBase,specialistBase].map(path=>fetch(new URL('manifest.json',path)).then(r=>{if(!r.ok)throw Error('Enemy manifest missing');return r.json();})));
  const data={enemyTypes:manifests.flatMap((d,i)=>d.enemyTypes.map(a=>({...a,source:i?specialistBase:enemyBase})))};
  const artists=await Promise.all(data.enemyTypes.map(a=>loader.loadAsync(new URL(a.model,a.source).href)));
- let s=create(data.enemyTypes),i=0,enemy=null,actor=null,weapon=null,wmix=null,wa=null,sequence=0,who=-1;
+ let s=create(data.enemyTypes),i=0,variant=null,enemy=null,actor=null,weapon=null,wmix=null,wa=null,sequence=0,who=-1;
  const opts=$('weapon');
  for(const w of WEAPONS){const o=document.createElement('option');o.value=w.id;o.textContent=w.name;opts.append(o);}
+ const variants=$('variant');
+ for(const v of [{id:'',name:'Base type'},...VARIANTS]){
+  const o=document.createElement('option');o.value=v.id;o.textContent=v.id?'Variant: '+v.name:v.name;
+  o.title=v.rule??'Original rig and attack';variants.append(o);
+ }
+ const vCopper=mat(0xaa592b),vViolet=mat(0x685598),vPlating=mat(0x98a5a7,.88,.27),vTeal=new T.MeshBasicMaterial({color:0x67e4d5}),vAmber=new T.MeshBasicMaterial({color:0xffb450});
+ function kit(b,parent){
+  if(!b.variant)return null;
+  const layer=joint(parent,0,0,0),h=b.height,w=b.radius;
+  if(b.variant==='rusher'){
+   for(const s of [-1,1]){
+    box(layer,[.22,.17,.51],[s*w*.80,.57*h,-w*.62],vCopper).rotation.x=.27;
+    box(layer,[.17,.12,.06],[s*w*.80,.54*h,-w*.62-.26],vAmber);
+   }
+  }else if(b.variant==='bulwark'){
+   for(const q of [-1,1]){
+    box(layer,[.23,.38,.50],[q*w*.76,.58*h,.34],vPlating).rotation.y=q*.32;
+    box(layer,[.10,.07,.044],[q*w*.76,.58*h,.58],vAmber);
+   }
+  }else if(b.variant==='feinter'){
+   for(const q of [-1,1]){
+    box(layer,[.35,.095,.18],[q*w*.90,.70*h,.04],vViolet).rotation.z=q*.51;
+    box(layer,[.085,.07,.039],[q*w*1.12,.78*h,.11],vTeal);
+   }
+  }else if(b.variant==='echo'){
+   for(const q of [-1,1]){
+    box(layer,[.075,.36,.08],[q*w*.36,h+.075,-.06],vPlating).rotation.z=q*.18;
+    box(layer,[.115,.067,.11],[q*w*.39,h+.255,-.06],vTeal);
+   }
+  }else{
+   const coil=mesh(new T.TorusGeometry(.235,.057,8,20),vCopper);layer.add(coil);
+   coil.rotation.x=-Math.PI/2;coil.position.y=.89*h;
+   box(layer,[.15,.25,.15],[0,.90*h,0],vAmber);
+  }
+  return layer;
+ }
  const cache=new Map();
  function weaponURL(id){return new URL(id==='014'?'signal-shear/signal-shear.glb':'forge-roster/'+id+'.glb',weaponBase).href;}
  async function loadWeapon(id){
@@ -131,15 +169,21 @@ try{
   wrap.dataset.equipped=id;
  }
  function start(n){
-  if(actor){actor.mixer.stopAllAction();scene.remove(actor.group);}
+  if(actor){
+   actor.mixer.stopAllAction();
+   if(actor.kit){actor.kit.traverse(o=>o.geometry?.dispose());actor.kit.removeFromParent();}
+   scene.remove(actor.group);
+  }
   const old=s.weapon;
   s=create(data.enemyTypes);select(s,old);
-  i=n;enemy=spawn(s,i,{x:0,z:-2.45});
+  i=n;enemy=spawn(s,i,{x:0,z:-2.45},variant);
   const g=artists[i];const group=joint(scene,enemy.x,0,enemy.z);group.add(g.scene);shadow(group,enemy.radius*.95);
+  const armor=kit(enemy,group);
+  if(armor)g.scene.getObjectByName('body')?.attach(armor);
   const mixer=new T.AnimationMixer(g.scene);
-  actor={group,mixer,clips:Object.fromEntries(g.animations.map(c=>[c.name,c])),mode:null,last:null};
-  wrap.dataset.enemy=enemy.id;wrap.dataset.outcome='';
-  $('win').hidden=true;set($('enemy-name'),enemy.name);say('Fight: '+enemy.name,1.4);
+  actor={group,mixer,kit:armor,clips:Object.fromEntries(g.animations.map(c=>[c.name,c])),mode:null,last:null};
+  wrap.dataset.enemy=enemy.id;wrap.dataset.outcome='';wrap.dataset.variant=enemy.variant??'';wrap.dataset.variantParts=String(armor?.children.length??0);wrap.dataset.variantCue='';
+  $('win').hidden=true;set($('enemy-name'),enemy.name);say(enemy.rule??('Fight: '+enemy.name),1.4);
  }
  function action(bot,name){
   if(name===actor.mode)return;
@@ -150,7 +194,7 @@ try{
   const a=actor.mixer.clipAction(clip).reset().fadeIn(.10);
   if(!['idle','move'].includes(name)){
    a.setLoop(T.LoopOnce,1);a.clampWhenFinished=true;
-   const sec={windup:bot.windup,active:bot.attack==='charge'?.56:bot.attack==='pounce'?.39:.29,recover:bot.recover,hit:.24,defeat:1.03}[name];
+   const sec={windup:bot.windReady,feint:.24,active:bot.attack==='charge'?.56:bot.attack==='pounce'?.39:.29,recover:bot.recover,hit:.24,defeat:1.03}[name];
    if(sec)a.setDuration(sec);
   }
   a.play();actor.last=a;
@@ -187,6 +231,7 @@ try{
   const n=WEAPONS.findIndex(w=>w.id===opts.value);select(s,n);
   opts.value=WEAPONS[s.weapon].id;void loadWeapon(opts.value).catch(()=>say('Weapon load failed.',3));
  });
+ variants.addEventListener('change',()=>{variant=variants.value||null;start(i);});
  $('next').onclick=$('win-next').onclick=()=>start((i+1)%artists.length);$('reset').onclick=()=>start(i);
  start(0);await loadWeapon('014');
  const look=new T.Vector3(),goal=new T.Vector3();
@@ -205,9 +250,13 @@ try{
    if(e.type==='enemy-state'&&e.state==='windup'){
     const cue={windmill:'SWEEP · step back',beam:'BEAM · move sideways',pounce:'POUNCE · dodge',charge:'CHARGE · break the line',
      hook:'HOOK · leave the lane',guard:'SHIELD · circle round',burrow:'SNARE · leave the mark',burst:'BURST · get out of the ring'};
-    say(cue[enemy.attack],enemy.windup+.18);
+    say(cue[enemy.attack],enemy.windReady+.18);
    }
-   if(e.type==='shield')say('Shield reduced your hit',.45);
+   const variation={shield:'Shield reduced your hit',rush:'RUSH · take space',feint:'FEINT · watch the next tell',echo:'ECHO · follow-up coming',pulse:'OVERLOAD · step outside',discharge:'Discharge'};
+   if(variation[e.type]){
+    wrap.dataset.variantCue=e.type;
+    say(variation[e.type],e.type==='pulse'?.77:.45);
+   }
    if(e.type==='enemy-hit'){impact=.26;flash.position.set(enemy.x,enemy.attack==='beam'?1.22:.82,enemy.z);say('Hit',.34);}
    if(e.type==='player-hit')say('You took a hit',.65);
    if(e.type==='defeat'){wrap.dataset.outcome='win';set($('win-title'),enemy.name+' defeated');set($('win-body'),'Try a different rival or change weapons.');$('win').hidden=false;}
@@ -232,6 +281,8 @@ try{
   warningRing.visible=warn&&radial;warningPlane.visible=warn&&!radial;
   if(warningRing.visible){const r=enemy.attack==='pounce'?.85:enemy.reach+.25;const d=enemy.attack==='pounce'?Math.min(enemy.lockLength,enemy.reach):0;warningRing.position.set(enemy.attack==='burrow'?enemy.mark.x:enemy.x+enemy.lock[0]*d,.027,enemy.attack==='burrow'?enemy.mark.z:enemy.z+enemy.lock[1]*d);warningRing.scale.setScalar(enemy.attack==='burrow'?.93:r);}
   if(warningPlane.visible){const d=enemy.reach;warningPlane.position.set(enemy.x+enemy.lock[0]*d/2,.03,enemy.z+enemy.lock[1]*d/2);warningPlane.rotation.z=face(...enemy.lock);warningPlane.scale.set(enemy.attack==='beam'?1.16:1.48,d,1);}
+  pulseRing.visible=enemy.life>0&&enemy.pulse>0;
+  if(pulseRing.visible){pulseRing.position.set(enemy.x,.047,enemy.z);pulseRing.scale.setScalar(2.25);pulseRing.material.opacity=.62+Math.sin(enemy.pulse*30)*.18;}
   impact=Math.max(0,impact-dt);flash.visible=impact>0;flash.scale.setScalar(1+(.26-impact)*2);flash.material.opacity=impact/.26*.8;
   attackRing.visible=!!p.slash&&Math.abs(p.slash.time-p.slash.weapon.wind)<.075;
   if(attackRing.visible){attackRing.position.set(p.x,.04,p.z);attackRing.rotation.z=-face(...p.face)+Math.PI/2;attackRing.scale.setScalar(p.slash.weapon.reach*.75);}

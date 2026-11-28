@@ -9,9 +9,9 @@
     },
     {
       "enemy": "Rivet Skitter",
-      "taps": 4,
+      "taps": 5,
       "moves": 2,
-      "heroHp": 78
+      "heroHp": 64
     },
     {
       "enemy": "Beacon Wasp",
@@ -22,7 +22,7 @@
     {
       "enemy": "Ballast Ram",
       "taps": 5,
-      "moves": 6,
+      "moves": 7,
       "heroHp": 42
     },
     {
@@ -33,13 +33,13 @@
     },
     {
       "enemy": "Kiln Warden",
-      "taps": 5,
+      "taps": 4,
       "moves": 4,
-      "heroHp": 75
+      "heroHp": 90
     },
     {
       "enemy": "Breakwater Snare",
-      "taps": 3,
+      "taps": 4,
       "moves": 2,
       "heroHp": 88
     },
@@ -51,6 +51,62 @@
     }
   ],
   "weaponModelsLoaded": 12,
+  "weaponsHit": [
+    "014",
+    "015",
+    "016",
+    "017",
+    "018",
+    "019",
+    "020",
+    "021",
+    "022",
+    "023",
+    "024",
+    "025"
+  ],
+  "inspectedVariants": [
+    "WSC-ENM-001-rusher",
+    "WSC-ENM-001-bulwark",
+    "WSC-ENM-001-feinter",
+    "WSC-ENM-001-echo",
+    "WSC-ENM-001-overload",
+    "WSC-ENM-002-rusher",
+    "WSC-ENM-002-bulwark",
+    "WSC-ENM-002-feinter",
+    "WSC-ENM-002-echo",
+    "WSC-ENM-002-overload",
+    "WSC-ENM-003-rusher",
+    "WSC-ENM-003-bulwark",
+    "WSC-ENM-003-feinter",
+    "WSC-ENM-003-echo",
+    "WSC-ENM-003-overload",
+    "WSC-ENM-004-rusher",
+    "WSC-ENM-004-bulwark",
+    "WSC-ENM-004-feinter",
+    "WSC-ENM-004-echo",
+    "WSC-ENM-004-overload",
+    "WSC-ENM-005-rusher",
+    "WSC-ENM-005-bulwark",
+    "WSC-ENM-005-feinter",
+    "WSC-ENM-005-echo",
+    "WSC-ENM-005-overload",
+    "WSC-ENM-006-rusher",
+    "WSC-ENM-006-bulwark",
+    "WSC-ENM-006-feinter",
+    "WSC-ENM-006-echo",
+    "WSC-ENM-006-overload",
+    "WSC-ENM-007-rusher",
+    "WSC-ENM-007-bulwark",
+    "WSC-ENM-007-feinter",
+    "WSC-ENM-007-echo",
+    "WSC-ENM-007-overload",
+    "WSC-ENM-008-rusher",
+    "WSC-ENM-008-bulwark",
+    "WSC-ENM-008-feinter",
+    "WSC-ENM-008-echo",
+    "WSC-ENM-008-overload"
+  ],
   "viewport": [
     402,
     874

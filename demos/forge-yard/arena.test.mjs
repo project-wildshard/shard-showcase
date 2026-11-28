@@ -56,3 +56,44 @@ test('the Warden blocks a frontal cut until the shield opens',()=>{
  w.state='recover';w.face=[0,1];select(open,2);press(open,'attack');advance(open,.28);
  assert.equal(w.life,w.maxHp-WEAPONS[2].power);
 });
+test('all 40 variant entries add a verified rule to their underlying enemy behavior',async()=>{
+ const {roster,VARIANTS}=await import('./variants.mjs');
+ const base=[...spec,...extra],v=roster(base);
+ assert.equal(v.length,40);
+ assert.equal(new Set(v.map(x=>x.id)).size,40);
+ assert(v.every(x=>x.rule&&x.attack&&x.model));
+ for(const type of base){
+  function fresh(z,variant){const s=create([type]);return [s,spawn(s,0,{x:0,z},variant)];}
+  {
+   const [s,b]=fresh(-4,'rusher'),[stock,plain]=fresh(-4);
+   advance(s,.32);advance(stock,.32);
+   assert(s.events.some(e=>e.type==='rush'));assert(b.z>plain.z+.20);
+  }
+  {
+   const [s,b]=fresh(4.3,'bulwark');
+   b.face=[0,1];b.state='active';select(s,6);press(s,'attack');advance(s,.17);
+   assert(s.events.some(e=>e.type==='shield'));assert.equal(b.life,b.maxHp-Math.ceil(WEAPONS[6].power*.22));
+  }
+  {
+   const [s,b]=fresh(4.35,'feinter');
+   advance(s,b.windup+.30);
+   assert(s.events.some(e=>e.type==='feint'));
+   assert(s.events.filter(e=>e.state==='windup').length>=2);
+   assert(Math.abs(b.x)>.3);
+  }
+  {
+   const [s,b]=fresh(4.5,'echo');b.state='recover';
+   advance(s,b.recover*.55+.05);
+   assert(s.events.some(e=>e.type==='echo'));
+   assert.equal(b.state,'windup');assert(b.windReady<b.windup);
+  }
+  {
+   const [s,b]=fresh(4.4,'overload');
+   advance(s,1.1);
+   assert(s.events.some(e=>e.type==='pulse'));
+   assert(s.events.some(e=>e.type==='discharge'));
+   assert.equal(b.pulse,0);assert(b.pulseCooldown>0);
+  }
+  assert.equal(VARIANTS.length,5);
+ }
+});

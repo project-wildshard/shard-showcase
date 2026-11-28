@@ -54,14 +54,50 @@ try{
   victories.push({enemy:label,taps,moves,heroHp:+await page.locator('#hero-hp').textContent()});
  }
  await page.screenshot({path:out+'/forge-yard-last-win.png'});
- await page.locator('#reset').tap();
+ await page.locator('#win-next').tap();
  await page.locator('#dodge').tap();
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ const weaponsHit=[];
  for(let i=14;i<=25;i++){
   const id=String(i).padStart(3,'0');
+  await page.locator('#reset').tap();
   await page.locator('#weapon').selectOption(id);
   await page.waitForFunction(id=>document.querySelector('#yard').dataset.equipped===id,id);
+  await f('touchStart',{x,y:y-32});
+  await page.waitForFunction(()=>{
+   const d=document.querySelector('#yard').dataset;
+   return Math.hypot(+d.playerX-+d.enemyX,+d.playerZ-+d.enemyZ)<1.92;
+  },null,{timeout:10000});
+  await f('touchEnd');
+  const before=Number(await page.locator('#enemy-hp').textContent());
+  await page.locator('#attack').tap();
+  await page.waitForFunction(h=>+document.querySelector('#enemy-hp').textContent<h,before,{timeout:5000});
+  weaponsHit.push(id);
  }
+ const inspectedVariants=[];
+ const mode=['rusher','bulwark','feinter','echo','overload'];
+ for(let n=0;n<8;n++){
+  if(n)await page.locator('#next').tap();
+  const type='WSC-ENM-'+String(n+1).padStart(3,'0');
+  for(const id of mode){
+   await page.locator('#variant').selectOption(id);
+   const want=type+'-'+id;
+   await page.waitForFunction(want=>{
+    const d=document.querySelector('#yard').dataset;
+    return d.enemy===want&&+d.variantParts>0;
+   },want,{timeout:5000});
+   inspectedVariants.push(want);
+   if(n===0&&id==='rusher')await page.waitForFunction(()=>document.querySelector('#yard').dataset.variantCue==='rush',null,{timeout:5000});
+   if(n===5&&id==='bulwark'){
+    await f('touchStart',{x,y:y-30});
+    await page.waitForFunction(()=>+document.querySelector('#yard').dataset.playerZ<3.75,null,{timeout:10000});
+    await f('touchEnd');
+    await page.screenshot({path:out+'/forge-yard-bulwark-kit.png'});
+   }
+  }
+  await page.locator('#variant').selectOption('');
+ }
+ assert.equal(inspectedVariants.length,40);
  assert.deepEqual(errors,[]);
- console.log(JSON.stringify({trustedTouch:true,victories,weaponModelsLoaded:12,viewport:[402,874],errors},null,2));
+ console.log(JSON.stringify({trustedTouch:true,victories,weaponModelsLoaded:12,weaponsHit,inspectedVariants,viewport:[402,874],errors},null,2));
 }finally{await browser.close();}

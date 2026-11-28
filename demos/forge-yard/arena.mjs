@@ -1,4 +1,5 @@
 // Original, engine-independent game logic for the local Forge Yard demo.
+import {configuration} from './variants.mjs';
 export const ARENA=10.5;
 export const COVER=[[-3.1,-.6,.78],[2.7,-2.8,.88],[-2.2,3.2,.93],[4.2,2.9,.66]];
 const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
@@ -41,11 +42,12 @@ export function create(enemyTypes){
  return {time:0,weapon:0,wave:0,events:[],player:{x:0,z:5.7,r:.36,hp:120,maxHp:120,face:[0,-1],inv:0,slash:null,dodge:0},bots:[],enemyTypes};
 }
 export function select(s,n){if(Number.isInteger(n)&&WEAPONS[n]&&!s.player.slash)s.weapon=n;}
-export function spawn(s,index,where={x:0,z:-4.2}){
- const spec=s.enemyTypes[index];
- if(!spec)return null;
+export function spawn(s,index,where={x:0,z:-4.2},variant=null){
+ const base=s.enemyTypes[index];
+ if(!base)return null;
+ const spec=configuration(base,variant);
  const b={...spec,x:where.x,z:where.z,r:spec.radius,life:spec.hp,
-  maxHp:spec.hp,mark:null,state:'idle',t:0,face:[0,1],lock:[0,1],hit:false,lockLength:0,dashHit:false};
+  maxHp:spec.hp,mark:null,burstLeft:0,rushReady:true,feinted:false,echoed:false,pulse:0,pulseCooldown:0,windReady:spec.windup,state:'idle',t:0,face:[0,1],lock:[0,1],hit:false,lockLength:0,dashHit:false};
  s.bots.push(b);
  return b;
 }
@@ -64,15 +66,20 @@ export function press(s,kind){
  return false;
 }
 const DAM={windmill:18,pounce:14,beam:13,charge:26,hook:12,guard:15,burrow:16,burst:18};
-function strikePlayer(s,b){
+function strikePlayer(s,b,damage=DAM[b.attack],style=b.attack){
  const p=s.player;
  if(p.inv>0||p.hp<=0)return false;
- p.hp=Math.max(0,p.hp-DAM[b.attack]);p.inv=.26;
- s.events.push({type:'player-hit',enemy:b.id,style:b.attack,hp:p.hp});return true;
+ p.hp=Math.max(0,p.hp-damage);p.inv=.26;
+ s.events.push({type:'player-hit',enemy:b.id,style,hp:p.hp});return true;
 }
 function state(s,b,next){
  b.state=next;b.t=0;
  s.events.push({type:'enemy-state',enemy:b.id,state:next,style:b.attack});
+}
+function beginWind(s,b,p,wind=b.windup){
+ b.lock=norm(p.x-b.x,p.z-b.z);b.lockLength=Math.max(1.5,gap(b,p));
+ b.dashHit=false;b.mark={x:p.x,z:p.z};b.windReady=wind;
+ state(s,b,'windup');
 }
 export function tick(s,seconds,input=[0,0]){
  const dt=clamp(seconds,0,.05),p=s.player;
@@ -91,8 +98,8 @@ export function tick(s,seconds,input=[0,0]){
    const cone=a.weapon.style==='thrust'?.67:a.weapon.style==='chop'?.23:-.05;
    for(const b of s.bots)if(b.life>0&&gap(p,b)<=a.weapon.reach+b.r&&dot(p.face,norm(b.x-p.x,b.z-p.z))>=cone&&!reachBlocked(p,b)){
     const front=dot(b.face,norm(p.x-b.x,p.z-b.z))>.35;
-    const blocks=b.attack==='guard'&&front&&!['windup','recover','hit'].includes(b.state);
-    const dealt=blocks?Math.ceil(a.weapon.power*.35):a.weapon.power;
+    const blocks=(b.attack==='guard'||b.variant==='bulwark')&&front&&!['windup','recover','hit','feint'].includes(b.state);
+    const dealt=blocks?Math.ceil(a.weapon.power*(b.variant==='bulwark'?.22:.35)):a.weapon.power;
     b.life=Math.max(0,b.life-dealt);
     if(blocks)s.events.push({type:'shield',enemy:b.id});
     s.events.push({type:'enemy-hit',enemy:b.id,hp:b.life});
@@ -106,20 +113,49 @@ export function tick(s,seconds,input=[0,0]){
   b.t+=dt;
   if(b.life<=0||p.hp<=0)continue;
   const d=gap(b,p),aim=norm(p.x-b.x,p.z-b.z);
+  if(b.variant==='overload'){
+   b.pulseCooldown=Math.max(0,b.pulseCooldown-dt);
+   if(b.pulse>0){
+    b.pulse-=dt;
+    if(b.pulse<=0){
+     b.pulse=0;b.pulseCooldown=2.9;
+     s.events.push({type:'discharge',enemy:b.id});
+     if(d<2.25&&!reachBlocked(b,p))strikePlayer(s,b,9,'overload');
+    }
+   }else if(!b.pulseCooldown&&d<3.55){
+    b.pulse=.77;
+    s.events.push({type:'pulse',enemy:b.id});
+   }
+  }
   if(b.state==='idle'||b.state==='move'){
    b.face=aim;
    if(d<=b.reach&&!reachBlocked(b,p)){
-     b.lock=aim;b.lockLength=Math.max(1.5,d);b.dashHit=false;b.mark={x:p.x,z:p.z};
-     state(s,b,'windup');continue;
+     beginWind(s,b,p);continue;
    }
    if(d>1.15){
-    if(b.state!=='move')state(s,b,'move');
+    if(b.state!=='move'){
+     state(s,b,'move');
+     if(b.variant==='rusher'&&b.rushReady){
+      b.rushReady=false;b.burstLeft=.47;s.events.push({type:'rush',enemy:b.id});
+     }
+    }
     // A small tangent bypass around convex cover.
     let [x,z]=aim;
     if(reachBlocked(b,p)){x=aim[0]*.31-aim[1]*.95;z=aim[1]*.31+aim[0]*.95;}
-    place(b,b.x+x*b.pace*dt,b.z+z*b.pace*dt);
+    const pace=b.pace*(b.burstLeft>0?2.12:1);
+    b.burstLeft=Math.max(0,b.burstLeft-dt);
+    place(b,b.x+x*pace*dt,b.z+z*pace*dt);
    }
-  }else if(b.state==='windup'&&b.t>=b.windup){
+  }else if(b.state==='windup'&&b.variant==='feinter'&&!b.feinted&&b.t>=b.windReady*.58){
+   b.feinted=true;
+   const side=b.id.length%2?1:-1;
+   place(b,b.x-b.lock[1]*.75*side,b.z+b.lock[0]*.75*side);
+   state(s,b,'feint');
+   s.events.push({type:'feint',enemy:b.id});
+  }else if(b.state==='feint'&&b.t>=.24){
+   if(d<=b.reach+.95&&!reachBlocked(b,p))beginWind(s,b,p,b.windup*.76);
+   else state(s,b,'idle');
+  }else if(b.state==='windup'&&b.t>=b.windReady){
    state(s,b,'active');
    if(b.attack==='windmill'&&d<=b.reach+.32&&!reachBlocked(b,p))strikePlayer(s,b);
    if(b.attack==='hook'||b.attack==='beam'){
@@ -149,6 +185,15 @@ export function tick(s,seconds,input=[0,0]){
     if(moved<speed*dt*.68){state(s,b,'recover');continue;}
    }
    if(b.t>(b.attack==='charge'?.56:b.attack==='pounce'?.39:.29))state(s,b,'recover');
-  }else if((b.state==='recover'&&b.t>=b.recover)||(b.state==='hit'&&b.t>=.24))state(s,b,'idle');
+  }else if(b.state==='recover'){
+   if(b.variant==='echo'&&!b.echoed&&b.t>=b.recover*.53&&d<=b.reach+.45&&!reachBlocked(b,p)){
+    b.echoed=true;
+    s.events.push({type:'echo',enemy:b.id});
+    beginWind(s,b,p,b.windup*.63);
+   }else if(b.t>=b.recover){
+    b.feinted=false;b.echoed=false;b.rushReady=true;
+    state(s,b,'idle');
+   }
+  }else if(b.state==='hit'&&b.t>=.24)state(s,b,'idle');
  }
 }
