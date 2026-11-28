@@ -1,0 +1,226 @@
+{
+  "bones": 34,
+  "armatureMeshes": [
+    "Quilted suit | rib cage / pelvis",
+    "Continuous sleeve R",
+    "Continuous trousers R",
+    "Continuous sleeve L",
+    "Continuous trousers L"
+  ],
+  "rigidParts": [
+    {
+      "object": "Gorget underlayer",
+      "bone": "neck"
+    },
+    {
+      "object": "Helmet bowl | swept cranial profile",
+      "bone": "head"
+    },
+    {
+      "object": "Visor | recessed face socket",
+      "bone": "head"
+    },
+    {
+      "object": "Ceramic face | lower jaw",
+      "bone": "head"
+    },
+    {
+      "object": "Ceramic face | upper brow",
+      "bone": "head"
+    },
+    {
+      "object": "Kiln enamel fissure",
+      "bone": "head"
+    },
+    {
+      "object": "Cuirass | compound curvature breastplate",
+      "bone": "chest"
+    },
+    {
+      "object": "Forged diagonal raised seam",
+      "bone": "chest"
+    },
+    {
+      "object": "Dorsal steel guard",
+      "bone": "chest"
+    },
+    {
+      "object": "Overlapping waist lame 0",
+      "bone": "pelvis"
+    },
+    {
+      "object": "Overlapping waist lame 1",
+      "bone": "pelvis"
+    },
+    {
+      "object": "Overlapping waist lame 2",
+      "bone": "pelvis"
+    },
+    {
+      "object": "Right pauldron | drawn flange",
+      "bone": "upper_arm.R"
+    },
+    {
+      "object": "Right rerebrace | heat band",
+      "bone": "upper_arm.R"
+    },
+    {
+      "object": "Right lower articulated lame",
+      "bone": "upper_arm.R"
+    },
+    {
+      "object": "Pauldron raised crest",
+      "bone": "upper_arm.R"
+    },
+    {
+      "object": "Hand-shaped vambrace R",
+      "bone": "forearm.R"
+    },
+    {
+      "object": "Shin | tapered sabaton guard R",
+      "bone": "shin.R"
+    },
+    {
+      "object": "Rounded knee cop R",
+      "bone": "shin.R"
+    },
+    {
+      "object": "Hanging curved tasset R",
+      "bone": "thigh.R"
+    },
+    {
+      "object": "Boot R | toe and instep",
+      "bone": "foot.R"
+    },
+    {
+      "object": "Glove cuff R",
+      "bone": "hand.R"
+    },
+    {
+      "object": "Glove palm R",
+      "bone": "hand.R"
+    },
+    {
+      "object": "Glove digit R0",
+      "bone": "finger_0.R"
+    },
+    {
+      "object": "Glove digit R1",
+      "bone": "finger_1.R"
+    },
+    {
+      "object": "Glove digit R2",
+      "bone": "finger_2.R"
+    },
+    {
+      "object": "Glove digit R3",
+      "bone": "finger_3.R"
+    },
+    {
+      "object": "Opposing thumb R",
+      "bone": "thumb.R"
+    },
+    {
+      "object": "Left fireproof shoulder guard",
+      "bone": "upper_arm.L"
+    },
+    {
+      "object": "Hand-shaped vambrace L",
+      "bone": "forearm.L"
+    },
+    {
+      "object": "Shin | tapered sabaton guard L",
+      "bone": "shin.L"
+    },
+    {
+      "object": "Rounded knee cop L",
+      "bone": "shin.L"
+    },
+    {
+      "object": "Hanging curved tasset L",
+      "bone": "thigh.L"
+    },
+    {
+      "object": "Boot L | toe and instep",
+      "bone": "foot.L"
+    },
+    {
+      "object": "Glove cuff L",
+      "bone": "hand.L"
+    },
+    {
+      "object": "Glove palm L",
+      "bone": "hand.L"
+    },
+    {
+      "object": "Glove digit L0",
+      "bone": "finger_0.L"
+    },
+    {
+      "object": "Glove digit L1",
+      "bone": "finger_1.L"
+    },
+    {
+      "object": "Glove digit L2",
+      "bone": "finger_2.L"
+    },
+    {
+      "object": "Glove digit L3",
+      "bone": "finger_3.L"
+    },
+    {
+      "object": "Opposing thumb L",
+      "bone": "thumb.L"
+    },
+    {
+      "object": "Hood | pointed seam and face opening",
+      "bone": "head"
+    },
+    {
+      "object": "Neck cowl | rolled cloth",
+      "bone": "neck"
+    },
+    {
+      "object": "Waist belt | hand cut heavy hide",
+      "bone": "pelvis"
+    },
+    {
+      "object": "Front leather apron | overlapped left tail",
+      "bone": "apron.L"
+    },
+    {
+      "object": "Front leather apron | longer right tail",
+      "bone": "apron.R"
+    },
+    {
+      "object": "Rear split mantle | left",
+      "bone": "mantle.L"
+    },
+    {
+      "object": "Rear split mantle | right",
+      "bone": "mantle.R"
+    },
+    {
+      "object": "Apron suspension strap left",
+      "bone": "pelvis"
+    },
+    {
+      "object": "Apron suspension strap right",
+      "bone": "pelvis"
+    }
+  ],
+  "rest": {
+    "frame": 1,
+    "soleZ": {
+      "L": 0.009,
+      "R": 0.009
+    }
+  },
+  "guard": {
+    "frame": 25,
+    "soleZ": {
+      "L": 0.065309,
+      "R": 0.009
+    }
+  }
+}
