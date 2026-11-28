@@ -1,0 +1,32 @@
+{
+  "asset": "WSC-WPN-014",
+  "triangles": 6508,
+  "glb_bytes": 428204,
+  "rig": [
+    "grip",
+    "gate_L",
+    "gate_R"
+  ],
+  "clips": {
+    "Signal_Release": {
+      "seconds": 1.267,
+      "rotation_degrees": {
+        "grip": 0.03,
+        "gate_L": 26.0,
+        "gate_R": 26.0
+      }
+    },
+    "Arc_Cut": {
+      "seconds": 1.0,
+      "rotation_degrees": {
+        "grip": 55.0,
+        "gate_L": 16.0,
+        "gate_R": 16.0
+      }
+    }
+  },
+  "sockets": [
+    "grip_socket",
+    "tip_socket"
+  ]
+}
