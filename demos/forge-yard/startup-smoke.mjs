@@ -40,7 +40,7 @@ try{
   await boot(p);
   const next=p.locator('#next'),yard=p.locator('#yard');
   await next.tap();
-  await p.waitForFunction(()=>document.querySelector('#notice').textContent.includes('Tap Next to retry'));
+  await p.waitForFunction(()=>document.querySelector('#notice').textContent.includes('tap Next to retry'));
   assert.equal(await yard.getAttribute('data-enemy'),'WSC-ENM-001');
   await next.tap();
   await p.waitForFunction(()=>document.querySelector('#yard').dataset.enemy==='WSC-ENM-002');

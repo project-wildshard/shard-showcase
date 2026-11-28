@@ -150,7 +150,10 @@ try{
  let s=create(data.enemyTypes),i=0,variant=null,enemy=null,actor=null,weapon=null,wmix=null,wa=null,sequence=0,who=-1;
  const opts=$('weapon');
  for(const w of WEAPONS){const o=document.createElement('option');o.value=w.id;o.textContent=w.name;opts.append(o);}
- const variants=$('variant');
+ const variants=$('variant'),picker=$('rival');
+ for(const [n,rival] of data.enemyTypes.entries()){
+  const o=document.createElement('option');o.value=String(n);o.textContent=rival.name;picker.append(o);
+ }
  for(const v of [{id:'',name:'Base type'},...VARIANTS]){
   const o=document.createElement('option');o.value=v.id;o.textContent=v.id?'Variant: '+v.name:v.name;
   o.title=v.rule??'Original rig and attack';variants.append(o);
@@ -210,7 +213,7 @@ try{
   s=create(data.enemyTypes);select(s,old);
   heroYaw=face(...s.player.face);heroHit=heroTurn=0;
   if(walker){walker.mixer.stopAllAction();walker.name=walker.last=null;heroPose('Idle');}
-  i=n;enemy=spawn(s,i,{x:0,z:-2.45},variant);
+  i=n;picker.value=String(n);enemy=spawn(s,i,{x:0,z:-2.45},variant);
   const g=artists.get(i);const group=joint(scene,enemy.x,0,enemy.z);group.add(g.scene);shadow(group,enemy.radius*.95);
   const armor=kit(enemy,group);
   if(armor)g.scene.getObjectByName('body')?.attach(armor);
@@ -266,20 +269,20 @@ try{
   opts.value=WEAPONS[s.weapon].id;void loadWeapon(opts.value).catch(()=>say('Weapon load failed.',3));
  });
  let rivalLoading=false;
- const nav=[$('next'),$('win-next'),$('reset'),variants,opts];
- async function nextRival(){
-  if(rivalLoading)return;
-  const n=(i+1)%data.enemyTypes.length;
+ const nav=[$('next'),$('win-next'),$('reset'),variants,opts,picker];
+ async function chooseRival(n){
+  if(rivalLoading||n===i||!Number.isInteger(n)||!data.enemyTypes[n])return;
   if(artists.has(n)){start(n);return;}
   rivalLoading=true;wrap.dataset.rivalLoading=String(n+1);
   for(const b of nav)b.disabled=true;
   say('Loading '+data.enemyTypes[n].name+'…',90);
   try{await loadRival(n);start(n);}
-  catch(e){say('Rival could not load. Tap Next to retry.',3);}
+  catch(e){picker.value=String(i);say('Rival could not load. Select it or tap Next to retry.',3);}
   finally{rivalLoading=false;delete wrap.dataset.rivalLoading;for(const b of nav)b.disabled=false;}
  }
  variants.addEventListener('change',()=>{variant=variants.value||null;start(i);});
- $('next').onclick=$('win-next').onclick=nextRival;
+ picker.addEventListener('change',()=>void chooseRival(Number(picker.value)));
+ $('next').onclick=$('win-next').onclick=()=>void chooseRival((i+1)%data.enemyTypes.length);
  $('reset').onclick=()=>start(i);
  await Promise.all([loadRival(0),loadWeapon('014'),loadWalker()]);
  start(0);

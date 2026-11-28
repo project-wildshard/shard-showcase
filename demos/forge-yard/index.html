@@ -9,7 +9,7 @@ meter{width:126px;max-width:35vw;height:14px;accent-color:var(--blue)}.hud{displ
 #notice{position:absolute;top:119px;left:50%;transform:translateX(-50%);margin:0;background:#142127dd;color:#fff1cf;padding:6px 12px;border-radius:3px;font-size:.73rem;font-weight:700;white-space:nowrap;pointer-events:none}
 button,select{font:inherit;color:#edf2e7;background:#17292fe8;border:1px solid #739491;border-radius:4px;min-height:44px}button{touch-action:none}button:focus-visible,select:focus-visible{outline:2px solid var(--blue)}button:disabled{opacity:.45}
 .toolbar{position:absolute;bottom:max(10px,env(safe-area-inset-bottom));left:12px;right:12px;display:grid;gap:6px;grid-template-columns:minmax(0,1fr) auto auto;align-items:center}
-.toolbar select{min-width:0;padding:0 7px}.toolbar #variant{grid-column:1 / -1}.toolbar button{padding:0 9px;font-size:.79rem}
+.toolbar select{min-width:0;padding:0 7px}.encounter-tools{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px}.toolbar button{padding:0 9px;font-size:.79rem}
 .stick{position:absolute;bottom:126px;left:16px;width:113px;height:113px;border:1px solid #c1d6cb8b;border-radius:50%;background:#202b34a8;touch-action:none;display:grid;place-items:center}.knob{pointer-events:none;width:55px;height:55px;border:1px solid #cdd9c8a5;background:#c1d6cb47;border-radius:50%}
 .actions{position:absolute;right:16px;bottom:128px;display:grid;grid-template-columns:52px 78px;align-items:end;gap:9px}.actions button{border-radius:50%;font-size:.70rem;font-weight:850;letter-spacing:.06em;text-transform:uppercase}.actions button:first-child{width:52px;height:52px}.actions button:last-child{width:78px;height:78px;border-color:#e4c29b;color:#fff4d8;background:#a15820c9}
 .sub{position:absolute;bottom:111px;color:#d0cbbd;left:14px;font-size:.63rem;pointer-events:none}.win{position:absolute;top:43%;left:50%;transform:translate(-50%,-50%);text-align:center;width:min(84vw,310px);background:#111f25ee;border:1px solid #b38f6d;padding:16px;border-radius:6px}.win strong{display:block;font-size:1.35rem}.win p{margin:.25em 0 1em;font-size:.8rem}.win button{padding:6px 14px}
@@ -21,6 +21,6 @@ button,select{font:inherit;color:#edf2e7;background:#17292fe8;border:1px solid #
 <div class="stick" id="stick" aria-label="Drag left stick to move"><div class="knob" id="knob"></div></div>
 <div class="actions"><button id="dodge">Dodge</button><button id="attack">Cut</button></div>
 <p class="sub">Drag to move · WASD / Space / Shift</p>
-<div class="toolbar"><select id="weapon" aria-label="Weapon"></select><button id="next">Next rival</button><button id="reset">Restart</button><select id="variant" aria-label="Enemy variant"></select></div>
+<div class="toolbar"><select id="weapon" aria-label="Weapon"></select><button id="next">Next rival</button><button id="reset">Restart</button><div class="encounter-tools"><select id="rival" aria-label="Rival"></select><select id="variant" aria-label="Enemy variant"></select></div></div>
 <section id="win" class="win" hidden><strong id="win-title"></strong><p id="win-body"></p><button id="win-next">Next rival</button></section>
 </main><script type="module" src="dist/yard.js"></script></body></html>

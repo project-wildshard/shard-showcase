@@ -1,0 +1,38 @@
+{
+  "portrait": [
+    402,
+    874
+  ],
+  "trustedTouch": true,
+  "observed": [
+    "Idle",
+    "Turn",
+    "Stride",
+    "Dodge",
+    "Sweep",
+    "Chop",
+    "Thrust",
+    "Hit",
+    "Defeat"
+  ],
+  "weaponSocket": "grip_R",
+  "attackProof": [
+    {
+      "weapon": "014",
+      "clip": "Sweep",
+      "maxObservedSocketTravelM": 0.401
+    },
+    {
+      "weapon": "017",
+      "clip": "Chop",
+      "maxObservedSocketTravelM": 0.337
+    },
+    {
+      "weapon": "016",
+      "clip": "Thrust",
+      "maxObservedSocketTravelM": 0.402
+    }
+  ],
+  "defeat": true,
+  "errors": []
+}

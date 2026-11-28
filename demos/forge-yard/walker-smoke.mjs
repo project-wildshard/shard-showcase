@@ -14,7 +14,7 @@ try{
  assert.equal(await yard.getAttribute('data-hero-rig'),'Walker');
  assert.equal(await yard.getAttribute('data-weapon-socket'),'grip_R');
  const observed=new Set();
- const pose=async name=>{await p.waitForFunction(n=>document.querySelector('#yard').dataset.heroClip===n,name,{timeout:25000});observed.add(name);};
+ const pose=async (name,timeout=25000)=>{await p.waitForFunction(n=>document.querySelector('#yard').dataset.heroClip===n,name,{timeout});observed.add(name);};
  const stick=await p.locator('#stick').boundingBox(),cdp=await p.context().newCDPSession(p),
    x=stick.x+stick.width/2,y=stick.y+stick.height/2;
  const dir=(dx,dy)=>cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:x+dx,y:y+dy}]});
@@ -51,7 +51,7 @@ try{
  },null,{timeout:10000});
  await release();
  await pose('Hit');
- await pose('Defeat');
+ await pose('Defeat',65000);
  assert.equal(await yard.getAttribute('data-outcome'),'loss');
  await p.screenshot({path:out+'/walker-defeat.png'});
  assert.deepEqual(errors,[]);

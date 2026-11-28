@@ -1,0 +1,14 @@
+{
+  "viewport": [
+    402,
+    874
+  ],
+  "rivalOptions": 20,
+  "directChoice": "WSC-ENM-020-echo",
+  "firstRequestStatus": 503,
+  "rollbackAndRetry": true,
+  "variantRetained": true,
+  "keelRequests": 2,
+  "nextWraps": true,
+  "errors": []
+}
