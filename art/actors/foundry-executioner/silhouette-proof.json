@@ -1,0 +1,28 @@
+{
+  "stage": "pre-rig silhouette construction",
+  "heightM": 1.9759,
+  "objects": 55,
+  "continuousGarments": {
+    "Continuous sleeve L": {
+      "vertices": 308,
+      "faces": 282,
+      "closedConnectedMesh": true
+    },
+    "Continuous sleeve R": {
+      "vertices": 308,
+      "faces": 282,
+      "closedConnectedMesh": true
+    },
+    "Continuous trousers L": {
+      "vertices": 308,
+      "faces": 282,
+      "closedConnectedMesh": true
+    },
+    "Continuous trousers R": {
+      "vertices": 308,
+      "faces": 282,
+      "closedConnectedMesh": true
+    }
+  },
+  "assetState": "no rig or game export"
+}

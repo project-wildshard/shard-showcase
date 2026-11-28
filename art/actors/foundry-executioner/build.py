@@ -19,7 +19,7 @@ def material(name, rgb, metal=0, rough=.55):
     p.inputs['Roughness'].default_value=rough
     return m
 fabric=material('01 · Fireproof black wool',(.039,.048,.049),.0,.83)
-iron=material('02 · Blue-black quenched steel',(.109,.142,.149),.82,.32)
+iron=material('02 · Blue-black quenched steel',(.109,.142,.149),.82,.42)
 oxide=material('03 · Old copper patina',(.21,.087,.044),.72,.40)
 edge=material('04 · Exposed hammered edges',(.245,.258,.24),.87,.27)
 leather=material('05 · Cured oxblood hide',(.063,.031,.020),.04,.72)
@@ -44,7 +44,7 @@ def grain(mat, strength, distance, scale, low, high):
     tree.links.new(color.outputs['Color'],p.inputs['Base Color'])
     tree.links.new(bump.outputs['Normal'],p.inputs['Normal'])
 grain(fabric,.26,.002,315,(.009,.011,.012),(.072,.069,.055))
-grain(iron,.35,.005,83,(.045,.054,.057),(.19,.205,.205))
+grain(iron,.23,.0028,117,(.045,.054,.057),(.19,.205,.205))
 grain(bone,.23,.0021,121,(.25,.175,.113),(.72,.64,.49))
 grain(apron,.32,.004,214,(.042,.015,.009),(.24,.107,.058))
 grain(leather,.25,.003,193,(.021,.012,.008),(.11,.066,.046))
@@ -126,15 +126,15 @@ loft('Helmet bowl | swept cranial profile',[
 loft('Visor | recessed face socket',[
     (1.716,.034,.027,.013,-.068),(1.75,.055,.041,.013,-.075),
     (1.79,.069,.048,.013,-.071),(1.835,.075,.048,.013,-.061),(1.867,.062,.032,.013,-.057)],fabric)
-shell('Porcelain visor | angular cheek plane',(.013,-.037,1.713),(.013,-.024,1.872),[
-    (.03,.042,.073,0,-.08),(.18,.055,.088,0,-.015),(.42,.067,.099,0,.024),
-    (.55,.071,.094,0,-.018)],bone,1.21)
-line('Visor brow | continuous knife line',
-     [(-.072,-.069,1.835),(-.046,-.106,1.821),(.013,-.134,1.818),(.071,-.101,1.827),(.098,-.059,1.845)],.005,edge)
-line('Mask ridge',
-     [(.013,-.092,1.706),(.013,-.124,1.741),(.013,-.139,1.773)],.0035,edge)
-for s in (-1,1):
-    line('Eye slit',[(.013+s*.021,-.121,1.808),(.013+s*.046,-.106,1.811),(.013+s*.066,-.088,1.817)],.002,oxide)
+# Two individually fitted ceramic panels make a recessed real sight opening.
+maskA=(.013,-.046,1.706);maskB=(.013,-.026,1.923)
+shell('Ceramic face | lower jaw',maskA,maskB,[
+ (.018,.021,.070,0,-.025),(.11,.037,.088,0,-.04),(.29,.052,.106,0,-.036),
+ (.47,.067,.108,.007,-.016),(.53,.071,.112,.007,-.013)],bone,1.11)
+shell('Ceramic face | upper brow',maskA,maskB,[
+ (.565,.071,.109,.007,-.014),(.62,.070,.114,.009,-.011),
+ (.78,.068,.102,.008,.02),(.91,.049,.085,0,.019),(.96,.030,.065,0,.011)],bone,1.11)
+line('Kiln enamel fissure',[(.025,-.110,1.725),(.018,-.131,1.755),(.022,-.144,1.786),(.017,-.146,1.817)],.0012,oxide)
 
 shell('Cuirass | compound curvature breastplate',(.006,.012,1.17),(.015,.015,1.575),[
     (.025,.131,.092,.03,.015),(.12,.143,.108,.025,.010),(.40,.170,.120,.018,.02),
@@ -149,6 +149,31 @@ for i in range(3):
           (0,.148,.099,-.05,-.12),(.23,.155,.110,-.045,-.03),(.79,.144,.107,-.065,.05),
           (1,.133,.096,-.06,.04)],oxide if i==0 else iron,1.49)
 
+def joined_limb(name, a, pivot, b, upper, lower):
+    # One watertight loop flow over the joint. Adjacent rings share vertices, including elbow/knee.
+    a,pivot,b=map(Vector,(a,pivot,b));axes=[(pivot-a).normalized(),(b-pivot).normalized()]
+    tangent=(axes[0]+axes[1]).normalized()
+    rings=[]
+    for is_lower, profile in enumerate((upper,lower)):
+        for t,r,d in profile:
+            if is_lower and t==0:continue
+            center=(pivot if is_lower else a).lerp(b if is_lower else pivot,t)
+            q=max(0,1-(t if is_lower else 1-t)/.33)
+            axis=axes[is_lower].lerp(tangent,q).normalized()
+            rings.append((center,axis,r,d))
+    verts=[];faces=[];n=28
+    for i,(center,axis,r,d) in enumerate(rings):
+        u=(Vector((0,1,0)).cross(axis)).normalized();v=axis.cross(u)
+        for j in range(n):
+            t=j*2*pi/n
+            fold=1+.048*sin(3*t+i*.63)+.024*cos(t*6-i*.9)
+            verts.append(center+fold*(r*cos(t)*u+d*sin(t)*v))
+    for i in range(len(rings)-1):
+        for j in range(n):
+            k=i*n+j;l=i*n+(j+1)%n;faces.append((k,l,l+n,k+n))
+    faces+=[tuple(reversed(range(n))),tuple(range(len(verts)-n,len(verts)))]
+    return surface(name,verts,faces,fabric,sub=2)
+
 upper=[(0,.087,.075),(.13,.099,.087),(.33,.091,.082),(.58,.079,.073),(.85,.053,.052),(1,.047,.052)]
 lower=[(0,.047,.049),(.19,.068,.060),(.40,.071,.062),(.68,.053,.049),(.90,.036,.035),(1,.036,.036)]
 thigh=[(0,.095,.096),(.15,.114,.109),(.37,.106,.108),(.65,.080,.082),(.88,.060,.061),(1,.056,.057)]
@@ -158,16 +183,20 @@ for side, shoulder, elbow, wrist, hip, knee, ankle in [
          (.095,.014,1.006),(.130,-.072,.555),(.160,-.104,.090)),
     ('L',(-.186,.027,1.537),(-.293,.046,1.254),(-.326,-.009,1.016),
          (-.097,.023,1.009),(-.137,.040,.550),(-.195,.104,.091))]:
-    limb('Arm '+side+' | deltoid / triceps',shoulder,elbow,upper)
-    limb('Arm '+side+' | forearm tendons',elbow,wrist,lower)
-    limb('Leg '+side+' | quadriceps / hamstrings',hip,knee,thigh)
-    limb('Leg '+side+' | calf taper',knee,ankle,shin)
+    joined_limb('Continuous sleeve '+side,shoulder,elbow,wrist,upper,lower)
+    joined_limb('Continuous trousers '+side,hip,knee,ankle,thigh,shin)
     if side=='R':
         shell('Right pauldron | drawn flange',elbow,shoulder,[
             (.57,.112,.101,.58,-.24),(.70,.125,.111,.57,-.17),(.89,.134,.121,.57,-.04),
             (1.13,.117,.111,.53,.14),(1.24,.052,.052,.43,.19)],iron,1.68)
         shell('Right rerebrace | heat band',elbow,shoulder,[
             (.42,.076,.070,.48,-.03),(.52,.093,.088,.48,-.05),(.73,.099,.092,.48,.00)],oxide,1.51)
+        shell('Right lower articulated lame',elbow,shoulder,[
+            (.44,.097,.084,.55,-.19),(.49,.111,.094,.54,-.10),
+            (.65,.121,.106,.54,.036),(.74,.108,.093,.54,.045)],iron,1.64)
+        shell('Pauldron raised crest',elbow,shoulder,[
+            (.70,.130,.111,.52,-.10),(.82,.138,.123,.53,-.03),
+            (1.05,.135,.125,.47,.13),(1.23,.072,.070,.43,.24)],iron,1.28)
     else:
         shell('Left fireproof shoulder guard',elbow,shoulder,[
             (.66,.096,.078,-.4,-.13),(.84,.105,.087,-.4,-.03),(1.03,.085,.073,-.4,.01)],leather,1.42)
@@ -258,7 +287,7 @@ world.node_tree.nodes.get('Background').inputs[1].default_value=.25
 key=lamp('Large key',(-3,-4,4),360,4,(1,.94,.89))
 fill=lamp('Frontal fill',(2,-3,2),140,3,(.86,.91,1))
 rim=lamp('Contour',(1.7,2.2,3.2),270,2,(.93,.95,1))
-scene.render.engine='CYCLES';scene.cycles.samples=40;scene.cycles.use_denoising=False
+scene.render.engine='CYCLES';scene.cycles.samples=32;scene.cycles.use_denoising=False
 scene.render.resolution_x=700;scene.render.resolution_y=880;scene.render.resolution_percentage=100
 scene.view_settings.view_transform='AgX'
 bpy.ops.wm.save_as_mainfile(filepath=str(out/'executioner-study.blend'),compress=True)
@@ -268,4 +297,16 @@ bpy.ops.render.render(write_still=True)
 scene.view_layers[0].material_override=None
 key.data.color=(1,.79,.57);rim.data.color=(.61,.81,1)
 scene.render.filepath=str(out/'executioner-steel.png')
+bpy.ops.render.render(write_still=True)
+
+# A less forgiving profile and reduced desktop-equivalent figure size.
+scene.view_layers[0].material_override=clay
+key.data.color=(1,.95,.92);rim.data.color=(.94,.95,1)
+camera.location=(7.5,-1.25,2.1);aim(camera,(0,0,1.02))
+scene.render.filepath=str(out/'executioner-profile.png')
+bpy.ops.render.render(write_still=True)
+scene.view_layers[0].material_override=None
+cam.ortho_scale=5.6; camera.location=(2.4,-8,3.8);aim(camera,(0,0,1.05))
+scene.render.resolution_x=1100;scene.render.resolution_y=620
+scene.render.filepath=str(out/'executioner-distance.png')
 bpy.ops.render.render(write_still=True)
