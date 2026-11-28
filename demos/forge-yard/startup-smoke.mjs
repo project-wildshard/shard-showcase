@@ -25,7 +25,7 @@ try{
   await p.waitForFunction(()=>+document.querySelector('#yard').dataset.playerZ<5.6);
   const moveMs=Math.round(performance.now()-t);
   await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
-  const models=await p.evaluate(()=>performance.getEntriesByType('resource').filter(e=>/dock-(?:enemies|specialists|ordnance|foundry)\/.*\.glb$/.test(e.name)).map(e=>e.name.split('/').pop()).sort());
+  const models=await p.evaluate(()=>performance.getEntriesByType('resource').filter(e=>/dock-(?:enemies|specialists|ordnance|foundry|terminal)\/.*\.glb$/.test(e.name)).map(e=>e.name.split('/').pop()).sort());
   if(mode==='lazy')assert.deepEqual(models,['sentry.glb']);
   runs.push({readyMs,moveMs,models});await p.close();
  }

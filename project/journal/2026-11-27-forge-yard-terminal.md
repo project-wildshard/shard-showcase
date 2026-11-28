@@ -1,0 +1,4 @@
+# Terminal rivals complete the twenty-type prototype roster
+Shutter Bailiff uses a closed guard and attack opening. Porcelain Seeder sequentially lights three pockets; moving across the trail clears it. Copper Harrow commits to a measured rotating beam. Keel Crab moves laterally before striking the old target, so chasing the crab and leaving the mark are separate choices. The sources deliberately use four different silhouette families, and each exports nine motion clips.
+
+Five rule-and-hardware configurations apply to each of the twenty types. That means a hundred selectable fights, not a hundred unique rigs. Unit simulation verifies the behavior combinations and individual counterexamples. The existing local arena is the completeness gate for these first-pass assets, not production readiness.

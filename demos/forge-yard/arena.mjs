@@ -65,15 +65,23 @@ export function press(s,kind){
  }
  return false;
 }
-const DAM={windmill:18,pounce:14,beam:13,charge:26,hook:12,guard:15,burrow:16,burst:18,salvo:9,lunge:21,mortar:22,crosscut:17,vacuum:18,stilt:13,relay:18,recoil:20};
+const DAM={windmill:18,pounce:14,beam:13,charge:26,hook:12,guard:15,burrow:16,burst:18,salvo:9,lunge:21,mortar:22,crosscut:17,vacuum:18,stilt:13,relay:18,recoil:20,shutter:20,seed:12,harrow:15,flank:18};
 function strikePlayer(s,b,damage=DAM[b.attack],style=b.attack){
  const p=s.player;
  if(p.inv>0||p.hp<=0)return false;
  p.hp=Math.max(0,p.hp-damage);p.inv=.26;
  s.events.push({type:'player-hit',enemy:b.id,style,hp:p.hp});return true;
 }
-const ACTIVE={charge:.56,pounce:.39,salvo:.62,lunge:.32,mortar:.61,crosscut:.38,vacuum:.57,stilt:.62,relay:.66,recoil:.39};
-export const MORTAR_RADIUS=1.48,CROSS_HALF_WIDTH=.56,RELAY_RADIUS=.98,STILT_RADIUS=1.01;
+const ACTIVE={charge:.56,pounce:.39,salvo:.62,lunge:.32,mortar:.61,crosscut:.38,vacuum:.57,stilt:.62,relay:.66,recoil:.39,shutter:.36,seed:.69,harrow:.59,flank:.48};
+export const MORTAR_RADIUS=1.48,CROSS_HALF_WIDTH=.56,RELAY_RADIUS=.98,STILT_RADIUS=1.01,SEED_RADIUS=.70,FLANK_RADIUS=1.04,HARROW_WIND=.87;
+export function seedMarks(b){
+ const {x,z}=b.mark,[u,v]=b.lock;
+ return [-1.20,0,1.20].map(d=>({x:x+u*d,z:z+v*d}));
+}
+export function harrowLine(b){
+ const [x,z]=b.lock,a=b.state==='active'?HARROW_WIND*(1-2*clamp(b.t/.55,0,1)):HARROW_WIND;
+ const co=Math.cos(a),si=Math.sin(a);return [x*co-z*si,x*si+z*co];
+}
 export function splitMarks(b,offset){
  const {x,z}=b.mark;
  return [{x:x-b.lock[1]*offset,z:z+b.lock[0]*offset},{x:x+b.lock[1]*offset,z:z-b.lock[0]*offset}];
@@ -111,8 +119,9 @@ export function tick(s,seconds,input=[0,0]){
    const cone=a.weapon.style==='thrust'?.67:a.weapon.style==='chop'?.23:-.05;
    for(const b of s.bots)if(b.life>0&&gap(p,b)<=a.weapon.reach+b.r&&dot(p.face,norm(b.x-p.x,b.z-p.z))>=cone&&!reachBlocked(p,b)){
     const front=dot(b.face,norm(p.x-b.x,p.z-b.z))>.35;
-    const blocks=(b.attack==='guard'||b.variant==='bulwark')&&front&&!['windup','recover','hit','feint'].includes(b.state);
-    const dealt=blocks?Math.ceil(a.weapon.power*(b.variant==='bulwark'?.22:.35)):a.weapon.power;
+    const shutted=b.attack==='shutter'&&['idle','move'].includes(b.state);
+    const blocks=shutted||((b.attack==='guard'||b.variant==='bulwark')&&front&&!['windup','recover','hit','feint'].includes(b.state));
+    const dealt=blocks?Math.ceil(a.weapon.power*(b.variant==='bulwark'?.22:shutted?.45:.35)):a.weapon.power;
     b.life=Math.max(0,b.life-dealt);
     if(blocks)s.events.push({type:'shield',enemy:b.id});
     s.events.push({type:'enemy-hit',enemy:b.id,hp:b.life});
@@ -198,8 +207,25 @@ export function tick(s,seconds,input=[0,0]){
        Math.abs(x*b.lock[1]-z*b.lock[0])<1.72&&!reachBlocked(b,p))strikePlayer(s,b);
    }
    if(b.attack==='recoil'&&d<=b.reach+.10&&dot(b.lock,aim)>.84&&!reachBlocked(b,p))strikePlayer(s,b);
+   if(b.attack==='shutter'&&d<=b.reach+.21&&dot(b.lock,aim)>.67&&!reachBlocked(b,p))strikePlayer(s,b);
    if(b.attack==='burst'&&d<b.reach+.16&&!reachBlocked(b,p))strikePlayer(s,b);
   }else if(b.state==='active'){
+   if(b.attack==='seed'&&b.shots<3&&b.t+1e-6>=[.16,.34,.52][b.shots]){
+    const index=b.shots++,mark=seedMarks(b)[index];
+    if(gap(p,mark)<SEED_RADIUS&&!reachBlocked(mark,p))strikePlayer(s,b);
+    s.events.push({type:'seed-burst',enemy:b.id,index});
+   }
+   if(b.attack==='harrow'&&!b.dashHit&&d<=b.reach+.12&&dot(harrowLine(b),aim)>.992&&!reachBlocked(b,p)){
+    if(strikePlayer(s,b))b.dashHit=true;
+   }
+   if(b.attack==='flank'){
+    const side=b.lock[1]>=0?-1:1;
+    if(b.t<=.26)place(b,b.x-b.lock[1]*side*dt*4.2,b.z+b.lock[0]*side*dt*4.2);
+    if(!b.dashHit&&b.t>=.29){
+     b.dashHit=true;s.events.push({type:'flank-strike',enemy:b.id});
+     if(gap(p,b.mark)<FLANK_RADIUS&&!reachBlocked(b,p))strikePlayer(s,b);
+    }
+   }
    if(b.attack==='vacuum'){
     const inSlot=d<=b.reach+.14&&dot(b.lock,aim)>.89&&!reachBlocked(b,p);
     if(b.t<.42&&inSlot&&p.inv<=0&&d>1.14){

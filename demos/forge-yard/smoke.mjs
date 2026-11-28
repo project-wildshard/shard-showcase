@@ -15,7 +15,7 @@ try{
  await page.waitForFunction(()=>document.querySelector('#yard').dataset.state==='ready',null,{timeout:45000});
  assert.equal(await yard.getAttribute('data-equipped'),'014');
  assert.equal(await page.locator('#weapon option').count(),12);
- const modelsAtReady=await page.evaluate(()=>performance.getEntriesByType('resource').filter(e=>/dock-(?:enemies|specialists|ordnance|foundry)\/.*\.glb$/.test(e.name)).map(e=>e.name.split('/').pop()));
+ const modelsAtReady=await page.evaluate(()=>performance.getEntriesByType('resource').filter(e=>/dock-(?:enemies|specialists|ordnance|foundry|terminal)\/.*\.glb$/.test(e.name)).map(e=>e.name.split('/').pop()));
  assert.deepEqual(modelsAtReady,['sentry.glb'],'only the first rival should load at startup');
  const waitRival=n=>page.waitForFunction(id=>document.querySelector('#yard').dataset.enemy===id,'WSC-ENM-'+String(n+1).padStart(3,'0'));
  const stick=await page.locator('#stick').boundingBox(),cdp=await page.context().newCDPSession(page);
@@ -24,7 +24,7 @@ try{
  await page.locator('#weapon').selectOption('017');
  await page.waitForFunction(()=>document.querySelector('#yard').dataset.equipped==='017');
  const victories=[],framing=[];
- for(let n=0;n<16;n++){
+ for(let n=0;n<20;n++){
   if(n){await page.locator('#win-next').tap();await waitRival(n);}
   const label=await page.locator('#enemy-name').textContent();
   const track=()=>yard.evaluate(e=>{
@@ -84,7 +84,7 @@ try{
  }
  const inspectedVariants=[];
  const mode=['rusher','bulwark','feinter','echo','overload'];
- for(let n=0;n<16;n++){
+ for(let n=0;n<20;n++){
   if(n){await page.locator('#next').tap();await waitRival(n);}
   const type='WSC-ENM-'+String(n+1).padStart(3,'0');
   for(const id of mode){
@@ -105,7 +105,7 @@ try{
   }
   await page.locator('#variant').selectOption('');
  }
- assert.equal(inspectedVariants.length,80);
+ assert.equal(inspectedVariants.length,100);
  assert.deepEqual(errors,[]);
  console.log(JSON.stringify({trustedTouch:true,modelsAtReady,victories,weaponModelsLoaded:12,weaponsHit,inspectedVariants,viewport:[402,874],framing,errors},null,2));
 }finally{await browser.close();}

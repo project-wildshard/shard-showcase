@@ -9,8 +9,10 @@ elif sys.argv[2:]==['ordnance']:
  expected={'rasp':'salvo','railblade':'lunge','mortar':'mortar','spool':'crosscut'}
 elif sys.argv[2:]==['foundry']:
  expected={'recycler':'vacuum','stilt':'stilt','relay':'relay','winch':'recoil'}
+elif sys.argv[2:]==['terminal']:
+ expected={'bailiff':'shutter','seeder':'seed','harrow':'harrow','keel':'flank'}
 elif sys.argv[2:]:
- raise SystemExit('Optional second argument: specialists, ordnance, or foundry')
+ raise SystemExit('Optional second argument: specialists, ordnance, foundry, or terminal')
 clips={'Idle','Move','Turn','Windup','Attack','Recover','Hit','Special','Defeat'}
 out=[]
 for name,behavior in expected.items():
@@ -20,7 +22,7 @@ for name,behavior in expected.items():
  g=json.loads(b[20:20+n]);offset=28+n
  nd=g['nodes']; names={x['name']:x for x in nd}
  assert {'root','body','ground_socket','weak_socket','attack_socket'}<=names.keys()
- accessory={'hook':'chain','guard':'shield','burrow':'nose','burst':'cage','salvo':'drum','lunge':'blade','mortar':'tube','crosscut':'reel','vacuum':'intake','stilt':'scythe_L','relay':'orbit','recoil':'flywheel'}.get(behavior,'head')
+ accessory={'hook':'chain','guard':'shield','burrow':'nose','burst':'cage','salvo':'drum','lunge':'blade','mortar':'tube','crosscut':'reel','vacuum':'intake','stilt':'scythe_L','relay':'orbit','recoil':'flywheel','shutter':'gate_L','seed':'hopper','harrow':'iris','flank':'hinge'}.get(behavior,'head')
  assert accessory in names
  assert max(map(abs,names['ground_socket'].get('translation',[0,0,0])))<1e-5
  assert not g.get('images') and not g.get('cameras')

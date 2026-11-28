@@ -1,7 +1,7 @@
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-import {ARENA,COVER,WEAPONS,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH,RELAY_RADIUS,STILT_RADIUS,splitMarks} from './arena.mjs';
+import {ARENA,COVER,WEAPONS,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH,RELAY_RADIUS,STILT_RADIUS,splitMarks,SEED_RADIUS,FLANK_RADIUS,HARROW_WIND,seedMarks,harrowLine} from './arena.mjs';
 import {VARIANTS} from './variants.mjs';
 
 const $=n=>document.querySelector('#'+n);
@@ -11,6 +11,7 @@ const enemyBase=new URL('../../art/actors/dock-enemies/',location.href);
 const specialistBase=new URL('../../art/actors/dock-specialists/',location.href);
 const ordnanceBase=new URL('../../art/actors/dock-ordnance/',location.href);
 const foundryBase=new URL('../../art/actors/dock-foundry/',location.href);
+const terminalBase=new URL('../../art/actors/dock-terminal/',location.href);
 const weaponBase=new URL('../../art/weapons/',location.href);
 const clipNames={idle:'Idle',move:'Move',feint:'Move',windup:'Windup',active:'Attack',recover:'Recover',hit:'Hit',defeat:'Defeat'};
 const mat=(c,metal=.45,rough=.46)=>new T.MeshStandardMaterial({color:c,metalness:metal,roughness:rough});
@@ -116,7 +117,9 @@ try{
   o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);return o;
  };
  const intakeFan=fan(Math.acos(.89),0xee744e),jetFan=fan(Math.acos(.84),0xee5a36);
- const splitRings=[0,1].map(i=>{
+ const harrowFan=fan(HARROW_WIND,0xe86a39);
+ const harrowTrace=mesh(new T.BoxGeometry(.085,.052,1),basic(0xff8f4b,.92));harrowTrace.visible=false;scene.add(harrowTrace);
+ const splitRings=[0,1,2].map(i=>{
   const o=mesh(new T.RingGeometry(.88,1,56),basic(i?0xfcac43:0xf85d39,.77));
   o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);return o;
  });
@@ -126,7 +129,7 @@ try{
  scene.add(shellShot,muzzleTrace);shellShot.visible=muzzleTrace.visible=false;
  let impact=.0,noticeUntil=0,salvoFlash=0;
  function say(text,until=1){set(notice,text);noticeUntil=s.time+until;}
- const actorBases=[enemyBase,specialistBase,ordnanceBase,foundryBase];
+ const actorBases=[enemyBase,specialistBase,ordnanceBase,foundryBase,terminalBase];
  const manifests=await Promise.all(actorBases.map(path=>fetch(new URL('manifest.json',path)).then(r=>{if(!r.ok)throw Error('Enemy manifest missing');return r.json();})));
  const data={enemyTypes:manifests.flatMap((d,i)=>d.enemyTypes.map(a=>({...a,source:actorBases[i]})))};
  const artists=new Map(),loadingModels=new Map();
@@ -212,7 +215,7 @@ try{
  function action(bot,name){
   if(name===actor.mode)return;
   actor.mode=name;
-  const clip=actor.clips[(name==='active'&&['mortar','relay'].includes(bot.attack)?'Special':clipNames[name])??'Idle'];
+  const clip=actor.clips[(name==='active'&&['mortar','relay','seed','flank'].includes(bot.attack)?'Special':clipNames[name])??'Idle'];
   if(!clip)return;
   if(actor.last){actor.last.fadeOut(.08);}
   const a=actor.mixer.clipAction(clip).reset().fadeIn(.10);
@@ -288,7 +291,7 @@ try{
   for(const e of s.events.splice(0)){
    if(e.type==='enemy-state'&&e.state==='windup'){
     const cue={windmill:'SWEEP · step back',beam:'BEAM · move sideways',pounce:'POUNCE · dodge',charge:'CHARGE · break the line',
-     hook:'HOOK · leave the lane',guard:'SHIELD · circle round',burrow:'SNARE · leave the mark',burst:'BURST · get out of the ring',salvo:'SALVO · step out of the line',lunge:'LUNGE · dodge sideways',mortar:'MORTAR · leave the landing zone',crosscut:'CROSSCUT · step forward or back',vacuum:'INTAKE · leave the pull lane',stilt:'DOUBLE CUT · leave the marks',relay:'LANTERNS · stay in the gap',recoil:'RECOIL · step out of the jet'};
+     hook:'HOOK · leave the lane',guard:'SHIELD · circle round',burrow:'SNARE · leave the mark',burst:'BURST · get out of the ring',salvo:'SALVO · step out of the line',lunge:'LUNGE · dodge sideways',mortar:'MORTAR · leave the landing zone',crosscut:'CROSSCUT · step forward or back',vacuum:'INTAKE · leave the pull lane',stilt:'DOUBLE CUT · leave the marks',relay:'LANTERNS · stay in the gap',recoil:'RECOIL · step out of the jet',shutter:'SHUTTERS OPEN · punish the piston',seed:'SEED LINE · step across the marks',harrow:'SWEEP · leave the fan or dodge through',flank:'SIDE STEP · leave your mark'};
     say(cue[enemy.attack],enemy.windReady+.18);
    }
    if(e.type==='salvo-shot')salvoFlash=.11;
@@ -319,22 +322,30 @@ try{
   actor.group.position.set(enemy.x,0,enemy.z);actor.group.rotation.y=face(...enemy.face);
   action(enemy,enemy.state);actor.mixer.update(dt);
   const bomb=enemy.attack==='mortar',cross=enemy.attack==='crosscut';
-  const two=enemy.attack==='stilt'||enemy.attack==='relay';
+  const two=['stilt','relay','seed'].includes(enemy.attack),flank=enemy.attack==='flank',harrow=enemy.attack==='harrow';
+  const markerAfter=enemy.life>0&&enemy.state==='active'&&flank&&!enemy.dashHit;
   const warn=enemy.life>0&&(enemy.state==='windup'||(bomb&&enemy.state==='active'&&!enemy.dashHit));
-  const radial=['windmill','pounce','burrow','burst','mortar'].includes(enemy.attack);
-  const fanned=enemy.attack==='vacuum'||enemy.attack==='recoil';
-  warningRing.visible=warn&&radial;warningPlane.visible=warn&&!radial&&!two&&!fanned;
+  const radial=['windmill','pounce','burrow','burst','mortar','flank'].includes(enemy.attack);
+  const fanned=enemy.attack==='vacuum'||enemy.attack==='recoil'||harrow;
+  warningRing.visible=(warn&&radial)||markerAfter;warningPlane.visible=warn&&!radial&&!two&&!fanned;
   intakeFan.visible=enemy.life>0&&enemy.attack==='vacuum'&&(warn||enemy.state==='active'&&enemy.t<.42);
   jetFan.visible=warn&&enemy.attack==='recoil';
   for(const o of [intakeFan,jetFan])if(o.visible){
    o.position.set(enemy.x,.045,enemy.z);o.rotation.z=face(...enemy.lock)+Math.PI;
    o.scale.setScalar(enemy.reach+(o===intakeFan?.14:.10));
   }
+  harrowFan.visible=harrow&&warn;
+  if(harrowFan.visible){harrowFan.position.set(enemy.x,.044,enemy.z);harrowFan.rotation.z=face(...enemy.lock)+Math.PI;harrowFan.scale.setScalar(enemy.reach+.12);}
+  harrowTrace.visible=harrow&&enemy.life>0&&enemy.state==='active';
+  if(harrowTrace.visible){
+   const [x,z]=harrowLine(enemy),d=enemy.reach;
+   harrowTrace.position.set(enemy.x+x*d*.5,1.30,enemy.z+z*d*.5);harrowTrace.rotation.y=face(x,z);harrowTrace.scale.z=d;
+  }
   if(warningRing.visible){
    const r=enemy.attack==='pounce'?.85:enemy.reach+.25,d=enemy.attack==='pounce'?Math.min(enemy.lockLength,enemy.reach):0;
-   const marked=bomb||enemy.attack==='burrow';
+   const marked=bomb||enemy.attack==='burrow'||flank;
    warningRing.position.set(marked?enemy.mark.x:enemy.x+enemy.lock[0]*d,.027,marked?enemy.mark.z:enemy.z+enemy.lock[1]*d);
-   warningRing.scale.setScalar(bomb?MORTAR_RADIUS:marked?.93:r);
+   warningRing.scale.setScalar(bomb?MORTAR_RADIUS:flank?FLANK_RADIUS:marked?.93:r);
   }
   if(warningPlane.visible){
    const d=enemy.reach;
@@ -343,10 +354,11 @@ try{
    warningPlane.scale.set(cross?CROSS_HALF_WIDTH*2:enemy.attack==='beam'||enemy.attack==='salvo'?1.22:1.48,cross?3.44:d,1);
   }
   const splitVisible=two&&enemy.life>0&&(enemy.state==='windup'||enemy.state==='active');
-  const twins=splitVisible?splitMarks(enemy,enemy.attack==='stilt'?.54:1.23):null;
+  const seeded=enemy.attack==='seed';
+  const twins=splitVisible?(seeded?seedMarks(enemy):splitMarks(enemy,enemy.attack==='stilt'?.54:1.23)):null;
   splitRings.forEach((r,j)=>{
-   r.visible=splitVisible&&(enemy.state==='windup'||enemy.shots<=j);
-   if(r.visible){r.position.set(twins[j].x,.035+j*.005,twins[j].z);r.scale.setScalar(enemy.attack==='stilt'?STILT_RADIUS:RELAY_RADIUS);}
+   r.visible=splitVisible&&j<twins.length&&(enemy.state==='windup'||enemy.shots<=j);
+   if(r.visible){r.position.set(twins[j].x,.035+j*.005,twins[j].z);r.scale.setScalar(seeded?SEED_RADIUS:enemy.attack==='stilt'?STILT_RADIUS:RELAY_RADIUS);}
   });
   shellShot.visible=bomb&&enemy.state==='active'&&!enemy.dashHit&&enemy.life>0;
   if(shellShot.visible){

@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {WEAPONS,create,spawn,press,select,tick,splitMarks} from './arena.mjs';
+import {WEAPONS,create,spawn,press,select,tick,splitMarks,seedMarks,harrowLine} from './arena.mjs';
 const spec=JSON.parse(readFileSync(new URL('../../art/actors/dock-enemies/manifest.json',import.meta.url))).enemyTypes;
 const advance=(s,d,dir)=>{for(let i=0;i<d*60;i++)tick(s,1/60,dir);};
 test('all twelve weapons equip and damage a reachable enemy once per swing',()=>{
@@ -113,11 +113,43 @@ test('foundry types telegraph pull and release, alternating cuts, a safe seam an
   assert.equal(s.player.hp,100);assert(b.z<3.26,'jet recoil moves winch away from the marked target');
  }
 });
-test('all 80 variant entries add a verified rule to their underlying enemy behavior',async()=>{
+const terminal=JSON.parse(readFileSync(new URL('../../art/actors/dock-terminal/manifest.json',import.meta.url))).enemyTypes;
+test('the terminal rivals use shutters, three pockets, a moving beam, and a lateral strike',()=>{
+ const setup=(i,z)=>{const s=create(terminal);return [s,spawn(s,i,{x:0,z})];};
+ {
+  const [closed,b]=setup(0,3.08);select(closed,11);press(closed,'attack');advance(closed,.17);
+  assert.equal(b.life,b.maxHp-Math.ceil(WEAPONS[11].power*.45));
+  const [open,k]=setup(0,4.30);advance(open,.16);assert.equal(k.state,'windup');
+  select(open,11);press(open,'attack');advance(open,.17);
+  assert.equal(k.life,k.maxHp-WEAPONS[11].power);
+ }
+ {
+  const [s,b]=setup(1,3.4);advance(s,1.33);
+  assert.deepEqual(s.events.filter(e=>e.type==='seed-burst').map(e=>e.index),[0,1,2]);
+  assert(seedMarks(b).every(m=>Math.abs(m.x)<.01));assert.equal(s.player.hp,108);
+  const [safe]=setup(1,3.4);advance(safe,.16);advance(safe,.30,[1,0]);advance(safe,.80);
+  assert.equal(safe.player.hp,120,'stepping across the trail avoids all three pockets');
+ }
+ {
+  const [s,b]=setup(2,2.70);advance(s,.82);const before=harrowLine(b);
+  advance(s,.35);const after=harrowLine(b);
+  assert(before[0]<-.45&&after[0]>.28);assert.equal(s.player.hp,105);
+  const [safe]=setup(2,2.70);advance(safe,.20);advance(safe,.59,[0,1]);advance(safe,.47);
+  assert.equal(safe.player.hp,120,'backstep stays beyond the rotating beam');
+ }
+ {
+  const [s,b]=setup(3,3.65);advance(s,.91);
+  assert(b.x>.50&&s.player.hp===120,'slide precedes impact');
+  advance(s,.19);assert(s.events.some(e=>e.type==='flank-strike'));assert.equal(s.player.hp,102);
+  const [safe]=setup(3,3.65);advance(safe,.22);advance(safe,.33,[-1,0]);advance(safe,.55);
+  assert.equal(safe.player.hp,120,'moving away from the locked spot beats the flank');
+ }
+});
+test('all 100 variant entries add a verified rule to their underlying enemy behavior',async()=>{
  const {roster,VARIANTS}=await import('./variants.mjs');
- const base=[...spec,...extra,...ordnance,...foundry],v=roster(base);
- assert.equal(v.length,80);
- assert.equal(new Set(v.map(x=>x.id)).size,80);
+ const base=[...spec,...extra,...ordnance,...foundry,...terminal],v=roster(base);
+ assert.equal(v.length,100);
+ assert.equal(new Set(v.map(x=>x.id)).size,100);
  assert(v.every(x=>x.rule&&x.attack&&x.model));
  for(const type of base){
   function fresh(z,variant){const s=create([type]);return [s,spawn(s,0,{x:0,z},variant)];}

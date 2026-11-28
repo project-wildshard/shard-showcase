@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "units": "meters",
+  "enemyTypes": [
+    {"id":"WSC-ENM-017","name":"Shutter Bailiff","model":"bailiff.glb","move":"armored biped","attack":"shutter","radius":0.66,"height":1.85,"pace":1.25,"hp":71,"reach":1.92,"windup":0.77,"recover":1.10},
+    {"id":"WSC-ENM-018","name":"Porcelain Seeder","model":"seeder.glb","move":"spring rocker","attack":"seed","radius":0.63,"height":1.68,"pace":1.32,"hp":67,"reach":3.76,"windup":0.72,"recover":0.95},
+    {"id":"WSC-ENM-019","name":"Copper Harrow","model":"harrow.glb","move":"rotating hover system","attack":"harrow","radius":0.51,"height":1.69,"pace":1.50,"hp":65,"reach":4.25,"windup":0.75,"recover":0.96},
+    {"id":"WSC-ENM-020","name":"Keel Crab","model":"keel.glb","move":"six-legged sideways crawler","attack":"flank","radius":0.73,"height":1.14,"pace":1.65,"hp":71,"reach":2.85,"windup":0.75,"recover":0.98}
+  ]
+}
