@@ -1,0 +1,6 @@
+{
+ "about": "meta CHUNK-PARAM-REMOVAL CP23: files that still read or write ?chunk=, with counts; shrink only (node .githooks/chunk-param-guard.mjs --prune).",
+ "files": {
+  ".agents/hooks/test/prod-title-guard.test.mjs": 3
+ }
+}
