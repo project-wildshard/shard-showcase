@@ -9,7 +9,7 @@
     },
     {
       "enemy": "Rivet Skitter",
-      "taps": 4,
+      "taps": 7,
       "moves": 3,
       "heroHp": 78
     },
@@ -21,15 +21,15 @@
     },
     {
       "enemy": "Ballast Ram",
-      "taps": 5,
-      "moves": 7,
+      "taps": 6,
+      "moves": 6,
       "heroHp": 42
     },
     {
       "enemy": "Hook Crane",
       "taps": 3,
-      "moves": 2,
-      "heroHp": 84
+      "moves": 3,
+      "heroHp": 96
     },
     {
       "enemy": "Kiln Warden",
@@ -39,7 +39,7 @@
     },
     {
       "enemy": "Breakwater Snare",
-      "taps": 4,
+      "taps": 3,
       "moves": 2,
       "heroHp": 88
     },
@@ -52,19 +52,19 @@
     {
       "enemy": "Rasp Turret",
       "taps": 3,
-      "moves": 2,
+      "moves": 3,
       "heroHp": 57
     },
     {
       "enemy": "Railblade Inspector",
-      "taps": 4,
+      "taps": 3,
       "moves": 2,
       "heroHp": 57
     },
     {
       "enemy": "Salt Mortar",
       "taps": 3,
-      "moves": 2,
+      "moves": 3,
       "heroHp": 98
     },
     {
@@ -72,6 +72,30 @@
       "taps": 3,
       "moves": 2,
       "heroHp": 86
+    },
+    {
+      "enemy": "Bellows Recycler",
+      "taps": 3,
+      "moves": 2,
+      "heroHp": 84
+    },
+    {
+      "enemy": "Tidehook Stilt",
+      "taps": 3,
+      "moves": 2,
+      "heroHp": 94
+    },
+    {
+      "enemy": "Lantern Relay",
+      "taps": 3,
+      "moves": 2,
+      "heroHp": 120
+    },
+    {
+      "enemy": "Indigo Winch",
+      "taps": 3,
+      "moves": 3,
+      "heroHp": 100
     }
   ],
   "weaponModelsLoaded": 12,
@@ -149,11 +173,177 @@
     "WSC-ENM-012-bulwark",
     "WSC-ENM-012-feinter",
     "WSC-ENM-012-echo",
-    "WSC-ENM-012-overload"
+    "WSC-ENM-012-overload",
+    "WSC-ENM-013-rusher",
+    "WSC-ENM-013-bulwark",
+    "WSC-ENM-013-feinter",
+    "WSC-ENM-013-echo",
+    "WSC-ENM-013-overload",
+    "WSC-ENM-014-rusher",
+    "WSC-ENM-014-bulwark",
+    "WSC-ENM-014-feinter",
+    "WSC-ENM-014-echo",
+    "WSC-ENM-014-overload",
+    "WSC-ENM-015-rusher",
+    "WSC-ENM-015-bulwark",
+    "WSC-ENM-015-feinter",
+    "WSC-ENM-015-echo",
+    "WSC-ENM-015-overload",
+    "WSC-ENM-016-rusher",
+    "WSC-ENM-016-bulwark",
+    "WSC-ENM-016-feinter",
+    "WSC-ENM-016-echo",
+    "WSC-ENM-016-overload"
   ],
   "viewport": [
     402,
     874
+  ],
+  "framing": [
+    {
+      "enemy": "Gate Sentry",
+      "ndc": [
+        -0.137,
+        -0.033,
+        0.146,
+        0.122
+      ]
+    },
+    {
+      "enemy": "Rivet Skitter",
+      "ndc": [
+        0.141,
+        0.102,
+        -0.263,
+        -0.181
+      ]
+    },
+    {
+      "enemy": "Beacon Wasp",
+      "ndc": [
+        -0.231,
+        -0.079,
+        0.231,
+        0.142
+      ]
+    },
+    {
+      "enemy": "Ballast Ram",
+      "ndc": [
+        0.203,
+        0.132,
+        -0.638,
+        -0.364
+      ]
+    },
+    {
+      "enemy": "Hook Crane",
+      "ndc": [
+        -0.132,
+        -0.03,
+        0.143,
+        0.12
+      ]
+    },
+    {
+      "enemy": "Kiln Warden",
+      "ndc": [
+        -0.158,
+        -0.043,
+        0.168,
+        0.128
+      ]
+    },
+    {
+      "enemy": "Breakwater Snare",
+      "ndc": [
+        0.177,
+        0.119,
+        -0.248,
+        -0.223
+      ]
+    },
+    {
+      "enemy": "Spark Buoy",
+      "ndc": [
+        -0.212,
+        -0.069,
+        0.216,
+        0.146
+      ]
+    },
+    {
+      "enemy": "Rasp Turret",
+      "ndc": [
+        -0.143,
+        -0.036,
+        0.151,
+        0.078
+      ]
+    },
+    {
+      "enemy": "Railblade Inspector",
+      "ndc": [
+        -0.131,
+        -0.03,
+        0.034,
+        0.068
+      ]
+    },
+    {
+      "enemy": "Salt Mortar",
+      "ndc": [
+        -0.16,
+        -0.044,
+        0.168,
+        0.124
+      ]
+    },
+    {
+      "enemy": "Turnstile Spool",
+      "ndc": [
+        -0.227,
+        -0.077,
+        0.227,
+        0.14
+      ]
+    },
+    {
+      "enemy": "Bellows Recycler",
+      "ndc": [
+        -0.099,
+        -0.014,
+        0.165,
+        0.085
+      ]
+    },
+    {
+      "enemy": "Tidehook Stilt",
+      "ndc": [
+        -0.155,
+        -0.042,
+        0.164,
+        0.13
+      ]
+    },
+    {
+      "enemy": "Lantern Relay",
+      "ndc": [
+        -0.226,
+        -0.076,
+        0.226,
+        0.137
+      ]
+    },
+    {
+      "enemy": "Indigo Winch",
+      "ndc": [
+        -0.174,
+        -0.05,
+        0.18,
+        0.103
+      ]
+    }
   ],
   "errors": []
 }
