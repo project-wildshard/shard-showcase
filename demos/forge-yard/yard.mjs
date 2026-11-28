@@ -71,6 +71,7 @@ try{
  shadow(alivePlayer,.49);
  const grip=new T.Group(),gripPoint=new T.Vector3(),aimMarker=new T.Vector3();
  const aimThrust=createThrustAlignment();
+ const thrustKits=new Set(['016','021','025']);
  let weaponBasis=null;
  let walker=null,heroHit=0,heroTurn=0,heroYaw=Math.PI;
  const heroClips=['Idle','Stride','Turn','Dodge','Hit','Defeat','Sweep','Chop','Thrust',...Object.values(SIGNATURE_STRIKES)];
@@ -221,7 +222,7 @@ try{
   // The yard owns heading. Keep the articulated motion but discard the baked root swivel.
   if(clips.Turn)clips.Turn=new T.AnimationClip('Turn',clips.Turn.duration,clips.Turn.tracks.filter(t=>!/^root\.(position|quaternion)$/.test(t.name)));
   actor={group,mixer,weak:g.scene.getObjectByName('weak_socket'),kit:armor,clips,mode:null,last:null,yaw:face(...enemy.face),turnFor:0,turnCooldown:0};
-  wrap.dataset.enemy=enemy.id;wrap.dataset.outcome='';wrap.dataset.variant=enemy.variant??'';wrap.dataset.variantParts=String(armor?.children.length??0);wrap.dataset.variantCue='';wrap.dataset.counterHit='';delete wrap.dataset.thrustAxes;
+  wrap.dataset.enemy=enemy.id;wrap.dataset.outcome='';wrap.dataset.variant=enemy.variant??'';wrap.dataset.variantParts=String(armor?.children.length??0);wrap.dataset.variantCue='';wrap.dataset.counterHit='';delete wrap.dataset.thrustAxes;delete wrap.dataset.thrustGap;
   $('win').hidden=true;set($('enemy-name'),enemy.name);say(enemy.rule??('Fight: '+enemy.name),1.4);
  }
  function action(bot,name){
@@ -454,17 +455,26 @@ try{
    counterRing.position.set(enemy.x,.054,enemy.z);counterRing.scale.setScalar(enemy.r+.39);
    counterRing.material.opacity=.33+.58*Math.max(0,1-enemy.t/RAM_OPEN_SECONDS);
   }
-  if(wrap.dataset.equipped==='021'&&weapon){
-   const active=strike?.id==='021'&&enemy.life>0&&actor.weak;
-   const weight=active?beaconThrustWeight(p.slash.time,strike.wind,strike.cycle):0;
-   const a=aimThrust(weapon,weaponBasis,grip,fxGrip,fxTip,active?actor.weak.getWorldPosition(aimMarker):null,weight);
+  const weak=(impactEvent||strike?.style==='thrust')?actor.weak?.getWorldPosition(weakPoint):null;
+  const cue=impactEvent?surfaceCue(p,enemy,weak?.y):null;
+  if(thrustKits.has(wrap.dataset.equipped)&&weapon){
+   const dx=enemy.x-p.x,dz=enemy.z-p.z,range=Math.hypot(dx,dz);
+   const active=strike?.style==='thrust'&&(enemy.life>0||impactEvent)&&
+    (impactEvent||range<strike.reach+enemy.r+.45&&dx*p.face[0]+dz*p.face[1]>.15);
+   const at=impactEvent?p.slash?.releaseAt:p.slash?.time;
+   const weight=active?beaconThrustWeight(at,p.slash.releaseAt??strike.wind,strike.cycle):0;
+   let target=null;
+   if(active){
+    const seek=strike.id==='021'&&weak?weak:null;
+    target=seek??aimMarker.fromArray((cue??surfaceCue(p,enemy,weak?.y)).at);
+   }
+   const a=aimThrust(weapon,weaponBasis,grip,fxGrip,fxTip,target,weight);
    if(impactEvent&&a){
     wrap.dataset.thrustAxes=[a.before.toFixed(2),a.after.toFixed(2),a.gripSlip.toFixed(5)].join(',');
+    wrap.dataset.thrustGap=[a.tipGapBefore.toFixed(3),a.tipGapAfter.toFixed(3),a.tipAxialError.toFixed(3)].join(',');
    }
   }
   if(impactEvent){
-   const a=actor.weak?.getWorldPosition(weakPoint);
-   const cue=surfaceCue(p,enemy,a?.y);
    effects.hit(cue.at,cue.outer,impactEvent.style,impactEvent.blocked);
    wrap.dataset.fxImpact=String(++hitSerial);wrap.dataset.fxKind=impactEvent.blocked?'block':impactEvent.style;
    wrap.dataset.fxAnchor=cue.at.map(x=>x.toFixed(3)).join(',');

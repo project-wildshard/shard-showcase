@@ -1,0 +1,70 @@
+{
+  "trustedTouch": true,
+  "viewport": [
+    402,
+    874
+  ],
+  "spacing": "mid",
+  "report": [
+    {
+      "mode": "before",
+      "id": "016",
+      "name": "Line Pike",
+      "clip": "Thrust",
+      "damage": 15,
+      "distance": 1.74,
+      "angleBeforeDegrees": null,
+      "angleAfterDegrees": null,
+      "gripSlipMeters": null,
+      "tipGapBeforeMeters": null,
+      "tipGapAfterMeters": null,
+      "tipAxialErrorMeters": null,
+      "errors": []
+    },
+    {
+      "mode": "after",
+      "id": "016",
+      "name": "Line Pike",
+      "clip": "Thrust",
+      "damage": 15,
+      "distance": 1.75,
+      "angleBeforeDegrees": 149.78,
+      "angleAfterDegrees": 0,
+      "gripSlipMeters": 0,
+      "tipGapBeforeMeters": 3.276,
+      "tipGapAfterMeters": 0.53,
+      "tipAxialErrorMeters": 0.53,
+      "errors": []
+    },
+    {
+      "mode": "before",
+      "id": "025",
+      "name": "Rail Needle",
+      "clip": "NeedleJab",
+      "damage": 13,
+      "distance": 1.653,
+      "angleBeforeDegrees": null,
+      "angleAfterDegrees": null,
+      "gripSlipMeters": null,
+      "tipGapBeforeMeters": null,
+      "tipGapAfterMeters": null,
+      "tipAxialErrorMeters": null,
+      "errors": []
+    },
+    {
+      "mode": "after",
+      "id": "025",
+      "name": "Rail Needle",
+      "clip": "NeedleJab",
+      "damage": 13,
+      "distance": 1.826,
+      "angleBeforeDegrees": 161.57,
+      "angleAfterDegrees": 0,
+      "gripSlipMeters": 0,
+      "tipGapBeforeMeters": 2.878,
+      "tipGapAfterMeters": 0.666,
+      "tipAxialErrorMeters": 0.666,
+      "errors": []
+    }
+  ]
+}

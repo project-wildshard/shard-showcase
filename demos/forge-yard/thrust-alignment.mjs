@@ -6,12 +6,13 @@ export function beaconThrustWeight(time,wind,cycle){
 }
 export function createThrustAlignment(){
  const g=new Vector3(),b=new Vector3(),v=new Vector3(),want=new Vector3(),aligned=new Vector3();
+ const tipBefore=new Vector3(),tipAfter=new Vector3(),targetAxis=new Vector3();
  const delta=new Quaternion(),turn=new Quaternion(),identity=new Quaternion();
  return (mount,base,hand,grip,tip,target,weight)=>{
   mount.position.set(0,0,0);mount.quaternion.copy(base);
   if(weight<=0)return null;
   hand.worldToLocal(grip.getWorldPosition(g));
-  hand.worldToLocal(tip.getWorldPosition(b));
+  tip.getWorldPosition(tipBefore);hand.worldToLocal(b.copy(tipBefore));
   hand.worldToLocal(want.copy(target)).sub(g);
   v.copy(b).sub(g);
   if(v.lengthSq()<1e-7||want.lengthSq()<1e-7)return null;
@@ -22,6 +23,10 @@ export function createThrustAlignment(){
   hand.worldToLocal(grip.getWorldPosition(aligned));
   mount.position.copy(g).sub(aligned);
   hand.worldToLocal(grip.getWorldPosition(aligned));
-  return {before,after:MathUtils.radToDeg(v.applyQuaternion(turn).angleTo(want)),gripSlip:g.distanceTo(aligned)};
+  tip.getWorldPosition(tipAfter);
+  targetAxis.copy(target).sub(grip.getWorldPosition(aligned)).normalize();
+  const tipGapAfter=tipAfter.distanceTo(target),tipAxialError=tipAfter.sub(target).dot(targetAxis);
+  return {before,after:MathUtils.radToDeg(v.applyQuaternion(turn).angleTo(want)),gripSlip:g.distanceTo(hand.worldToLocal(aligned)),
+   tipGapBefore:tipBefore.distanceTo(target),tipGapAfter,tipAxialError};
  };
 }

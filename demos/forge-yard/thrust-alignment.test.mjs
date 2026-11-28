@@ -9,6 +9,7 @@ test('Beacon Lance pivots about an offset grip and eases before and after the st
  const target=hand.localToWorld(new Vector3(-2,0,0)),base=mount.quaternion.clone(),f=createThrustAlignment();
  const a=f(mount,base,hand,g,tip,target,beaconThrustWeight(.34,.34,.69));
  assert(a.before>30&&a.after<.0001&&a.gripSlip<1e-10);
+ assert(a.tipGapBefore>a.tipGapAfter&&a.tipGapAfter>0.01,'alignment improves the gap without telescoping the weapon');
  assert.equal(beaconThrustWeight(0,.34,.69),0);assert.equal(beaconThrustWeight(.69,.34,.69),0);
  assert.equal(f(mount,base,hand,g,tip,null,0),null);
  assert.equal(mount.position.length(),0);assert(Math.abs(mount.quaternion.dot(base)-1)<1e-10);
