@@ -66,6 +66,7 @@ try{
  wrap.dataset.sceneBatches=String(dressing.batches+(gantry?.batches??0));
  wrap.dataset.sceneInstances=String(dressing.instances+(gantry?.instances??0));
  wrap.dataset.sceneCover=String(dressing.coverCount);
+ if(dressing.wallModules)wrap.dataset.wallModules=String(dressing.wallModules);
 
  const loader=new GLTFLoader(),alivePlayer=joint(scene,0,0,0);
  function shadow(parent,scale){

@@ -1,0 +1,49 @@
+{
+  "viewport": [
+    402,
+    874
+  ],
+  "trustedTouch": true,
+  "results": [
+    {
+      "mode": "before",
+      "sceneKit": "foundry-evening",
+      "sceneBatches": "27",
+      "sceneInstances": "749",
+      "sceneCover": "4",
+      "playerViewX": "-0.312",
+      "playerViewY": "-0.100",
+      "enemyViewX": "0.264",
+      "enemyViewY": "0.140",
+      "damage": null,
+      "errors": []
+    },
+    {
+      "mode": "after",
+      "sceneKit": "foundry-evening",
+      "sceneBatches": "27",
+      "sceneInstances": "830",
+      "sceneCover": "4",
+      "wallModules": "3",
+      "playerViewX": "-0.155",
+      "playerViewY": "-0.027",
+      "enemyViewX": "0.164",
+      "enemyViewY": "0.119",
+      "damage": 19,
+      "errors": []
+    },
+    {
+      "mode": "coast",
+      "sceneKit": "signal-breakwater",
+      "sceneBatches": "50",
+      "sceneInstances": "686",
+      "sceneCover": "4",
+      "playerViewX": "-0.540",
+      "playerViewY": "-0.200",
+      "enemyViewX": "0.429",
+      "enemyViewY": "0.190",
+      "damage": null,
+      "errors": []
+    }
+  ]
+}

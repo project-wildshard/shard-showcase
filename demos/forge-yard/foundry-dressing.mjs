@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {addFoundryWallKit} from './foundry-wall-kit.mjs';
 // Original Forge Yard visual kit. Only ARENA and COVER from arena.mjs own collision.
 export function createFoundryDressing(scene,cover){
  const root=new T.Group();root.name='Foundry evening shift';scene.add(root);
@@ -155,14 +156,7 @@ export function createFoundryDressing(scene,cover){
   B('heat',[.229,.127,.033],[x,1.901,-10.255]);
   for(const s of [-1,1])B('steel',[.04,.158,.026],[x+s*.082,1.895,-10.22]);
  }
- // Narrow gate frame, rolled shutters and service gantries behind the low combat fence.
- B('void',[4.20,4.9,.70],[-1.40,2.59,-10.96]);
- for(let i=0;i<13;i++)B(i%3===0?'steel':'tealDark',[3.67,.276,.11],[-1.40,1.07+i*.28,-10.55]);
- for(const v of [-3.44,.62]){
-  B('oxide',[.30,4.50,.25],[v,2.50,-10.39]);B('edge',[.077,4.25,.12],[v+.14,2.54,-10.23]);
-  B('heat',[.08,.24,.034],[v,3.85,-10.23]);
- }
- B('copper',[4.23,.42,.45],[-1.4,4.76,-10.42]);
+ const wallModules=addFoundryWallKit({B,C,X,Z,Tori});
  B('steel',[22.9,.55,.82],[0,6.18,-11.32]);
  B('oxide',[22.8,.12,.92],[0,5.94,-11.32]);
  for(let x=-10;x<=10;x+=1.1)B('edge',[.09,.63,.07],[x,6.35,-10.86],[0,0,.45]);
@@ -175,8 +169,9 @@ export function createFoundryDressing(scene,cover){
   for(let y=.5;y<6.2;y+=.52)X('edge',.026,1.19,[x,y,z+1.16]);
  }
  for(const y of [1.6,4.97,5.29]){
-  X(y<2?'teal':'copper',.11,20.6,[0,y,-10.29]);
-  for(let x=-9.7;x<=10;x+=2.82)X('edge',.151,.094,[x,y,-10.29]);
+  const conduitZ=y<2?-11.65:-10.29;
+  X(y<2?'teal':'copper',.11,20.6,[0,y,conduitZ]);
+  for(let x=-9.7;x<=10;x+=2.82)X('edge',.151,.094,[x,y,conduitZ]);
  }
  // Outside the arena: coiled hose, furnace hoods and long rear pipes.
  for(const x of [-7.8,5.8]){
@@ -211,7 +206,7 @@ export function createFoundryDressing(scene,cover){
   }
   for(let i=-3;i<=3;i++)B('steel',[.51,.042,.047],[x,.074,z+i*.146]);
  }
- const stats={instances:0,batches:0,coverCount:covers.length,collision:'visual only',floorTexture:[512,512],lightPools:pools.length,practicalLights:2};
+ const stats={instances:0,batches:0,coverCount:covers.length,wallModules,collision:'visual only',floorTexture:[512,512],lightPools:pools.length,practicalLights:2};
  for(const {geo,mat,matrices} of entries.values()){
   const mesh=new T.InstancedMesh(geo,mats[mat],matrices.length);
   matrices.forEach((m,i)=>mesh.setMatrixAt(i,m));
