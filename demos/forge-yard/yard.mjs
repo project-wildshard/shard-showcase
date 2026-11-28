@@ -5,7 +5,7 @@ import {createFoundryDressing} from './foundry-dressing.mjs';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-import {ARENA,COVER,WEAPONS,ramOpen,RAM_OPEN_SECONDS,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH,RELAY_RADIUS,STILT_RADIUS,splitMarks,SEED_RADIUS,FLANK_RADIUS,HARROW_WIND,seedMarks,harrowLine} from './arena.mjs';
+import {ARENA,COVER,WEAPONS,ramOpen,RAM_OPEN_SECONDS,sweepRadius,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH,RELAY_RADIUS,STILT_RADIUS,splitMarks,SEED_RADIUS,FLANK_RADIUS,HARROW_WIND,seedMarks,harrowLine} from './arena.mjs';
 import {VARIANTS} from './variants.mjs';
 
 const $=n=>document.querySelector('#'+n);
@@ -82,6 +82,18 @@ try{
  }
  const warningPlane=mesh(new T.PlaneGeometry(1,1),basic(0xff552f,.29));
  const warningRing=mesh(new T.RingGeometry(.88,1,64),basic(0xff552f,.74));
+ // Three reusable decals; the bright outside edge is the same radius as damage.
+ const sweepMarks=joint(scene,0,.032,0);
+ sweepMarks.rotation.x=-Math.PI/2;sweepMarks.visible=false;
+ const sweepDecal=(geometry,color,opacity,order)=>{
+  const m=basic(color,opacity);m.toneMapped=false;
+  const o=mesh(geometry,m);o.renderOrder=order;sweepMarks.add(o);return o;
+ };
+ const sweepFill=sweepDecal(new T.CircleGeometry(.988,64),0xa63420,.21,4);
+ const sweepEdge=sweepDecal(new T.RingGeometry(.981,1,64),0xff7843,.86,5);
+ const sweepClockGeo=new T.RingGeometry(.896,.942,64);
+ const sweepClock=sweepDecal(sweepClockGeo,0xffc376,.92,6);
+ sweepClock.rotation.z=Math.PI/2;
  const pulseRing=mesh(new T.RingGeometry(.77,1,56),basic(0xffa241,.68));
  const counterRing=mesh(new T.RingGeometry(.92,1,54,1,0,Math.PI*1.66),basic(0x53ffff,.92));
  for(const o of [warningPlane,warningRing,pulseRing,counterRing]){o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);}
@@ -342,7 +354,22 @@ try{
   const warn=enemy.life>0&&(enemy.state==='windup'||(bomb&&enemy.state==='active'&&!enemy.dashHit));
   const radial=['windmill','pounce','burrow','burst','mortar','flank'].includes(enemy.attack);
   const fanned=enemy.attack==='vacuum'||enemy.attack==='recoil'||harrow;
-  warningRing.visible=(warn&&radial)||markerAfter;warningPlane.visible=warn&&!radial&&!two&&!fanned;
+  const sweep=enemy.attack==='windmill'&&enemy.life>0;
+  const releasing=sweep&&enemy.state==='active'&&enemy.t<.14;
+  sweepMarks.visible=sweep&&(warn||releasing);
+  wrap.dataset.sweepPhase=sweepMarks.visible?(releasing?'release':'windup'):'';
+  if(sweepMarks.visible){
+   const r=sweepRadius(enemy);
+   sweepMarks.position.set(enemy.x,.032,enemy.z);sweepMarks.scale.setScalar(r);
+   const left=releasing?0:clamp(1-enemy.t/enemy.windReady,0,1);
+   const fade=releasing?1-enemy.t/.14:1;
+   sweepEdge.material.opacity=(releasing?.91:.86)*fade;
+   sweepFill.material.opacity=(releasing?.26:.19)*fade;
+   sweepClock.visible=!releasing;
+   sweepClockGeo.setDrawRange(0,6*Math.ceil(left*64));
+   wrap.dataset.sweepRadius=r.toFixed(3);wrap.dataset.sweepRemaining=left.toFixed(3);
+  }
+  warningRing.visible=(warn&&radial&&!sweep)||markerAfter;warningPlane.visible=warn&&!radial&&!two&&!fanned;
   intakeFan.visible=enemy.life>0&&enemy.attack==='vacuum'&&(warn||enemy.state==='active'&&enemy.t<.42);
   jetFan.visible=warn&&enemy.attack==='recoil';
   for(const o of [intakeFan,jetFan])if(o.visible){

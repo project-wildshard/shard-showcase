@@ -1,0 +1,30 @@
+{
+  "viewport": [
+    402,
+    874
+  ],
+  "trustedTouch": true,
+  "trials": [
+    {
+      "mode": "before",
+      "gapAtRelease": null,
+      "displayedRadius": null,
+      "healthAfterSweep": 102,
+      "pageErrors": []
+    },
+    {
+      "mode": "inside",
+      "gapAtRelease": 1.833,
+      "displayedRadius": 2.07,
+      "healthAfterSweep": 102,
+      "pageErrors": []
+    },
+    {
+      "mode": "outside",
+      "gapAtRelease": 2.425,
+      "displayedRadius": 2.07,
+      "healthAfterSweep": 120,
+      "pageErrors": []
+    }
+  ]
+}

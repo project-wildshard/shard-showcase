@@ -2,6 +2,7 @@
 import {configuration} from './variants.mjs';
 export const ARENA=10.5;
 export const RAM_OPEN_SECONDS=.88;
+export const sweepRadius=b=>b.reach+.32;
 export const ramOpen=b=>b.id==='WSC-ENM-004'&&!b.variant&&b.state==='recover'&&b.life>0&&!b.chargeConnected&&b.t<RAM_OPEN_SECONDS;
 export const COVER=[[-3.1,-.6,.78],[2.7,-2.8,.88],[-2.2,3.2,.93],[4.2,2.9,.66]];
 const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
@@ -182,7 +183,7 @@ export function tick(s,seconds,input=[0,0]){
    else state(s,b,'idle');
   }else if(b.state==='windup'&&b.t>=b.windReady){
    state(s,b,'active');
-   if(b.attack==='windmill'&&d<=b.reach+.32&&!reachBlocked(b,p))strikePlayer(s,b);
+   if(b.attack==='windmill'&&d<=sweepRadius(b)&&!reachBlocked(b,p))strikePlayer(s,b);
    if(b.attack==='hook'||b.attack==='beam'){
     const ax=p.x-b.x,az=p.z-b.z,along=ax*b.lock[0]+az*b.lock[1];
     const off=Math.abs(ax*b.lock[1]-az*b.lock[0]);

@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {WEAPONS,create,spawn,press,select,tick,ramOpen,splitMarks,seedMarks,harrowLine} from './arena.mjs';
+import {WEAPONS,create,spawn,press,select,tick,ramOpen,sweepRadius,splitMarks,seedMarks,harrowLine} from './arena.mjs';
 const spec=JSON.parse(readFileSync(new URL('../../art/actors/dock-enemies/manifest.json',import.meta.url))).enemyTypes;
 const advance=(s,d,dir)=>{for(let i=0;i<d*60;i++)tick(s,1/60,dir);};
 test('all twelve weapons equip and damage a reachable enemy once per swing',()=>{
@@ -206,4 +206,15 @@ test('base Ram gives one timed punish after a missed charge, never after a lande
  const [hit,closed]=fight(false);
  assert(hit.player.hp<120);assert(!ramOpen(closed));
  const [,variant]=fight(true,'rusher');assert(!ramOpen(variant));
+});
+
+test('Sentry release damages just inside its visible boundary but not outside, even for Echo tuning',()=>{
+ for(const variant of [null,'echo'])for(const [offset,hp] of [[-.005,102],[.005,120]]){
+  const s=create(spec),b=spawn(s,0,{x:0,z:2},variant);
+  b.state='windup';b.t=b.windReady-1/60;s.player.z=b.z+sweepRadius(b)+offset;
+  tick(s,1/60);assert.equal(b.state,'active');assert.equal(s.player.hp,hp);
+ }
+ const s=create(spec),b=spawn(s,0,{x:-3.1,z:-1.6});
+ b.state='windup';b.t=b.windReady-1/60;s.player.x=-3.1;s.player.z=.4;
+ assert(s.player.z-b.z<sweepRadius(b));tick(s,1/60);assert.equal(s.player.hp,120,'solid cover still blocks the sweep');
 });
