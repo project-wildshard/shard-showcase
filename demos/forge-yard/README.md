@@ -21,4 +21,6 @@ Startup fetches the first rival and equipped weapon together. Other rival GLBs a
 
 Run `node demos/forge-yard/walker-smoke.mjs http://127.0.0.1:5187/demos/forge-yard/ /tmp/walker-proof` from the repository root to verify actual browser playback of all nine Walker clips, plus motion of the attached right-hand weapon socket. This is not per-frame weapon or enemy contact collision.
 
+The authored foundry set in `foundry-dressing.mjs` generates all its surface textures and batches repeated fixture parts. It is visual only: `arena.mjs` still owns the movement boundary and four collision discs. `dressing-smoke.mjs` captures portrait and wide browser views and can compare an independently served baseline supplied as the third optional argument.
+
 Scope: first-pass yard layout and an original rigged Walker character, no progression, multiplayer or campaign. One hundred variants reuse twenty base rigs, not one hundred separate models. The standard enemy Move/Windup/Attack/Recover/Hit/Defeat clips are wired; Salt Mortar, Lantern Relay, Porcelain Seeder and Keel Crab use Special for their active attacks. The other exported Special clips and all Turn clips are not automatically selected in this prototype.

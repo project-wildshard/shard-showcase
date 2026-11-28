@@ -1,3 +1,4 @@
+import {createFoundryDressing} from './foundry-dressing.mjs';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
@@ -28,61 +29,21 @@ const face=(x,z)=>Math.atan2(x,z);
 
 try{
  const render=new T.WebGLRenderer({antialias:true,powerPreference:'low-power'});
- render.setPixelRatio(Math.min(devicePixelRatio,1.5));render.toneMapping=T.ACESFilmicToneMapping;render.toneMappingExposure=1.3;
+ render.setPixelRatio(Math.min(devicePixelRatio,1.5));render.toneMapping=T.ACESFilmicToneMapping;render.toneMappingExposure=1.16;
  wrap.prepend(render.domElement);
  const scene=new T.Scene(),camera=new T.PerspectiveCamera(46,1,.09,85);
- scene.background=new T.Color(0x324a57);scene.fog=new T.FogExp2(0x324a57,.038);
+ scene.background=new T.Color(0x24393d);scene.fog=new T.FogExp2(0x24393d,.032);
  const env=new RoomEnvironment(),pmrem=new T.PMREMGenerator(render);
  scene.environment=pmrem.fromScene(env,.06).texture;scene.environmentIntensity=.52;env.dispose();pmrem.dispose();
- scene.add(new T.HemisphereLight(0xa1d8df,0x57453c,2.05));
- const key=new T.DirectionalLight(0xffc494,3.8);key.position.set(-6,11,4);scene.add(key);
- const rim=new T.DirectionalLight(0x7ac3ff,1.45);rim.position.set(8,6,-8);scene.add(rim);
+ scene.add(new T.HemisphereLight(0xa4d4de,0x443629,1.66));
+ const key=new T.DirectionalLight(0xffccb0,3.10);key.position.set(-6,11,4);scene.add(key);
+ const rim=new T.DirectionalLight(0x7ac3ff,1.75);rim.position.set(8,6,-8);scene.add(rim);
 
- const stone=mat(0x3c545b,.25,.66),stoneAlt=mat(0x375056,.23,.73),deck=mat(0x202d33,.65,.46);
- const amber=mat(0x98703b),paint=mat(0xa36333),cold=mat(0x255a60),brass=mat(0xa97543,.67,.35);
- const glint=new T.MeshBasicMaterial({color:0x76dfd2});
- box(scene,[80,.25,80],[0,-.5,0],deck);
- const tilePositions=[[],[]],transform=new T.Matrix4();
- for(let x=-10;x<=10;x+=2)for(let z=-10;z<=10;z+=2)tilePositions[Number((x*17+z*13)%8===0)].push([x,z]);
- const tileMesh=new T.BoxGeometry(1.985,.18,1.985);
- tilePositions.forEach((cells,i)=>{
-  const batch=new T.InstancedMesh(tileMesh,i?stoneAlt:stone,cells.length);
-  cells.forEach(([x,z],n)=>batch.setMatrixAt(n,transform.makeTranslation(x,-.10,z)));
-  batch.computeBoundingSphere();scene.add(batch);
- });
- for(const [x,z,r] of COVER){
-  box(scene,[r*1.56,1.47,r*1.56],[x,.716,z],paint);
-  for(const h of [.19,1.27]){
-   box(scene,[r*1.65,.12,r*1.65],[x,h,z],brass);
-  }
-  box(scene,[r*.65,.36,.04],[x,.78,z+r*.79],deck);
- }
- for(let i=0;i<7;i++){
-  const x=-9+i*3;
-  for(const z of [-10.65,10.65]){
-   box(scene,[2.78,.70,.35],[x,.32,z],deck);
-   box(scene,[2.37,.10,.40],[x,.68,z],amber);
-  }
- }
- for(const side of [-1,1]){
-  for(let z=-8;z<=8;z+=4){
-   box(scene,[.42,1.02,3.62],[side*10.65,.48,z],deck);
-   box(scene,[.48,.09,3.12],[side*10.65,1.025,z],amber);
-  }
-  for(const z of [-9,9]){
-   box(scene,[.55,4.08,.55],[side*9.5,2,z],cold);
-   box(scene,[.74,.32,.74],[side*9.5,3.97,z],brass);
-   box(scene,[.29,.11,.16],[side*9.5,3.91,z+(.38*-Math.sign(z))],glint);
-  }
- }
- for(const z of [-8.85,8.85])for(let i=-5;i<=5;i++)box(scene,[.48,.013,.22],[i*.86,.006,z],amber).rotation.y=-.35;
- const gantry=joint(scene,0,0,-12.7);
- for(const x of [-5.2,5.2]){
-  box(gantry,[.55,7,.66],[x,3.42,0],cold);
-  box(gantry,[1.1,.26,1.35],[x,.10,0],deck);
- }
- box(gantry,[11.1,.68,.56],[0,6.55,0],paint);
- for(let x=-4.9;x<5;x+=.84)box(gantry,[.38,.43,.06],[x,6.53,.31],amber).rotation.z=.53;
+ const dressing=createFoundryDressing(scene,COVER);
+ wrap.dataset.sceneKit='foundry-evening';
+ wrap.dataset.sceneBatches=String(dressing.batches);
+ wrap.dataset.sceneInstances=String(dressing.instances);
+ wrap.dataset.sceneCover=String(dressing.coverCount);
 
  const loader=new GLTFLoader(),alivePlayer=joint(scene,0,0,0);
  function shadow(parent,scale){

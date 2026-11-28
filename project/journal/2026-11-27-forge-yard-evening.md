@@ -1,0 +1,4 @@
+# Forge Yard evening-shift set
+Replace the test grid with aged concrete, a flush steel rail lane, service drains, maintenance gates and shutters, distant process towers, warm work lamps and a cool rim. Four original silhouettes now read as a charge crucible, strip spool, control island and quench cap, rather than four matching blocks. The visual kit is editable Three.js source; it generates its surface textures, and no downloaded environment assets or texture files are required.
+
+The arena logic and all four cover locations/radii are unchanged. Taller architecture is on the far walls or outside the floor; the camera-side rail stays low. Playable collision does not come from the dressed objects. Repeated static pieces are instanced. Keep telegraph colors, health visibility and the two-actor framing consistent when iterating this art pass.
