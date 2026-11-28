@@ -15,7 +15,7 @@ const ordnanceBase=new URL('../../art/actors/dock-ordnance/',location.href);
 const foundryBase=new URL('../../art/actors/dock-foundry/',location.href);
 const terminalBase=new URL('../../art/actors/dock-terminal/',location.href);
 const weaponBase=new URL('../../art/weapons/',location.href);
-const clipNames={idle:'Idle',move:'Move',feint:'Move',windup:'Windup',active:'Attack',recover:'Recover',hit:'Hit',defeat:'Defeat'};
+const clipNames={idle:'Idle',move:'Move',turn:'Turn',feint:'Move',windup:'Windup',active:'Attack',recover:'Recover',hit:'Hit',defeat:'Defeat'};
 const mat=(c,metal=.45,rough=.46)=>new T.MeshStandardMaterial({color:c,metalness:metal,roughness:rough});
 const basic=(c,opacity)=>new T.MeshBasicMaterial({color:c,transparent:true,opacity,depthWrite:false,side:T.DoubleSide});
 const mesh=(g,m)=>new T.Mesh(g,m);
@@ -184,20 +184,23 @@ try{
   const armor=kit(enemy,group);
   if(armor)g.scene.getObjectByName('body')?.attach(armor);
   const mixer=new T.AnimationMixer(g.scene);
-  actor={group,mixer,weak:g.scene.getObjectByName('weak_socket'),kit:armor,clips:Object.fromEntries(g.animations.map(c=>[c.name,c])),mode:null,last:null};
+  const clips=Object.fromEntries(g.animations.map(c=>[c.name,c]));
+  // The yard owns heading. Keep the articulated motion but discard the baked root swivel.
+  if(clips.Turn)clips.Turn=new T.AnimationClip('Turn',clips.Turn.duration,clips.Turn.tracks.filter(t=>!/^root\.(position|quaternion)$/.test(t.name)));
+  actor={group,mixer,weak:g.scene.getObjectByName('weak_socket'),kit:armor,clips,mode:null,last:null,yaw:face(...enemy.face),turnFor:0,turnCooldown:0};
   wrap.dataset.enemy=enemy.id;wrap.dataset.outcome='';wrap.dataset.variant=enemy.variant??'';wrap.dataset.variantParts=String(armor?.children.length??0);wrap.dataset.variantCue='';
   $('win').hidden=true;set($('enemy-name'),enemy.name);say(enemy.rule??('Fight: '+enemy.name),1.4);
  }
  function action(bot,name){
   if(name===actor.mode)return;
   actor.mode=name;
-  const clip=actor.clips[(name==='active'&&['mortar','relay','seed','flank'].includes(bot.attack)?'Special':clipNames[name])??'Idle'];
+  const clip=actor.clips[name==='active'&&(bot.echoed||['mortar','relay','seed','flank'].includes(bot.attack))?'Special':clipNames[name]]??actor.clips.Idle;
   if(!clip)return;
   if(actor.last){actor.last.fadeOut(.08);}
   const a=actor.mixer.clipAction(clip).reset().fadeIn(.10);
   if(!['idle','move'].includes(name)){
    a.setLoop(T.LoopOnce,1);a.clampWhenFinished=true;
-   const sec={windup:bot.windReady,feint:.24,active:bot.activeDuration,recover:bot.recover,hit:.24,defeat:1.03}[name];
+   const sec={turn:.28,windup:bot.windReady,feint:.24,active:bot.activeDuration,recover:bot.recover,hit:.24,defeat:1.03}[name];
    if(sec)a.setDuration(sec);
   }
   a.play();actor.last=a;
@@ -309,8 +312,20 @@ try{
   wmix?.update(dt);
   grip.getWorldPosition(gripPoint);alivePlayer.worldToLocal(gripPoint);
   wrap.dataset.gripLocal=gripPoint.toArray().map(x=>x.toFixed(3)).join(',');
-  actor.group.position.set(enemy.x,0,enemy.z);actor.group.rotation.y=face(...enemy.face);
-  action(enemy,enemy.state);actor.mixer.update(dt);
+  actor.group.position.set(enemy.x,0,enemy.z);
+  const tracking=enemy.state==='idle'||enemy.state==='move';
+  const locking=enemy.state==='windup'||enemy.state==='active';
+  const enemyYaw=face(...enemy.face),enemyYawError=Math.atan2(Math.sin(enemyYaw-actor.yaw),Math.cos(enemyYaw-actor.yaw));
+  actor.turnCooldown=Math.max(0,actor.turnCooldown-dt);
+  if(tracking&&Math.abs(enemyYawError)>.34&&!actor.turnCooldown){
+   actor.turnFor=.28;actor.turnCooldown=.55;
+  }
+  actor.turnFor=tracking?Math.max(0,actor.turnFor-dt):0;
+  // Never lag the readable, locked attacks behind the simulation.
+  if(tracking)actor.yaw+=enemyYawError*(1-Math.exp(-dt*7));
+  else if(locking)actor.yaw=face(...enemy.lock);
+  actor.group.rotation.y=actor.yaw;
+  action(enemy,actor.turnFor?'turn':enemy.state);actor.mixer.update(dt);
   const bomb=enemy.attack==='mortar',cross=enemy.attack==='crosscut';
   const two=['stilt','relay','seed'].includes(enemy.attack),flank=enemy.attack==='flank',harrow=enemy.attack==='harrow';
   const markerAfter=enemy.life>0&&enemy.state==='active'&&flank&&!enemy.dashHit;

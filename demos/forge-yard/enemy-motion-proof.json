@@ -1,0 +1,73 @@
+{
+  "trustedTouch": true,
+  "viewport": [
+    402,
+    874
+  ],
+  "enemy": "WSC-ENM-001",
+  "echo": [
+    {
+      "pose": "Windup",
+      "cue": "",
+      "variant": "echo"
+    },
+    {
+      "pose": "Attack",
+      "cue": "",
+      "variant": "echo"
+    },
+    {
+      "pose": "Recover",
+      "cue": "",
+      "variant": "echo"
+    },
+    {
+      "pose": "Windup",
+      "cue": "echo",
+      "variant": "echo"
+    },
+    {
+      "pose": "Special",
+      "cue": "echo",
+      "variant": "echo"
+    }
+  ],
+  "normal": [
+    {
+      "pose": "Idle",
+      "cue": "",
+      "variant": ""
+    },
+    {
+      "pose": "Move",
+      "cue": "",
+      "variant": ""
+    },
+    {
+      "pose": "Move",
+      "cue": "",
+      "variant": ""
+    },
+    {
+      "pose": "Windup",
+      "cue": "",
+      "variant": ""
+    },
+    {
+      "pose": "Attack",
+      "cue": "",
+      "variant": ""
+    },
+    {
+      "pose": "Recover",
+      "cue": "",
+      "variant": ""
+    },
+    {
+      "pose": "Turn",
+      "cue": "",
+      "variant": ""
+    }
+  ],
+  "errors": []
+}
