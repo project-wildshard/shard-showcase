@@ -1,6 +1,8 @@
 // Original, engine-independent game logic for the local Forge Yard demo.
 import {configuration} from './variants.mjs';
 export const ARENA=10.5;
+export const RAM_OPEN_SECONDS=.88;
+export const ramOpen=b=>b.id==='WSC-ENM-004'&&!b.variant&&b.state==='recover'&&b.life>0&&!b.chargeConnected&&b.t<RAM_OPEN_SECONDS;
 export const COVER=[[-3.1,-.6,.78],[2.7,-2.8,.88],[-2.2,3.2,.93],[4.2,2.9,.66]];
 const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
 const norm=(x,z)=>{const d=Math.hypot(x,z);return d>1e-6?[x/d,z/d]:[0,0];};
@@ -99,7 +101,7 @@ function state(s,b,next){
 }
 function beginWind(s,b,p,wind=b.windup){
  b.lock=norm(p.x-b.x,p.z-b.z);b.lockLength=Math.max(1.5,gap(b,p));
- b.dashHit=false;b.shots=0;b.mark={x:p.x,z:p.z};b.windReady=wind;
+ b.dashHit=false;b.chargeConnected=false;b.shots=0;b.mark={x:p.x,z:p.z};b.windReady=wind;
  state(s,b,'windup');
 }
 export function tick(s,seconds,input=[0,0]){
@@ -121,10 +123,11 @@ export function tick(s,seconds,input=[0,0]){
     const front=dot(b.face,norm(p.x-b.x,p.z-b.z))>.35;
     const shutted=b.attack==='shutter'&&['idle','move'].includes(b.state);
     const blocks=shutted||((b.attack==='guard'||b.variant==='bulwark')&&front&&!['windup','recover','hit','feint'].includes(b.state));
-    const dealt=blocks?Math.ceil(a.weapon.power*(b.variant==='bulwark'?.22:shutted?.45:.35)):a.weapon.power;
+    const counter=ramOpen(b);
+    const dealt=counter?Math.ceil(a.weapon.power*1.35):blocks?Math.ceil(a.weapon.power*(b.variant==='bulwark'?.22:shutted?.45:.35)):a.weapon.power;
     b.life=Math.max(0,b.life-dealt);
     if(blocks)s.events.push({type:'shield',enemy:b.id});
-    s.events.push({type:'enemy-hit',enemy:b.id,hp:b.life});
+    s.events.push({type:'enemy-hit',enemy:b.id,hp:b.life,counter,damage:dealt});
     if(!b.life){state(s,b,'defeat');s.events.push({type:'defeat',enemy:b.id});}
     else if(b.state!=='active'&&!blocks)state(s,b,'hit');
    }
@@ -253,7 +256,7 @@ export function tick(s,seconds,input=[0,0]){
    if(['pounce','charge','lunge'].includes(b.attack)){
     const speed=b.attack==='pounce'?7.2:b.attack==='lunge'?8.35:10.8;
     const moved=place(b,b.x+b.lock[0]*speed*dt,b.z+b.lock[1]*speed*dt);
-    if(!b.dashHit&&gap(p,b)<b.r+p.r+.24&&!reachBlocked(b,p)){strikePlayer(s,b);b.dashHit=true;}
+    if(!b.dashHit&&gap(p,b)<b.r+p.r+.24&&!reachBlocked(b,p)){b.chargeConnected=strikePlayer(s,b);b.dashHit=true;}
     if(moved<speed*dt*.68){state(s,b,'recover');continue;}
    }
    if(b.t>b.activeDuration)state(s,b,'recover');

@@ -4,7 +4,7 @@ import {createFoundryDressing} from './foundry-dressing.mjs';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-import {ARENA,COVER,WEAPONS,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH,RELAY_RADIUS,STILT_RADIUS,splitMarks,SEED_RADIUS,FLANK_RADIUS,HARROW_WIND,seedMarks,harrowLine} from './arena.mjs';
+import {ARENA,COVER,WEAPONS,ramOpen,RAM_OPEN_SECONDS,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH,RELAY_RADIUS,STILT_RADIUS,splitMarks,SEED_RADIUS,FLANK_RADIUS,HARROW_WIND,seedMarks,harrowLine} from './arena.mjs';
 import {VARIANTS} from './variants.mjs';
 
 const $=n=>document.querySelector('#'+n);
@@ -78,7 +78,8 @@ try{
  const warningPlane=mesh(new T.PlaneGeometry(1,1),basic(0xff552f,.29));
  const warningRing=mesh(new T.RingGeometry(.88,1,64),basic(0xff552f,.74));
  const pulseRing=mesh(new T.RingGeometry(.77,1,56),basic(0xffa241,.68));
- for(const o of [warningPlane,warningRing,pulseRing]){o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);}
+ const counterRing=mesh(new T.RingGeometry(.92,1,54,1,0,Math.PI*1.66),basic(0x53ffff,.92));
+ for(const o of [warningPlane,warningRing,pulseRing,counterRing]){o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);}
  const fan=(half,color)=>{
   const g=new T.CircleGeometry(1,44,Math.PI*.5-half,half*2),o=mesh(g,basic(color,.32));
   o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);return o;
@@ -189,7 +190,7 @@ try{
   // The yard owns heading. Keep the articulated motion but discard the baked root swivel.
   if(clips.Turn)clips.Turn=new T.AnimationClip('Turn',clips.Turn.duration,clips.Turn.tracks.filter(t=>!/^root\.(position|quaternion)$/.test(t.name)));
   actor={group,mixer,weak:g.scene.getObjectByName('weak_socket'),kit:armor,clips,mode:null,last:null,yaw:face(...enemy.face),turnFor:0,turnCooldown:0};
-  wrap.dataset.enemy=enemy.id;wrap.dataset.outcome='';wrap.dataset.variant=enemy.variant??'';wrap.dataset.variantParts=String(armor?.children.length??0);wrap.dataset.variantCue='';
+  wrap.dataset.enemy=enemy.id;wrap.dataset.outcome='';wrap.dataset.variant=enemy.variant??'';wrap.dataset.variantParts=String(armor?.children.length??0);wrap.dataset.variantCue='';wrap.dataset.counterHit='';
   $('win').hidden=true;set($('enemy-name'),enemy.name);say(enemy.rule??('Fight: '+enemy.name),1.4);
  }
  function action(bot,name){
@@ -275,6 +276,7 @@ try{
      hook:'HOOK · leave the lane',guard:'SHIELD · circle round',burrow:'SNARE · leave the mark',burst:'BURST · get out of the ring',salvo:'SALVO · step out of the line',lunge:'LUNGE · dodge sideways',mortar:'MORTAR · leave the landing zone',crosscut:'CROSSCUT · step forward or back',vacuum:'INTAKE · leave the pull lane',stilt:'DOUBLE CUT · leave the marks',relay:'LANTERNS · stay in the gap',recoil:'RECOIL · step out of the jet',shutter:'SHUTTERS OPEN · punish the piston',seed:'SEED LINE · step across the marks',harrow:'SWEEP · leave the fan or dodge through',flank:'SIDE STEP · leave your mark'};
     say(cue[enemy.attack],enemy.windReady+.18);
    }
+   if(e.type==='enemy-state'&&e.state==='recover'&&ramOpen(enemy))say('ARMOR OPEN · counter now',RAM_OPEN_SECONDS);
    if(e.type==='salvo-shot')salvoFlash=.11;
    if(e.type==='mortar-impact')say('Mortar impact',.34);
    if(e.type==='shield')blockedHit=true;
@@ -285,7 +287,8 @@ try{
    }
    if(e.type==='enemy-hit'){
     impactEvent={style:p.slash?.weapon.style??WEAPONS[s.weapon].style,blocked:blockedHit};
-    if(!blockedHit)say('Hit',.34);
+    if(e.counter){wrap.dataset.counterHit=String(e.damage);say('COUNTER · '+e.damage+' damage',.66);}
+    else if(!blockedHit)say('Hit',.34);
    }
    if(e.type==='player-hit'){heroHit=.26;say('You took a hit',.65);}
    if(e.type==='defeat'){wrap.dataset.outcome='win';set($('win-title'),enemy.name+' defeated');set($('win-body'),'Try a different rival or change weapons.');$('win').hidden=false;}
@@ -381,6 +384,12 @@ try{
   }
   pulseRing.visible=enemy.life>0&&enemy.pulse>0;
   if(pulseRing.visible){pulseRing.position.set(enemy.x,.047,enemy.z);pulseRing.scale.setScalar(2.25);pulseRing.material.opacity=.62+Math.sin(enemy.pulse*30)*.18;}
+  counterRing.visible=ramOpen(enemy);
+  wrap.dataset.counterOpen=counterRing.visible?'1':'0';
+  if(counterRing.visible){
+   counterRing.position.set(enemy.x,.054,enemy.z);counterRing.scale.setScalar(enemy.r+.39);
+   counterRing.material.opacity=.33+.58*Math.max(0,1-enemy.t/RAM_OPEN_SECONDS);
+  }
   if(impactEvent){
    const a=actor.weak?.getWorldPosition(weakPoint);
    const cue=surfaceCue(p,enemy,a?.y);

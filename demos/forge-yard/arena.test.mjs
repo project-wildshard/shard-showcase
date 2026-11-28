@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {WEAPONS,create,spawn,press,select,tick,splitMarks,seedMarks,harrowLine} from './arena.mjs';
+import {WEAPONS,create,spawn,press,select,tick,ramOpen,splitMarks,seedMarks,harrowLine} from './arena.mjs';
 const spec=JSON.parse(readFileSync(new URL('../../art/actors/dock-enemies/manifest.json',import.meta.url))).enemyTypes;
 const advance=(s,d,dir)=>{for(let i=0;i<d*60;i++)tick(s,1/60,dir);};
 test('all twelve weapons equip and damage a reachable enemy once per swing',()=>{
@@ -185,4 +185,25 @@ test('all 100 variant entries add a verified rule to their underlying enemy beha
   }
   assert.equal(VARIANTS.length,5);
  }
+});
+
+test('base Ram gives one timed punish after a missed charge, never after a landed charge',()=>{
+ function fight(sidestep,variant=null){
+  const s=create(spec),r=spawn(s,3,{x:0,z:1.15},variant);
+  advance(s,.06);
+  assert.equal(r.state,'windup');
+  if(sidestep)advance(s,.40,[1,0]);
+  for(let i=0;i<120&&r.state!=='recover';i++)advance(s,1/60);
+  assert.equal(r.state,'recover');return [s,r];
+ }
+ const [s,r]=fight(true);
+ assert(ramOpen(r));assert.equal(s.player.hp,120);
+ select(s,7);assert(press(s,'attack'));advance(s,.38);
+ assert.equal(r.life,r.maxHp-27);assert(!ramOpen(r));
+ assert.deepEqual(s.events.filter(e=>e.counter).map(e=>e.damage),[27]);
+ const [missed,late]=fight(true);
+ advance(missed,.92);assert(!ramOpen(late));
+ const [hit,closed]=fight(false);
+ assert(hit.player.hp<120);assert(!ramOpen(closed));
+ const [,variant]=fight(true,'rusher');assert(!ramOpen(variant));
 });
