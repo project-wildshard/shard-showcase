@@ -1,0 +1,84 @@
+{
+  "trustedTouch": true,
+  "viewport": [
+    402,
+    874
+  ],
+  "opponent": "WSC-ENM-004",
+  "weapon": "021",
+  "hits": 6,
+  "taps": 8,
+  "steps": 6,
+  "totalHit": 118,
+  "final": {
+    "x": 0,
+    "z": 1.253,
+    "ex": 0,
+    "ez": -1.512,
+    "out": "win",
+    "pose": "Defeat",
+    "h": "Idle",
+    "hp": 0,
+    "hero": 68,
+    "impact": 6
+  },
+  "rows": [
+    {
+      "i": 0,
+      "dist": 7.94,
+      "x": 0,
+      "z": 5.7,
+      "ex": 0,
+      "ez": -2.242,
+      "out": "",
+      "pose": "Move",
+      "h": "Idle",
+      "hp": 118,
+      "hero": 120,
+      "impact": 0
+    },
+    {
+      "i": 4,
+      "dist": 2.76,
+      "x": 0,
+      "z": 1.253,
+      "ex": 0,
+      "ez": -1.512,
+      "out": "",
+      "pose": "Windup",
+      "h": "Stride",
+      "hp": 118,
+      "hero": 120,
+      "impact": 0
+    },
+    {
+      "i": 8,
+      "dist": 3.92,
+      "x": 0,
+      "z": 2.403,
+      "ex": 0,
+      "ez": -1.512,
+      "out": "",
+      "pose": "Recover",
+      "h": "Idle",
+      "hp": 98,
+      "hero": 68,
+      "impact": 1
+    },
+    {
+      "i": 12,
+      "dist": 2.76,
+      "x": 0,
+      "z": 1.253,
+      "ex": 0,
+      "ez": -1.512,
+      "out": "",
+      "pose": "Windup",
+      "h": "Idle",
+      "hp": 38,
+      "hero": 68,
+      "impact": 4
+    }
+  ],
+  "errors": []
+}
