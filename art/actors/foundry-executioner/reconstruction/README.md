@@ -1,0 +1,13 @@
+# An image-to-mesh underlay for the same Executioner
+
+A local comparison, not a shipping character. The existing `executioner-study.blend` is editable fitted armor, fabric, and continuous garment meshes. `sculpt-underlay.blend` is an alternate sculpting reference reconstructed from the same original concept. Use its adult stance and less regular garment volume as a guide; do not ship the smeared vertex colors, fused apron volume, or guessed rear. Neither file is a rig.
+
+## Rebuild the underlay
+
+Run in a separate disposable Python 3.12 environment. Use CPU PyTorch 2.7.1 from the official wheel index, then omegaconf 2.3.0, Pillow 11.3.0, einops 0.7.0, transformers 4.35.0, trimesh 4.0.5, scikit-image 0.25.2, imageio 2.37.0 and NumPy 1.26.4. Tested here with NumPy 2.x and the equivalent one-line trimesh compatibility fix `np.ptp(a - b)` in place of `(a - b).ptp()` in trimesh/util.py.
+
+- Clone [TripoSR](https://github.com/VAST-AI-Research/TripoSR) at `107cefdc244c39106fa830359024f6a2f1c78871` in scratch. Its source and weights are distributed under its MIT license. Do not commit upstream code or weights to this repository.
+- Place the [official TripoSR files](https://huggingface.co/stabilityai/TripoSR) `config.yaml` and `model.ckpt` in a local scratch directory. SHA256: config `74ca708ce086bf68e97709ea6b3d91f14717921c04691e84043f0eb8fcc68e62`; checkpoint `429e2c6b22a0923967459de24d67f05962b235f79cde6b032aa7ed2ffcd970ee`. Use only the official file and load with `weights_only=True` and `map_location="cpu"` in tsr/system.py.
+- Download [the DINO config only](https://huggingface.co/facebook/dino-vitb16/blob/main/config.json), SHA256 `b87c0270b97db085fd82cf114a761fd0f62ae7914fbd407c752a2260646b689c`; the model weights themselves are already in the TripoSR checkpoint. Define `WSC_DINO_CFG` as the full local config path, `WSC_WEIGHTS` as the directory above, and `HF_HUB_OFFLINE=1`. In the scratch upstream checkout remove the unused `import rembg` line in tsr/utils.py if the optional library is not installed. The original gray-background art is padded to 512 square, not sent to a service.
+- Add the scratch TripoSR directory and this reconstruction directory to PYTHONPATH. Run `WSC_RES=192 WSC_DENSITY=27 python extract.py ../concept.webp /tmp/executioner-raw.glb`. The exact committed surface was built from the uncompressed concept original; the retained WebP is close enough to reproduce the workflow, not the exact vertices.
+- Run `blender -b --python-exit-code 1 --python normalize_study.py -- /tmp/executioner-raw.glb /tmp/executioner-comparison` in Blender 4.3.2 or later to orient, scale, lightly smooth, and render front three-quarter, side and rear. Nothing from this comparison is loaded by the game.
