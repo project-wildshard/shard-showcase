@@ -1,0 +1,2 @@
+# Signal Shear browser bench
+`bench.mjs` is the editable viewer source. It uses only third-party Three.js and the original Wildshard GLB; no Fable scenes, code, assets or HUD. Generate the static bundle with esbuild 0.28.2 and Three.js 0.187.0: `esbuild bench.mjs --bundle --minify --format=esm --legal-comments=linked --outfile=../../../dist/signal-shear/bench.js`. Copy the runtime model from the art branch and serve the website dist over HTTP.
