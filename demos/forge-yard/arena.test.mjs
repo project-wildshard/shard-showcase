@@ -241,3 +241,12 @@ test('Breakwater tide warns and sweeps its marked lane once per wave; Forge Yard
  dodge.player.face=[1,0];advance(dodge,5.32);assert(press(dodge,'dodge'));advance(dodge,.85);
  assert.equal(dodge.surge.hits,0);
 });
+test('Snare release preserves the strict 0.93 m marked radius',()=>{
+ for(const [offset,hp] of [[.925,104],[.935,120]]){
+  const s=create(extra),b=spawn(s,2,{x:0,z:3.6});
+  b.state='windup';b.t=b.windup;b.windReady=b.windup;b.lock=[0,1];
+  b.mark={x:0,z:s.player.z};s.player.x=offset;
+  tick(s,1/60);
+  assert.equal(b.state,'active');assert.equal(s.player.hp,hp);
+ }
+});

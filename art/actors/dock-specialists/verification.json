@@ -436,8 +436,8 @@
       "id": "WSC-ENM-007",
       "file": "snare.glb",
       "behavior": "burrow",
-      "triangles": 672,
-      "bytes": 116836,
+      "triangles": 2912,
+      "bytes": 265560,
       "clips": {
         "Idle": {
           "duration": 1.6,
@@ -499,6 +499,8 @@
         "Windup": {
           "duration": 0.767,
           "moving_nodes": [
+            "blade_L",
+            "blade_R",
             "body",
             "tail"
           ],
@@ -506,12 +508,22 @@
             [
               "body",
               "translation",
-              0.23
+              0.22
+            ],
+            [
+              "blade_L",
+              "rotation",
+              0.294
+            ],
+            [
+              "blade_R",
+              "rotation",
+              0.294
             ],
             [
               "tail",
               "rotation",
-              0.2
+              0.165
             ]
           ]
         },
@@ -520,23 +532,35 @@
           "moving_nodes": [
             "blade_L",
             "blade_R",
-            "nose"
+            "body",
+            "nose",
+            "tail"
           ],
           "signature": [
             [
-              "nose",
+              "body",
               "translation",
-              0.38
+              0.25
+            ],
+            [
+              "nose",
+              "rotation",
+              0.239
             ],
             [
               "blade_L",
               "rotation",
-              0.304
+              0.363
             ],
             [
               "blade_R",
               "rotation",
-              0.304
+              0.363
+            ],
+            [
+              "tail",
+              "rotation",
+              0.09
             ]
           ]
         },
@@ -545,23 +569,35 @@
           "moving_nodes": [
             "blade_L",
             "blade_R",
-            "nose"
+            "body",
+            "nose",
+            "tail"
           ],
           "signature": [
             [
-              "nose",
+              "body",
               "translation",
-              0.589
+              0.387
+            ],
+            [
+              "nose",
+              "rotation",
+              0.239
             ],
             [
               "blade_L",
               "rotation",
-              0.468
+              0.558
             ],
             [
               "blade_R",
               "rotation",
-              0.468
+              0.558
+            ],
+            [
+              "tail",
+              "rotation",
+              0.09
             ]
           ]
         },
@@ -634,7 +670,7 @@
           ]
         }
       },
-      "status": "modeled and rigged; prototype yard integration pending"
+      "status": "model, rig, sockets, and clips verified; gameplay tested separately"
     },
     {
       "id": "WSC-ENM-008",

@@ -6,7 +6,7 @@ ROOT=Path(__file__).resolve().parents[3];D=ROOT/'art/actors/dock-specialists'
 TMP=Path(sys.argv[sys.argv.index('--')+1]) if '--' in sys.argv else D
 TMP.mkdir(parents=True,exist_ok=True)
 ONLY=sys.argv[sys.argv.index('--')+2] if '--' in sys.argv and len(sys.argv)>sys.argv.index('--')+2 else None
-if ONLY not in (None,'kiln'):raise ValueError('Optional export selector: kiln')
+if ONLY is not None and ONLY not in ('hook','kiln','snare','buoy'):raise ValueError('Optional export selector: hook, kiln, snare, or buoy')
 bpy.ops.wm.read_factory_settings(use_empty=True);S=bpy.context.scene;S.render.fps=30
 def mat(n,c,m=.61,r=.4,e=0):
  a=bpy.data.materials.new(n);a.diffuse_color=(*c,1);a.use_nodes=True
@@ -95,15 +95,32 @@ for i,(slug,label,tint,motif) in enumerate(spec,5):
    for y in (-.31,-.18,-.05):attach(n,box(c,'Boot sole cleat',(x,y,.062),(.406,.063,.081),bright,b=.012))
   sockets={'weak':((0,-.443,1.30),'body'),'attack':((0,-.67,1.12),'shield')}
  elif motif=='burrow':
-  joint('body',(0,.06,.37),'root');joint('nose',(0,-.46,.30));joint('tail',(0,.49,.30));joint('blade_L',(-.33,-.53,.33),'nose');joint('blade_R',(.33,-.53,.33),'nose')
-  for y,r,n in [(-.37,.45,'nose'),(0,.40,'body'),(.39,.36,'tail'),(.76,.26,'tail')]:
-   attach(n,orb(c,'Segmented shell',(0,y,.36),(r,.31,.32),paint),
-          box(c,'Straked plate',(0,y,.67),(r*.68,.31,.14),bright,b=.035))
-  attach('nose',box(c,'Sensor grille',(0,-.676,.33),(.55,.12,.25),steel,b=.053),
-         box(c,'Sensor scan',(0,-.75,.36),(.32,.038,.085),glow,b=.012))
-  for x,n in [(-.43,'blade_L'),(.43,'blade_R')]:
-   attach(n,box(c,'Outboard cutter',(x,-.57,.26),(.18,.59,.12),copper,b=.034,rotation=x*.9))
-  sockets={'weak':((0,-.77,.36),'nose'),'attack':((0,-.85,.24),'nose')}
+  joint('body',(0,.06,.37),'root');joint('nose',(0,-.39,.32));joint('tail',(0,.41,.32))
+  joint('blade_L',(-.29,-.50,.29),'nose');joint('blade_R',(.29,-.50,.29),'nose')
+  # Flattened steel manta body, three overlapping armor saddles and a punched tail fan.
+  for y,w,l,h,n in [(-.33,.50,.33,.27,'nose'),(.025,.56,.35,.33,'body'),(.40,.46,.32,.28,'tail')]:
+   attach(n,orb(c,'Low forged carapace',(0,y,.33),(w,l,h),steel),
+          orb(c,'Enamel armor saddle',(0,y+.03,.445),(w*.91,l*.94,h*.59),paint),
+          box(c,'Oil-dark keel stripe',(0,y,.33+h*.98),(w*.29,l*.94,.067),rubber,b=.026))
+   for v in (-1,1):
+    attach(n,box(c,'Trailing copper flange',(v*w*.70,y+.113,.438),(.21,.21,.078),copper,b=.029,rotation=v*.25),
+           cyl(c,'Exposed rivet',(v*w*.65,y+.071,.499),.026,.019,bright,v=8))
+  attach('tail',box(c,'Split tail fin',(0,.74,.28),(.62,.30,.107),paint,b=.045),
+         box(c,'Tail relief notch',(0,.829,.337),(.098,.117,.026),rubber,b=.012))
+  for x in (-.166,0,.166):
+   attach('tail',box(c,'Tail exhaust slot',(x,.705,.341),(.065,.145,.019),glow,b=.009))
+  attach('nose',box(c,'Swept sensor brow',(0,-.58,.395),(.642,.19,.139),steel,b=.06),
+         box(c,'Cyan eye blade',(0,-.685,.404),(.401,.032,.045),glow,b=.011),
+         cyl(c,'Pressure mandrel',(0,-.558,.268),.123,.245,copper,'Y',v=12),
+         cyl(c,'Pressure aperture',(0,-.688,.268),.071,.023,warm,'Y',v=10))
+  for v,n in [(-1,'blade_L'),(1,'blade_R')]:
+   attach(n,cyl(c,'Jaw drum',(v*.29,-.49,.30),.115,.16,bright,v=10),
+          rod(c,'Aft jaw arm',(v*.26,-.42,.30),(v*.52,-.65,.26),.074,steel),
+          rod(c,'Swept carbide edge',(v*.52,-.65,.26),(v*.36,-.91,.23),.064,bright),
+          box(c,'Jaws warning chevron',(v*.412,-.647,.31),(.105,.145,.037),copper,b=.017,rotation=-v*.62))
+   for t in range(3):
+    attach(n,box(c,'Inner cutting tooth',(v*(.438-.033*t),-.706-.065*t,.231),(.075,.043,.061),bright,b=.011,rotation=-v*.31))
+  sockets={'weak':((0,-.703,.406),'nose'),'attack':((0,-.85,.27),'nose')}
  else:
   joint('body',(0,0,1.14),'root');joint('cage',(0,0,1.23));joint('fin_L',(-.39,0,1.26));joint('fin_R',(.39,0,1.26))
   attach('body',orb(c,'Warning buoy',(0,0,1.25),(.38,.38,.51),paint),
@@ -148,13 +165,18 @@ for i,(slug,label,tint,motif) in enumerate(spec,5):
   if kind=='windup':
    if motif=='hook':f['arm'][0]=-x*.60;f['chain'][2]=x*1.02
    elif motif=='guard':f['shield'][1]=-x*.14;f['body'][0]=-x*.12
-   elif motif=='burrow':f['body'][4]=-x*.23;f['tail'][0]=-x*.40
+   elif motif=='burrow':
+    f['body'][4]=-x*.22;f['tail'][0]=-x*.33
+    f['blade_L'][1]=x*.59;f['blade_R'][1]=-x*.59
    else:f['cage'][1]=x*1.61;f['fin_L'][2]=x*1.18;f['fin_R'][2]=-x*1.18
   if kind in ('attack','special'):
    bonus=1.55 if kind=='special' else 1
    if motif=='hook':f['chain'][2]=-x*.95*bonus;f['arm'][0]=x*.48*bonus
    elif motif=='guard':f['shield'][5]=x*.32*bonus;f['body'][0]=x*.27*bonus
-   elif motif=='burrow':f['nose'][4]=x*.38*bonus;f['blade_L'][1]=x*.61*bonus;f['blade_R'][1]=-x*.61*bonus
+   elif motif=='burrow':
+    f['body'][4]=x*.25*bonus;f['nose'][0]=-x*.48
+    f['blade_L'][1]=-x*.73*bonus;f['blade_R'][1]=x*.73*bonus
+    f['tail'][0]=x*.18
    else:f['cage'][1]=-x*1.65*bonus;f['body'][4]=x*.24*bonus;f['fin_R'][2]=x*bonus
   if kind=='recover':f[P][0]=x*(.12 if motif=='guard' else .23);f[Q][2]=-x*.17
   if kind=='hit':f['body'][2]=x*.34;f[P][0]=-x*.35

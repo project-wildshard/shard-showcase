@@ -4,6 +4,7 @@ import {DUEL_CAMERA_AXIS,DUEL_CAMERA_FOV,duelDistance} from './duel-camera.mjs';
 import {createImpactEffects,surfaceCue} from './impact-effects.mjs';
 import {createSurgeFx} from './breakwater-surge-fx.mjs';
 import {SURGE} from './breakwater-surge.mjs';
+import {createSnareTell} from './snare-tell.mjs';
 import {createBreakwaterGantry,GANTRY_Z,GANTRY_HEIGHT_SCALE} from './breakwater-gantry.mjs';
 import {createBreakwaterDressing} from './breakwater-dressing.mjs';
 import {createFoundryDressing} from './foundry-dressing.mjs';
@@ -99,6 +100,7 @@ try{
   wrap.dataset.heroClip=name;
  }
  const warningPlane=mesh(new T.PlaneGeometry(1,1),basic(0xff552f,.29));
+ const snareTell=createSnareTell(scene);
  const warningRing=mesh(new T.RingGeometry(.88,1,64),basic(0xff552f,.74));
  // Three reusable decals; the bright outside edge is the same radius as damage.
  const sweepMarks=joint(scene,0,.032,0);
@@ -404,7 +406,7 @@ try{
   const two=['stilt','relay','seed'].includes(enemy.attack),flank=enemy.attack==='flank',harrow=enemy.attack==='harrow';
   const markerAfter=enemy.life>0&&enemy.state==='active'&&flank&&!enemy.dashHit;
   const warn=enemy.life>0&&(enemy.state==='windup'||(bomb&&enemy.state==='active'&&!enemy.dashHit));
-  const radial=['windmill','pounce','burrow','burst','mortar','flank'].includes(enemy.attack);
+  const radial=['windmill','pounce','burst','mortar','flank'].includes(enemy.attack);
   const fanned=enemy.attack==='vacuum'||enemy.attack==='recoil'||harrow;
   const sweep=enemy.attack==='windmill'&&enemy.life>0;
   const releasing=sweep&&enemy.state==='active'&&enemy.t<.14;
@@ -421,7 +423,7 @@ try{
    sweepClockGeo.setDrawRange(0,6*Math.ceil(left*64));
    wrap.dataset.sweepRadius=r.toFixed(3);wrap.dataset.sweepRemaining=left.toFixed(3);
   }
-  warningRing.visible=(warn&&radial&&!sweep)||markerAfter;warningPlane.visible=warn&&!radial&&!two&&!fanned;
+  warningRing.visible=(warn&&radial&&!sweep)||markerAfter;warningPlane.visible=warn&&!radial&&!two&&!fanned&&enemy.attack!=='burrow';
   intakeFan.visible=enemy.life>0&&enemy.attack==='vacuum'&&(warn||enemy.state==='active'&&enemy.t<.42);
   jetFan.visible=warn&&enemy.attack==='recoil';
   for(const o of [intakeFan,jetFan])if(o.visible){
@@ -437,10 +439,15 @@ try{
   }
   if(warningRing.visible){
    const r=enemy.attack==='pounce'?.85:enemy.reach+.25,d=enemy.attack==='pounce'?Math.min(enemy.lockLength,enemy.reach):0;
-   const marked=bomb||enemy.attack==='burrow'||flank;
+   const marked=bomb||flank;
    warningRing.position.set(marked?enemy.mark.x:enemy.x+enemy.lock[0]*d,.027,marked?enemy.mark.z:enemy.z+enemy.lock[1]*d);
-   warningRing.scale.setScalar(bomb?MORTAR_RADIUS:flank?FLANK_RADIUS:marked?.93:r);
+   warningRing.scale.setScalar(bomb?MORTAR_RADIUS:flank?FLANK_RADIUS:r);
   }
+  const tell=snareTell(enemy);
+  if(tell){
+   wrap.dataset.snarePhase=tell.phase;wrap.dataset.snareRadius=tell.radius;
+   wrap.dataset.snareX=enemy.mark.x.toFixed(3);wrap.dataset.snareZ=enemy.mark.z.toFixed(3);
+  }else delete wrap.dataset.snarePhase;
   if(warningPlane.visible){
    const d=enemy.reach;
    warningPlane.position.set(cross?enemy.mark.x:enemy.x+enemy.lock[0]*d/2,.030,cross?enemy.mark.z:enemy.z+enemy.lock[1]*d/2);

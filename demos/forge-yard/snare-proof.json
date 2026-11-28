@@ -1,0 +1,45 @@
+{
+  "viewport": [
+    402,
+    874
+  ],
+  "trustedTouch": true,
+  "trials": [
+    {
+      "mode": "stay",
+      "frames": {
+        "windup": {
+          "hp": 120,
+          "pose": "Windup",
+          "radius": 0.93,
+          "distance": 0
+        },
+        "release": {
+          "hp": 104,
+          "pose": "Attack",
+          "radius": 0.93,
+          "distance": 0
+        }
+      },
+      "errors": []
+    },
+    {
+      "mode": "step-out",
+      "frames": {
+        "windup": {
+          "hp": 120,
+          "pose": "Windup",
+          "radius": 0.93,
+          "distance": 0
+        },
+        "release": {
+          "hp": 120,
+          "pose": "Attack",
+          "radius": 0.93,
+          "distance": 1.533
+        }
+      },
+      "errors": []
+    }
+  ]
+}

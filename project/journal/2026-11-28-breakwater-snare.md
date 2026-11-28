@@ -1,0 +1,7 @@
+# Breakwater Snare armored jaws
+
+Rebuild WSC-ENM-007 as a low-slung armored dock skater with enamel saddles, trailing copper flanges, keel stripes, a split tail and two articulated carbide jaws. The jaws draw apart in windup and snap inward in Attack and Special. The .blend remains editable; the other three specialist GLBs are byte-identical. The new export has 2,912 triangles, 265,560 bytes, nine clips and three runtime sockets.
+
+Replace the thin generic warning ring for this enemy with a dedicated inward-chevron tell and a short emergence burst. The visible edge and damage use the same 0.93 m radius. The combat rules, relocation, damage and timings are unchanged. The fixed-step test checks 5 mm inside and outside the boundary. In separate 402 × 874 trusted Chromium trials, standing at the center cost 16 HP while running 1.533 m away before release cost none. Both frames used the existing Attack state. These canvas-only pictures omit HUD and controls and do not represent an iPhone hardware test.
+
+Rebuild just the new GLB and the shared lineup using `blender -b -t 8 --factory-startup --python-exit-code 1 --python scripts/blender/dock-specialists/build.py -- /tmp/dock-specialists snare`. Verify using `python scripts/blender/dock-enemies/verify.py art/actors/dock-specialists specialists`. The Forge Yard minified bundle and 22 Node tests passed. Run `demos/forge-yard/snare-smoke.mjs` against the local Forge Yard URL to reproduce.

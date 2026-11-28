@@ -5,6 +5,7 @@ export const ARENA=10.5;
 export const RAM_OPEN_SECONDS=.88;
 const SHIELD_OPEN_STATES=['windup','recover','hit','feint'];
 export const wardenOpen=b=>b.attack==='guard'&&b.life>0&&SHIELD_OPEN_STATES.includes(b.state);
+export const SNARE_RADIUS=.93;
 export const sweepRadius=b=>b.reach+.32;
 export const ramOpen=b=>b.id==='WSC-ENM-004'&&!b.variant&&b.state==='recover'&&b.life>0&&!b.chargeConnected&&b.t<RAM_OPEN_SECONDS;
 export const COVER=[[-3.1,-.6,.78],[2.7,-2.8,.88],[-2.2,3.2,.93],[4.2,2.9,.66]];
@@ -212,7 +213,7 @@ export function tick(s,seconds,input=[0,0]){
    if(b.attack==='burrow'){
     const old={x:b.x,z:b.z};
     if(!reachBlocked(old,b.mark)){place(b,b.mark.x-b.lock[0]*.45,b.mark.z-b.lock[1]*.45);}
-    if(gap(p,b.mark)<.93&&!reachBlocked(b,p))strikePlayer(s,b);
+    if(gap(p,b.mark)<SNARE_RADIUS&&!reachBlocked(b,p))strikePlayer(s,b);
    }
    if(b.attack==='salvo'){b.shots=1;fireSalvo(s,b,p);}
    if(b.attack==='mortar')s.events.push({type:'mortar-launch',enemy:b.id});
