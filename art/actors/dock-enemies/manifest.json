@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "units": "meters",
+  "enemyTypes": [
+    {"id":"WSC-ENM-001","name":"Gate Sentry","model":"sentry.glb","move":"biped","attack":"windmill","radius":0.55,"height":2.21,"pace":1.65,"hp":92,"reach":1.75,"windup":0.68,"recover":0.70},
+    {"id":"WSC-ENM-002","name":"Rivet Skitter","model":"skitter.glb","move":"quadruped","attack":"pounce","radius":0.64,"height":1.10,"pace":2.65,"hp":64,"reach":3.40,"windup":0.50,"recover":0.62},
+    {"id":"WSC-ENM-003","name":"Beacon Wasp","model":"wasp.glb","move":"hover","attack":"beam","radius":0.57,"height":1.67,"pace":1.95,"hp":48,"reach":6.25,"windup":0.80,"recover":0.85},
+    {"id":"WSC-ENM-004","name":"Ballast Ram","model":"ram.glb","move":"roller","attack":"charge","radius":0.70,"height":1.16,"pace":1.25,"hp":118,"reach":5.30,"windup":0.90,"recover":1.15}
+  ],
+  "status": "art plus authored yard tuning proposals; independent behavior not wired yet"
+}
