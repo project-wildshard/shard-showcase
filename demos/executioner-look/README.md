@@ -26,3 +26,23 @@ node demos/executioner-look/compare.mjs
 ```
 
 The experiment uses the same 1280 × 720 Chrome viewport, cameras, directional/ambient light, and untextured gray material. Silhouettes are 243 px and 241 px tall in the distance view. Their stances are not identical. The underlay has a better low-contrast adult silhouette in the shoulder and forearm, but the mask melts into the hood and the skirt joins into a single volume. Fitted geometry preserves the real mask opening, separate panels and boots, but the cloth drape, boots, and posture still need stronger human shapes. Do not promote the underlay directly. Carry its macro proportions into fitted geometry and use independent fabric/armor weights and separations. Use the same exact pose when evaluating a material-only change.
+
+## Same-enemy look-development experiments
+
+```sh
+A=art/actors/foundry-executioner
+D=demos/executioner-look
+blender -b --python-exit-code 1 --python "$A/build.py" -- /tmp/hybrid hybrid
+blender -b /tmp/hybrid/executioner-study.blend --python-exit-code 1 --python "$A/pose_study.py" -- /tmp/hybrid-pose
+blender -b /tmp/hybrid-pose/executioner-pose-study.blend --python-exit-code 1 \
+  --python "$A/export_look.py" -- "$D/hybrid.glb" 1
+blender -b /tmp/hybrid-pose/executioner-pose-study.blend --python-exit-code 1 \
+  --python "$A/bake_look.py" -- /tmp/executioner-bake 1 1024
+cp /tmp/executioner-bake/baked.glb "$D/"
+node "$D/compare.mjs" http://127.0.0.1:5250/demos/executioner-look/ /tmp/hybrid-comparison hybrid
+node "$D/material-compare.mjs"
+```
+
+The hybrid warps authored mesh and rig landmarks together, using restrained silhouette guidance from the local underlay. Both fitted forms projected to 243 px at desktop distance, and the side profile most clearly shows a fuller upper back. This first hybrid pass is deliberately small. It does not justify replacing the fitted source on its own.
+
+The next comparisons freeze hybrid at rest frame 1 and keep camera and lights fixed. A 1024² atlas contains real base color, roughness/metallic and baked normal data, and packs the model into one material. It looks less smooth than vertex-only but is ~3.36 MB. Diagnostic procedural steel, cloth, leather and ceramic add distinct finish and derivative-filtered relief to the vertex variant in Three.js, still ~1.15 MB with no image textures. This gives the clearest worn-metal read in close-up; the first pass over-speckles broad uninterrupted plate and must be localized, not promoted wholesale. Repeat at the same camera and frame when comparing fixes. No browser frame rate, locomotion or attack shown by these static samples.

@@ -5,6 +5,10 @@ from mathutils import Vector
 args=sys.argv[sys.argv.index('--')+1:]
 out=Path(args[0]);out.mkdir(parents=True,exist_ok=True)
 scene=bpy.context.scene
+is_hybrid=scene.get('executioner_fit')=='hybrid'
+if is_hybrid:
+    sys.path.insert(0,str(Path(__file__).resolve().parent))
+    from hybrid_fit import fit
 model=bpy.data.collections['Executioner | Editable Form']
 ad=bpy.data.armatures.new('Executioner | pose skeleton')
 rig=bpy.data.objects.new(ad.name,ad);model.objects.link(rig)
@@ -12,6 +16,7 @@ bpy.ops.object.select_all(action='DESELECT');rig.select_set(True)
 bpy.context.view_layer.objects.active=rig;rig.show_in_front=True;bpy.ops.object.mode_set(mode='EDIT')
 spec={}
 def bone(n,a,b,parent=None):
+    if is_hybrid:a,b=fit(a),fit(b)
     x=ad.edit_bones.new(n);x.head=a;x.tail=b
     if parent:
         x.parent=ad.edit_bones[parent]
@@ -71,7 +76,7 @@ def blend_weights(v,one,two,reach):
     a,hinge=spec[one];_,b=spec[two];axis=((hinge-a).normalized()+(b-hinge).normalized()).normalized()
     mix=smooth(.5+(v-hinge).dot(axis)/(2*reach))
     return {one:1-mix,two:mix}
-report={'bones':len(ad.bones),'armatureMeshes':[],'rigidParts':[]}
+report={'fit':scene.get('executioner_fit','authored'),'bones':len(ad.bones),'armatureMeshes':[],'rigidParts':[]}
 for ob in list(model.objects):
     if ob==rig:continue
     name=ob.name

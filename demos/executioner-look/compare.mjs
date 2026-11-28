@@ -1,7 +1,8 @@
 import {chromium} from 'playwright';
 import assert from 'node:assert/strict';
 import {mkdirSync} from 'node:fs';
-const [url='http://127.0.0.1:5250/demos/executioner-look/',out='/tmp/executioner-ab']=process.argv.slice(2);
+const [url='http://127.0.0.1:5250/demos/executioner-look/',out='/tmp/executioner-ab',second='reconstructed']=process.argv.slice(2);
+if(!['reconstructed','hybrid'].includes(second))throw Error('Select reconstructed or hybrid.');
 mkdirSync(out,{recursive:true});
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_BINARY,
  args:['--enable-unsafe-swiftshader','--use-angle=swiftshader',...JSON.parse(process.env.CHROMIUM_EXTRA_ARGS??'[]')]});
@@ -9,7 +10,7 @@ const tests=[];
 try{
  const page=await browser.newPage({viewport:{width:1280,height:720},deviceScaleFactor:1});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- for(const mesh of ['authored','reconstructed']){
+ for(const mesh of ['authored',second]){
   const caseURL=new URL(url);caseURL.searchParams.set('mesh','./'+mesh+'.glb');caseURL.searchParams.set('tone','clay');
   await page.goto(caseURL.href);
   await page.waitForFunction(()=>['ready','error'].includes(document.querySelector('#stage').dataset.state));

@@ -1,0 +1,56 @@
+{
+  "staticPoseOnly": true,
+  "sameCameraAndLighting": true,
+  "bakedMaps": 3,
+  "noNewTexturesInProcedural": true,
+  "samples": [
+    {
+      "label": "desktop",
+      "kind": "vertex",
+      "pose": "hybrid rest frame 1",
+      "projectedHeightPx": 243,
+      "triangles": 43575,
+      "assetBytes": 1148316
+    },
+    {
+      "label": "desktop",
+      "kind": "baked",
+      "pose": "hybrid rest frame 1",
+      "projectedHeightPx": 243,
+      "triangles": 43576,
+      "assetBytes": 3360912
+    },
+    {
+      "label": "desktop",
+      "kind": "procedural",
+      "pose": "hybrid rest frame 1",
+      "projectedHeightPx": 243,
+      "triangles": 43575,
+      "assetBytes": 1148316
+    },
+    {
+      "label": "portrait",
+      "kind": "vertex",
+      "pose": "hybrid rest frame 1",
+      "projectedHeightPx": 294.9,
+      "triangles": 43575,
+      "assetBytes": 1148316
+    },
+    {
+      "label": "portrait",
+      "kind": "baked",
+      "pose": "hybrid rest frame 1",
+      "projectedHeightPx": 294.9,
+      "triangles": 43576,
+      "assetBytes": 3360912
+    },
+    {
+      "label": "portrait",
+      "kind": "procedural",
+      "pose": "hybrid rest frame 1",
+      "projectedHeightPx": 294.9,
+      "triangles": 43575,
+      "assetBytes": 1148316
+    }
+  ]
+}

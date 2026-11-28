@@ -4,7 +4,9 @@ from math import sin, cos, pi
 from mathutils import Vector
 from pathlib import Path
 
-out = Path(sys.argv[sys.argv.index('--')+1] if '--' in sys.argv else '/tmp/executioner')
+extra=sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []
+out=Path(extra[0] if extra else '/tmp/executioner')
+hybrid='hybrid' in extra[1:]
 out.mkdir(parents=True, exist_ok=True)
 bpy.ops.object.select_all(action='SELECT')
 bpy.ops.object.delete(use_global=False)
@@ -298,6 +300,13 @@ line('Waist belt | hand-wrought buckle',[
   (-.052,-.116,1.142),(-.047,-.127,1.155),(-.015,-.127,1.157),
   (-.011,-.127,1.126),(-.042,-.127,1.126),(-.052,-.116,1.142)],.0038,edge)
 line('Waist belt | keeper pin',[(-.045,-.129,1.143),(-.016,-.128,1.139)],.0022,oxide)
+if hybrid:
+    sys.path.insert(0,str(Path(__file__).resolve().parent))
+    from hybrid_fit import apply_collection
+    apply_collection(MODEL)
+    scene['executioner_fit']='hybrid'
+else:
+    scene['executioner_fit']='authored'
 def aim(o,point): o.rotation_euler=(Vector(point)-o.location).to_track_quat('-Z','Y').to_euler()
 def lamp(label,loc,watts,size,color):
     d=bpy.data.lights.new(label,'AREA');d.energy=watts;d.shape='DISK';d.size=size;d.color=color

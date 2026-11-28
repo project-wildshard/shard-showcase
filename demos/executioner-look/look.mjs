@@ -1,6 +1,7 @@
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {applyFoundryMaterial} from './foundry-material.mjs';
 
 const stage=document.querySelector('#stage'), status=document.querySelector('#status');
 try {
@@ -20,9 +21,10 @@ try {
  const params=new URL(location.href).searchParams,source=params.get('mesh')??'./look.glb';
  if(!/^\.\/[a-z0-9-]+\.glb$/i.test(source))throw Error('Use a local GLB filename.');
  const clay=params.get('tone')==='clay';
+ const procedural=!clay&&params.get('tone')==='procedural';
  const neutral=clay?new T.MeshStandardMaterial({color:0x888783,roughness:.72,metalness:0}):null;
  const gltf=await new GLTFLoader().loadAsync(source);scene.add(gltf.scene);
- let tris=0;gltf.scene.traverse(o=>{if(o.isMesh){if(neutral)o.material=neutral;o.castShadow=true;o.receiveShadow=true;tris+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;}});
+ let tris=0;gltf.scene.traverse(o=>{if(o.isMesh){if(neutral)o.material=neutral;else if(procedural)applyFoundryMaterial(o.material);o.castShadow=true;o.receiveShadow=true;tris+=(o.geometry.index?.count??o.geometry.attributes.position.count)/3;}});
  const bounds=new T.Box3().setFromObject(gltf.scene), span=bounds.getSize(new T.Vector3());
  if(span.y<1.75||span.y>2.15||!Number.isFinite(tris))throw Error('Unexpected model scale.');
  const camera=new T.PerspectiveCamera(39,1,.1,100);
@@ -47,5 +49,5 @@ try {
  document.querySelector('nav').addEventListener('click',e=>{if(e.target.tagName==='BUTTON')choose(e.target.value);});
  window.addEventListener('resize',()=>choose(view));choose('desktop');
  status.textContent='Static pose from the editable Blender model. No gameplay.';
- stage.dataset.tone=clay?'clay':'color';stage.dataset.triangles=String(tris);stage.dataset.modelHeight=span.y.toFixed(3);stage.dataset.state='ready';
+ stage.dataset.tone=clay?'clay':procedural?'procedural':'color';stage.dataset.triangles=String(tris);stage.dataset.modelHeight=span.y.toFixed(3);stage.dataset.state='ready';
 } catch(error){stage.dataset.state='error';status.textContent=error.message;console.error(error);}
