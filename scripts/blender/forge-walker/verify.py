@@ -17,7 +17,8 @@ for socket,expected in [('grip_R','hand_R'),('grip_L','hand_L'),('ground_socket'
  assert parents[names[socket]]==expected
 assert max(map(abs,nodes[names['ground_socket']].get('translation',[0,0,0])))<1e-5
 assert not g.get('images') and not g.get('cameras')
-expected={'Idle','Stride','Turn','Dodge','Hit','Defeat','Sweep','Chop','Thrust'}
+attack={'Sweep','Chop','Thrust','MaulDrop','SlipfinRip','NeedleJab'}
+expected={'Idle','Stride','Turn','Dodge','Hit','Defeat'}|attack
 assert {a['name'] for a in g['animations']}==expected
 def read(i,count):
  a=g['accessors'][i];v=g['bufferViews'][a['bufferView']];off=binary+v.get('byteOffset',0)+a.get('byteOffset',0)
@@ -35,10 +36,12 @@ for a in g['animations']:
   delta=max(math.dist(rows[0],r) for r in rows)
   if delta>.012:changed.add(name);deltas[name]=round(delta,3)
  assert changed and .36<=duration<=1.65
- if a['name'] in ('Sweep','Chop','Thrust'):assert {'chest','upper_R','elbow_R'}<=changed
+ if a['name'] in attack:
+  assert {'chest','upper_R','elbow_R'}<=changed and abs(duration-29/30)<.001
+ if a['name'] in {'MaulDrop','SlipfinRip','NeedleJab'}:assert {'pelvis','upper_L','elbow_L'}<=changed
  proof[a['name']]={'durationSeconds':round(duration,3),'movingNodes':sorted(changed),'deltas':deltas}
-assert len({json.dumps(proof[k]['deltas'],sort_keys=True) for k in ['Sweep','Chop','Thrust']})==3
+assert len({json.dumps(proof[k]['deltas'],sort_keys=True) for k in attack})==len(attack)
 tri=sum(g['accessors'][p['indices']]['count']//3 for m in g['meshes'] for p in m['primitives'])
-assert 0<tri<9000 and len(raw)<650000
+assert 0<tri<9000 and len(raw)<725000
 print(json.dumps({'triangles':tri,'bytes':len(raw),'articulatedJoints':len(required),
  'sockets':{'grip_R':'hand_R','grip_L':'hand_L','ground_socket':'root'},'clips':proof},indent=2))

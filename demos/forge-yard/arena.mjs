@@ -128,7 +128,7 @@ export function tick(s,seconds,input=[0,0]){
  if(p.slash){
   const a=p.slash;a.time+=dt;
   if(!a.done&&a.time>=a.weapon.wind){
-   a.done=true;
+   a.done=true;a.releaseAt=a.time;
    const cone=a.weapon.style==='thrust'?.67:a.weapon.style==='chop'?.23:-.05;
    for(const b of s.bots)if(b.life>0&&gap(p,b)<=a.weapon.reach+b.r&&dot(p.face,norm(b.x-p.x,b.z-p.z))>=cone&&!reachBlocked(p,b)){
     const front=dot(b.face,norm(p.x-b.x,p.z-b.z))>.35;

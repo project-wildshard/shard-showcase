@@ -1,0 +1,118 @@
+{
+  "trustedTouch": true,
+  "viewport": [
+    402,
+    874
+  ],
+  "report": [
+    {
+      "id": "014",
+      "weapon": "Signal Shear",
+      "clip": "Sweep",
+      "authoredPhase": 0.48276,
+      "actualReleaseMs": 217,
+      "oldUniformPeakMs": 266,
+      "damage": 19
+    },
+    {
+      "id": "015",
+      "weapon": "Dock Cleaver",
+      "clip": "Chop",
+      "authoredPhase": 0.48276,
+      "actualReleaseMs": 317,
+      "oldUniformPeakMs": 299,
+      "damage": 22
+    },
+    {
+      "id": "016",
+      "weapon": "Line Pike",
+      "clip": "Thrust",
+      "authoredPhase": 0.48276,
+      "actualReleaseMs": 267,
+      "oldUniformPeakMs": 275,
+      "damage": 15
+    },
+    {
+      "id": "017",
+      "weapon": "Rivet Maul",
+      "clip": "MaulDrop",
+      "authoredPhase": 0.48276,
+      "actualReleaseMs": 433,
+      "oldUniformPeakMs": 396,
+      "damage": 30
+    },
+    {
+      "id": "018",
+      "weapon": "Harbor Hook",
+      "clip": "Sweep",
+      "authoredPhase": 0.48276,
+      "actualReleaseMs": 300,
+      "oldUniformPeakMs": 299,
+      "damage": 17
+    },
+    {
+      "id": "019",
+      "weapon": "Cinder Axe",
+      "clip": "Chop",
+      "authoredPhase": 0.48276,
+      "actualReleaseMs": 367,
+      "oldUniformPeakMs": 352,
+      "damage": 26
+    },
+    {
+      "id": "020",
+      "weapon": "Relay Baton",
+      "clip": "Sweep",
+      "authoredPhase": 0.48276,
+      "actualReleaseMs": 133,
+      "oldUniformPeakMs": 169,
+      "damage": 13
+    },
+    {
+      "id": "021",
+      "weapon": "Beacon Lance",
+      "clip": "Thrust",
+      "authoredPhase": 0.48276,
+      "actualReleaseMs": 350,
+      "oldUniformPeakMs": 333,
+      "damage": 20
+    },
+    {
+      "id": "022",
+      "weapon": "Slipfin",
+      "clip": "SlipfinRip",
+      "authoredPhase": 0.48276,
+      "actualReleaseMs": 150,
+      "oldUniformPeakMs": 212,
+      "damage": 15
+    },
+    {
+      "id": "023",
+      "weapon": "Counterweight Flail",
+      "clip": "Chop",
+      "authoredPhase": 0.48276,
+      "actualReleaseMs": 483,
+      "oldUniformPeakMs": 410,
+      "damage": 24
+    },
+    {
+      "id": "024",
+      "weapon": "Glassbreaker Fan",
+      "clip": "Sweep",
+      "authoredPhase": 0.48276,
+      "actualReleaseMs": 233,
+      "oldUniformPeakMs": 280,
+      "damage": 17
+    },
+    {
+      "id": "025",
+      "weapon": "Rail Needle",
+      "clip": "NeedleJab",
+      "authoredPhase": 0.48276,
+      "actualReleaseMs": 150,
+      "oldUniformPeakMs": 203,
+      "damage": 13
+    }
+  ],
+  "errors": []
+}

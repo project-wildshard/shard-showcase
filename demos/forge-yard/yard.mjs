@@ -1,3 +1,4 @@
+import {SIGNATURE_STRIKES,walkerStrike,walkerStrikePhase} from './walker-strike.mjs';
 import {beaconThrustWeight,createThrustAlignment} from './thrust-alignment.mjs';
 import {DUEL_CAMERA_AXIS,DUEL_CAMERA_FOV,duelDistance} from './duel-camera.mjs';
 import {createImpactEffects,surfaceCue} from './impact-effects.mjs';
@@ -72,7 +73,7 @@ try{
  const aimThrust=createThrustAlignment();
  let weaponBasis=null;
  let walker=null,heroHit=0,heroTurn=0,heroYaw=Math.PI;
- const heroClips=['Idle','Stride','Turn','Dodge','Hit','Defeat','Sweep','Chop','Thrust'];
+ const heroClips=['Idle','Stride','Turn','Dodge','Hit','Defeat','Sweep','Chop','Thrust',...Object.values(SIGNATURE_STRIKES)];
  async function loadWalker(){
   const g=await loader.loadAsync(new URL('../../art/actors/forge-walker/walker.glb',location.href).href);
   const hand=g.scene.getObjectByName('grip_R');
@@ -82,12 +83,13 @@ try{
   walker={mixer:new T.AnimationMixer(g.scene),clips,name:null,last:null};
   wrap.dataset.heroRig='Walker';wrap.dataset.weaponSocket=hand.name;
  }
- function heroPose(name,seconds=0){
+ function heroPose(name,seconds=0,scrub=false){
   if(name===walker.name)return;
   const a=walker.mixer.clipAction(walker.clips[name]).reset();
   if(['Idle','Stride'].includes(name)){a.setLoop(T.LoopRepeat,Infinity);a.clampWhenFinished=false;}
   else{a.setLoop(T.LoopOnce,1);a.clampWhenFinished=true;}
   if(seconds)a.setDuration(seconds);
+  a.paused=scrub;
   if(walker.last){walker.last.fadeOut(.063);a.fadeIn(.063);}
   a.play();walker.name=name;walker.last=a;
   wrap.dataset.heroClip=name;
@@ -343,15 +345,23 @@ try{
   if(Math.abs(yawErr)>.88&&moving&&!p.slash&&!p.dodge&&heroTurn<=0)heroTurn=.25;
   heroYaw+=yawErr*(1-Math.exp(-dt*(p.slash?23:14)));alivePlayer.rotation.y=heroYaw;
   heroHit=Math.max(0,heroHit-dt);heroTurn=Math.max(0,heroTurn-dt);
-  const strike=p.slash?.weapon,style=strike?.style;
-  const strikeName={chop:'Chop',sweep:'Sweep',thrust:'Thrust'}[style];
+  const strike=p.slash?.weapon;
   if(p.hp===0)heroPose('Defeat',.95);
   else if(p.dodge)heroPose('Dodge',.245);
-  else if(strike)heroPose(strikeName,strike.cycle);
+  else if(strike){
+   heroPose(walkerStrike(strike),0,true);
+   const elapsed=impactEvent?p.slash.releaseAt:p.slash.time;
+   const phase=walkerStrikePhase(elapsed,p.slash.releaseAt??strike.wind,strike.cycle);
+   walker.last.time=walker.last.getClip().duration*phase;
+   wrap.dataset.heroStrikePhase=phase.toFixed(5);
+   wrap.dataset.heroStrikeTime=elapsed.toFixed(5);
+   wrap.dataset.heroStrikeRelease=p.slash.releaseAt?.toFixed(5)??'';
+  }
   else if(heroHit)heroPose('Hit',.26);
   else if(heroTurn)heroPose('Turn',.25);
   else if(moving)heroPose('Stride',.61);
   else heroPose('Idle',1.6);
+  if(!strike||p.hp===0)delete wrap.dataset.heroStrikePhase;
   walker.mixer.update(dt);
   wmix?.update(dt);
   grip.getWorldPosition(gripPoint);alivePlayer.worldToLocal(gripPoint);

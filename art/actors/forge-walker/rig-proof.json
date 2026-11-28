@@ -1,6 +1,6 @@
 {
   "triangles": 8840,
-  "bytes": 591784,
+  "bytes": 646616,
   "articulatedJoints": 18,
   "sockets": {
     "grip_R": "hand_R",
@@ -173,6 +173,95 @@
         "elbow_R": 0.17,
         "hand_R": 0.18,
         "hip_L": 0.2
+      }
+    },
+    "MaulDrop": {
+      "durationSeconds": 0.967,
+      "movingNodes": [
+        "chest",
+        "coat",
+        "elbow_L",
+        "elbow_R",
+        "hand_R",
+        "head",
+        "hip_L",
+        "hip_R",
+        "knee_L",
+        "pelvis",
+        "upper_L",
+        "upper_R"
+      ],
+      "deltas": {
+        "pelvis": 0.16,
+        "chest": 0.214,
+        "head": 0.115,
+        "upper_L": 0.22,
+        "elbow_L": 0.16,
+        "upper_R": 0.581,
+        "elbow_R": 0.215,
+        "hand_R": 0.145,
+        "coat": 0.175,
+        "hip_L": 0.15,
+        "knee_L": 0.16,
+        "hip_R": 0.065
+      }
+    },
+    "SlipfinRip": {
+      "durationSeconds": 0.967,
+      "movingNodes": [
+        "chest",
+        "coat",
+        "elbow_L",
+        "elbow_R",
+        "hand_R",
+        "hip_L",
+        "knee_R",
+        "pelvis",
+        "upper_L",
+        "upper_R"
+      ],
+      "deltas": {
+        "pelvis": 0.12,
+        "chest": 0.511,
+        "upper_L": 0.269,
+        "elbow_L": 0.1,
+        "upper_R": 0.611,
+        "elbow_R": 0.175,
+        "hand_R": 0.22,
+        "coat": 0.2,
+        "hip_L": 0.125,
+        "knee_R": 0.125
+      }
+    },
+    "NeedleJab": {
+      "durationSeconds": 0.967,
+      "movingNodes": [
+        "chest",
+        "coat",
+        "elbow_L",
+        "elbow_R",
+        "hand_R",
+        "head",
+        "hip_L",
+        "hip_R",
+        "knee_L",
+        "pelvis",
+        "upper_L",
+        "upper_R"
+      ],
+      "deltas": {
+        "pelvis": 0.11,
+        "chest": 0.188,
+        "head": 0.05,
+        "upper_L": 0.17,
+        "elbow_L": 0.039,
+        "upper_R": 0.341,
+        "elbow_R": 0.239,
+        "hand_R": 0.075,
+        "coat": 0.125,
+        "hip_L": 0.229,
+        "knee_L": 0.17,
+        "hip_R": 0.1
       }
     }
   }

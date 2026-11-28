@@ -1,3 +1,5 @@
+import {WEAPONS} from './arena.mjs';
+import {walkerStrike} from './walker-strike.mjs';
 // Run with a local static server from the repository root. Chromium must have WebGL.
 import {chromium} from 'playwright';
 import {mkdirSync} from 'node:fs';
@@ -80,8 +82,7 @@ try{
   },null,{timeout:10000});
   await f('touchEnd');
   const before=Number(await page.locator('#enemy-hp').textContent());
-  const styles=['Sweep','Chop','Thrust','Chop','Sweep','Chop','Sweep','Thrust','Sweep','Chop','Sweep','Thrust'];
-  const pose=styles[i-14];
+  const pose=walkerStrike(WEAPONS[i-14]);
   await page.locator('#attack').tap();
   await page.waitForFunction(n=>document.querySelector('#yard').dataset.heroClip===n,pose);
   heroStyles[id]=pose;

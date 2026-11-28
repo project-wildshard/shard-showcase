@@ -23,7 +23,7 @@ try{
  await dir(32,0);await pose('Turn');await pose('Stride');await release();
  await p.locator('#dodge').tap();await pose('Dodge');await pose('Idle');
  const attackProof=[];
- for(const [weapon,clip] of [['014','Sweep'],['017','Chop'],['016','Thrust']]){
+ for(const [weapon,clip] of [['014','Sweep'],['015','Chop'],['016','Thrust'],['017','MaulDrop'],['022','SlipfinRip'],['025','NeedleJab']]){
   await p.locator('#weapon').selectOption(weapon);
   await p.waitForFunction(id=>document.querySelector('#yard').dataset.equipped===id,weapon);
   const before=(await yard.getAttribute('data-grip-local')).split(',').map(Number);
@@ -55,6 +55,6 @@ try{
  assert.equal(await yard.getAttribute('data-outcome'),'loss');
  await p.screenshot({path:out+'/walker-defeat.png'});
  assert.deepEqual(errors,[]);
- assert.equal(observed.size,9);
+ assert.equal(observed.size,12);
  console.log(JSON.stringify({portrait:[402,874],trustedTouch:true,observed:[...observed],weaponSocket:'grip_R',attackProof,defeat:true,errors},null,2));
 }finally{await b.close();}

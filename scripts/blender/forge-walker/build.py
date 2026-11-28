@@ -159,6 +159,32 @@ def pose(role,x):
  elif role=='defeat':
   f['pelvis'][4]=-x*.64;f['chest'][0]=x*.87;f['hip_L'][0]=-x*1.15
   f['hip_R'][0]=-x*.89;f['knee_L'][0]=x*1.42;f['knee_R'][0]=x*1.18;f['head'][0]=x*.50
+ elif role=='maul':
+  # Load the whole torso, strike down through the lead foot, then let the coat follow.
+  f['pelvis'][4]=-.16*max(0,x)+.05*min(0,x)
+  f['chest'][0]=-.38*x;f['chest'][1]=-.20*x
+  f['upper_R'][0]=-.73+1.13*x;f['upper_R'][2]=.19-.36*x
+  f['elbow_R'][0]=-.61+.43*x;f['hand_R'][0]=.29*x
+  f['upper_L'][0]=-.35-.39*min(0,x)+.44*max(0,x);f['elbow_L'][0]=-.39+.32*x
+  f['hip_L'][0]=-.30*max(0,x);f['knee_L'][0]=.32*max(0,x)
+  f['hip_R'][2]=-.13*x;f['head'][0]=.23*x;f['coat'][0]=.35*x
+ elif role=='slip':
+  # Low cross-body draw. The left arm counters the turn instead of mirroring the blade.
+  f['pelvis'][1]=-.24*x;f['pelvis'][4]=-.075*abs(x)
+  f['chest'][1]=-1.02*x;f['chest'][2]=.17*x
+  f['upper_R'][0]=-.32+.17*x;f['upper_R'][1]=-.72*x;f['upper_R'][2]=.96*x
+  f['elbow_R'][0]=-.68-.35*x;f['hand_R'][1]=-.44*x
+  f['upper_L'][2]=-.20-.54*x;f['elbow_L'][0]=-.38+.20*x
+  f['hip_L'][2]=.25*x;f['knee_R'][0]=.25*max(0,x);f['coat'][1]=-.40*x
+ elif role=='needle':
+  # Small fencing jab with a bent lead knee and exaggerated recoil into guard.
+  reach=max(0,x);coil=min(0,x)
+  f['pelvis'][4]=-.08*reach;f['pelvis'][5]=.075*reach
+  f['chest'][0]=-.36*x;f['chest'][1]=.11*x
+  f['upper_R'][0]=-.45-.66*x;f['upper_R'][2]=-.19*x;f['elbow_R'][0]=-.64+.48*x
+  f['hand_R'][0]=.15*x;f['upper_L'][0]=-.18+.34*reach;f['elbow_L'][0]=-.30+.12*coil
+  f['hip_L'][0]=-.46*reach;f['knee_L'][0]=.34*reach;f['hip_R'][0]=.20*reach
+  f['head'][0]=.10*x;f['coat'][0]=-.25*x
  elif role=='sweep':
   f['chest'][1]=-x*.69;f['upper_R'][1]=-x*.53;f['upper_R'][2]=x*.80
   f['elbow_R'][0]-=x*.53;f['hand_R'][1]=-x*.36;f['hip_L'][0]=-abs(x)*.25
@@ -176,7 +202,10 @@ clips=[('Idle','idle',[(1,0),(13,1),(25,0),(37,-1),(49,0)]),
  ('Dodge','dodge',[(1,0),(5,1),(10,.68),(16,0)]),
  ('Hit','hit',[(1,0),(5,1),(15,0)]),
  ('Defeat','defeat',[(1,0),(10,.34),(25,1),(36,1)]),
- ('Sweep','sweep',att),('Chop','chop',att),('Thrust','thrust',att)]
+ ('Sweep','sweep',att),('Chop','chop',att),('Thrust','thrust',att),
+ ('MaulDrop','maul',[(1,0),(8,-.40),(12,-.83),(15,1.0),(21,.62),(26,.24),(30,0)]),
+ ('SlipfinRip','slip',[(1,0),(7,-.83),(11,-.52),(15,1.0),(19,.50),(23,-.10),(30,0)]),
+ ('NeedleJab','needle',[(1,0),(8,-.65),(12,-.38),(15,1.0),(17,.54),(22,-.20),(30,0)])]
 for title,role,frames in clips:
  for frame,x in frames:
   for n,v in pose(role,x).items():
@@ -206,6 +235,7 @@ S.render.resolution_x=640;S.render.resolution_y=792;S.render.resolution_percenta
 S.render.image_settings.file_format='PNG';S.render.filepath=str(TMP/'front.png')
 bpy.context.preferences.filepaths.save_version=0
 bpy.ops.wm.save_as_mainfile(filepath=str(D/'walker.blend'),compress=True)
-bpy.ops.render.render(write_still=True)
+if '--no-render' not in sys.argv:bpy.ops.render.render(write_still=True)
 cam.location=(2.9,5.5,2.43);aim(cam,(0,0,1.0))
-S.render.filepath=str(TMP/'back.png');bpy.ops.render.render(write_still=True)
+S.render.filepath=str(TMP/'back.png')
+if '--no-render' not in sys.argv:bpy.ops.render.render(write_still=True)
