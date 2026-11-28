@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "esbuild yard.mjs --bundle --minify --format=esm --legal-comments=linked --outfile=dist/yard.js",
-    "test": "node --test arena.test.mjs",
+    "test": "node --test arena.test.mjs impact-effects.test.mjs",
     "test:browser": "node smoke.mjs"
   },
   "dependencies": {

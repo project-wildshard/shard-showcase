@@ -1,3 +1,4 @@
+import {createImpactEffects,surfaceCue} from './impact-effects.mjs';
 import {createFoundryDressing} from './foundry-dressing.mjs';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
@@ -76,8 +77,7 @@ try{
  const warningPlane=mesh(new T.PlaneGeometry(1,1),basic(0xff552f,.29));
  const warningRing=mesh(new T.RingGeometry(.88,1,64),basic(0xff552f,.74));
  const pulseRing=mesh(new T.RingGeometry(.77,1,56),basic(0xffa241,.68));
- const attackRing=mesh(new T.RingGeometry(.76,1,40,1,-.8,1.6),basic(0x8de3d7,.65));
- for(const o of [warningPlane,warningRing,pulseRing,attackRing]){o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);}
+ for(const o of [warningPlane,warningRing,pulseRing]){o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);}
  const fan=(half,color)=>{
   const g=new T.CircleGeometry(1,44,Math.PI*.5-half,half*2),o=mesh(g,basic(color,.32));
   o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);return o;
@@ -89,11 +89,12 @@ try{
   const o=mesh(new T.RingGeometry(.88,1,56),basic(i?0xfcac43:0xf85d39,.77));
   o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);return o;
  });
- const flash=mesh(new T.IcosahedronGeometry(.27,1),basic(0x9dfdf0,.83));scene.add(flash);flash.visible=false;
+ const effects=createImpactEffects(scene),tipPoint=new T.Vector3(),weaponBasePoint=new T.Vector3(),weakPoint=new T.Vector3();
+ let fxTip=null,fxGrip=null,previousSlash=null,hitSerial=0,prevFxPhase='';
  const shellShot=mesh(new T.IcosahedronGeometry(.13,1),basic(0xffad68,.99));
  const muzzleTrace=mesh(new T.BoxGeometry(.045,.045,1),basic(0xff996b,.88));
  scene.add(shellShot,muzzleTrace);shellShot.visible=muzzleTrace.visible=false;
- let impact=.0,noticeUntil=0,salvoFlash=0;
+ let noticeUntil=0,salvoFlash=0;
  function say(text,until=1){set(notice,text);noticeUntil=s.time+until;}
  const actorBases=[enemyBase,specialistBase,ordnanceBase,foundryBase,terminalBase];
  const manifests=await Promise.all(actorBases.map(path=>fetch(new URL('manifest.json',path)).then(r=>{if(!r.ok)throw Error('Enemy manifest missing');return r.json();})));
@@ -160,6 +161,9 @@ try{
   if(weapon)grip.remove(weapon);
   weapon=new T.Group();weapon.rotation.x=Math.PI/2;weapon.rotation.z=-.22;
   weapon.add(g.scene);grip.add(weapon);
+  fxTip=g.scene.getObjectByName('tip_socket');fxGrip=g.scene.getObjectByName('grip_socket');
+  if(!fxTip||!fxGrip)throw Error('Weapon motion sockets missing');
+  wrap.dataset.fxSockets=fxGrip.name+','+fxTip.name;
   wmix=new T.AnimationMixer(g.scene);wa=g.animations.find(c=>c.name==='Arc_Cut'||c.name.startsWith('Attack_'));
   if(!wa)throw Error('Weapon attack clip missing');
   wrap.dataset.equipped=id;
@@ -173,13 +177,14 @@ try{
   const old=s.weapon;
   s=create(data.enemyTypes);select(s,old);
   heroYaw=face(...s.player.face);heroHit=heroTurn=0;
+  effects.clear();previousSlash=null;prevFxPhase='';wrap.dataset.fxPhase='idle';wrap.dataset.fxKind='';
   if(walker){walker.mixer.stopAllAction();walker.name=walker.last=null;heroPose('Idle');}
   i=n;picker.value=String(n);enemy=spawn(s,i,{x:0,z:-2.45},variant);
   const g=artists.get(i);const group=joint(scene,enemy.x,0,enemy.z);group.add(g.scene);shadow(group,enemy.radius*.95);
   const armor=kit(enemy,group);
   if(armor)g.scene.getObjectByName('body')?.attach(armor);
   const mixer=new T.AnimationMixer(g.scene);
-  actor={group,mixer,kit:armor,clips:Object.fromEntries(g.animations.map(c=>[c.name,c])),mode:null,last:null};
+  actor={group,mixer,weak:g.scene.getObjectByName('weak_socket'),kit:armor,clips:Object.fromEntries(g.animations.map(c=>[c.name,c])),mode:null,last:null};
   wrap.dataset.enemy=enemy.id;wrap.dataset.outcome='';wrap.dataset.variant=enemy.variant??'';wrap.dataset.variantParts=String(armor?.children.length??0);wrap.dataset.variantCue='';
   $('win').hidden=true;set($('enemy-name'),enemy.name);say(enemy.rule??('Fight: '+enemy.name),1.4);
  }
@@ -256,7 +261,7 @@ try{
   const dt=last?clamp((now-last)*.001,0,.05):0;last=now;accum+=dt;
   const vx=Number(keys.has('KeyD')||keys.has('ArrowRight'))-Number(keys.has('KeyA')||keys.has('ArrowLeft'));
   const vz=Number(keys.has('KeyS')||keys.has('ArrowDown'))-Number(keys.has('KeyW')||keys.has('ArrowUp'));
-  const m=pointer!==-1?input:[vx,vz];const p=s.player;
+  const m=pointer!==-1?input:[vx,vz];const p=s.player;let impactEvent=null,blockedHit=false;
   const cut=who!==i;if(cut)who=i;
   for(;accum>=1/60;accum-=1/60)if(!rivalLoading)tick(s,1/60,m);
   for(const e of s.events.splice(0)){
@@ -267,12 +272,16 @@ try{
    }
    if(e.type==='salvo-shot')salvoFlash=.11;
    if(e.type==='mortar-impact')say('Mortar impact',.34);
+   if(e.type==='shield')blockedHit=true;
    const variation={shield:'Shield reduced your hit',rush:'RUSH · take space',feint:'FEINT · watch the next tell',echo:'ECHO · follow-up coming',pulse:'OVERLOAD · step outside',discharge:'Discharge'};
    if(variation[e.type]){
     wrap.dataset.variantCue=e.type;
     say(variation[e.type],e.type==='pulse'?.77:.45);
    }
-   if(e.type==='enemy-hit'){impact=.26;flash.position.set(enemy.x,enemy.attack==='beam'?1.22:.82,enemy.z);say('Hit',.34);}
+   if(e.type==='enemy-hit'){
+    impactEvent={style:p.slash?.weapon.style??WEAPONS[s.weapon].style,blocked:blockedHit};
+    if(!blockedHit)say('Hit',.34);
+   }
    if(e.type==='player-hit'){heroHit=.26;say('You took a hit',.65);}
    if(e.type==='defeat'){wrap.dataset.outcome='win';set($('win-title'),enemy.name+' defeated');set($('win-body'),'Try a different rival or change weapons.');$('win').hidden=false;}
   }
@@ -355,9 +364,21 @@ try{
   }
   pulseRing.visible=enemy.life>0&&enemy.pulse>0;
   if(pulseRing.visible){pulseRing.position.set(enemy.x,.047,enemy.z);pulseRing.scale.setScalar(2.25);pulseRing.material.opacity=.62+Math.sin(enemy.pulse*30)*.18;}
-  impact=Math.max(0,impact-dt);flash.visible=impact>0;flash.scale.setScalar(1+(.26-impact)*2);flash.material.opacity=impact/.26*.8;
-  attackRing.visible=!!p.slash&&Math.abs(p.slash.time-p.slash.weapon.wind)<.075;
-  if(attackRing.visible){attackRing.position.set(p.x,.04,p.z);attackRing.rotation.z=-face(...p.face)+Math.PI/2;attackRing.scale.setScalar(p.slash.weapon.reach*.75);}
+  if(impactEvent){
+   const a=actor.weak?.getWorldPosition(weakPoint);
+   const cue=surfaceCue(p,enemy,a?.y);
+   effects.hit(cue.at,cue.outer,impactEvent.style,impactEvent.blocked);
+   wrap.dataset.fxImpact=String(++hitSerial);wrap.dataset.fxKind=impactEvent.blocked?'block':impactEvent.style;
+   wrap.dataset.fxAnchor=cue.at.map(x=>x.toFixed(3)).join(',');
+  }
+  if(p.slash&&p.slash!==previousSlash)previousSlash=p.slash;
+  const swingWindow=p.slash&&p.slash.time>=Math.max(.075,p.slash.weapon.wind-.105)&&p.slash.time<=p.slash.weapon.wind+.11;
+  const trailCount=effects.trailSample(dt,fxGrip?.getWorldPosition(weaponBasePoint),fxTip?.getWorldPosition(tipPoint),swingWindow,previousSlash?.weapon.style);
+  const sparkCount=effects.stepParticles(impactEvent?0:dt);
+  const phase=sparkCount?'impact':trailCount?'trail':'idle';
+  if(prevFxPhase!==phase){wrap.dataset.fxPhase=phase;prevFxPhase=phase;}
+  wrap.dataset.fxTrailSegments=String(trailCount);wrap.dataset.fxParticles=String(sparkCount);
+  if(sparkCount)wrap.dataset.fxAgeMs=String(Math.round(effects.age()*1000));
   // Fixed world-relative controls with a gently fitted, three-quarter two-shot.
   // Moving the target between the actors is enough to retain a lunger without spinning the stick axes.
   const a=cut?1:1-Math.exp(-dt*7.8),dx=enemy.x-p.x,dz=enemy.z-p.z;
