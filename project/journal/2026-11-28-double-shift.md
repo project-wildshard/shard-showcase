@@ -1,0 +1,5 @@
+# Double Shift in Forge Yard
+
+A local, optional two-round fight on the original models already in the art branch. Gate Sentry and Rivet Skitter inherit their original damage, behavior, geometry and animations. The challenge carries health and equipped weapon, respawns Walker at the start mark between rounds, pauses simulation on the result screens, and loads the second rig only when the player opens the next gate. Winning or losing both offer a full-health replay. The HUD time measures active simulation, not wall-clock/network time. The default free sparring yard still loads Gate Sentry alone and keeps its normal selectors.
+
+From the repo root, serve it at port 5187 after running the pinned demo build. Run `node demos/forge-yard/double-shift-smoke.mjs` to drive the 402 × 874 Chrome controls and capture both rounds. The test takes a real Sentry hit, wins both fights with Rivet Maul, checks health and weapon carry, replays, then deliberately loses and verifies retry. The exact run is in `demos/forge-yard/double-shift-proof.json`. No physical-device test or production deployment.
