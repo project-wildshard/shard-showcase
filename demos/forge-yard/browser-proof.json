@@ -6,73 +6,73 @@
   "victories": [
     {
       "enemy": "Gate Sentry",
-      "taps": 7,
-      "moves": 2,
+      "taps": 6,
+      "moves": 1,
       "heroHp": 66
     },
     {
       "enemy": "Rivet Skitter",
-      "taps": 15,
+      "taps": 6,
       "moves": 3,
-      "heroHp": 36
+      "heroHp": 64
     },
     {
       "enemy": "Beacon Wasp",
-      "taps": 3,
-      "moves": 4,
+      "taps": 2,
+      "moves": 3,
       "heroHp": 94
     },
     {
       "enemy": "Ballast Ram",
-      "taps": 9,
-      "moves": 12,
+      "taps": 12,
+      "moves": 14,
       "heroHp": 16
     },
     {
       "enemy": "Hook Crane",
       "taps": 4,
-      "moves": 4,
-      "heroHp": 84
+      "moves": 3,
+      "heroHp": 96
     },
     {
       "enemy": "Kiln Warden",
-      "taps": 6,
-      "moves": 6,
+      "taps": 5,
+      "moves": 4,
       "heroHp": 90
     },
     {
       "enemy": "Breakwater Snare",
-      "taps": 5,
+      "taps": 4,
       "moves": 3,
       "heroHp": 88
     },
     {
       "enemy": "Spark Buoy",
-      "taps": 3,
+      "taps": 2,
       "moves": 3,
       "heroHp": 102
     },
     {
       "enemy": "Rasp Turret",
-      "taps": 5,
+      "taps": 4,
       "moves": 4,
       "heroHp": 48
     },
     {
       "enemy": "Railblade Inspector",
       "taps": 8,
-      "moves": 3,
+      "moves": 2,
       "heroHp": 57
     },
     {
       "enemy": "Salt Mortar",
-      "taps": 5,
-      "moves": 5,
-      "heroHp": 98
+      "taps": 4,
+      "moves": 4,
+      "heroHp": 76
     },
     {
       "enemy": "Turnstile Spool",
-      "taps": 4,
+      "taps": 3,
       "moves": 3,
       "heroHp": 103
     },
@@ -80,7 +80,7 @@
       "enemy": "Bellows Recycler",
       "taps": 4,
       "moves": 3,
-      "heroHp": 102
+      "heroHp": 84
     },
     {
       "enemy": "Tidehook Stilt",
@@ -90,21 +90,21 @@
     },
     {
       "enemy": "Lantern Relay",
-      "taps": 3,
-      "moves": 2,
+      "taps": 4,
+      "moves": 4,
       "heroHp": 120
     },
     {
       "enemy": "Indigo Winch",
       "taps": 3,
-      "moves": 3,
+      "moves": 4,
       "heroHp": 100
     },
     {
       "enemy": "Shutter Bailiff",
-      "taps": 3,
-      "moves": 2,
-      "heroHp": 100
+      "taps": 4,
+      "moves": 3,
+      "heroHp": 80
     },
     {
       "enemy": "Porcelain Seeder",
@@ -114,13 +114,13 @@
     },
     {
       "enemy": "Copper Harrow",
-      "taps": 3,
+      "taps": 4,
       "moves": 3,
       "heroHp": 90
     },
     {
       "enemy": "Keel Crab",
-      "taps": 3,
+      "taps": 4,
       "moves": 3,
       "heroHp": 84
     }
@@ -264,181 +264,181 @@
     {
       "enemy": "Gate Sentry",
       "ndc": [
-        -0.162,
-        -0.045,
-        0.172,
-        0.134
+        -0.205,
+        -0.066,
+        0.207,
+        0.151
       ]
     },
     {
       "enemy": "Rivet Skitter",
       "ndc": [
-        -0.035,
-        0.017,
-        -0.128,
-        -0.112
+        0.078,
+        0.071,
+        -0.218,
+        -0.158
       ]
     },
     {
       "enemy": "Beacon Wasp",
       "ndc": [
-        -0.167,
-        -0.048,
-        0.178,
-        0.116
+        -0.237,
+        -0.081,
+        0.239,
+        0.145
       ]
     },
     {
       "enemy": "Ballast Ram",
       "ndc": [
-        0.228,
-        0.144,
-        -0.681,
-        -0.386
+        0.356,
+        0.206,
+        -0.848,
+        -0.471
       ]
     },
     {
       "enemy": "Hook Crane",
       "ndc": [
-        -0.114,
-        -0.021,
-        0.157,
-        0.127
+        -0.098,
+        -0.014,
+        0.17,
+        0.133
       ]
     },
     {
       "enemy": "Kiln Warden",
       "ndc": [
-        -0.185,
-        -0.056,
-        0.198,
-        0.142
+        -0.125,
+        -0.027,
+        0.136,
+        0.112
       ]
     },
     {
       "enemy": "Breakwater Snare",
       "ndc": [
-        0.056,
-        0.061,
-        -0.363,
-        -0.283
+        0.184,
+        0.122,
+        -0.304,
+        -0.252
       ]
     },
     {
       "enemy": "Spark Buoy",
       "ndc": [
-        -0.207,
-        -0.067,
-        0.214,
-        0.145
+        -0.179,
+        -0.053,
+        0.187,
+        0.132
       ]
     },
     {
       "enemy": "Rasp Turret",
       "ndc": [
-        -0.239,
-        -0.082,
-        0.237,
-        0.12
+        -0.182,
+        -0.055,
+        0.191,
+        0.097
       ]
     },
     {
       "enemy": "Railblade Inspector",
       "ndc": [
-        -0.162,
-        -0.045,
-        0.179,
-        0.137
+        -0.204,
+        -0.065,
+        0.211,
+        0.152
       ]
     },
     {
       "enemy": "Salt Mortar",
       "ndc": [
-        -0.191,
-        -0.059,
-        0.2,
-        0.139
+        -0.175,
+        -0.051,
+        0.184,
+        0.132
       ]
     },
     {
       "enemy": "Turnstile Spool",
       "ndc": [
-        -0.189,
-        -0.058,
-        0.199,
-        0.126
+        -0.161,
+        -0.045,
+        0.173,
+        0.114
       ]
     },
     {
       "enemy": "Bellows Recycler",
       "ndc": [
-        -0.204,
-        -0.065,
-        0.215,
-        0.109
+        -0.145,
+        -0.036,
+        0.204,
+        0.104
       ]
     },
     {
       "enemy": "Tidehook Stilt",
       "ndc": [
-        -0.183,
-        -0.055,
-        0.193,
-        0.144
+        -0.148,
+        -0.038,
+        0.158,
+        0.127
       ]
     },
     {
       "enemy": "Lantern Relay",
       "ndc": [
-        -0.246,
-        -0.086,
-        0.244,
-        0.146
+        -0.207,
+        -0.067,
+        0.21,
+        0.129
       ]
     },
     {
       "enemy": "Indigo Winch",
       "ndc": [
-        -0.211,
-        -0.069,
-        0.213,
-        0.119
+        -0.119,
+        -0.024,
+        0.131,
+        0.079
       ]
     },
     {
       "enemy": "Shutter Bailiff",
       "ndc": [
-        -0.197,
-        -0.062,
-        0.203,
-        0.149
+        -0.166,
+        -0.047,
+        0.177,
+        0.137
       ]
     },
     {
       "enemy": "Porcelain Seeder",
       "ndc": [
-        -0.165,
-        -0.046,
-        0.173,
-        0.115
+        -0.204,
+        -0.065,
+        0.211,
+        0.133
       ]
     },
     {
       "enemy": "Copper Harrow",
       "ndc": [
-        -0.147,
-        -0.037,
-        0.157,
-        0.108
+        -0.212,
+        -0.069,
+        0.218,
+        0.138
       ]
     },
     {
       "enemy": "Keel Crab",
       "ndc": [
-        -0.208,
-        -0.067,
-        0.208,
-        0.066
+        -0.24,
+        -0.083,
+        0.237,
+        0.08
       ]
     }
   ],

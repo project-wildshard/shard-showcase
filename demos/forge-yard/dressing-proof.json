@@ -1,0 +1,90 @@
+{
+  "trustedTouch": true,
+  "old": {
+    "viewport": [
+      402,
+      874
+    ],
+    "sample": {
+      "player": [
+        0,
+        3.017
+      ],
+      "rival": [
+        0,
+        -1.213
+      ],
+      "framing": [
+        -0.492,
+        -0.205,
+        0.479,
+        0.28
+      ],
+      "kit": "blockout",
+      "batches": null,
+      "instances": null,
+      "covers": null
+    },
+    "hit": false,
+    "relay": false,
+    "errors": []
+  },
+  "portrait": {
+    "viewport": [
+      402,
+      874
+    ],
+    "sample": {
+      "player": [
+        0,
+        2.557
+      ],
+      "rival": [
+        0,
+        -1.102
+      ],
+      "framing": [
+        -0.408,
+        -0.164,
+        0.434,
+        0.259
+      ],
+      "kit": "foundry-evening",
+      "batches": 27,
+      "instances": 725,
+      "covers": 4
+    },
+    "hit": true,
+    "relay": true,
+    "errors": []
+  },
+  "wide": {
+    "viewport": [
+      960,
+      680
+    ],
+    "sample": {
+      "player": [
+        0,
+        3.093
+      ],
+      "rival": [
+        0,
+        -1.295
+      ],
+      "framing": [
+        -0.168,
+        -0.217,
+        0.16,
+        0.285
+      ],
+      "kit": "foundry-evening",
+      "batches": 27,
+      "instances": 725,
+      "covers": 4
+    },
+    "hit": false,
+    "relay": false,
+    "errors": []
+  }
+}
