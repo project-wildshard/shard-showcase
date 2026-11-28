@@ -1,6 +1,7 @@
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
+import {setupGuardStudy} from './motion.mjs';
 import {applyFoundryMaterial} from './foundry-material.mjs';
 
 const stage=document.querySelector('#stage'), status=document.querySelector('#status');
@@ -31,6 +32,7 @@ try {
  const camera=new T.PerspectiveCamera(39,1,.1,100);
  const views={desktop:[[0.96,3.62,7.3],[0,1.02,0]],close:[[1.78,1.52,3.1],[0,1.02,0]],
    profile:[[3.2,1.39,0.12],[0,1.01,0]],left:[[-2.6,1.62,2.45],[0,1.04,0]],rear:[[1.14,1.55,-3.38],[0,1.04,0]]};
+ const guard=params.get('motion')==='guard';
  let view='desktop';
  function draw(){
   const w=stage.clientWidth,h=stage.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();r.setSize(w,h,false);
@@ -49,6 +51,7 @@ try {
  }
  document.querySelector('nav').addEventListener('click',e=>{if(e.target.tagName==='BUTTON')choose(e.target.value);});
  window.addEventListener('resize',()=>choose(view));choose('desktop');
- status.textContent='Static pose from the editable Blender model. No gameplay.';
+ if(guard)setupGuardStudy(gltf,stage,()=>r.render(scene,camera));
+ status.textContent=guard?'Skinned Blender guard study. No combat or locomotion.':'Static pose from the editable Blender model. No gameplay.';
  stage.dataset.tone=clay?'clay':localized?'localized':procedural?'procedural':'color';stage.dataset.triangles=String(tris);stage.dataset.modelHeight=span.y.toFixed(3);stage.dataset.state='ready';
 } catch(error){stage.dataset.state='error';status.textContent=error.message;console.error(error);}

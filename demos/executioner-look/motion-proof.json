@@ -1,0 +1,32 @@
+{
+  "diagnosticOnly": true,
+  "actualWeightedGltf": true,
+  "rows": [
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "trustedTouch": false,
+      "skinnedMeshes": 7,
+      "weightedVerticesSampled": 14,
+      "triangles": 41229,
+      "animationSeconds": 1.0417,
+      "maxClothTravelM": 0.10095,
+      "reset": true
+    },
+    {
+      "viewport": [
+        402,
+        874
+      ],
+      "trustedTouch": true,
+      "skinnedMeshes": 7,
+      "weightedVerticesSampled": 14,
+      "triangles": 41229,
+      "animationSeconds": 1.0417,
+      "maxClothTravelM": 0.10095,
+      "reset": true
+    }
+  ]
+}

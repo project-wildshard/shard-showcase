@@ -48,3 +48,13 @@ The hybrid warps authored mesh and rig landmarks together, using restrained silh
 The next comparisons freeze hybrid at rest frame 1 and keep camera and lights fixed. A 1024² atlas contains real base color, roughness/metallic and baked normal data, and packs the model into one material. It looks less smooth than vertex-only but is ~3.36 MB. Diagnostic procedural steel, cloth, leather and ceramic add distinct finish and derivative-filtered relief to the vertex variant in Three.js, still ~1.15 MB with no image textures. This gives the clearest worn-metal read in close-up; the first pass over-speckles broad uninterrupted plate and must be localized, not promoted wholesale. Repeat at the same camera and frame when comparing fixes. No browser frame rate, locomotion or attack shown by these static samples.
 
 The next mantle cut uses the same gray look camera. Build the `mantle` option shown in the art README, export its rest pose into the ignored `mantle.glb`, and run `node compare.mjs http://127.0.0.1:5250/demos/executioner-look/ /tmp/mantle-review mantle` in this directory. “Cloth side” shows the chest lap and shoulder clearance more clearly. The capped review export is 44,437 triangles / 1.17 MB; the projected model height is still 243 px at desktop distance. For the material-only pass run `node wear-compare.mjs`. The localized mode is the exact same pose and GLB as the dense procedural mode, but reduces base pitting and concentrates oxidation near shoulder, belt and shin regions. Select `?mesh=./mantle.glb&tone=localized`. No new texture maps; no motion or game integration demonstrated.
+
+### Weighted guard diagnostic
+
+```sh
+blender -b art/actors/foundry-executioner/executioner-mantle-study.blend --python-exit-code 1 \
+  --python art/actors/foundry-executioner/export_motion_study.py -- demos/executioner-look/guard-study.glb
+node demos/executioner-look/motion-smoke.mjs http://127.0.0.1:5250/demos/executioner-look/
+```
+
+Load `?mesh=./guard-study.glb&motion=guard` and press **Play guard study** or use its slider. The browser evaluates the true GLB skin and animation, with seven weighted cloth surfaces, while rigid pieces retain their original bone attachments. It uses flat material constants for comparison, not the baked/texture-free finish validation. Fourteen probe vertices around the upper arm moved up to 0.101 m in the 1.042 s clip and returned to baseline on rewind. This is one rest-to-guard diagnostic, not a combat animation, navigation, finished skin quality, or a performance result.
