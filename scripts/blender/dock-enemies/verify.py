@@ -5,8 +5,10 @@ root=Path(sys.argv[1])
 expected={'sentry':'windmill','skitter':'pounce','wasp':'beam','ram':'charge'}
 if sys.argv[2:]==['specialists']:
  expected={'hook':'hook','kiln':'guard','snare':'burrow','buoy':'burst'}
+elif sys.argv[2:]==['ordnance']:
+ expected={'rasp':'salvo','railblade':'lunge','mortar':'mortar','spool':'crosscut'}
 elif sys.argv[2:]:
- raise SystemExit('Optional second argument: specialists')
+ raise SystemExit('Optional second argument: specialists or ordnance')
 clips={'Idle','Move','Turn','Windup','Attack','Recover','Hit','Special','Defeat'}
 out=[]
 for name,behavior in expected.items():
@@ -16,7 +18,7 @@ for name,behavior in expected.items():
  g=json.loads(b[20:20+n]);offset=28+n
  nd=g['nodes']; names={x['name']:x for x in nd}
  assert {'root','body','ground_socket','weak_socket','attack_socket'}<=names.keys()
- accessory={'hook':'chain','guard':'shield','burrow':'nose','burst':'cage'}.get(behavior,'head')
+ accessory={'hook':'chain','guard':'shield','burrow':'nose','burst':'cage','salvo':'drum','lunge':'blade','mortar':'tube','crosscut':'reel'}.get(behavior,'head')
  assert accessory in names
  assert max(map(abs,names['ground_socket'].get('translation',[0,0,0])))<1e-5
  assert not g.get('images') and not g.get('cameras')

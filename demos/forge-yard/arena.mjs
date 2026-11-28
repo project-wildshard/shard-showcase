@@ -47,7 +47,7 @@ export function spawn(s,index,where={x:0,z:-4.2},variant=null){
  if(!base)return null;
  const spec=configuration(base,variant);
  const b={...spec,x:where.x,z:where.z,r:spec.radius,life:spec.hp,
-  maxHp:spec.hp,mark:null,burstLeft:0,rushReady:true,feinted:false,echoed:false,pulse:0,pulseCooldown:0,windReady:spec.windup,state:'idle',t:0,face:[0,1],lock:[0,1],hit:false,lockLength:0,dashHit:false};
+  maxHp:spec.hp,mark:null,burstLeft:0,rushReady:true,feinted:false,echoed:false,pulse:0,pulseCooldown:0,windReady:spec.windup,state:'idle',t:0,face:[0,1],lock:[0,1],hit:false,lockLength:0,dashHit:false,shots:0,activeDuration:.29};
  s.bots.push(b);
  return b;
 }
@@ -65,15 +65,24 @@ export function press(s,kind){
  }
  return false;
 }
-const DAM={windmill:18,pounce:14,beam:13,charge:26,hook:12,guard:15,burrow:16,burst:18};
+const DAM={windmill:18,pounce:14,beam:13,charge:26,hook:12,guard:15,burrow:16,burst:18,salvo:9,lunge:21,mortar:22,crosscut:17};
 function strikePlayer(s,b,damage=DAM[b.attack],style=b.attack){
  const p=s.player;
  if(p.inv>0||p.hp<=0)return false;
  p.hp=Math.max(0,p.hp-damage);p.inv=.26;
  s.events.push({type:'player-hit',enemy:b.id,style,hp:p.hp});return true;
 }
+const ACTIVE={charge:.56,pounce:.39,salvo:.62,lunge:.32,mortar:.61,crosscut:.38};
+export const MORTAR_RADIUS=1.48,CROSS_HALF_WIDTH=.56;
+function fireSalvo(s,b,p){
+ const ax=p.x-b.x,az=p.z-b.z,along=ax*b.lock[0]+az*b.lock[1];
+ const off=Math.abs(ax*b.lock[1]-az*b.lock[0]);
+ s.events.push({type:'salvo-shot',enemy:b.id});
+ if(along>0&&along<b.reach+.35&&off<.61&&!reachBlocked(b,p))strikePlayer(s,b);
+}
 function state(s,b,next){
  b.state=next;b.t=0;
+ if(next==='active')b.activeDuration=ACTIVE[b.attack]??.29;
  s.events.push({type:'enemy-state',enemy:b.id,state:next,style:b.attack});
 }
 function beginWind(s,b,p,wind=b.windup){
@@ -176,15 +185,28 @@ export function tick(s,seconds,input=[0,0]){
     if(!reachBlocked(old,b.mark)){place(b,b.mark.x-b.lock[0]*.45,b.mark.z-b.lock[1]*.45);}
     if(gap(p,b.mark)<.93&&!reachBlocked(b,p))strikePlayer(s,b);
    }
+   if(b.attack==='salvo'){b.shots=1;fireSalvo(s,b,p);}
+   if(b.attack==='mortar')s.events.push({type:'mortar-launch',enemy:b.id});
+   if(b.attack==='crosscut'){
+    // The paddles sweep the transverse strip through the lock point.
+    const z=b.mark.z-p.z,x=b.mark.x-p.x;
+    if(Math.abs(x*b.lock[0]+z*b.lock[1])<CROSS_HALF_WIDTH&&
+       Math.abs(x*b.lock[1]-z*b.lock[0])<1.72&&!reachBlocked(b,p))strikePlayer(s,b);
+   }
    if(b.attack==='burst'&&d<b.reach+.16&&!reachBlocked(b,p))strikePlayer(s,b);
   }else if(b.state==='active'){
-   if(b.attack==='pounce'||b.attack==='charge'){
-    const speed=b.attack==='pounce'?7.2:10.8;
+   if(b.attack==='salvo'&&b.shots<3&&b.t+1e-6>=b.shots*.28){b.shots++;fireSalvo(s,b,p);}
+   if(b.attack==='mortar'&&!b.dashHit&&b.t>=.50){
+    b.dashHit=true;s.events.push({type:'mortar-impact',enemy:b.id});
+    if(gap(p,b.mark)<MORTAR_RADIUS&&!reachBlocked(b.mark,p))strikePlayer(s,b);
+   }
+   if(['pounce','charge','lunge'].includes(b.attack)){
+    const speed=b.attack==='pounce'?7.2:b.attack==='lunge'?8.35:10.8;
     const moved=place(b,b.x+b.lock[0]*speed*dt,b.z+b.lock[1]*speed*dt);
     if(!b.dashHit&&gap(p,b)<b.r+p.r+.24&&!reachBlocked(b,p)){strikePlayer(s,b);b.dashHit=true;}
     if(moved<speed*dt*.68){state(s,b,'recover');continue;}
    }
-   if(b.t>(b.attack==='charge'?.56:b.attack==='pounce'?.39:.29))state(s,b,'recover');
+   if(b.t>b.activeDuration)state(s,b,'recover');
   }else if(b.state==='recover'){
    if(b.variant==='echo'&&!b.echoed&&b.t>=b.recover*.53&&d<=b.reach+.45&&!reachBlocked(b,p)){
     b.echoed=true;

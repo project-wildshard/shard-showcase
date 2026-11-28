@@ -56,11 +56,40 @@ test('the Warden blocks a frontal cut until the shield opens',()=>{
  w.state='recover';w.face=[0,1];select(open,2);press(open,'attack');advance(open,.28);
  assert.equal(w.life,w.maxHp-WEAPONS[2].power);
 });
-test('all 40 variant entries add a verified rule to their underlying enemy behavior',async()=>{
+const ordnance=JSON.parse(readFileSync(new URL('../../art/actors/dock-ordnance/manifest.json',import.meta.url))).enemyTypes;
+test('ordnance follows four different telegraph and damage rules',()=>{
+ const setup=(i,z)=>{const s=create(ordnance);return [s,spawn(s,i,{x:0,z})];};
+ {
+  const [s,b]=setup(0,2.5);advance(s,1.27);
+  assert.equal(s.events.filter(e=>e.type==='salvo-shot').length,3);
+  assert.equal(s.player.hp,93);assert.equal(b.z,2.5,'the turret does not chase during a burst');
+  const [clear]=setup(0,2.5);advance(clear,.22);advance(clear,.38,[1,0]);advance(clear,.67);
+  assert.equal(clear.player.hp,120,'once aimed, the salvo does not track sideways');
+ }
+ {
+  const [s,b]=setup(1,3.4);advance(s,1.05);
+  assert(s.events.some(e=>e.type==='player-hit'&&e.style==='lunge'));
+  assert(b.z>4.2,'the blade carries through the locked lane');
+ }
+ {
+  const [s,b]=setup(2,1.1);advance(s,.88);
+  assert(s.events.some(e=>e.type==='mortar-launch'));assert.equal(s.player.hp,120);
+  assert.equal(b.mark.z,5.7);advance(s,.36);assert.equal(s.player.hp,98);
+  const [clear]=setup(2,1.1);advance(clear,.68);advance(clear,.42,[1,0]);advance(clear,.30);
+  assert.equal(clear.player.hp,120,'move after launch to leave the committed impact');
+ }
+ {
+  const [across]=setup(3,3.95);advance(across,.40);advance(across,.26,[1,0]);advance(across,.25);
+  assert.equal(across.player.hp,103,'a short sideways move stays in the transverse strip');
+  const [back]=setup(3,3.95);advance(back,.40);advance(back,.26,[0,1]);advance(back,.25);
+  assert.equal(back.player.hp,120,'stepping back exits the transverse strip');
+ }
+});
+test('all 60 variant entries add a verified rule to their underlying enemy behavior',async()=>{
  const {roster,VARIANTS}=await import('./variants.mjs');
- const base=[...spec,...extra],v=roster(base);
- assert.equal(v.length,40);
- assert.equal(new Set(v.map(x=>x.id)).size,40);
+ const base=[...spec,...extra,...ordnance],v=roster(base);
+ assert.equal(v.length,60);
+ assert.equal(new Set(v.map(x=>x.id)).size,60);
  assert(v.every(x=>x.rule&&x.attack&&x.model));
  for(const type of base){
   function fresh(z,variant){const s=create([type]);return [s,spawn(s,0,{x:0,z},variant)];}

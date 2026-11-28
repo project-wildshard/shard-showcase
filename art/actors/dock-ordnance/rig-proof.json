@@ -1,0 +1,790 @@
+{
+  "enemy_types": [
+    {
+      "id": "WSC-ENM-009",
+      "file": "rasp.glb",
+      "behavior": "salvo",
+      "triangles": 1260,
+      "bytes": 119512,
+      "clips": {
+        "Idle": {
+          "duration": 1.6,
+          "moving_nodes": [
+            "body",
+            "drum"
+          ],
+          "signature": [
+            [
+              "body",
+              "translation",
+              0.027
+            ],
+            [
+              "drum",
+              "rotation",
+              0.045
+            ]
+          ]
+        },
+        "Move": {
+          "duration": 0.8,
+          "moving_nodes": [
+            "barrel",
+            "body"
+          ],
+          "signature": [
+            [
+              "body",
+              "rotation",
+              0.042
+            ],
+            [
+              "barrel",
+              "rotation",
+              0.07
+            ]
+          ]
+        },
+        "Turn": {
+          "duration": 0.733,
+          "moving_nodes": [
+            "barrel",
+            "root"
+          ],
+          "signature": [
+            [
+              "root",
+              "rotation",
+              0.412
+            ],
+            [
+              "barrel",
+              "rotation",
+              0.075
+            ]
+          ]
+        },
+        "Windup": {
+          "duration": 0.767,
+          "moving_nodes": [
+            "barrel",
+            "drum"
+          ],
+          "signature": [
+            [
+              "barrel",
+              "rotation",
+              0.075
+            ],
+            [
+              "drum",
+              "rotation",
+              0.105
+            ]
+          ]
+        },
+        "Attack": {
+          "duration": 0.667,
+          "moving_nodes": [
+            "barrel",
+            "drum"
+          ],
+          "signature": [
+            [
+              "barrel",
+              "translation",
+              0.24
+            ],
+            [
+              "drum",
+              "rotation",
+              0.567
+            ]
+          ]
+        },
+        "Special": {
+          "duration": 1.1,
+          "moving_nodes": [
+            "barrel",
+            "drum"
+          ],
+          "signature": [
+            [
+              "barrel",
+              "translation",
+              0.379
+            ],
+            [
+              "drum",
+              "rotation",
+              0.878
+            ]
+          ]
+        },
+        "Recover": {
+          "duration": 0.567,
+          "moving_nodes": [
+            "barrel",
+            "drum"
+          ],
+          "signature": [
+            [
+              "barrel",
+              "rotation",
+              0.12
+            ],
+            [
+              "drum",
+              "rotation",
+              0.09
+            ]
+          ]
+        },
+        "Hit": {
+          "duration": 0.433,
+          "moving_nodes": [
+            "barrel",
+            "body"
+          ],
+          "signature": [
+            [
+              "body",
+              "rotation",
+              0.175
+            ],
+            [
+              "barrel",
+              "rotation",
+              0.135
+            ]
+          ]
+        },
+        "Defeat": {
+          "duration": 1.133,
+          "moving_nodes": [
+            "barrel",
+            "body"
+          ],
+          "signature": [
+            [
+              "body",
+              "translation",
+              0.41
+            ],
+            [
+              "body",
+              "rotation",
+              0.48
+            ],
+            [
+              "barrel",
+              "rotation",
+              0.289
+            ]
+          ]
+        }
+      },
+      "status": "modeled and rigged; prototype yard integration pending"
+    },
+    {
+      "id": "WSC-ENM-010",
+      "file": "railblade.glb",
+      "behavior": "lunge",
+      "triangles": 848,
+      "bytes": 114620,
+      "clips": {
+        "Idle": {
+          "duration": 1.6,
+          "moving_nodes": [
+            "body",
+            "visor"
+          ],
+          "signature": [
+            [
+              "body",
+              "translation",
+              0.027
+            ],
+            [
+              "visor",
+              "rotation",
+              0.045
+            ]
+          ]
+        },
+        "Move": {
+          "duration": 0.8,
+          "moving_nodes": [
+            "leg_L",
+            "leg_R"
+          ],
+          "signature": [
+            [
+              "leg_L",
+              "rotation",
+              0.279
+            ],
+            [
+              "leg_R",
+              "rotation",
+              0.279
+            ]
+          ]
+        },
+        "Turn": {
+          "duration": 0.733,
+          "moving_nodes": [
+            "blade",
+            "root"
+          ],
+          "signature": [
+            [
+              "root",
+              "rotation",
+              0.412
+            ],
+            [
+              "blade",
+              "rotation",
+              0.075
+            ]
+          ]
+        },
+        "Windup": {
+          "duration": 0.767,
+          "moving_nodes": [
+            "blade",
+            "visor"
+          ],
+          "signature": [
+            [
+              "blade",
+              "rotation",
+              0.338
+            ],
+            [
+              "visor",
+              "rotation",
+              0.105
+            ]
+          ]
+        },
+        "Attack": {
+          "duration": 0.667,
+          "moving_nodes": [
+            "blade",
+            "body"
+          ],
+          "signature": [
+            [
+              "body",
+              "rotation",
+              0.19
+            ],
+            [
+              "blade",
+              "translation",
+              0.46
+            ],
+            [
+              "blade",
+              "rotation",
+              0.436
+            ]
+          ]
+        },
+        "Special": {
+          "duration": 1.1,
+          "moving_nodes": [
+            "blade",
+            "body"
+          ],
+          "signature": [
+            [
+              "body",
+              "rotation",
+              0.299
+            ],
+            [
+              "blade",
+              "translation",
+              0.727
+            ],
+            [
+              "blade",
+              "rotation",
+              0.681
+            ]
+          ]
+        },
+        "Recover": {
+          "duration": 0.567,
+          "moving_nodes": [
+            "blade",
+            "visor"
+          ],
+          "signature": [
+            [
+              "blade",
+              "rotation",
+              0.12
+            ],
+            [
+              "visor",
+              "rotation",
+              0.09
+            ]
+          ]
+        },
+        "Hit": {
+          "duration": 0.433,
+          "moving_nodes": [
+            "blade",
+            "body"
+          ],
+          "signature": [
+            [
+              "body",
+              "rotation",
+              0.175
+            ],
+            [
+              "blade",
+              "rotation",
+              0.135
+            ]
+          ]
+        },
+        "Defeat": {
+          "duration": 1.133,
+          "moving_nodes": [
+            "blade",
+            "body"
+          ],
+          "signature": [
+            [
+              "body",
+              "translation",
+              0.41
+            ],
+            [
+              "body",
+              "rotation",
+              0.643
+            ],
+            [
+              "blade",
+              "rotation",
+              0.289
+            ]
+          ]
+        }
+      },
+      "status": "modeled and rigged; prototype yard integration pending"
+    },
+    {
+      "id": "WSC-ENM-011",
+      "file": "mortar.glb",
+      "behavior": "mortar",
+      "triangles": 1432,
+      "bytes": 125260,
+      "clips": {
+        "Idle": {
+          "duration": 1.6,
+          "moving_nodes": [
+            "body",
+            "hatch"
+          ],
+          "signature": [
+            [
+              "body",
+              "translation",
+              0.027
+            ],
+            [
+              "hatch",
+              "rotation",
+              0.045
+            ]
+          ]
+        },
+        "Move": {
+          "duration": 0.8,
+          "moving_nodes": [
+            "body",
+            "tube"
+          ],
+          "signature": [
+            [
+              "body",
+              "rotation",
+              0.042
+            ],
+            [
+              "tube",
+              "rotation",
+              0.07
+            ]
+          ]
+        },
+        "Turn": {
+          "duration": 0.733,
+          "moving_nodes": [
+            "root",
+            "tube"
+          ],
+          "signature": [
+            [
+              "root",
+              "rotation",
+              0.412
+            ],
+            [
+              "tube",
+              "rotation",
+              0.075
+            ]
+          ]
+        },
+        "Windup": {
+          "duration": 0.767,
+          "moving_nodes": [
+            "hatch",
+            "tube"
+          ],
+          "signature": [
+            [
+              "tube",
+              "rotation",
+              0.333
+            ],
+            [
+              "hatch",
+              "rotation",
+              0.105
+            ]
+          ]
+        },
+        "Attack": {
+          "duration": 0.667,
+          "moving_nodes": [
+            "body",
+            "hatch",
+            "tube"
+          ],
+          "signature": [
+            [
+              "body",
+              "translation",
+              0.13
+            ],
+            [
+              "tube",
+              "rotation",
+              0.239
+            ],
+            [
+              "hatch",
+              "rotation",
+              0.19
+            ]
+          ]
+        },
+        "Special": {
+          "duration": 1.1,
+          "moving_nodes": [
+            "body",
+            "hatch",
+            "tube"
+          ],
+          "signature": [
+            [
+              "body",
+              "translation",
+              0.205
+            ],
+            [
+              "tube",
+              "rotation",
+              0.377
+            ],
+            [
+              "hatch",
+              "rotation",
+              0.299
+            ]
+          ]
+        },
+        "Recover": {
+          "duration": 0.567,
+          "moving_nodes": [
+            "hatch",
+            "tube"
+          ],
+          "signature": [
+            [
+              "tube",
+              "rotation",
+              0.12
+            ],
+            [
+              "hatch",
+              "rotation",
+              0.09
+            ]
+          ]
+        },
+        "Hit": {
+          "duration": 0.433,
+          "moving_nodes": [
+            "body",
+            "tube"
+          ],
+          "signature": [
+            [
+              "body",
+              "rotation",
+              0.175
+            ],
+            [
+              "tube",
+              "rotation",
+              0.135
+            ]
+          ]
+        },
+        "Defeat": {
+          "duration": 1.133,
+          "moving_nodes": [
+            "body",
+            "tube"
+          ],
+          "signature": [
+            [
+              "body",
+              "translation",
+              0.41
+            ],
+            [
+              "body",
+              "rotation",
+              0.48
+            ],
+            [
+              "tube",
+              "rotation",
+              0.289
+            ]
+          ]
+        }
+      },
+      "status": "modeled and rigged; prototype yard integration pending"
+    },
+    {
+      "id": "WSC-ENM-012",
+      "file": "spool.glb",
+      "behavior": "crosscut",
+      "triangles": 824,
+      "bytes": 104836,
+      "clips": {
+        "Idle": {
+          "duration": 1.6,
+          "moving_nodes": [
+            "arm_R",
+            "body"
+          ],
+          "signature": [
+            [
+              "body",
+              "translation",
+              0.027
+            ],
+            [
+              "arm_R",
+              "rotation",
+              0.045
+            ]
+          ]
+        },
+        "Move": {
+          "duration": 0.8,
+          "moving_nodes": [
+            "body",
+            "reel"
+          ],
+          "signature": [
+            [
+              "body",
+              "rotation",
+              0.042
+            ],
+            [
+              "reel",
+              "rotation",
+              0.07
+            ]
+          ]
+        },
+        "Turn": {
+          "duration": 0.733,
+          "moving_nodes": [
+            "reel",
+            "root"
+          ],
+          "signature": [
+            [
+              "root",
+              "rotation",
+              0.412
+            ],
+            [
+              "reel",
+              "rotation",
+              0.075
+            ]
+          ]
+        },
+        "Windup": {
+          "duration": 0.767,
+          "moving_nodes": [
+            "arm_L",
+            "arm_R",
+            "reel"
+          ],
+          "signature": [
+            [
+              "reel",
+              "rotation",
+              0.443
+            ],
+            [
+              "arm_L",
+              "rotation",
+              0.22
+            ],
+            [
+              "arm_R",
+              "rotation",
+              0.105
+            ]
+          ]
+        },
+        "Attack": {
+          "duration": 0.667,
+          "moving_nodes": [
+            "arm_L",
+            "arm_R",
+            "reel"
+          ],
+          "signature": [
+            [
+              "reel",
+              "rotation",
+              0.915
+            ],
+            [
+              "arm_L",
+              "rotation",
+              0.289
+            ],
+            [
+              "arm_R",
+              "rotation",
+              0.289
+            ]
+          ]
+        },
+        "Special": {
+          "duration": 1.1,
+          "moving_nodes": [
+            "arm_L",
+            "arm_R",
+            "reel"
+          ],
+          "signature": [
+            [
+              "reel",
+              "rotation",
+              1.364
+            ],
+            [
+              "arm_L",
+              "rotation",
+              0.454
+            ],
+            [
+              "arm_R",
+              "rotation",
+              0.454
+            ]
+          ]
+        },
+        "Recover": {
+          "duration": 0.567,
+          "moving_nodes": [
+            "arm_R",
+            "reel"
+          ],
+          "signature": [
+            [
+              "reel",
+              "rotation",
+              0.12
+            ],
+            [
+              "arm_R",
+              "rotation",
+              0.09
+            ]
+          ]
+        },
+        "Hit": {
+          "duration": 0.433,
+          "moving_nodes": [
+            "body",
+            "reel"
+          ],
+          "signature": [
+            [
+              "body",
+              "rotation",
+              0.175
+            ],
+            [
+              "reel",
+              "rotation",
+              0.135
+            ]
+          ]
+        },
+        "Defeat": {
+          "duration": 1.133,
+          "moving_nodes": [
+            "body",
+            "reel"
+          ],
+          "signature": [
+            [
+              "body",
+              "translation",
+              0.41
+            ],
+            [
+              "body",
+              "rotation",
+              0.48
+            ],
+            [
+              "reel",
+              "rotation",
+              0.289
+            ]
+          ]
+        }
+      },
+      "status": "modeled and rigged; prototype yard integration pending"
+    }
+  ],
+  "variant_count": 0,
+  "clip_count": 36
+}

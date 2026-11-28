@@ -1,7 +1,7 @@
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-import {ARENA,COVER,WEAPONS,create,spawn,press,select,tick} from './arena.mjs';
+import {ARENA,COVER,WEAPONS,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH} from './arena.mjs';
 import {VARIANTS} from './variants.mjs';
 
 const $=n=>document.querySelector('#'+n);
@@ -9,6 +9,7 @@ const wrap=$('yard'),notice=$('notice'),human=$('hero'),rival=$('enemy');
 const set=(el,text)=>{if(el.textContent!==String(text))el.textContent=text;};
 const enemyBase=new URL('../../art/actors/dock-enemies/',location.href);
 const specialistBase=new URL('../../art/actors/dock-specialists/',location.href);
+const ordnanceBase=new URL('../../art/actors/dock-ordnance/',location.href);
 const weaponBase=new URL('../../art/weapons/',location.href);
 const clipNames={idle:'Idle',move:'Move',feint:'Move',windup:'Windup',active:'Attack',recover:'Recover',hit:'Hit',defeat:'Defeat'};
 const mat=(c,metal=.45,rough=.46)=>new T.MeshStandardMaterial({color:c,metalness:metal,roughness:rough});
@@ -110,10 +111,14 @@ try{
  const attackRing=mesh(new T.RingGeometry(.76,1,40,1,-.8,1.6),basic(0x8de3d7,.65));
  for(const o of [warningPlane,warningRing,pulseRing,attackRing]){o.rotation.x=-Math.PI/2;o.visible=false;scene.add(o);}
  const flash=mesh(new T.IcosahedronGeometry(.27,1),basic(0x9dfdf0,.83));scene.add(flash);flash.visible=false;
- let impact=.0,noticeUntil=0;
+ const shellShot=mesh(new T.IcosahedronGeometry(.13,1),basic(0xffad68,.99));
+ const muzzleTrace=mesh(new T.BoxGeometry(.045,.045,1),basic(0xff996b,.88));
+ scene.add(shellShot,muzzleTrace);shellShot.visible=muzzleTrace.visible=false;
+ let impact=.0,noticeUntil=0,salvoFlash=0;
  function say(text,until=1){set(notice,text);noticeUntil=s.time+until;}
- const manifests=await Promise.all([enemyBase,specialistBase].map(path=>fetch(new URL('manifest.json',path)).then(r=>{if(!r.ok)throw Error('Enemy manifest missing');return r.json();})));
- const data={enemyTypes:manifests.flatMap((d,i)=>d.enemyTypes.map(a=>({...a,source:i?specialistBase:enemyBase})))};
+ const actorBases=[enemyBase,specialistBase,ordnanceBase];
+ const manifests=await Promise.all(actorBases.map(path=>fetch(new URL('manifest.json',path)).then(r=>{if(!r.ok)throw Error('Enemy manifest missing');return r.json();})));
+ const data={enemyTypes:manifests.flatMap((d,i)=>d.enemyTypes.map(a=>({...a,source:actorBases[i]})))};
  const artists=await Promise.all(data.enemyTypes.map(a=>loader.loadAsync(new URL(a.model,a.source).href)));
  let s=create(data.enemyTypes),i=0,variant=null,enemy=null,actor=null,weapon=null,wmix=null,wa=null,sequence=0,who=-1;
  const opts=$('weapon');
@@ -188,13 +193,13 @@ try{
  function action(bot,name){
   if(name===actor.mode)return;
   actor.mode=name;
-  const clip=actor.clips[clipNames[name]??'Idle'];
+  const clip=actor.clips[(name==='active'&&bot.attack==='mortar'?'Special':clipNames[name])??'Idle'];
   if(!clip)return;
   if(actor.last){actor.last.fadeOut(.08);}
   const a=actor.mixer.clipAction(clip).reset().fadeIn(.10);
   if(!['idle','move'].includes(name)){
    a.setLoop(T.LoopOnce,1);a.clampWhenFinished=true;
-   const sec={windup:bot.windReady,feint:.24,active:bot.attack==='charge'?.56:bot.attack==='pounce'?.39:.29,recover:bot.recover,hit:.24,defeat:1.03}[name];
+   const sec={windup:bot.windReady,feint:.24,active:bot.activeDuration,recover:bot.recover,hit:.24,defeat:1.03}[name];
    if(sec)a.setDuration(sec);
   }
   a.play();actor.last=a;
@@ -249,9 +254,11 @@ try{
   for(const e of s.events.splice(0)){
    if(e.type==='enemy-state'&&e.state==='windup'){
     const cue={windmill:'SWEEP · step back',beam:'BEAM · move sideways',pounce:'POUNCE · dodge',charge:'CHARGE · break the line',
-     hook:'HOOK · leave the lane',guard:'SHIELD · circle round',burrow:'SNARE · leave the mark',burst:'BURST · get out of the ring'};
+     hook:'HOOK · leave the lane',guard:'SHIELD · circle round',burrow:'SNARE · leave the mark',burst:'BURST · get out of the ring',salvo:'SALVO · step out of the line',lunge:'LUNGE · dodge sideways',mortar:'MORTAR · leave the landing zone',crosscut:'CROSSCUT · step forward or back'};
     say(cue[enemy.attack],enemy.windReady+.18);
    }
+   if(e.type==='salvo-shot')salvoFlash=.11;
+   if(e.type==='mortar-impact')say('Mortar impact',.34);
    const variation={shield:'Shield reduced your hit',rush:'RUSH · take space',feint:'FEINT · watch the next tell',echo:'ECHO · follow-up coming',pulse:'OVERLOAD · step outside',discharge:'Discharge'};
    if(variation[e.type]){
     wrap.dataset.variantCue=e.type;
@@ -277,10 +284,34 @@ try{
   wmix?.update(dt);
   actor.group.position.set(enemy.x,0,enemy.z);actor.group.rotation.y=face(...enemy.face);
   action(enemy,enemy.state);actor.mixer.update(dt);
-  const warn=enemy.state==='windup'&&enemy.life>0,radial=['windmill','pounce','burrow','burst'].includes(enemy.attack);
+  const bomb=enemy.attack==='mortar',cross=enemy.attack==='crosscut';
+  const warn=enemy.life>0&&(enemy.state==='windup'||(bomb&&enemy.state==='active'&&!enemy.dashHit));
+  const radial=['windmill','pounce','burrow','burst','mortar'].includes(enemy.attack);
   warningRing.visible=warn&&radial;warningPlane.visible=warn&&!radial;
-  if(warningRing.visible){const r=enemy.attack==='pounce'?.85:enemy.reach+.25;const d=enemy.attack==='pounce'?Math.min(enemy.lockLength,enemy.reach):0;warningRing.position.set(enemy.attack==='burrow'?enemy.mark.x:enemy.x+enemy.lock[0]*d,.027,enemy.attack==='burrow'?enemy.mark.z:enemy.z+enemy.lock[1]*d);warningRing.scale.setScalar(enemy.attack==='burrow'?.93:r);}
-  if(warningPlane.visible){const d=enemy.reach;warningPlane.position.set(enemy.x+enemy.lock[0]*d/2,.03,enemy.z+enemy.lock[1]*d/2);warningPlane.rotation.z=face(...enemy.lock);warningPlane.scale.set(enemy.attack==='beam'?1.16:1.48,d,1);}
+  if(warningRing.visible){
+   const r=enemy.attack==='pounce'?.85:enemy.reach+.25,d=enemy.attack==='pounce'?Math.min(enemy.lockLength,enemy.reach):0;
+   const marked=bomb||enemy.attack==='burrow';
+   warningRing.position.set(marked?enemy.mark.x:enemy.x+enemy.lock[0]*d,.027,marked?enemy.mark.z:enemy.z+enemy.lock[1]*d);
+   warningRing.scale.setScalar(bomb?MORTAR_RADIUS:marked?.93:r);
+  }
+  if(warningPlane.visible){
+   const d=enemy.reach;
+   warningPlane.position.set(cross?enemy.mark.x:enemy.x+enemy.lock[0]*d/2,.030,cross?enemy.mark.z:enemy.z+enemy.lock[1]*d/2);
+   warningPlane.rotation.z=face(...enemy.lock)+(cross?Math.PI/2:0);
+   warningPlane.scale.set(cross?CROSS_HALF_WIDTH*2:enemy.attack==='beam'||enemy.attack==='salvo'?1.22:1.48,cross?3.44:d,1);
+  }
+  shellShot.visible=bomb&&enemy.state==='active'&&!enemy.dashHit&&enemy.life>0;
+  if(shellShot.visible){
+   const v=clamp(enemy.t/.50,0,1);
+   shellShot.position.set(T.MathUtils.lerp(enemy.x,enemy.mark.x,v),T.MathUtils.lerp(1.66,.09,v)+Math.sin(Math.PI*v)*2.52,T.MathUtils.lerp(enemy.z,enemy.mark.z,v));
+  }
+  salvoFlash=Math.max(0,salvoFlash-dt);
+  muzzleTrace.visible=enemy.life>0&&enemy.state==='active'&&enemy.attack==='salvo'&&salvoFlash>0;
+  if(muzzleTrace.visible){
+   const d=enemy.reach, x=enemy.lock[0],z=enemy.lock[1];
+   muzzleTrace.position.set(enemy.x+x*d/2,1.2,enemy.z+z*d/2);muzzleTrace.rotation.y=face(x,z);
+   muzzleTrace.scale.z=d;muzzleTrace.material.opacity=salvoFlash/.11*.88;
+  }
   pulseRing.visible=enemy.life>0&&enemy.pulse>0;
   if(pulseRing.visible){pulseRing.position.set(enemy.x,.047,enemy.z);pulseRing.scale.setScalar(2.25);pulseRing.material.opacity=.62+Math.sin(enemy.pulse*30)*.18;}
   impact=Math.max(0,impact-dt);flash.visible=impact>0;flash.scale.setScalar(1+(.26-impact)*2);flash.material.opacity=impact/.26*.8;

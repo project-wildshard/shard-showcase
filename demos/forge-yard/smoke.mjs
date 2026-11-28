@@ -21,7 +21,7 @@ try{
  await page.locator('#weapon').selectOption('017');
  await page.waitForFunction(()=>document.querySelector('#yard').dataset.equipped==='017');
  const victories=[];
- for(let n=0;n<8;n++){
+ for(let n=0;n<12;n++){
   if(n)await page.locator('#win-next').tap();
   const label=await page.locator('#enemy-name').textContent();
   const track=()=>yard.evaluate(e=>{
@@ -76,7 +76,7 @@ try{
  }
  const inspectedVariants=[];
  const mode=['rusher','bulwark','feinter','echo','overload'];
- for(let n=0;n<8;n++){
+ for(let n=0;n<12;n++){
   if(n)await page.locator('#next').tap();
   const type='WSC-ENM-'+String(n+1).padStart(3,'0');
   for(const id of mode){
@@ -97,7 +97,7 @@ try{
   }
   await page.locator('#variant').selectOption('');
  }
- assert.equal(inspectedVariants.length,40);
+ assert.equal(inspectedVariants.length,60);
  assert.deepEqual(errors,[]);
  console.log(JSON.stringify({trustedTouch:true,victories,weaponModelsLoaded:12,weaponsHit,inspectedVariants,viewport:[402,874],errors},null,2));
 }finally{await browser.close();}

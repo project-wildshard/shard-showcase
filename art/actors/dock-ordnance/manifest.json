@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "units": "meters",
+  "enemyTypes": [
+    {"id":"WSC-ENM-009","name":"Rasp Turret","model":"rasp.glb","move":"pedestal skid","attack":"salvo","radius":0.64,"height":1.47,"pace":0.98,"hp":66,"reach":5.05,"windup":0.62,"recover":0.85},
+    {"id":"WSC-ENM-010","name":"Railblade Inspector","model":"railblade.glb","move":"hock walker","attack":"lunge","radius":0.57,"height":2.21,"pace":2.15,"hp":72,"reach":2.6,"windup":0.72,"recover":0.94},
+    {"id":"WSC-ENM-011","name":"Salt Mortar","model":"mortar.glb","move":"four-wheel skid","attack":"mortar","radius":0.69,"height":1.77,"pace":1.07,"hp":66,"reach":5.2,"windup":0.66,"recover":0.95},
+    {"id":"WSC-ENM-012","name":"Turnstile Spool","model":"spool.glb","move":"reel skid","attack":"crosscut","radius":0.57,"height":1.67,"pace":1.31,"hp":65,"reach":2.85,"windup":0.82,"recover":0.85}
+  ]
+}
