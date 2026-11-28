@@ -8,6 +8,7 @@ function property(name) {
 const substance=`
 varying vec3 vFoundryPosition;
 uniform float uFoundryClass;
+uniform float uFoundryLocalized;
 float fHash(vec3 p){
  p=fract(p*vec3(.1031,.1030,.0973));p+=dot(p,p.yxz+33.33);
  return fract((p.x+p.y)*p.z);
@@ -28,12 +29,13 @@ float fScale(vec3 p){
  return .53*coarse+.28*fNoise(p*35.2)+.19*grain;
 }
 `;
-export function applyFoundryMaterial(material) {
+export function applyFoundryMaterial(material, localized=false) {
  if(material.userData.foundry)return;
  material.userData.foundry=true;
  const family=property(material.name.toLowerCase());
  material.onBeforeCompile=shader=>{
   shader.uniforms.uFoundryClass={value:family};
+  shader.uniforms.uFoundryLocalized={value:Number(localized)};
   shader.vertexShader='varying vec3 vFoundryPosition;\n'+shader.vertexShader;
   shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\n vFoundryPosition=position;');
   shader.fragmentShader=substance+shader.fragmentShader;
@@ -48,8 +50,14 @@ export function applyFoundryMaterial(material) {
    foundryHeight*=.35;foundryHeight+=woven*.12;
   }else if(uFoundryClass<1.5){
    float oxide=smoothstep(.43,.69,foundryBody)*smoothstep(.25,.75,foundryMacro);
-   diffuseColor.rgb = mix(diffuseColor.rgb*(.68+.68*foundryBody),vec3(.132,.058,.027),oxide*.65);
-   foundryHeight*=.70;
+   float highImpact=1.-smoothstep(.045,.20,abs(abs(foundryPoint.x)-.29)+abs(foundryPoint.y-1.50)*.62);
+   float strapEdge=1.-smoothstep(.009,.036,abs(foundryPoint.y-1.15)+.026*abs(foundryPoint.x));
+   float shinWear=(1.-smoothstep(.022,.115,abs(foundryPoint.y-.39)))*.45;
+   float distributed=max(highImpact*.57,max(strapEdge,shinWear));
+   float localizedOxide=oxide*distributed;
+   diffuseColor.rgb=mix(diffuseColor.rgb*mix(.68+.68*foundryBody,.90+.22*foundryBody,uFoundryLocalized),
+                       vec3(.132,.058,.027),mix(oxide*.65,localizedOxide*.54,uFoundryLocalized));
+   foundryHeight*=mix(.70,.16+.34*distributed,uFoundryLocalized);
   }else if(uFoundryClass<2.5){
    float pore=fNoise(foundryPoint*165.);
    diffuseColor.rgb *= .59+.87*foundryBody+.17*pore;

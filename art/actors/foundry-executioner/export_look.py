@@ -51,7 +51,8 @@ for src in samples:
     if len(me.loop_triangles)>400:
         bpy.ops.object.select_all(action='DESELECT');review.select_set(True);bpy.context.view_layer.objects.active=review
         mod=review.modifiers.new('Static inspection triangle cap','DECIMATE')
-        mod.ratio=.42 if 'hood' in src.name.lower() or 'ceramic' in src.name.lower() else .31
+        kind=src.name.lower()
+        mod.ratio=.19 if kind.startswith('shoulder mantle') else .42 if any(t in kind for t in ('hood','ceramic')) else .31
         bpy.ops.object.modifier_apply(modifier=mod.name)
         me=review.data
     coords=[mat @ v.co for v in me.vertices]

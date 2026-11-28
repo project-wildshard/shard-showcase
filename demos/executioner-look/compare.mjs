@@ -2,7 +2,7 @@ import {chromium} from 'playwright';
 import assert from 'node:assert/strict';
 import {mkdirSync} from 'node:fs';
 const [url='http://127.0.0.1:5250/demos/executioner-look/',out='/tmp/executioner-ab',second='reconstructed']=process.argv.slice(2);
-if(!['reconstructed','hybrid'].includes(second))throw Error('Select reconstructed or hybrid.');
+if(!['reconstructed','hybrid','mantle'].includes(second))throw Error('Select reconstructed, hybrid or mantle.');
 mkdirSync(out,{recursive:true});
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_BINARY,
  args:['--enable-unsafe-swiftshader','--use-angle=swiftshader',...JSON.parse(process.env.CHROMIUM_EXTRA_ARGS??'[]')]});
@@ -18,9 +18,9 @@ try{
   const before=await state();assert.equal(before.state,'ready',await page.locator('#status').textContent());
   assert.equal(before.tone,'clay');assert.equal(before.view,'desktop');
   await page.screenshot({path:`${out}/${mesh}-distance.png`});
-  for(const name of ['Close','Profile','Rear']){
+  for(const name of second==='mantle'?['Close','Profile','Cloth side','Rear']:['Close','Profile','Rear']){
    await page.getByRole('button',{name,exact:true}).click();
-   const s=await state();assert.equal(s.view,name.toLowerCase());
+   const s=await state();assert.equal(s.view,name==='Cloth side'?'left':name.toLowerCase());
    await page.screenshot({path:`${out}/${mesh}-${s.view}.png`});
   }
   tests.push({mesh,triangles:+before.triangles,projectedHeightPx:+before.heightPixels,heightM:+before.modelHeight});

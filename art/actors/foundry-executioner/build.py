@@ -6,7 +6,8 @@ from pathlib import Path
 
 extra=sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []
 out=Path(extra[0] if extra else '/tmp/executioner')
-hybrid='hybrid' in extra[1:]
+mantle='mantle' in extra[1:]
+hybrid=mantle or 'hybrid' in extra[1:]
 out.mkdir(parents=True, exist_ok=True)
 bpy.ops.object.select_all(action='SELECT')
 bpy.ops.object.delete(use_global=False)
@@ -303,8 +304,16 @@ line('Waist belt | keeper pin',[(-.045,-.129,1.143),(-.016,-.128,1.139)],.0022,o
 if hybrid:
     sys.path.insert(0,str(Path(__file__).resolve().parent))
     from hybrid_fit import apply_collection
+    if mantle:
+        from mantle_cut import make_wrap
+        # Keep the small leather shoulder cap on the base, but replace it in
+        # this alternate cut with cloth that crosses the shoulder.
+        cap=MODEL.objects.get('Left fireproof shoulder guard')
+        assert cap
+        bpy.data.objects.remove(cap,do_unlink=True)
+        make_wrap(surface,line,fabric,leather,edge)
     apply_collection(MODEL)
-    scene['executioner_fit']='hybrid'
+    scene['executioner_fit']='mantle' if mantle else 'hybrid'
 else:
     scene['executioner_fit']='authored'
 def aim(o,point): o.rotation_euler=(Vector(point)-o.location).to_track_quat('-Z','Y').to_euler()

@@ -1,0 +1,38 @@
+{
+  "fit": "mantle",
+  "motionScope": "25 fixed samples of the diagnostic rest-to-guard transition, not combat",
+  "test": "evaluated left sleeve versus each mantle panel",
+  "framesChecked": 25,
+  "pairsChecked": 50,
+  "maxOverlapPairs": 0,
+  "first": {
+    "frame": 1,
+    "panels": {
+      "Shoulder mantle | asymmetric fireproof cloth": {
+        "overlapPairs": 0,
+        "contactFaces": 0,
+        "faces": 2056
+      },
+      "Shoulder mantle | asymmetric front lap": {
+        "overlapPairs": 0,
+        "contactFaces": 0,
+        "faces": 908
+      }
+    }
+  },
+  "last": {
+    "frame": 25,
+    "panels": {
+      "Shoulder mantle | asymmetric fireproof cloth": {
+        "overlapPairs": 0,
+        "contactFaces": 0,
+        "faces": 2056
+      },
+      "Shoulder mantle | asymmetric front lap": {
+        "overlapPairs": 0,
+        "contactFaces": 0,
+        "faces": 908
+      }
+    }
+  }
+}

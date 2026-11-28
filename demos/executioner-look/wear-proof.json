@@ -1,0 +1,49 @@
+{
+  "sameByteExactMesh": true,
+  "samePoseCameraAndLights": true,
+  "visualReviewOnly": true,
+  "rows": [
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "touch": false,
+      "results": [
+        {
+          "tone": "procedural",
+          "triangles": 44437,
+          "distancePx": 243,
+          "closePx": 552
+        },
+        {
+          "tone": "localized",
+          "triangles": 44437,
+          "distancePx": 243,
+          "closePx": 552
+        }
+      ]
+    },
+    {
+      "viewport": [
+        402,
+        874
+      ],
+      "touch": true,
+      "results": [
+        {
+          "tone": "procedural",
+          "triangles": 44437,
+          "distancePx": 294.9,
+          "closePx": 603.6
+        },
+        {
+          "tone": "localized",
+          "triangles": 44437,
+          "distancePx": 294.9,
+          "closePx": 603.6
+        }
+      ]
+    }
+  ]
+}

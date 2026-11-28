@@ -5,7 +5,7 @@ from mathutils import Vector
 args=sys.argv[sys.argv.index('--')+1:]
 out=Path(args[0]);out.mkdir(parents=True,exist_ok=True)
 scene=bpy.context.scene
-is_hybrid=scene.get('executioner_fit')=='hybrid'
+is_hybrid=scene.get('executioner_fit') in {'hybrid','mantle'}
 if is_hybrid:
     sys.path.insert(0,str(Path(__file__).resolve().parent))
     from hybrid_fit import fit
@@ -54,7 +54,7 @@ bpy.ops.object.mode_set(mode='OBJECT')
 def rigid(name):
     if name.startswith(('Ceramic','Helmet','Visor','Kiln enamel','Hood')):return 'head'
     if name.startswith(('Gorget','Neck cowl')):return 'neck'
-    if name.startswith(('Cuirass','Dorsal','Forged diagonal')):return 'chest'
+    if name.startswith(('Cuirass','Dorsal','Forged diagonal','Shoulder mantle')):return 'chest'
     if name.startswith(('Waist belt','Overlapping','Apron suspension')):return 'pelvis'
     if name.startswith(('Right pauldron','Right rerebrace','Right lower','Pauldron raised')):return 'upper_arm.R'
     if name.startswith('Left fireproof'):return 'upper_arm.L'
@@ -80,11 +80,16 @@ report={'fit':scene.get('executioner_fit','authored'),'bones':len(ad.bones),'arm
 for ob in list(model.objects):
     if ob==rig:continue
     name=ob.name
-    if name.startswith(('Continuous sleeve','Continuous trousers','Quilted suit')):
+    if name.startswith(('Continuous sleeve','Continuous trousers','Quilted suit','Shoulder mantle | asymmetric')):
         assert ob.type=='MESH'
         mod=ob.modifiers.new('Weighted pose deformation','ARMATURE');mod.object=rig;mod.use_deform_preserve_volume=True
         ob.modifiers.move(len(ob.modifiers)-1,0)
         if name.startswith('Quilted'):func=lambda v: {'pelvis':1-smooth((v.z-1.07)/.43),'chest':smooth((v.z-1.07)/.43)}
+        elif name.startswith('Shoulder mantle'):
+            # The neck hangs from chest; the wrapping hem rides the outer upper arm instead of cutting through it.
+            def func(v):
+                w=.93*smooth((-v.x-.112)/.192)
+                return {'chest':1-w,'upper_arm.L':w}
         else:
             short=name[-1]
             a,b,r=('upper_arm','forearm',.10) if 'sleeve' in name else ('thigh','shin',.125)
