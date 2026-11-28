@@ -40,7 +40,9 @@ try{
  const render=new T.WebGLRenderer({antialias:true,powerPreference:'low-power'});
  render.setPixelRatio(Math.min(devicePixelRatio,1.5));render.toneMapping=T.ACESFilmicToneMapping;render.toneMappingExposure=1.16;
  wrap.prepend(render.domElement);
- const coast=new URL(location.href).searchParams.get('arena')==='breakwater';
+ const query=new URL(location.href).searchParams;
+ const coast=query.get('arena')==='breakwater';
+ const shift=query.get('trial')==='double-shift';
  const sky=coast?0x496972:0x172b34;
  const scene=new T.Scene(),camera=new T.PerspectiveCamera(DUEL_CAMERA_FOV,1,.09,85);
  scene.background=new T.Color(sky);scene.fog=new T.FogExp2(sky,coast?.028:.036);
@@ -139,6 +141,18 @@ try{
  const actorBases=[enemyBase,specialistBase,ordnanceBase,foundryBase,terminalBase];
  const manifests=await Promise.all(actorBases.map(path=>fetch(new URL('manifest.json',path)).then(r=>{if(!r.ok)throw Error('Enemy manifest missing');return r.json();})));
  const data={enemyTypes:manifests.flatMap((d,i)=>d.enemyTypes.map(a=>({...a,source:actorBases[i]})))};
+ const shiftRivals=['WSC-ENM-001','WSC-ENM-002'].map(id=>data.enemyTypes.findIndex(e=>e.id===id));
+ if(shift&&shiftRivals.some(n=>n<0))throw Error('Double Shift roster missing');
+ let round=0,banked=0;
+ const shiftBoard=$('shift-board'), winNext=$('win-next'), bout=$('bout'), bench=$('bench');
+ if(shift){
+  wrap.dataset.trial='double-shift';
+  shiftBoard.hidden=false;
+  $('next').hidden=true;$('rival').parentElement.hidden=true;
+  $('reset').textContent='Restart trial';
+  $('trial-link').textContent='Free sparring';
+  $('trial-link').href=coast?'?arena=breakwater':'?';
+ }else if(coast)$('trial-link').href='?arena=breakwater&trial=double-shift';
  const artists=new Map(),loadingModels=new Map();
  function loadRival(n){
   if(artists.has(n))return Promise.resolve(artists.get(n));
@@ -208,7 +222,8 @@ try{
   if(!wa)throw Error('Weapon attack clip missing');
   wrap.dataset.equipped=id;
  }
- function start(n){
+ function updateHealth(p){human.value=p.hp;set($('hero-hp'),p.hp);rival.max=enemy.maxHp;rival.value=enemy.life;set($('enemy-hp'),enemy.life);}
+ function start(n,carryHp=null){
   if(actor){
    actor.mixer.stopAllAction();
    actor.kiln?.gates.forEach((o,j)=>{o.position.x=actor.kiln.rests[j];});
@@ -217,6 +232,7 @@ try{
   }
   const old=s.weapon;
   s=create(data.enemyTypes,{breakwater:coast});select(s,old);
+  if(carryHp!==null)s.player.hp=carryHp;
   heroYaw=face(...s.player.face);heroHit=heroTurn=0;
   effects.clear();previousSlash=null;prevFxPhase='';wrap.dataset.fxPhase='idle';wrap.dataset.fxKind='';
   if(walker){walker.mixer.stopAllAction();walker.name=walker.last=null;heroPose('Idle');}
@@ -236,7 +252,12 @@ try{
   if(clips.Turn)clips.Turn=new T.AnimationClip('Turn',clips.Turn.duration,clips.Turn.tracks.filter(t=>!/^root\.(position|quaternion)$/.test(t.name)));
   actor={group,mixer,weak:g.scene.getObjectByName('weak_socket'),kit:armor,kiln,clips,mode:null,last:null,yaw:face(...enemy.face),turnFor:0,turnCooldown:0};
   wrap.dataset.enemy=enemy.id;wrap.dataset.outcome='';wrap.dataset.variant=enemy.variant??'';wrap.dataset.variantParts=String(armor?.children.length??0);wrap.dataset.variantCue='';wrap.dataset.counterHit='';delete wrap.dataset.thrustAxes;delete wrap.dataset.thrustGap;
-  $('win').hidden=true;set($('enemy-name'),enemy.name);say(enemy.rule??('Fight: '+enemy.name),1.4);
+  updateHealth(s.player);$('win').hidden=true;set($('enemy-name'),enemy.name);say(enemy.rule??('Fight: '+enemy.name),1.4);
+  if(shift){
+   wrap.dataset.round=String(round+1);
+   set(bout,'ROUND 0'+(round+1)+' / 02');
+   set(bench,round===0?'NEXT · '+data.enemyTypes[shiftRivals[1]].name:'FINAL RIVAL');
+  }
  }
  function action(bot,name){
   if(name===actor.mode)return;
@@ -266,7 +287,7 @@ try{
   if(e.pointerId===pointer){pointer=-1;input=[0,0];$('knob').style.transform='';}
  });
  const pass=k=>{
-  if(rivalLoading||(k==='attack'&&wrap.dataset.equipped!==WEAPONS[s.weapon].id))return;
+  if(rivalLoading||shift&&wrap.dataset.outcome||(k==='attack'&&wrap.dataset.equipped!==WEAPONS[s.weapon].id))return;
   if(!press(s,k))return;
   if(k==='attack'&&wmix&&wa){wmix.stopAllAction();const a=wmix.clipAction(wa).reset().setLoop(T.LoopOnce,1);a.clampWhenFinished=false;a.setDuration(WEAPONS[s.weapon].cycle);a.play();}
  };
@@ -298,10 +319,32 @@ try{
  }
  variants.addEventListener('change',()=>{variant=variants.value||null;start(i);});
  picker.addEventListener('change',()=>void chooseRival(Number(picker.value)));
- $('next').onclick=$('win-next').onclick=()=>void chooseRival((i+1)%data.enemyTypes.length);
- $('reset').onclick=()=>start(i);
- await Promise.all([loadRival(0),loadWeapon('014'),loadWalker()]);
- start(0);
+ function restartShift(){
+  if(rivalLoading)return;
+  round=0;banked=0;start(shiftRivals[0]);
+ }
+ async function advanceShift(){
+  if(rivalLoading||wrap.dataset.outcome!=='clear')return;
+  rivalLoading=true;for(const b of nav)b.disabled=true;
+  set($('win-body'),'Opening the next gate…');
+  try{
+   const next=shiftRivals[round+1];
+   await loadRival(next);
+   const hp=s.player.hp;
+   banked+=s.time;round+=1;start(next,hp);
+  }catch{set($('win-body'),'The next rival could not load. Tap again to retry.');}
+  finally{rivalLoading=false;for(const b of nav)b.disabled=false;}
+ }
+ $('next').onclick=()=>void chooseRival((i+1)%data.enemyTypes.length);
+ winNext.onclick=()=>{
+  if(!shift){$('next').onclick();return;}
+  if(wrap.dataset.outcome==='clear')void advanceShift();
+  else restartShift();
+ };
+ $('reset').onclick=()=>shift?restartShift():start(i);
+ const first=shift?shiftRivals[0]:0;
+ await Promise.all([loadRival(first),loadWeapon('014'),loadWalker()]);
+ start(first);
  const look=new T.Vector3(),goal=new T.Vector3(),point=new T.Vector3(),cameraAxis=new T.Vector3(...DUEL_CAMERA_AXIS);
  let cameraDistance=0;
  let last=0,accum=0;
@@ -314,7 +357,7 @@ try{
   const vz=Number(keys.has('KeyS')||keys.has('ArrowDown'))-Number(keys.has('KeyW')||keys.has('ArrowUp'));
   const m=pointer!==-1?input:[vx,vz];const p=s.player;let impactEvent=null,blockedHit=false;
   const cut=who!==i;if(cut)who=i;
-  for(;accum>=1/60;accum-=1/60)if(!rivalLoading)tick(s,1/60,m);
+  for(;accum>=1/60;accum-=1/60)if(!rivalLoading&&!(shift&&wrap.dataset.outcome))tick(s,1/60,m);
   for(const e of s.events.splice(0)){
    if(e.type==='enemy-state'&&e.state==='windup'){
     const cue={windmill:'SWEEP · step back',beam:'BEAM · move sideways',pounce:'POUNCE · dodge',charge:'CHARGE · break the line',
@@ -337,11 +380,22 @@ try{
     else if(!blockedHit)say('Hit',.34);
    }
    if(e.type==='player-hit'){heroHit=.26;say(e.style==='surge'?'Tide hit · −'+e.damage:'You took a hit',.65);}
-   if(e.type==='defeat'){wrap.dataset.outcome='win';set($('win-title'),enemy.name+' defeated');set($('win-body'),'Try a different rival or change weapons.');$('win').hidden=false;}
+   if(e.type==='defeat'&&(!shift||p.hp>0)){
+    const more=shift&&round<shiftRivals.length-1;
+    wrap.dataset.outcome=more?'clear':'win';
+    set($('win-title'),shift?(more?'First gate cleared':'Double Shift cleared'):enemy.name+' defeated');
+    set($('win-body'),shift?(more?p.hp+' HP carries into the next fight.':p.hp+' HP left · '+(banked+s.time).toFixed(1)+'s in the arena.'):'Try a different rival or change weapons.');
+    set(winNext,shift?(more?'Open next gate':'Run it back'):'Next rival');
+    $('win').hidden=false;
+   }
   }
-  if(p.hp===0){wrap.dataset.outcome='loss';set($('win-title'),'Walker down');set($('win-body'),'Restart or try another rival.');$('win').hidden=false;}
+  if(p.hp===0){
+   wrap.dataset.outcome='loss';set($('win-title'),'Walker down');
+   set($('win-body'),shift?'Round '+(round+1)+' of 2. A new run starts at the first gate.':'Restart or try another rival.');
+   set(winNext,shift?'Retry trial':'Next rival');$('win').hidden=false;
+  }
   if(s.time>noticeUntil)set(notice,WEAPONS[s.weapon].name);
-  human.value=p.hp;set($('hero-hp'),p.hp);rival.max=enemy.maxHp;rival.value=enemy.life;set($('enemy-hp'),enemy.life);
+  updateHealth(p);
   if(s.surge){
    const phase=s.surge.section?.phase??'idle';
    updateSurge(s.surge.section);
@@ -356,7 +410,7 @@ try{
   wrap.dataset.enemyX=enemy.x.toFixed(3);wrap.dataset.enemyZ=enemy.z.toFixed(3);
   alivePlayer.position.set(p.x,0,p.z);
   const wish=face(...p.face),yawErr=Math.atan2(Math.sin(wish-heroYaw),Math.cos(wish-heroYaw));
-  const moving=Math.hypot(...m)>.10&&!rivalLoading;
+  const moving=Math.hypot(...m)>.10&&!rivalLoading&&!(shift&&wrap.dataset.outcome);
   if(Math.abs(yawErr)>.88&&moving&&!p.slash&&!p.dodge&&heroTurn<=0)heroTurn=.25;
   heroYaw+=yawErr*(1-Math.exp(-dt*(p.slash?23:14)));alivePlayer.rotation.y=heroYaw;
   heroHit=Math.max(0,heroHit-dt);heroTurn=Math.max(0,heroTurn-dt);

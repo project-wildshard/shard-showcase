@@ -14,10 +14,16 @@ button,select{font:inherit;color:#edf2e7;background:#17292fe8;border:1px solid #
 .stick{position:absolute;bottom:126px;left:16px;width:113px;height:113px;border:1px solid #c1d6cb8b;border-radius:50%;background:#202b34a8;touch-action:none;display:grid;place-items:center}.knob{pointer-events:none;width:55px;height:55px;border:1px solid #cdd9c8a5;background:#c1d6cb47;border-radius:50%}
 .actions{position:absolute;right:16px;bottom:128px;display:grid;grid-template-columns:52px 78px;align-items:end;gap:9px}.actions button{border-radius:50%;font-size:.70rem;font-weight:850;letter-spacing:.06em;text-transform:uppercase}.actions button:first-child{width:52px;height:52px}.actions button:last-child{width:78px;height:78px;border-color:#e4c29b;color:#fff4d8;background:#a15820c9}
 .sub{position:absolute;bottom:111px;color:#d0cbbd;left:14px;font-size:.63rem;pointer-events:none}.win{position:absolute;top:43%;left:50%;transform:translate(-50%,-50%);text-align:center;width:min(84vw,310px);background:#111f25ee;border:1px solid #b38f6d;padding:16px;border-radius:6px}.win strong{display:block;font-size:1.35rem}.win p{margin:.25em 0 1em;font-size:.8rem}.win button{padding:6px 14px}
+#trial-link{position:absolute;right:16px;top:max(15px,env(safe-area-inset-top));color:#cfe7d3;font-size:.68rem;font-weight:750;text-underline-offset:.22em;pointer-events:auto;padding:7px 0}
+#shift-board{display:flex;align-items:center;gap:8px;position:absolute;left:50%;top:100px;transform:translateX(-50%);white-space:nowrap;pointer-events:none;font-size:.63rem;letter-spacing:.10em;background:#111f25e8;border:1px solid #9a7955;padding:6px 10px;color:#fee0aa}
+#shift-board b{color:#f4b774}#shift-board span{color:#dfd2b8}
+[data-trial] #notice{top:133px}[data-trial] #tide{top:169px}[data-trial] .toolbar{grid-template-columns:minmax(0,1fr) auto}
+@media(min-width:720px){#trial-link{right:28px;top:22px}#shift-board{top:102px}}
 [hidden]{display:none!important}@media(min-width:720px){header{padding:20px 28px}.toolbar{left:auto;right:24px;width:480px}.sub{left:24px}}
 </style></head><body><main class="yard" id="yard">
-<header><div class="tag">Wildshard / original combat study</div><h1 id="arena-name">Forge <span>Yard</span></h1>
+<header><div class="tag">Wildshard / combat study</div><a id="trial-link" href="?trial=double-shift">Double Shift</a><h1 id="arena-name">Forge <span>Yard</span></h1>
 <div class="hud"><div><strong>Walker</strong><meter id="hero" max="120" value="120" aria-label="Player health"></meter> <span id="hero-hp">120</span></div><div class="opponent"><strong id="enemy-name">Loading</strong><meter id="enemy" max="100" value="100" aria-label="Enemy health"></meter> <span id="enemy-hp">—</span></div></div></header>
+<div id="shift-board" aria-label="Trial progress" hidden><b id="bout"></b><span id="bench"></span></div>
 <p id="notice" role="status">Loading the forge…</p>
 <p id="tide" aria-live="polite" hidden></p>
 <div class="stick" id="stick" aria-label="Drag left stick to move"><div class="knob" id="knob"></div></div>

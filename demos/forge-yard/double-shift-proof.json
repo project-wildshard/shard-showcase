@@ -1,0 +1,20 @@
+{
+  "viewport": [
+    402,
+    874
+  ],
+  "trustedTouch": true,
+  "rivals": [
+    "Gate Sentry",
+    "Rivet Skitter"
+  ],
+  "afterFirst": 66,
+  "carriedHp": 66,
+  "afterSecond": 24,
+  "result": "24 HP left · 11.9s in the arena.",
+  "resetChecked": true,
+  "lossChecked": true,
+  "lazyLoad": true,
+  "freeSparring": true,
+  "errors": []
+}
