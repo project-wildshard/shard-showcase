@@ -1,0 +1,98 @@
+{
+  "scene": "night shift lighting",
+  "baselineArt": "bfd6dd0c6e19c6e33572520054d15a0c3aa6da46",
+  "pointLightsBefore": 2,
+  "pointLightsAfter": 2,
+  "decorativeGlowPools": 3,
+  "collisionDiscs": 4,
+  "touch": {
+    "trustedTouch": true,
+    "report": [
+      {
+        "name": "before",
+        "viewport": [
+          402,
+          874
+        ],
+        "approach": {
+          "cameraDistance": 9.508,
+          "x": 0,
+          "z": 1.33,
+          "ex": 0,
+          "ez": -0.498,
+          "pose": "Move"
+        },
+        "maxAbsNdc": [
+          0.544,
+          0.201
+        ],
+        "sampledFrames": 167,
+        "sentryHit": true,
+        "ramTellAndDodge": true,
+        "errors": []
+      },
+      {
+        "name": "portrait",
+        "viewport": [
+          402,
+          874
+        ],
+        "approach": {
+          "cameraDistance": 9.498,
+          "x": 0,
+          "z": 1.253,
+          "ex": 0,
+          "ez": -0.47,
+          "pose": "Move"
+        },
+        "maxAbsNdc": [
+          0.544,
+          0.201
+        ],
+        "sampledFrames": 196,
+        "sentryHit": true,
+        "ramTellAndDodge": true,
+        "errors": []
+      },
+      {
+        "name": "wide",
+        "viewport": [
+          960,
+          680
+        ],
+        "approach": {
+          "cameraDistance": 7.113,
+          "x": 0,
+          "z": 1.33,
+          "ex": 0,
+          "ez": -0.635,
+          "pose": "Move"
+        },
+        "maxAbsNdc": [
+          0.302,
+          0.343
+        ],
+        "sampledFrames": 196,
+        "sentryHit": true,
+        "ramTellAndDodge": true,
+        "errors": []
+      }
+    ]
+  },
+  "counter": {
+    "viewport": [
+      402,
+      874
+    ],
+    "trustedTouch": true,
+    "weapon": "Beacon Lance",
+    "ordinaryDamage": 20,
+    "counterDamage": 27,
+    "naturalDegrees": 172.71,
+    "alignedDegrees": 0,
+    "gripSlipMeters": 0,
+    "health": 120,
+    "openingConsumed": true,
+    "errors": []
+  }
+}

@@ -35,15 +35,17 @@ try{
  render.setPixelRatio(Math.min(devicePixelRatio,1.5));render.toneMapping=T.ACESFilmicToneMapping;render.toneMappingExposure=1.16;
  wrap.prepend(render.domElement);
  const scene=new T.Scene(),camera=new T.PerspectiveCamera(DUEL_CAMERA_FOV,1,.09,85);
- scene.background=new T.Color(0x24393d);scene.fog=new T.FogExp2(0x24393d,.032);
+ scene.background=new T.Color(0x172b34);scene.fog=new T.FogExp2(0x172b34,.036);
  const env=new RoomEnvironment(),pmrem=new T.PMREMGenerator(render);
- scene.environment=pmrem.fromScene(env,.06).texture;scene.environmentIntensity=.52;env.dispose();pmrem.dispose();
- scene.add(new T.HemisphereLight(0xa4d4de,0x443629,1.66));
- const key=new T.DirectionalLight(0xffccb0,3.10);key.position.set(-6,11,4);scene.add(key);
- const rim=new T.DirectionalLight(0x7ac3ff,1.75);rim.position.set(8,6,-8);scene.add(rim);
+ scene.environment=pmrem.fromScene(env,.06).texture;scene.environmentIntensity=.40;env.dispose();pmrem.dispose();
+ scene.add(new T.HemisphereLight(0xa6dce7,0x302822,1.18));
+ const key=new T.DirectionalLight(0xffdabd,2.44);key.position.set(-6,11,4);scene.add(key);
+ const rim=new T.DirectionalLight(0x86cafa,1.28);rim.position.set(8,6,-8);scene.add(rim);
 
  const dressing=createFoundryDressing(scene,COVER);
  wrap.dataset.sceneKit='foundry-evening';
+ wrap.dataset.lightPools=String(dressing.lightPools);
+ wrap.dataset.practicalLights=String(dressing.practicalLights);
  wrap.dataset.sceneBatches=String(dressing.batches);
  wrap.dataset.sceneInstances=String(dressing.instances);
  wrap.dataset.sceneCover=String(dressing.coverCount);

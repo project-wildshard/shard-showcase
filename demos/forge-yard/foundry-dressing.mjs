@@ -185,7 +185,33 @@ export function createFoundryDressing(scene,cover){
   Z('copper',.19,3.68,[x,4.8,-13.82]);
   add(sphere,'oxide',[.35,.34,.35],[x,4.8,-11.95]);
  }
- const stats={instances:0,batches:0,coverCount:covers.length,collision:'visual only',floorTexture:[512,512]};
+ // Low-cost glow footprints belong to the fixtures, not to gameplay cues.
+ const poolTexture=canvasTexture(128,128,(g,w,h)=>{
+  const v=g.createRadialGradient(w/2,h/2,0,w/2,h/2,w/2);
+  v.addColorStop(0,'rgba(255,255,255,.82)');
+  v.addColorStop(.38,'rgba(255,255,255,.48)');
+  v.addColorStop(.77,'rgba(255,255,255,.10)');
+  v.addColorStop(1,'rgba(255,255,255,0)');
+  g.fillStyle=v;g.fillRect(0,0,w,h);
+ });
+ const pools=[
+  [-3.1,-3.35,6.6,6.5,0xff8644,.37,.20],
+  [4.8,1.70,6.0,6.8,0x5aacc4,.27,-.27],
+  [-1.4,-8.75,6.4,3.6,0xff9b48,.32,0],
+ ];
+ for(const [x,z,w,d,color,opacity,yaw] of pools){
+  const glow=new T.Mesh(new T.PlaneGeometry(w,d),new T.MeshBasicMaterial({map:poolTexture,color,opacity,transparent:true,blending:T.AdditiveBlending,depthWrite:false}));
+  glow.rotation.set(-Math.PI/2,0,yaw);glow.position.set(x,.018,z);glow.renderOrder=-1;root.add(glow);
+ }
+ for(const [x,z,c] of [[-3.1,-4.1,'heat'],[4.8,.75,'cyan']]){
+  B('void',[.64,.06,1.26],[x,.035,z]);
+  for(const sign of [-1,1]){
+   B('edge',[.050,.061,1.14],[x+sign*.275,.047,z]);
+   B(c,[.070,.028,.865],[x+sign*.185,.077,z]);
+  }
+  for(let i=-3;i<=3;i++)B('steel',[.51,.042,.047],[x,.074,z+i*.146]);
+ }
+ const stats={instances:0,batches:0,coverCount:covers.length,collision:'visual only',floorTexture:[512,512],lightPools:pools.length,practicalLights:2};
  for(const {geo,mat,matrices} of entries.values()){
   const mesh=new T.InstancedMesh(geo,mats[mat],matrices.length);
   matrices.forEach((m,i)=>mesh.setMatrixAt(i,m));
@@ -195,7 +221,7 @@ export function createFoundryDressing(scene,cover){
  function light(color,intensity,distance,x,y,z){
   const l=new T.PointLight(color,intensity,distance,2);l.position.set(x,y,z);root.add(l);
  }
- light(0xff8a4d,39,9,-3.35,3.35,-3.85);
- light(0x7ee0ef,17,8,6.4,4.7,2.66);
+ light(0xff873d,74,10,-3.35,3.35,-3.85);
+ light(0x73c9e7,53,9,4.85,3.35,2.4);
  return stats;
 }
