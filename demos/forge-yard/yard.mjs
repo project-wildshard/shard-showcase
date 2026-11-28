@@ -1,3 +1,4 @@
+import {DUEL_CAMERA_AXIS,DUEL_CAMERA_FOV,duelDistance} from './duel-camera.mjs';
 import {createImpactEffects,surfaceCue} from './impact-effects.mjs';
 import {createFoundryDressing} from './foundry-dressing.mjs';
 import * as T from 'three';
@@ -32,7 +33,7 @@ try{
  const render=new T.WebGLRenderer({antialias:true,powerPreference:'low-power'});
  render.setPixelRatio(Math.min(devicePixelRatio,1.5));render.toneMapping=T.ACESFilmicToneMapping;render.toneMappingExposure=1.16;
  wrap.prepend(render.domElement);
- const scene=new T.Scene(),camera=new T.PerspectiveCamera(46,1,.09,85);
+ const scene=new T.Scene(),camera=new T.PerspectiveCamera(DUEL_CAMERA_FOV,1,.09,85);
  scene.background=new T.Color(0x24393d);scene.fog=new T.FogExp2(0x24393d,.032);
  const env=new RoomEnvironment(),pmrem=new T.PMREMGenerator(render);
  scene.environment=pmrem.fromScene(env,.06).texture;scene.environmentIntensity=.52;env.dispose();pmrem.dispose();
@@ -255,7 +256,8 @@ try{
  $('reset').onclick=()=>start(i);
  await Promise.all([loadRival(0),loadWeapon('014'),loadWalker()]);
  start(0);
- const look=new T.Vector3(),goal=new T.Vector3(),point=new T.Vector3();
+ const look=new T.Vector3(),goal=new T.Vector3(),point=new T.Vector3(),cameraAxis=new T.Vector3(...DUEL_CAMERA_AXIS);
+ let cameraDistance=0;
  let last=0,accum=0;
  function resize(){const w=wrap.clientWidth,h=wrap.clientHeight;if(!w||!h)return;camera.aspect=w/h;camera.updateProjectionMatrix();render.setSize(w,h,false);}
  window.addEventListener('resize',resize);resize();
@@ -394,13 +396,13 @@ try{
   if(prevFxPhase!==phase){wrap.dataset.fxPhase=phase;prevFxPhase=phase;}
   wrap.dataset.fxTrailSegments=String(trailCount);wrap.dataset.fxParticles=String(sparkCount);
   if(sparkCount)wrap.dataset.fxAgeMs=String(Math.round(effects.age()*1000));
-  // Fixed world-relative controls with a gently fitted, three-quarter two-shot.
-  // Moving the target between the actors is enough to retain a lunger without spinning the stick axes.
-  const a=cut?1:1-Math.exp(-dt*7.8),dx=enemy.x-p.x,dz=enemy.z-p.z;
-  const span=Math.hypot(dx,dz),x=p.x+dx*.46,z=p.z+dz*.46;
-  const side=Math.abs(dx*.91-dz*.41),fit=clamp((side-2.10)*.72+(span-4.1)*.15,0,5.0);
-  look.lerp(goal.set(x,.87,z),a);
-  camera.position.lerp(goal.set(x+3.35+fit*.40,5.5+fit*.49,z+7.15+fit*.90),a);
+  // Frame both rigs without changing the world-relative stick axes.
+  const a=cut?1:1-Math.exp(-dt*8),dx=enemy.x-p.x,dz=enemy.z-p.z;
+  look.lerp(goal.set(p.x+dx*.46,.91,p.z+dz*.46),a);
+  const fit=duelDistance(look,camera.aspect,[{x:p.x,z:p.z,radius:.59,height:2.14},enemy]);
+  cameraDistance=cut?fit:Math.max(fit,cameraDistance+(fit-cameraDistance)*(1-Math.exp(-dt*4)));
+  camera.position.copy(look).addScaledVector(cameraAxis,cameraDistance);
+  wrap.dataset.cameraDistance=cameraDistance.toFixed(3);
   camera.lookAt(look);camera.updateMatrixWorld();
   const viewport=(who,x,h,z)=>{
    point.set(x,h,z).project(camera);

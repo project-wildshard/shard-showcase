@@ -1,0 +1,74 @@
+{
+  "trustedTouch": true,
+  "report": [
+    {
+      "name": "before",
+      "viewport": [
+        402,
+        874
+      ],
+      "approach": {
+        "cameraDistance": null,
+        "x": 0,
+        "z": 1.33,
+        "ex": 0,
+        "ez": -0.415,
+        "pose": "Windup"
+      },
+      "maxAbsNdc": [
+        1.036,
+        0.47
+      ],
+      "sampledFrames": 169,
+      "sentryHit": true,
+      "ramTellAndDodge": true,
+      "errors": []
+    },
+    {
+      "name": "portrait",
+      "viewport": [
+        402,
+        874
+      ],
+      "approach": {
+        "cameraDistance": 9.164,
+        "x": 0,
+        "z": 1.177,
+        "ex": 0,
+        "ez": -0.553,
+        "pose": "Windup"
+      },
+      "maxAbsNdc": [
+        0.544,
+        0.201
+      ],
+      "sampledFrames": 201,
+      "sentryHit": true,
+      "ramTellAndDodge": true,
+      "errors": []
+    },
+    {
+      "name": "wide",
+      "viewport": [
+        960,
+        680
+      ],
+      "approach": {
+        "cameraDistance": 7.138,
+        "x": 0,
+        "z": 1.483,
+        "ex": 0,
+        "ez": -0.608,
+        "pose": "Move"
+      },
+      "maxAbsNdc": [
+        0.302,
+        0.343
+      ],
+      "sampledFrames": 195,
+      "sentryHit": true,
+      "ramTellAndDodge": true,
+      "errors": []
+    }
+  ]
+}
