@@ -1,0 +1,2 @@
+# Dock ordnance
+Four original Blender rigs and game behaviors (salvo, lunge, lob, crosscut) bring Forge Yard to 12 base fights and 60 selectable rule-and-hardware variants. Art proof: `1dfc2c8938d7e31018e84046c08bf9ce865ba10f`. Verified all 12 base wins and all 12 weapon hit paths in 402×874 portrait Chromium. All 60 selections had geometry; all 60 rule combinations passed simulation. Variants share their base rigs, and they were not separately fought to defeat.
