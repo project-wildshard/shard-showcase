@@ -9,7 +9,7 @@ import {createFoundryDressing} from './foundry-dressing.mjs';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-import {ARENA,COVER,WEAPONS,ramOpen,RAM_OPEN_SECONDS,sweepRadius,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH,RELAY_RADIUS,STILT_RADIUS,splitMarks,SEED_RADIUS,FLANK_RADIUS,HARROW_WIND,seedMarks,harrowLine} from './arena.mjs';
+import {ARENA,COVER,WEAPONS,ramOpen,wardenOpen,RAM_OPEN_SECONDS,sweepRadius,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH,RELAY_RADIUS,STILT_RADIUS,splitMarks,SEED_RADIUS,FLANK_RADIUS,HARROW_WIND,seedMarks,harrowLine} from './arena.mjs';
 import {VARIANTS} from './variants.mjs';
 
 const $=n=>document.querySelector('#'+n);
@@ -205,6 +205,7 @@ try{
  function start(n){
   if(actor){
    actor.mixer.stopAllAction();
+   actor.kiln?.gates.forEach((o,j)=>{o.position.x=actor.kiln.rests[j];});
    if(actor.kit){actor.kit.traverse(o=>o.geometry?.dispose());actor.kit.removeFromParent();}
    scene.remove(actor.group);
   }
@@ -219,9 +220,15 @@ try{
   if(armor)g.scene.getObjectByName('body')?.attach(armor);
   const mixer=new T.AnimationMixer(g.scene);
   const clips=Object.fromEntries(g.animations.map(c=>[c.name,c]));
+  const gates=enemy.attack==='guard'?['door_L','door_R'].map(n=>g.scene.getObjectByName(n)):[];
+  const kiln=gates.length&&gates.every(Boolean)?{gates,rests:gates.map(x=>x.position.x),slide:0}:null;
+  // The two jaws track actual guard state; remove only the offline-authored jaw tracks.
+  if(kiln)for(const [name,clip] of Object.entries(clips))clips[name]=new T.AnimationClip(name,clip.duration,
+   clip.tracks.filter(t=>!/^door_[LR]\./.test(t.name)));
+  delete wrap.dataset.kilnGap;delete wrap.dataset.kilnGuard;
   // The yard owns heading. Keep the articulated motion but discard the baked root swivel.
   if(clips.Turn)clips.Turn=new T.AnimationClip('Turn',clips.Turn.duration,clips.Turn.tracks.filter(t=>!/^root\.(position|quaternion)$/.test(t.name)));
-  actor={group,mixer,weak:g.scene.getObjectByName('weak_socket'),kit:armor,clips,mode:null,last:null,yaw:face(...enemy.face),turnFor:0,turnCooldown:0};
+  actor={group,mixer,weak:g.scene.getObjectByName('weak_socket'),kit:armor,kiln,clips,mode:null,last:null,yaw:face(...enemy.face),turnFor:0,turnCooldown:0};
   wrap.dataset.enemy=enemy.id;wrap.dataset.outcome='';wrap.dataset.variant=enemy.variant??'';wrap.dataset.variantParts=String(armor?.children.length??0);wrap.dataset.variantCue='';wrap.dataset.counterHit='';delete wrap.dataset.thrustAxes;delete wrap.dataset.thrustGap;
   $('win').hidden=true;set($('enemy-name'),enemy.name);say(enemy.rule??('Fight: '+enemy.name),1.4);
  }
@@ -305,9 +312,10 @@ try{
   for(const e of s.events.splice(0)){
    if(e.type==='enemy-state'&&e.state==='windup'){
     const cue={windmill:'SWEEP · step back',beam:'BEAM · move sideways',pounce:'POUNCE · dodge',charge:'CHARGE · break the line',
-     hook:'HOOK · leave the lane',guard:'SHIELD · circle round',burrow:'SNARE · leave the mark',burst:'BURST · get out of the ring',salvo:'SALVO · step out of the line',lunge:'LUNGE · dodge sideways',mortar:'MORTAR · leave the landing zone',crosscut:'CROSSCUT · step forward or back',vacuum:'INTAKE · leave the pull lane',stilt:'DOUBLE CUT · leave the marks',relay:'LANTERNS · stay in the gap',recoil:'RECOIL · step out of the jet',shutter:'SHUTTERS OPEN · punish the piston',seed:'SEED LINE · step across the marks',harrow:'SWEEP · leave the fan or dodge through',flank:'SIDE STEP · leave your mark'};
+     hook:'HOOK · leave the lane',guard:'CORE OPEN · watch the shove',burrow:'SNARE · leave the mark',burst:'BURST · get out of the ring',salvo:'SALVO · step out of the line',lunge:'LUNGE · dodge sideways',mortar:'MORTAR · leave the landing zone',crosscut:'CROSSCUT · step forward or back',vacuum:'INTAKE · leave the pull lane',stilt:'DOUBLE CUT · leave the marks',relay:'LANTERNS · stay in the gap',recoil:'RECOIL · step out of the jet',shutter:'SHUTTERS OPEN · punish the piston',seed:'SEED LINE · step across the marks',harrow:'SWEEP · leave the fan or dodge through',flank:'SIDE STEP · leave your mark'};
     say(cue[enemy.attack],enemy.windReady+.18);
    }
+   if(e.type==='enemy-state'&&e.state==='recover'&&wardenOpen(enemy))say('CORE OPEN · strike before it closes',enemy.recover);
    if(e.type==='enemy-state'&&e.state==='recover'&&ramOpen(enemy))say('ARMOR OPEN · counter now',RAM_OPEN_SECONDS);
    if(e.type==='salvo-shot')salvoFlash=.11;
    if(e.type==='mortar-impact')say('Mortar impact',.34);
@@ -381,6 +389,14 @@ try{
   else if(locking)actor.yaw=face(...enemy.lock);
   actor.group.rotation.y=actor.yaw;
   action(enemy,actor.turnFor?'turn':enemy.state);actor.mixer.update(dt);
+  if(actor.kiln){
+   const open=wardenOpen(enemy),k=actor.kiln;
+   const target=(open||enemy.state==='defeat') ? .30 : 0;
+   k.slide+=Math.sign(target-k.slide)*Math.min(Math.abs(target-k.slide),dt*4);
+   k.gates.forEach((o,j)=>{o.position.x=k.rests[j]+(j===0?-k.slide:k.slide);});
+   wrap.dataset.kilnGap=(2*k.slide).toFixed(3);
+   wrap.dataset.kilnGuard=open?'open':enemy.life>0?'closed':'down';
+  }
   const bomb=enemy.attack==='mortar',cross=enemy.attack==='crosscut';
   const two=['stilt','relay','seed'].includes(enemy.attack),flank=enemy.attack==='flank',harrow=enemy.attack==='harrow';
   const markerAfter=enemy.life>0&&enemy.state==='active'&&flank&&!enemy.dashHit;

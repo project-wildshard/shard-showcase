@@ -3,6 +3,8 @@ import {configuration} from './variants.mjs';
 import {SURGE,surgeAt,surgeTouches} from './breakwater-surge.mjs';
 export const ARENA=10.5;
 export const RAM_OPEN_SECONDS=.88;
+const SHIELD_OPEN_STATES=['windup','recover','hit','feint'];
+export const wardenOpen=b=>b.attack==='guard'&&b.life>0&&SHIELD_OPEN_STATES.includes(b.state);
 export const sweepRadius=b=>b.reach+.32;
 export const ramOpen=b=>b.id==='WSC-ENM-004'&&!b.variant&&b.state==='recover'&&b.life>0&&!b.chargeConnected&&b.t<RAM_OPEN_SECONDS;
 export const COVER=[[-3.1,-.6,.78],[2.7,-2.8,.88],[-2.2,3.2,.93],[4.2,2.9,.66]];
@@ -133,7 +135,7 @@ export function tick(s,seconds,input=[0,0]){
    for(const b of s.bots)if(b.life>0&&gap(p,b)<=a.weapon.reach+b.r&&dot(p.face,norm(b.x-p.x,b.z-p.z))>=cone&&!reachBlocked(p,b)){
     const front=dot(b.face,norm(p.x-b.x,p.z-b.z))>.35;
     const shutted=b.attack==='shutter'&&['idle','move'].includes(b.state);
-    const blocks=shutted||((b.attack==='guard'||b.variant==='bulwark')&&front&&!['windup','recover','hit','feint'].includes(b.state));
+    const blocks=shutted||((b.attack==='guard'||b.variant==='bulwark')&&front&&!SHIELD_OPEN_STATES.includes(b.state));
     const counter=ramOpen(b);
     const dealt=counter?Math.ceil(a.weapon.power*1.35):blocks?Math.ceil(a.weapon.power*(b.variant==='bulwark'?.22:shutted?.45:.35)):a.weapon.power;
     b.life=Math.max(0,b.life-dealt);

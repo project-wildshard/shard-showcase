@@ -5,6 +5,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3];D=ROOT/'art/actors/dock-specialists'
 TMP=Path(sys.argv[sys.argv.index('--')+1]) if '--' in sys.argv else D
 TMP.mkdir(parents=True,exist_ok=True)
+ONLY=sys.argv[sys.argv.index('--')+2] if '--' in sys.argv and len(sys.argv)>sys.argv.index('--')+2 else None
+if ONLY not in (None,'kiln'):raise ValueError('Optional export selector: kiln')
 bpy.ops.wm.read_factory_settings(use_empty=True);S=bpy.context.scene;S.render.fps=30
 def mat(n,c,m=.61,r=.4,e=0):
  a=bpy.data.materials.new(n);a.diffuse_color=(*c,1);a.use_nodes=True
@@ -64,17 +66,34 @@ for i,(slug,label,tint,motif) in enumerate(spec,5):
   sockets={'weak':((0,-.15,1),'body'),'attack':((0,-.67,1.0),'chain')}
  elif motif=='guard':
   joint('body',(0,0,.93),'root');joint('shield',(0,-.34,1.02));joint('boot_L',(-.25,0,.69));joint('boot_R',(.25,0,.69))
-  attach('body',box(c,'Kiln body',(0,.04,1.28),(.84,.64,.66),steel,b=.095),
-         box(c,'Hot aperture',(0,-.288,1.32),(.48,.034,.29),warm,b=.04),
-         box(c,'Cradle',(0,.07,.89),(.66,.47,.19),paint))
-  attach('shield',box(c,'Cast shield',(0,-.46,1.18),(1.06,.19,1.22),paint,b=.105),
-         box(c,'Shield rib',(0,-.574,1.18),(.22,.065,1.03),bright,b=.032))
-  for x in (-.38,.38):
-   for z in (.80,1.55):attach('shield',cyl(c,'Hot fastener',(x,-.56,z),.064,.038,copper,'Y'))
+  joint('door_L',(-.26,-.46,1.21),'shield');joint('door_R',(.26,-.46,1.21),'shield')
+  attach('body',box(c,'Refractory shoulder cast',(0,.07,1.34),(.99,.67,.79),steel,b=.118),
+         box(c,'Cradle crossmember',(0,.06,.88),(.80,.54,.21),bright),
+         box(c,'Dark crucible surround',(0,-.295,1.29),(.59,.10,.51),rubber,b=.095),
+         cyl(c,'Furnace collar',(0,-.367,1.30),.216,.11,copper,'Y',v=12),
+         cyl(c,'Exposed furnace heart',(0,-.426,1.30),.152,.024,warm,'Y',v=12),
+         box(c,'Turquoise pilot slot',(0,-.295,1.688),(.37,.045,.065),glow,b=.019))
+  # Vertical bones give the two gates a shared local X rail. Closed teeth meet at the keel.
+  attach('shield',box(c,'Top sliding rail',(0,-.428,1.61),(1.12,.13,.092),bright,b=.02),
+         box(c,'Bottom sliding rail',(0,-.429,.925),(1.04,.14,.10),steel,b=.024))
+  for sign,n in [(-1,'door_L'),(1,'door_R')]:
+   x=sign*.28
+   attach(n,box(c,'Firebrick shield cheek',(x,-.510,1.264),(.55,.19,.66),paint,b=.077),
+          box(c,'Shield lower taper',(sign*.24,-.512,1.003),(.40,.205,.29),paint,b=.102,rotation=sign*.11),
+          box(c,'Hardened striking keel',(sign*.101,-.626,1.266),(.155,.085,.508),bright,b=.035),
+          box(c,'Ceramic cheek inset',(sign*.360,-.617,1.333),(.208,.043,.300),rubber,b=.035))
+   for k in range(3):
+    attach(n,box(c,'Cheek heat vent',(sign*.366,-.649,1.247+k*.073),(.153,.021,.024),copper,b=.006))
+   for z in (1.060,1.541):attach(n,cyl(c,'Flush cheek rivet',(sign*.445,-.623,z),.038,.028,bright,'Y',v=8))
+   attach('body',cyl(c,'Exhaust shoulder',(sign*.407,.19,1.77),.099,.26,steel,v=10),
+          cyl(c,'Exhaust cap',(sign*.407,.19,1.909),.112,.043,copper,v=10),
+          cyl(c,'Recessed exhaust',(sign*.407,.19,1.934),.074,.017,rubber,v=10))
   for x,n in [(-.246,'boot_L'),(.246,'boot_R')]:
-   attach(n,rod(c,'Weight strut',(x,0,.74),(x,0,.24),.109,bright),
-    box(c,'Forged sneaker',(x,-.13,.19),(.36,.54,.29),rubber,b=.061))
-  sockets={'weak':((0,-.32,1.32),'body'),'attack':((0,-.62,1.12),'shield')}
+   attach(n,rod(c,'Forged shin piston',(x,0,.76),(x,0,.28),.109,bright),
+          box(c,'Boot instep cast',(x,-.10,.34),(.36,.32,.30),steel,b=.064),
+          box(c,'Track-sole shoe',(x,-.15,.144),(.39,.59,.255),rubber,b=.065))
+   for y in (-.31,-.18,-.05):attach(n,box(c,'Boot sole cleat',(x,y,.062),(.406,.063,.081),bright,b=.012))
+  sockets={'weak':((0,-.443,1.30),'body'),'attack':((0,-.67,1.12),'shield')}
  elif motif=='burrow':
   joint('body',(0,.06,.37),'root');joint('nose',(0,-.46,.30));joint('tail',(0,.49,.30));joint('blade_L',(-.33,-.53,.33),'nose');joint('blade_R',(.33,-.53,.33),'nose')
   for y,r,n in [(-.37,.45,'nose'),(0,.40,'body'),(.39,.36,'tail'),(.76,.26,'tail')]:
@@ -128,7 +147,7 @@ for i,(slug,label,tint,motif) in enumerate(spec,5):
    f['root'][1]=x*.88;f[P][1]=x*.19
   if kind=='windup':
    if motif=='hook':f['arm'][0]=-x*.60;f['chain'][2]=x*1.02
-   elif motif=='guard':f['shield'][1]=-x*.92;f['body'][0]=-x*.18
+   elif motif=='guard':f['shield'][1]=-x*.14;f['body'][0]=-x*.12
    elif motif=='burrow':f['body'][4]=-x*.23;f['tail'][0]=-x*.40
    else:f['cage'][1]=x*1.61;f['fin_L'][2]=x*1.18;f['fin_R'][2]=-x*1.18
   if kind in ('attack','special'):
@@ -137,11 +156,15 @@ for i,(slug,label,tint,motif) in enumerate(spec,5):
    elif motif=='guard':f['shield'][5]=x*.32*bonus;f['body'][0]=x*.27*bonus
    elif motif=='burrow':f['nose'][4]=x*.38*bonus;f['blade_L'][1]=x*.61*bonus;f['blade_R'][1]=-x*.61*bonus
    else:f['cage'][1]=-x*1.65*bonus;f['body'][4]=x*.24*bonus;f['fin_R'][2]=x*bonus
-  if kind=='recover':f[P][0]=x*.23;f[Q][2]=-x*.17
+  if kind=='recover':f[P][0]=x*(.12 if motif=='guard' else .23);f[Q][2]=-x*.17
   if kind=='hit':f['body'][2]=x*.34;f[P][0]=-x*.35
   if kind=='defeat':
    f['body'][2]=x*(1.15 if motif=='hook' else 1.38);f['body'][4]=-x*(.84 if motif=='burst' else .39)
    f[P][0]=x*.54;f[Q][2]=-x*.61
+  if motif=='guard' and kind in ('windup','recover','hit','defeat'):
+   # Offline edit previews animate the jaws; prototype uses these same endpoints
+   # but drives gates from the actual guard state rather than clip progress.
+   f['door_L'][3]=-x*.30;f['door_R'][3]=x*.30
   return f
  for title,role,frames in [
   ('Idle','idle',[(1,0),(13,1),(25,0),(37,-1),(49,0)]),('Move','move',[(1,0),(7,1),(13,0),(19,-1),(25,0)]),
@@ -157,7 +180,7 @@ for i,(slug,label,tint,motif) in enumerate(spec,5):
   t=rig.animation_data.nla_tracks.new();t.name=title;t.strips.new(title,1,act)
  bpy.ops.object.select_all(action='DESELECT')
  for o in c.objects:o.select_set(True)
- bpy.ops.export_scene.gltf(filepath=str(D/(slug+'.glb')),export_format='GLB',use_selection=True,export_apply=True,export_animation_mode='NLA_TRACKS')
+ if ONLY is None or ONLY==slug:bpy.ops.export_scene.gltf(filepath=str(D/(slug+'.glb')),export_format='GLB',use_selection=True,export_apply=True,export_animation_mode='NLA_TRACKS')
  for tr in rig.animation_data.nla_tracks:tr.mute=True
  for o in c.objects:
   if o.type=='EMPTY':o.name=label+' '+o.name

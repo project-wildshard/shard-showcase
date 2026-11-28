@@ -196,8 +196,8 @@
       "id": "WSC-ENM-006",
       "file": "kiln.glb",
       "behavior": "guard",
-      "triangles": 988,
-      "bytes": 108708,
+      "triangles": 2752,
+      "bytes": 248680,
       "clips": {
         "Idle": {
           "duration": 1.6,
@@ -260,18 +260,30 @@
           "duration": 0.767,
           "moving_nodes": [
             "body",
+            "door_L",
+            "door_R",
             "shield"
           ],
           "signature": [
             [
               "body",
               "rotation",
-              0.09
+              0.06
             ],
             [
               "shield",
               "rotation",
-              0.456
+              0.07
+            ],
+            [
+              "door_L",
+              "translation",
+              0.3
+            ],
+            [
+              "door_R",
+              "translation",
+              0.3
             ]
           ]
         },
@@ -317,13 +329,25 @@
           "duration": 0.567,
           "moving_nodes": [
             "boot_R",
+            "door_L",
+            "door_R",
             "shield"
           ],
           "signature": [
             [
               "shield",
               "rotation",
-              0.115
+              0.06
+            ],
+            [
+              "door_L",
+              "translation",
+              0.3
+            ],
+            [
+              "door_R",
+              "translation",
+              0.3
             ],
             [
               "boot_R",
@@ -336,6 +360,8 @@
           "duration": 0.433,
           "moving_nodes": [
             "body",
+            "door_L",
+            "door_R",
             "shield"
           ],
           "signature": [
@@ -348,6 +374,16 @@
               "shield",
               "rotation",
               0.175
+            ],
+            [
+              "door_L",
+              "translation",
+              0.3
+            ],
+            [
+              "door_R",
+              "translation",
+              0.3
             ]
           ]
         },
@@ -356,6 +392,8 @@
           "moving_nodes": [
             "body",
             "boot_R",
+            "door_L",
+            "door_R",
             "shield"
           ],
           "signature": [
@@ -375,6 +413,16 @@
               0.269
             ],
             [
+              "door_L",
+              "translation",
+              0.3
+            ],
+            [
+              "door_R",
+              "translation",
+              0.3
+            ],
+            [
               "boot_R",
               "rotation",
               0.304
@@ -382,7 +430,7 @@
           ]
         }
       },
-      "status": "modeled and rigged; prototype yard integration pending"
+      "status": "model, rig, sockets, and clips verified; gameplay tested separately"
     },
     {
       "id": "WSC-ENM-007",

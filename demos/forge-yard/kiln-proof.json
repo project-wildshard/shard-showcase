@@ -1,0 +1,30 @@
+{
+  "viewport": [
+    402,
+    874
+  ],
+  "trustedTouch": true,
+  "weapon": "Line Pike",
+  "trials": [
+    {
+      "mode": "guarded",
+      "state": "closed",
+      "travel": 0,
+      "pose": "Move",
+      "distance": 2.753,
+      "damage": 6,
+      "restartChecked": false,
+      "errors": []
+    },
+    {
+      "mode": "exposed",
+      "state": "open",
+      "travel": 0.6,
+      "pose": "Windup",
+      "distance": 1.196,
+      "damage": 15,
+      "restartChecked": true,
+      "errors": []
+    }
+  ]
+}

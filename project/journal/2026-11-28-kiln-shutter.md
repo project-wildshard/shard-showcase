@@ -1,0 +1,7 @@
+# Kiln Warden split furnace shield
+
+The Warden already rewarded striking at its open guard, but the one-piece plate hid the rule. Two rigged firebrick gates now part 30 cm each to reveal a furnace heart; the cyan pilot stays visible with the shield closed. Forged boots, vents and ceramic cheeks distinguish it from the other bipedal dock rigs.
+
+The Blender lineup has editable jaws and nine clips, and the art builder can selectively export just the Warden. The local Forge Yard drives the shutters from the existing combat guard states, not from how far an unrelated body clip has played. Startup and closing take 75 ms at the authored rate. No change to damage, radius, reach or AI timing. The export is 2,752 triangles and 248,680 bytes with no textures; the other three specialist GLBs are byte-identical.
+
+Rebuild with `blender -b -t 8 --factory-startup --python-exit-code 1 --python scripts/blender/dock-specialists/build.py -- /tmp/dock-specialists kiln`. Then run `python scripts/blender/dock-enemies/verify.py art/actors/dock-specialists specialists`, the Forge Yard Node suite and production-style bundle. `demos/forge-yard/kiln-smoke.mjs` records two separate trusted portrait touch approaches: Line Pike dealt 6 through a closed frontal guard, 15 during the open windup, and restarting during the sequence returned the new encounter to closed. The example does not validate all variants, physical iPhone, or the live game.
