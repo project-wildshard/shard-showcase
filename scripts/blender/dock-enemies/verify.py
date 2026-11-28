@@ -48,5 +48,5 @@ for name,behavior in expected.items():
  assert 0<tri<=6500
  out.append({'id':next(x for x in names if x.startswith('WSC-ENM-')).split()[0],
    'file':f.name,'behavior':behavior,'triangles':tri,'bytes':len(b),'clips':data,
-   'status':'modeled and rigged; prototype yard integration pending'})
+   'status':'model, rig, sockets, and clips verified; gameplay tested separately'})
 print(json.dumps({'enemy_types':out,'variant_count':0,'clip_count':len(out)*len(clips)},indent=2))
