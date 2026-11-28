@@ -1,0 +1,21 @@
+{
+  "portrait": [
+    402,
+    874
+  ],
+  "trustedTouch": true,
+  "report": [
+    {
+      "variant": "before",
+      "damage": 19,
+      "socket": "grip_R",
+      "errors": []
+    },
+    {
+      "variant": "after",
+      "damage": 19,
+      "socket": "grip_R",
+      "errors": []
+    }
+  ]
+}

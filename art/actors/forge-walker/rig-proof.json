@@ -1,6 +1,6 @@
 {
-  "triangles": 7428,
-  "bytes": 525180,
+  "triangles": 8840,
+  "bytes": 591784,
   "articulatedJoints": 18,
   "sockets": {
     "grip_R": "hand_R",

@@ -42,12 +42,14 @@ def rod(c,n,a,b,r,m):
 
 # Material-only authoring keeps the prototype editable and cheap to load.
 indigo=mat('Deep indigo duck canvas',(.026,.081,.136),.09,.57)
-blue=mat('Worn Petrol enamel',(.044,.263,.297),.53,.42)
+blue=mat('Deep petrol ceramic enamel',(.027,.125,.150),.52,.39)
 leather=mat('Russet belt leather',(.176,.077,.041),.05,.55)
-cloth=mat('Fired orange neck wrap',(.54,.159,.062),.04,.63)
-brass=mat('Brushed bronze plates',(.57,.313,.126),.68,.30)
+cloth=mat('Oxblood flameproof wrap',(.36,.057,.033),.04,.66)
+brass=mat('Darkened bronze plates',(.43,.225,.102),.72,.32)
 titan=mat('Pale ceramic mask',(.66,.70,.62),.32,.32)
 lens=mat('Sea-glass visor',(.020,.34,.38),.50,.22,1.42)
+cream=mat('Ivory heat shield enamel',(.50,.45,.33),.37,.43)
+shadow=mat('Oxide recess',(.021,.038,.043),.49,.63)
 c=bpy.data.collections.new('Walker | Yard Warden');S.collection.children.link(c)
 defs={};groups={}
 def joint(n,p,par=None):defs[n]=(p,par)
@@ -80,16 +82,26 @@ for q in (-1,1):
   attach('chest',box(c,'Rib reinforcement',(q*.212,-.105,z),(.072,.063,.030),bright,b=.009))
 attach('head',profile('Faceted hard-shell helmet',[(0,-.034,1.565,.11,.102),(0,-.040,1.638,.151,.136),(0,-.022,1.766,.154,.131),(0,.002,1.866,.114,.104),(0,.011,1.886,.066,.07)],blue),
  profile('Ceramic lower respirator',[(0,-.131,1.588,.084,.057),(0,-.146,1.64,.123,.055),(0,-.149,1.702,.119,.045)],titan),
- box(c,'Obsidian visor cavity',(0,-.151,1.738),(.27,.075,.092),rubber,b=.035),
- box(c,'Saturated narrow face strip',(0,-.189,1.742),(.217,.014,.041),lens,b=.011),
+ box(c,'Obsidian visor cavity',(0,-.151,1.738),(.27,.075,.080),shadow,b=.026),
+ box(c,'Saturated narrow face strip',(0,-.189,1.742),(.217,.014,.026),lens,b=.007),
  cyl(c,'Respirator canister',(-.103,-.176,1.638),.045,.073,brass,'Y',10))
+attach('head',box(c,'Sloped brow guard',(0,-.145,1.785),(.277,.115,.047),cream,b=.016))
+for q in (-1,1):
+ attach('head',box(c,'Helmet side comms',(q*.142,.012,1.720),(.054,.135,.104),steel,b=.022),
+  box(c,'Side comms fastener',(q*.171,.010,1.72),(.016,.064,.045),bright,b=.011))
 for j in range(4):
  attach('head',box(c,'Ceramic breathing slot',(-.023+.028*j,-.194,1.627),(.011,.017,.053),rubber,b=.004))
 attach('pack',profile('Waxed canvas coil pack',[(0,.173,1.11,.181,.103),(0,.212,1.22,.197,.128),(0,.215,1.47,.173,.124),(0,.173,1.50,.132,.092)],leather),
- box(c,'Worn pack plate',(0,.326,1.31),(.25,.045,.28),blue,b=.058),
- box(c,'Back cell gauge',(0,.352,1.32),(.067,.022,.126),lens,b=.015),
+ profile('Tapered rear radiator cowl',[(0,.300,1.119,.136,.074),(0,.314,1.38,.165,.088),(0,.281,1.47,.132,.063)],steel),
+ box(c,'Recessed cooling face',(0,.392,1.295),(.191,.025,.231),shadow,b=.021),
+ box(c,'Armoured status bar',(0,.415,1.373),(.145,.022,.047),cream,b=.012),
+ box(c,'Back cell gauge',(0,.430,1.374),(.086,.013,.016),lens,b=.004),
  cyl(c,'Left cooling flask',(-.193,.243,1.28),.066,.291,brass,v=10),
  cyl(c,'Right cooling flask',(.193,.241,1.28),.067,.291,steel,v=10))
+for j in range(4):
+ attach('pack',box(c,'Deep rear heat vane',(0,.413,1.225+j*.035),(.142,.047,.012),bright,b=.004))
+for q in (-1,1):
+ attach('pack',box(c,'Radiator shoulder flange',(q*.131,.375,1.291),(.037,.064,.24),brass,b=.010))
 for x in (-.082,.082):
  attach('coat',profile('Split lower coat',[(x,.142,.62,.071,.037),(x,.127,.83,.075,.042),(x,.092,.96,.074,.048)],cloth),
   box(c,'Coat binding',(x,.159,.645),(.097,.032,.047),leather,b=.011))
@@ -98,7 +110,8 @@ for q,key in [(-1,'L'),(1,'R')]:
  joint(u,(q*.284,.012,1.445),'chest');joint(e,(q*.361,.005,1.176),u);joint(h,(q*.399,-.041,1.002),e)
  joint(g,(q*.139,.055,.91),'pelvis');joint(k,(q*.169,.010,.515),g);joint(f,(q*.174,-.013,.144),k)
  attach(u,rod(c,'Padded shoulder sleeve',(q*.294,.013,1.42),(q*.360,.012,1.178),.098,indigo),
-  orb(c,'Rounded shoulder pauldron',(q*.312,.026,1.441),(.134,.123,.127),brass if q==1 else blue),
+  profile('Faceted shoulder heat shield',[(q*.333,.026,1.351,.109,.104),(q*.345,.021,1.475,.141,.133),(q*.301,.026,1.562,.104,.112),(q*.292,.026,1.584,.065,.096)],cream if q==1 else blue),
+  box(c,'Floating shoulder band',(q*.382,.008,1.419),(.085,.190,.038),brass,b=.014),
   box(c,'Pauldron fastener',(q*.339,-.098,1.42),(.054,.028,.05),bright,b=.015))
  attach(e,rod(c,'Canvas forearm',(q*.361,.004,1.179),(q*.398,-.022,1.016),.075,indigo),
   profile('Overlapping forearm bracer',[(q*.398,-.017,1.027,.083,.076),(q*.372,-.015,1.167,.102,.086)],blue),
@@ -188,10 +201,11 @@ for n,pp,e,col,s in [('Cool key',(-3,-5,4.4),1000,(.67,.88,1.0),3.3),('Foundry r
 world=bpy.data.worlds.new('Studio');S.world=world;world.use_nodes=True;world.node_tree.nodes['Background'].inputs['Strength'].default_value=.33
 camdata=bpy.data.cameras.new('Studio portrait');cam=bpy.data.objects.new('Studio portrait',camdata);S.collection.objects.link(cam);S.camera=cam
 cam.location=(3.28,-5.5,2.62);aim(cam,(0,0,1.0));camdata.type='ORTHO';camdata.ortho_scale=2.38
-S.render.engine='CYCLES';S.cycles.samples=48;S.cycles.use_denoising=False
+S.render.engine='CYCLES';S.cycles.samples=40;S.cycles.use_denoising=False
 S.render.resolution_x=640;S.render.resolution_y=792;S.render.resolution_percentage=100
 S.render.image_settings.file_format='PNG';S.render.filepath=str(TMP/'front.png')
 bpy.context.preferences.filepaths.save_version=0
 bpy.ops.wm.save_as_mainfile(filepath=str(D/'walker.blend'),compress=True)
 bpy.ops.render.render(write_still=True)
-cam.location=(-3.28,5.5,2.64);aim(cam,(0,0,1.0));S.render.filepath=str(TMP/'back.png');bpy.ops.render.render(write_still=True)
+cam.location=(2.9,5.5,2.43);aim(cam,(0,0,1.0))
+S.render.filepath=str(TMP/'back.png');bpy.ops.render.render(write_still=True)

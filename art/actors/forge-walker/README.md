@@ -8,3 +8,5 @@ python scripts/blender/forge-walker/verify.py art/actors/forge-walker/walker.glb
 ```
 
 Nine clips: Idle, Stride, Turn, Dodge, Hit, Defeat, Sweep, Chop and Thrust. Three body attack clips are selected by the equipped weapon's style, timed against that weapon's gameplay cycle, while the weapon separately plays its own exported animation. The actor uses rigid parented panels, not skin deformations, facial rigs or exact geometry-driven hit collision. Restore NLA track mutes before hand export.
+
+The layered heat-shield pass adds a tapered rear radiator, face guard, and asymmetric shoulder shells while retaining every joint, clip and weapon socket. Runtime export: 8,840 triangles, 591,784 bytes, no textures. Front and rear studio render original editable source; browser proof is under `demos/forge-yard`.
