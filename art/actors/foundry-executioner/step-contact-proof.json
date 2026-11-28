@@ -1,0 +1,46 @@
+{
+  "fps": 30,
+  "beats": [
+    {
+      "frame": 1,
+      "label": "Rest"
+    },
+    {
+      "frame": 17,
+      "label": "Lift"
+    },
+    {
+      "frame": 25,
+      "label": "Plant"
+    },
+    {
+      "frame": 35,
+      "label": "Windup"
+    },
+    {
+      "frame": 41,
+      "label": "Strike"
+    },
+    {
+      "frame": 61,
+      "label": "Recover"
+    }
+  ],
+  "scope": "evaluated integer frames, air-strike diagnostic, no opponent or gameplay",
+  "rearFoot": {
+    "maxDriftM": 5e-06,
+    "minSoleM": 0.009075,
+    "maxSoleM": 0.009076
+  },
+  "frontFootAfterPlant": {
+    "maxDriftM": 1e-06,
+    "minSoleM": 0.009075,
+    "maxSoleM": 0.009075
+  },
+  "frontSoleMaxM": 0.11238,
+  "mantleSleeve": {
+    "samples": 61,
+    "evaluatedPairs": 122,
+    "maxOverlaps": 0
+  }
+}

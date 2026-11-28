@@ -19,3 +19,7 @@ Third fitting pass: wider stance based on the sculpt underlay, rolled plate hems
 ### Mantle cut candidate
 
 `executioner-mantle-study.blend` is the editable fitted mesh and pose test for an alternate asymmetric silhouette. Rebuild through the same material and garment source with `blender -b --python-exit-code 1 --python build.py -- /tmp/mantle mantle`, then run `pose_study.py` on the resulting `executioner-study.blend`. It retains the steel pauldron, replaces the small opposite cap with two cloth pattern pieces, and binds the wrap across the chest and upper arm. The left sleeve intersects neither panel at the 25 sampled rest-to-guard frames following a conservative sleeve clearance pass. The initial uncorrected wrap intersected that sleeve. Check with `verify_mantle.py`. This is not a swept cloth solve, skin export, full outfit collision check, or combat proof.
+
+### Planted step and strike diagnostic
+
+`executioner-step-study.blend` retains the exact authored pose and keyed control bones for a single non-looping 61-frame action at 30 fps. Rebuild with `step_strike.py` on the mantle study, then use `export_motion_study.py` to export the sampled rig. Editable markers: rest, lift, plant, windup, strike and recovery. Behind the model, the two-link IK keeps the rear foot fixed, gives the right boot clearance while it swings, and holds the new front placement through the strike. See `step-contact-proof.json`. No target model, hit test, damage, AI, navigation, cloth solver, or full body collision.

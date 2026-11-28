@@ -58,3 +58,13 @@ node demos/executioner-look/motion-smoke.mjs http://127.0.0.1:5250/demos/executi
 ```
 
 Load `?mesh=./guard-study.glb&motion=guard` and press **Play guard study** or use its slider. The browser evaluates the true GLB skin and animation, with seven weighted cloth surfaces, while rigid pieces retain their original bone attachments. It uses flat material constants for comparison, not the baked/texture-free finish validation. Fourteen probe vertices around the upper arm moved up to 0.101 m in the 1.042 s clip and returned to baseline on rewind. This is one rest-to-guard diagnostic, not a combat animation, navigation, finished skin quality, or a performance result.
+
+### Planted motion and Forge framing
+
+```sh
+blender -b art/actors/foundry-executioner/executioner-step-study.blend --python-exit-code 1 \
+  --python art/actors/foundry-executioner/export_motion_study.py -- demos/executioner-look/strike-study.glb
+node demos/executioner-look/strike-smoke.mjs
+```
+
+Open `?mesh=./strike-study.glb&motion=strike&tone=localized&stage=forge`. Same skinned GLB and finish throughout. This view reuses Forge Yard dressing, camera axis and FOV, with the aim fixed as if the player stood 2.60 m away on the centerline. It does not run the game camera's dynamic following or the fight. Both local Chromium views played and rewound the weighted 2.033 s clip. The edited step advances 0.361 m and the sampled rear foot drifts at most 0.01 mm. There were no left-sleeve intersections with either mantle panel on the 61 Blender sample frames; other garment contacts and sub-frame overlaps remain untested. The generated GLB stays out of Git.

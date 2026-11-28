@@ -13,7 +13,7 @@ def bvh(d,obj):
     tree=BVHTree.FromPolygons([ob.matrix_world @ v.co for v in me.vertices],poly,all_triangles=False)
     ob.to_mesh_clear();return tree,len(poly)
 results=[]
-for i in range(1,26):
+for i in range(scene.frame_start,scene.frame_end+1):
     scene.frame_set(i)
     d=bpy.context.evaluated_depsgraph_get()
     base,_=bvh(d,sleeve)
@@ -24,4 +24,4 @@ for i in range(1,26):
         overlaps[obj.name]={'overlapPairs':len(q),'contactFaces':len({f for f,_ in q}),'faces':n}
     results.append({'frame':i,'panels':overlaps})
 print(json.dumps({'fit':'mantle','test':'evaluated left sleeve versus each mantle panel',
- 'motionScope':'25 fixed samples of the diagnostic rest-to-guard transition, not combat', 'frames':results},indent=2))
+ 'motionScope':'integer-frame samples of the loaded diagnostic action, not combat', 'frames':results},indent=2))

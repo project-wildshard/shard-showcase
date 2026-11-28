@@ -1,8 +1,9 @@
 import * as T from 'three';
 
-export function setupGuardStudy(gltf,stage,render) {
- const clip=gltf.animations.find(a=>a.name==='Executioner Guard Study');
- if(!clip||gltf.animations.length!==1)throw Error('Wrong guard study motion.');
+export function setupMotionStudy(gltf,stage,render,kind='guard') {
+ const strike=kind==='strike';
+ const clip=gltf.animations.find(a=>a.name===(strike?'Executioner Planted Strike':'Executioner Guard Study'));
+ if(!clip||gltf.animations.length!==1)throw Error('Wrong motion study clip.');
  const skinned=[];
  gltf.scene.traverse(o=>{if(o.isSkinnedMesh)skinned.push(o);});
  if(skinned.length!==7)throw Error('Expected seven skinned garment meshes.');
@@ -21,7 +22,10 @@ export function setupGuardStudy(gltf,stage,render) {
  const action=mixer.clipAction(clip);action.setLoop(T.LoopOnce,1);action.clampWhenFinished=true;
  const play=document.querySelector('#guard-play'),slider=document.querySelector('#guard-frame'),panel=document.querySelector('#guard-panel');
  panel.hidden=false;
+ if(strike){play.textContent='Play step and strike';slider.setAttribute('aria-label','Step and strike progression');}
  const vec=new T.Vector3(),baseline=[];
+ const marks=['footL','footR','handR'].map(name=>wrap.skeleton.bones.find(b=>b.name.replace('.','')===name));
+ if(marks.some(b=>!b))throw Error('Missing plant or strike joint.');
  function position(i){wrap.getVertexPosition(i,vec);return vec.applyMatrix4(wrap.matrixWorld);}
  let serial=0;
  function seek(v) {
@@ -30,6 +34,7 @@ export function setupGuardStudy(gltf,stage,render) {
   let max=0;selection.forEach((i,j)=>{max=Math.max(max,position(i).distanceTo(baseline[j]));});
   slider.value=String(Math.round(v*100));
   stage.dataset.motionProgress=v.toFixed(3);stage.dataset.clothTravel=max.toFixed(5);
+  if(strike)stage.dataset.motionMark=marks.map(b=>b.getWorldPosition(vec).toArray().map(n=>n.toFixed(5)).join(',')).join(';');
   render();
  }
  slider.addEventListener('input',()=>{serial++;seek(+slider.value/100);});
@@ -43,7 +48,7 @@ export function setupGuardStudy(gltf,stage,render) {
   }
   requestAnimationFrame(step);
  });
- stage.dataset.motion='guard-study';stage.dataset.motionSeconds=clip.duration.toFixed(4);
+ stage.dataset.motion=strike?'planted-strike':'guard-study';stage.dataset.motionSeconds=clip.duration.toFixed(4);
  stage.dataset.skinnedMeshes=String(skinned.length);
  stage.dataset.probeVertices=String(selection.length);seek(0);
 }

@@ -1,4 +1,4 @@
-"""Export the mantle guard diagnostic with actual skin weights, not a playable enemy."""
+"""Export the mantle motion diagnostic with actual skin weights, not a playable enemy."""
 import bpy,json,sys
 from pathlib import Path
 a=sys.argv[sys.argv.index('--')+1:]
@@ -8,7 +8,8 @@ c=bpy.data.collections['Executioner | Editable Form']
 rig=c.objects['Executioner | pose skeleton']
 assert s.get('executioner_fit')=='mantle'
 assert rig.type=='ARMATURE' and rig.animation_data.action
-rig.animation_data.action.name='Executioner Guard Study'
+clip=rig.animation_data.action
+if clip.name!='Executioner Planted Strike':clip.name='Executioner Guard Study'
 art=[o for o in c.objects if o!=rig]
 weighted=[o for o in art if any(m.type=='ARMATURE' for m in o.modifiers)]
 for o in weighted:
@@ -52,4 +53,4 @@ bpy.ops.export_scene.gltf(filepath=str(out),export_format='GLB',use_selection=Tr
  export_animations=True,export_animation_mode='ACTIONS',export_frame_range=True,
  export_force_sampling=True,export_def_bones=False,export_rest_position_armature=True)
 print(json.dumps({'rigBones':len(rig.data.bones),'weightedMeshes':len(weighted),'bytes':out.stat().st_size,
- 'sourceClip':rig.animation_data.action.name,'frames':[1,25],'playable':False}))
+ 'sourceClip':rig.animation_data.action.name,'frames':[s.frame_start,s.frame_end],'playable':False}))

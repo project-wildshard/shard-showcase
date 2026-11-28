@@ -1,25 +1,34 @@
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-import {setupGuardStudy} from './motion.mjs';
+import {DUEL_CAMERA_AXIS,DUEL_CAMERA_FOV,duelDistance} from '../forge-yard/duel-camera.mjs';
+import {createFoundryDressing} from '../forge-yard/foundry-dressing.mjs';
+import {COVER} from '../forge-yard/arena.mjs';
+import {setupMotionStudy} from './motion.mjs';
 import {applyFoundryMaterial} from './foundry-material.mjs';
 
 const stage=document.querySelector('#stage'), status=document.querySelector('#status');
 try {
+ const params=new URL(location.href).searchParams,forge=params.get('stage')==='forge';
  const r=new T.WebGLRenderer({antialias:true,powerPreference:'low-power'});
- r.setPixelRatio(Math.min(devicePixelRatio,1.5));r.toneMapping=T.ACESFilmicToneMapping;r.toneMappingExposure=1.05;
+ r.setPixelRatio(Math.min(devicePixelRatio,1.5));r.toneMapping=T.ACESFilmicToneMapping;r.toneMappingExposure=forge?1.16:1.05;
  r.shadowMap.enabled=true;r.shadowMap.type=T.PCFSoftShadowMap;stage.prepend(r.domElement);
- const scene=new T.Scene();scene.background=new T.Color(0x39464a);scene.fog=new T.FogExp2(0x39464a,.045);
+ const scene=new T.Scene();const sky=forge?0x172b34:0x39464a;scene.background=new T.Color(sky);scene.fog=new T.FogExp2(sky,forge?.036:.045);
  const env=new RoomEnvironment(),pmrem=new T.PMREMGenerator(r);
- scene.environment=pmrem.fromScene(env,.08).texture;scene.environmentIntensity=.62;env.dispose();pmrem.dispose();
- scene.add(new T.HemisphereLight(0xb6cfe7,0x514336,1.22));
- const key=new T.DirectionalLight(0xffe5cb,2.45);key.position.set(-3.2,7.6,4.4);key.castShadow=true;
+ scene.environment=pmrem.fromScene(env,.08).texture;scene.environmentIntensity=forge?.40:.62;env.dispose();pmrem.dispose();
+ scene.add(new T.HemisphereLight(forge?0xa6dce7:0xb6cfe7,forge?0x302822:0x514336,forge?1.18:1.22));
+ const key=new T.DirectionalLight(forge?0xffdabd:0xffe5cb,forge?2.44:2.45);key.position.set(...(forge?[-6,11,4]:[-3.2,7.6,4.4]));key.castShadow=true;
  key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-4;key.shadow.camera.right=4;
  key.shadow.camera.top=4;key.shadow.camera.bottom=-4;key.shadow.normalBias=.021;scene.add(key);
- const rim=new T.DirectionalLight(0xb2d0ee,1.15);rim.position.set(3,4,-5);scene.add(rim);
+ const rim=new T.DirectionalLight(forge?0x86cafa:0xb2d0ee,forge?1.28:1.15);rim.position.set(...(forge?[8,6,-8]:[3,4,-5]));scene.add(rim);
  const ground=new T.Mesh(new T.PlaneGeometry(300,300),new T.MeshStandardMaterial({color:0x444a48,roughness:.91,metalness:.08}));
- ground.rotation.x=-Math.PI/2;ground.position.y=.007;ground.receiveShadow=true;scene.add(ground);
- const params=new URL(location.href).searchParams,source=params.get('mesh')??'./look.glb';
+ ground.rotation.x=-Math.PI/2;ground.position.y=.007;ground.receiveShadow=true;
+ if(forge){
+  createFoundryDressing(scene,COVER);
+  scene.traverse(o=>{if(o.isMesh)o.receiveShadow=true;});
+ }else scene.add(ground);
+ stage.dataset.dressing=forge?'forge-yard':'neutral-stage';
+ const source=params.get('mesh')??'./look.glb';
  if(!/^\.\/[a-z0-9-]+\.glb$/i.test(source))throw Error('Use a local GLB filename.');
  const clay=params.get('tone')==='clay';
  const localized=!clay&&params.get('tone')==='localized';
@@ -32,7 +41,7 @@ try {
  const camera=new T.PerspectiveCamera(39,1,.1,100);
  const views={desktop:[[0.96,3.62,7.3],[0,1.02,0]],close:[[1.78,1.52,3.1],[0,1.02,0]],
    profile:[[3.2,1.39,0.12],[0,1.01,0]],left:[[-2.6,1.62,2.45],[0,1.04,0]],rear:[[1.14,1.55,-3.38],[0,1.04,0]]};
- const guard=params.get('motion')==='guard';
+ const motion=params.get('motion'),guard=motion==='guard',strike=motion==='strike';
  let view='desktop';
  function draw(){
   const w=stage.clientWidth,h=stage.clientHeight;camera.aspect=w/h;camera.updateProjectionMatrix();r.setSize(w,h,false);
@@ -42,16 +51,24 @@ try {
  }
  function choose(name){
   if(!(name in views))return;
-  view=name;const [p,target]=views[view];camera.position.set(...p);
+  view=name;const [p,target]=views[view];camera.fov=39;camera.position.set(...p);
   // The short dimension must fit the full model in narrow phone views.
   if(window.innerWidth<560&&view!=='desktop')camera.position.lerp(new T.Vector3(...target),-.11);
-  camera.lookAt(...target);
+  if(strike&&view==='desktop'){
+   const playerZ=2.6, target=new T.Vector3(0,.91,playerZ*(1-.46));
+   const fit=duelDistance(target,stage.clientWidth/stage.clientHeight,
+     [{x:0,z:playerZ,radius:.59,height:2.14},{x:0,z:0,radius:.63,height:2.0}]);
+   camera.fov=DUEL_CAMERA_FOV;camera.position.copy(target).addScaledVector(new T.Vector3(...DUEL_CAMERA_AXIS),fit);camera.lookAt(target);
+   stage.dataset.camera='forge-fixed';stage.dataset.cameraDistance=fit.toFixed(3);
+  }else{camera.lookAt(...target);stage.dataset.camera='inspection';delete stage.dataset.cameraDistance;}
+  camera.updateMatrixWorld();
   for(const el of document.querySelectorAll('button'))el.setAttribute('aria-pressed',String(el.value===view));
   stage.dataset.view=view;draw();
  }
  document.querySelector('nav').addEventListener('click',e=>{if(e.target.tagName==='BUTTON')choose(e.target.value);});
  window.addEventListener('resize',()=>choose(view));choose('desktop');
- if(guard)setupGuardStudy(gltf,stage,()=>r.render(scene,camera));
- status.textContent=guard?'Skinned Blender guard study. No combat or locomotion.':'Static pose from the editable Blender model. No gameplay.';
+ if(guard||strike)setupMotionStudy(gltf,stage,()=>r.render(scene,camera),motion);
+ status.textContent=strike?'Planted air-strike study. Forge camera framing; no target or combat.':
+  guard?'Skinned Blender guard study. No combat or locomotion.':'Static pose from the editable Blender model. No gameplay.';
  stage.dataset.tone=clay?'clay':localized?'localized':procedural?'procedural':'color';stage.dataset.triangles=String(tris);stage.dataset.modelHeight=span.y.toFixed(3);stage.dataset.state='ready';
 } catch(error){stage.dataset.state='error';status.textContent=error.message;console.error(error);}

@@ -1,0 +1,48 @@
+{
+  "actualSkin": true,
+  "cameraOnly": true,
+  "localAirStrike": true,
+  "hasTarget": false,
+  "rows": [
+    {
+      "viewport": [
+        1280,
+        720
+      ],
+      "trustedTouch": false,
+      "forgeView": {
+        "fov": 46,
+        "fixed": true,
+        "distanceM": 6.637,
+        "standingSizePx": 205,
+        "reusedDressing": true
+      },
+      "triangles": 41229,
+      "duration": 2.0333,
+      "rearFootMaxDriftM": 0.000009999999999996123,
+      "frontFootStepM": 0.36067159577654584,
+      "wristWindupToStrikeM": 0.7444297007777161,
+      "sampled": true
+    },
+    {
+      "viewport": [
+        402,
+        874
+      ],
+      "trustedTouch": true,
+      "forgeView": {
+        "fov": 46,
+        "fixed": true,
+        "distanceM": 9.525,
+        "standingSizePx": 179.5,
+        "reusedDressing": true
+      },
+      "triangles": 41229,
+      "duration": 2.0333,
+      "rearFootMaxDriftM": 0.000009999999999996123,
+      "frontFootStepM": 0.36067159577654584,
+      "wristWindupToStrikeM": 0.7444297007777161,
+      "sampled": true
+    }
+  ]
+}
