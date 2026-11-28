@@ -1,0 +1,183 @@
+{
+  "weapons": [
+    {
+      "id": "WSC-WPN-015",
+      "name": "Dock Cleaver",
+      "file": "015.glb",
+      "triangles": 1672,
+      "bytes": 133056,
+      "clips": {
+        "Ready": 0.8,
+        "Attack_chop": 1.0
+      },
+      "head_bounds": [
+        0.4793,
+        0.105,
+        1.0136
+      ]
+    },
+    {
+      "id": "WSC-WPN-016",
+      "name": "Line Pike",
+      "file": "016.glb",
+      "triangles": 1792,
+      "bytes": 139516,
+      "clips": {
+        "Ready": 0.8,
+        "Attack_thrust": 1.0
+      },
+      "head_bounds": [
+        0.4051,
+        0.055,
+        1.3248
+      ]
+    },
+    {
+      "id": "WSC-WPN-017",
+      "name": "Rivet Maul",
+      "file": "017.glb",
+      "triangles": 1844,
+      "bytes": 142428,
+      "clips": {
+        "Ready": 0.8,
+        "Attack_chop": 1.0
+      },
+      "head_bounds": [
+        0.8381,
+        0.24,
+        0.59
+      ]
+    },
+    {
+      "id": "WSC-WPN-018",
+      "name": "Harbor Hook",
+      "file": "018.glb",
+      "triangles": 1928,
+      "bytes": 146516,
+      "clips": {
+        "Ready": 0.8,
+        "Attack_sweep": 1.0
+      },
+      "head_bounds": [
+        0.6348,
+        0.08,
+        0.9464
+      ]
+    },
+    {
+      "id": "WSC-WPN-019",
+      "name": "Cinder Axe",
+      "file": "019.glb",
+      "triangles": 1840,
+      "bytes": 142536,
+      "clips": {
+        "Ready": 0.8,
+        "Attack_chop": 1.0
+      },
+      "head_bounds": [
+        0.8048,
+        0.085,
+        0.9764
+      ]
+    },
+    {
+      "id": "WSC-WPN-020",
+      "name": "Relay Baton",
+      "file": "020.glb",
+      "triangles": 1756,
+      "bytes": 137668,
+      "clips": {
+        "Ready": 0.8,
+        "Attack_sweep": 1.0
+      },
+      "head_bounds": [
+        0.32,
+        0.13,
+        0.86
+      ]
+    },
+    {
+      "id": "WSC-WPN-021",
+      "name": "Beacon Lance",
+      "file": "021.glb",
+      "triangles": 1960,
+      "bytes": 148556,
+      "clips": {
+        "Ready": 0.8,
+        "Attack_thrust": 1.0
+      },
+      "head_bounds": [
+        0.5786,
+        0.08,
+        1.2091
+      ]
+    },
+    {
+      "id": "WSC-WPN-022",
+      "name": "Slipfin",
+      "file": "022.glb",
+      "triangles": 1808,
+      "bytes": 140136,
+      "clips": {
+        "Ready": 0.8,
+        "Attack_sweep": 1.0
+      },
+      "head_bounds": [
+        0.3777,
+        0.053,
+        1.1383
+      ]
+    },
+    {
+      "id": "WSC-WPN-023",
+      "name": "Counterweight Flail",
+      "file": "023.glb",
+      "triangles": 1816,
+      "bytes": 141096,
+      "clips": {
+        "Ready": 0.8,
+        "Attack_chop": 1.0
+      },
+      "head_bounds": [
+        0.6675,
+        0.11,
+        0.5543
+      ]
+    },
+    {
+      "id": "WSC-WPN-024",
+      "name": "Glassbreaker Fan",
+      "file": "024.glb",
+      "triangles": 1780,
+      "bytes": 138756,
+      "clips": {
+        "Ready": 0.8,
+        "Attack_sweep": 1.0
+      },
+      "head_bounds": [
+        0.9635,
+        0.096,
+        0.8542
+      ]
+    },
+    {
+      "id": "WSC-WPN-025",
+      "name": "Rail Needle",
+      "file": "025.glb",
+      "triangles": 1820,
+      "bytes": 140456,
+      "clips": {
+        "Ready": 0.8,
+        "Attack_thrust": 1.0
+      },
+      "head_bounds": [
+        0.3167,
+        0.053,
+        1.6153
+      ]
+    }
+  ],
+  "unique_head_bounds": 11,
+  "weapon_styles": 3,
+  "role": "rigged runtime assets, not equipped in a playable fight"
+}
