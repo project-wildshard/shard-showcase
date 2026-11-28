@@ -1,5 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
 import {surfaceCue} from './impact-effects.mjs';
 const rival={x:2,z:-4,r:.7,height:2.2};
 test('visual impact anchors follow the attacker-facing side and do not change the actors',()=>{
@@ -16,4 +17,14 @@ test('visual impact clamping is finite for overlap, a missing socket or an extre
  assert(o.at.every(Number.isFinite));assert.deepEqual(o.outer,[0,0,1]);assert.equal(o.at[1],rival.height*.59);
  assert.equal(surfaceCue({x:0,z:0},rival,-5).at[1],.18);
  assert.equal(surfaceCue({x:0,z:0},rival,50).at[1],rival.height*.68);
+});
+
+test('all twelve original weapon exports contain both authored motion sockets',()=>{
+ const root=new URL('../../art/weapons/',import.meta.url);
+ const files=['signal-shear/signal-shear.glb',...Array.from({length:11},(_,i)=>'forge-roster/'+String(i+15).padStart(3,'0')+'.glb')];
+ for(const file of files){
+  const b=readFileSync(new URL(file,root));
+  const g=JSON.parse(b.subarray(20,20+b.readUInt32LE(12)));
+  for(const socket of ['tip_socket','grip_socket'])assert.equal(g.nodes.filter(n=>n.name===socket).length,1,file+': '+socket);
+ }
 });

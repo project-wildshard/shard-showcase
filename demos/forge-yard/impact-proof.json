@@ -1,0 +1,101 @@
+{
+  "contacts": {
+    "viewport": [
+      402,
+      874
+    ],
+    "trustedTouch": true,
+    "missTrailOnly": true,
+    "authoredSockets": [
+      "grip_socket",
+      "tip_socket"
+    ],
+    "hits": [
+      {
+        "weapon": "014",
+        "kind": "sweep",
+        "localAnchorRadius": 0.457,
+        "height": 1.503,
+        "maxTrailSegments": 2,
+        "maxParticles": 11,
+        "cleared": true
+      },
+      {
+        "weapon": "017",
+        "kind": "chop",
+        "localAnchorRadius": 0.456,
+        "height": 1.503,
+        "maxTrailSegments": 2,
+        "maxParticles": 11,
+        "cleared": true
+      },
+      {
+        "weapon": "016",
+        "kind": "thrust",
+        "localAnchorRadius": 0.457,
+        "height": 1.503,
+        "maxTrailSegments": 2,
+        "maxParticles": 11,
+        "cleared": true
+      },
+      {
+        "weapon": "025",
+        "kind": "block",
+        "localAnchorRadius": 0.429,
+        "height": 1.224,
+        "maxTrailSegments": 2,
+        "maxParticles": 7,
+        "cleared": true
+      }
+    ],
+    "errors": []
+  },
+  "sweepFrame": {
+    "viewport": [
+      402,
+      874
+    ],
+    "trustedTouch": true,
+    "missTrailOnly": true,
+    "authoredSockets": [
+      "grip_socket",
+      "tip_socket"
+    ],
+    "hits": [
+      {
+        "weapon": "014",
+        "kind": "sweep",
+        "localAnchorRadius": 0.456,
+        "height": 1.503,
+        "maxTrailSegments": 2,
+        "maxParticles": 11,
+        "cleared": true
+      }
+    ],
+    "errors": []
+  },
+  "guardFrame": {
+    "viewport": [
+      402,
+      874
+    ],
+    "trustedTouch": true,
+    "missTrailOnly": true,
+    "authoredSockets": [
+      "grip_socket",
+      "tip_socket"
+    ],
+    "hits": [
+      {
+        "weapon": "025",
+        "kind": "block",
+        "localAnchorRadius": 0.509,
+        "height": 1.224,
+        "maxTrailSegments": 3,
+        "maxParticles": 7,
+        "cleared": true
+      }
+    ],
+    "errors": []
+  }
+}
