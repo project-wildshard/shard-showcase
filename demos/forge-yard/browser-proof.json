@@ -9,14 +9,14 @@
     },
     {
       "enemy": "Rivet Skitter",
-      "taps": 5,
-      "moves": 2,
-      "heroHp": 64
+      "taps": 4,
+      "moves": 3,
+      "heroHp": 78
     },
     {
       "enemy": "Beacon Wasp",
       "taps": 2,
-      "moves": 3,
+      "moves": 2,
       "heroHp": 94
     },
     {
@@ -34,7 +34,7 @@
     {
       "enemy": "Kiln Warden",
       "taps": 4,
-      "moves": 4,
+      "moves": 3,
       "heroHp": 90
     },
     {
@@ -48,6 +48,30 @@
       "taps": 2,
       "moves": 2,
       "heroHp": 102
+    },
+    {
+      "enemy": "Rasp Turret",
+      "taps": 3,
+      "moves": 2,
+      "heroHp": 57
+    },
+    {
+      "enemy": "Railblade Inspector",
+      "taps": 4,
+      "moves": 2,
+      "heroHp": 57
+    },
+    {
+      "enemy": "Salt Mortar",
+      "taps": 3,
+      "moves": 2,
+      "heroHp": 98
+    },
+    {
+      "enemy": "Turnstile Spool",
+      "taps": 3,
+      "moves": 2,
+      "heroHp": 86
     }
   ],
   "weaponModelsLoaded": 12,
@@ -105,7 +129,27 @@
     "WSC-ENM-008-bulwark",
     "WSC-ENM-008-feinter",
     "WSC-ENM-008-echo",
-    "WSC-ENM-008-overload"
+    "WSC-ENM-008-overload",
+    "WSC-ENM-009-rusher",
+    "WSC-ENM-009-bulwark",
+    "WSC-ENM-009-feinter",
+    "WSC-ENM-009-echo",
+    "WSC-ENM-009-overload",
+    "WSC-ENM-010-rusher",
+    "WSC-ENM-010-bulwark",
+    "WSC-ENM-010-feinter",
+    "WSC-ENM-010-echo",
+    "WSC-ENM-010-overload",
+    "WSC-ENM-011-rusher",
+    "WSC-ENM-011-bulwark",
+    "WSC-ENM-011-feinter",
+    "WSC-ENM-011-echo",
+    "WSC-ENM-011-overload",
+    "WSC-ENM-012-rusher",
+    "WSC-ENM-012-bulwark",
+    "WSC-ENM-012-feinter",
+    "WSC-ENM-012-echo",
+    "WSC-ENM-012-overload"
   ],
   "viewport": [
     402,
