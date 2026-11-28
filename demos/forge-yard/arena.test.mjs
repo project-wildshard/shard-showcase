@@ -218,3 +218,26 @@ test('Sentry release damages just inside its visible boundary but not outside, e
  b.state='windup';b.t=b.windReady-1/60;s.player.x=-3.1;s.player.z=.4;
  assert(s.player.z-b.z<sweepRadius(b));tick(s,1/60);assert.equal(s.player.hp,120,'solid cover still blocks the sweep');
 });
+
+test('Breakwater tide warns and sweeps its marked lane once per wave; Forge Yard stays dry',()=>{
+ const withTide=create(spec,{breakwater:true});
+ withTide.player.x=-5.55;withTide.player.z=0;
+ advance(withTide,3.9);
+ assert.equal(withTide.surge.section.phase,'warn');
+ assert.equal(withTide.player.hp,120);
+ advance(withTide,2.25);
+ assert.equal(withTide.surge.hits,1);
+ assert.equal(withTide.player.hp,108);
+ advance(withTide,9.45);
+ assert.equal(withTide.surge.hits,2);
+ assert.equal(withTide.player.hp,96);
+ assert(withTide.events.every(e=>e.enemy===null&&e.style==='surge'&&e.damage===12));
+ const clear=create(spec,{breakwater:true});clear.player.x=-5.55;clear.player.z=0;
+ advance(clear,4.3);advance(clear,.31,[1,0]);advance(clear,2.1);
+ assert.equal(clear.surge.hits,0);
+ const original=create(spec);original.player.x=-5.55;original.player.z=0;advance(original,6.25);
+ assert.equal(original.surge,null);assert.equal(original.player.hp,120);
+ const dodge=create(spec,{breakwater:true});dodge.player.x=-5.55;dodge.player.z=-1;
+ dodge.player.face=[1,0];advance(dodge,5.32);assert(press(dodge,'dodge'));advance(dodge,.85);
+ assert.equal(dodge.surge.hits,0);
+});

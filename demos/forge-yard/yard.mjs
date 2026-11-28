@@ -1,6 +1,8 @@
 import {beaconThrustWeight,createThrustAlignment} from './thrust-alignment.mjs';
 import {DUEL_CAMERA_AXIS,DUEL_CAMERA_FOV,duelDistance} from './duel-camera.mjs';
 import {createImpactEffects,surfaceCue} from './impact-effects.mjs';
+import {createSurgeFx} from './breakwater-surge-fx.mjs';
+import {SURGE} from './breakwater-surge.mjs';
 import {createBreakwaterDressing} from './breakwater-dressing.mjs';
 import {createFoundryDressing} from './foundry-dressing.mjs';
 import * as T from 'three';
@@ -45,6 +47,8 @@ try{
  const key=new T.DirectionalLight(coast?0xffd9bd:0xffdabd,coast?2.8:2.44);key.position.set(-6,11,4);scene.add(key);
  const rim=new T.DirectionalLight(0x86cafa,1.28);rim.position.set(8,6,-8);scene.add(rim);
 
+ const updateSurge=coast?createSurgeFx(scene):null;
+ const tideNotice=$('tide');
  const dressing=coast?createBreakwaterDressing(scene,COVER):createFoundryDressing(scene,COVER);
  if(coast){
   document.title='Signal Breakwater | Wildshard Combat Prototype';
@@ -136,7 +140,7 @@ try{
    .finally(()=>loadingModels.delete(n));
   loadingModels.set(n,result);return result;
  }
- let s=create(data.enemyTypes),i=0,variant=null,enemy=null,actor=null,weapon=null,wmix=null,wa=null,sequence=0,who=-1;
+ let s=create(data.enemyTypes,{breakwater:coast}),i=0,variant=null,enemy=null,actor=null,weapon=null,wmix=null,wa=null,sequence=0,who=-1;
  const opts=$('weapon');
  for(const w of WEAPONS){const o=document.createElement('option');o.value=w.id;o.textContent=w.name;opts.append(o);}
  const variants=$('variant'),picker=$('rival');
@@ -202,7 +206,7 @@ try{
    scene.remove(actor.group);
   }
   const old=s.weapon;
-  s=create(data.enemyTypes);select(s,old);
+  s=create(data.enemyTypes,{breakwater:coast});select(s,old);
   heroYaw=face(...s.player.face);heroHit=heroTurn=0;
   effects.clear();previousSlash=null;prevFxPhase='';wrap.dataset.fxPhase='idle';wrap.dataset.fxKind='';
   if(walker){walker.mixer.stopAllAction();walker.name=walker.last=null;heroPose('Idle');}
@@ -315,12 +319,22 @@ try{
     if(e.counter){wrap.dataset.counterHit=String(e.damage);say('COUNTER · '+e.damage+' damage',.66);}
     else if(!blockedHit)say('Hit',.34);
    }
-   if(e.type==='player-hit'){heroHit=.26;say('You took a hit',.65);}
+   if(e.type==='player-hit'){heroHit=.26;say(e.style==='surge'?'Tide hit · −'+e.damage:'You took a hit',.65);}
    if(e.type==='defeat'){wrap.dataset.outcome='win';set($('win-title'),enemy.name+' defeated');set($('win-body'),'Try a different rival or change weapons.');$('win').hidden=false;}
   }
   if(p.hp===0){wrap.dataset.outcome='loss';set($('win-title'),'Walker down');set($('win-body'),'Restart or try another rival.');$('win').hidden=false;}
   if(s.time>noticeUntil)set(notice,WEAPONS[s.weapon].name);
   human.value=p.hp;set($('hero-hp'),p.hp);rival.max=enemy.maxHp;rival.value=enemy.life;set($('enemy-hp'),enemy.life);
+  if(s.surge){
+   const phase=s.surge.section?.phase??'idle';
+   updateSurge(s.surge.section);
+   wrap.dataset.surgePhase=phase;wrap.dataset.surgeHits=String(s.surge.hits);
+   wrap.dataset.surgeFront=s.surge.section?.hi?.toFixed(3)??'';
+   wrap.dataset.surgeLeft=s.surge.section?.remaining?.toFixed(3)??'';
+   const nearby=Math.abs(p.x-SURGE.x)<SURGE.halfWidth+1.25&&p.z>SURGE.near-1&&p.z<SURGE.far+1;
+   tideNotice.hidden=!nearby||phase==='idle'||p.hp===0;
+   if(!tideNotice.hidden)set(tideNotice,phase==='warn'?'TIDE INCOMING · leave the blue lane':'TIDE CROSSING');
+  }
   wrap.dataset.playerX=p.x.toFixed(3);wrap.dataset.playerZ=p.z.toFixed(3);
   wrap.dataset.enemyX=enemy.x.toFixed(3);wrap.dataset.enemyZ=enemy.z.toFixed(3);
   alivePlayer.position.set(p.x,0,p.z);

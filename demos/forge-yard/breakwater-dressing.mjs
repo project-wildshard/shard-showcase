@@ -1,4 +1,5 @@
 import * as T from 'three';
+import {SURGE} from './breakwater-surge.mjs';
 
 // Outdoor arena built from editable, batched scene geometry. Combat owns all collisions.
 export function createBreakwaterDressing(scene,cover){
@@ -64,6 +65,18 @@ export function createBreakwaterDressing(scene,cover){
   const x=(rnd()-.5)*65,z=(rnd()-.5)*70;
   if(Math.max(Math.abs(x),Math.abs(z))>12.6)
    box('ripple',[.4+rnd()*2.6,.008,.022+rnd()*.032],[x,-1.043,z],[0,(rnd()-.5)*.32,0]);
+ }
+ // The grates and brass seams are flush and use the exact tide bounds.
+ const {x:channel,halfWidth,near,far}=SURGE;
+ box('deck',[halfWidth*2,.009,far-near],[channel,-.002,0]);
+ for(const side of [-1,1]){
+  box('slate',[.11,.010,far-near],[channel+side*(halfWidth+.035),.0001,0]);
+  for(let z=near+.48;z<far;z+=.94)box('brass',[.053,.014,.30],[channel+side*(halfWidth+.04),.004,z]);
+ }
+ for(const z of [near,far]){
+  box('iron',[halfWidth*2.1,.12,.95],[channel,-.052,z]);
+  for(let i=-5;i<=5;i++)box('bronze',[.057,.012,.69],[channel+i*.162,.012,z],[0,i*.035,0]);
+  for(const i of [-1,1])box('cool',[.13,.009,.142],[channel+i*halfWidth*.88,.012,z]);
  }
  // Weathered tar renewals and painted turning guides; no raised collision.
  for(const [x,z,w,d] of [[-6.4,-7.65,5.6,3.4],[5.55,4.85,3.24,4.1],[-.50,7.85,4.38,2.09],[2.8,-5.4,3.32,2.1]]){

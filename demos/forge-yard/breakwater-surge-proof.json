@@ -1,0 +1,63 @@
+{
+  "viewport": [
+    402,
+    874
+  ],
+  "trustedTouch": true,
+  "damagePerWash": 12,
+  "report": [
+    {
+      "scenario": "stay",
+      "xAtWarning": -5.903,
+      "hits": 1,
+      "hpAfter": 90,
+      "frames": {
+        "warning": {
+          "x": -5.903,
+          "z": 5.7,
+          "hp": 120,
+          "notice": "TIDE INCOMING · leave the blue lane",
+          "front": null
+        },
+        "pass": {
+          "x": -5.903,
+          "z": 5.7,
+          "hp": 108,
+          "notice": "TIDE CROSSING",
+          "front": 5.887
+        },
+        "contact": {
+          "x": -5.903,
+          "z": 5.7,
+          "hp": 108,
+          "notice": "TIDE CROSSING",
+          "front": 5.887
+        }
+      },
+      "errors": []
+    },
+    {
+      "scenario": "step-out",
+      "xAtWarning": -5.827,
+      "hits": 0,
+      "hpAfter": 102,
+      "frames": {
+        "warning": {
+          "x": -5.827,
+          "z": 5.7,
+          "hp": 120,
+          "notice": "TIDE INCOMING · leave the blue lane",
+          "front": null
+        },
+        "pass": {
+          "x": -3.987,
+          "z": 5.7,
+          "hp": 102,
+          "notice": "TIDE CROSSING",
+          "front": 5.887
+        }
+      },
+      "errors": []
+    }
+  ]
+}

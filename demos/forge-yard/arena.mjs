@@ -1,5 +1,6 @@
 // Original, engine-independent game logic for the local Forge Yard demo.
 import {configuration} from './variants.mjs';
+import {SURGE,surgeAt,surgeTouches} from './breakwater-surge.mjs';
 export const ARENA=10.5;
 export const RAM_OPEN_SECONDS=.88;
 export const sweepRadius=b=>b.reach+.32;
@@ -41,8 +42,8 @@ function reachBlocked(a,b){
   return Math.hypot(x-a.x-t*ux,z-a.z-t*uz)<r-.045;
  });
 }
-export function create(enemyTypes){
- return {time:0,weapon:0,wave:0,events:[],player:{x:0,z:5.7,r:.36,hp:120,maxHp:120,face:[0,-1],inv:0,slash:null,dodge:0},bots:[],enemyTypes};
+export function create(enemyTypes,{breakwater=false}={}){
+ return {surge:breakwater?{section:null,lastHit:-1,hits:0}:null,time:0,weapon:0,wave:0,events:[],player:{x:0,z:5.7,r:.36,hp:120,maxHp:120,face:[0,-1],inv:0,slash:null,dodge:0},bots:[],enemyTypes};
 }
 export function select(s,n){if(Number.isInteger(n)&&WEAPONS[n]&&!s.player.slash)s.weapon=n;}
 export function spawn(s,index,where={x:0,z:-4.2},variant=null){
@@ -114,6 +115,15 @@ export function tick(s,seconds,input=[0,0]){
  if(p.hp>0){
   if(p.dodge){place(p,p.x+p.face[0]*9.6*dt,p.z+p.face[1]*9.6*dt);p.dodge=Math.max(0,p.dodge-dt);}
   else if(moving){if(!p.slash)p.face=dir;const v=p.slash?1.4:4.6;place(p,p.x+dir[0]*v*dt,p.z+dir[1]*v*dt);}
+ }
+ // Stage contact is checked after movement. It shares the dodge/damage grace
+ // period, applies at most once per tide, and never hurts the rival.
+ if(s.surge){
+  const tide=s.surge,section=tide.section=surgeAt(s.time);
+  if(p.hp>0&&!p.inv&&surgeTouches(p,section)&&tide.lastHit!==section.cycle){
+   tide.lastHit=section.cycle;tide.hits++;p.hp=Math.max(0,p.hp-SURGE.damage);p.inv=.26;
+   s.events.push({type:'player-hit',enemy:null,style:'surge',damage:SURGE.damage,hp:p.hp});
+  }
  }
  if(p.slash){
   const a=p.slash;a.time+=dt;

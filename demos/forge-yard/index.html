@@ -7,6 +7,7 @@ header{position:absolute;inset:0 0 auto;padding:max(14px,env(safe-area-inset-top
 h1{margin:2px 0 7px;font-size:1.9rem;letter-spacing:-.055em;line-height:1.05}h1 span{color:#c4a17f}
 meter{width:126px;max-width:35vw;height:14px;accent-color:var(--blue)}.hud{display:flex;justify-content:space-between;gap:12px;font-size:.72rem}.hud strong{display:block;text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}.hud .opponent{text-align:right}.opponent meter{accent-color:#f39870}.opponent meter::-webkit-meter-optimum-value{background:#f39870}#hero::-webkit-meter-optimum-value{background:#83e2d3}
 #notice{position:absolute;top:119px;left:50%;transform:translateX(-50%);margin:0;background:#142127dd;color:#fff1cf;padding:6px 12px;border-radius:3px;font-size:.73rem;font-weight:700;white-space:nowrap;pointer-events:none}
+#tide{position:absolute;top:156px;left:50%;transform:translateX(-50%);margin:0;padding:5px 9px;border:1px solid #66b8c2;background:#102b34e8;color:#cffff4;font-size:.68rem;font-weight:750;letter-spacing:.025em;white-space:nowrap;pointer-events:none}
 button,select{font:inherit;color:#edf2e7;background:#17292fe8;border:1px solid #739491;border-radius:4px;min-height:44px}button{touch-action:none}button:focus-visible,select:focus-visible{outline:2px solid var(--blue)}button:disabled{opacity:.45}
 .toolbar{position:absolute;bottom:max(10px,env(safe-area-inset-bottom));left:12px;right:12px;display:grid;gap:6px;grid-template-columns:minmax(0,1fr) auto auto;align-items:center}
 .toolbar select{min-width:0;padding:0 7px}.encounter-tools{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:6px}.toolbar button{padding:0 9px;font-size:.79rem}
@@ -18,6 +19,7 @@ button,select{font:inherit;color:#edf2e7;background:#17292fe8;border:1px solid #
 <header><div class="tag">Wildshard / original combat study</div><h1 id="arena-name">Forge <span>Yard</span></h1>
 <div class="hud"><div><strong>Walker</strong><meter id="hero" max="120" value="120" aria-label="Player health"></meter> <span id="hero-hp">120</span></div><div class="opponent"><strong id="enemy-name">Loading</strong><meter id="enemy" max="100" value="100" aria-label="Enemy health"></meter> <span id="enemy-hp">—</span></div></div></header>
 <p id="notice" role="status">Loading the forge…</p>
+<p id="tide" aria-live="polite" hidden></p>
 <div class="stick" id="stick" aria-label="Drag left stick to move"><div class="knob" id="knob"></div></div>
 <div class="actions"><button id="dodge">Dodge</button><button id="attack">Cut</button></div>
 <p class="sub">Drag to move · WASD / Space / Shift</p>
