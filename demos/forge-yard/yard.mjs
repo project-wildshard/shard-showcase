@@ -7,6 +7,7 @@ const $=n=>document.querySelector('#'+n);
 const wrap=$('yard'),notice=$('notice'),human=$('hero'),rival=$('enemy');
 const set=(el,text)=>{if(el.textContent!==String(text))el.textContent=text;};
 const enemyBase=new URL('../../art/actors/dock-enemies/',location.href);
+const specialistBase=new URL('../../art/actors/dock-specialists/',location.href);
 const weaponBase=new URL('../../art/weapons/',location.href);
 const clipNames={idle:'Idle',move:'Move',windup:'Windup',active:'Attack',recover:'Recover',hit:'Hit',defeat:'Defeat'};
 const mat=(c,metal=.45,rough=.46)=>new T.MeshStandardMaterial({color:c,metalness:metal,roughness:rough});
@@ -109,8 +110,9 @@ try{
  const flash=mesh(new T.IcosahedronGeometry(.27,1),basic(0x9dfdf0,.83));scene.add(flash);flash.visible=false;
  let impact=.0,noticeUntil=0;
  function say(text,until=1){set(notice,text);noticeUntil=s.time+until;}
- const data=await fetch(new URL('manifest.json',enemyBase)).then(r=>{if(!r.ok)throw Error('Enemy manifest missing');return r.json();});
- const artists=await Promise.all(data.enemyTypes.map(a=>loader.loadAsync(new URL(a.model,enemyBase).href)));
+ const manifests=await Promise.all([enemyBase,specialistBase].map(path=>fetch(new URL('manifest.json',path)).then(r=>{if(!r.ok)throw Error('Enemy manifest missing');return r.json();})));
+ const data={enemyTypes:manifests.flatMap((d,i)=>d.enemyTypes.map(a=>({...a,source:i?specialistBase:enemyBase})))};
+ const artists=await Promise.all(data.enemyTypes.map(a=>loader.loadAsync(new URL(a.model,a.source).href)));
  let s=create(data.enemyTypes),i=0,enemy=null,actor=null,weapon=null,wmix=null,wa=null,sequence=0,who=-1;
  const opts=$('weapon');
  for(const w of WEAPONS){const o=document.createElement('option');o.value=w.id;o.textContent=w.name;opts.append(o);}
@@ -200,7 +202,12 @@ try{
   if(who!==i){who=i;look.set(p.x,.72,p.z-1.65);camera.position.set(p.x,6.4,p.z+7.5);}
   for(;accum>=1/60;accum-=1/60)tick(s,1/60,m);
   for(const e of s.events.splice(0)){
-   if(e.type==='enemy-state'&&e.state==='windup')say(enemy.attack==='windmill'?'SWEEP · step back':enemy.attack==='beam'?'BEAM · move sideways':enemy.attack==='pounce'?'POUNCE · dodge':'CHARGE · break the line',enemy.windup+.18);
+   if(e.type==='enemy-state'&&e.state==='windup'){
+    const cue={windmill:'SWEEP · step back',beam:'BEAM · move sideways',pounce:'POUNCE · dodge',charge:'CHARGE · break the line',
+     hook:'HOOK · leave the lane',guard:'SHIELD · circle round',burrow:'SNARE · leave the mark',burst:'BURST · get out of the ring'};
+    say(cue[enemy.attack],enemy.windup+.18);
+   }
+   if(e.type==='shield')say('Shield reduced your hit',.45);
    if(e.type==='enemy-hit'){impact=.26;flash.position.set(enemy.x,enemy.attack==='beam'?1.22:.82,enemy.z);say('Hit',.34);}
    if(e.type==='player-hit')say('You took a hit',.65);
    if(e.type==='defeat'){wrap.dataset.outcome='win';set($('win-title'),enemy.name+' defeated');set($('win-body'),'Try a different rival or change weapons.');$('win').hidden=false;}
@@ -221,9 +228,9 @@ try{
   wmix?.update(dt);
   actor.group.position.set(enemy.x,0,enemy.z);actor.group.rotation.y=face(...enemy.face);
   action(enemy,enemy.state);actor.mixer.update(dt);
-  const warn=enemy.state==='windup'&&enemy.life>0,radial=enemy.attack==='windmill'||enemy.attack==='pounce';
+  const warn=enemy.state==='windup'&&enemy.life>0,radial=['windmill','pounce','burrow','burst'].includes(enemy.attack);
   warningRing.visible=warn&&radial;warningPlane.visible=warn&&!radial;
-  if(warningRing.visible){const r=enemy.attack==='pounce'?.85:enemy.reach+.25;const d=enemy.attack==='pounce'?Math.min(enemy.lockLength,enemy.reach):0;warningRing.position.set(enemy.x+enemy.lock[0]*d,.027,enemy.z+enemy.lock[1]*d);warningRing.scale.setScalar(r);}
+  if(warningRing.visible){const r=enemy.attack==='pounce'?.85:enemy.reach+.25;const d=enemy.attack==='pounce'?Math.min(enemy.lockLength,enemy.reach):0;warningRing.position.set(enemy.attack==='burrow'?enemy.mark.x:enemy.x+enemy.lock[0]*d,.027,enemy.attack==='burrow'?enemy.mark.z:enemy.z+enemy.lock[1]*d);warningRing.scale.setScalar(enemy.attack==='burrow'?.93:r);}
   if(warningPlane.visible){const d=enemy.reach;warningPlane.position.set(enemy.x+enemy.lock[0]*d/2,.03,enemy.z+enemy.lock[1]*d/2);warningPlane.rotation.z=face(...enemy.lock);warningPlane.scale.set(enemy.attack==='beam'?1.16:1.48,d,1);}
   impact=Math.max(0,impact-dt);flash.visible=impact>0;flash.scale.setScalar(1+(.26-impact)*2);flash.material.opacity=impact/.26*.8;
   attackRing.visible=!!p.slash&&Math.abs(p.slash.time-p.slash.weapon.wind)<.075;

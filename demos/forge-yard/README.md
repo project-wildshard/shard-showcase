@@ -1,6 +1,6 @@
 # Forge Yard · original Wildshard combat demo
 
-A standalone local browser prototype. Walker can equip the twelve tracked Wildshard weapon GLBs and face four differently rigged opponents: Gate Sentry, Rivet Skitter, Beacon Wasp and Ballast Ram. Their attacks are a close sweep, pounce, beam and running charge. The browser uses their exported state clips and the original weapon attack clips. This is not a Wildshard production build and it uses no Fable content or code.
+A standalone local browser prototype. Walker can equip the twelve tracked Wildshard weapon GLBs and face eight differently rigged opponents. The original four use a sweep, pounce, beam and charge. Hook Crane pulls the player, Kiln Warden blocks frontal hits and shoves, Breakwater Snare emerges at a marked point, and Spark Buoy bursts in a radius. The browser uses their exported state clips and the original weapon attack clips. This is not a Wildshard production build and it uses no Fable content or code.
 
 From a checkout of the art branch:
 

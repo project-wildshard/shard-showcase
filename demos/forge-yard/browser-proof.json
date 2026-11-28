@@ -9,9 +9,9 @@
     },
     {
       "enemy": "Rivet Skitter",
-      "taps": 5,
-      "moves": 3,
-      "heroHp": 64
+      "taps": 4,
+      "moves": 2,
+      "heroHp": 78
     },
     {
       "enemy": "Beacon Wasp",
@@ -22,8 +22,32 @@
     {
       "enemy": "Ballast Ram",
       "taps": 5,
-      "moves": 7,
+      "moves": 6,
       "heroHp": 42
+    },
+    {
+      "enemy": "Hook Crane",
+      "taps": 3,
+      "moves": 2,
+      "heroHp": 84
+    },
+    {
+      "enemy": "Kiln Warden",
+      "taps": 5,
+      "moves": 4,
+      "heroHp": 75
+    },
+    {
+      "enemy": "Breakwater Snare",
+      "taps": 3,
+      "moves": 2,
+      "heroHp": 88
+    },
+    {
+      "enemy": "Spark Buoy",
+      "taps": 2,
+      "moves": 2,
+      "heroHp": 102
     }
   ],
   "weaponModelsLoaded": 12,

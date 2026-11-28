@@ -35,3 +35,24 @@ test('melee does not hit across cover and a dead enemy cannot attack',()=>{
  const b=create(spec);const e=spawn(b,0,{x:0,z:4.45});e.life=2;press(b,'attack');advance(b,2);
  assert.equal(e.state,'defeat');assert.equal(b.player.hp,120);
 });
+const extra=JSON.parse(readFileSync(new URL('../../art/actors/dock-specialists/manifest.json',import.meta.url))).enemyTypes;
+test('specialists hook, shove, emerge at a marked point and burst without sharing the same attack',()=>{
+ for(let i=0;i<extra.length;i++){
+  const s=create(extra),z=i===1?4.4:3.6,b=spawn(s,i,{x:0,z});
+  advance(s,1.2);
+  assert.equal(s.events.find(x=>x.type==='player-hit')?.style,extra[i].attack);
+  if(i===0)assert(s.player.z<4.9,'hook pulls toward crane');
+  if(i===1)assert(s.player.z>6.4,'shield shoves away');
+  if(i===2)assert(b.z>5&&b.mark.z===5.7,'snare emerges at its locked mark');
+  if(i===3)assert.equal(b.z,z,'buoy bursts in place');
+ }
+});
+test('the Warden blocks a frontal cut until the shield opens',()=>{
+ const s=create(extra),b=spawn(s,1,{x:0,z:3.15});
+ b.face=[0,1];b.state='active';select(s,2);press(s,'attack');advance(s,.28);
+ assert.equal(b.life,b.maxHp-Math.ceil(WEAPONS[2].power*.35));
+ assert(s.events.some(e=>e.type==='shield'));
+ const open=create(extra),w=spawn(open,1,{x:0,z:3.15});
+ w.state='recover';w.face=[0,1];select(open,2);press(open,'attack');advance(open,.28);
+ assert.equal(w.life,w.maxHp-WEAPONS[2].power);
+});

@@ -3,6 +3,10 @@ import json,math,struct,sys
 from pathlib import Path
 root=Path(sys.argv[1])
 expected={'sentry':'windmill','skitter':'pounce','wasp':'beam','ram':'charge'}
+if sys.argv[2:]==['specialists']:
+ expected={'hook':'hook','kiln':'guard','snare':'burrow','buoy':'burst'}
+elif sys.argv[2:]:
+ raise SystemExit('Optional second argument: specialists')
 clips={'Idle','Move','Turn','Windup','Attack','Recover','Hit','Special','Defeat'}
 out=[]
 for name,behavior in expected.items():
@@ -11,7 +15,9 @@ for name,behavior in expected.items():
  n,k=struct.unpack_from('<II',b,12); assert k==0x4e4f534a
  g=json.loads(b[20:20+n]);offset=28+n
  nd=g['nodes']; names={x['name']:x for x in nd}
- assert {'root','body','head','ground_socket','weak_socket','attack_socket'}<=names.keys()
+ assert {'root','body','ground_socket','weak_socket','attack_socket'}<=names.keys()
+ accessory={'hook':'chain','guard':'shield','burrow':'nose','burst':'cage'}.get(behavior,'head')
+ assert accessory in names
  assert max(map(abs,names['ground_socket'].get('translation',[0,0,0])))<1e-5
  assert not g.get('images') and not g.get('cameras')
  assert {a['name'] for a in g['animations']}==clips

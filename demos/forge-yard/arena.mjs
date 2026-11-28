@@ -45,7 +45,7 @@ export function spawn(s,index,where={x:0,z:-4.2}){
  const spec=s.enemyTypes[index];
  if(!spec)return null;
  const b={...spec,x:where.x,z:where.z,r:spec.radius,life:spec.hp,
-  maxHp:spec.hp,state:'idle',t:0,face:[0,1],lock:[0,1],hit:false,lockLength:0,dashHit:false};
+  maxHp:spec.hp,mark:null,state:'idle',t:0,face:[0,1],lock:[0,1],hit:false,lockLength:0,dashHit:false};
  s.bots.push(b);
  return b;
 }
@@ -63,7 +63,7 @@ export function press(s,kind){
  }
  return false;
 }
-const DAM={windmill:18,pounce:14,beam:13,charge:26};
+const DAM={windmill:18,pounce:14,beam:13,charge:26,hook:12,guard:15,burrow:16,burst:18};
 function strikePlayer(s,b){
  const p=s.player;
  if(p.inv>0||p.hp<=0)return false;
@@ -90,10 +90,14 @@ export function tick(s,seconds,input=[0,0]){
    a.done=true;
    const cone=a.weapon.style==='thrust'?.67:a.weapon.style==='chop'?.23:-.05;
    for(const b of s.bots)if(b.life>0&&gap(p,b)<=a.weapon.reach+b.r&&dot(p.face,norm(b.x-p.x,b.z-p.z))>=cone&&!reachBlocked(p,b)){
-    b.life=Math.max(0,b.life-a.weapon.power);
+    const front=dot(b.face,norm(p.x-b.x,p.z-b.z))>.35;
+    const blocks=b.attack==='guard'&&front&&!['windup','recover','hit'].includes(b.state);
+    const dealt=blocks?Math.ceil(a.weapon.power*.35):a.weapon.power;
+    b.life=Math.max(0,b.life-dealt);
+    if(blocks)s.events.push({type:'shield',enemy:b.id});
     s.events.push({type:'enemy-hit',enemy:b.id,hp:b.life});
     if(!b.life){state(s,b,'defeat');s.events.push({type:'defeat',enemy:b.id});}
-    else if(b.state!=='active')state(s,b,'hit');
+    else if(b.state!=='active'&&!blocks)state(s,b,'hit');
    }
   }
   if(a.time>=a.weapon.cycle)p.slash=null;
@@ -105,7 +109,7 @@ export function tick(s,seconds,input=[0,0]){
   if(b.state==='idle'||b.state==='move'){
    b.face=aim;
    if(d<=b.reach&&!reachBlocked(b,p)){
-     b.lock=aim;b.lockLength=Math.max(1.5,d);b.dashHit=false;
+     b.lock=aim;b.lockLength=Math.max(1.5,d);b.dashHit=false;b.mark={x:p.x,z:p.z};
      state(s,b,'windup');continue;
    }
    if(d>1.15){
@@ -118,11 +122,25 @@ export function tick(s,seconds,input=[0,0]){
   }else if(b.state==='windup'&&b.t>=b.windup){
    state(s,b,'active');
    if(b.attack==='windmill'&&d<=b.reach+.32&&!reachBlocked(b,p))strikePlayer(s,b);
-   if(b.attack==='beam'){
+   if(b.attack==='hook'||b.attack==='beam'){
     const ax=p.x-b.x,az=p.z-b.z,along=ax*b.lock[0]+az*b.lock[1];
     const off=Math.abs(ax*b.lock[1]-az*b.lock[0]);
-    if(along>0&&along<b.reach+.6&&off<.63&&!reachBlocked(b,p))strikePlayer(s,b);
+    if(along>0&&along<b.reach+.6&&off<(b.attack==='hook'?.78:.63)&&!reachBlocked(b,p)){
+     const hit=strikePlayer(s,b);
+     if(hit&&b.attack==='hook'){
+      const q=Math.min(1.30,Math.max(0,d-1.15));place(p,p.x-aim[0]*q,p.z-aim[1]*q);
+     }
+    }
    }
+   if(b.attack==='guard'&&d<=b.reach+.30&&dot(b.lock,aim)>.55&&!reachBlocked(b,p)&&strikePlayer(s,b)){
+    place(p,p.x+b.lock[0]*.88,p.z+b.lock[1]*.88);
+   }
+   if(b.attack==='burrow'){
+    const old={x:b.x,z:b.z};
+    if(!reachBlocked(old,b.mark)){place(b,b.mark.x-b.lock[0]*.45,b.mark.z-b.lock[1]*.45);}
+    if(gap(p,b.mark)<.93&&!reachBlocked(b,p))strikePlayer(s,b);
+   }
+   if(b.attack==='burst'&&d<b.reach+.16&&!reachBlocked(b,p))strikePlayer(s,b);
   }else if(b.state==='active'){
    if(b.attack==='pounce'||b.attack==='charge'){
     const speed=b.attack==='pounce'?7.2:10.8;

@@ -21,7 +21,7 @@ try{
  await page.locator('#weapon').selectOption('017');
  await page.waitForFunction(()=>document.querySelector('#yard').dataset.equipped==='017');
  const victories=[];
- for(let n=0;n<4;n++){
+ for(let n=0;n<8;n++){
   if(n)await page.locator('#win-next').tap();
   const label=await page.locator('#enemy-name').textContent();
   const track=()=>yard.evaluate(e=>{

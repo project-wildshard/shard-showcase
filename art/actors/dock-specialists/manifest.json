@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "units": "meters",
+  "enemyTypes": [
+    {"id":"WSC-ENM-005","name":"Hook Crane","model":"hook.glb","move":"crawler","attack":"hook","radius":0.63,"height":2.24,"pace":1.36,"hp":78,"reach":3.60,"windup":0.79,"recover":0.91},
+    {"id":"WSC-ENM-006","name":"Kiln Warden","model":"kiln.glb","move":"shield walker","attack":"guard","radius":0.66,"height":1.80,"pace":1.18,"hp":75,"reach":1.80,"windup":0.74,"recover":0.97},
+    {"id":"WSC-ENM-007","name":"Breakwater Snare","model":"snare.glb","move":"segment skater","attack":"burrow","radius":0.68,"height":0.75,"pace":2.0,"hp":66,"reach":4.2,"windup":0.77,"recover":0.9},
+    {"id":"WSC-ENM-008","name":"Spark Buoy","model":"buoy.glb","move":"suspension","attack":"burst","radius":0.54,"height":1.76,"pace":1.60,"hp":54,"reach":2.95,"windup":1.05,"recover":1.16}
+  ]
+}
