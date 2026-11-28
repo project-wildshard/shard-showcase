@@ -1,0 +1,71 @@
+{
+  "viewport": [
+    402,
+    874
+  ],
+  "captures": [
+    {
+      "mode": "before",
+      "fields": {
+        "sceneKit": "signal-breakwater",
+        "sceneBatches": "31",
+        "sceneInstances": "557",
+        "sceneCover": "4",
+        "playerViewX": "-0.537",
+        "playerViewY": "-0.199",
+        "enemyViewX": "0.427",
+        "enemyViewY": "0.190"
+      },
+      "errors": []
+    },
+    {
+      "mode": "after",
+      "first": {
+        "sceneKit": "signal-breakwater",
+        "sceneBatches": "50",
+        "sceneInstances": "686",
+        "sceneCover": "4",
+        "playerViewX": "-0.286",
+        "playerViewY": "-0.088",
+        "enemyViewX": "0.243",
+        "enemyViewY": "0.134",
+        "cargoViewX": "-0.062",
+        "cargoViewY": "0.770",
+        "gantryX": "-8.349",
+        "gantryDrop": "0.400",
+        "gantryTriangles": "1788"
+      },
+      "second": {
+        "sceneKit": "signal-breakwater",
+        "sceneBatches": "50",
+        "sceneInstances": "686",
+        "sceneCover": "4",
+        "playerViewX": "0.123",
+        "playerViewY": "0.083",
+        "enemyViewX": "0.023",
+        "enemyViewY": "0.070",
+        "cargoViewX": "0.357",
+        "cargoViewY": "0.870",
+        "gantryX": "-6.052",
+        "gantryDrop": "0.400",
+        "gantryTriangles": "1788"
+      },
+      "touchForwardMeters": 2.07,
+      "errors": []
+    },
+    {
+      "mode": "foundry",
+      "fields": {
+        "sceneKit": "foundry-evening",
+        "sceneBatches": "27",
+        "sceneInstances": "749",
+        "sceneCover": "4",
+        "playerViewX": "-0.542",
+        "playerViewY": "-0.201",
+        "enemyViewX": "0.435",
+        "enemyViewY": "0.192"
+      },
+      "errors": []
+    }
+  ]
+}

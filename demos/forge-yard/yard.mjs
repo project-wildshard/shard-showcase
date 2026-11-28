@@ -4,6 +4,7 @@ import {DUEL_CAMERA_AXIS,DUEL_CAMERA_FOV,duelDistance} from './duel-camera.mjs';
 import {createImpactEffects,surfaceCue} from './impact-effects.mjs';
 import {createSurgeFx} from './breakwater-surge-fx.mjs';
 import {SURGE} from './breakwater-surge.mjs';
+import {createBreakwaterGantry,GANTRY_Z,GANTRY_HEIGHT_SCALE} from './breakwater-gantry.mjs';
 import {createBreakwaterDressing} from './breakwater-dressing.mjs';
 import {createFoundryDressing} from './foundry-dressing.mjs';
 import * as T from 'three';
@@ -49,6 +50,8 @@ try{
  const rim=new T.DirectionalLight(0x86cafa,1.28);rim.position.set(8,6,-8);scene.add(rim);
 
  const updateSurge=coast?createSurgeFx(scene):null;
+ const gantry=coast?createBreakwaterGantry(scene):null;
+ let gantryClock=0;
  const tideNotice=$('tide');
  const dressing=coast?createBreakwaterDressing(scene,COVER):createFoundryDressing(scene,COVER);
  if(coast){
@@ -59,8 +62,8 @@ try{
  wrap.dataset.sceneKit=coast?'signal-breakwater':'foundry-evening';
  wrap.dataset.lightPools=String(dressing.lightPools);
  wrap.dataset.practicalLights=String(dressing.practicalLights);
- wrap.dataset.sceneBatches=String(dressing.batches);
- wrap.dataset.sceneInstances=String(dressing.instances);
+ wrap.dataset.sceneBatches=String(dressing.batches+(gantry?.batches??0));
+ wrap.dataset.sceneInstances=String(dressing.instances+(gantry?.instances??0));
  wrap.dataset.sceneCover=String(dressing.coverCount);
 
  const loader=new GLTFLoader(),alivePlayer=joint(scene,0,0,0);
@@ -516,6 +519,13 @@ try{
    wrap.dataset[who+'ViewX']=point.x.toFixed(3);wrap.dataset[who+'ViewY']=point.y.toFixed(3);
   };
   viewport('player',p.x,1.02,p.z);viewport('enemy',enemy.x,Math.min(enemy.height*.60,1.10),enemy.z);
+  if(gantry){
+   const pose=gantry.step(gantryClock+=dt);
+   viewport('cargo',pose.x,(4.09-pose.drop)*GANTRY_HEIGHT_SCALE,GANTRY_Z);
+   wrap.dataset.gantryX=pose.x.toFixed(3);
+   wrap.dataset.gantryDrop=pose.drop.toFixed(3);
+   wrap.dataset.gantryTriangles=String(gantry.triangles);
+  }
   render.render(scene,camera);
  });
 }catch(e){wrap.dataset.state='error';set(notice,'Forge Yard could not load. WebGL and served assets are required.');console.error(e);}
