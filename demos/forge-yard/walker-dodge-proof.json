@@ -1,0 +1,63 @@
+{
+  "viewport": [
+    402,
+    874
+  ],
+  "trustedTouch": true,
+  "results": [
+    {
+      "mode": "before",
+      "frames": {
+        "load": {
+          "meters": 0.48,
+          "phase": null
+        },
+        "tuck": {
+          "meters": 1.28,
+          "phase": null
+        },
+        "plant": {
+          "meters": 1.76,
+          "phase": null
+        }
+      },
+      "start": 5.7,
+      "started": true,
+      "end": {
+        "meters": 2.4,
+        "clip": "Idle"
+      },
+      "errors": []
+    },
+    {
+      "mode": "after",
+      "frames": {
+        "load": {
+          "meters": 0.64,
+          "phase": 0.2721
+        },
+        "tuck": {
+          "meters": 1.28,
+          "phase": 0.5442
+        },
+        "plant": {
+          "meters": 1.76,
+          "phase": 0.7483
+        }
+      },
+      "start": 5.7,
+      "started": true,
+      "end": {
+        "meters": 2.4,
+        "clip": "Idle"
+      },
+      "errors": []
+    }
+  ],
+  "clearance": {
+    "samples": 61,
+    "minSoleBoxAtExportFramesMeters": 0.013,
+    "minSoleBoxAtQuarterFramesMeters": 0.003662,
+    "rootMoved": false
+  }
+}

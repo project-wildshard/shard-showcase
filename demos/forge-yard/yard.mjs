@@ -11,7 +11,7 @@ import {createFoundryDressing} from './foundry-dressing.mjs';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 import {RoomEnvironment} from 'three/addons/environments/RoomEnvironment.js';
-import {ARENA,COVER,WEAPONS,ramOpen,wardenOpen,RAM_OPEN_SECONDS,sweepRadius,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH,RELAY_RADIUS,STILT_RADIUS,splitMarks,SEED_RADIUS,FLANK_RADIUS,HARROW_WIND,seedMarks,harrowLine} from './arena.mjs';
+import {ARENA,COVER,WEAPONS,WALKER_DODGE_SECONDS,ramOpen,wardenOpen,RAM_OPEN_SECONDS,sweepRadius,create,spawn,press,select,tick,MORTAR_RADIUS,CROSS_HALF_WIDTH,RELAY_RADIUS,STILT_RADIUS,splitMarks,SEED_RADIUS,FLANK_RADIUS,HARROW_WIND,seedMarks,harrowLine} from './arena.mjs';
 import {VARIANTS} from './variants.mjs';
 
 const $=n=>document.querySelector('#'+n);
@@ -95,7 +95,7 @@ try{
   else{a.setLoop(T.LoopOnce,1);a.clampWhenFinished=true;}
   if(seconds)a.setDuration(seconds);
   a.paused=scrub;
-  if(walker.last){walker.last.fadeOut(.063);a.fadeIn(.063);}
+  if(walker.last){const fade=name==='Dodge'?.035:.063;walker.last.fadeOut(fade);a.fadeIn(fade);}
   a.play();walker.name=name;walker.last=a;
   wrap.dataset.heroClip=name;
  }
@@ -361,7 +361,12 @@ try{
   heroHit=Math.max(0,heroHit-dt);heroTurn=Math.max(0,heroTurn-dt);
   const strike=p.slash?.weapon;
   if(p.hp===0)heroPose('Defeat',.95);
-  else if(p.dodge)heroPose('Dodge',.245);
+  else if(p.dodge){
+   heroPose('Dodge',0,true);
+   const phase=clamp(1-p.dodge/WALKER_DODGE_SECONDS,0,1);
+   walker.last.time=walker.last.getClip().duration*phase;
+   wrap.dataset.dodgePhase=phase.toFixed(4);
+  }
   else if(strike){
    heroPose(walkerStrike(strike),0,true);
    const elapsed=impactEvent?p.slash.releaseAt:p.slash.time;
@@ -375,6 +380,7 @@ try{
   else if(heroTurn)heroPose('Turn',.25);
   else if(moving)heroPose('Stride',.61);
   else heroPose('Idle',1.6);
+  if(!p.dodge||!p.hp)delete wrap.dataset.dodgePhase;
   if(!strike||p.hp===0)delete wrap.dataset.heroStrikePhase;
   walker.mixer.update(dt);
   wmix?.update(dt);

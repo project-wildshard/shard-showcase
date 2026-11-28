@@ -1,6 +1,6 @@
 {
   "triangles": 8840,
-  "bytes": 646616,
+  "bytes": 648212,
   "articulatedJoints": 18,
   "sockets": {
     "grip_R": "hand_R",
@@ -64,26 +64,38 @@
     "Dodge": {
       "durationSeconds": 0.5,
       "movingNodes": [
+        "boot_L",
+        "boot_R",
         "chest",
         "coat",
+        "elbow_L",
+        "elbow_R",
         "head",
         "hip_L",
         "hip_R",
         "knee_L",
         "knee_R",
+        "pack",
         "pelvis",
+        "upper_L",
         "upper_R"
       ],
       "deltas": {
-        "pelvis": 0.29,
-        "chest": 0.299,
-        "head": 0.165,
-        "upper_R": 0.215,
-        "coat": 0.2,
-        "hip_L": 0.363,
-        "knee_L": 0.601,
-        "hip_R": 0.259,
-        "knee_R": 0.543
+        "pelvis": 0.145,
+        "chest": 0.338,
+        "head": 0.18,
+        "pack": 0.055,
+        "upper_L": 0.422,
+        "elbow_L": 0.195,
+        "upper_R": 0.229,
+        "elbow_R": 0.125,
+        "coat": 0.269,
+        "hip_L": 0.446,
+        "knee_L": 0.533,
+        "boot_L": 0.125,
+        "hip_R": 0.187,
+        "knee_R": 0.672,
+        "boot_R": 0.264
       }
     },
     "Hit": {

@@ -2,6 +2,7 @@
 import {configuration} from './variants.mjs';
 import {SURGE,surgeAt,surgeTouches} from './breakwater-surge.mjs';
 export const ARENA=10.5;
+export const WALKER_DODGE_SECONDS=.245;
 export const RAM_OPEN_SECONDS=.88;
 const SHIELD_OPEN_STATES=['windup','recover','hit','feint'];
 export const wardenOpen=b=>b.attack==='guard'&&b.life>0&&SHIELD_OPEN_STATES.includes(b.state);
@@ -61,7 +62,7 @@ export function spawn(s,index,where={x:0,z:-4.2},variant=null){
 export function press(s,kind){
  const p=s.player;
  if(p.hp<=0)return false;
- if(kind==='dodge'&&p.dodge<=0&&!p.slash){p.dodge=.245;p.inv=.29;s.events.push({type:'dodge'});return true;}
+ if(kind==='dodge'&&p.dodge<=0&&!p.slash){p.dodge=WALKER_DODGE_SECONDS;p.inv=.29;s.events.push({type:'dodge'});return true;}
  if(kind==='attack'&&!p.dodge&&!p.slash){
   const weapon=WEAPONS[s.weapon];
   const near=s.bots.filter(b=>b.life>0&&gap(p,b)<weapon.reach+1.1&&!reachBlocked(p,b)).sort((a,b)=>gap(a,p)-gap(b,p))[0];

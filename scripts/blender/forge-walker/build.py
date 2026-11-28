@@ -151,9 +151,24 @@ def pose(role,x):
  elif role=='turn':
   f['pelvis'][1]=x*.20;f['chest'][1]=x*.29;f['head'][1]=x*.40;f['hip_R'][0]=-x*.23;f['coat'][1]=-x*.22
  elif role=='dodge':
-  f['pelvis'][4]=-x*.29;f['chest'][0]=-x*.60;f['head'][0]=x*.33
-  f['hip_L'][0]=-x*.73;f['hip_R'][0]=-x*.52;f['knee_L'][0]=x*1.22;f['knee_R'][0]=x*1.10
-  f['upper_R'][0]-=x*.43;f['coat'][0]=-x*.40
+  # Independent load, travel and plant beats; no root translation is exported.
+  load=max(0,-x);tuck=max(0,x);plant=max(0,1-abs(x-.36)/.31)*(x>0)
+  f['pelvis'][4]=-.16*load-.21*tuck-.07*plant
+  f['pelvis'][5]=.092*tuck+.095*plant-.038*load
+  f['pelvis'][1]=.19*load-.29*tuck+.22*plant
+  f['chest'][0]=-.42*load-.67*tuck-.20*plant
+  f['chest'][2]=-.12*tuck+.18*plant;f['head'][0]=.36*tuck+.10*load
+  f['hip_L'][0]=-.33*load-.90*tuck-.42*plant
+  f['knee_L'][0]=.52*load+1.08*tuck+.50*plant
+  f['boot_L'][0]=-.25*load-.21*tuck-.04*plant
+  f['hip_R'][0]=-.18*load+.29*tuck+.27*plant
+  f['knee_R'][0]=.36*load+1.37*tuck+.57*plant
+  f['boot_R'][0]=-.14*load-.53*tuck-.28*plant
+  f['upper_L'][0]=-.22-.52*load-.76*tuck+.44*plant
+  f['upper_L'][2]=-.39*tuck-.33*plant;f['elbow_L'][0]=-.31-.39*tuck
+  f['upper_R'][0]=-.21-.27*load+.41*tuck-.27*plant
+  f['upper_R'][2]=.20*tuck+.37*plant;f['elbow_R'][0]=-.52-.25*tuck
+  f['coat'][0]=.35*load-.54*tuck+.26*plant;f['pack'][0]=.11*tuck-.12*plant
  elif role=='hit':
   f['pelvis'][2]=x*.16;f['chest'][0]=x*.32;f['head'][0]=x*.25;f['upper_L'][2]=x*.51
  elif role=='defeat':
@@ -199,7 +214,7 @@ att=[(1,0),(7,-.63),(15,1.0),(22,.54),(30,0)]
 clips=[('Idle','idle',[(1,0),(13,1),(25,0),(37,-1),(49,0)]),
  ('Stride','stride',[(1,0),(7,1),(13,0),(19,-1),(25,0)]),
  ('Turn','turn',[(1,0),(7,1),(15,0)]),
- ('Dodge','dodge',[(1,0),(5,1),(10,.68),(16,0)]),
+ ('Dodge','dodge',[(1,0),(4,-1),(7,.62),(9,1),(12,.36),(16,0)]),
  ('Hit','hit',[(1,0),(5,1),(15,0)]),
  ('Defeat','defeat',[(1,0),(10,.34),(25,1),(36,1)]),
  ('Sweep','sweep',att),('Chop','chop',att),('Thrust','thrust',att),
@@ -212,10 +227,22 @@ for title,role,frames in clips:
    b=rig.pose.bones[n];b.rotation_euler=v[:3];b.location=v[3:]
    b.keyframe_insert(data_path='rotation_euler',frame=frame,group=n)
    b.keyframe_insert(data_path='location',frame=frame,group=n)
+ if title=='Dodge':
+  # Bake a conservative sole clearance into the pelvis, after sampling all
+  # original authored beats. Prevent floor clipping in the load and plant.
+  soles=[o for key in ('boot_L','boot_R') for o in groups[key]]
+  pelvis=rig.pose.bones['pelvis'];samples=[]
+  for frame in range(1,17):
+   S.frame_set(frame)
+   low=min((o.matrix_world@Vector(v)).z for o in soles for v in o.bound_box)
+   samples.append((frame,pelvis.location.y+max(0,.013-low)))
+  for frame,y in samples:
+   pelvis.location.y=y;pelvis.keyframe_insert(data_path='location',index=1,frame=frame,group='pelvis')
  a=rig.animation_data.action;a.name='Walker '+title;rig.animation_data.action=None
- t=rig.animation_data.nla_tracks.new();t.name=title;t.strips.new(title,1,a)
+ t=rig.animation_data.nla_tracks.new();t.name=title;t.strips.new(title,1,a);t.mute=True
 bpy.ops.object.select_all(action='DESELECT')
 for o in c.objects:o.select_set(True)
+for t in rig.animation_data.nla_tracks:t.mute=False
 bpy.ops.export_scene.gltf(filepath=str(D/'walker.glb'),export_format='GLB',use_selection=True,export_apply=True,export_animation_mode='NLA_TRACKS')
 for t in rig.animation_data.nla_tracks:t.mute=True
 for n,v in pose('idle',0).items():
