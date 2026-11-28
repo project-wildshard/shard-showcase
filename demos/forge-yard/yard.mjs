@@ -39,8 +39,8 @@ try{
  const rim=new T.DirectionalLight(0x7ac3ff,1.45);rim.position.set(8,6,-8);scene.add(rim);
 
  const stone=mat(0x3c545b,.25,.66),stoneAlt=mat(0x375056,.23,.73),deck=mat(0x202d33,.65,.46);
- const amber=mat(0x98703b),paint=mat(0xa36333),cold=mat(0x255a60),brass=mat(0xa97543,.67,.35),navy=mat(0x24475f),skin=mat(0x9f7758,.1,.57);
- const accent=mat(0xc49153),flex=mat(0x233037,.28,.68);const glint=new T.MeshBasicMaterial({color:0x76dfd2});
+ const amber=mat(0x98703b),paint=mat(0xa36333),cold=mat(0x255a60),brass=mat(0xa97543,.67,.35);
+ const glint=new T.MeshBasicMaterial({color:0x76dfd2});
  box(scene,[80,.25,80],[0,-.5,0],deck);
  const tilePositions=[[],[]],transform=new T.Matrix4();
  for(let x=-10;x<=10;x+=2)for(let z=-10;z<=10;z+=2)tilePositions[Number((x*17+z*13)%8===0)].push([x,z]);
@@ -89,24 +89,29 @@ try{
   const o=mesh(new T.CircleGeometry(scale,24),basic(0x081116,.39));
   o.rotation.x=-Math.PI/2;o.position.y=.012;parent.add(o);return o;
  }
- const shell=joint(alivePlayer,0,0,0);shadow(alivePlayer,.5);
- box(shell,[.61,.62,.38],[0,1.18,0],navy);
- box(shell,[.49,.11,.43],[0,.88,0],flex);
- box(shell,[.40,.32,.37],[0,1.66,0],accent);
- box(shell,[.32,.096,.023],[0,1.68,.194],glint);
- box(shell,[.51,.11,.41],[0,1.83,0],navy);
- box(shell,[.29,.38,.17],[0,1.29,-.24],deck);
- box(shell,[.095,.23,.04],[0,1.32,-.33],glint);
- const hipL=joint(shell,-.15,.83,0),hipR=joint(shell,.15,.83,0);
- for(const hip of [hipL,hipR]){box(hip,[.19,.61,.21],[0,-.30,0],flex);box(hip,[.23,.19,.34],[0,-.70,.07],navy);}
- const left=joint(shell,-.38,1.40,0),right=joint(shell,.38,1.40,0);
- for(const arm of [left,right]){
-  box(arm,[.26,.22,.28],[0,-.055,0],accent);
-  box(arm,[.16,.43,.19],[0,-.30,.03],navy);
-  box(arm,[.17,.14,.18],[0,-.55,.04],skin);
+ shadow(alivePlayer,.49);
+ const grip=new T.Group(),gripPoint=new T.Vector3();
+ let walker=null,heroHit=0,heroTurn=0,heroYaw=Math.PI;
+ const heroClips=['Idle','Stride','Turn','Dodge','Hit','Defeat','Sweep','Chop','Thrust'];
+ async function loadWalker(){
+  const g=await loader.loadAsync(new URL('../../art/actors/forge-walker/walker.glb',location.href).href);
+  const hand=g.scene.getObjectByName('grip_R');
+  const clips=Object.fromEntries(g.animations.map(a=>[a.name,a]));
+  if(!hand||!g.scene.getObjectByName('ground_socket')||heroClips.some(n=>!clips[n]))throw Error('Walker rig or animation missing');
+  alivePlayer.add(g.scene);hand.add(grip);
+  walker={mixer:new T.AnimationMixer(g.scene),clips,name:null,last:null};
+  wrap.dataset.heroRig='Walker';wrap.dataset.weaponSocket=hand.name;
  }
- const grip=joint(right,.02,-.57,.10);
-
+ function heroPose(name,seconds=0){
+  if(name===walker.name)return;
+  const a=walker.mixer.clipAction(walker.clips[name]).reset();
+  if(['Idle','Stride'].includes(name)){a.setLoop(T.LoopRepeat,Infinity);a.clampWhenFinished=false;}
+  else{a.setLoop(T.LoopOnce,1);a.clampWhenFinished=true;}
+  if(seconds)a.setDuration(seconds);
+  if(walker.last){walker.last.fadeOut(.063);a.fadeIn(.063);}
+  a.play();walker.name=name;walker.last=a;
+  wrap.dataset.heroClip=name;
+ }
  const warningPlane=mesh(new T.PlaneGeometry(1,1),basic(0xff552f,.29));
  const warningRing=mesh(new T.RingGeometry(.88,1,64),basic(0xff552f,.74));
  const pulseRing=mesh(new T.RingGeometry(.77,1,56),basic(0xffa241,.68));
@@ -203,6 +208,8 @@ try{
   }
   const old=s.weapon;
   s=create(data.enemyTypes);select(s,old);
+  heroYaw=face(...s.player.face);heroHit=heroTurn=0;
+  if(walker){walker.mixer.stopAllAction();walker.name=walker.last=null;heroPose('Idle');}
   i=n;enemy=spawn(s,i,{x:0,z:-2.45},variant);
   const g=artists.get(i);const group=joint(scene,enemy.x,0,enemy.z);group.add(g.scene);shadow(group,enemy.radius*.95);
   const armor=kit(enemy,group);
@@ -274,10 +281,10 @@ try{
  variants.addEventListener('change',()=>{variant=variants.value||null;start(i);});
  $('next').onclick=$('win-next').onclick=nextRival;
  $('reset').onclick=()=>start(i);
- await Promise.all([loadRival(0),loadWeapon('014')]);
+ await Promise.all([loadRival(0),loadWeapon('014'),loadWalker()]);
  start(0);
  const look=new T.Vector3(),goal=new T.Vector3(),point=new T.Vector3();
- let last=0,accum=0,walk=0;
+ let last=0,accum=0;
  function resize(){const w=wrap.clientWidth,h=wrap.clientHeight;if(!w||!h)return;camera.aspect=w/h;camera.updateProjectionMatrix();render.setSize(w,h,false);}
  window.addEventListener('resize',resize);resize();
  wrap.dataset.state='ready';
@@ -302,7 +309,7 @@ try{
     say(variation[e.type],e.type==='pulse'?.77:.45);
    }
    if(e.type==='enemy-hit'){impact=.26;flash.position.set(enemy.x,enemy.attack==='beam'?1.22:.82,enemy.z);say('Hit',.34);}
-   if(e.type==='player-hit')say('You took a hit',.65);
+   if(e.type==='player-hit'){heroHit=.26;say('You took a hit',.65);}
    if(e.type==='defeat'){wrap.dataset.outcome='win';set($('win-title'),enemy.name+' defeated');set($('win-body'),'Try a different rival or change weapons.');$('win').hidden=false;}
   }
   if(p.hp===0){wrap.dataset.outcome='loss';set($('win-title'),'Walker down');set($('win-body'),'Restart or try another rival.');$('win').hidden=false;}
@@ -310,15 +317,25 @@ try{
   human.value=p.hp;set($('hero-hp'),p.hp);rival.max=enemy.maxHp;rival.value=enemy.life;set($('enemy-hp'),enemy.life);
   wrap.dataset.playerX=p.x.toFixed(3);wrap.dataset.playerZ=p.z.toFixed(3);
   wrap.dataset.enemyX=enemy.x.toFixed(3);wrap.dataset.enemyZ=enemy.z.toFixed(3);
-  alivePlayer.position.set(p.x,0,p.z);alivePlayer.rotation.y=face(...p.face);
-  walk+=dt*(Math.abs(m[0])+Math.abs(m[1])>.1?11.8:0);
-  const stride=(Math.abs(m[0])+Math.abs(m[1])>.1&&!p.slash)?Math.sin(walk)*.52:0;
-  hipL.rotation.x=stride;hipR.rotation.x=-stride;left.rotation.x=-stride*.35;
-  shell.position.y=p.dodge?-.23:Math.abs(stride)*.075;
-  shell.rotation.x=p.dodge?.45:0;
-  if(p.slash){const a=clamp(p.slash.time/p.slash.weapon.cycle,0,1);right.rotation.z=.36-Math.sin(a*Math.PI)*1.17;right.rotation.x=-.26-Math.sin(a*Math.PI)*.67;}
-  else{right.rotation.x=.13+stride*.35;right.rotation.z=.13;}
+  alivePlayer.position.set(p.x,0,p.z);
+  const wish=face(...p.face),yawErr=Math.atan2(Math.sin(wish-heroYaw),Math.cos(wish-heroYaw));
+  const moving=Math.hypot(...m)>.10&&!rivalLoading;
+  if(Math.abs(yawErr)>.88&&moving&&!p.slash&&!p.dodge&&heroTurn<=0)heroTurn=.25;
+  heroYaw+=yawErr*(1-Math.exp(-dt*(p.slash?23:14)));alivePlayer.rotation.y=heroYaw;
+  heroHit=Math.max(0,heroHit-dt);heroTurn=Math.max(0,heroTurn-dt);
+  const strike=p.slash?.weapon,style=strike?.style;
+  const strikeName={chop:'Chop',sweep:'Sweep',thrust:'Thrust'}[style];
+  if(p.hp===0)heroPose('Defeat',.95);
+  else if(p.dodge)heroPose('Dodge',.245);
+  else if(strike)heroPose(strikeName,strike.cycle);
+  else if(heroHit)heroPose('Hit',.26);
+  else if(heroTurn)heroPose('Turn',.25);
+  else if(moving)heroPose('Stride',.61);
+  else heroPose('Idle',1.6);
+  walker.mixer.update(dt);
   wmix?.update(dt);
+  grip.getWorldPosition(gripPoint);alivePlayer.worldToLocal(gripPoint);
+  wrap.dataset.gripLocal=gripPoint.toArray().map(x=>x.toFixed(3)).join(',');
   actor.group.position.set(enemy.x,0,enemy.z);actor.group.rotation.y=face(...enemy.face);
   action(enemy,enemy.state);actor.mixer.update(dt);
   const bomb=enemy.attack==='mortar',cross=enemy.attack==='crosscut';

@@ -1,0 +1,179 @@
+{
+  "triangles": 7428,
+  "bytes": 525180,
+  "articulatedJoints": 18,
+  "sockets": {
+    "grip_R": "hand_R",
+    "grip_L": "hand_L",
+    "ground_socket": "root"
+  },
+  "clips": {
+    "Idle": {
+      "durationSeconds": 1.6,
+      "movingNodes": [
+        "chest",
+        "coat",
+        "head"
+      ],
+      "deltas": {
+        "chest": 0.018,
+        "head": 0.055,
+        "coat": 0.04
+      }
+    },
+    "Stride": {
+      "durationSeconds": 0.8,
+      "movingNodes": [
+        "coat",
+        "hip_L",
+        "hip_R",
+        "knee_L",
+        "knee_R",
+        "pelvis",
+        "upper_L",
+        "upper_R"
+      ],
+      "deltas": {
+        "pelvis": 0.043,
+        "upper_L": 0.205,
+        "upper_R": 0.1,
+        "coat": 0.135,
+        "hip_L": 0.338,
+        "knee_L": 0.254,
+        "hip_R": 0.338,
+        "knee_R": 0.254
+      }
+    },
+    "Turn": {
+      "durationSeconds": 0.467,
+      "movingNodes": [
+        "chest",
+        "coat",
+        "head",
+        "hip_R",
+        "pelvis"
+      ],
+      "deltas": {
+        "pelvis": 0.1,
+        "chest": 0.145,
+        "head": 0.2,
+        "coat": 0.11,
+        "hip_R": 0.115
+      }
+    },
+    "Dodge": {
+      "durationSeconds": 0.5,
+      "movingNodes": [
+        "chest",
+        "coat",
+        "head",
+        "hip_L",
+        "hip_R",
+        "knee_L",
+        "knee_R",
+        "pelvis",
+        "upper_R"
+      ],
+      "deltas": {
+        "pelvis": 0.29,
+        "chest": 0.299,
+        "head": 0.165,
+        "upper_R": 0.215,
+        "coat": 0.2,
+        "hip_L": 0.363,
+        "knee_L": 0.601,
+        "hip_R": 0.259,
+        "knee_R": 0.543
+      }
+    },
+    "Hit": {
+      "durationSeconds": 0.467,
+      "movingNodes": [
+        "chest",
+        "head",
+        "pelvis",
+        "upper_L"
+      ],
+      "deltas": {
+        "pelvis": 0.08,
+        "chest": 0.16,
+        "head": 0.125,
+        "upper_L": 0.254
+      }
+    },
+    "Defeat": {
+      "durationSeconds": 1.167,
+      "movingNodes": [
+        "chest",
+        "head",
+        "hip_L",
+        "hip_R",
+        "knee_L",
+        "knee_R",
+        "pelvis"
+      ],
+      "deltas": {
+        "pelvis": 0.64,
+        "chest": 0.432,
+        "head": 0.249,
+        "hip_L": 0.567,
+        "knee_L": 0.695,
+        "hip_R": 0.441,
+        "knee_R": 0.581
+      }
+    },
+    "Sweep": {
+      "durationSeconds": 0.967,
+      "movingNodes": [
+        "chest",
+        "elbow_R",
+        "hand_R",
+        "hip_L",
+        "upper_R"
+      ],
+      "deltas": {
+        "chest": 0.343,
+        "upper_R": 0.471,
+        "elbow_R": 0.264,
+        "hand_R": 0.18,
+        "hip_L": 0.125
+      }
+    },
+    "Chop": {
+      "durationSeconds": 0.967,
+      "movingNodes": [
+        "chest",
+        "coat",
+        "elbow_R",
+        "hand_R",
+        "hip_L",
+        "upper_R"
+      ],
+      "deltas": {
+        "chest": 0.135,
+        "upper_R": 0.475,
+        "elbow_R": 0.249,
+        "hand_R": 0.13,
+        "coat": 0.17,
+        "hip_L": 0.12
+      }
+    },
+    "Thrust": {
+      "durationSeconds": 0.967,
+      "movingNodes": [
+        "chest",
+        "elbow_R",
+        "hand_R",
+        "hip_L",
+        "upper_R"
+      ],
+      "deltas": {
+        "chest": 0.19,
+        "upper_R": 0.388,
+        "elbow_R": 0.17,
+        "hand_R": 0.18,
+        "hip_L": 0.2
+      }
+    }
+  }
+}

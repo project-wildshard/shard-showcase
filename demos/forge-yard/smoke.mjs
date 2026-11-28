@@ -14,6 +14,8 @@ try{
  const yard=page.locator('#yard');
  await page.waitForFunction(()=>document.querySelector('#yard').dataset.state==='ready',null,{timeout:45000});
  assert.equal(await yard.getAttribute('data-equipped'),'014');
+ assert.equal(await yard.getAttribute('data-hero-rig'),'Walker');
+ assert.equal(await yard.getAttribute('data-weapon-socket'),'grip_R');
  assert.equal(await page.locator('#weapon option').count(),12);
  const modelsAtReady=await page.evaluate(()=>performance.getEntriesByType('resource').filter(e=>/dock-(?:enemies|specialists|ordnance|foundry|terminal)\/.*\.glb$/.test(e.name)).map(e=>e.name.split('/').pop()));
  assert.deepEqual(modelsAtReady,['sentry.glb'],'only the first rival should load at startup');
@@ -65,7 +67,7 @@ try{
  await page.locator('#win-next').tap();await waitRival(0);
  await page.locator('#dodge').tap();
  assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
- const weaponsHit=[];
+ const weaponsHit=[],heroStyles={};
  for(let i=14;i<=25;i++){
   const id=String(i).padStart(3,'0');
   await page.locator('#reset').tap();
@@ -78,7 +80,11 @@ try{
   },null,{timeout:10000});
   await f('touchEnd');
   const before=Number(await page.locator('#enemy-hp').textContent());
+  const styles=['Sweep','Chop','Thrust','Chop','Sweep','Chop','Sweep','Thrust','Sweep','Chop','Sweep','Thrust'];
+  const pose=styles[i-14];
   await page.locator('#attack').tap();
+  await page.waitForFunction(n=>document.querySelector('#yard').dataset.heroClip===n,pose);
+  heroStyles[id]=pose;
   await page.waitForFunction(h=>+document.querySelector('#enemy-hp').textContent<h,before,{timeout:5000});
   weaponsHit.push(id);
  }
@@ -107,5 +113,5 @@ try{
  }
  assert.equal(inspectedVariants.length,100);
  assert.deepEqual(errors,[]);
- console.log(JSON.stringify({trustedTouch:true,modelsAtReady,victories,weaponModelsLoaded:12,weaponsHit,inspectedVariants,viewport:[402,874],framing,errors},null,2));
+ console.log(JSON.stringify({trustedTouch:true,modelsAtReady,victories,weaponModelsLoaded:12,weaponsHit,heroStyles,inspectedVariants,viewport:[402,874],framing,errors},null,2));
 }finally{await browser.close();}

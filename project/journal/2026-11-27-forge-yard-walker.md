@@ -1,0 +1,2 @@
+# Replace the blockout with an original actor
+The arena now mounts an authored Walker with a ceramic respirator, asymmetrical shoulder plates, pack, split coat and distinct workwear joints. Source and game export are both checked in. The authored right-hand socket is the parent of every equipped weapon. Three weapon swing styles drive the actor independently of each weapon's local clip. Idle, turning, dodge, hit reaction, and defeat animation are visible presentation; the same tested arena simulation still owns gameplay. No production game deploy.
