@@ -57,16 +57,37 @@ for i,(slug,label,col,style) in enumerate(spec):
  joint('root',(0,0,0),None)
  if style=='windmill':
   joint('body',(0,0,1.23),'root');joint('head',(0,-.07,2.05))
-  put('body',box(c,'Chest plating',(0,0,1.53),(.86,.54,.67),paint,r=.085),
-      box(c,'Core shield',(0,-.303,1.52),(.59,.12,.44),iron,r=.055),orb(c,'Chest emitter',(0,-.382,1.52),(.116,.056,.116),eye),
-      box(c,'Waist',(0,.01,1.13),(.57,.40,.26),iron,r=.07))
-  put('head',*faceplate(c,'Armored brow',0,-.125,2.02,.60,.36,paint,eye))
+  slag=mat('Sentry . stoved graphite',(.037,.050,.054),.52,.45)
+  heat=mat('Sentry . scorched yellow enamel',(.43,.198,.047),.46,.39)
+  ivory=mat('Sentry . ceramic cheek guards',(.52,.43,.30),.38,.4)
+  put('body',box(c,'Armature torso casting',(0,.017,1.51),(.70,.45,.61),slag,r=.08),
+      box(c,'Bronze chest breastplate',(0,-.173,1.58),(.82,.26,.47),heat,r=.078),
+      box(c,'Triple-ribbed sternum shield',(0,-.305,1.54),(.47,.11,.36),iron,r=.046),
+      wheel(c,'Core aperture bezel',(0,-.362,1.54),.131,.043,brass,12,'Y'),
+      wheel(c,'Inset core emitter',(0,-.390,1.54),.071,.027,eye,12,'Y'),
+      box(c,'Waist saddle',(0,.023,1.13),(.50,.37,.25),slag,r=.063),
+      box(c,'Ribbed back servo housing',(0,.224,1.55),(.46,.20,.405),iron,r=.045))
+  for q in (-1,1):
+   put('body',box(c,'Angled collar strut',(q*.334,-.083,1.81),(.159,.31,.112),ivory,r=.022,angle=q*.21),
+       box(c,'Sternum copper retainer',(q*.206,-.362,1.51),(.047,.041,.23),brass,r=.010))
+  for z in (1.43,1.52,1.61,1.70):
+   put('body',box(c,'Servo exhaust slat',(0,.339,z),(.33,.035,.028),silver,r=.008))
+  put('head',box(c,'Sloped armor brow',(0,-.130,2.09),(.63,.31,.188),heat,r=.054),
+      box(c,'Graphite recessed eye bay',(0,-.232,2.016),(.44,.12,.113),slag,r=.021),
+      box(c,'Three-quarter-width visor',(0,-.298,2.021),(.321,.021,.034),eye,r=.009),
+      box(c,'Ceramic lower faceplate',(0,-.254,1.951),(.38,.11,.102),ivory,r=.022))
   for sign,name in [(-1,'L'),(1,'R')]:
+   put('head',box(c,'Recessed comm terminal',(sign*.287,-.079,2.038),(.096,.192,.131),slag,r=.028),
+       wheel(c,'Comms fender bolt',(sign*.338,-.085,2.038),.028,.018,silver,8))
    x=sign*.285;joint('leg_'+name,(x,0,1.20))
-   put('leg_'+name,beam(c,'Armored shank',(x,0,1.12),(x,-.02,.23),.12,silver),
-       box(c,'Heel',(x,-.15,.16),(.34,.48,.28),iron,r=.05),orb(c,'Knee joint',(x,-.18,.67),(.18,.09,.18),brass))
+   put('leg_'+name,beam(c,'Piston shank',(x,0,1.12),(x,-.02,.23),.101,silver),
+       box(c,'Lower leg armor face',(x,-.091,.47),(.241,.202,.447),slag,r=.042),
+       box(c,'Shin plate collar',(x,-.203,.635),(.206,.066,.20),heat,r=.040),
+       box(c,'Grip sole',(x,-.14,.098),(.32,.49,.14),iron,r=.042),
+       box(c,'Forged toe cap',(x,-.285,.178),(.29,.212,.135),ivory,r=.035))
    x=sign*.54;joint('arm_'+name,(x,0,1.73))
-   put('arm_'+name, box(c,'Shoulder',(x,0,1.67),(.38,.45,.39),paint))
+   put('arm_'+name,box(c,'High drive shoulder' if sign>0 else 'Narrow stabilizing shoulder',(x,0,1.69),(.39,.48,.41) if sign>0 else (.29,.36,.29),heat,r=.074 if sign>0 else .054),
+       wheel(c,'Rotary shoulder bearing',(x+sign*.177,.008,1.673),.12,.046,iron,12))
  elif style=='pounce':
   joint('body',(0,0,.55),'root');joint('head',(0,-.51,.69))
   put('body',orb(c,'Low shell',(0,0,.67),(.51,.64,.345),paint),box(c,'Carapace rail',(0,-.04,.97),(.43,.61,.14),iron))
@@ -127,12 +148,17 @@ for i,(slug,label,col,style) in enumerate(spec):
     shoe=box(c,'Forged traction shoe',(x,.361*math.sin(t),.37+.361*math.cos(t)),(.221,.116,.050),iron,r=.010)
     shoe.rotation_euler.x=-t
     put('roller_'+name,shoe)
- # The sentry's strike arms use a bigger right tool, not a recolored left arm.
+ # Make the larger right tool the obvious sweep side.
  if style=='windmill':
   for sign,name in [(-1,'L'),(1,'R')]:
    x=sign*.57
-   put('arm_'+name,beam(c,'Forearm',(x,0,1.54),(x,-.12,1.14),.12,silver),
-       box(c,'Impact fist',(x,-.20,1.11),(.31 if sign>0 else .22,.38,.27),brass,r=.05))
+   put('arm_'+name,beam(c,'Forearm piston',(x,0,1.54),(x,-.12,1.14),.087,silver),
+       box(c,'Steel tool sleeve',(x,-.069,1.295),(.253,.238,.31),slag,r=.044),
+       box(c,'Capped impact tool',(x,-.20,1.11),(.345 if sign>0 else .22,.393,.28),heat if sign>0 else iron,r=.051),
+       box(c,'Ivory strike face' if sign>0 else 'Bronze stabilizer pad',(x,-.389,1.11),(.294 if sign>0 else .167,.062,.193),ivory if sign>0 else brass,r=.023))
+   if sign>0:
+    for j in (-1,0,1):
+     put('arm_'+name,box(c,'Sweeper tool reinforcement rib',(x+j*.083,-.229,1.259),(.032,.243,.026),silver,r=.008))
  rigdata=bpy.data.armatures.new(label+' armature')
  rig=bpy.data.objects.new('WSC-ENM-'+str(i+1).zfill(3)+' '+label,rigdata);c.objects.link(rig)
  bpy.ops.object.select_all(action='DESELECT');rig.select_set(True);bpy.context.view_layer.objects.active=rig
@@ -246,3 +272,8 @@ for slug,label,_,_ in spec:
 focus=(3.15,0,.57);o.location=(5.4,-5.3,2.65);aim(o,focus);d.ortho_scale=2.6
 s.render.resolution_x=800;s.render.resolution_y=660
 s.render.filepath=str(TMP/'ballast-ram.png');bpy.ops.render.render(write_still=True)
+
+bpy.data.collections['Ballast Ram'].hide_render=True
+bpy.data.collections['Gate Sentry'].hide_render=False
+focus=(-3.15,0,1.05);o.location=(-6.0,-5.6,3.10);aim(o,focus);d.ortho_scale=3.05
+s.render.filepath=str(TMP/'gate-sentry.png');bpy.ops.render.render(write_still=True)

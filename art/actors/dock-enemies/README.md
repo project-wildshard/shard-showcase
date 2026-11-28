@@ -9,3 +9,5 @@ python scripts/blender/dock-enemies/verify.py art/actors/dock-enemies
 ```
 
 Ballast Ram’s revised B-series chassis has a sloped ballast hood, a recessed warning eye, a steel lower plow and clad traction rollers. The other three GLBs, Ram’s three sockets, nine clips and encounter tuning were retained. See the standalone Forge Yard test receipt for actual browser play.
+
+Gate Sentry now has a heavier right-side sweeper, a smaller left stabilizer, a recessed cyan visor and ceramic toe guards. The original rig joints, sockets, animation clips and encounter reach are unchanged.

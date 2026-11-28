@@ -1,0 +1,21 @@
+{
+  "portrait": [
+    402,
+    874
+  ],
+  "trustedTouch": true,
+  "report": [
+    {
+      "variant": "before",
+      "cue": "SWEEP · step back",
+      "healthAfterBackstep": 120,
+      "errors": []
+    },
+    {
+      "variant": "after",
+      "cue": "SWEEP · step back",
+      "healthAfterBackstep": 120,
+      "errors": []
+    }
+  ]
+}

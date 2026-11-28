@@ -4,8 +4,8 @@
       "id": "WSC-ENM-001",
       "file": "sentry.glb",
       "behavior": "windmill",
-      "triangles": 1180,
-      "bytes": 154848,
+      "triangles": 2592,
+      "bytes": 244364,
       "clips": {
         "Idle": {
           "duration": 1.6,
