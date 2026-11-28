@@ -1,0 +1,25 @@
+{
+  "sameCamera": true,
+  "sameLighting": true,
+  "sameMaterial": true,
+  "identicalPose": false,
+  "viewport": [
+    1280,
+    720
+  ],
+  "tests": [
+    {
+      "mesh": "authored",
+      "triangles": 43570,
+      "projectedHeightPx": 243,
+      "heightM": 1.98
+    },
+    {
+      "mesh": "reconstructed",
+      "triangles": 32696,
+      "projectedHeightPx": 241.1,
+      "heightM": 1.966
+    }
+  ],
+  "errors": []
+}
