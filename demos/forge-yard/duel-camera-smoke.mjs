@@ -4,6 +4,7 @@ import {mkdirSync} from 'node:fs';
 const url=process.argv[2]??'http://127.0.0.1:5187/demos/forge-yard/';
 const out=process.argv[3]??'/tmp/duel-camera';mkdirSync(out,{recursive:true});
 const baseline=process.argv[4];
+const expectedKit=new URL(url).searchParams.get('arena')==='breakwater'?'signal-breakwater':'foundry-evening';
 const browser=await chromium.launch({executablePath:process.env.CHROMIUM_BINARY,args:['--enable-unsafe-swiftshader','--use-angle=swiftshader',...JSON.parse(process.env.CHROMIUM_EXTRA_ARGS??'[]')]});
 const report=[];
 try{
@@ -26,6 +27,12 @@ try{
    });
   });
   await p.goto(url);await wait(()=>document.querySelector('#yard').dataset.state==='ready');
+  const environment=await p.locator('#yard').evaluate(y=>({kit:y.dataset.sceneKit,batches:+y.dataset.sceneBatches,instances:+y.dataset.sceneInstances,cover:+y.dataset.sceneCover}));
+  if(name!=='before'){
+   assert.equal(environment.kit,expectedKit);assert.equal(environment.cover,4);
+   assert(environment.batches>10&&environment.instances>100);
+   if(expectedKit==='signal-breakwater')assert.match(await p.title(),/Signal Breakwater/);
+  }
   const stick=await p.locator('#stick').boundingBox(),c=await p.context().newCDPSession(p);
   const start=(x,y)=>c.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:stick.x+stick.width/2+x*31,y:stick.y+stick.height/2+y*31}]});
   const end=()=>c.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
@@ -47,7 +54,7 @@ try{
   const bounds=await p.evaluate(()=>window.bounds);
   assert(bounds[2]>15);if(name!=='before'){assert(bounds[0]<=.86);assert(bounds[1]<=.70);assert(approach.cameraDistance>=6.35&&approach.cameraDistance<11,JSON.stringify(approach));}
   assert.deepEqual(errors,[]);
-  report.push({name,viewport:[width,height],approach,maxAbsNdc:bounds.slice(0,2),sampledFrames:bounds[2],sentryHit:true,ramTellAndDodge:true,errors});
+  report.push({name,viewport:[width,height],approach,maxAbsNdc:bounds.slice(0,2),sampledFrames:bounds[2],environment,sentryHit:true,ramTellAndDodge:true,errors});
   await p.close();
  }
  console.log(JSON.stringify({trustedTouch:true,report},null,2));

@@ -1,6 +1,7 @@
 import {beaconThrustWeight,createThrustAlignment} from './thrust-alignment.mjs';
 import {DUEL_CAMERA_AXIS,DUEL_CAMERA_FOV,duelDistance} from './duel-camera.mjs';
 import {createImpactEffects,surfaceCue} from './impact-effects.mjs';
+import {createBreakwaterDressing} from './breakwater-dressing.mjs';
 import {createFoundryDressing} from './foundry-dressing.mjs';
 import * as T from 'three';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
@@ -34,16 +35,23 @@ try{
  const render=new T.WebGLRenderer({antialias:true,powerPreference:'low-power'});
  render.setPixelRatio(Math.min(devicePixelRatio,1.5));render.toneMapping=T.ACESFilmicToneMapping;render.toneMappingExposure=1.16;
  wrap.prepend(render.domElement);
+ const coast=new URL(location.href).searchParams.get('arena')==='breakwater';
+ const sky=coast?0x496972:0x172b34;
  const scene=new T.Scene(),camera=new T.PerspectiveCamera(DUEL_CAMERA_FOV,1,.09,85);
- scene.background=new T.Color(0x172b34);scene.fog=new T.FogExp2(0x172b34,.036);
+ scene.background=new T.Color(sky);scene.fog=new T.FogExp2(sky,coast?.028:.036);
  const env=new RoomEnvironment(),pmrem=new T.PMREMGenerator(render);
  scene.environment=pmrem.fromScene(env,.06).texture;scene.environmentIntensity=.40;env.dispose();pmrem.dispose();
- scene.add(new T.HemisphereLight(0xa6dce7,0x302822,1.18));
- const key=new T.DirectionalLight(0xffdabd,2.44);key.position.set(-6,11,4);scene.add(key);
+ scene.add(new T.HemisphereLight(0xa6dce7,coast?0x3b4b53:0x302822,coast?1.43:1.18));
+ const key=new T.DirectionalLight(coast?0xffd9bd:0xffdabd,coast?2.8:2.44);key.position.set(-6,11,4);scene.add(key);
  const rim=new T.DirectionalLight(0x86cafa,1.28);rim.position.set(8,6,-8);scene.add(rim);
 
- const dressing=createFoundryDressing(scene,COVER);
- wrap.dataset.sceneKit='foundry-evening';
+ const dressing=coast?createBreakwaterDressing(scene,COVER):createFoundryDressing(scene,COVER);
+ if(coast){
+  document.title='Signal Breakwater | Wildshard Combat Prototype';
+  $('arena-name').firstChild.data='Signal ';
+  $('arena-name').querySelector('span').textContent='Breakwater';
+ }
+ wrap.dataset.sceneKit=coast?'signal-breakwater':'foundry-evening';
  wrap.dataset.lightPools=String(dressing.lightPools);
  wrap.dataset.practicalLights=String(dressing.practicalLights);
  wrap.dataset.sceneBatches=String(dressing.batches);

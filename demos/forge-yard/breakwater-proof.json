@@ -1,0 +1,63 @@
+{
+  "trustedTouch": true,
+  "report": [
+    {
+      "name": "portrait",
+      "viewport": [
+        402,
+        874
+      ],
+      "approach": {
+        "cameraDistance": 9.417,
+        "x": 0,
+        "z": 1.407,
+        "ex": 0,
+        "ez": -0.36,
+        "pose": "Move"
+      },
+      "maxAbsNdc": [
+        0.544,
+        0.201
+      ],
+      "sampledFrames": 169,
+      "environment": {
+        "kit": "signal-breakwater",
+        "batches": 31,
+        "instances": 492,
+        "cover": 4
+      },
+      "sentryHit": true,
+      "ramTellAndDodge": true,
+      "errors": []
+    },
+    {
+      "name": "wide",
+      "viewport": [
+        960,
+        680
+      ],
+      "approach": {
+        "cameraDistance": 7.011,
+        "x": 0,
+        "z": 1.33,
+        "ex": 0,
+        "ez": -0.553,
+        "pose": "Move"
+      },
+      "maxAbsNdc": [
+        0.302,
+        0.344
+      ],
+      "sampledFrames": 190,
+      "environment": {
+        "kit": "signal-breakwater",
+        "batches": 31,
+        "instances": 492,
+        "cover": 4
+      },
+      "sentryHit": true,
+      "ramTellAndDodge": true,
+      "errors": []
+    }
+  ]
+}
